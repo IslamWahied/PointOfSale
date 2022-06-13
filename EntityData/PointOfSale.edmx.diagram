@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ee18249325154dbb9dfd9c4136ad7669" Name="Diagram1">
+        <EntityTypeShape EntityType="PointOfSaleModel.Branch" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="PointOfSaleModel.Category" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="PointOfSaleModel.Customer_Info" Width="1.5" PointX="0.75" PointY="3.75" />
+        <EntityTypeShape EntityType="PointOfSaleModel.Employee" Width="1.5" PointX="2.75" PointY="3.75" />
+        <EntityTypeShape EntityType="PointOfSaleModel.Expens" Width="1.5" PointX="4.75" PointY="0.75" />
+        <EntityTypeShape EntityType="PointOfSaleModel.ExpensesTransaction" Width="1.5" PointX="4.75" PointY="3.75" />
+        <EntityTypeShape EntityType="PointOfSaleModel.Item_History" Width="1.5" PointX="6.75" PointY="0.75" />
+        <EntityTypeShape EntityType="PointOfSaleModel.Item_History_transaction" Width="1.5" PointX="6.75" PointY="4.75" />
+        <EntityTypeShape EntityType="PointOfSaleModel.ItemCard" Width="1.5" PointX="8.75" PointY="0.75" />
+        <EntityTypeShape EntityType="PointOfSaleModel.Jop" Width="1.5" PointX="4.75" PointY="8.75" />
+        <EntityTypeShape EntityType="PointOfSaleModel.SaleDetail" Width="1.5" PointX="8.75" PointY="5.75" />
+        <EntityTypeShape EntityType="PointOfSaleModel.SaleMaster" Width="1.5" PointX="0.75" PointY="9.75" />
+        <EntityTypeShape EntityType="PointOfSaleModel.Sale" Width="1.5" PointX="10.75" PointY="0.75" />
+        <EntityTypeShape EntityType="PointOfSaleModel.SexType" Width="1.5" PointX="10.75" PointY="4.75" />
+        <EntityTypeShape EntityType="PointOfSaleModel.Shift" Width="1.5" PointX="6.75" PointY="10.75" />
+        <EntityTypeShape EntityType="PointOfSaleModel.Tab_Info" Width="1.5" PointX="10.75" PointY="7.75" />
+        <EntityTypeShape EntityType="PointOfSaleModel.UnitCard" Width="1.5" PointX="2.75" PointY="11.75" />
+        <EntityTypeShape EntityType="PointOfSaleModel.User" Width="1.5" PointX="8.75" PointY="11.75" />
+        <EntityTypeShape EntityType="PointOfSaleModel.User_Auth" Width="1.5" PointX="10.75" PointY="11.75" />
+        <EntityTypeShape EntityType="PointOfSaleModel.UserEvent" Width="1.5" PointX="12.75" PointY="0.75" />
+        <EntityTypeShape EntityType="PointOfSaleModel.Operation_Type" Width="1.5" PointX="12.75" PointY="4.75" />
+        <EntityTypeShape EntityType="PointOfSaleModel.Payment_Type" Width="1.5" PointX="12.75" PointY="7.75" />
+        <EntityTypeShape EntityType="PointOfSaleModel.Auth_View" Width="1.5" PointX="12.75" PointY="10.75" />
+        <EntityTypeShape EntityType="PointOfSaleModel.Customer_View" Width="1.5" PointX="14.75" PointY="0.75" />
+        <EntityTypeShape EntityType="PointOfSaleModel.Employee_View" Width="1.5" PointX="0.75" PointY="14.75" />
+        <EntityTypeShape EntityType="PointOfSaleModel.ExpensesView" Width="1.5" PointX="2.75" PointY="14.75" />
+        <EntityTypeShape EntityType="PointOfSaleModel.ItemCardView" Width="1.5" PointX="14.75" PointY="5.75" />
+        <EntityTypeShape EntityType="PointOfSaleModel.SaleDetailView" Width="1.5" PointX="14.75" PointY="10.75" />
+        <EntityTypeShape EntityType="PointOfSaleModel.SaleMasterView" Width="1.5" PointX="4.75" PointY="15.75" />
+        <EntityTypeShape EntityType="PointOfSaleModel.Shift_View" Width="1.5" PointX="6.75" PointY="15.75" />
+        <EntityTypeShape EntityType="PointOfSaleModel.User_View" Width="1.5" PointX="8.75" PointY="15.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
