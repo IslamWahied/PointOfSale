@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31019.35
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PointOfSale", "PointOfSaleSedek\PointOfSale.csproj", "{1D578CB1-0246-4E81-BED9-396179F07260}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityData", "EntityData\EntityData.csproj", "{DE94AAB9-4FE2-4BED-AC88-6476E68A27AF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1D578CB1-0246-4E81-BED9-396179F07260}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D578CB1-0246-4E81-BED9-396179F07260}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D578CB1-0246-4E81-BED9-396179F07260}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D578CB1-0246-4E81-BED9-396179F07260}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DE94AAB9-4FE2-4BED-AC88-6476E68A27AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE94AAB9-4FE2-4BED-AC88-6476E68A27AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE94AAB9-4FE2-4BED-AC88-6476E68A27AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE94AAB9-4FE2-4BED-AC88-6476E68A27AF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F204B627-4483-4F80-BA79-828F6ECA0912}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,601 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{1D578CB1-0246-4E81-BED9-396179F07260}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PointOfSaleSedek</RootNamespace>
+    <AssemblyName>PointOfSaleSedek</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Logo-only.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Accessibility" />
+    <Reference Include="DevExpress.BonusSkins.v20.1" />
+    <Reference Include="DevExpress.Data.Desktop.v20.1" />
+    <Reference Include="DevExpress.Data.v20.1" />
+    <Reference Include="DevExpress.Utils.v20.1" />
+    <Reference Include="DevExpress.Sparkline.v20.1.Core" />
+    <Reference Include="DevExpress.XtraBars.v20.1, Version=20.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraEditors.v20.1" />
+    <Reference Include="DevExpress.Printing.v20.1.Core" />
+    <Reference Include="DevExpress.XtraGantt.v20.1, Version=20.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraGauges.v20.1.Core, Version=20.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraGauges.v20.1.Presets, Version=20.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraGauges.v20.1.Win, Version=20.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraGrid.v20.1, Version=20.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraRichEdit.v20.1, Version=20.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="FastReport, Version=2019.3.5.0, Culture=neutral, PublicKeyToken=db7e5ce63278458c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\FastReports\FastReport.Net Trial\FastReport.dll</HintPath>
+    </Reference>
+    <Reference Include="FastReport.Bars, Version=2019.3.5.0, Culture=neutral, PublicKeyToken=db7e5ce63278458c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\FastReports\FastReport.Net Trial\FastReport.Bars.dll</HintPath>
+    </Reference>
+    <Reference Include="FastReport.Editor, Version=2019.3.5.0, Culture=neutral, PublicKeyToken=db7e5ce63278458c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\FastReports\FastReport.Net Trial\FastReport.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="FastReport.Install">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\FastReports\FastReport.Net Trial\FastReport.Install.dll</HintPath>
+    </Reference>
+    <Reference Include="FlatButton, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\Programs\Programming\Tools\JControls\FlatButton.dll</HintPath>
+    </Reference>
+    <Reference Include="JDragControl, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\Programs\Programming\Tools\JControls\JDragControl.dll</HintPath>
+    </Reference>
+    <Reference Include="JGradient Panel, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\Programs\Programming\Tools\JControls\JGradient Panel.dll</HintPath>
+    </Reference>
+    <Reference Include="JImageButton, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\Programs\Programming\Tools\JControls\JImageButton.dll</HintPath>
+    </Reference>
+    <Reference Include="JMaterialTextbox, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\Programs\Programming\Tools\JControls\JMaterialTextbox.dll</HintPath>
+    </Reference>
+    <Reference Include="JMetroTextBox, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\Programs\Programming\Tools\JControls\JMetroTextBox.dll</HintPath>
+    </Reference>
+    <Reference Include="JTextBox, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\Programs\Programming\Tools\JControls\JTextBox.dll</HintPath>
+    </Reference>
+    <Reference Include="JTextBox2, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\Programs\Programming\Tools\JControls\JTextBox2.dll</HintPath>
+    </Reference>
+    <Reference Include="JThinButton, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\Programs\Programming\Tools\JControls\JThinButton.dll</HintPath>
+    </Reference>
+    <Reference Include="MaterialSkin, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MaterialSkin.0.2.1\lib\MaterialSkin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.GridControl, Version=14.100.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Zen.Barcode.Core, Version=3.1.0.0, Culture=neutral, PublicKeyToken=b5ae55aa76d2d9de, processorArchitecture=MSIL">
+      <HintPath>..\packages\Zen.Barcode.Rendering.Framework.3.1.10729.1\lib\Zen.Barcode.Core.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="100-General\FrmMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="100-General\FrmMain.Designer.cs">
+      <DependentUpon>FrmMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="101-Adds\100-Employees\FrmAddEmployees.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="101-Adds\100-Employees\FrmAddEmployees.Designer.cs">
+      <DependentUpon>FrmAddEmployees.cs</DependentUpon>
+    </Compile>
+    <Compile Include="101-Adds\100-Employees\frmEditeEmployees.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="101-Adds\100-Employees\frmEditeEmployees.Designer.cs">
+      <DependentUpon>frmEditeEmployees.cs</DependentUpon>
+    </Compile>
+    <Compile Include="101-Adds\100-Employees\frmEmployees.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="101-Adds\100-Employees\frmEmployees.Designer.cs">
+      <DependentUpon>frmEmployees.cs</DependentUpon>
+    </Compile>
+    <Compile Include="101-Adds\102-Customer\frmAddCustomer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="101-Adds\102-Customer\frmAddCustomer.Designer.cs">
+      <DependentUpon>frmAddCustomer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="101-Adds\102-Customer\frmCustomer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="101-Adds\102-Customer\frmCustomer.Designer.cs">
+      <DependentUpon>frmCustomer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="101-Adds\102-Customer\frmEditeCustomer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="101-Adds\102-Customer\frmEditeCustomer.Designer.cs">
+      <DependentUpon>frmEditeCustomer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="101-Adds\103-Authentication\Class1.cs" />
+    <Compile Include="101-Adds\103-Authentication\frmAdmin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="101-Adds\103-Authentication\frmAdmin.Designer.cs">
+      <DependentUpon>frmAdmin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="101-Adds\103-Authentication\FrmAuthentication.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="101-Adds\103-Authentication\FrmAuthentication.Designer.cs">
+      <DependentUpon>FrmAuthentication.cs</DependentUpon>
+    </Compile>
+    <Compile Include="101-Adds\103-Authentication\FrmLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="101-Adds\103-Authentication\FrmLogin.Designer.cs">
+      <DependentUpon>FrmLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="101-Adds\104-Branches\frmAddBranches.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="101-Adds\104-Branches\frmAddBranches.Designer.cs">
+      <DependentUpon>frmAddBranches.cs</DependentUpon>
+    </Compile>
+    <Compile Include="101-Adds\104-Branches\frmBranches.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="101-Adds\104-Branches\frmBranches.Designer.cs">
+      <DependentUpon>frmBranches.cs</DependentUpon>
+    </Compile>
+    <Compile Include="101-Adds\105-Shifts\frmAdminForShift.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="101-Adds\105-Shifts\frmAdminForShift.Designer.cs">
+      <DependentUpon>frmAdminForShift.cs</DependentUpon>
+    </Compile>
+    <Compile Include="101-Adds\106-CardAndUnit\frmCodes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="101-Adds\106-CardAndUnit\frmCodes.Designer.cs">
+      <DependentUpon>frmCodes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="101-Adds\107-Item\frmAddItem.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="101-Adds\107-Item\frmAddItem.Designer.cs">
+      <DependentUpon>frmAddItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="101-Adds\107-Item\frmEditeItem.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="101-Adds\107-Item\frmEditeItem.Designer.cs">
+      <DependentUpon>frmEditeItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="101-Adds\107-Item\frmItemCard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="101-Adds\107-Item\frmItemCard.Designer.cs">
+      <DependentUpon>frmItemCard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="101-Adds\108-CasherShift\frmShiftEnd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="101-Adds\108-CasherShift\frmShiftEnd.Designer.cs">
+      <DependentUpon>frmShiftEnd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="101-Adds\108-CasherShift\frmShiftStart.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="101-Adds\108-CasherShift\frmShiftStart.Designer.cs">
+      <DependentUpon>frmShiftStart.cs</DependentUpon>
+    </Compile>
+    <Compile Include="101-Adds\109-Purchasescs\frmAddPurchsItems.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="101-Adds\109-Purchasescs\frmAddPurchsItems.Designer.cs">
+      <DependentUpon>frmAddPurchsItems.cs</DependentUpon>
+    </Compile>
+    <Compile Include="101-Adds\109-Purchasescs\frmEditePurchsItems.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="101-Adds\109-Purchasescs\frmEditePurchsItems.Designer.cs">
+      <DependentUpon>frmEditePurchsItems.cs</DependentUpon>
+    </Compile>
+    <Compile Include="101-Adds\109-Purchasescs\frmInvoicePurchsSearch.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="101-Adds\109-Purchasescs\frmInvoicePurchsSearch.Designer.cs">
+      <DependentUpon>frmInvoicePurchsSearch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="101-Adds\109-Purchasescs\frmPurchasescs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="101-Adds\109-Purchasescs\frmPurchasescs.Designer.cs">
+      <DependentUpon>frmPurchasescs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="101-Adds\110-Sales\frmCash.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="101-Adds\110-Sales\frmCash.Designer.cs">
+      <DependentUpon>frmCash.cs</DependentUpon>
+    </Compile>
+    <Compile Include="101-Adds\110-Sales\frmDiscount.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="101-Adds\110-Sales\frmDiscount.Designer.cs">
+      <DependentUpon>frmDiscount.cs</DependentUpon>
+    </Compile>
+    <Compile Include="101-Adds\110-Sales\frmInvoiceSearch.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="101-Adds\110-Sales\frmInvoiceSearch.Designer.cs">
+      <DependentUpon>frmInvoiceSearch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="101-Adds\110-Sales\frmSales.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="101-Adds\110-Sales\frmSales.Designer.cs">
+      <DependentUpon>frmSales.cs</DependentUpon>
+    </Compile>
+    <Compile Include="101-Adds\110-Sales\frmSearchItems.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="101-Adds\110-Sales\frmSearchItems.Designer.cs">
+      <DependentUpon>frmSearchItems.cs</DependentUpon>
+    </Compile>
+    <Compile Include="101-Adds\111-Storge\frmStorge.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="101-Adds\111-Storge\frmStorge.Designer.cs">
+      <DependentUpon>frmStorge.cs</DependentUpon>
+    </Compile>
+    <Compile Include="101-Adds\112-Users\Auth\frmAuthcs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="101-Adds\112-Users\Auth\frmAuthcs.Designer.cs">
+      <DependentUpon>frmAuthcs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="101-Adds\112-Users\frmAddUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="101-Adds\112-Users\frmAddUser.Designer.cs">
+      <DependentUpon>frmAddUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="101-Adds\112-Users\frmEditeUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="101-Adds\112-Users\frmEditeUser.Designer.cs">
+      <DependentUpon>frmEditeUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="101-Adds\112-Users\frmUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="101-Adds\112-Users\frmUser.Designer.cs">
+      <DependentUpon>frmUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="101-Adds\112-Users\frmUserViewModel.cs" />
+    <Compile Include="101-Adds\113-BarCode\frmBarCode.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="101-Adds\113-BarCode\frmBarCode.Designer.cs">
+      <DependentUpon>frmBarCode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="101-Adds\113-BarCode\frmBarCodes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="101-Adds\113-BarCode\frmBarCodes.Designer.cs">
+      <DependentUpon>frmBarCodes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="101-Adds\114-AddExpenses\FrmCancelExpenses.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="101-Adds\114-AddExpenses\FrmCancelExpenses.Designer.cs">
+      <DependentUpon>FrmCancelExpenses.cs</DependentUpon>
+    </Compile>
+    <Compile Include="101-Adds\114-AddExpenses\frmExpenses.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="101-Adds\114-AddExpenses\frmExpenses.Designer.cs">
+      <DependentUpon>frmExpenses.cs</DependentUpon>
+    </Compile>
+    <Compile Include="101-Adds\114-AddExpenses\frmExpensesTransaction.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="101-Adds\114-AddExpenses\frmExpensesTransaction.Designer.cs">
+      <DependentUpon>frmExpensesTransaction.cs</DependentUpon>
+    </Compile>
+    <Compile Include="102-Reports\frmCanelationInvoice.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="102-Reports\frmCanelationInvoice.Designer.cs">
+      <DependentUpon>frmCanelationInvoice.cs</DependentUpon>
+    </Compile>
+    <Compile Include="102-Reports\frmProfitandLossReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="102-Reports\frmProfitandLossReport.Designer.cs">
+      <DependentUpon>frmProfitandLossReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="102-Reports\frmPurchessReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="102-Reports\frmPurchessReport.Designer.cs">
+      <DependentUpon>frmPurchessReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="102-Reports\frmSaleReports.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="102-Reports\frmSaleReports.Designer.cs">
+      <DependentUpon>frmSaleReports.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HelperClass\103-MaterialSkin\FrmYes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HelperClass\103-MaterialSkin\FrmYes.Designer.cs">
+      <DependentUpon>FrmYes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HelperClass\103-MaterialSkin\FrmYesNo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HelperClass\103-MaterialSkin\FrmYesNo.Designer.cs">
+      <DependentUpon>FrmYesNo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HelperClass\103-MaterialSkin\MaterialMessageBox.cs" />
+    <Compile Include="HelperClass\103-MaterialSkin\WaitForm1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HelperClass\103-MaterialSkin\WaitForm1.Designer.cs">
+      <DependentUpon>WaitForm1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HelperClass\Class1.cs" />
+    <Compile Include="HelperClass\HelperClass.cs" />
+    <Compile Include="HelperClass\Static.cs" />
+    <Compile Include="Model\FinalTotal.cs" />
+    <Compile Include="Model\ProfitAndLosse.cs" />
+    <Compile Include="Model\SaleDetailViewVm.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="100-General\FrmMain.resx">
+      <DependentUpon>FrmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="101-Adds\100-Employees\FrmAddEmployees.resx">
+      <DependentUpon>FrmAddEmployees.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="101-Adds\100-Employees\frmEditeEmployees.resx">
+      <DependentUpon>frmEditeEmployees.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="101-Adds\100-Employees\frmEmployees.resx">
+      <DependentUpon>frmEmployees.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="101-Adds\102-Customer\frmAddCustomer.resx">
+      <DependentUpon>frmAddCustomer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="101-Adds\102-Customer\frmCustomer.resx">
+      <DependentUpon>frmCustomer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="101-Adds\102-Customer\frmEditeCustomer.resx">
+      <DependentUpon>frmEditeCustomer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="101-Adds\103-Authentication\frmAdmin.resx">
+      <DependentUpon>frmAdmin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="101-Adds\103-Authentication\FrmAuthentication.resx">
+      <DependentUpon>FrmAuthentication.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="101-Adds\103-Authentication\FrmLogin.resx">
+      <DependentUpon>FrmLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="101-Adds\104-Branches\frmAddBranches.resx">
+      <DependentUpon>frmAddBranches.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="101-Adds\104-Branches\frmBranches.resx">
+      <DependentUpon>frmBranches.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="101-Adds\105-Shifts\frmAdminForShift.resx">
+      <DependentUpon>frmAdminForShift.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="101-Adds\106-CardAndUnit\frmCodes.resx">
+      <DependentUpon>frmCodes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="101-Adds\107-Item\frmAddItem.resx">
+      <DependentUpon>frmAddItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="101-Adds\107-Item\frmEditeItem.resx">
+      <DependentUpon>frmEditeItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="101-Adds\107-Item\frmItemCard.resx">
+      <DependentUpon>frmItemCard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="101-Adds\108-CasherShift\frmShiftEnd.resx">
+      <DependentUpon>frmShiftEnd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="101-Adds\108-CasherShift\frmShiftStart.resx">
+      <DependentUpon>frmShiftStart.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="101-Adds\109-Purchasescs\frmAddPurchsItems.resx">
+      <DependentUpon>frmAddPurchsItems.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="101-Adds\109-Purchasescs\frmEditePurchsItems.resx">
+      <DependentUpon>frmEditePurchsItems.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="101-Adds\109-Purchasescs\frmInvoicePurchsSearch.resx">
+      <DependentUpon>frmInvoicePurchsSearch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="101-Adds\109-Purchasescs\frmPurchasescs.resx">
+      <DependentUpon>frmPurchasescs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="101-Adds\110-Sales\frmCash.resx">
+      <DependentUpon>frmCash.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="101-Adds\110-Sales\frmDiscount.resx">
+      <DependentUpon>frmDiscount.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="101-Adds\110-Sales\frmInvoiceSearch.resx">
+      <DependentUpon>frmInvoiceSearch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="101-Adds\110-Sales\frmSales.resx">
+      <DependentUpon>frmSales.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="101-Adds\110-Sales\frmSearchItems.resx">
+      <DependentUpon>frmSearchItems.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="101-Adds\111-Storge\frmStorge.resx">
+      <DependentUpon>frmStorge.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="101-Adds\112-Users\Auth\frmAuthcs.resx">
+      <DependentUpon>frmAuthcs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="101-Adds\112-Users\frmAddUser.resx">
+      <DependentUpon>frmAddUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="101-Adds\112-Users\frmEditeUser.resx">
+      <DependentUpon>frmEditeUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="101-Adds\112-Users\frmUser.resx">
+      <DependentUpon>frmUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="101-Adds\113-BarCode\frmBarCode.resx">
+      <DependentUpon>frmBarCode.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="101-Adds\113-BarCode\frmBarCodes.resx">
+      <DependentUpon>frmBarCodes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="101-Adds\114-AddExpenses\FrmCancelExpenses.resx">
+      <DependentUpon>FrmCancelExpenses.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="101-Adds\114-AddExpenses\frmExpenses.resx">
+      <DependentUpon>frmExpenses.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="101-Adds\114-AddExpenses\frmExpensesTransaction.resx">
+      <DependentUpon>frmExpensesTransaction.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="102-Reports\frmCanelationInvoice.resx">
+      <DependentUpon>frmCanelationInvoice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="102-Reports\frmProfitandLossReport.resx">
+      <DependentUpon>frmProfitandLossReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="102-Reports\frmPurchessReport.resx">
+      <DependentUpon>frmPurchessReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="102-Reports\frmSaleReports.resx">
+      <DependentUpon>frmSaleReports.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HelperClass\103-MaterialSkin\FrmYes.resx">
+      <DependentUpon>FrmYes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HelperClass\103-MaterialSkin\FrmYesNo.resx">
+      <DependentUpon>FrmYesNo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HelperClass\103-MaterialSkin\WaitForm1.resx">
+      <DependentUpon>WaitForm1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Logo-only.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EntityData\EntityData.csproj">
+      <Project>{de94aab9-4fe2-4bed-ac88-6476e68a27af}</Project>
+      <Name>EntityData</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+  </Target>
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
