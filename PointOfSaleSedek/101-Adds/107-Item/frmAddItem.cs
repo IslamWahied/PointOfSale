@@ -18,7 +18,7 @@ namespace PointOfSaleSedek._101_Adds
     public partial class frmAddItem : MaterialSkin.Controls.MaterialForm
     {
 
-        readonly PointOfSaleEntities context = new PointOfSaleEntities();
+        readonly PointOfSaleEntities2 context = new PointOfSaleEntities2();
         public frmAddItem()
         {
             InitializeComponent();
@@ -58,7 +58,7 @@ namespace PointOfSaleSedek._101_Adds
         void AddItem()
         {
 
-            using (PointOfSaleEntities Contexts = new PointOfSaleEntities())
+            using (PointOfSaleEntities2 Contexts = new PointOfSaleEntities2())
             {
 
 

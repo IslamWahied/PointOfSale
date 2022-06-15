@@ -17,7 +17,7 @@ namespace PointOfSaleSedek._101_Adds
 {
     public partial class frmItemCard : DevExpress.XtraEditors.XtraForm
     {
-        readonly PointOfSaleEntities context = new PointOfSaleEntities();
+        readonly PointOfSaleEntities2 context = new PointOfSaleEntities2();
         public frmItemCard()
         {
             InitializeComponent();
@@ -70,7 +70,7 @@ namespace PointOfSaleSedek._101_Adds
                 _ItemCard.IsDeleted = 1;
                     
                     context.SaveChanges();
-                using (PointOfSaleEntities Contexts = new PointOfSaleEntities())
+                using (PointOfSaleEntities2 Contexts = new PointOfSaleEntities2())
                 {
 
                     var result = (from a in Contexts.ItemCardViews where a.IsDeleted == 0 select a).ToList();
@@ -149,7 +149,7 @@ namespace PointOfSaleSedek._101_Adds
                     ItemCardView xx = gvItemCard.GetFocusedRow() as ItemCardView;
 
 
-                    using (PointOfSaleEntities Contexts = new PointOfSaleEntities())
+                    using (PointOfSaleEntities2 Contexts = new PointOfSaleEntities2())
                     {
                         ItemCard _ItemCard = new ItemCard();
                         _ItemCard = Contexts.ItemCards.SingleOrDefault(item => item.ItemCode == xx.ItemCode);
@@ -234,7 +234,7 @@ namespace PointOfSaleSedek._101_Adds
                     ItemCardView xx = gvItemCard.GetFocusedRow() as ItemCardView;
 
 
-                    using (PointOfSaleEntities Contexts = new PointOfSaleEntities())
+                    using (PointOfSaleEntities2 Contexts = new PointOfSaleEntities2())
                     {
                         ItemCard _ItemCard = new ItemCard();
                         _ItemCard = Contexts.ItemCards.SingleOrDefault(item => item.ItemCode == xx.ItemCode);
@@ -277,7 +277,7 @@ namespace PointOfSaleSedek._101_Adds
             else if (btn.Caption == "تحديث")
             {
 
-                using (PointOfSaleEntities Contexts = new PointOfSaleEntities())
+                using (PointOfSaleEntities2 Contexts = new PointOfSaleEntities2())
                 {
                     
                     var result = (from a in Contexts.ItemCardViews where a.IsDeleted == 0 select a).ToList();
@@ -325,7 +325,7 @@ namespace PointOfSaleSedek._101_Adds
                     return;
                 }
 
-                using (PointOfSaleEntities Contexts = new PointOfSaleEntities())
+                using (PointOfSaleEntities2 Contexts = new PointOfSaleEntities2())
                 {
 
                     var result = (from a in Contexts.ItemCardViews where a.IsDeleted == 0 select a).ToList();

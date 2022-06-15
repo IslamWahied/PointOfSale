@@ -17,7 +17,7 @@ namespace PointOfSaleSedek._105_Reports
 {
     public partial class frmPurchessReport : DevExpress.XtraEditors.XtraForm
     {
-        PointOfSaleEntities context = new PointOfSaleEntities();
+        PointOfSaleEntities2 context = new PointOfSaleEntities2();
         public frmPurchessReport()
         {
             InitializeComponent();
@@ -25,8 +25,11 @@ namespace PointOfSaleSedek._105_Reports
 
         private void simpleButton1_Click(object sender, EventArgs e)
         {
-            var Master = (from a in context.SaleMasterViews where a.EntryDate >= dtFrom.DateTime  && a.EntryDate <= dtTo.DateTime && a.Operation_Type_Id == 1 select a).ToList();
-            var Detail = (from a in context.SaleDetailViews where a.EntryDate >= dtFrom.DateTime && a.EntryDate <= dtTo.DateTime && a.Operation_Type_Id == 1 select a).ToList();
+            var dateTo = Convert.ToDateTime(Convert.ToDateTime(dtFrom.EditValue).AddDays(1));
+
+             
+            var Master = (from a in context.SaleMasterViews where a.EntryDate >= dtFrom.DateTime  && a.EntryDate <= dateTo && a.Operation_Type_Id == 1 select a).ToList();
+            var Detail = (from a in context.SaleDetailViews where a.EntryDate >= dtFrom.DateTime && a.EntryDate <= dateTo && a.Operation_Type_Id == 1 select a).ToList();
 
             if (Master.Count == 0 || Detail.Count == 0)
 
@@ -53,6 +56,7 @@ namespace PointOfSaleSedek._105_Reports
                         EntryDate = x.EntryDate,
                         Id = x.Id,
                         IsDeleted = x.IsDeleted,
+                        
                         ItemCode = x.ItemCode,
                         Item_Count_InStoreg = x.Item_Count_InStoreg,
                         Name = x.Name,
@@ -97,8 +101,8 @@ namespace PointOfSaleSedek._105_Reports
                rpt.RegisterData(Master, "Header");
                rpt.RegisterData(saleDetailViewVmList, "Lines");
               // rpt.PrintSettings.ShowDialog = false;
-         //   rpt.Design();
-                rpt.Show();
+               rpt.Design();
+               // rpt.Show();
 
             }
 

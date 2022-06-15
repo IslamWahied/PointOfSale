@@ -58,10 +58,10 @@
             this.labelControl10 = new DevExpress.XtraEditors.LabelControl();
             this.slkItem = new DevExpress.XtraEditors.SearchLookUpEdit();
             this.searchLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.materialContextMenuStrip1 = new MaterialSkin.Controls.MaterialContextMenuStrip();
             this.جديدToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtCatgoryName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPriceBuy.Properties)).BeginInit();
@@ -446,7 +446,7 @@
             this.chkBox.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.chkBox.AutoSize = true;
             this.chkBox.Depth = 0;
-            this.chkBox.Font = new System.Drawing.Font("Roboto", 10F);
+            this.chkBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.chkBox.Location = new System.Drawing.Point(6, 26);
             this.chkBox.Margin = new System.Windows.Forms.Padding(0);
             this.chkBox.MouseLocation = new System.Drawing.Point(-1, -1);
@@ -465,7 +465,7 @@
             this.chkUnits.Checked = true;
             this.chkUnits.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkUnits.Depth = 0;
-            this.chkUnits.Font = new System.Drawing.Font("Roboto", 10F);
+            this.chkUnits.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.chkUnits.Location = new System.Drawing.Point(43, 26);
             this.chkUnits.Margin = new System.Windows.Forms.Padding(0);
             this.chkUnits.MouseLocation = new System.Drawing.Point(-1, -1);
@@ -515,6 +515,23 @@
             this.searchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.searchLookUpEdit1View.OptionsView.ShowGroupPanel = false;
             // 
+            // materialContextMenuStrip1
+            // 
+            this.materialContextMenuStrip1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.materialContextMenuStrip1.Depth = 0;
+            this.materialContextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.جديدToolStripMenuItem});
+            this.materialContextMenuStrip1.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialContextMenuStrip1.Name = "materialContextMenuStrip1";
+            this.materialContextMenuStrip1.Size = new System.Drawing.Size(98, 26);
+            // 
+            // جديدToolStripMenuItem
+            // 
+            this.جديدToolStripMenuItem.Name = "جديدToolStripMenuItem";
+            this.جديدToolStripMenuItem.Size = new System.Drawing.Size(97, 22);
+            this.جديدToolStripMenuItem.Text = "جديد";
+            this.جديدToolStripMenuItem.Click += new System.EventHandler(this.جديدToolStripMenuItem_Click);
+            // 
             // gridColumn1
             // 
             this.gridColumn1.AppearanceCell.Options.UseTextOptions = true;
@@ -542,23 +559,6 @@
             this.gridColumn2.Name = "gridColumn2";
             this.gridColumn2.Visible = true;
             this.gridColumn2.VisibleIndex = 1;
-            // 
-            // materialContextMenuStrip1
-            // 
-            this.materialContextMenuStrip1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.materialContextMenuStrip1.Depth = 0;
-            this.materialContextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.جديدToolStripMenuItem});
-            this.materialContextMenuStrip1.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialContextMenuStrip1.Name = "materialContextMenuStrip1";
-            this.materialContextMenuStrip1.Size = new System.Drawing.Size(98, 26);
-            // 
-            // جديدToolStripMenuItem
-            // 
-            this.جديدToolStripMenuItem.Name = "جديدToolStripMenuItem";
-            this.جديدToolStripMenuItem.Size = new System.Drawing.Size(97, 22);
-            this.جديدToolStripMenuItem.Text = "جديد";
-            this.جديدToolStripMenuItem.Click += new System.EventHandler(this.جديدToolStripMenuItem_Click);
             // 
             // frmAddPurchsItems
             // 

@@ -15,7 +15,7 @@ namespace PointOfSaleSedek._101_Adds.CasherShift
 {
     public partial class frmShiftStart : DevExpress.XtraEditors.XtraForm
     {
-        PointOfSaleEntities Context = new PointOfSaleEntities();
+        PointOfSaleEntities2 Context = new PointOfSaleEntities2();
         public frmShiftStart()
         {
             InitializeComponent();

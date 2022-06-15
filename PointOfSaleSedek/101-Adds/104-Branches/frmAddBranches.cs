@@ -16,7 +16,7 @@ namespace PointOfSaleSedek._101_Adds
     public partial class frmAddBranches : DevExpress.XtraEditors.XtraForm
     {
 
-        PointOfSaleEntities Context = new PointOfSaleEntities(); 
+        PointOfSaleEntities2 Context = new PointOfSaleEntities2(); 
         public frmAddBranches()
         {
             InitializeComponent();
@@ -70,7 +70,7 @@ namespace PointOfSaleSedek._101_Adds
                 Context.SaveChanges();
 
 
-                using (PointOfSaleEntities NewContext = new PointOfSaleEntities())
+                using (PointOfSaleEntities2 NewContext = new PointOfSaleEntities2())
                 {
 
                     frm.gcEmployeeCard.DataSource = NewContext.Branches.Where(x => x.IsDeleted == 0).ToList();

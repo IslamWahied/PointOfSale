@@ -174,7 +174,6 @@
     <Compile Include="101-Adds\102-Customer\frmEditeCustomer.Designer.cs">
       <DependentUpon>frmEditeCustomer.cs</DependentUpon>
     </Compile>
-    <Compile Include="101-Adds\103-Authentication\Class1.cs" />
     <Compile Include="101-Adds\103-Authentication\frmAdmin.cs">
       <SubType>Form</SubType>
     </Compile>

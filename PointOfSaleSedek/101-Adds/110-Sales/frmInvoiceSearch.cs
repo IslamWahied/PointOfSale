@@ -15,7 +15,7 @@ namespace PointOfSaleSedek._101_Adds
 {
     public partial class frmInvoiceSearch : DevExpress.XtraEditors.XtraForm
     {
-        PointOfSaleEntities Context = new PointOfSaleEntities();
+        PointOfSaleEntities2 Context = new PointOfSaleEntities2();
         public frmInvoiceSearch()
         {
             InitializeComponent();
@@ -23,7 +23,8 @@ namespace PointOfSaleSedek._101_Adds
         }
        void FillGrid()
         {
-            gcSaleMaster.DataSource = Context.SaleMasterViews.Where(x => x.EntryDate == DateTime.Today&&x.Operation_Type_Id==2).ToList();
+             
+            gcSaleMaster.DataSource = Context.SaleMasterViews.Where(x => x.EntryDate.Day == DateTime.Today.Day && x.EntryDate.Month == DateTime.Today.Month && x.EntryDate.Year == DateTime.Today.Year && x.Operation_Type_Id==2).ToList();
  
         }
 
@@ -66,7 +67,7 @@ namespace PointOfSaleSedek._101_Adds
                    frm.btnPrint.Enabled = true;
                     frm.gcSaleDetail.DataSource = null;
                     frm.gcSaleDetail.RefreshDataSource();
-                    frm.gcSaleDetail.DataSource  =  Context.SaleDetailViews.Where(x=>x.SaleMasterCode == SaleMasterCode && x.EntryDate==DateTime.Today&&x.Operation_Type_Id==2).ToList();
+                    frm.gcSaleDetail.DataSource  =  Context.SaleDetailViews.Where(x=>x.SaleMasterCode == SaleMasterCode && x.EntryDate.Day == DateTime.Today.Day && x.EntryDate.Month == DateTime.Today.Month && x.EntryDate.Year == DateTime.Today.Year &&x.Operation_Type_Id==2).ToList();
                     frm.gcSaleDetail.Enabled = false;
                 
                    
@@ -111,7 +112,7 @@ namespace PointOfSaleSedek._101_Adds
                 _item_History_Transactions.ForEach(x => {
 
                    
-                    using (PointOfSaleEntities cont = new PointOfSaleEntities())
+                    using (PointOfSaleEntities2 cont = new PointOfSaleEntities2())
                     {
                         Item_History _item_History;
 
@@ -151,15 +152,15 @@ namespace PointOfSaleSedek._101_Adds
 
 
 
-            using (PointOfSaleEntities context2 = new PointOfSaleEntities())
+            using (PointOfSaleEntities2 context2 = new PointOfSaleEntities2())
             {
-                var Details = context2.SaleDetails.Where(w => w.SaleMasterCode == FocusRow.SaleMasterCode && w.EntryDate == FocusRow.EntryDate && w.Operation_Type_Id==2 && w.IsDeleted == 0).ToList();
+                var Details = context2.SaleDetails.Where(w => w.SaleMasterCode == FocusRow.SaleMasterCode && w.EntryDate.Day == FocusRow.EntryDate.Day && w.EntryDate.Month == FocusRow.EntryDate.Month && w.EntryDate.Year == FocusRow.EntryDate.Year && w.Operation_Type_Id==2 && w.IsDeleted == 0).ToList();
                 if (Details.Count > 0)
                 {
                 foreach (var item in Details)
                 {
 
-                        context2.SaleDetails.Where(shft => shft.Operation_Type_Id == 2 &&  shft.IsDeleted == 0  && shft.EntryDate == FocusRow.EntryDate && shft.SaleMasterCode == FocusRow.SaleMasterCode).ToList().ForEach(x => {
+                        context2.SaleDetails.Where(shft => shft.Operation_Type_Id == 2 &&  shft.IsDeleted == 0  && shft.EntryDate.Day == FocusRow.EntryDate.Day && shft.EntryDate.Month == FocusRow.EntryDate.Month && shft.EntryDate.Year == FocusRow.EntryDate.Year   && shft.SaleMasterCode == FocusRow.SaleMasterCode).ToList().ForEach(x => {
                       x.Operation_Type_Id = 3;
                       x.LastDateModif = DateTime.Now;
                       
@@ -176,11 +177,11 @@ namespace PointOfSaleSedek._101_Adds
             
 
 
-            using (PointOfSaleEntities cont  = new PointOfSaleEntities())
+            using (PointOfSaleEntities2 cont  = new PointOfSaleEntities2())
             {
                 gcSaleMaster.DataSource = null;
                
-                gcSaleMaster.DataSource = Context.SaleMasterViews.Where(x => x.EntryDate == DateTime.Today && x.Operation_Type_Id == 2 && x.IsDeleted == 0).ToList();
+                gcSaleMaster.DataSource = Context.SaleMasterViews.Where(x => x.EntryDate.Day == DateTime.Today.Day && x.EntryDate.Month == DateTime.Today.Month && x.EntryDate.Year == DateTime.Today.Year && x.Operation_Type_Id == 2 && x.IsDeleted == 0).ToList();
                 gcSaleMaster.RefreshDataSource();
             }
 

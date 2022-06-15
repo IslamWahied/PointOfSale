@@ -47,7 +47,6 @@
             this.imageCollection1 = new DevExpress.Utils.ImageCollection(this.components);
             this.repositoryItemButtonEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.comboBoxEdit1 = new DevExpress.XtraEditors.ComboBoxEdit();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.repositoryItemButtonEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
@@ -90,8 +89,10 @@
             this.lblItemQty = new DevExpress.XtraEditors.LabelControl();
             this.lblSaleMasterId = new DevExpress.XtraEditors.LabelControl();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
-            this.lblCurrency = new DevExpress.XtraEditors.LabelControl();
-            this.dtEntryDate = new DevExpress.XtraEditors.DateEdit();
+            this.slkPaymentType = new DevExpress.XtraEditors.SearchLookUpEdit();
+            this.searchLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
             this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
             this.txtParCode = new DevExpress.XtraEditors.TextEdit();
             this.simpleButton3 = new DevExpress.XtraEditors.SimpleButton();
@@ -113,8 +114,8 @@
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
             this.tableLayoutPanel6.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dtEntryDate.Properties.CalendarTimeProperties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtEntryDate.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.slkPaymentType.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).BeginInit();
             this.tableLayoutPanel8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtParCode.Properties)).BeginInit();
             this.SuspendLayout();
@@ -160,10 +161,6 @@
             this.comboBoxEdit1.Size = new System.Drawing.Size(470, 20);
             this.comboBoxEdit1.TabIndex = 0;
             // 
-            // timer1
-            // 
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick_1);
-            // 
             // repositoryItemButtonEdit2
             // 
             this.repositoryItemButtonEdit2.AutoHeight = false;
@@ -181,7 +178,7 @@
             this.tableLayoutPanel1.ColumnCount = 3;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.90066F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 85.09934F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 109F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 114F));
             this.tableLayoutPanel1.Controls.Add(this.simpleButton2, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel3, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.gcSaleDetail, 0, 1);
@@ -193,7 +190,7 @@
             this.tableLayoutPanel1.RowCount = 3;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 78F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 172F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 209F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1237, 749);
             this.tableLayoutPanel1.TabIndex = 1;
@@ -211,7 +208,7 @@
             this.simpleButton2.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.BottomCenter;
             this.simpleButton2.Location = new System.Drawing.Point(3, 3);
             this.simpleButton2.Name = "simpleButton2";
-            this.simpleButton2.Size = new System.Drawing.Size(104, 72);
+            this.simpleButton2.Size = new System.Drawing.Size(109, 72);
             this.simpleButton2.TabIndex = 41;
             this.simpleButton2.Text = "خروج";
             this.simpleButton2.Click += new System.EventHandler(this.simpleButton2_Click);
@@ -225,14 +222,13 @@
             this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel7, 0, 0);
             this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel9, 0, 1);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 580);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 543);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 2;
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 41.72186F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 58.27814F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(1231, 166);
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 35.96059F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 64.03941F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(1231, 203);
             this.tableLayoutPanel3.TabIndex = 38;
-            this.tableLayoutPanel3.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel3_Paint);
             // 
             // tableLayoutPanel7
             // 
@@ -253,7 +249,7 @@
             this.tableLayoutPanel7.RowCount = 2;
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 63.15789F));
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 36.84211F));
-            this.tableLayoutPanel7.Size = new System.Drawing.Size(1225, 63);
+            this.tableLayoutPanel7.Size = new System.Drawing.Size(1225, 66);
             this.tableLayoutPanel7.TabIndex = 25;
             // 
             // lblFinalBeforDesCound
@@ -265,11 +261,11 @@
             this.lblFinalBeforDesCound.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.lblFinalBeforDesCound.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
             this.lblFinalBeforDesCound.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblFinalBeforDesCound.Location = new System.Drawing.Point(623, 42);
+            this.lblFinalBeforDesCound.Location = new System.Drawing.Point(623, 44);
             this.lblFinalBeforDesCound.LookAndFeel.SkinName = "The Bezier";
             this.lblFinalBeforDesCound.LookAndFeel.UseDefaultLookAndFeel = false;
             this.lblFinalBeforDesCound.Name = "lblFinalBeforDesCound";
-            this.lblFinalBeforDesCound.Size = new System.Drawing.Size(599, 18);
+            this.lblFinalBeforDesCound.Size = new System.Drawing.Size(599, 19);
             this.lblFinalBeforDesCound.TabIndex = 28;
             this.lblFinalBeforDesCound.Text = "0";
             // 
@@ -282,11 +278,11 @@
             this.lblDiscount.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.lblDiscount.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
             this.lblDiscount.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblDiscount.Location = new System.Drawing.Point(3, 42);
+            this.lblDiscount.Location = new System.Drawing.Point(3, 44);
             this.lblDiscount.LookAndFeel.SkinName = "The Bezier";
             this.lblDiscount.LookAndFeel.UseDefaultLookAndFeel = false;
             this.lblDiscount.Name = "lblDiscount";
-            this.lblDiscount.Size = new System.Drawing.Size(614, 18);
+            this.lblDiscount.Size = new System.Drawing.Size(614, 19);
             this.lblDiscount.TabIndex = 24;
             this.lblDiscount.Text = "0";
             // 
@@ -307,7 +303,7 @@
             this.labelControl2.LookAndFeel.SkinName = "The Bezier";
             this.labelControl2.LookAndFeel.UseDefaultLookAndFeel = false;
             this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(614, 33);
+            this.labelControl2.Size = new System.Drawing.Size(614, 35);
             this.labelControl2.TabIndex = 26;
             this.labelControl2.Text = "قيمة الخصم ";
             // 
@@ -328,7 +324,7 @@
             this.labelControl5.LookAndFeel.SkinName = "The Bezier";
             this.labelControl5.LookAndFeel.UseDefaultLookAndFeel = false;
             this.labelControl5.Name = "labelControl5";
-            this.labelControl5.Size = new System.Drawing.Size(599, 33);
+            this.labelControl5.Size = new System.Drawing.Size(599, 35);
             this.labelControl5.TabIndex = 27;
             this.labelControl5.Text = "الاجمالي قبل الخصم";
             // 
@@ -340,13 +336,13 @@
             this.tableLayoutPanel9.Controls.Add(this.lblFinalTotal, 0, 1);
             this.tableLayoutPanel9.Controls.Add(this.lblfinaltotalDisplay, 0, 1);
             this.tableLayoutPanel9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel9.Location = new System.Drawing.Point(3, 72);
+            this.tableLayoutPanel9.Location = new System.Drawing.Point(3, 75);
             this.tableLayoutPanel9.Name = "tableLayoutPanel9";
             this.tableLayoutPanel9.RowCount = 2;
             this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 18.60465F));
             this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 81.39535F));
-            this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 46F));
-            this.tableLayoutPanel9.Size = new System.Drawing.Size(1225, 91);
+            this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 70F));
+            this.tableLayoutPanel9.Size = new System.Drawing.Size(1225, 125);
             this.tableLayoutPanel9.TabIndex = 26;
             // 
             // lblFinalTotal
@@ -362,9 +358,9 @@
             this.lblFinalTotal.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.tableLayoutPanel9.SetColumnSpan(this.lblFinalTotal, 2);
             this.lblFinalTotal.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblFinalTotal.Location = new System.Drawing.Point(3, 47);
+            this.lblFinalTotal.Location = new System.Drawing.Point(3, 57);
             this.lblFinalTotal.Name = "lblFinalTotal";
-            this.lblFinalTotal.Size = new System.Drawing.Size(1219, 41);
+            this.lblFinalTotal.Size = new System.Drawing.Size(1219, 65);
             this.lblFinalTotal.TabIndex = 24;
             this.lblFinalTotal.Text = "0";
             // 
@@ -381,9 +377,9 @@
             this.lblfinaltotalDisplay.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.tableLayoutPanel9.SetColumnSpan(this.lblfinaltotalDisplay, 2);
             this.lblfinaltotalDisplay.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblfinaltotalDisplay.Location = new System.Drawing.Point(3, 11);
+            this.lblfinaltotalDisplay.Location = new System.Drawing.Point(3, 13);
             this.lblfinaltotalDisplay.Name = "lblfinaltotalDisplay";
-            this.lblfinaltotalDisplay.Size = new System.Drawing.Size(1219, 30);
+            this.lblfinaltotalDisplay.Size = new System.Drawing.Size(1219, 38);
             this.lblfinaltotalDisplay.TabIndex = 23;
             this.lblfinaltotalDisplay.Text = "الاجمالي";
             // 
@@ -397,12 +393,13 @@
             gridLevelNode1.RelationName = "Level1";
             this.gcSaleDetail.LevelTree.Nodes.AddRange(new DevExpress.XtraGrid.GridLevelNode[] {
             gridLevelNode1});
-            this.gcSaleDetail.Location = new System.Drawing.Point(113, 81);
+            this.gcSaleDetail.Location = new System.Drawing.Point(115, 78);
             this.gcSaleDetail.MainView = this.gvSaleDetail;
+            this.gcSaleDetail.Margin = new System.Windows.Forms.Padding(0);
             this.gcSaleDetail.Name = "gcSaleDetail";
             this.gcSaleDetail.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemButtonEdit3});
-            this.gcSaleDetail.Size = new System.Drawing.Size(1121, 493);
+            this.gcSaleDetail.Size = new System.Drawing.Size(1122, 462);
             this.gcSaleDetail.TabIndex = 6;
             this.gcSaleDetail.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvSaleDetail,
@@ -594,7 +591,7 @@
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(104, 493);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(109, 456);
             this.tableLayoutPanel4.TabIndex = 39;
             // 
             // btnPrint
@@ -608,11 +605,11 @@
             this.btnPrint.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnPrint.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnPrint.ImageOptions.Image")));
             this.btnPrint.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.BottomCenter;
-            this.btnPrint.Location = new System.Drawing.Point(3, 395);
+            this.btnPrint.Location = new System.Drawing.Point(3, 367);
             this.btnPrint.LookAndFeel.SkinName = "The Bezier";
             this.btnPrint.LookAndFeel.UseDefaultLookAndFeel = false;
             this.btnPrint.Name = "btnPrint";
-            this.btnPrint.Size = new System.Drawing.Size(98, 95);
+            this.btnPrint.Size = new System.Drawing.Size(103, 86);
             this.btnPrint.TabIndex = 43;
             this.btnPrint.Text = "طباعة";
             this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
@@ -629,11 +626,11 @@
             this.simpleButton1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.simpleButton1.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton1.ImageOptions.Image")));
             this.simpleButton1.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.BottomCenter;
-            this.simpleButton1.Location = new System.Drawing.Point(3, 297);
+            this.simpleButton1.Location = new System.Drawing.Point(3, 276);
             this.simpleButton1.LookAndFeel.SkinName = "The Bezier";
             this.simpleButton1.LookAndFeel.UseDefaultLookAndFeel = false;
             this.simpleButton1.Name = "simpleButton1";
-            this.simpleButton1.Size = new System.Drawing.Size(98, 92);
+            this.simpleButton1.Size = new System.Drawing.Size(103, 85);
             this.simpleButton1.TabIndex = 42;
             this.simpleButton1.Text = "فواتير اليوم";
             this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click);
@@ -650,11 +647,11 @@
             this.btnSearch.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnSearch.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSearch.ImageOptions.Image")));
             this.btnSearch.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.BottomCenter;
-            this.btnSearch.Location = new System.Drawing.Point(3, 199);
+            this.btnSearch.Location = new System.Drawing.Point(3, 185);
             this.btnSearch.LookAndFeel.SkinName = "The Bezier";
             this.btnSearch.LookAndFeel.UseDefaultLookAndFeel = false;
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(98, 92);
+            this.btnSearch.Size = new System.Drawing.Size(103, 85);
             this.btnSearch.TabIndex = 41;
             this.btnSearch.Text = "خصم";
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
@@ -672,12 +669,12 @@
             this.btnNew.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnNew.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnNew.ImageOptions.Image")));
             this.btnNew.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.BottomCenter;
-            this.btnNew.Location = new System.Drawing.Point(3, 101);
+            this.btnNew.Location = new System.Drawing.Point(3, 94);
             this.btnNew.LookAndFeel.SkinName = "The Bezier";
             this.btnNew.LookAndFeel.UseDefaultLookAndFeel = false;
             this.btnNew.Name = "btnNew";
             this.btnNew.ShowFocusRectangle = DevExpress.Utils.DefaultBoolean.False;
-            this.btnNew.Size = new System.Drawing.Size(98, 92);
+            this.btnNew.Size = new System.Drawing.Size(103, 85);
             this.btnNew.TabIndex = 40;
             this.btnNew.TabStop = false;
             this.btnNew.Text = "جديد";
@@ -699,7 +696,7 @@
             this.btnEdite.LookAndFeel.SkinName = "The Bezier";
             this.btnEdite.LookAndFeel.UseDefaultLookAndFeel = false;
             this.btnEdite.Name = "btnEdite";
-            this.btnEdite.Size = new System.Drawing.Size(98, 92);
+            this.btnEdite.Size = new System.Drawing.Size(103, 85);
             this.btnEdite.TabIndex = 39;
             this.btnEdite.Text = "تعديل";
             this.btnEdite.Click += new System.EventHandler(this.btnEdite_Click);
@@ -716,14 +713,14 @@
             this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel6, 2, 0);
             this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel8, 0, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(113, 3);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(118, 3);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(1121, 72);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(1116, 72);
             this.tableLayoutPanel2.TabIndex = 40;
             // 
             // tableLayoutPanel5
@@ -747,7 +744,6 @@
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel5.Size = new System.Drawing.Size(352, 66);
             this.tableLayoutPanel5.TabIndex = 0;
-            this.tableLayoutPanel5.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel5_Paint);
             // 
             // labelControl1
             // 
@@ -859,67 +855,76 @@
             // 
             // tableLayoutPanel6
             // 
-            this.tableLayoutPanel6.ColumnCount = 2;
-            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 96F));
-            this.tableLayoutPanel6.Controls.Add(this.lblCurrency, 0, 0);
-            this.tableLayoutPanel6.Controls.Add(this.dtEntryDate, 0, 0);
+            this.tableLayoutPanel6.ColumnCount = 1;
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 385F));
+            this.tableLayoutPanel6.Controls.Add(this.slkPaymentType, 0, 1);
+            this.tableLayoutPanel6.Controls.Add(this.labelControl6, 0, 0);
             this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel6.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel6.Name = "tableLayoutPanel6";
-            this.tableLayoutPanel6.RowCount = 1;
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel6.RowCount = 2;
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
             this.tableLayoutPanel6.Size = new System.Drawing.Size(385, 66);
             this.tableLayoutPanel6.TabIndex = 6;
             // 
-            // lblCurrency
+            // slkPaymentType
             // 
-            this.lblCurrency.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.lblCurrency.Appearance.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCurrency.Appearance.ForeColor = System.Drawing.Color.Red;
-            this.lblCurrency.Appearance.Options.UseBackColor = true;
-            this.lblCurrency.Appearance.Options.UseFont = true;
-            this.lblCurrency.Appearance.Options.UseForeColor = true;
-            this.lblCurrency.Appearance.Options.UseTextOptions = true;
-            this.lblCurrency.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.lblCurrency.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.lblCurrency.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblCurrency.Location = new System.Drawing.Point(3, 3);
-            this.lblCurrency.Name = "lblCurrency";
-            this.lblCurrency.Size = new System.Drawing.Size(90, 60);
-            this.lblCurrency.TabIndex = 2;
-            this.lblCurrency.Text = "جنية";
-            // 
-            // dtEntryDate
-            // 
-            this.dtEntryDate.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dtEntryDate.EditValue = null;
-            this.dtEntryDate.Enabled = false;
-            this.dtEntryDate.Location = new System.Drawing.Point(99, 3);
-            this.dtEntryDate.Name = "dtEntryDate";
-            this.dtEntryDate.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.dtEntryDate.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtEntryDate.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
-            this.dtEntryDate.Properties.Appearance.Options.UseBackColor = true;
-            this.dtEntryDate.Properties.Appearance.Options.UseFont = true;
-            this.dtEntryDate.Properties.Appearance.Options.UseForeColor = true;
-            this.dtEntryDate.Properties.Appearance.Options.UseTextOptions = true;
-            this.dtEntryDate.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.dtEntryDate.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.dtEntryDate.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.dtEntryDate.Properties.AppearanceDisabled.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtEntryDate.Properties.AppearanceDisabled.ForeColor = System.Drawing.Color.Black;
-            this.dtEntryDate.Properties.AppearanceDisabled.Options.UseBackColor = true;
-            this.dtEntryDate.Properties.AppearanceDisabled.Options.UseFont = true;
-            this.dtEntryDate.Properties.AppearanceDisabled.Options.UseForeColor = true;
-            this.dtEntryDate.Properties.AutoHeight = false;
-            this.dtEntryDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.slkPaymentType.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.slkPaymentType.EditValue = " ";
+            this.slkPaymentType.Location = new System.Drawing.Point(3, 37);
+            this.slkPaymentType.Name = "slkPaymentType";
+            this.slkPaymentType.Properties.Appearance.Options.UseTextOptions = true;
+            this.slkPaymentType.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.slkPaymentType.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.slkPaymentType.Properties.AutoHeight = false;
+            this.slkPaymentType.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dtEntryDate.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dtEntryDate.Properties.NullText = "ddd";
-            this.dtEntryDate.Size = new System.Drawing.Size(283, 60);
-            this.dtEntryDate.TabIndex = 1;
+            this.slkPaymentType.Properties.NullText = " ";
+            this.slkPaymentType.Properties.PopupView = this.searchLookUpEdit1View;
+            this.slkPaymentType.Size = new System.Drawing.Size(379, 26);
+            this.slkPaymentType.TabIndex = 154;
+            // 
+            // searchLookUpEdit1View
+            // 
+            this.searchLookUpEdit1View.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumn2});
+            this.searchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.searchLookUpEdit1View.Name = "searchLookUpEdit1View";
+            this.searchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.searchLookUpEdit1View.OptionsView.ShowGroupPanel = false;
+            // 
+            // gridColumn2
+            // 
+            this.gridColumn2.AppearanceCell.Options.UseTextOptions = true;
+            this.gridColumn2.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridColumn2.AppearanceHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.gridColumn2.AppearanceHeader.Options.UseBackColor = true;
+            this.gridColumn2.AppearanceHeader.Options.UseTextOptions = true;
+            this.gridColumn2.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridColumn2.Caption = "الاسم";
+            this.gridColumn2.FieldName = "PaymentType";
+            this.gridColumn2.Name = "gridColumn2";
+            this.gridColumn2.Visible = true;
+            this.gridColumn2.VisibleIndex = 0;
+            // 
+            // labelControl6
+            // 
+            this.labelControl6.Appearance.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.labelControl6.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl6.Appearance.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.labelControl6.Appearance.Options.UseBackColor = true;
+            this.labelControl6.Appearance.Options.UseFont = true;
+            this.labelControl6.Appearance.Options.UseForeColor = true;
+            this.labelControl6.Appearance.Options.UseTextOptions = true;
+            this.labelControl6.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.labelControl6.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.labelControl6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.labelControl6.Location = new System.Drawing.Point(3, 3);
+            this.labelControl6.Name = "labelControl6";
+            this.labelControl6.Size = new System.Drawing.Size(379, 28);
+            this.labelControl6.TabIndex = 35;
+            this.labelControl6.Text = "طريقة الدفع";
             // 
             // tableLayoutPanel8
             // 
@@ -934,7 +939,7 @@
             this.tableLayoutPanel8.Name = "tableLayoutPanel8";
             this.tableLayoutPanel8.RowCount = 1;
             this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel8.Size = new System.Drawing.Size(366, 66);
+            this.tableLayoutPanel8.Size = new System.Drawing.Size(361, 66);
             this.tableLayoutPanel8.TabIndex = 7;
             // 
             // txtParCode
@@ -950,7 +955,7 @@
             this.txtParCode.Properties.AutoHeight = false;
             this.txtParCode.Properties.Mask.EditMask = "\\d{0,50}";
             this.txtParCode.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
-            this.txtParCode.Size = new System.Drawing.Size(254, 60);
+            this.txtParCode.Size = new System.Drawing.Size(249, 60);
             this.txtParCode.TabIndex = 6;
             this.txtParCode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtParCode_KeyDown_1);
             this.txtParCode.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtParCode_KeyUp_1);
@@ -1014,8 +1019,8 @@
             this.tableLayoutPanel5.PerformLayout();
             this.tableLayoutPanel6.ResumeLayout(false);
             this.tableLayoutPanel6.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dtEntryDate.Properties.CalendarTimeProperties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtEntryDate.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.slkPaymentType.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).EndInit();
             this.tableLayoutPanel8.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.txtParCode.Properties)).EndInit();
             this.ResumeLayout(false);
@@ -1029,7 +1034,6 @@
         private System.Windows.Forms.ToolStripMenuItem حذفToolStripMenuItem;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repositoryItemButtonEdit1;
         private DevExpress.XtraEditors.ComboBoxEdit comboBoxEdit1;
-        private System.Windows.Forms.Timer timer1;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repositoryItemButtonEdit2;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         public DevExpress.XtraGrid.GridControl gcSaleDetail;
@@ -1065,8 +1069,6 @@
         public DevExpress.XtraEditors.LabelControl lblSaleMasterId;
         public DevExpress.XtraEditors.LabelControl lblItemQty;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
-        private DevExpress.XtraEditors.LabelControl lblCurrency;
-        public DevExpress.XtraEditors.DateEdit dtEntryDate;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repositoryItemButtonEdit3;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel8;
@@ -1077,5 +1079,9 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel9;
         public DevExpress.XtraEditors.LabelControl lblFinalTotal;
         public DevExpress.XtraEditors.LabelControl lblfinaltotalDisplay;
+        private DevExpress.XtraEditors.LabelControl labelControl6;
+        private DevExpress.XtraEditors.SearchLookUpEdit slkPaymentType;
+        private DevExpress.XtraGrid.Views.Grid.GridView searchLookUpEdit1View;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
     }
 }

@@ -17,7 +17,7 @@ namespace PointOfSaleSedek._101_Adds
     public partial class frmEditeItem : MaterialSkin.Controls.MaterialForm
     {
          public Int64 ItemCode;
-        readonly PointOfSaleEntities context = new PointOfSaleEntities();
+        readonly PointOfSaleEntities2 context = new PointOfSaleEntities2();
         public frmEditeItem()
         {
             InitializeComponent();

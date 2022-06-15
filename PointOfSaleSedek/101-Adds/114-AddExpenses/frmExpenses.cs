@@ -17,7 +17,7 @@ namespace PointOfSaleSedek._114_Adds
 {
     public partial class frmExpenses : DevExpress.XtraEditors.XtraForm
     {
-        readonly PointOfSaleEntities context = new PointOfSaleEntities();
+        readonly PointOfSaleEntities2 context = new PointOfSaleEntities2();
         public frmExpenses()
         {
             InitializeComponent();
@@ -125,7 +125,7 @@ namespace PointOfSaleSedek._114_Adds
                 return;
 
             }
-            using (PointOfSaleEntities Context = new PointOfSaleEntities())
+            using (PointOfSaleEntities2 Context = new PointOfSaleEntities2())
             {
                 Expens deptDelete = Context.Expenses.Where(x=>x.ExpensesCode== ExpensCode).FirstOrDefault();
                 Context.Expenses.Remove(deptDelete);

@@ -19,7 +19,7 @@ namespace PointOfSaleSedek._101_Adds
 {
     public partial class frmEmployees : DevExpress.XtraEditors.XtraForm
     {
-        PointOfSaleEntities context = new PointOfSaleEntities();
+        PointOfSaleEntities2 context = new PointOfSaleEntities2();
         public frmEmployees()
         {
             InitializeComponent();
@@ -39,7 +39,7 @@ namespace PointOfSaleSedek._101_Adds
         void FillGride()
         {
             gcEmployeeCard.DataSource = null;
-            using (PointOfSaleEntities Contexts = new PointOfSaleEntities())
+            using (PointOfSaleEntities2 Contexts = new PointOfSaleEntities2())
             {
 
                 var empData = (from a in Contexts.Employee_View where a.IsDeleted == 0 select a).OrderBy(x => x.Employee_Code).ToList();
@@ -146,7 +146,7 @@ namespace PointOfSaleSedek._101_Adds
 
 
 
-                    using (PointOfSaleEntities Contexts = new PointOfSaleEntities())
+                    using (PointOfSaleEntities2 Contexts = new PointOfSaleEntities2())
                     {
                         var IfUser = Contexts.User_View.Any(x => x.UserFlag == true && x.IsDeleted == 0 && x.Employee_Code == x2.Employee_Code);
                         var IfhaveInvoice = Contexts.SaleMasterViews.Any(x => x.UserCode == x2.Employee_Code && x.IsDeleted == 0 );
@@ -187,7 +187,7 @@ namespace PointOfSaleSedek._101_Adds
             //else if (btn.Caption == "تحديث")
             //{
 
-            //    using (PointOfSaleEntities Contexts = new PointOfSaleEntities())
+            //    using (PointOfSaleEntities2 Contexts = new PointOfSaleEntities2())
             //    {
 
             //        var result = (from a in Contexts.User_Detail_View where a.IsDeleted == 0 select a).ToList();
@@ -235,7 +235,7 @@ namespace PointOfSaleSedek._101_Adds
             //        return;
             //    }
 
-            //    using (PointOfSaleEntities Contexts = new PointOfSaleEntities())
+            //    using (PointOfSaleEntities2 Contexts = new PointOfSaleEntities2())
             //    {
 
             //        var result = (from a in Contexts.ItemCardViews where a.IsDeleted == 0 select a).ToList();
@@ -281,16 +281,16 @@ namespace PointOfSaleSedek._101_Adds
 
             frm.txtEmpCode.Text = x.Employee_Code.ToString();
             frm.TxtEmpName.Text = x.Employee_Name.ToString();
-            frm.txtEmpMob1.Text = x.Employee_Mobile_1.ToString();
-            frm.txtEmpMob2.Text = x.Employee_Mobile_2.ToString();
-            frm.TxtEmpNataionalId.Text = x.Employee_National_Id.ToString();
-            frm.dtEmpStartJop.EditValue = x.Employee_Start_Jop;
-            frm.dtEmpEndJop.EditValue = x.Employee_End_Jop ;
+            frm.txtEmpMob1.Text = x.Employee_Mobile_1 != null? x.Employee_Mobile_1.ToString():"";
+            frm.txtEmpMob2.Text = x.Employee_Mobile_2 != null?  x.Employee_Mobile_2.ToString():"";
+            frm.TxtEmpNataionalId.Text = x.Employee_National_Id !=null? x.Employee_National_Id.ToString():"";
+            frm.dtEmpStartJop.EditValue = x.Employee_Start_Jop != null? x.Employee_Start_Jop :DateTime.Now ;
+            frm.dtEmpEndJop.EditValue = x.Employee_End_Jop != null ? x.Employee_End_Jop : DateTime.Now;
 
-            frm.TxtEmpEmail.Text = x.Employee_Email.ToString();
-            frm.TxtEmpAddress.Text = x.Employee_Address.ToString();
-            frm.TxtEmpNote.Text = x.Employee_Notes.ToString();
-            frm.slkBranch.EditValue = x.Branch_ID;
+            frm.TxtEmpEmail.Text = x.Employee_Email != null ? x.Employee_Email.ToString() : "";
+            frm.TxtEmpAddress.Text = x.Employee_Address != null ?  x.Employee_Address.ToString() :"";
+            frm.TxtEmpNote.Text = x.Employee_Notes != null ?     x.Employee_Notes.ToString() :"";
+            frm.slkBranch.EditValue = x.Branch_ID ;
             frm.slkJop.EditValue = x.Jop_Code;
             frm.slkSex.EditValue = x.SexTypeCode;
             

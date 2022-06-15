@@ -1,15 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
+ 
 using System.Data;
-using System.Drawing;
-using System.Text;
+ 
 using System.Linq;
-using System.Threading.Tasks;
+ 
 using System.Windows.Forms;
-using DevExpress.XtraEditors;
+ 
 using PointOfSaleSedek.HelperClass;
-using System.Runtime.Remoting.Contexts;
+ 
 using PointOfSaleSedek._102_MaterialSkin;
 using DevExpress.XtraBars.Docking2010;
 using EntityData;
@@ -21,7 +20,7 @@ namespace PointOfSaleSedek._101_Adds
     {
         public string Status = "New";
         Static st = new Static();
-        PointOfSaleEntities Context = new PointOfSaleEntities();
+        PointOfSaleEntities2 Context = new PointOfSaleEntities2();
         public frmPurchasescs()
         {
             InitializeComponent();
@@ -68,6 +67,9 @@ namespace PointOfSaleSedek._101_Adds
                         FinalTotal = sum,
                         QtyTotal = Qty,
                         SaleMasterCode = SalMasterCode,
+                        Payment_Type = 1,
+                        IsDeleted = 0,
+                        UserIdTakeOrder = st.User_Code(),
                         Operation_Type_Id = 1,
                         UserCode = UserCode,
                          ShiftCode = ShiftCode,
@@ -109,6 +111,9 @@ namespace PointOfSaleSedek._101_Adds
                         QtyTotal = Qty,
                         SaleMasterCode = SalMasterCode,
                         Operation_Type_Id = 1,
+                        Payment_Type = 1,
+                        IsDeleted = 0,
+                        UserIdTakeOrder = st.User_Code(),
                         UserCode = UserCode,
                         ShiftCode = ShiftCode,
                         LastDateModif = DateTime.Now
@@ -149,6 +154,9 @@ namespace PointOfSaleSedek._101_Adds
                             EntryDate = DateTime.Now,
                             SaleDetailCode = SalMasterCode,
                             SaleMasterCode = SalMasterCode,
+                            
+                            IsDeleted = 0,
+                         
                             UserId = st.User_Code(),
                             Operation_Type_Id = 1,
                         };

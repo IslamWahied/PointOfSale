@@ -21,7 +21,7 @@ namespace PointOfSaleSedek.Employees
 {
     public partial class FrmAddEmployees : DevExpress.XtraEditors.XtraForm
     {
-        readonly PointOfSaleEntities context = new PointOfSaleEntities();
+        readonly PointOfSaleEntities2 context = new PointOfSaleEntities2();
         readonly Static st = new Static();
         //readonly MaterialSkin.MaterialSkinManager skinManager;
         public FrmAddEmployees()
@@ -130,7 +130,7 @@ namespace PointOfSaleSedek.Employees
                 if (TestUpdate)
                 {
 
-                    using (PointOfSaleEntities ForCheck = new PointOfSaleEntities())
+                    using (PointOfSaleEntities2 ForCheck = new PointOfSaleEntities2())
                     {
 
                         bool TestUserName = ForCheck.Employees.Any(Emp => Emp.Employee_Name == TxtEmpName.Text && Emp.Employee_Code !=EmpCode &&  Emp.IsDeleted == 0);
@@ -175,7 +175,7 @@ namespace PointOfSaleSedek.Employees
                     _Employee.Last_Modified_User = st.User_Code();
                     context.SaveChanges();
 
-                    using (PointOfSaleEntities Contx2 = new PointOfSaleEntities())
+                    using (PointOfSaleEntities2 Contx2 = new PointOfSaleEntities2())
                     {
                     frm.gcEmployeeCard.DataSource = Contx2.Employee_View.Where(x => x.IsDeleted == 0).ToList();
                     frm.gcEmployeeCard.RefreshDataSource();
@@ -186,7 +186,7 @@ namespace PointOfSaleSedek.Employees
                 }
                 else
                 {
-                    using (PointOfSaleEntities ForCheck = new PointOfSaleEntities())
+                    using (PointOfSaleEntities2 ForCheck = new PointOfSaleEntities2())
                     {
 
                         bool TestUserName = ForCheck.Employees.Any(Emp => Emp.Employee_Name == TxtEmpName.Text && Emp.IsDeleted == 0);
@@ -265,7 +265,7 @@ namespace PointOfSaleSedek.Employees
 
                 
                    
-                    using (PointOfSaleEntities NewContext = new PointOfSaleEntities())
+                    using (PointOfSaleEntities2 NewContext = new PointOfSaleEntities2())
                     { 
                     
                         frm.gcEmployeeCard.DataSource = NewContext.Employee_View.Where(x => x.IsDeleted == 0).ToList();

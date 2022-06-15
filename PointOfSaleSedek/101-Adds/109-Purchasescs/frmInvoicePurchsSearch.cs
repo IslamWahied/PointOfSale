@@ -15,7 +15,7 @@ namespace PointOfSaleSedek._101_Adds
 {
     public partial class frmInvoicePurchsSearch : DevExpress.XtraEditors.XtraForm
     {
-        PointOfSaleEntities Context = new PointOfSaleEntities();
+        PointOfSaleEntities2 Context = new PointOfSaleEntities2();
         public frmInvoicePurchsSearch()
         {
             InitializeComponent();
@@ -25,7 +25,7 @@ namespace PointOfSaleSedek._101_Adds
         {
             
 
-            using (PointOfSaleEntities cont = new PointOfSaleEntities())
+            using (PointOfSaleEntities2 cont = new PointOfSaleEntities2())
             {
                 gcSaleMaster.DataSource = null;
 
@@ -97,7 +97,7 @@ namespace PointOfSaleSedek._101_Adds
 
 
 
-            using (PointOfSaleEntities context2 = new PointOfSaleEntities())
+            using (PointOfSaleEntities2 context2 = new PointOfSaleEntities2())
             {
                 var Details = context2.SaleDetails.Where(w => w.SaleMasterCode == FocusRow.SaleMasterCode && w.EntryDate == FocusRow.EntryDate && w.Operation_Type_Id == 1 && w.IsDeleted == 0);
                 context2.SaleDetails.RemoveRange(Details);

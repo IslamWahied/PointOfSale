@@ -19,7 +19,7 @@ namespace PointOfSaleSedek._101_Adds
         public String Status = "New";
         readonly Static st = new Static();
 
-        readonly PointOfSaleEntities context = new PointOfSaleEntities();
+        readonly PointOfSaleEntities2 context = new PointOfSaleEntities2();
         public frmAdmin()
         {
             InitializeComponent();

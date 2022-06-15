@@ -28,7 +28,7 @@ namespace PointOfSaleSedek
 {
     public partial class FrmMain : MaterialSkin.Controls.MaterialForm
     {
-        readonly PointOfSaleEntities db = new PointOfSaleEntities();
+        readonly PointOfSaleEntities2 db = new PointOfSaleEntities2();
         readonly Static st = new Static();
 
 

@@ -22,7 +22,7 @@ namespace PointOfSaleSedek._101_Adds
 {
     public partial class FrmAuthentication : MaterialSkin.Controls.MaterialForm 
     {
-      private readonly PointOfSaleEntities Db = new PointOfSaleEntities();
+      private readonly PointOfSaleEntities2 Db = new PointOfSaleEntities2();
         //private readonly Static St = new Static();
 
         public FrmAuthentication()

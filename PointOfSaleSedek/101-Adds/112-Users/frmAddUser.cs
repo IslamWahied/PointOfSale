@@ -16,7 +16,7 @@ namespace PointOfSaleSedek._101_Adds._112_Users
 {
     public partial class frmAddUser : DevExpress.XtraEditors.XtraForm
     {
-        readonly PointOfSaleEntities context = new PointOfSaleEntities();
+        readonly PointOfSaleEntities2 context = new PointOfSaleEntities2();
         readonly Static st = new Static();
         public frmAddUser()
         {
@@ -82,7 +82,7 @@ namespace PointOfSaleSedek._101_Adds._112_Users
                 if (TestUpdate)
                 {
 
-                    using (PointOfSaleEntities ForCheck = new PointOfSaleEntities())
+                    using (PointOfSaleEntities2 ForCheck = new PointOfSaleEntities2())
                     {
 
                         bool TestUserName = ForCheck.User_View.Any(User => User.UserName == txtUserName.Text && User.Employee_Code != EmpCode);
@@ -111,7 +111,7 @@ namespace PointOfSaleSedek._101_Adds._112_Users
                 }
                 else
                 {
-                    using (PointOfSaleEntities ForCheck = new PointOfSaleEntities())
+                    using (PointOfSaleEntities2 ForCheck = new PointOfSaleEntities2())
                     {
 
                         bool TestUserName = ForCheck.User_View.Any(User => User.UserName == txtUserName.Text && User.IsDeleted== 0 && User.IsDeletedEmployee == 0 );
@@ -139,7 +139,7 @@ namespace PointOfSaleSedek._101_Adds._112_Users
                     };
                     context.Users.Add(_User);
                     context.SaveChanges();
-                    using (PointOfSaleEntities NewContext = new PointOfSaleEntities())
+                    using (PointOfSaleEntities2 NewContext = new PointOfSaleEntities2())
                     {
                         frm.gcEmployeeCard.DataSource = NewContext.User_View.Where(x => x.IsDeleted==0&&x.IsDeletedEmployee==0).ToList();
                         frm.gcEmployeeCard.RefreshDataSource();

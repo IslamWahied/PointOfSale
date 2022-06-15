@@ -15,7 +15,7 @@ namespace PointOfSaleSedek._101_Adds._114_AddExpenses
 {
     public partial class FrmCancelExpenses : DevExpress.XtraEditors.XtraForm
     {
-        PointOfSaleEntities context = new PointOfSaleEntities();
+        PointOfSaleEntities2 context = new PointOfSaleEntities2();
         public FrmCancelExpenses()
         {
             InitializeComponent();

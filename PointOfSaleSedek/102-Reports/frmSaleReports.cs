@@ -17,7 +17,7 @@ namespace PointOfSaleSedek._105_Reports
 {
     public partial class frmSaleReports : DevExpress.XtraEditors.XtraForm
     {
-        PointOfSaleEntities context = new PointOfSaleEntities();
+        PointOfSaleEntities2 context = new PointOfSaleEntities2();
         public frmSaleReports()
         {
             InitializeComponent();
@@ -29,10 +29,12 @@ namespace PointOfSaleSedek._105_Reports
             double FinalTotal = 0;
             double TotalDiscount = 0;
             // var Master = (from a in context.SaleMasterViews where a.EntryDate > dtFrom.DateTime && a.EntryDate < dtTo.DateTime && a.Operation_Type_Id == 2 select a).ToList();
-            
-           
-            var Detail = (from a in context.SaleDetailViews  where a.EntryDate >= dtFrom.DateTime && a.EntryDate <= dtTo.DateTime && a.Operation_Type_Id == 2 select a).ToList();
-            var Master = (from a in context.SaleMasterViews where a.EntryDate >= dtFrom.DateTime && a.EntryDate <= dtTo.DateTime && a.Operation_Type_Id == 2 select a).ToList();
+
+            var dateTo = Convert.ToDateTime(Convert.ToDateTime(dtFrom.EditValue).AddDays(1));
+
+
+            var Master = (from a in context.SaleMasterViews where a.EntryDate >= dtFrom.DateTime && a.EntryDate <= dateTo && a.Operation_Type_Id == 2 select a).ToList();
+            var Detail = (from a in context.SaleDetailViews where a.EntryDate >= dtFrom.DateTime && a.EntryDate <= dateTo && a.Operation_Type_Id == 2 select a).ToList();
 
 
             if (Master.Count == 0 || Detail.Count == 0)

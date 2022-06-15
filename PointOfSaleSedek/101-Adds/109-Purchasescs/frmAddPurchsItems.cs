@@ -16,7 +16,7 @@ namespace PointOfSaleSedek._101_Adds
 {
     public partial class frmAddPurchsItems : DevExpress.XtraEditors.XtraForm
     {
-        readonly PointOfSaleEntities context = new PointOfSaleEntities();
+        readonly PointOfSaleEntities2 context = new PointOfSaleEntities2();
         public frmAddPurchsItems()
         {
             InitializeComponent();

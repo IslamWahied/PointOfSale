@@ -17,7 +17,7 @@ namespace PointOfSaleSedek._101_Adds
 {
     public partial class frmCodes : DevExpress.XtraEditors.XtraForm
     {
-        readonly PointOfSaleEntities context = new PointOfSaleEntities();
+        readonly PointOfSaleEntities2 context = new PointOfSaleEntities2();
         public frmCodes()
         {
             InitializeComponent();
@@ -173,7 +173,7 @@ namespace PointOfSaleSedek._101_Adds
 
             }
 
-            using (PointOfSaleEntities Context = new PointOfSaleEntities())
+            using (PointOfSaleEntities2 Context = new PointOfSaleEntities2())
             {
                 Category deptDelete = Context.Categories.Where(x=>x.CategoryCode == CategoryCode).FirstOrDefault();
                 Context.Categories.Remove(deptDelete);
@@ -221,7 +221,7 @@ namespace PointOfSaleSedek._101_Adds
                 return;
 
             }
-            using (PointOfSaleEntities Context = new PointOfSaleEntities())
+            using (PointOfSaleEntities2 Context = new PointOfSaleEntities2())
             {
                 UnitCard deptDelete = Context.UnitCards.Where(x=>x.UnitCode== UnitCode).FirstOrDefault();
                 Context.UnitCards.Remove(deptDelete);

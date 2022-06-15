@@ -16,7 +16,7 @@ namespace PointOfSaleSedek._101_Adds.CasherShift
 {
     public partial class frmShiftEnd : DevExpress.XtraEditors.XtraForm
     {
-        readonly PointOfSaleEntities Context = new PointOfSaleEntities();
+        readonly PointOfSaleEntities2 Context = new PointOfSaleEntities2();
         readonly Static st = new Static();
         public frmShiftEnd()
         {

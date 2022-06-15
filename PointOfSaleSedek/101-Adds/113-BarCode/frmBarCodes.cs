@@ -19,7 +19,7 @@ namespace PointOfSaleSedek._101_Adds._113_BarCode
 {
     public partial class frmBarCodes : DevExpress.XtraEditors.XtraForm
     {
-        readonly PointOfSaleEntities context = new PointOfSaleEntities();
+        readonly PointOfSaleEntities2 context = new PointOfSaleEntities2();
         public frmBarCodes()
         {
             InitializeComponent();

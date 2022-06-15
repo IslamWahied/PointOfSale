@@ -21,7 +21,7 @@ namespace PointOfSaleSedek._101_Adds._103_Authentication
 
     public partial class FrmLogin : Form 
     {
-     readonly PointOfSaleEntities Context = new PointOfSaleEntities();
+     readonly PointOfSaleEntities2 Context = new PointOfSaleEntities2();
         public string CPU_Code { get; set; }
       readonly Static st = new Static();
         public FrmLogin()

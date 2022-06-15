@@ -16,7 +16,7 @@ namespace PointOfSaleSedek._102_Reports
 {
     public partial class frmCanelationInvoice : MaterialSkin.Controls.MaterialForm
     {
-        PointOfSaleEntities context = new PointOfSaleEntities();
+        PointOfSaleEntities2 context = new PointOfSaleEntities2();
 
         public frmCanelationInvoice()
         {

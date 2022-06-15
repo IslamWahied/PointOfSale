@@ -16,7 +16,7 @@ namespace PointOfSaleSedek._102_Reports
 {
     public partial class frmProfitandLossReport : MaterialSkin.Controls.MaterialForm
     {
-        PointOfSaleEntities context = new PointOfSaleEntities();
+        PointOfSaleEntities2 context = new PointOfSaleEntities2();
         public frmProfitandLossReport()
         {
             InitializeComponent();
@@ -25,7 +25,8 @@ namespace PointOfSaleSedek._102_Reports
         private void simpleButton1_Click(object sender, EventArgs e)
         {
             // Get Total Sale
-            var Sales = context.SaleMasterViews.Where(x=>x.IsDeleted==0 && x.Operation_Type_Id==2 && x.EntryDate >= dtFrom.DateTime && x.EntryDate <= dtTo.DateTime).ToList<SaleMasterView>();
+            var dateTo = Convert.ToDateTime(Convert.ToDateTime(dtTo.EditValue).AddDays(1));
+            var Sales = context.SaleMasterViews.Where(x=>x.IsDeleted==0 && x.Operation_Type_Id==2 && x.EntryDate >= dtFrom.DateTime && x.EntryDate <= dateTo).ToList<SaleMasterView>();
 
             double TotalSales = 0;
             Sales.ForEach(x =>
@@ -38,7 +39,7 @@ namespace PointOfSaleSedek._102_Reports
 
 
             // Get Total Expenses
-            var dateTo = Convert.ToDateTime(Convert.ToDateTime(dtFrom.EditValue).AddDays(1));
+            
             var Expenses = context.ExpensesViews.Where(x => x.IsDeleted == 0 && x.Date  >= dtFrom.DateTime &&  x.Date  <= dateTo).ToList();
 
             double TotalExpenses = 0;
@@ -48,7 +49,7 @@ namespace PointOfSaleSedek._102_Reports
             });
 
             // Get TOtal Discount
-            var Descount = context.SaleMasterViews.Where(x => x.IsDeleted == 0 && x.Operation_Type_Id == 2 && x.Discount>0 && x.EntryDate >= dtFrom.DateTime && x.EntryDate <= dtTo.DateTime).ToList<SaleMasterView>();
+            var Descount = context.SaleMasterViews.Where(x => x.IsDeleted == 0 && x.Operation_Type_Id == 2 && x.Discount>0 && x.EntryDate >= dtFrom.DateTime && x.EntryDate <= dateTo).ToList<SaleMasterView>();
             double TotalDescount = 0;
             Descount.ForEach(x =>
             {
@@ -57,7 +58,7 @@ namespace PointOfSaleSedek._102_Reports
 
 
             // Get Purchess Count
-            var Purchess = context.SaleMasterViews.Where(x => x.IsDeleted == 0 && x.Operation_Type_Id == 1 && x.EntryDate >= dtFrom.DateTime && x.EntryDate <= dtTo.DateTime).ToList<SaleMasterView>();
+            var Purchess = context.SaleMasterViews.Where(x => x.IsDeleted == 0 && x.Operation_Type_Id == 1 && x.EntryDate >= dtFrom.DateTime && x.EntryDate <= dateTo).ToList<SaleMasterView>();
             double TotalPurchess = 0;
             Purchess.ForEach(x =>
             {
