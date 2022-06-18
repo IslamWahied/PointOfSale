@@ -101,8 +101,8 @@ namespace PointOfSaleSedek._105_Reports
                rpt.RegisterData(Master, "Header");
                rpt.RegisterData(saleDetailViewVmList, "Lines");
               // rpt.PrintSettings.ShowDialog = false;
-               rpt.Design();
-               // rpt.Show();
+            //   rpt.Design();
+                rpt.Show();
 
             }
 

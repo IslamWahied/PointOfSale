@@ -62,6 +62,7 @@ namespace PointOfSaleSedek._101_Adds
                   
                    
                     frm.btnNew.Enabled = true;
+                    frm.btnSave.Enabled = false;
                     frm.btnEdite.Enabled = true;
                     //frm.BtnExit.Enabled = true;
                    frm.btnPrint.Enabled = true;

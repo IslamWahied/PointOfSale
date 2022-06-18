@@ -40,6 +40,7 @@ namespace PointOfSaleSedek._101_Adds
             gcSaleDetail.Enabled = true;
 
             btnNew.Enabled = true;
+            btnSave.Enabled = true;
             btnEdite.Enabled = false;
 
 
@@ -274,12 +275,12 @@ namespace PointOfSaleSedek._101_Adds
 
             if (this.Status == "Old")
             {
-                bool TestUpdate = context.SaleMasters.Any(SaleMaster => SaleMaster.SaleMasterCode == SaleMasterCode && SaleMaster.Operation_Type_Id == 2 && SaleMaster.EntryDate == DateTime.Today);
+                bool TestUpdate = context.SaleMasters.Any(SaleMaster => SaleMaster.SaleMasterCode == SaleMasterCode && SaleMaster.Operation_Type_Id == 2 && SaleMaster.EntryDate.Day == DateTime.Today.Day && SaleMaster.EntryDate.Month == DateTime.Today.Month && SaleMaster.EntryDate.Year == DateTime.Today.Year);
 
                 if (TestUpdate)
                 {
 
-                    var SaleDetails = context.SaleDetails.Where(Masters => Masters.SaleMasterCode == SaleMasterCode && Masters.Operation_Type_Id == 2 && Masters.EntryDate == DateTime.Today);
+                    var SaleDetails = context.SaleDetails.Where(Masters => Masters.SaleMasterCode == SaleMasterCode && Masters.Operation_Type_Id == 2 && Masters.EntryDate.Day == DateTime.Today.Day && Masters.EntryDate.Month == DateTime.Today.Month && Masters.EntryDate.Year == DateTime.Today.Year);
 
 
                     // Vildate QTy
@@ -302,18 +303,18 @@ namespace PointOfSaleSedek._101_Adds
                             var item_Qt = Item_Qty_List.Where(x => x.Item_Id == item.ItemCode && x.IsFinshed == false).Sum(x => x.Current_Qty_Now);
                             var Total = item_Qt_Tran_History + item_Qt;
 
-                            if (Total < qty)
-                            {
-                                MaterialMessageBox.Show("كمية" + item.Name + "غير كافية في المخزن حيث يوجد " + item_Qt + "فقط ", MessageBoxButtons.OK);
-                                return;
-                            }
+                            //if (Total < qty)
+                            //{
+                            //    MaterialMessageBox.Show("كمية" + item.Name + "غير كافية في المخزن حيث يوجد " + item_Qt + "فقط ", MessageBoxButtons.OK);
+                            //    return;
+                            //}
                         });
 
                     }
 
                     using (PointOfSaleEntities2 context2 = new PointOfSaleEntities2())
                     {
-                        var Details = context2.SaleDetails.Where(w => w.SaleMasterCode == SaleMasterCode && w.EntryDate == DateTime.Today);
+                        var Details = context2.SaleDetails.Where(w => w.SaleMasterCode == SaleMasterCode && w.EntryDate.Day == DateTime.Today.Day && w.EntryDate.Month == DateTime.Today.Month && w.EntryDate.Year == DateTime.Today.Year);
                         context2.SaleDetails.RemoveRange(Details);
                         context2.SaveChanges();
 
@@ -445,16 +446,16 @@ namespace PointOfSaleSedek._101_Adds
 
 
 
-                    var Master = (from a in context.SaleMasterViews where a.SaleMasterCode == SaleMasterCode && a.Operation_Type_Id == 2 && a.EntryDate == DateTime.Today select a).ToList();
-                    var Detail = (from a in context.SaleDetailViews where a.SaleMasterCode == SaleMasterCode && a.Operation_Type_Id == 2 && a.EntryDate == DateTime.Today select a).ToList();
+                    //var Master = (from a in context.SaleMasterViews where a.SaleMasterCode == SaleMasterCode && a.Operation_Type_Id == 2 && a.EntryDate.Day == DateTime.Today.Day && a.EntryDate.Month == DateTime.Today.Month && a.EntryDate.Year == DateTime.Today.Year select a).ToList();
+                    //var Detail = (from a in context.SaleDetailViews where a.SaleMasterCode == SaleMasterCode && a.Operation_Type_Id == 2 && a.EntryDate.Day == DateTime.Today.Day && a.EntryDate.Month == DateTime.Today.Month && a.EntryDate.Year == DateTime.Today.Year select a).ToList();
                     New();
-                    Report rpt = new Report();
-                    rpt.Load(@"Reports\SaleInvoice.frx");
-                    rpt.RegisterData(Master, "Header");
-                    rpt.RegisterData(Detail, "Lines");
-                    rpt.PrintSettings.ShowDialog = false;
-                    //rpt.Design();
-                    rpt.Print();
+                    //Report rpt = new Report();
+                    //rpt.Load(@"Reports\SaleInvoice.frx");
+                    //rpt.RegisterData(Master, "Header");
+                    //rpt.RegisterData(Detail, "Lines");
+                    //rpt.PrintSettings.ShowDialog = false;
+                    ////rpt.Design();
+                    //rpt.Print();
 
 
 
@@ -579,16 +580,16 @@ namespace PointOfSaleSedek._101_Adds
 
 
                 New();
-                var Master = (from a in context.SaleMasterViews where a.SaleMasterCode == SaleMasterCode && a.Operation_Type_Id == 2 && a.EntryDate == DateTime.Today select a).ToList();
-                var Detail = (from a in context.SaleDetailViews where a.SaleMasterCode == SaleMasterCode && a.Operation_Type_Id == 2 && a.EntryDate == DateTime.Today select a).ToList();
+                //var Master = (from a in context.SaleMasterViews where a.SaleMasterCode == SaleMasterCode && a.Operation_Type_Id == 2 && a.EntryDate == DateTime.Today select a).ToList();
+                //var Detail = (from a in context.SaleDetailViews where a.SaleMasterCode == SaleMasterCode && a.Operation_Type_Id == 2 && a.EntryDate == DateTime.Today select a).ToList();
 
-                Report rpt = new Report();
-                rpt.Load(@"Reports\SaleInvoice.frx");
-                rpt.RegisterData(Master, "Header");
-                rpt.RegisterData(Detail, "Lines");
-                rpt.PrintSettings.ShowDialog = false;
-                //rpt.Design();
-                rpt.Print();
+                //Report rpt = new Report();
+                //rpt.Load(@"Reports\SaleInvoice.frx");
+                //rpt.RegisterData(Master, "Header");
+                //rpt.RegisterData(Detail, "Lines");
+                //rpt.PrintSettings.ShowDialog = false;
+                ////rpt.Design();
+                //rpt.Print();
 
 
             }
@@ -678,7 +679,7 @@ namespace PointOfSaleSedek._101_Adds
 
             btnEdite.Enabled = false;
             btnPrint.Enabled = false;
-            
+            btnSave.Enabled = true;
 
             lblSaleMasterId.Text = MaxCode.ToString();
 
@@ -1184,7 +1185,79 @@ namespace PointOfSaleSedek._101_Adds
             }
         }
 
-       
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            Int64 SaleMasterCode = Convert.ToInt64(lblSaleMasterId.Text);
+            var GetDataFromGrid = gcSaleDetail.DataSource as List<SaleDetailView>;
+
+            decimal finaltotal = Convert.ToInt64(lblFinalTotal.Text);
+
+            if (GetDataFromGrid == null || GetDataFromGrid.Count <= 0)
+            {
+
+
+                MaterialMessageBox.Show("لا يوجد اصناف", MessageBoxButtons.OK);
+                return;
+
+
+            }
+
+            else if (finaltotal < 0)
+            {
+
+                MaterialMessageBox.Show("لا يمكن قبول قيمة فاتورة اقل من الصفر", MessageBoxButtons.OK);
+                return;
+            }
+
+
+            else if (this.Status == "New")
+            {
+
+
+
+                SaveSaleDetail();
+
+
+            }
+            else if (this.Status == "Old")
+            {
+
+
+                SaveSaleDetail();
+
+
+            }
+        }
+
+        private void repositoryItemButtonEdit4_Click(object sender, EventArgs e)
+        {
+            var RowCount = gvSaleDetail.RowCount;
+            var FocusRow = gvSaleDetail.GetFocusedRow() as SaleDetailView;
+
+            List<SaleDetailView> gcData = gcSaleDetail.DataSource as List<SaleDetailView>;
+            gcData.Remove(FocusRow);
+            gcSaleDetail.DataSource = gcData;
+            double sum = 0;
+            gcData.ForEach(x =>
+            {
+                sum += Convert.ToDouble(x.Total);
+            });
+
+
+
+            gcSaleDetail.RefreshDataSource();
+
+
+
+
+            lblFinalBeforDesCound.Text = sum.ToString();
+
+            lblFinalTotal.Text = Convert.ToString(sum - Convert.ToDouble(lblDiscount.Text));
+            lblItemQty.Text = (RowCount - 1).ToString();
+            txtParCode.ResetText();
+
+            txtParCode.Focus();
+        }
     }
 
 

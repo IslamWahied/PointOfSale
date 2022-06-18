@@ -187,7 +187,7 @@ namespace PointOfSaleSedek._101_Adds
 
                         ArryOfSaleDetail.Add(_SaleDetail);
                         ArryOfItem_History.Add(_Item_History);
-                        Update_Item_Price_Sale(item.ItemCode, item.Price);
+                        Update_Item_Price_Sale(item.ItemCode, item.PriceBuy, item.Price);
                     }
                     Context.SaleDetails.AddRange(ArryOfSaleDetail);
                     Context.Item_History.AddRange(ArryOfItem_History);
@@ -252,7 +252,7 @@ namespace PointOfSaleSedek._101_Adds
                         };
                         ArryOfSaleDetail.Add(_SaleDetail);
                         ArryOfItem_History.Add(_Item_History);
-                        Update_Item_Price_Sale(item.ItemCode, item.Price);
+                        Update_Item_Price_Sale(item.ItemCode, item.PriceBuy, item.Price);
                     }
                     Context.SaleDetails.AddRange(ArryOfSaleDetail);
                     Context.Item_History.AddRange(ArryOfItem_History);
@@ -332,12 +332,13 @@ namespace PointOfSaleSedek._101_Adds
             }
         }
 
-        void Update_Item_Price_Sale(Int64 ItemCode,double PriceSale)
+        void Update_Item_Price_Sale(Int64 ItemCode, double PriceBuy, double PriceSale)
         {
 
             ItemCard _ItemCard;
             _ItemCard = Context.ItemCards.SingleOrDefault(Item => Item.ItemCode==ItemCode&&Item.IsDeleted==0);
             _ItemCard.Price = PriceSale;
+            _ItemCard.PriceBuy = PriceBuy;
 
 
             Context.SaveChanges();
