@@ -29,34 +29,23 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions6 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions1 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSales));
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject21 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject22 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject23 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject24 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions7 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject25 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject26 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject27 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject28 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions8 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject29 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject30 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject31 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject32 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.XtraGrid.GridLevelNode gridLevelNode2 = new DevExpress.XtraGrid.GridLevelNode();
-            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions9 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject33 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject34 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject35 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject36 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions10 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject37 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject38 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject39 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject40 = new DevExpress.Utils.SerializableAppearanceObject();
-            this.repositoryItemButtonEdit4 = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions2 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject5 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject6 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject7 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject8 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.XtraGrid.GridLevelNode gridLevelNode1 = new DevExpress.XtraGrid.GridLevelNode();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions3 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject9 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject10 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject11 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject12 = new DevExpress.Utils.SerializableAppearanceObject();
             this.repositoryItemButtonEdit3 = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.materialContextMenuStrip1 = new MaterialSkin.Controls.MaterialContextMenuStrip();
             this.حذفToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -89,39 +78,31 @@
             this.colTotal = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colSaleMasterCode = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.repositoryItemButtonEdit7 = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.btnPrint = new DevExpress.XtraEditors.SimpleButton();
-            this.btnser = new DevExpress.XtraEditors.SimpleButton();
-            this.btnDiscount = new DevExpress.XtraEditors.SimpleButton();
+            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
+            this.btnSearch = new DevExpress.XtraEditors.SimpleButton();
             this.btnNew = new DevExpress.XtraEditors.SimpleButton();
             this.btnEdite = new DevExpress.XtraEditors.SimpleButton();
             this.btnSave = new DevExpress.XtraEditors.SimpleButton();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
+            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
-            this.lblSaleMasterId = new DevExpress.XtraEditors.LabelControl();
-            this.lblItemQty = new DevExpress.XtraEditors.LabelControl();
             this.lblUserName = new DevExpress.XtraEditors.LabelControl();
+            this.lblItemQty = new DevExpress.XtraEditors.LabelControl();
+            this.lblSaleMasterId = new DevExpress.XtraEditors.LabelControl();
+            this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.slkPaymentType = new DevExpress.XtraEditors.SearchLookUpEdit();
             this.searchLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
-            this.paymentType = new DevExpress.XtraEditors.LabelControl();
             this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
-            this.tableLayoutPanel10 = new System.Windows.Forms.TableLayoutPanel();
-            this.btnAddCustomer = new DevExpress.XtraEditors.SimpleButton();
-            this.btnCustomerHistory = new DevExpress.XtraEditors.SimpleButton();
-            this.slkCustomers = new DevExpress.XtraEditors.SearchLookUpEdit();
-            this.gridView3 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.simpleButton3 = new DevExpress.XtraEditors.SimpleButton();
+            this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
             this.txtParCode = new DevExpress.XtraEditors.TextEdit();
-            this.repositoryItemButtonEdit5 = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit4)).BeginInit();
+            this.simpleButton3 = new DevExpress.XtraEditors.SimpleButton();
+            this.repositoryItemButtonEdit4 = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit3)).BeginInit();
             this.materialContextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.saleDetailBindingSource)).BeginInit();
@@ -135,37 +116,24 @@
             this.tableLayoutPanel9.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcSaleDetail)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvSaleDetail)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             this.tableLayoutPanel4.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
+            this.tableLayoutPanel6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.slkPaymentType.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).BeginInit();
-            this.tableLayoutPanel10.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.slkCustomers.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView3)).BeginInit();
+            this.tableLayoutPanel8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtParCode.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit4)).BeginInit();
             this.SuspendLayout();
-            // 
-            // repositoryItemButtonEdit4
-            // 
-            this.repositoryItemButtonEdit4.AutoHeight = false;
-            editorButtonImageOptions6.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("editorButtonImageOptions6.SvgImage")));
-            serializableAppearanceObject21.Options.UseImage = true;
-            this.repositoryItemButtonEdit4.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions6, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject21, serializableAppearanceObject22, serializableAppearanceObject23, serializableAppearanceObject24, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
-            this.repositoryItemButtonEdit4.ContextImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("repositoryItemButtonEdit4.ContextImageOptions.SvgImage")));
-            this.repositoryItemButtonEdit4.Name = "repositoryItemButtonEdit4";
-            this.repositoryItemButtonEdit4.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             // 
             // repositoryItemButtonEdit3
             // 
             this.repositoryItemButtonEdit3.AutoHeight = false;
-            editorButtonImageOptions7.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions7.Image")));
+            editorButtonImageOptions1.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions1.Image")));
             this.repositoryItemButtonEdit3.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions7, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject25, serializableAppearanceObject26, serializableAppearanceObject27, serializableAppearanceObject28, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions1, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, serializableAppearanceObject2, serializableAppearanceObject3, serializableAppearanceObject4, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
             this.repositoryItemButtonEdit3.HideSelection = false;
             this.repositoryItemButtonEdit3.Name = "repositoryItemButtonEdit3";
             this.repositoryItemButtonEdit3.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
@@ -214,12 +182,12 @@
             // repositoryItemButtonEdit2
             // 
             this.repositoryItemButtonEdit2.AutoHeight = false;
-            editorButtonImageOptions8.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions8.Image")));
-            serializableAppearanceObject29.Options.UseTextOptions = true;
-            serializableAppearanceObject29.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            serializableAppearanceObject29.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            editorButtonImageOptions2.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions2.Image")));
+            serializableAppearanceObject5.Options.UseTextOptions = true;
+            serializableAppearanceObject5.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            serializableAppearanceObject5.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.repositoryItemButtonEdit2.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions8, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject29, serializableAppearanceObject30, serializableAppearanceObject31, serializableAppearanceObject32, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions2, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject5, serializableAppearanceObject6, serializableAppearanceObject7, serializableAppearanceObject8, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
             this.repositoryItemButtonEdit2.Name = "repositoryItemButtonEdit2";
             this.repositoryItemButtonEdit2.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             // 
@@ -228,7 +196,7 @@
             this.tableLayoutPanel1.ColumnCount = 3;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.90066F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 85.09934F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 119F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 99F));
             this.tableLayoutPanel1.Controls.Add(this.simpleButton2, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel3, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.gcSaleDetail, 0, 1);
@@ -238,7 +206,7 @@
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 3;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 77F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 78F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 209F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
@@ -258,7 +226,7 @@
             this.simpleButton2.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.BottomCenter;
             this.simpleButton2.Location = new System.Drawing.Point(3, 3);
             this.simpleButton2.Name = "simpleButton2";
-            this.simpleButton2.Size = new System.Drawing.Size(114, 71);
+            this.simpleButton2.Size = new System.Drawing.Size(94, 72);
             this.simpleButton2.TabIndex = 41;
             this.simpleButton2.Text = "خروج";
             this.simpleButton2.Click += new System.EventHandler(this.simpleButton2_Click);
@@ -435,19 +403,21 @@
             // 
             // gcSaleDetail
             // 
+            this.gcSaleDetail.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel1.SetColumnSpan(this.gcSaleDetail, 2);
             this.gcSaleDetail.ContextMenuStrip = this.materialContextMenuStrip1;
-            this.gcSaleDetail.Dock = System.Windows.Forms.DockStyle.Fill;
-            gridLevelNode2.RelationName = "Level1";
+            gridLevelNode1.RelationName = "Level1";
             this.gcSaleDetail.LevelTree.Nodes.AddRange(new DevExpress.XtraGrid.GridLevelNode[] {
-            gridLevelNode2});
-            this.gcSaleDetail.Location = new System.Drawing.Point(120, 77);
+            gridLevelNode1});
+            this.gcSaleDetail.Location = new System.Drawing.Point(100, 78);
             this.gcSaleDetail.MainView = this.gvSaleDetail;
             this.gcSaleDetail.Margin = new System.Windows.Forms.Padding(0);
             this.gcSaleDetail.Name = "gcSaleDetail";
             this.gcSaleDetail.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
-            this.repositoryItemButtonEdit7});
-            this.gcSaleDetail.Size = new System.Drawing.Size(1117, 463);
+            this.repositoryItemButtonEdit4});
+            this.gcSaleDetail.Size = new System.Drawing.Size(1137, 462);
             this.gcSaleDetail.TabIndex = 6;
             this.gcSaleDetail.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvSaleDetail,
@@ -531,7 +501,7 @@
             this.colName.OptionsColumn.AllowEdit = false;
             this.colName.Visible = true;
             this.colName.VisibleIndex = 0;
-            this.colName.Width = 344;
+            this.colName.Width = 347;
             // 
             // colQty
             // 
@@ -546,7 +516,7 @@
             this.colQty.Name = "colQty";
             this.colQty.Visible = true;
             this.colQty.VisibleIndex = 2;
-            this.colQty.Width = 190;
+            this.colQty.Width = 192;
             // 
             // colUnit
             // 
@@ -573,7 +543,7 @@
             this.colPrice.OptionsColumn.AllowEdit = false;
             this.colPrice.Visible = true;
             this.colPrice.VisibleIndex = 1;
-            this.colPrice.Width = 159;
+            this.colPrice.Width = 161;
             // 
             // colTotal
             // 
@@ -588,7 +558,7 @@
             this.colTotal.OptionsColumn.AllowEdit = false;
             this.colTotal.Visible = true;
             this.colTotal.VisibleIndex = 3;
-            this.colTotal.Width = 325;
+            this.colTotal.Width = 346;
             // 
             // colSaleMasterCode
             // 
@@ -598,23 +568,12 @@
             // 
             // gridColumn1
             // 
-            this.gridColumn1.ColumnEdit = this.repositoryItemButtonEdit7;
+            this.gridColumn1.ColumnEdit = this.repositoryItemButtonEdit4;
             this.gridColumn1.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("gridColumn1.ImageOptions.Image")));
             this.gridColumn1.Name = "gridColumn1";
-            this.gridColumn1.ShowButtonMode = DevExpress.XtraGrid.Views.Base.ShowButtonModeEnum.ShowAlways;
             this.gridColumn1.Visible = true;
             this.gridColumn1.VisibleIndex = 4;
-            this.gridColumn1.Width = 78;
-            // 
-            // repositoryItemButtonEdit7
-            // 
-            this.repositoryItemButtonEdit7.AutoHeight = false;
-            editorButtonImageOptions9.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("editorButtonImageOptions9.SvgImage")));
-            this.repositoryItemButtonEdit7.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions9, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject33, serializableAppearanceObject34, serializableAppearanceObject35, serializableAppearanceObject36, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
-            this.repositoryItemButtonEdit7.Name = "repositoryItemButtonEdit7";
-            this.repositoryItemButtonEdit7.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
-            this.repositoryItemButtonEdit7.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.repositoryItemButtonEdit7_ButtonClick);
+            this.gridColumn1.Width = 58;
             // 
             // gridView1
             // 
@@ -626,13 +585,13 @@
             this.tableLayoutPanel4.ColumnCount = 1;
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel4.Controls.Add(this.btnPrint, 0, 5);
-            this.tableLayoutPanel4.Controls.Add(this.btnser, 0, 4);
-            this.tableLayoutPanel4.Controls.Add(this.btnDiscount, 0, 3);
+            this.tableLayoutPanel4.Controls.Add(this.simpleButton1, 0, 4);
+            this.tableLayoutPanel4.Controls.Add(this.btnSearch, 0, 3);
             this.tableLayoutPanel4.Controls.Add(this.btnNew, 0, 1);
             this.tableLayoutPanel4.Controls.Add(this.btnEdite, 0, 2);
             this.tableLayoutPanel4.Controls.Add(this.btnSave, 0, 0);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 80);
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 81);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 6;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
@@ -641,7 +600,7 @@
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(114, 457);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(94, 456);
             this.tableLayoutPanel4.TabIndex = 39;
             // 
             // btnPrint
@@ -659,53 +618,53 @@
             this.btnPrint.LookAndFeel.SkinName = "The Bezier";
             this.btnPrint.LookAndFeel.UseDefaultLookAndFeel = false;
             this.btnPrint.Name = "btnPrint";
-            this.btnPrint.Size = new System.Drawing.Size(108, 71);
+            this.btnPrint.Size = new System.Drawing.Size(88, 70);
             this.btnPrint.TabIndex = 43;
             this.btnPrint.Text = "طباعة";
             this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             this.btnPrint.KeyDown += new System.Windows.Forms.KeyEventHandler(this.btnEdite_KeyDown);
             // 
-            // btnser
+            // simpleButton1
             // 
-            this.btnser.AllowFocus = false;
-            this.btnser.Appearance.BackColor = System.Drawing.Color.Maroon;
-            this.btnser.Appearance.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnser.Appearance.Options.UseBackColor = true;
-            this.btnser.Appearance.Options.UseFont = true;
-            this.btnser.AutoSize = true;
-            this.btnser.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnser.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton1.ImageOptions.Image")));
-            this.btnser.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.BottomCenter;
-            this.btnser.Location = new System.Drawing.Point(3, 307);
-            this.btnser.LookAndFeel.SkinName = "The Bezier";
-            this.btnser.LookAndFeel.UseDefaultLookAndFeel = false;
-            this.btnser.Name = "btnser";
-            this.btnser.Size = new System.Drawing.Size(108, 70);
-            this.btnser.TabIndex = 42;
-            this.btnser.Text = "فواتير اليوم";
-            this.btnser.Click += new System.EventHandler(this.simpleButton1_Click);
-            this.btnser.KeyDown += new System.Windows.Forms.KeyEventHandler(this.btnEdite_KeyDown);
+            this.simpleButton1.AllowFocus = false;
+            this.simpleButton1.Appearance.BackColor = System.Drawing.Color.Maroon;
+            this.simpleButton1.Appearance.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.simpleButton1.Appearance.Options.UseBackColor = true;
+            this.simpleButton1.Appearance.Options.UseFont = true;
+            this.simpleButton1.AutoSize = true;
+            this.simpleButton1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.simpleButton1.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton1.ImageOptions.Image")));
+            this.simpleButton1.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.BottomCenter;
+            this.simpleButton1.Location = new System.Drawing.Point(3, 307);
+            this.simpleButton1.LookAndFeel.SkinName = "The Bezier";
+            this.simpleButton1.LookAndFeel.UseDefaultLookAndFeel = false;
+            this.simpleButton1.Name = "simpleButton1";
+            this.simpleButton1.Size = new System.Drawing.Size(88, 70);
+            this.simpleButton1.TabIndex = 42;
+            this.simpleButton1.Text = "فواتير اليوم";
+            this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click);
+            this.simpleButton1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.btnEdite_KeyDown);
             // 
-            // btnDiscount
+            // btnSearch
             // 
-            this.btnDiscount.AllowFocus = false;
-            this.btnDiscount.Appearance.BackColor = System.Drawing.Color.Maroon;
-            this.btnDiscount.Appearance.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDiscount.Appearance.Options.UseBackColor = true;
-            this.btnDiscount.Appearance.Options.UseFont = true;
-            this.btnDiscount.AutoSize = true;
-            this.btnDiscount.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnDiscount.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnDiscount.ImageOptions.Image")));
-            this.btnDiscount.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.BottomCenter;
-            this.btnDiscount.Location = new System.Drawing.Point(3, 231);
-            this.btnDiscount.LookAndFeel.SkinName = "The Bezier";
-            this.btnDiscount.LookAndFeel.UseDefaultLookAndFeel = false;
-            this.btnDiscount.Name = "btnDiscount";
-            this.btnDiscount.Size = new System.Drawing.Size(108, 70);
-            this.btnDiscount.TabIndex = 41;
-            this.btnDiscount.Text = "خصم";
-            this.btnDiscount.Click += new System.EventHandler(this.btnSearch_Click);
-            this.btnDiscount.KeyDown += new System.Windows.Forms.KeyEventHandler(this.btnEdite_KeyDown);
+            this.btnSearch.AllowFocus = false;
+            this.btnSearch.Appearance.BackColor = System.Drawing.Color.Maroon;
+            this.btnSearch.Appearance.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSearch.Appearance.Options.UseBackColor = true;
+            this.btnSearch.Appearance.Options.UseFont = true;
+            this.btnSearch.AutoSize = true;
+            this.btnSearch.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnSearch.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSearch.ImageOptions.Image")));
+            this.btnSearch.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.BottomCenter;
+            this.btnSearch.Location = new System.Drawing.Point(3, 231);
+            this.btnSearch.LookAndFeel.SkinName = "The Bezier";
+            this.btnSearch.LookAndFeel.UseDefaultLookAndFeel = false;
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(88, 70);
+            this.btnSearch.TabIndex = 41;
+            this.btnSearch.Text = "خصم";
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            this.btnSearch.KeyDown += new System.Windows.Forms.KeyEventHandler(this.btnEdite_KeyDown);
             // 
             // btnNew
             // 
@@ -724,7 +683,7 @@
             this.btnNew.LookAndFeel.UseDefaultLookAndFeel = false;
             this.btnNew.Name = "btnNew";
             this.btnNew.ShowFocusRectangle = DevExpress.Utils.DefaultBoolean.False;
-            this.btnNew.Size = new System.Drawing.Size(108, 70);
+            this.btnNew.Size = new System.Drawing.Size(88, 70);
             this.btnNew.TabIndex = 40;
             this.btnNew.TabStop = false;
             this.btnNew.Text = "جديد";
@@ -746,7 +705,7 @@
             this.btnEdite.LookAndFeel.SkinName = "The Bezier";
             this.btnEdite.LookAndFeel.UseDefaultLookAndFeel = false;
             this.btnEdite.Name = "btnEdite";
-            this.btnEdite.Size = new System.Drawing.Size(108, 70);
+            this.btnEdite.Size = new System.Drawing.Size(88, 70);
             this.btnEdite.TabIndex = 39;
             this.btnEdite.Text = "تعديل";
             this.btnEdite.Click += new System.EventHandler(this.btnEdite_Click);
@@ -766,56 +725,68 @@
             this.btnSave.LookAndFeel.SkinName = "The Bezier";
             this.btnSave.LookAndFeel.UseDefaultLookAndFeel = false;
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(108, 70);
+            this.btnSave.Size = new System.Drawing.Size(88, 70);
             this.btnSave.TabIndex = 44;
             this.btnSave.Text = "حفظ";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // tableLayoutPanel2
             // 
-            this.tableLayoutPanel2.ColumnCount = 1;
+            this.tableLayoutPanel2.ColumnCount = 3;
             this.tableLayoutPanel1.SetColumnSpan(this.tableLayoutPanel2, 2);
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 1017F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel5, 0, 0);
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30.38869F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 35.07067F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 34.54063F));
+            this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel5, 1, 0);
+            this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel6, 2, 0);
+            this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel8, 0, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(123, 3);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(103, 3);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(1111, 71);
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(1131, 72);
             this.tableLayoutPanel2.TabIndex = 40;
             // 
             // tableLayoutPanel5
             // 
-            this.tableLayoutPanel5.ColumnCount = 7;
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 17.87003F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.1083F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15.79422F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 8.032491F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 9.296029F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.28881F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 28.61011F));
-            this.tableLayoutPanel5.Controls.Add(this.labelControl3, 3, 0);
-            this.tableLayoutPanel5.Controls.Add(this.labelControl4, 4, 0);
-            this.tableLayoutPanel5.Controls.Add(this.lblSaleMasterId, 4, 1);
-            this.tableLayoutPanel5.Controls.Add(this.lblItemQty, 3, 1);
-            this.tableLayoutPanel5.Controls.Add(this.lblUserName, 5, 1);
-            this.tableLayoutPanel5.Controls.Add(this.slkPaymentType, 2, 1);
-            this.tableLayoutPanel5.Controls.Add(this.labelControl1, 5, 0);
-            this.tableLayoutPanel5.Controls.Add(this.paymentType, 2, 0);
-            this.tableLayoutPanel5.Controls.Add(this.labelControl6, 6, 0);
-            this.tableLayoutPanel5.Controls.Add(this.tableLayoutPanel10, 6, 1);
-            this.tableLayoutPanel5.Controls.Add(this.simpleButton3, 1, 0);
-            this.tableLayoutPanel5.Controls.Add(this.txtParCode, 0, 0);
+            this.tableLayoutPanel5.ColumnCount = 3;
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 116F));
+            this.tableLayoutPanel5.Controls.Add(this.labelControl1, 0, 0);
+            this.tableLayoutPanel5.Controls.Add(this.labelControl3, 1, 0);
+            this.tableLayoutPanel5.Controls.Add(this.labelControl4, 2, 0);
+            this.tableLayoutPanel5.Controls.Add(this.lblUserName, 0, 1);
+            this.tableLayoutPanel5.Controls.Add(this.lblItemQty, 1, 1);
+            this.tableLayoutPanel5.Controls.Add(this.lblSaleMasterId, 2, 1);
             this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel5.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(395, 3);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
             this.tableLayoutPanel5.RowCount = 2;
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 36.92308F));
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 63.07692F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(1105, 65);
-            this.tableLayoutPanel5.TabIndex = 10;
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 51.51515F));
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 48.48485F));
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(390, 66);
+            this.tableLayoutPanel5.TabIndex = 0;
+            // 
+            // labelControl1
+            // 
+            this.labelControl1.Appearance.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.labelControl1.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl1.Appearance.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.labelControl1.Appearance.Options.UseBackColor = true;
+            this.labelControl1.Appearance.Options.UseFont = true;
+            this.labelControl1.Appearance.Options.UseForeColor = true;
+            this.labelControl1.Appearance.Options.UseTextOptions = true;
+            this.labelControl1.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.labelControl1.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.labelControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.labelControl1.Location = new System.Drawing.Point(256, 3);
+            this.labelControl1.Name = "labelControl1";
+            this.labelControl1.Size = new System.Drawing.Size(131, 28);
+            this.labelControl1.TabIndex = 31;
+            this.labelControl1.Text = "المستخدم";
             // 
             // labelControl3
             // 
@@ -829,9 +800,9 @@
             this.labelControl3.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.labelControl3.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.labelControl3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelControl3.Location = new System.Drawing.Point(538, 3);
+            this.labelControl3.Location = new System.Drawing.Point(119, 3);
             this.labelControl3.Name = "labelControl3";
-            this.labelControl3.Size = new System.Drawing.Size(82, 18);
+            this.labelControl3.Size = new System.Drawing.Size(131, 28);
             this.labelControl3.TabIndex = 33;
             this.labelControl3.Text = "عدد الاصناف";
             // 
@@ -847,47 +818,11 @@
             this.labelControl4.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.labelControl4.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.labelControl4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelControl4.Location = new System.Drawing.Point(436, 3);
+            this.labelControl4.Location = new System.Drawing.Point(3, 3);
             this.labelControl4.Name = "labelControl4";
-            this.labelControl4.Size = new System.Drawing.Size(96, 18);
+            this.labelControl4.Size = new System.Drawing.Size(110, 28);
             this.labelControl4.TabIndex = 34;
             this.labelControl4.Text = "رقم الفاتورة";
-            // 
-            // lblSaleMasterId
-            // 
-            this.lblSaleMasterId.Appearance.BackColor = System.Drawing.Color.Gray;
-            this.lblSaleMasterId.Appearance.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSaleMasterId.Appearance.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.lblSaleMasterId.Appearance.Options.UseBackColor = true;
-            this.lblSaleMasterId.Appearance.Options.UseFont = true;
-            this.lblSaleMasterId.Appearance.Options.UseForeColor = true;
-            this.lblSaleMasterId.Appearance.Options.UseTextOptions = true;
-            this.lblSaleMasterId.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.lblSaleMasterId.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.lblSaleMasterId.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblSaleMasterId.Location = new System.Drawing.Point(436, 27);
-            this.lblSaleMasterId.Name = "lblSaleMasterId";
-            this.lblSaleMasterId.Size = new System.Drawing.Size(96, 35);
-            this.lblSaleMasterId.TabIndex = 36;
-            this.lblSaleMasterId.Text = "0";
-            // 
-            // lblItemQty
-            // 
-            this.lblItemQty.Appearance.BackColor = System.Drawing.Color.Gray;
-            this.lblItemQty.Appearance.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblItemQty.Appearance.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.lblItemQty.Appearance.Options.UseBackColor = true;
-            this.lblItemQty.Appearance.Options.UseFont = true;
-            this.lblItemQty.Appearance.Options.UseForeColor = true;
-            this.lblItemQty.Appearance.Options.UseTextOptions = true;
-            this.lblItemQty.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.lblItemQty.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.lblItemQty.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblItemQty.Location = new System.Drawing.Point(538, 27);
-            this.lblItemQty.Name = "lblItemQty";
-            this.lblItemQty.Size = new System.Drawing.Size(82, 35);
-            this.lblItemQty.TabIndex = 35;
-            this.lblItemQty.Text = "0";
             // 
             // lblUserName
             // 
@@ -901,29 +836,79 @@
             this.lblUserName.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.lblUserName.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.lblUserName.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblUserName.Location = new System.Drawing.Point(323, 27);
+            this.lblUserName.Location = new System.Drawing.Point(256, 37);
             this.lblUserName.Name = "lblUserName";
-            this.lblUserName.Size = new System.Drawing.Size(107, 35);
+            this.lblUserName.Size = new System.Drawing.Size(131, 26);
             this.lblUserName.TabIndex = 32;
             this.lblUserName.Text = "Name";
+            // 
+            // lblItemQty
+            // 
+            this.lblItemQty.Appearance.BackColor = System.Drawing.Color.Gray;
+            this.lblItemQty.Appearance.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblItemQty.Appearance.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.lblItemQty.Appearance.Options.UseBackColor = true;
+            this.lblItemQty.Appearance.Options.UseFont = true;
+            this.lblItemQty.Appearance.Options.UseForeColor = true;
+            this.lblItemQty.Appearance.Options.UseTextOptions = true;
+            this.lblItemQty.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.lblItemQty.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.lblItemQty.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblItemQty.Location = new System.Drawing.Point(119, 37);
+            this.lblItemQty.Name = "lblItemQty";
+            this.lblItemQty.Size = new System.Drawing.Size(131, 26);
+            this.lblItemQty.TabIndex = 35;
+            this.lblItemQty.Text = "0";
+            // 
+            // lblSaleMasterId
+            // 
+            this.lblSaleMasterId.Appearance.BackColor = System.Drawing.Color.Gray;
+            this.lblSaleMasterId.Appearance.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSaleMasterId.Appearance.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.lblSaleMasterId.Appearance.Options.UseBackColor = true;
+            this.lblSaleMasterId.Appearance.Options.UseFont = true;
+            this.lblSaleMasterId.Appearance.Options.UseForeColor = true;
+            this.lblSaleMasterId.Appearance.Options.UseTextOptions = true;
+            this.lblSaleMasterId.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.lblSaleMasterId.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.lblSaleMasterId.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblSaleMasterId.Location = new System.Drawing.Point(3, 37);
+            this.lblSaleMasterId.Name = "lblSaleMasterId";
+            this.lblSaleMasterId.Size = new System.Drawing.Size(110, 26);
+            this.lblSaleMasterId.TabIndex = 36;
+            this.lblSaleMasterId.Text = "0";
+            // 
+            // tableLayoutPanel6
+            // 
+            this.tableLayoutPanel6.ColumnCount = 1;
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 386F));
+            this.tableLayoutPanel6.Controls.Add(this.slkPaymentType, 0, 1);
+            this.tableLayoutPanel6.Controls.Add(this.labelControl6, 0, 0);
+            this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel6.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel6.Name = "tableLayoutPanel6";
+            this.tableLayoutPanel6.RowCount = 2;
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(386, 66);
+            this.tableLayoutPanel6.TabIndex = 6;
             // 
             // slkPaymentType
             // 
             this.slkPaymentType.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.slkPaymentType.Location = new System.Drawing.Point(626, 27);
+            this.slkPaymentType.EditValue = " ";
+            this.slkPaymentType.Location = new System.Drawing.Point(3, 37);
             this.slkPaymentType.Name = "slkPaymentType";
-            this.slkPaymentType.Properties.AllowFocused = false;
             this.slkPaymentType.Properties.Appearance.Options.UseTextOptions = true;
             this.slkPaymentType.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.slkPaymentType.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.slkPaymentType.Properties.AutoHeight = false;
             this.slkPaymentType.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.slkPaymentType.Properties.NullText = "";
+            this.slkPaymentType.Properties.NullText = " ";
             this.slkPaymentType.Properties.PopupView = this.searchLookUpEdit1View;
-            this.slkPaymentType.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.slkPaymentType.Size = new System.Drawing.Size(168, 35);
-            this.slkPaymentType.TabIndex = 38;
+            this.slkPaymentType.Size = new System.Drawing.Size(380, 26);
+            this.slkPaymentType.TabIndex = 154;
             // 
             // searchLookUpEdit1View
             // 
@@ -938,53 +923,15 @@
             // 
             this.gridColumn2.AppearanceCell.Options.UseTextOptions = true;
             this.gridColumn2.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumn2.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.gridColumn2.AppearanceHeader.BackColor = System.Drawing.Color.Gray;
+            this.gridColumn2.AppearanceHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.gridColumn2.AppearanceHeader.Options.UseBackColor = true;
             this.gridColumn2.AppearanceHeader.Options.UseTextOptions = true;
             this.gridColumn2.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumn2.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.gridColumn2.Caption = "طريقة الدفع";
+            this.gridColumn2.Caption = "الاسم";
             this.gridColumn2.FieldName = "PaymentType";
             this.gridColumn2.Name = "gridColumn2";
             this.gridColumn2.Visible = true;
             this.gridColumn2.VisibleIndex = 0;
-            // 
-            // labelControl1
-            // 
-            this.labelControl1.Appearance.BackColor = System.Drawing.Color.CornflowerBlue;
-            this.labelControl1.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl1.Appearance.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.labelControl1.Appearance.Options.UseBackColor = true;
-            this.labelControl1.Appearance.Options.UseFont = true;
-            this.labelControl1.Appearance.Options.UseForeColor = true;
-            this.labelControl1.Appearance.Options.UseTextOptions = true;
-            this.labelControl1.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.labelControl1.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.labelControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelControl1.Location = new System.Drawing.Point(323, 3);
-            this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(107, 18);
-            this.labelControl1.TabIndex = 31;
-            this.labelControl1.Text = "المستخدم";
-            // 
-            // paymentType
-            // 
-            this.paymentType.Appearance.BackColor = System.Drawing.Color.CornflowerBlue;
-            this.paymentType.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.paymentType.Appearance.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.paymentType.Appearance.Options.UseBackColor = true;
-            this.paymentType.Appearance.Options.UseFont = true;
-            this.paymentType.Appearance.Options.UseForeColor = true;
-            this.paymentType.Appearance.Options.UseTextOptions = true;
-            this.paymentType.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.paymentType.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.paymentType.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.paymentType.Location = new System.Drawing.Point(626, 3);
-            this.paymentType.Name = "paymentType";
-            this.paymentType.Size = new System.Drawing.Size(168, 18);
-            this.paymentType.TabIndex = 37;
-            this.paymentType.Text = "طريقة الدفع";
             // 
             // labelControl6
             // 
@@ -1000,186 +947,74 @@
             this.labelControl6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.labelControl6.Location = new System.Drawing.Point(3, 3);
             this.labelControl6.Name = "labelControl6";
-            this.labelControl6.Size = new System.Drawing.Size(314, 18);
-            this.labelControl6.TabIndex = 39;
-            this.labelControl6.Text = "العملاء";
+            this.labelControl6.Size = new System.Drawing.Size(380, 28);
+            this.labelControl6.TabIndex = 35;
+            this.labelControl6.Text = "طريقة الدفع";
             // 
-            // tableLayoutPanel10
+            // tableLayoutPanel8
             // 
-            this.tableLayoutPanel10.ColumnCount = 3;
-            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 119F));
-            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 93F));
-            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 104F));
-            this.tableLayoutPanel10.Controls.Add(this.btnAddCustomer, 1, 0);
-            this.tableLayoutPanel10.Controls.Add(this.btnCustomerHistory, 2, 0);
-            this.tableLayoutPanel10.Controls.Add(this.slkCustomers, 0, 0);
-            this.tableLayoutPanel10.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel10.Location = new System.Drawing.Point(3, 27);
-            this.tableLayoutPanel10.Name = "tableLayoutPanel10";
-            this.tableLayoutPanel10.RowCount = 1;
-            this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel10.Size = new System.Drawing.Size(314, 35);
-            this.tableLayoutPanel10.TabIndex = 40;
-            // 
-            // btnAddCustomer
-            // 
-            this.btnAddCustomer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnAddCustomer.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnAddCustomer.ImageOptions.Image")));
-            this.btnAddCustomer.Location = new System.Drawing.Point(105, 3);
-            this.btnAddCustomer.Name = "btnAddCustomer";
-            this.btnAddCustomer.Size = new System.Drawing.Size(87, 30);
-            this.btnAddCustomer.TabIndex = 46;
-            this.btnAddCustomer.Text = "عميل جديد";
-            this.btnAddCustomer.Click += new System.EventHandler(this.simpleButton4_Click);
-            // 
-            // btnCustomerHistory
-            // 
-            this.btnCustomerHistory.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnCustomerHistory.Enabled = false;
-            this.btnCustomerHistory.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnCustomerHistory.ImageOptions.Image")));
-            this.btnCustomerHistory.Location = new System.Drawing.Point(1, 3);
-            this.btnCustomerHistory.LookAndFeel.SkinName = "The Bezier";
-            this.btnCustomerHistory.LookAndFeel.UseDefaultLookAndFeel = false;
-            this.btnCustomerHistory.Name = "btnCustomerHistory";
-            this.btnCustomerHistory.Size = new System.Drawing.Size(98, 30);
-            this.btnCustomerHistory.TabIndex = 45;
-            this.btnCustomerHistory.Text = "تعاملات العميل";
-            this.btnCustomerHistory.Click += new System.EventHandler(this.btnCustomerHistory_Click);
-            // 
-            // slkCustomers
-            // 
-            this.slkCustomers.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.slkCustomers.Location = new System.Drawing.Point(198, 3);
-            this.slkCustomers.Name = "slkCustomers";
-            this.slkCustomers.Properties.AllowFocused = false;
-            this.slkCustomers.Properties.AutoHeight = false;
-            this.slkCustomers.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.slkCustomers.Properties.NullText = "";
-            this.slkCustomers.Properties.PopupView = this.gridView3;
-            this.slkCustomers.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.slkCustomers.Size = new System.Drawing.Size(113, 30);
-            this.slkCustomers.TabIndex = 41;
-            this.slkCustomers.EditValueChanged += new System.EventHandler(this.slkCustomers_EditValueChanged);
-            // 
-            // gridView3
-            // 
-            this.gridView3.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.gridColumn5,
-            this.gridColumn4});
-            this.gridView3.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
-            this.gridView3.Name = "gridView3";
-            this.gridView3.OptionsSelection.EnableAppearanceFocusedCell = false;
-            this.gridView3.OptionsView.ShowGroupPanel = false;
-            // 
-            // gridColumn5
-            // 
-            this.gridColumn5.AppearanceCell.Options.UseTextOptions = true;
-            this.gridColumn5.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumn5.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.gridColumn5.AppearanceHeader.BackColor = System.Drawing.Color.Gray;
-            this.gridColumn5.AppearanceHeader.Options.UseBackColor = true;
-            this.gridColumn5.AppearanceHeader.Options.UseTextOptions = true;
-            this.gridColumn5.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumn5.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.gridColumn5.Caption = "الاسم";
-            this.gridColumn5.FieldName = "Customer_Name";
-            this.gridColumn5.Name = "gridColumn5";
-            this.gridColumn5.Visible = true;
-            this.gridColumn5.VisibleIndex = 1;
-            // 
-            // gridColumn4
-            // 
-            this.gridColumn4.AppearanceCell.Options.UseTextOptions = true;
-            this.gridColumn4.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumn4.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.gridColumn4.AppearanceHeader.BackColor = System.Drawing.Color.Gray;
-            this.gridColumn4.AppearanceHeader.Options.UseBackColor = true;
-            this.gridColumn4.AppearanceHeader.Options.UseTextOptions = true;
-            this.gridColumn4.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumn4.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.gridColumn4.Caption = "الموبيل";
-            this.gridColumn4.FieldName = "Customer_Phone";
-            this.gridColumn4.Name = "gridColumn4";
-            this.gridColumn4.Visible = true;
-            this.gridColumn4.VisibleIndex = 0;
-            // 
-            // simpleButton3
-            // 
-            this.simpleButton3.Appearance.BackColor = System.Drawing.Color.CornflowerBlue;
-            this.simpleButton3.Appearance.BackColor2 = System.Drawing.Color.CornflowerBlue;
-            this.simpleButton3.Appearance.BorderColor = System.Drawing.Color.CornflowerBlue;
-            this.simpleButton3.Appearance.ForeColor = System.Drawing.Color.CornflowerBlue;
-            this.simpleButton3.Appearance.Options.UseBackColor = true;
-            this.simpleButton3.Appearance.Options.UseBorderColor = true;
-            this.simpleButton3.Appearance.Options.UseForeColor = true;
-            this.simpleButton3.Appearance.Options.UseTextOptions = true;
-            this.simpleButton3.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.simpleButton3.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.simpleButton3.AppearanceDisabled.BackColor = System.Drawing.Color.CornflowerBlue;
-            this.simpleButton3.AppearanceDisabled.BackColor2 = System.Drawing.Color.CornflowerBlue;
-            this.simpleButton3.AppearanceDisabled.BorderColor = System.Drawing.Color.CornflowerBlue;
-            this.simpleButton3.AppearanceDisabled.ForeColor = System.Drawing.Color.CornflowerBlue;
-            this.simpleButton3.AppearanceDisabled.Options.UseBackColor = true;
-            this.simpleButton3.AppearanceDisabled.Options.UseBorderColor = true;
-            this.simpleButton3.AppearanceDisabled.Options.UseForeColor = true;
-            this.simpleButton3.AppearanceHovered.BackColor = System.Drawing.Color.CornflowerBlue;
-            this.simpleButton3.AppearanceHovered.BackColor2 = System.Drawing.Color.CornflowerBlue;
-            this.simpleButton3.AppearanceHovered.BorderColor = System.Drawing.Color.CornflowerBlue;
-            this.simpleButton3.AppearanceHovered.ForeColor = System.Drawing.Color.CornflowerBlue;
-            this.simpleButton3.AppearanceHovered.Options.UseBackColor = true;
-            this.simpleButton3.AppearanceHovered.Options.UseBorderColor = true;
-            this.simpleButton3.AppearanceHovered.Options.UseForeColor = true;
-            this.simpleButton3.AppearancePressed.BackColor = System.Drawing.Color.CornflowerBlue;
-            this.simpleButton3.AppearancePressed.BackColor2 = System.Drawing.Color.CornflowerBlue;
-            this.simpleButton3.AppearancePressed.BorderColor = System.Drawing.Color.CornflowerBlue;
-            this.simpleButton3.AppearancePressed.ForeColor = System.Drawing.Color.CornflowerBlue;
-            this.simpleButton3.AppearancePressed.Options.UseBackColor = true;
-            this.simpleButton3.AppearancePressed.Options.UseBorderColor = true;
-            this.simpleButton3.AppearancePressed.Options.UseForeColor = true;
-            this.simpleButton3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.simpleButton3.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton3.ImageOptions.Image")));
-            this.simpleButton3.Location = new System.Drawing.Point(800, 3);
-            this.simpleButton3.LookAndFeel.SkinMaskColor = System.Drawing.Color.CornflowerBlue;
-            this.simpleButton3.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.CornflowerBlue;
-            this.simpleButton3.LookAndFeel.SkinName = "The Bezier";
-            this.simpleButton3.LookAndFeel.UseDefaultLookAndFeel = false;
-            this.simpleButton3.Name = "simpleButton3";
-            this.tableLayoutPanel5.SetRowSpan(this.simpleButton3, 2);
-            this.simpleButton3.Size = new System.Drawing.Size(105, 59);
-            this.simpleButton3.TabIndex = 41;
-            this.simpleButton3.Text = "بحث";
-            this.simpleButton3.Click += new System.EventHandler(this.simpleButton3_Click_2);
+            this.tableLayoutPanel8.ColumnCount = 2;
+            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 106F));
+            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel8.Controls.Add(this.txtParCode, 0, 0);
+            this.tableLayoutPanel8.Controls.Add(this.simpleButton3, 1, 0);
+            this.tableLayoutPanel8.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel8.Location = new System.Drawing.Point(791, 3);
+            this.tableLayoutPanel8.Name = "tableLayoutPanel8";
+            this.tableLayoutPanel8.RowCount = 1;
+            this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel8.Size = new System.Drawing.Size(337, 66);
+            this.tableLayoutPanel8.TabIndex = 7;
             // 
             // txtParCode
             // 
             this.txtParCode.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtParCode.Location = new System.Drawing.Point(911, 3);
+            this.txtParCode.Location = new System.Drawing.Point(109, 3);
             this.txtParCode.Name = "txtParCode";
-            this.txtParCode.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtParCode.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtParCode.Properties.Appearance.Options.UseFont = true;
             this.txtParCode.Properties.Appearance.Options.UseTextOptions = true;
             this.txtParCode.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.txtParCode.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.txtParCode.Properties.AutoHeight = false;
-            this.tableLayoutPanel5.SetRowSpan(this.txtParCode, 2);
-            this.txtParCode.Size = new System.Drawing.Size(191, 59);
-            this.txtParCode.TabIndex = 42;
+            this.txtParCode.Properties.Mask.EditMask = "\\d{0,50}";
+            this.txtParCode.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
+            this.txtParCode.Size = new System.Drawing.Size(225, 60);
+            this.txtParCode.TabIndex = 6;
             this.txtParCode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtParCode_KeyDown_1);
             this.txtParCode.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtParCode_KeyUp_1);
             // 
-            // repositoryItemButtonEdit5
+            // simpleButton3
             // 
-            this.repositoryItemButtonEdit5.AllowNullInput = DevExpress.Utils.DefaultBoolean.False;
-            this.repositoryItemButtonEdit5.AutoHeight = false;
-            editorButtonImageOptions10.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions10.Image")));
-            this.repositoryItemButtonEdit5.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, true, false, editorButtonImageOptions10, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject37, serializableAppearanceObject38, serializableAppearanceObject39, serializableAppearanceObject40, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
-            this.repositoryItemButtonEdit5.ContextImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("repositoryItemButtonEdit5.ContextImageOptions.SvgImage")));
-            this.repositoryItemButtonEdit5.Mask.ShowPlaceHolders = false;
-            this.repositoryItemButtonEdit5.Name = "repositoryItemButtonEdit5";
-            this.repositoryItemButtonEdit5.ShowNullValuePrompt = DevExpress.XtraEditors.ShowNullValuePromptOptions.EditorReadOnly;
-            this.repositoryItemButtonEdit5.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            this.simpleButton3.Appearance.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.simpleButton3.Appearance.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.simpleButton3.Appearance.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.simpleButton3.Appearance.ForeColor = System.Drawing.Color.White;
+            this.simpleButton3.Appearance.Options.UseBackColor = true;
+            this.simpleButton3.Appearance.Options.UseBorderColor = true;
+            this.simpleButton3.Appearance.Options.UseFont = true;
+            this.simpleButton3.Appearance.Options.UseForeColor = true;
+            this.simpleButton3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.simpleButton3.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton3.ImageOptions.Image")));
+            this.simpleButton3.Location = new System.Drawing.Point(3, 3);
+            this.simpleButton3.Name = "simpleButton3";
+            this.simpleButton3.Size = new System.Drawing.Size(100, 60);
+            this.simpleButton3.TabIndex = 7;
+            this.simpleButton3.Text = "بحث";
+            this.simpleButton3.Click += new System.EventHandler(this.simpleButton3_Click);
+            // 
+            // repositoryItemButtonEdit4
+            // 
+            this.repositoryItemButtonEdit4.AutoHeight = false;
+            editorButtonImageOptions3.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("editorButtonImageOptions3.SvgImage")));
+            serializableAppearanceObject9.Options.UseImage = true;
+            this.repositoryItemButtonEdit4.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions3, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject9, serializableAppearanceObject10, serializableAppearanceObject11, serializableAppearanceObject12, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            this.repositoryItemButtonEdit4.ContextImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("repositoryItemButtonEdit4.ContextImageOptions.SvgImage")));
+            this.repositoryItemButtonEdit4.Name = "repositoryItemButtonEdit4";
+            this.repositoryItemButtonEdit4.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
+            this.repositoryItemButtonEdit4.Click += new System.EventHandler(this.repositoryItemButtonEdit4_Click);
             // 
             // frmSales
             // 
@@ -1196,7 +1031,6 @@
             this.Text = "فاتورة المبيعات";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmSales_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit3)).EndInit();
             this.materialContextMenuStrip1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.saleDetailBindingSource)).EndInit();
@@ -1214,20 +1048,19 @@
             this.tableLayoutPanel9.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcSaleDetail)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvSaleDetail)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             this.tableLayoutPanel4.ResumeLayout(false);
             this.tableLayoutPanel4.PerformLayout();
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel5.ResumeLayout(false);
             this.tableLayoutPanel5.PerformLayout();
+            this.tableLayoutPanel6.ResumeLayout(false);
+            this.tableLayoutPanel6.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.slkPaymentType.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).EndInit();
-            this.tableLayoutPanel10.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.slkCustomers.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView3)).EndInit();
+            this.tableLayoutPanel8.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.txtParCode.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit4)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1241,27 +1074,7 @@
         private DevExpress.XtraEditors.ComboBoxEdit comboBoxEdit1;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repositoryItemButtonEdit2;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repositoryItemButtonEdit3;
-        public DevExpress.XtraEditors.SimpleButton simpleButton2;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
-        public DevExpress.XtraEditors.SimpleButton btnPrint;
-        public DevExpress.XtraEditors.SimpleButton btnser;
-        public DevExpress.XtraEditors.SimpleButton btnDiscount;
-        public DevExpress.XtraEditors.SimpleButton btnNew;
-        public DevExpress.XtraEditors.SimpleButton btnEdite;
-        public DevExpress.XtraEditors.SimpleButton btnSave;
-        private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repositoryItemButtonEdit4;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel7;
-        public DevExpress.XtraEditors.LabelControl lblFinalBeforDesCound;
-        public DevExpress.XtraEditors.LabelControl lblDiscount;
-        private DevExpress.XtraEditors.LabelControl labelControl2;
-        private DevExpress.XtraEditors.LabelControl labelControl5;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel9;
-        public DevExpress.XtraEditors.LabelControl lblFinalTotal;
-        public DevExpress.XtraEditors.LabelControl lblfinaltotalDisplay;
         public DevExpress.XtraGrid.GridControl gcSaleDetail;
-        public DevExpress.XtraGrid.Views.Grid.GridView gvSaleDetail;
         private DevExpress.XtraGrid.Columns.GridColumn colId;
         private DevExpress.XtraGrid.Columns.GridColumn colSaleDetailCode;
         private DevExpress.XtraGrid.Columns.GridColumn colEntryDate;
@@ -1272,31 +1085,43 @@
         private DevExpress.XtraGrid.Columns.GridColumn colPrice;
         private DevExpress.XtraGrid.Columns.GridColumn colTotal;
         private DevExpress.XtraGrid.Columns.GridColumn colSaleMasterCode;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
-        public DevExpress.XtraGrid.Views.Grid.GridView gridView1;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel7;
+        public DevExpress.XtraEditors.LabelControl lblFinalBeforDesCound;
+        public DevExpress.XtraEditors.LabelControl lblDiscount;
+        private DevExpress.XtraEditors.LabelControl labelControl2;
+        private DevExpress.XtraEditors.LabelControl labelControl5;
+        public DevExpress.XtraEditors.SimpleButton btnEdite;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
+        public DevExpress.XtraEditors.SimpleButton btnPrint;
+        public DevExpress.XtraEditors.SimpleButton simpleButton1;
+        public DevExpress.XtraEditors.SimpleButton btnSearch;
+        public DevExpress.XtraEditors.SimpleButton btnNew;
+        public DevExpress.XtraEditors.SimpleButton simpleButton2;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
+        private DevExpress.XtraEditors.LabelControl labelControl1;
         private DevExpress.XtraEditors.LabelControl labelControl3;
         private DevExpress.XtraEditors.LabelControl labelControl4;
+        public DevExpress.XtraEditors.LabelControl lblUserName;
         public DevExpress.XtraEditors.LabelControl lblSaleMasterId;
         public DevExpress.XtraEditors.LabelControl lblItemQty;
-        public DevExpress.XtraEditors.LabelControl lblUserName;
-        public DevExpress.XtraEditors.SearchLookUpEdit slkPaymentType;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel8;
+        private DevExpress.XtraEditors.TextEdit txtParCode;
+        private DevExpress.XtraEditors.SimpleButton simpleButton3;
+        public DevExpress.XtraGrid.Views.Grid.GridView gridView1;
+        public DevExpress.XtraGrid.Views.Grid.GridView gvSaleDetail;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel9;
+        public DevExpress.XtraEditors.LabelControl lblFinalTotal;
+        public DevExpress.XtraEditors.LabelControl lblfinaltotalDisplay;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
+        private DevExpress.XtraEditors.SearchLookUpEdit slkPaymentType;
         private DevExpress.XtraGrid.Views.Grid.GridView searchLookUpEdit1View;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
-        private DevExpress.XtraEditors.LabelControl labelControl1;
-        private DevExpress.XtraEditors.LabelControl paymentType;
         private DevExpress.XtraEditors.LabelControl labelControl6;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel10;
-        public DevExpress.XtraEditors.SimpleButton btnCustomerHistory;
-        public DevExpress.XtraEditors.SearchLookUpEdit slkCustomers;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView3;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
-        private DevExpress.XtraEditors.SimpleButton simpleButton3;
-        public DevExpress.XtraEditors.SimpleButton btnAddCustomer;
-        private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repositoryItemButtonEdit5;
-        public DevExpress.XtraEditors.TextEdit txtParCode;
-        private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repositoryItemButtonEdit7;
+        private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repositoryItemButtonEdit3;
+        public DevExpress.XtraEditors.SimpleButton btnSave;
+        private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repositoryItemButtonEdit4;
     }
 }

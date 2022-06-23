@@ -1,17 +1,6 @@
-﻿using DevExpress.XtraEditors;
-
- 
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using EntityData;
+﻿using System;
 using PointOfSaleSedek.HelperClass;
+using EntityData;
 
 namespace PointOfSaleSedek._101_Adds._102_Customer
 {

@@ -12,8 +12,6 @@ using PointOfSaleSedek.HelperClass;
 using FastReport;
 
 using EntityData;
-using PointOfSaleSedek._101_Adds._102_Customer;
-using PointOfSaleSedek.Model;
 
 namespace PointOfSaleSedek._101_Adds
 {
@@ -39,17 +37,11 @@ namespace PointOfSaleSedek._101_Adds
         private void btnEdite_Click(object sender, EventArgs e)
         {
 
-
-
-
-
             gcSaleDetail.Enabled = true;
 
             btnNew.Enabled = true;
             btnSave.Enabled = true;
             btnEdite.Enabled = false;
-            btnDiscount.Enabled = true;
-             txtParCode.Focus();
 
 
             HelperClass.HelperClass.EnableControls(tableLayoutPanel1);
@@ -92,12 +84,6 @@ namespace PointOfSaleSedek._101_Adds
                 }
 
             }
-
-         
-
-             
-
-
             NewForLoad();
             txtParCode.Focus();
         }
@@ -108,7 +94,6 @@ namespace PointOfSaleSedek._101_Adds
         {
             HelperClass.HelperClass.ClearValues(tableLayoutPanel1);
             FillSlkPaymentType();
-            FillSlkCustomers();
             Int64? MaxCode = context.SaleMasters.Where(x => x.EntryDate.Day == DateTime.Today.Day && x.EntryDate.Month == DateTime.Today.Month && x.EntryDate.Year == DateTime.Today.Year && (x.Operation_Type_Id == 2 || x.Operation_Type_Id == 3)).Max(u => (Int64?)u.SaleMasterCode + 1);
             if (MaxCode == null || MaxCode == 0)
             {
@@ -132,32 +117,7 @@ namespace PointOfSaleSedek._101_Adds
             gcSaleDetail.RefreshDataSource();
             btnPrint.Enabled = false;
 
-            Int64 User_Code = st.User_Code();
 
-            var result = context.Auth_View.Where(View => View.User_Code == User_Code && (View.User_IsDeleted == 0)).ToList();
-
-
-
-            if (result.Any(xd => xd.Tab_Name == "btnser"))
-            {
-                btnser.Enabled = true;
-
-            }
-            else
-            {
-                btnser.Enabled = false;
-            }
-
-
-            if (result.Any(xd => xd.Tab_Name == "btnDiscount"))
-            {
-                btnDiscount.Enabled = true;
-
-            }
-            else
-            {
-                btnDiscount.Enabled = false;
-            }
             //context.Categories.ForEach(x => tabItems.TabPages.Add(x.CategoryName));
 
             txtParCode.Focus();
@@ -240,15 +200,8 @@ namespace PointOfSaleSedek._101_Adds
         public void SaveSaleMaster(Int64 ShiftCode, Int64 UserCode, Double Discount, Double TotalBeforDiscount, Double FinalTotal, Double QtyTotal, Int64 SaleMasterCode)
 
         {
-            if (slkCustomers.EditValue == null)
-            {
-                slkCustomers.EditValue = 0;
-            }
 
 
-            if (slkCustomers.EditValue == null) {
-                slkCustomers.EditValue = 0;
-            }
 
             if (this.Status == "Old")
             {
@@ -293,7 +246,7 @@ namespace PointOfSaleSedek._101_Adds
                     ShiftCode = ShiftCode,
                     Payment_Type = Int64.Parse(slkPaymentType.EditValue.ToString()),
                     UserIdTakeOrder = UserCode,
-                    Customer_Code = Int64.Parse(slkCustomers.EditValue.ToString()),
+
                     QtyTotal = double.Parse(lblItemQty.Text),
                     SaleMasterCode = Int64.Parse(lblSaleMasterId.Text),
                     Operation_Type_Id = 2,
@@ -313,42 +266,8 @@ namespace PointOfSaleSedek._101_Adds
 
         public void SaveSaleDetail()
         {
-
-
-            if (slkPaymentType.EditValue == null || slkPaymentType.EditValue.ToString() == "0" || slkPaymentType.Text.Trim() == "")
-            {
-                MaterialMessageBox.Show("برجاء اختيار طريقة الدفع", MessageBoxButtons.OK);
-                return;
-            }
-
-
-
-            var GetDataFromGrid = gcSaleDetail.DataSource as List<SaleDetailView>;
-
-            decimal finaltotal = Convert.ToInt64(lblFinalTotal.Text);
-
-            if (GetDataFromGrid == null || GetDataFromGrid.Count <= 0)
-            {
-
-
-                MaterialMessageBox.Show("لا يوجد اصناف", MessageBoxButtons.OK);
-                return;
-
-
-            }
-
-             if (finaltotal < 0)
-            {
-
-                MaterialMessageBox.Show("لا يمكن قبول قيمة فاتورة اقل من الصفر", MessageBoxButtons.OK);
-                return;
-            }
-
-
-
-
             List<SaleDetail> ArryOfSaleDetail = new List<SaleDetail>();
-            
+            var GetDataFromGrid = gcSaleDetail.DataSource as List<SaleDetailView>;
             Int64 UserCode = st.User_Code();
             var ShiftCode = context.Shift_View.Where(x => x.User_Id == UserCode && x.Shift_Flag == true).Select(xx => xx.Shift_Code).SingleOrDefault();
             Int64 SaleMasterCode = Int64.Parse(lblSaleMasterId.Text);
@@ -384,11 +303,11 @@ namespace PointOfSaleSedek._101_Adds
                             var item_Qt = Item_Qty_List.Where(x => x.Item_Id == item.ItemCode && x.IsFinshed == false).Sum(x => x.Current_Qty_Now);
                             var Total = item_Qt_Tran_History + item_Qt;
 
-                            if (Total < qty)
-                            {
-                                MaterialMessageBox.Show("كمية" + item.Name + "غير كافية في المخزن حيث يوجد " + item_Qt + "فقط هل تريد اكمال العملية ", MessageBoxButtons.OKCancel);
-                                return;
-                            }
+                            //if (Total < qty)
+                            //{
+                            //    MaterialMessageBox.Show("كمية" + item.Name + "غير كافية في المخزن حيث يوجد " + item_Qt + "فقط ", MessageBoxButtons.OK);
+                            //    return;
+                            //}
                         });
 
                     }
@@ -550,33 +469,29 @@ namespace PointOfSaleSedek._101_Adds
             else
             {
                 #region
-                using (PointOfSaleEntities2 ContVald = new PointOfSaleEntities2())
-                {
-                    foreach (var item in GetDataFromGrid)
-                    {
+                //using (PointOfSaleEntities2 ContVald = new PointOfSaleEntities2 ())
+                //{
+                //foreach (var item in GetDataFromGrid)
+                //{
 
 
-                       
+                //    var qty = item.Qty;
 
-                        var Item_Qty_List = ContVald.Item_History.Where(w => w.Item_Id == item.ItemCode && w.IsFinshed == false).ToList().Sum(x => x.Current_Qty_Now);
-                     
-
-
-                        if (Item_Qty_List < item.Qty)
-                        {
-
-                            if (MaterialMessageBox.Show("كمية   " + item.Name + " غير كافية في المخزن حيث يوجد  " + Item_Qty_List + "  فقط  ", MessageBoxButtons.YesNo) != DialogResult.OK)
-                            {
+                //    var Item_Qty_List = ContVald.Item_History.Where(w => w.Item_Id == item.ItemCode && w.IsFinshed == false).ToList();
+                //    var item_Qt = Item_Qty_List.Where(x => x.Item_Id == item.ItemCode && x.IsFinshed == false).Sum(x => x.Current_Qty_Now);
 
 
-                                return;
-                            }
-                        }
+                //    if (item_Qt < qty)
+                //    {
+                //        MaterialMessageBox.Show("كمية   " + item.Name + " غير كافية في المخزن حيث يوجد  " + item_Qt + "  فقط  ", MessageBoxButtons.OK);
+                //        return;
+
+                //    }
 
 
-                    }
+                //}
 
-                }
+                //}
                 // Vildate QTy
                 #endregion
 
@@ -590,28 +505,28 @@ namespace PointOfSaleSedek._101_Adds
 
 
                     #region
-                    //item_qty_list.foreach(x =>
+                    //Item_Qty_List.ForEach(x =>
                     //{
                     //    if (qty > 0)
                     //    {
                     //        // لو الكمية المطلوبه اكبر من الكمية الموجوده في الصف 
-                    //        if (qty > x.current_qty_now)
+                    //        if (qty > x.Current_Qty_Now)
                     //        {
-                    //            qty = qty - x.current_qty_now;
+                    //            qty = qty - x.Current_Qty_Now;
 
-                    //            update_item_qty_and_finshed(salemastercode, x.current_qty_now, x.createddate, x.id, x.item_id);
+                    //            Update_Item_Qty_And_Finshed(SaleMasterCode, x.Current_Qty_Now, x.CreatedDate, x.Id, x.Item_Id);
                     //        }
-                    //        else if (qty < x.current_qty_now)
+                    //        else if (qty < x.Current_Qty_Now)
                     //        {
 
 
-                    //            update_item_qty_oly(salemastercode, qty, x.createddate, x.id, x.item_id);
+                    //            Update_Item_Qty_Oly(SaleMasterCode, qty, x.CreatedDate, x.Id, x.Item_Id);
                     //            qty = 0;
                     //        }
-                    //        else if (qty == x.current_qty_now)
+                    //        else if (qty == x.Current_Qty_Now)
                     //        {
 
-                    //            update_item_qty_and_finshed(salemastercode, qty, x.createddate, x.id, x.item_id);
+                    //            Update_Item_Qty_And_Finshed(SaleMasterCode, qty, x.CreatedDate, x.Id, x.Item_Id);
                     //            qty = 0;
                     //        }
 
@@ -656,7 +571,6 @@ namespace PointOfSaleSedek._101_Adds
                 SaveSaleMaster(
                          ShiftCode: ShiftCode,
                          UserCode: st.User_Code(),
-                         
                          Discount: double.Parse(lblDiscount.Text),
                          TotalBeforDiscount: double.Parse(lblFinalBeforDesCound.Text),
                          FinalTotal: double.Parse(lblFinalTotal.Text),
@@ -760,14 +674,11 @@ namespace PointOfSaleSedek._101_Adds
                 MaxCode = 1;
             }   
             gcSaleDetail.Enabled = true;
+            
 
-            btnAddCustomer.Enabled = true;
-
-            btnCustomerHistory.Enabled = false;
 
             btnEdite.Enabled = false;
             btnPrint.Enabled = false;
-            btnDiscount.Enabled = true;
             btnSave.Enabled = true;
 
             lblSaleMasterId.Text = MaxCode.ToString();
@@ -785,40 +696,7 @@ namespace PointOfSaleSedek._101_Adds
                 gcSaleDetail.RefreshDataSource() ;
            
             }
-
-
-            slkCustomers.Text = "";
-            slkCustomers.SelectedText = "";
-            slkCustomers.EditValue = 0;
-            slkCustomers.Reset();
-            slkCustomers.Refresh();
             txtParCode.ResetText();
-            Int64 User_Code = st.User_Code();
-
-            var result = context.Auth_View.Where(View => View.User_Code == User_Code && (View.User_IsDeleted == 0)).ToList();
-
-
-
-            if (result.Any(xd => xd.Tab_Name == "btnser"))
-            {
-                btnser.Enabled = true;
-
-            }
-            else
-            {
-                btnser.Enabled = false;
-            }
-
-
-            if (result.Any(xd => xd.Tab_Name == "btnDiscount"))
-            {
-                btnDiscount.Enabled = true;
-
-            }
-            else
-            {
-                btnDiscount.Enabled = false;
-            }
             txtParCode.Focus();
             this.Status = "New";
              
@@ -898,166 +776,52 @@ namespace PointOfSaleSedek._101_Adds
                 frmAdmin frm = new frmAdmin();
                 frm.Show();
             }
-           
         }
 
         private void btnPrint_Click(object sender, EventArgs e)
         {
 
-
-            double FinalTotal = 0;
-            double TotalDiscount = 0;
-
-
-
-             Int64 SaleMasterCode = Convert.ToInt64(lblSaleMasterId.Text);
-             var GetDataFromGrid = gcSaleDetail.DataSource as List<SaleDetailView>;
-            var Master = (from a in context.SaleMasterViews where a.SaleMasterCode == SaleMasterCode && a.Operation_Type_Id == 2 && a.EntryDate.Day == DateTime.Today.Day && a.EntryDate.Month == DateTime.Today.Month && a.EntryDate.Year == DateTime.Today.Year  select a).ToList();
-                 var Detail = (from a in context.SaleDetailViews where a.SaleMasterCode == SaleMasterCode && a.Operation_Type_Id == 2 && a.EntryDate.Day == DateTime.Today.Day && a.EntryDate.Month == DateTime.Today.Month && a.EntryDate.Year == DateTime.Today.Year select a).ToList();
-
-
-           if (GetDataFromGrid.Count <= 0 || GetDataFromGrid == null)
-           {
-
-
-                    MaterialMessageBox.Show("لا يوجد اصناف", MessageBoxButtons.OK);
-                     return;
-
-
-             }
-            else
+            Int64 SaleMasterCode = Convert.ToInt64(lblSaleMasterId.Text);
+            var GetDataFromGrid = gcSaleDetail.DataSource as List<SaleDetailView>;
+            if (GetDataFromGrid.Count <= 0 || GetDataFromGrid == null)
             {
 
-                List<SaleDetailViewVm> saleDetailViewVmList = new List<SaleDetailViewVm>();
 
-                foreach (var x in Detail)
-                {
-                    SaleDetailViewVm saleDetailViewVm = new SaleDetailViewVm()
-                    {
+                MaterialMessageBox.Show("لا يوجد اصناف", MessageBoxButtons.OK);
+                return;
 
-                        AddItem = x.AddItem,
-                        SaleMasterCode = x.SaleMasterCode,
-                        CategoryCode = x.CategoryCode,
-                        CategoryName = x.CategoryName,
-                        Emp_Code = x.Emp_Code,
-                        EntryDate = x.EntryDate,
-                        Id = x.Id,
-                        IsDeleted = x.IsDeleted,
-                        ItemCode = x.ItemCode,
-                        Item_Count_InStoreg = x.Item_Count_InStoreg,
-                        Name = x.Name,
-                        Operation_Type_Id = x.Operation_Type_Id,
-                        OrederTotal = 0,
-                        ParCode = x.ParCode,
-                        Price = x.Price,
-                        PriceBuy = x.PriceBuy,
-                        Qty = x.Qty,
-                        Total = x.Total,
-                        UnitCode = x.UnitCode,
-                        UnitName = x.UnitName,
-                        UserName = x.UserName,
-                        Discount = 0
-
-                    };
-                    saleDetailViewVmList.Add(saleDetailViewVm);
-
-                }
-
-                Master.ForEach(Header =>
-                {
-                    saleDetailViewVmList.ForEach(Line =>
-                    {
-
-                        if (Header.SaleMasterCode == Line.SaleMasterCode)
-                        {
-
-                            Line.OrederTotal = Header.FinalTotal;
-                            Line.Discount = Header.Discount;
-
-                        }
-
-
-
-                    });
-
-                });
-
-
-                Master.ForEach(x =>
-                {
-
-                    FinalTotal += x.FinalTotal;
-                    TotalDiscount += x.Discount;
-
-                });
-
-
-
-
-                FinalTotal _FinalTotal = new FinalTotal()
-                {
-                    Total = FinalTotal,
-                    TotalDiscount = TotalDiscount
-
-
-
-                };
-                List<FinalTotal> _FinalTotalList = new List<FinalTotal>();
-                _FinalTotalList.Add(_FinalTotal);
-
-
-                Report rpt = new Report();
-                rpt.Load(@"Reports\SalesReport.frx");
-                rpt.RegisterData(Master, "Header");
-                rpt.RegisterData(_FinalTotalList, "FinalTotal");
-                rpt.RegisterData(saleDetailViewVmList, "Lines");
-                // rpt.PrintSettings.ShowDialog = false;
-                //   rpt.Design();
-                rpt.Show();
 
             }
 
-            //Int64 SaleMasterCode = Convert.ToInt64(lblSaleMasterId.Text);
-            //var GetDataFromGrid = gcSaleDetail.DataSource as List<SaleDetailView>;
-            //if (GetDataFromGrid.Count <= 0 || GetDataFromGrid == null)
-            //{
+            else
+            {
+
+                var Master = (from a in context.SaleMasterViews where a.SaleMasterCode == SaleMasterCode && a.Operation_Type_Id == 2 && a.EntryDate.Day == DateTime.Today.Day && a.EntryDate.Month == DateTime.Today.Month && a.EntryDate.Year == DateTime.Today.Year  select a).ToList();
+                var Detail = (from a in context.SaleDetailViews where a.SaleMasterCode == SaleMasterCode && a.Operation_Type_Id == 2 && a.EntryDate.Day == DateTime.Today.Day && a.EntryDate.Month == DateTime.Today.Month && a.EntryDate.Year == DateTime.Today.Year select a).ToList();
+                if (Master.Count == 0 || Detail.Count == 0)
+                {
+
+                    MaterialMessageBox.Show("!برجاء اختيار فاتوره للطباعة", MessageBoxButtons.OK);
+                    return;
+                }
+                else
+                {
+
+                    Report rpt = new Report();
+                    //rpt.Load(@"Reports\SaleInvoice.frx");
+                    rpt.RegisterData(Master, "Header");
+                    rpt.RegisterData(Detail, "Lines");
+                    //  rpt.PrintSettings.ShowDialog = false;
+                     rpt.Design();
+              //     rpt.Print();
+
+                }
+
+            }
 
 
-            //    MaterialMessageBox.Show("لا يوجد اصناف", MessageBoxButtons.OK);
-            //    return;
-
-
-            //}
-
-            //else
-            //{
-
-            //    var Master = (from a in context.SaleMasterViews where a.SaleMasterCode == SaleMasterCode && a.Operation_Type_Id == 2 && a.EntryDate.Day == DateTime.Today.Day && a.EntryDate.Month == DateTime.Today.Month && a.EntryDate.Year == DateTime.Today.Year  select a).ToList();
-            //    var Detail = (from a in context.SaleDetailViews where a.SaleMasterCode == SaleMasterCode && a.Operation_Type_Id == 2 && a.EntryDate.Day == DateTime.Today.Day && a.EntryDate.Month == DateTime.Today.Month && a.EntryDate.Year == DateTime.Today.Year select a).ToList();
-            //    if (Master.Count == 0 || Detail.Count == 0)
-            //    {
-
-            //        MaterialMessageBox.Show("!برجاء اختيار فاتوره للطباعة", MessageBoxButtons.OK);
-            //        return;
-            //    }
-            //    else
-            //    {
-
-            //        Report rpt = new Report();
-            //        rpt.Load(@"Reports\SaleInvoice.frx");
-            //        rpt.RegisterData(Master, "Header");
-            //        rpt.RegisterData(Detail, "Lines");
-            //        //rpt.PrintSettings.ShowDialog = false;
-            //        //rpt.Design();
-            //        rpt.Print();
-            //    }
-
-            //}
-
-
-            //btnEdite.Enabled = false;
-            //txtParCode.Focus();
-
+            btnEdite.Enabled = false;
+            
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
@@ -1077,13 +841,11 @@ namespace PointOfSaleSedek._101_Adds
                 frmAdmin frm = new frmAdmin();
                 frm.ShowDialog();
             }
-            txtParCode.Focus();
         }
 
         private void btnNew_Click(object sender, EventArgs e)
         {
             New();
-            txtParCode.Focus();
         }
 
         private void simpleButton3_Click(object sender, EventArgs e)
@@ -1094,39 +856,7 @@ namespace PointOfSaleSedek._101_Adds
 
        
 
-        
-
-        private void حذفToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            var RowCount = gvSaleDetail.RowCount;
-            var FocusRow = gvSaleDetail.GetFocusedRow() as SaleDetailView;
-
-            List<SaleDetailView> gcData = gcSaleDetail.DataSource as List<SaleDetailView>;
-            gcData.Remove(FocusRow);
-            gcSaleDetail.DataSource = gcData;
-            double sum = 0;
-            gcData.ForEach(x =>
-            {
-                sum += Convert.ToDouble(x.Total);
-            });
-
-
-
-            gcSaleDetail.RefreshDataSource();
- 
-
-
-
-            lblFinalBeforDesCound.Text = sum.ToString();
-
-            lblFinalTotal.Text = Convert.ToString(sum - Convert.ToDouble(lblDiscount.Text));
-            lblItemQty.Text = (RowCount - 1).ToString();
-            txtParCode.ResetText();
-            
-            txtParCode.Focus();
-        }
-
-        private void btnEdite_KeyDown(object sender, KeyEventArgs e)
+        private void txtParCode_KeyDown_1(object sender, KeyEventArgs e)
         {
             try
             {
@@ -1165,7 +895,7 @@ namespace PointOfSaleSedek._101_Adds
                     else if (this.Status == "New")
                     {
 
-                     
+                    
                         
                         SaveSaleDetail();
                        
@@ -1176,7 +906,7 @@ namespace PointOfSaleSedek._101_Adds
 
                         
                         SaveSaleDetail();
-                      
+                       
 
                     }
 
@@ -1187,33 +917,6 @@ namespace PointOfSaleSedek._101_Adds
             {
                 var x = ex.Message;
             }
-        }
-
-        private void btnSave_Click(object sender, EventArgs e)
-        {
-            
-           
-
-            
-                SaveSaleDetail();
-             txtParCode.Focus();
-
-
-
-
-        }
-
-       
-        
-  
-      
-
-        public void FillSlkCustomers()
-        {
-            var result = context.Customer_View.Where(Customer => Customer.IsDeleted == 0).ToList();
-            slkCustomers.Properties.DataSource = result;
-            slkCustomers.Properties.ValueMember = "Customer_Code";
-            slkCustomers.Properties.DisplayMember = "Customer_Name";
         }
 
         private void txtParCode_KeyUp_1(object sender, KeyEventArgs e)
@@ -1389,7 +1092,37 @@ namespace PointOfSaleSedek._101_Adds
             //txtParCode.Focus();
         }
 
-        private void txtParCode_KeyDown_1(object sender, KeyEventArgs e)
+        private void حذفToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var RowCount = gvSaleDetail.RowCount;
+            var FocusRow = gvSaleDetail.GetFocusedRow() as SaleDetailView;
+
+            List<SaleDetailView> gcData = gcSaleDetail.DataSource as List<SaleDetailView>;
+            gcData.Remove(FocusRow);
+            gcSaleDetail.DataSource = gcData;
+            double sum = 0;
+            gcData.ForEach(x =>
+            {
+                sum += Convert.ToDouble(x.Total);
+            });
+
+
+
+            gcSaleDetail.RefreshDataSource();
+ 
+
+
+
+            lblFinalBeforDesCound.Text = sum.ToString();
+
+            lblFinalTotal.Text = Convert.ToString(sum - Convert.ToDouble(lblDiscount.Text));
+            lblItemQty.Text = (RowCount - 1).ToString();
+            txtParCode.ResetText();
+            
+            txtParCode.Focus();
+        }
+
+        private void btnEdite_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
@@ -1428,18 +1161,18 @@ namespace PointOfSaleSedek._101_Adds
                     else if (this.Status == "New")
                     {
 
-
-
+                     
+                        
                         SaveSaleDetail();
-
+                       
 
                     }
                     else if (this.Status == "Old")
                     {
 
-
+                        
                         SaveSaleDetail();
-
+                      
 
                     }
 
@@ -1452,42 +1185,51 @@ namespace PointOfSaleSedek._101_Adds
             }
         }
 
-        private void simpleButton3_Click_2(object sender, EventArgs e)
+        private void btnSave_Click(object sender, EventArgs e)
         {
-            frmSearchItems frm = new frmSearchItems();
-            frm.ShowDialog();
-             txtParCode.Focus();
-        }
+            Int64 SaleMasterCode = Convert.ToInt64(lblSaleMasterId.Text);
+            var GetDataFromGrid = gcSaleDetail.DataSource as List<SaleDetailView>;
 
-        private void simpleButton4_Click(object sender, EventArgs e)
-        {
-            frmAddCustomer frm = new frmAddCustomer();
-            frm.ShowDialog();
-            txtParCode.Focus();
+            decimal finaltotal = Convert.ToInt64(lblFinalTotal.Text);
 
-        }
-
-        private void slkCustomers_EditValueChanged(object sender, EventArgs e)
-        {
-            if (slkCustomers.EditValue != null && slkCustomers.EditValue.ToString() != "0" && slkCustomers.Text.Trim() != "")
+            if (GetDataFromGrid == null || GetDataFromGrid.Count <= 0)
             {
-                btnCustomerHistory.Enabled = true;
+
+
+                MaterialMessageBox.Show("لا يوجد اصناف", MessageBoxButtons.OK);
+                return;
+
+
             }
-            else {
-                btnCustomerHistory.Enabled = false;
+
+            else if (finaltotal < 0)
+            {
+
+                MaterialMessageBox.Show("لا يمكن قبول قيمة فاتورة اقل من الصفر", MessageBoxButtons.OK);
+                return;
             }
-           
+
+
+            else if (this.Status == "New")
+            {
+
+
+
+                SaveSaleDetail();
+
+
+            }
+            else if (this.Status == "Old")
+            {
+
+
+                SaveSaleDetail();
+
+
+            }
         }
 
-       
-
-       
-        private void btnCustomerHistory_Click(object sender, EventArgs e)
-        {
-            txtParCode.Focus();
-        }
-
-        private void repositoryItemButtonEdit7_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
+        private void repositoryItemButtonEdit4_Click(object sender, EventArgs e)
         {
             var RowCount = gvSaleDetail.RowCount;
             var FocusRow = gvSaleDetail.GetFocusedRow() as SaleDetailView;

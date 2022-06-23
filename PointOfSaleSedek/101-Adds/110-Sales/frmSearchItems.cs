@@ -164,26 +164,47 @@ namespace PointOfSaleSedek._101_Adds
 
 
 
-                SaleDetailView _SaleDetailView = new SaleDetailView()
+                if (gcData.Any(xx => xx.ItemCode == ii.ItemCode))
                 {
-                    ItemCode = ii.ItemCode,
-                    EntryDate = DateTime.Now,
-                    Price = Convert.ToDouble(ii.Price),
-                    Qty = 1,
-                    Total = Convert.ToDouble(1) * Convert.ToDouble(ii.Price),
-                    Name = ii.Name,
-                    UnitCode = ii.UnitCode,
-                    CategoryCode = ii.CategoryCode,
-                    ParCode = ii.ParCode,
-                    Operation_Type_Id = 2
-                    
+
+                    double Qty = gcData.FirstOrDefault(xx => xx.ItemCode == ii.ItemCode).Qty;
+                    double price = gcData.FirstOrDefault(xx => xx.ItemCode == ii.ItemCode).Price;
+
+                    Qty += Convert.ToDouble(txtQty.Text);
+
+                    gcData.FirstOrDefault(xx => xx.ItemCode == ii.ItemCode).Qty  = Qty;
+
+                    gcData.FirstOrDefault(xx => xx.ItemCode == ii.ItemCode).Total = Qty * price;
 
 
 
-                };
+                }
+                else {
+                    SaleDetailView _SaleDetailView = new SaleDetailView()
+                    {
+                        ItemCode = ii.ItemCode,
+                        EntryDate = DateTime.Now,
+                        Price = Convert.ToDouble(ii.Price),
+                        Qty = 1,
+                        Total = Convert.ToDouble(1) * Convert.ToDouble(ii.Price),
+                        Name = ii.Name,
+                        UnitCode = ii.UnitCode,
+                        CategoryCode = ii.CategoryCode,
+                        ParCode = ii.ParCode,
+                        Operation_Type_Id = 2
+
+
+
+
+                    };
+                    gcData.Add(_SaleDetailView);
+                }
+
+
+              
 
                
-                    gcData.Add(_SaleDetailView);
+                  
                  
 
 

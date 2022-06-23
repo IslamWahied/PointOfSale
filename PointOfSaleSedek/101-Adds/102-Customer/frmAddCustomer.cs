@@ -1,17 +1,9 @@
-﻿using DevExpress.XtraEditors;
-
- 
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
+﻿using System; 
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using EntityData;
 using PointOfSaleSedek.HelperClass;
+using PointOfSaleSedek._102_MaterialSkin;
+using EntityData;
 
 namespace PointOfSaleSedek._101_Adds._102_Customer
 {
@@ -21,7 +13,7 @@ namespace PointOfSaleSedek._101_Adds._102_Customer
         readonly Static st = new Static();
         public frmAddCustomer()
         {
-            
+            InitializeComponent();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -32,17 +24,98 @@ namespace PointOfSaleSedek._101_Adds._102_Customer
         void FillSexSlk()
         {
 
+           
+                var result = context.SexTypes.ToList();
+                slkSex.Properties.DataSource = result;
+            slkSex.Properties.ValueMember = "SexTypeCode";
+            slkSex.Properties.DisplayMember = "SexTypeName";
+
+             
+            slkSex.EditValue = result[0].SexTypeCode;
+               
+
             
         }
 
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            
+            Save();
         }
         public void Save()
         {
-             
+            
+            if (String.IsNullOrWhiteSpace(slkSex.Text) || String.IsNullOrWhiteSpace(TxtEmpName.Text) || String.IsNullOrWhiteSpace(txtEmpMob1.Text))
+            {
+                MaterialMessageBox.Show("برجاء ادخال جميع الحقول", MessageBoxButtons.OK);
+                return;
+            }
+
+            var Phone = txtEmpMob1.Text;
+            Int64? MaxCode = context.Customer_Info.Max(u => (Int64?)u.Customer_Code + 1);
+            if (MaxCode == null || MaxCode == 0)
+            {
+                MaxCode = 1;
+            }
+
+            bool isOldCustomer = context.Customer_Info.Any(x => x.Customer_Phone == Phone);
+
+            if (isOldCustomer)
+            {
+                MaterialMessageBox.Show("تم تسجل هذا العميل من قبل", MessageBoxButtons.OK);
+                return;
+            }
+            else
+            {
+
+                Customer_Info _customer = new Customer_Info()
+                {
+
+                    Customer_Phone = Phone,
+                    Created_Date = DateTime.Now,
+                    Customer_Code = Convert.ToInt64(MaxCode),
+                    Customer_Name = TxtEmpName.Text,
+                    SexTypeCode = Convert.ToInt32(slkSex.EditValue),
+                    Last_Modified_User = st.User_Code(),
+            };
+                context.Customer_Info.Add(_customer);
+                context.SaveChanges();
+
+                    //MaterialMessageBox.Show("تم الحفظ", MessageBoxButtons.OK);
+
+
+                if (Application.OpenForms.OfType<frmSales>().Any())
+                {
+
+
+                    frmSales frm = (frmSales)Application.OpenForms["frmSales"];
+
+                    frm.FillSlkCustomers();
+
+                    frm.slkCustomers.EditValue =  context.Customer_View.FirstOrDefault(Customer => Customer.Customer_Phone == Phone).Customer_Code;
+                    frm.slkCustomers.Enabled = true;
+                    frm.btnCustomerHistory.Enabled = true;
+                    frm.txtParCode.Focus();
+                    this.Close();
+
+
+
+                }
+
+
+
+
+
+
+            }
+
+
+
+        }
+
+        private void frmAddCustomer_Load(object sender, EventArgs e)
+        {
+            FillSexSlk();
         }
     }
 }

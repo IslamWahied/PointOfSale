@@ -27,43 +27,86 @@ namespace PointOfSaleSedek._101_Adds
 
         private void btnOk_Click(object sender, EventArgs e)
         {
-            bool CheckUser;
-            try
+
+
+            if (Application.OpenForms.OfType<frmSales>().Any())
             {
-                CheckUser = context.User_View.Any(Users => Users.UserName == txtUserName.Text && Users.UserFlag == true && Users.Password == txtPassword.Text);
-                if (CheckUser)
+               
+
+                frmSales frm = (frmSales)Application.OpenForms["frmSales"];
+
+                Int64 User_Code = st.User_Code();
+
+                var result = context.Auth_View.Where(View => View.User_Code == User_Code && (View.User_IsDeleted == 0)).ToList();
+
+
+
+                if (result.Any(xd => xd.Tab_Name == "btnser"))
                 {
-                    var User = context.User_View.Where(Users => Users.UserName == txtUserName.Text && Users.UserFlag == true && Users.Password == txtPassword.Text).FirstOrDefault();
-                    var result = context.Auth_View.Any(View => View.User_Code == User.Employee_Code && (View.User_IsDeleted == 0) && (View.Tab_Name == "btnDiscount"));
-                    if (result == true)
-                    {
-                        this.Close();
-                        frmDiscount frm = new frmDiscount();
-                        frm.ShowDialog();
-
-                    }
-                    else
-                    {
-                        MaterialMessageBox.Show(" ليس لديك صلاحية", MessageBoxButtons.OK);
-                        return;
-
-                    }
+                    frm.btnser.Enabled = true;
 
                 }
                 else
                 {
-                    MaterialMessageBox.Show(" ليس لديك حساب", MessageBoxButtons.OK);
-                    return;
+                    frm.btnser.Enabled = false;
+                }
+
+
+                if (result.Any(xd => xd.Tab_Name == "btnDiscount"))
+                {
+                    frm.btnDiscount.Enabled = true;
 
                 }
-            }
-            catch 
-            {
+                else
+                {
+                    frm.btnDiscount.Enabled = false;
+                }
+
+                this.Close();
 
 
             }
 
-        }
+
+
+
+                //bool CheckUser;
+                //try
+                //{
+                //    CheckUser = context.User_View.Any(Users => Users.UserName == txtUserName.Text && Users.UserFlag == true && Users.Password == txtPassword.Text);
+                //    if (CheckUser)
+                //    {
+                //        var User = context.User_View.Where(Users => Users.UserName == txtUserName.Text && Users.UserFlag == true && Users.Password == txtPassword.Text).FirstOrDefault();
+                //        var result = context.Auth_View.Any(View => View.User_Code == User.Employee_Code && (View.User_IsDeleted == 0) && (View.Tab_Name == "btnDiscount"));
+                //        if (result == true)
+                //        {
+                //            this.Close();
+                //            frmDiscount frm = new frmDiscount();
+                //            frm.ShowDialog();
+
+                //        }
+                //        else
+                //        {
+                //            MaterialMessageBox.Show(" ليس لديك صلاحية", MessageBoxButtons.OK);
+                //            return;
+
+                //        }
+
+                //    }
+                //    else
+                //    {
+                //        MaterialMessageBox.Show(" ليس لديك حساب", MessageBoxButtons.OK);
+                //        return;
+
+                //    }
+                //}
+                //catch 
+                //{
+
+
+                //}
+
+            }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {

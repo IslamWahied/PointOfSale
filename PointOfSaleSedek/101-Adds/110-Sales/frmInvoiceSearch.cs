@@ -10,12 +10,14 @@ using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using PointOfSaleSedek._102_MaterialSkin;
 using EntityData;
+using PointOfSaleSedek.HelperClass;
 
 namespace PointOfSaleSedek._101_Adds
 {
     public partial class frmInvoiceSearch : DevExpress.XtraEditors.XtraForm
     {
-        PointOfSaleEntities2 Context = new PointOfSaleEntities2();
+        readonly PointOfSaleEntities2 context = new PointOfSaleEntities2();
+        readonly Static st = new Static();
         public frmInvoiceSearch()
         {
             InitializeComponent();
@@ -24,7 +26,7 @@ namespace PointOfSaleSedek._101_Adds
        void FillGrid()
         {
              
-            gcSaleMaster.DataSource = Context.SaleMasterViews.Where(x => x.EntryDate.Day == DateTime.Today.Day && x.EntryDate.Month == DateTime.Today.Month && x.EntryDate.Year == DateTime.Today.Year && x.Operation_Type_Id==2).ToList();
+            gcSaleMaster.DataSource = context.SaleMasterViews.Where(x => x.EntryDate.Day == DateTime.Today.Day && x.EntryDate.Month == DateTime.Today.Month && x.EntryDate.Year == DateTime.Today.Year && x.Operation_Type_Id==2).ToList();
  
         }
 
@@ -66,12 +68,53 @@ namespace PointOfSaleSedek._101_Adds
                     frm.btnEdite.Enabled = true;
                     //frm.BtnExit.Enabled = true;
                    frm.btnPrint.Enabled = true;
+                    if (FocusRow.Customer_Code > 0) {
+
+                        frm.btnCustomerHistory.Enabled = true;
+                    }
+                    else{
+
+                        frm.btnCustomerHistory.Enabled = false;
+                    }
+                  
                     frm.gcSaleDetail.DataSource = null;
                     frm.gcSaleDetail.RefreshDataSource();
-                    frm.gcSaleDetail.DataSource  =  Context.SaleDetailViews.Where(x=>x.SaleMasterCode == SaleMasterCode && x.EntryDate.Day == DateTime.Today.Day && x.EntryDate.Month == DateTime.Today.Month && x.EntryDate.Year == DateTime.Today.Year &&x.Operation_Type_Id==2).ToList();
+                    frm.gcSaleDetail.DataSource  = context.SaleDetailViews.Where(x=>x.SaleMasterCode == SaleMasterCode && x.EntryDate.Day == DateTime.Today.Day && x.EntryDate.Month == DateTime.Today.Month && x.EntryDate.Year == DateTime.Today.Year &&x.Operation_Type_Id==2).ToList();
                     frm.gcSaleDetail.Enabled = false;
-                
-                   
+                    frm.slkCustomers.EditValue = FocusRow.Customer_Code;
+                    frm.slkCustomers.Enabled = false;
+                    frm.btnDiscount.Enabled = false;
+                    frm.btnAddCustomer.Enabled = false;
+                  
+                    Int64 User_Code = st.User_Code();
+
+                    var result = context.Auth_View.Where(View => View.User_Code == User_Code && (View.User_IsDeleted == 0)).ToList();
+
+
+
+                    if (result.Any(xd => xd.Tab_Name == "btnser"))
+                    {
+                       frm.btnser.Enabled = true;
+
+                    }
+                    else
+                    {
+                        frm.btnser.Enabled = false;
+                    }
+
+
+                    if (result.Any(xd => xd.Tab_Name == "btnDiscount"))
+                    {
+                        frm.btnDiscount.Enabled = true;
+
+                    }
+                    else
+                    {
+                        frm.btnDiscount.Enabled = false;
+                    }
+
+
+
                     frm.Status = "Old";
                     this.Close();
                 }
@@ -97,16 +140,16 @@ namespace PointOfSaleSedek._101_Adds
         {
             var FocusRow = gvSaleMaster.GetFocusedRow() as SaleMasterView;
             SaleMaster _SaleMaster;
-            _SaleMaster = Context.SaleMasters.SingleOrDefault(shft => shft.Operation_Type_Id == 2 && shft.ShiftCode == FocusRow.Shift_Code && shft.IsDeleted == 0 && shft.UserCode==FocusRow.UserCode&& shft.EntryDate == FocusRow.EntryDate&&shft.SaleMasterCode == FocusRow.SaleMasterCode);
+            _SaleMaster = context.SaleMasters.SingleOrDefault(shft => shft.Operation_Type_Id == 2 && shft.ShiftCode == FocusRow.Shift_Code && shft.IsDeleted == 0 && shft.UserCode==FocusRow.UserCode&& shft.EntryDate == FocusRow.EntryDate&&shft.SaleMasterCode == FocusRow.SaleMasterCode);
             Int64 saleMasterCode = _SaleMaster.SaleMasterCode;
             _SaleMaster.Operation_Type_Id = 3;
             _SaleMaster.LastDateModif = DateTime.Now;
-            Context.SaveChanges();
+            context.SaveChanges();
             var DayOfYear = DateTime.Today.Day;
             var Year = DateTime.Today.Year;
             var Month = DateTime.Today.Month;
           //  var item_History =  (from a in Context.Item_History where a.CreatedDate.Day == DayOfYear && a.CreatedDate.Month == Month && a.CreatedDate.Month == Month && a.Sale_Master_Code == _SaleMaster.SaleMasterCode select a).ToList();
-            var _item_History_Transactions =  (from a in Context.Item_History_transaction where a.CreatedDate.Day == DayOfYear && a.CreatedDate.Month == Month &&a.CreatedDate.Month == Month && a.SaleMasterCode == saleMasterCode select a).ToList();
+            var _item_History_Transactions =  (from a in context.Item_History_transaction where a.CreatedDate.Day == DayOfYear && a.CreatedDate.Month == Month &&a.CreatedDate.Month == Month && a.SaleMasterCode == saleMasterCode select a).ToList();
 
           
 
@@ -182,7 +225,7 @@ namespace PointOfSaleSedek._101_Adds
             {
                 gcSaleMaster.DataSource = null;
                
-                gcSaleMaster.DataSource = Context.SaleMasterViews.Where(x => x.EntryDate.Day == DateTime.Today.Day && x.EntryDate.Month == DateTime.Today.Month && x.EntryDate.Year == DateTime.Today.Year && x.Operation_Type_Id == 2 && x.IsDeleted == 0).ToList();
+                gcSaleMaster.DataSource = context.SaleMasterViews.Where(x => x.EntryDate.Day == DateTime.Today.Day && x.EntryDate.Month == DateTime.Today.Month && x.EntryDate.Year == DateTime.Today.Year && x.Operation_Type_Id == 2 && x.IsDeleted == 0).ToList();
                 gcSaleMaster.RefreshDataSource();
             }
 
