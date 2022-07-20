@@ -10,14 +10,14 @@ using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using FastReport;
 using PointOfSaleSedek._102_MaterialSkin;
-using EntityData;
+using DataRep;
 using PointOfSaleSedek.Model;
 
 namespace PointOfSaleSedek._105_Reports
 {
-    public partial class frmPurchessReport : DevExpress.XtraEditors.XtraForm
+    public partial class frmPurchessReport : MaterialSkin.Controls.MaterialForm
     {
-        PointOfSaleEntities2 context = new PointOfSaleEntities2();
+        SaleEntities context = new SaleEntities();
         public frmPurchessReport()
         {
             InitializeComponent();
@@ -28,8 +28,8 @@ namespace PointOfSaleSedek._105_Reports
             var dateTo = Convert.ToDateTime(Convert.ToDateTime(dtFrom.EditValue).AddDays(1));
 
              
-            var Master = (from a in context.SaleMasterViews where a.EntryDate >= dtFrom.DateTime  && a.EntryDate <= dateTo && a.Operation_Type_Id == 1 select a).ToList();
-            var Detail = (from a in context.SaleDetailViews where a.EntryDate >= dtFrom.DateTime && a.EntryDate <= dateTo && a.Operation_Type_Id == 1 select a).ToList();
+            var Master = (from a in context.SaleMasterViews where a.EntryDate >= dtFrom.DateTime  && a.EntryDate <= dateTo && a.Operation_Type_Id == 1 &&a.IsDeleted == 0  select a).ToList();
+            var Detail = (from a in context.SaleDetailViews where a.EntryDate >= dtFrom.DateTime && a.EntryDate <= dateTo && a.Operation_Type_Id == 1 && a.IsDeleted == 0 select a).ToList();
 
             if (Master.Count == 0 || Detail.Count == 0)
 

@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using PointOfSaleSedek.HelperClass;
-using EntityData;
+using DataRep;
 
 namespace PointOfSaleSedek._101_Adds
 {
@@ -19,7 +19,7 @@ namespace PointOfSaleSedek._101_Adds
         public String Status = "New";
         readonly Static st = new Static();
 
-        readonly PointOfSaleEntities2 context = new PointOfSaleEntities2();
+        readonly SaleEntities context = new SaleEntities();
         public frmAdmin()
         {
             InitializeComponent();
@@ -28,44 +28,132 @@ namespace PointOfSaleSedek._101_Adds
         private void btnOk_Click(object sender, EventArgs e)
         {
 
-
-            if (Application.OpenForms.OfType<frmSales>().Any())
+            if (st.Project_Type() == "Cafe")
             {
-               
+                
 
-                frmSales frm = (frmSales)Application.OpenForms["frmSales"];
-
-                Int64 User_Code = st.User_Code();
-
-                var result = context.Auth_View.Where(View => View.User_Code == User_Code && (View.User_IsDeleted == 0)).ToList();
-
-
-
-                if (result.Any(xd => xd.Tab_Name == "btnser"))
+                if (Application.OpenForms.OfType<frmCafeSales>().Any())
                 {
-                    frm.btnser.Enabled = true;
+
+
+                    frmCafeSales frm = (frmCafeSales)Application.OpenForms["frmCafeSales"];
+
+                    Int64 User_Code = st.User_Code();
+
+                    var result = context.Auth_View.Where(View => View.User_Code == User_Code && (View.User_IsDeleted == 0)).ToList();
+
+
+
+                    if (result.Any(xd => xd.Tab_Name == "btnser"))
+                    {
+                        //frm.btnser.Enabled = true;
+
+                    }
+                    else
+                    {
+                        //frm.btnser.Enabled = false;
+                    }
+
+
+                    if (result.Any(xd => xd.Tab_Name == "btnDiscount"))
+                    {
+                        frm.btnDiscount.Enabled = true;
+
+                    }
+                    else
+                    {
+                        frm.btnDiscount.Enabled = false;
+                    }
+
+                    this.Close();
+
 
                 }
-                else
-                {
-                    frm.btnser.Enabled = false;
-                }
-
-
-                if (result.Any(xd => xd.Tab_Name == "btnDiscount"))
-                {
-                    frm.btnDiscount.Enabled = true;
-
-                }
-                else
-                {
-                    frm.btnDiscount.Enabled = false;
-                }
-
-                this.Close();
-
-
             }
+            else if (st.Project_Type() == "Perfum")
+            {
+                if (Application.OpenForms.OfType<frmCafeSales>().Any())
+                {
+
+
+                    frmPerfumSales frm = (frmPerfumSales)Application.OpenForms["frmPerfumSales"];
+
+                    Int64 User_Code = st.User_Code();
+
+                    var result = context.Auth_View.Where(View => View.User_Code == User_Code && (View.User_IsDeleted == 0)).ToList();
+
+
+
+                    if (result.Any(xd => xd.Tab_Name == "btnser"))
+                    {
+                        //frm.btnser.Enabled = true;
+
+                    }
+                    else
+                    {
+                        //frm.btnser.Enabled = false;
+                    }
+
+
+                    if (result.Any(xd => xd.Tab_Name == "btnDiscount"))
+                    {
+                        frm.btnDiscount.Enabled = true;
+
+                    }
+                    else
+                    {
+                        frm.btnDiscount.Enabled = false;
+                    }
+
+                    this.Close();
+
+
+                }
+            }
+            else if (st.Project_Type() == "SuperMarket")
+            {
+                if (Application.OpenForms.OfType<frmSuperMarketSales>().Any())
+                {
+
+
+                    frmSuperMarketSales frm = (frmSuperMarketSales)Application.OpenForms["frmSuperMarketSales"];
+
+                    Int64 User_Code = st.User_Code();
+
+                    var result = context.Auth_View.Where(View => View.User_Code == User_Code && (View.User_IsDeleted == 0)).ToList();
+
+
+
+                    if (result.Any(xd => xd.Tab_Name == "btnser"))
+                    {
+                        //frm.btnser.Enabled = true;
+
+                    }
+                    else
+                    {
+                        //frm.btnser.Enabled = false;
+                    }
+
+
+                    if (result.Any(xd => xd.Tab_Name == "btnDiscount"))
+                    {
+                        frm.btnDiscount.Enabled = true;
+
+                    }
+                    else
+                    {
+                        frm.btnDiscount.Enabled = false;
+                    }
+
+                    this.Close();
+
+
+                }
+            }
+
+
+
+           
 
 
 
@@ -111,8 +199,33 @@ namespace PointOfSaleSedek._101_Adds
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
-            frmSales obj = (frmSales)Application.OpenForms["frmSales"];
-            obj.Close();
+            var UserId = Convert.ToInt64(st.User_Code());
+            var Check = context.Shifts.Any(x => x.Shift_Flag == true && x.User_Id == UserId && x.IsDeleted == 0);
+            if (!Check)
+            {
+
+                if (st.Project_Type() == "Cafe")
+                {
+                    frmCafeSales obj = (frmCafeSales)Application.OpenForms["frmCafeSales"];
+                    obj.Close();
+                    
+                }
+                else if (st.Project_Type() == "Perfum")
+                {
+                    frmPerfumSales obj = (frmPerfumSales)Application.OpenForms["frmPerfumSales"];
+                    obj.Close();
+                     
+                }
+                else if (st.Project_Type() == "SuperMarket")
+                {
+                    frmSuperMarketSales obj = (frmSuperMarketSales)Application.OpenForms["frmSuperMarketSales"];
+                    obj.Close();
+                }
+
+               
+
+            }
+
         }
     }
 }

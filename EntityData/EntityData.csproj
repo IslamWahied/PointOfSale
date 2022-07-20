@@ -46,123 +46,123 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Auth_View.cs">
-      <DependentUpon>PointOfSale.tt</DependentUpon>
+      <DependentUpon>entityData.tt</DependentUpon>
     </Compile>
     <Compile Include="Branch.cs">
-      <DependentUpon>PointOfSale.tt</DependentUpon>
+      <DependentUpon>entityData.tt</DependentUpon>
     </Compile>
     <Compile Include="Category.cs">
-      <DependentUpon>PointOfSale.tt</DependentUpon>
+      <DependentUpon>entityData.tt</DependentUpon>
     </Compile>
     <Compile Include="Customer_Info.cs">
-      <DependentUpon>PointOfSale.tt</DependentUpon>
+      <DependentUpon>entityData.tt</DependentUpon>
     </Compile>
     <Compile Include="Customer_View.cs">
-      <DependentUpon>PointOfSale.tt</DependentUpon>
+      <DependentUpon>entityData.tt</DependentUpon>
     </Compile>
     <Compile Include="Employee.cs">
-      <DependentUpon>PointOfSale.tt</DependentUpon>
+      <DependentUpon>entityData.tt</DependentUpon>
     </Compile>
     <Compile Include="Employee_View.cs">
-      <DependentUpon>PointOfSale.tt</DependentUpon>
+      <DependentUpon>entityData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="entityData.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>entityData.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="entityData.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>entityData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="entityData.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>entityData.edmx</DependentUpon>
     </Compile>
     <Compile Include="Expens.cs">
-      <DependentUpon>PointOfSale.tt</DependentUpon>
+      <DependentUpon>entityData.tt</DependentUpon>
     </Compile>
     <Compile Include="ExpensesTransaction.cs">
-      <DependentUpon>PointOfSale.tt</DependentUpon>
+      <DependentUpon>entityData.tt</DependentUpon>
     </Compile>
     <Compile Include="ExpensesView.cs">
-      <DependentUpon>PointOfSale.tt</DependentUpon>
+      <DependentUpon>entityData.tt</DependentUpon>
     </Compile>
     <Compile Include="ItemCard.cs">
-      <DependentUpon>PointOfSale.tt</DependentUpon>
+      <DependentUpon>entityData.tt</DependentUpon>
     </Compile>
     <Compile Include="ItemCardView.cs">
-      <DependentUpon>PointOfSale.tt</DependentUpon>
+      <DependentUpon>entityData.tt</DependentUpon>
     </Compile>
     <Compile Include="Item_History.cs">
-      <DependentUpon>PointOfSale.tt</DependentUpon>
+      <DependentUpon>entityData.tt</DependentUpon>
     </Compile>
     <Compile Include="Item_History_transaction.cs">
-      <DependentUpon>PointOfSale.tt</DependentUpon>
+      <DependentUpon>entityData.tt</DependentUpon>
     </Compile>
     <Compile Include="Jop.cs">
-      <DependentUpon>PointOfSale.tt</DependentUpon>
+      <DependentUpon>entityData.tt</DependentUpon>
     </Compile>
     <Compile Include="Operation_Type.cs">
-      <DependentUpon>PointOfSale.tt</DependentUpon>
+      <DependentUpon>entityData.tt</DependentUpon>
     </Compile>
     <Compile Include="Payment_Type.cs">
-      <DependentUpon>PointOfSale.tt</DependentUpon>
-    </Compile>
-    <Compile Include="PointOfSale.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>PointOfSale.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="PointOfSale.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>PointOfSale.tt</DependentUpon>
-    </Compile>
-    <Compile Include="PointOfSale.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>PointOfSale.edmx</DependentUpon>
+      <DependentUpon>entityData.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sale.cs">
-      <DependentUpon>PointOfSale.tt</DependentUpon>
+      <DependentUpon>entityData.tt</DependentUpon>
     </Compile>
     <Compile Include="SaleDetail.cs">
-      <DependentUpon>PointOfSale.tt</DependentUpon>
+      <DependentUpon>entityData.tt</DependentUpon>
     </Compile>
     <Compile Include="SaleDetailView.cs">
-      <DependentUpon>PointOfSale.tt</DependentUpon>
+      <DependentUpon>entityData.tt</DependentUpon>
     </Compile>
     <Compile Include="SaleMaster.cs">
-      <DependentUpon>PointOfSale.tt</DependentUpon>
+      <DependentUpon>entityData.tt</DependentUpon>
     </Compile>
     <Compile Include="SaleMasterView.cs">
-      <DependentUpon>PointOfSale.tt</DependentUpon>
+      <DependentUpon>entityData.tt</DependentUpon>
     </Compile>
     <Compile Include="SexType.cs">
-      <DependentUpon>PointOfSale.tt</DependentUpon>
+      <DependentUpon>entityData.tt</DependentUpon>
     </Compile>
     <Compile Include="Shift.cs">
-      <DependentUpon>PointOfSale.tt</DependentUpon>
+      <DependentUpon>entityData.tt</DependentUpon>
     </Compile>
     <Compile Include="Shift_View.cs">
-      <DependentUpon>PointOfSale.tt</DependentUpon>
+      <DependentUpon>entityData.tt</DependentUpon>
     </Compile>
     <Compile Include="Tab_Info.cs">
-      <DependentUpon>PointOfSale.tt</DependentUpon>
+      <DependentUpon>entityData.tt</DependentUpon>
     </Compile>
     <Compile Include="UnitCard.cs">
-      <DependentUpon>PointOfSale.tt</DependentUpon>
+      <DependentUpon>entityData.tt</DependentUpon>
     </Compile>
     <Compile Include="User.cs">
-      <DependentUpon>PointOfSale.tt</DependentUpon>
+      <DependentUpon>entityData.tt</DependentUpon>
     </Compile>
     <Compile Include="UserEvent.cs">
-      <DependentUpon>PointOfSale.tt</DependentUpon>
+      <DependentUpon>entityData.tt</DependentUpon>
     </Compile>
     <Compile Include="User_Auth.cs">
-      <DependentUpon>PointOfSale.tt</DependentUpon>
+      <DependentUpon>entityData.tt</DependentUpon>
     </Compile>
     <Compile Include="User_View.cs">
-      <DependentUpon>PointOfSale.tt</DependentUpon>
+      <DependentUpon>entityData.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
-    <EntityDeploy Include="PointOfSale.edmx">
+    <EntityDeploy Include="entityData.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>PointOfSale.Designer.cs</LastGenOutput>
+      <LastGenOutput>entityData.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="PointOfSale.edmx.diagram">
-      <DependentUpon>PointOfSale.edmx</DependentUpon>
+    <None Include="entityData.edmx.diagram">
+      <DependentUpon>entityData.edmx</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -174,15 +174,15 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="PointOfSale.Context.tt">
+    <Content Include="entityData.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>PointOfSale.edmx</DependentUpon>
-      <LastGenOutput>PointOfSale.Context.cs</LastGenOutput>
+      <DependentUpon>entityData.edmx</DependentUpon>
+      <LastGenOutput>entityData.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="PointOfSale.tt">
+    <Content Include="entityData.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>PointOfSale.edmx</DependentUpon>
-      <LastGenOutput>PointOfSale.cs</LastGenOutput>
+      <DependentUpon>entityData.edmx</DependentUpon>
+      <LastGenOutput>entityData.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

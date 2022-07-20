@@ -9,26 +9,43 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using EntityData;
+using DataRep;
 
 namespace PointOfSaleSedek._101_Adds.CasherShift
 {
     public partial class frmShiftStart : DevExpress.XtraEditors.XtraForm
     {
-        PointOfSaleEntities2 Context = new PointOfSaleEntities2();
+        SaleEntities Context = new SaleEntities();
         public frmShiftStart()
         {
             InitializeComponent();
             FillSlkUser();
-              string DatatimeNow = Convert.ToString(DateTime.Now.ToString("MM/dd/yyyy"));
+              string DatatimeNow = Convert.ToString(DateTime.Now);
        
             dtFrom.Text = DatatimeNow;
         }
         public void FillSlkUser()
         {
 
-            var result = Context.User_View.Where(user => user.IsDeleted == 0 && user.IsDeletedEmployee == 0).ToList();
-            slkUser.Properties.DataSource = result;
+            List<User_View> listUserView = new List<User_View>() ;
+
+
+            var resultList = Context.User_View.Where(user => user.IsDeleted == 0 && user.IsDeletedEmployee == 0).ToList();
+
+           foreach (var item in resultList)
+            {
+                bool ressult = Context.Shift_View.Any(Shift => Shift.IsDeleted == 0 && Shift.Emp_Code == item.Employee_Code && Shift.Shift_Flag == true);
+                if (!ressult) {
+
+                    listUserView.Add(item);
+                }
+
+            }
+
+
+         //   var result = Context.Shift_View.Where(Shift => Shift.IsDeleted == 0  && Shift.Shift_Flag == false).ToList();
+          
+            slkUser.Properties.DataSource = listUserView;
             slkUser.Properties.ValueMember = "Employee_Code";
             slkUser.Properties.DisplayMember = "UserName";
 
@@ -82,14 +99,16 @@ namespace PointOfSaleSedek._101_Adds.CasherShift
                 };
                 Context.Shifts.Add(_shift);
                 Context.SaveChanges();
-                MaterialMessageBox.Show("تم الحفظ", MessageBoxButtons.OK);
+               
                 txtNote.ResetText();
                 txtStartAmount.ResetText();
                 slkUser.ResetText();
-                string DatatimeNow = Convert.ToString(DateTime.Now.ToString("MM/dd/yyyy"));
+                string DatatimeNow = Convert.ToString(DateTime.Now);
 
                 dtFrom.Text = DatatimeNow;
-                return;
+                MaterialMessageBox.Show("تم الحفظ", MessageBoxButtons.OK);
+                this.Close();
+
             }
             else
                     {

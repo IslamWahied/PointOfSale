@@ -11,7 +11,7 @@ using PointOfSaleSedek.HelperClass;
  
 using PointOfSaleSedek._102_MaterialSkin;
 using DevExpress.XtraBars.Docking2010;
-using EntityData;
+using DataRep;
 
 namespace PointOfSaleSedek._101_Adds
 {
@@ -20,12 +20,17 @@ namespace PointOfSaleSedek._101_Adds
     {
         public string Status = "New";
         Static st = new Static();
-        PointOfSaleEntities2 Context = new PointOfSaleEntities2();
+        SaleEntities Context = new SaleEntities();
         public frmPurchasescs()
         {
             InitializeComponent();
             //HelperClass.HelperClass.DisableControls(tableLayoutPanel1);
             //HelperClass.HelperClass.DisableControls(tableLayoutPanel2);
+            //Int64? MaxCode = Context.SaleMasters.Where(x => x.Operation_Type_Id == 1 & x.IsDeleted == 0).Max(u => (Int64?)u.SaleMasterCode + 1);
+            //if (MaxCode == null || MaxCode == 0)
+            //{
+            //    MaxCode = 1;
+            //}
             Int64? MaxCode = Context.SaleMasters.Where(x =>  x.Operation_Type_Id == 1 || x.Operation_Type_Id == 6).Max(u => (Int64?)u.SaleMasterCode + 1);
             if (MaxCode == null || MaxCode == 0)
             {
@@ -154,7 +159,8 @@ namespace PointOfSaleSedek._101_Adds
                             EntryDate = DateTime.Now,
                             SaleDetailCode = SalMasterCode,
                             SaleMasterCode = SalMasterCode,
-                            
+                            CustomerCode = 0,
+                            LastDateModif = DateTime.Now,
                             IsDeleted = 0,
                          
                             UserId = st.User_Code(),
@@ -226,6 +232,9 @@ namespace PointOfSaleSedek._101_Adds
                             SaleDetailCode = SalMasterCode,
                             SaleMasterCode = SalMasterCode,
                             UserId = st.User_Code(),
+                            CustomerCode = 0,
+                            IsDeleted = 0,
+                            
                             Operation_Type_Id = 1,
                             LastDateModif = DateTime.Now
                         };
@@ -306,7 +315,7 @@ namespace PointOfSaleSedek._101_Adds
             gcItemCard.DataSource = null;
             gcItemCard.RefreshDataSource();
 
-            Int64? MaxCode = Context.SaleMasters.Where(x => x.Operation_Type_Id == 1 & x.IsDeleted == 0).Max(u => (Int64?)u.SaleMasterCode + 1);
+            Int64? MaxCode = Context.SaleMasters.Where(x => x.Operation_Type_Id == 1 || x.Operation_Type_Id == 6).Max(u => (Int64?)u.SaleMasterCode + 1);
             if (MaxCode == null || MaxCode == 0)
             {
                 MaxCode = 1;
@@ -338,6 +347,7 @@ namespace PointOfSaleSedek._101_Adds
             ItemCard _ItemCard;
             _ItemCard = Context.ItemCards.SingleOrDefault(Item => Item.ItemCode==ItemCode&&Item.IsDeleted==0);
             _ItemCard.Price = PriceSale;
+         
             _ItemCard.PriceBuy = PriceBuy;
 
 

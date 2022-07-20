@@ -65,7 +65,7 @@ namespace PointOfSaleSedek._102_Reports
             this.dtTo.Properties.CalendarView = DevExpress.XtraEditors.Repository.CalendarView.Fluent;
             this.dtTo.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             this.dtTo.Properties.VistaDisplayMode = DevExpress.Utils.DefaultBoolean.False;
-            this.dtTo.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.dtTo.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.dtTo.Size = new System.Drawing.Size(251, 20);
             this.dtTo.TabIndex = 167;
             // 
@@ -94,7 +94,7 @@ namespace PointOfSaleSedek._102_Reports
             this.dtFrom.Properties.CalendarView = DevExpress.XtraEditors.Repository.CalendarView.Fluent;
             this.dtFrom.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             this.dtFrom.Properties.VistaDisplayMode = DevExpress.Utils.DefaultBoolean.False;
-            this.dtFrom.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.dtFrom.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.dtFrom.Size = new System.Drawing.Size(251, 20);
             this.dtFrom.TabIndex = 165;
             // 

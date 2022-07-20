@@ -1,13 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+ 
 
 namespace PointOfSaleSedek.HelperClass
 {
    public class Static
     {
+
+       // public static String ProjectType = "Cafe";
+        public static String ProjectType = "Perfum";
+     //   public static String ProjectType = "SuperMarket";
+
         public static Int64 _User_Code;
         public static Int64 _Project_Code;
         public static string _CPU;
@@ -17,12 +19,25 @@ namespace PointOfSaleSedek.HelperClass
 
 
         }
+
+       
+
+
         public Int64 User_Code()
         {
             return _User_Code;
 
 
         }
+
+        public String Project_Type()
+        {
+            return ProjectType;
+
+
+        }
+
+
 
         public void SetCPU(string CPU)
         {

@@ -9,14 +9,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using EntityData;
+using DataRep;
 using PointOfSaleSedek._102_MaterialSkin;
 
 namespace PointOfSaleSedek._101_Adds
 {
     public partial class frmBranches : DevExpress.XtraEditors.XtraForm
     {
-        readonly  PointOfSaleEntities2 context = new PointOfSaleEntities2();
+        readonly  SaleEntities context = new SaleEntities();
         public frmBranches()
         {
             InitializeComponent();
@@ -63,7 +63,7 @@ namespace PointOfSaleSedek._101_Adds
                     var x2 = gvEmployeeCard.GetFocusedRow() as Branch;
 
 
-                    using (PointOfSaleEntities2 Contexts = new PointOfSaleEntities2())
+                    using (SaleEntities Contexts = new SaleEntities())
                     {
                         var IfEmployee = Contexts.Employees.Any(x => x.Branch_ID == x2.Branches_Code && x.IsDeleted == 0);
 
@@ -82,7 +82,7 @@ namespace PointOfSaleSedek._101_Adds
                             _Branch = Contexts.Branches.SingleOrDefault(Brn => Brn.Branches_Code == x2.Branches_Code && Brn.IsDeleted == 0);
                             _Branch.IsDeleted = 1;
                             Contexts.SaveChanges();
-                            using (PointOfSaleEntities2 Contexts2 = new PointOfSaleEntities2())
+                            using (SaleEntities Contexts2 = new SaleEntities())
                             {
                             var result = Contexts2.Branches.Where(x => x.IsDeleted == 0).ToList();
                             gcEmployeeCard.DataSource = result;

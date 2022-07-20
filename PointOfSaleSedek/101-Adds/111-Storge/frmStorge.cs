@@ -11,14 +11,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevExpress.XtraBars.Docking2010;
-using EntityData;
+using DataRep;
 
 namespace PointOfSaleSedek._101_Adds
 {
 
     public partial class frmStorge : DevExpress.XtraEditors.XtraForm
     {
-        readonly PointOfSaleEntities2 context = new PointOfSaleEntities2();
+        readonly SaleEntities context = new SaleEntities();
         public frmStorge()
         {
             InitializeComponent();

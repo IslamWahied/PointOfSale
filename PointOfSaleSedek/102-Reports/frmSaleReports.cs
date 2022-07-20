@@ -10,17 +10,47 @@ using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using PointOfSaleSedek._102_MaterialSkin;
 using FastReport;
-using EntityData;
+using DataRep;
 using PointOfSaleSedek.Model;
 
 namespace PointOfSaleSedek._105_Reports
 {
     public partial class frmSaleReports : DevExpress.XtraEditors.XtraForm
     {
-        PointOfSaleEntities2 context = new PointOfSaleEntities2();
+        SaleEntities context = new SaleEntities();
         public frmSaleReports()
         {
             InitializeComponent();
+            FillSlkUser();
+
+        }
+
+        public void FillSlkUser()
+        {
+
+            //List<User_View> listUserView = new List<User_View>();
+
+
+            //var resultList = context.User_View.Where(user => user.IsDeleted == 0 && user.IsDeletedEmployee == 0).ToList();
+
+            //foreach (var item in resultList)
+            //{
+            //    bool ressult = context.Shift_View.Any(Shift => Shift.IsDeleted == 0 && Shift.Emp_Code == item.Employee_Code && Shift.Shift_Flag == true);
+            //    if (!ressult)
+            //    {
+
+            //        listUserView.Add(item);
+            //    }
+
+            //}
+
+
+            //   var result = Context.Shift_View.Where(Shift => Shift.IsDeleted == 0  && Shift.Shift_Flag == false).ToList();
+            var resultList = context.User_View.Where(user => user.IsDeleted == 0 && user.IsDeletedEmployee == 0).ToList();
+            slkUsers.Properties.DataSource = resultList;
+            slkUsers.Properties.ValueMember = "Employee_Code";
+            slkUsers.Properties.DisplayMember = "UserName";
+
         }
 
         private void simpleButton1_Click(object sender, EventArgs e)
@@ -31,10 +61,25 @@ namespace PointOfSaleSedek._105_Reports
             // var Master = (from a in context.SaleMasterViews where a.EntryDate > dtFrom.DateTime && a.EntryDate < dtTo.DateTime && a.Operation_Type_Id == 2 select a).ToList();
 
             var dateTo = Convert.ToDateTime(Convert.ToDateTime(dtFrom.EditValue).AddDays(1));
+            List<SaleMasterView> Master = new List<SaleMasterView>();
+            List<SaleDetailView> Detail = new List<SaleDetailView>();
+            
+
+            if (slkUsers.EditValue != null && !String.IsNullOrWhiteSpace(slkUsers.EditValue.ToString()))
+            {
+
+                Master = (from a in context.SaleMasterViews where    a.EntryDate >= dtFrom.DateTime && a.EntryDate <= dateTo && a.UserCode.ToString() == slkUsers.EditValue.ToString() && a.Operation_Type_Id == 2 select a).ToList();
+                 Detail = (from a in context.SaleDetailViews where a.EntryDate >= dtFrom.DateTime && a.EntryDate <= dateTo && a.Emp_Code.ToString() == slkUsers.EditValue.ToString() && a.Operation_Type_Id == 2 select a).ToList();
+
+            }
+            else {
+
+                 Master = (from a in context.SaleMasterViews where a.EntryDate >= dtFrom.DateTime && a.EntryDate <= dateTo && a.Operation_Type_Id == 2 select a).ToList();
+                 Detail = (from a in context.SaleDetailViews where a.EntryDate >= dtFrom.DateTime && a.EntryDate <= dateTo && a.Operation_Type_Id == 2 select a).ToList();
+            }
 
 
-            var Master = (from a in context.SaleMasterViews where a.EntryDate >= dtFrom.DateTime && a.EntryDate <= dateTo && a.Operation_Type_Id == 2 select a).ToList();
-            var Detail = (from a in context.SaleDetailViews where a.EntryDate >= dtFrom.DateTime && a.EntryDate <= dateTo && a.Operation_Type_Id == 2 select a).ToList();
+          
 
 
             if (Master.Count == 0 || Detail.Count == 0)
@@ -143,6 +188,11 @@ namespace PointOfSaleSedek._105_Reports
             string DatatimeNow = Convert.ToString(DateTime.Now.ToString("MM/dd/yyyy"));
             dtFrom.Text = DatatimeNow;
             dtTo.Text = DatatimeNow;
+        }
+
+        private void slkShiftsOpen_Properties_EditValueChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using EntityData;
+﻿using DataRep;
 using FastReport;
 using PointOfSaleSedek._102_MaterialSkin;
 using PointOfSaleSedek.Model;
@@ -16,7 +16,7 @@ namespace PointOfSaleSedek._102_Reports
 {
     public partial class frmCanelationInvoice : MaterialSkin.Controls.MaterialForm
     {
-        PointOfSaleEntities2 context = new PointOfSaleEntities2();
+        SaleEntities context = new SaleEntities();
 
         public frmCanelationInvoice()
         {
@@ -33,8 +33,9 @@ namespace PointOfSaleSedek._102_Reports
         private void simpleButton1_Click(object sender, EventArgs e)
         {
             // var Master = (from a in context.SaleMasterViews where a.EntryDate > dtFrom.DateTime && a.EntryDate < dtTo.DateTime && a.Operation_Type_Id == 2 select a).ToList();
-            var Master = context.SaleMasterViews.Where(a => a.EntryDate >= dtFrom.DateTime && a.EntryDate <= dtTo.DateTime && a.Operation_Type_Id == 3).ToList();
-            var Detail = (from a in context.SaleDetailViews where a.EntryDate >= dtFrom.DateTime && a.EntryDate <= dtTo.DateTime && a.Operation_Type_Id == 3 select a).ToList();
+            var dateTo = Convert.ToDateTime(Convert.ToDateTime(dtFrom.EditValue).AddDays(1));
+            var Master = context.SaleMasterViews.Where(a => a.EntryDate >= dtFrom.DateTime && a.EntryDate <= dateTo && a.Operation_Type_Id == 3).ToList();
+            var Detail = (from a in context.SaleDetailViews where a.EntryDate >= dtFrom.DateTime && a.EntryDate <= dateTo && a.Operation_Type_Id == 3 select a).ToList();
 
             if (Master.Count == 0 || Detail.Count == 0)
 

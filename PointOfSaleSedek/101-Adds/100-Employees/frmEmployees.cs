@@ -13,13 +13,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using EntityData;
+using DataRep;
 
 namespace PointOfSaleSedek._101_Adds
 {
     public partial class frmEmployees : DevExpress.XtraEditors.XtraForm
     {
-        PointOfSaleEntities2 context = new PointOfSaleEntities2();
+        SaleEntities context = new SaleEntities();
         public frmEmployees()
         {
             InitializeComponent();
@@ -39,7 +39,7 @@ namespace PointOfSaleSedek._101_Adds
         void FillGride()
         {
             gcEmployeeCard.DataSource = null;
-            using (PointOfSaleEntities2 Contexts = new PointOfSaleEntities2())
+            using (SaleEntities Contexts = new SaleEntities())
             {
 
                 var empData = (from a in Contexts.Employee_View where a.IsDeleted == 0 select a).OrderBy(x => x.Employee_Code).ToList();
@@ -146,7 +146,7 @@ namespace PointOfSaleSedek._101_Adds
 
 
 
-                    using (PointOfSaleEntities2 Contexts = new PointOfSaleEntities2())
+                    using (SaleEntities Contexts = new SaleEntities())
                     {
                         var IfUser = Contexts.User_View.Any(x => x.UserFlag == true && x.IsDeleted == 0 && x.Employee_Code == x2.Employee_Code);
                         var IfhaveInvoice = Contexts.SaleMasterViews.Any(x => x.UserCode == x2.Employee_Code && x.IsDeleted == 0 );
@@ -187,7 +187,7 @@ namespace PointOfSaleSedek._101_Adds
             //else if (btn.Caption == "تحديث")
             //{
 
-            //    using (PointOfSaleEntities2 Contexts = new PointOfSaleEntities2())
+            //    using (SaleEntities Contexts = new SaleEntities())
             //    {
 
             //        var result = (from a in Contexts.User_Detail_View where a.IsDeleted == 0 select a).ToList();
@@ -235,7 +235,7 @@ namespace PointOfSaleSedek._101_Adds
             //        return;
             //    }
 
-            //    using (PointOfSaleEntities2 Contexts = new PointOfSaleEntities2())
+            //    using (SaleEntities Contexts = new SaleEntities())
             //    {
 
             //        var result = (from a in Contexts.ItemCardViews where a.IsDeleted == 0 select a).ToList();

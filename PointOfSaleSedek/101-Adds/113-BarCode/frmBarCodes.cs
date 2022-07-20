@@ -1,5 +1,5 @@
 ﻿using DevExpress.XtraEditors;
-using EntityData;
+using DataRep;
 using FastReport;
 using PointOfSaleSedek._102_MaterialSkin;
 using System;
@@ -19,7 +19,7 @@ namespace PointOfSaleSedek._101_Adds._113_BarCode
 {
     public partial class frmBarCodes : DevExpress.XtraEditors.XtraForm
     {
-        readonly PointOfSaleEntities2 context = new PointOfSaleEntities2();
+        readonly SaleEntities context = new SaleEntities();
         public frmBarCodes()
         {
             InitializeComponent();

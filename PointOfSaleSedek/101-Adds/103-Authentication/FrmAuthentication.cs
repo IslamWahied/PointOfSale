@@ -16,13 +16,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using EntityData;
+using DataRep;
 
 namespace PointOfSaleSedek._101_Adds
 {
     public partial class FrmAuthentication : MaterialSkin.Controls.MaterialForm 
     {
-      private readonly PointOfSaleEntities2 Db = new PointOfSaleEntities2();
+      private readonly SaleEntities Db = new SaleEntities();
         //private readonly Static St = new Static();
 
         public FrmAuthentication()

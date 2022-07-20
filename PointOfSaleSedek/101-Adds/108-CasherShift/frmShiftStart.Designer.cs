@@ -111,6 +111,7 @@ namespace PointOfSaleSedek._101_Adds.CasherShift
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.slkUser.Properties.NullText = " ";
             this.slkUser.Properties.PopupView = this.searchLookUpEdit1View;
+            this.slkUser.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.slkUser.Size = new System.Drawing.Size(225, 23);
             this.slkUser.TabIndex = 153;
             // 
@@ -143,14 +144,22 @@ namespace PointOfSaleSedek._101_Adds.CasherShift
             this.dtFrom.EditValue = null;
             this.dtFrom.Location = new System.Drawing.Point(3, 32);
             this.dtFrom.Name = "dtFrom";
+            this.dtFrom.Properties.Appearance.Options.UseTextOptions = true;
+            this.dtFrom.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.dtFrom.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.dtFrom.Properties.AutoHeight = false;
             this.dtFrom.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dtFrom.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dtFrom.Properties.CalendarView = DevExpress.XtraEditors.Repository.CalendarView.Fluent;
+            this.dtFrom.Properties.DisplayFormat.FormatString = "g";
+            this.dtFrom.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.dtFrom.Properties.EditFormat.FormatString = "g";
+            this.dtFrom.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             this.dtFrom.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             this.dtFrom.Properties.VistaDisplayMode = DevExpress.Utils.DefaultBoolean.False;
+            this.dtFrom.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.dtFrom.Size = new System.Drawing.Size(225, 28);
             this.dtFrom.TabIndex = 151;
             // 
@@ -190,8 +199,12 @@ namespace PointOfSaleSedek._101_Adds.CasherShift
             // txtStartAmount
             // 
             this.txtStartAmount.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtStartAmount.EditValue = "0";
             this.txtStartAmount.Location = new System.Drawing.Point(3, 66);
             this.txtStartAmount.Name = "txtStartAmount";
+            this.txtStartAmount.Properties.Appearance.Options.UseTextOptions = true;
+            this.txtStartAmount.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.txtStartAmount.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.txtStartAmount.Properties.AutoHeight = false;
             this.txtStartAmount.Properties.Mask.EditMask = "\\d{0,50}";
             this.txtStartAmount.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;

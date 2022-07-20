@@ -12,13 +12,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using PointOfSaleSedek.HelperClass;
-using EntityData;
+using DataRep;
 
 namespace PointOfSaleSedek._101_Adds._112_Users
 {
     public partial class frmUser : DevExpress.XtraEditors.XtraForm
     {
-       PointOfSaleEntities2  context = new PointOfSaleEntities2();
+       SaleEntities  context = new SaleEntities();
         Static st = new Static();
         public frmUser()
         {
@@ -104,7 +104,7 @@ namespace PointOfSaleSedek._101_Adds._112_Users
                 //    return;
                 //}
 
-                //using (PointOfSaleEntities2 Contexts = new PointOfSaleEntities2())
+                //using (SaleEntities Contexts = new SaleEntities())
                 //{
 
                 //    var result = (from a in Contexts.ItemCardViews where a.IsDeleted == 0 select a).ToList();
@@ -191,7 +191,7 @@ namespace PointOfSaleSedek._101_Adds._112_Users
         void FillGride()
         {
             gcEmployeeCard.DataSource = null;
-            using (PointOfSaleEntities2 Contexts = new PointOfSaleEntities2())
+            using (SaleEntities Contexts = new SaleEntities())
             {
 
                 var empData = (from a in Contexts.User_View where  a.IsDeleted==0 &&a.IsDeletedEmployee==0 select a).OrderBy(x => x.Employee_Code).ToList();

@@ -1,5 +1,5 @@
 ﻿using DevExpress.XtraEditors;
-using EntityData;
+using DataRep;
 using PointOfSaleSedek._102_MaterialSkin;
 using System;
 using System.Collections.Generic;
@@ -15,7 +15,7 @@ namespace PointOfSaleSedek._101_Adds._114_AddExpenses
 {
     public partial class FrmCancelExpenses : DevExpress.XtraEditors.XtraForm
     {
-        PointOfSaleEntities2 context = new PointOfSaleEntities2();
+        SaleEntities context = new SaleEntities();
         public FrmCancelExpenses()
         {
             InitializeComponent();

@@ -87,33 +87,33 @@
             this.materialContextMenuStrip1.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialContextMenuStrip1.Name = "materialContextMenuStrip1";
             this.materialContextMenuStrip1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.materialContextMenuStrip1.Size = new System.Drawing.Size(137, 92);
+            this.materialContextMenuStrip1.Size = new System.Drawing.Size(181, 114);
             // 
             // اضافةجديدةToolStripMenuItem
             // 
             this.اضافةجديدةToolStripMenuItem.Name = "اضافةجديدةToolStripMenuItem";
-            this.اضافةجديدةToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+            this.اضافةجديدةToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.اضافةجديدةToolStripMenuItem.Text = "اضافة جديدة";
             this.اضافةجديدةToolStripMenuItem.Click += new System.EventHandler(this.اضافةجديدةToolStripMenuItem_Click);
             // 
             // تعديلToolStripMenuItem
             // 
             this.تعديلToolStripMenuItem.Name = "تعديلToolStripMenuItem";
-            this.تعديلToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+            this.تعديلToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.تعديلToolStripMenuItem.Text = "تعديل";
             this.تعديلToolStripMenuItem.Click += new System.EventHandler(this.تعديلToolStripMenuItem_Click);
             // 
             // حذفToolStripMenuItem
             // 
             this.حذفToolStripMenuItem.Name = "حذفToolStripMenuItem";
-            this.حذفToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+            this.حذفToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.حذفToolStripMenuItem.Text = "حذف";
             this.حذفToolStripMenuItem.Click += new System.EventHandler(this.حذفToolStripMenuItem_Click);
             // 
             // اضافةصنفجديدToolStripMenuItem
             // 
             this.اضافةصنفجديدToolStripMenuItem.Name = "اضافةصنفجديدToolStripMenuItem";
-            this.اضافةصنفجديدToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+            this.اضافةصنفجديدToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.اضافةصنفجديدToolStripMenuItem.Text = "فاتورة جديدة";
             this.اضافةصنفجديدToolStripMenuItem.Click += new System.EventHandler(this.اضافةصنفجديدToolStripMenuItem_Click);
             // 

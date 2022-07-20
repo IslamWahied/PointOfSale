@@ -113,6 +113,7 @@
             this.barButtonItem33 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem34 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem35 = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem36 = new DevExpress.XtraBars.BarButtonItem();
             this.BrAddauthenticationTab = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.RbUser = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.RbAuth = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -142,8 +143,9 @@
             this.RbPurchessReport = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup17 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.RbSaleReport = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.BrCancelationInvoice = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.ribbonPageGroup9 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.RbCancelationInvoiceReport = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.RbProfitAndLossReport = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.RbExpenses = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.repositoryItemTimeEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemTimeEdit();
             this.repositoryItemHypertextLabel2 = new DevExpress.XtraEditors.Repository.RepositoryItemHypertextLabel();
             this.repositoryItemTextEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
@@ -172,6 +174,7 @@
             this.ribbonPageGroup3 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.RibbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.TbAdd = new DevExpress.XtraBars.Ribbon.RibbonPage();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemHypertextLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.RibbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTimeEdit1)).BeginInit();
@@ -186,10 +189,10 @@
             // 
             // ribbonStatusBar1
             // 
-            this.ribbonStatusBar1.Location = new System.Drawing.Point(0, 652);
+            this.ribbonStatusBar1.Location = new System.Drawing.Point(0, 654);
             this.ribbonStatusBar1.Name = "ribbonStatusBar1";
             this.ribbonStatusBar1.Ribbon = this.RibbonControl1;
-            this.ribbonStatusBar1.Size = new System.Drawing.Size(1278, 29);
+            this.ribbonStatusBar1.Size = new System.Drawing.Size(1278, 27);
             // 
             // RibbonControl1
             // 
@@ -282,9 +285,10 @@
             this.lw,
             this.barButtonItem33,
             this.barButtonItem34,
-            this.barButtonItem35});
+            this.barButtonItem35,
+            this.barButtonItem36});
             this.RibbonControl1.Location = new System.Drawing.Point(0, 0);
-            this.RibbonControl1.MaxItemId = 108;
+            this.RibbonControl1.MaxItemId = 109;
             this.RibbonControl1.Name = "RibbonControl1";
             this.RibbonControl1.OptionsCustomizationForm.FormIcon = ((System.Drawing.Icon)(resources.GetObject("resource.FormIcon")));
             this.RibbonControl1.OptionsPageCategories.AutoCorrectForeColor = DevExpress.Utils.DefaultBoolean.True;
@@ -974,6 +978,14 @@
             this.barButtonItem35.Name = "barButtonItem35";
             this.barButtonItem35.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem35_ItemClick);
             // 
+            // barButtonItem36
+            // 
+            this.barButtonItem36.Caption = "تقرير المصروفات";
+            this.barButtonItem36.Id = 108;
+            this.barButtonItem36.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barButtonItem36.ImageOptions.SvgImage")));
+            this.barButtonItem36.Name = "barButtonItem36";
+            this.barButtonItem36.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem36_ItemClick);
+            // 
             // BrAddauthenticationTab
             // 
             this.BrAddauthenticationTab.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -1172,8 +1184,9 @@
             this.RbPurchessReport,
             this.ribbonPageGroup17,
             this.RbSaleReport,
-            this.BrCancelationInvoice,
-            this.ribbonPageGroup9});
+            this.RbCancelationInvoiceReport,
+            this.RbProfitAndLossReport,
+            this.RbExpenses});
             this.RbReportsTab.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("RbReportsTab.ImageOptions.Image")));
             this.RbReportsTab.Name = "RbReportsTab";
             this.RbReportsTab.Text = "التقارير";
@@ -1196,16 +1209,21 @@
             this.RbSaleReport.ItemLinks.Add(this.barButtonItem28);
             this.RbSaleReport.Name = "RbSaleReport";
             // 
-            // BrCancelationInvoice
+            // RbCancelationInvoiceReport
             // 
-            this.BrCancelationInvoice.ItemLinks.Add(this.barButtonItem30);
-            this.BrCancelationInvoice.Name = "BrCancelationInvoice";
+            this.RbCancelationInvoiceReport.ItemLinks.Add(this.barButtonItem30);
+            this.RbCancelationInvoiceReport.Name = "RbCancelationInvoiceReport";
             // 
-            // ribbonPageGroup9
+            // RbProfitAndLossReport
             // 
-            this.ribbonPageGroup9.ItemLinks.Add(this.barButtonItem35);
-            this.ribbonPageGroup9.Name = "ribbonPageGroup9";
-            this.ribbonPageGroup9.Text = " ";
+            this.RbProfitAndLossReport.ItemLinks.Add(this.barButtonItem35);
+            this.RbProfitAndLossReport.Name = "RbProfitAndLossReport";
+            this.RbProfitAndLossReport.Text = " ";
+            // 
+            // RbExpenses
+            // 
+            this.RbExpenses.ItemLinks.Add(this.barButtonItem36);
+            this.RbExpenses.Name = "RbExpenses";
             // 
             // repositoryItemTimeEdit1
             // 
@@ -1268,7 +1286,7 @@
             this.imageSlider1.Images.Add(((System.Drawing.Image)(resources.GetObject("imageSlider1.Images"))));
             this.imageSlider1.Location = new System.Drawing.Point(0, 135);
             this.imageSlider1.Name = "imageSlider1";
-            this.imageSlider1.Size = new System.Drawing.Size(1278, 517);
+            this.imageSlider1.Size = new System.Drawing.Size(1278, 519);
             this.imageSlider1.TabIndex = 2;
             this.imageSlider1.Text = "imageSlider1";
             // 
@@ -1395,6 +1413,10 @@
             this.TbAdd.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("TbAdd.ImageOptions.Image")));
             this.TbAdd.Name = "TbAdd";
             this.TbAdd.Text = "التكويد";
+            // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // FrmMain
             // 
@@ -1560,7 +1582,7 @@
         private DevExpress.XtraBars.BarButtonItem barButtonItem29;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup RbBarCode;
         private DevExpress.XtraBars.BarButtonItem barButtonItem30;
-        private DevExpress.XtraBars.Ribbon.RibbonPageGroup BrCancelationInvoice;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup RbCancelationInvoiceReport;
         private DevExpress.XtraBars.BarButtonItem barButtonItem31;
         private DevExpress.XtraBars.BarButtonItem barButtonItem32;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup RbAddExpenses;
@@ -1570,7 +1592,10 @@
         private DevExpress.XtraBars.BarButtonItem barButtonItem34;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup RbCancelExpenses;
         private DevExpress.XtraBars.BarButtonItem barButtonItem35;
-        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup9;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup RbProfitAndLossReport;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem36;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup RbExpenses;
+        private System.Windows.Forms.Timer timer1;
     }
 }
 

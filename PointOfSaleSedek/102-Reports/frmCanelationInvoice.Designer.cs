@@ -29,94 +29,76 @@ namespace PointOfSaleSedek._102_Reports
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmCanelationInvoice));
             this.materialLabel2 = new MaterialSkin.Controls.MaterialLabel();
             this.dtTo = new DevExpress.XtraEditors.DateEdit();
             this.materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
             this.dtFrom = new DevExpress.XtraEditors.DateEdit();
             this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
+            this.behaviorManager1 = new DevExpress.Utils.Behaviors.BehaviorManager(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dtTo.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtTo.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtFrom.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtFrom.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.behaviorManager1)).BeginInit();
             this.SuspendLayout();
             // 
             // materialLabel2
             // 
-            this.materialLabel2.AutoSize = true;
+            resources.ApplyResources(this.materialLabel2, "materialLabel2");
             this.materialLabel2.Depth = 0;
-            this.materialLabel2.Font = new System.Drawing.Font("Roboto", 11F);
             this.materialLabel2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel2.Location = new System.Drawing.Point(237, 126);
             this.materialLabel2.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel2.Name = "materialLabel2";
-            this.materialLabel2.Size = new System.Drawing.Size(56, 19);
-            this.materialLabel2.TabIndex = 161;
-            this.materialLabel2.Text = "الي تاريخ";
             // 
             // dtTo
             // 
-            this.dtTo.EditValue = null;
-            this.dtTo.Location = new System.Drawing.Point(42, 148);
+            resources.ApplyResources(this.dtTo, "dtTo");
             this.dtTo.Name = "dtTo";
             this.dtTo.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            new DevExpress.XtraEditors.Controls.EditorButton(((DevExpress.XtraEditors.Controls.ButtonPredefines)(resources.GetObject("dtTo.Properties.Buttons"))))});
             this.dtTo.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            new DevExpress.XtraEditors.Controls.EditorButton(((DevExpress.XtraEditors.Controls.ButtonPredefines)(resources.GetObject("dtTo.Properties.CalendarTimeProperties.Buttons"))))});
             this.dtTo.Properties.CalendarView = DevExpress.XtraEditors.Repository.CalendarView.Fluent;
             this.dtTo.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             this.dtTo.Properties.VistaDisplayMode = DevExpress.Utils.DefaultBoolean.False;
-            this.dtTo.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.dtTo.Size = new System.Drawing.Size(251, 20);
-            this.dtTo.TabIndex = 162;
             // 
             // materialLabel1
             // 
-            this.materialLabel1.AutoSize = true;
+            resources.ApplyResources(this.materialLabel1, "materialLabel1");
             this.materialLabel1.Depth = 0;
-            this.materialLabel1.Font = new System.Drawing.Font("Roboto", 11F);
             this.materialLabel1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel1.Location = new System.Drawing.Point(239, 74);
             this.materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel1.Name = "materialLabel1";
-            this.materialLabel1.Size = new System.Drawing.Size(54, 19);
-            this.materialLabel1.TabIndex = 159;
-            this.materialLabel1.Text = "من تاريخ";
             // 
             // dtFrom
             // 
-            this.dtFrom.EditValue = null;
-            this.dtFrom.Location = new System.Drawing.Point(42, 96);
+            resources.ApplyResources(this.dtFrom, "dtFrom");
             this.dtFrom.Name = "dtFrom";
             this.dtFrom.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            new DevExpress.XtraEditors.Controls.EditorButton(((DevExpress.XtraEditors.Controls.ButtonPredefines)(resources.GetObject("dtFrom.Properties.Buttons"))))});
             this.dtFrom.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            new DevExpress.XtraEditors.Controls.EditorButton(((DevExpress.XtraEditors.Controls.ButtonPredefines)(resources.GetObject("dtFrom.Properties.CalendarTimeProperties.Buttons"))))});
             this.dtFrom.Properties.CalendarView = DevExpress.XtraEditors.Repository.CalendarView.Fluent;
             this.dtFrom.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             this.dtFrom.Properties.VistaDisplayMode = DevExpress.Utils.DefaultBoolean.False;
-            this.dtFrom.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.dtFrom.Size = new System.Drawing.Size(251, 20);
-            this.dtFrom.TabIndex = 160;
             // 
             // simpleButton1
             // 
             this.simpleButton1.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.simpleButton1.Appearance.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.simpleButton1.Appearance.BackColor2 = ((System.Drawing.Color)(resources.GetObject("simpleButton1.Appearance.BackColor2")));
             this.simpleButton1.Appearance.ForeColor = System.Drawing.Color.White;
             this.simpleButton1.Appearance.Options.UseBackColor = true;
             this.simpleButton1.Appearance.Options.UseForeColor = true;
-            this.simpleButton1.Location = new System.Drawing.Point(112, 191);
+            resources.ApplyResources(this.simpleButton1, "simpleButton1");
             this.simpleButton1.Name = "simpleButton1";
-            this.simpleButton1.Size = new System.Drawing.Size(105, 38);
-            this.simpleButton1.TabIndex = 158;
-            this.simpleButton1.Text = "عرض";
             this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click);
             // 
             // frmCanelationInvoice
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(324, 241);
             this.Controls.Add(this.materialLabel2);
             this.Controls.Add(this.dtTo);
             this.Controls.Add(this.materialLabel1);
@@ -126,13 +108,12 @@ namespace PointOfSaleSedek._102_Reports
             this.MinimizeBox = false;
             this.Name = "frmCanelationInvoice";
             this.ShowInTaskbar = false;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "فواتير المبيعات الملغاه";
             this.Load += new System.EventHandler(this.frmCanelationInvoice_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dtTo.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtTo.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtFrom.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtFrom.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.behaviorManager1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -145,5 +126,6 @@ namespace PointOfSaleSedek._102_Reports
         private MaterialSkin.Controls.MaterialLabel materialLabel1;
         private DevExpress.XtraEditors.DateEdit dtFrom;
         private DevExpress.XtraEditors.SimpleButton simpleButton1;
+        private DevExpress.Utils.Behaviors.BehaviorManager behaviorManager1;
     }
 }

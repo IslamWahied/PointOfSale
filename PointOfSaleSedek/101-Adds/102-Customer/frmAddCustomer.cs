@@ -3,13 +3,13 @@ using System.Linq;
 using System.Windows.Forms;
 using PointOfSaleSedek.HelperClass;
 using PointOfSaleSedek._102_MaterialSkin;
-using EntityData;
+using DataRep;
 
 namespace PointOfSaleSedek._101_Adds._102_Customer
 {
     public partial class frmAddCustomer : DevExpress.XtraEditors.XtraForm
     {
-        readonly PointOfSaleEntities2 context = new PointOfSaleEntities2();
+        readonly SaleEntities context = new SaleEntities();
         readonly Static st = new Static();
         public frmAddCustomer()
         {
@@ -81,26 +81,111 @@ namespace PointOfSaleSedek._101_Adds._102_Customer
                 context.Customer_Info.Add(_customer);
                 context.SaveChanges();
 
-                    //MaterialMessageBox.Show("تم الحفظ", MessageBoxButtons.OK);
+                //MaterialMessageBox.Show("تم الحفظ", MessageBoxButtons.OK);
 
 
-                if (Application.OpenForms.OfType<frmSales>().Any())
+                if (st.Project_Type() == "Cafe")
                 {
 
-
-                    frmSales frm = (frmSales)Application.OpenForms["frmSales"];
-
-                    frm.FillSlkCustomers();
-
-                    frm.slkCustomers.EditValue =  context.Customer_View.FirstOrDefault(Customer => Customer.Customer_Phone == Phone).Customer_Code;
-                    frm.slkCustomers.Enabled = true;
-                    frm.btnCustomerHistory.Enabled = true;
-                    frm.txtParCode.Focus();
-                    this.Close();
+                    if (Application.OpenForms.OfType<frmCafeSales>().Any())
+                    {
 
 
+                        frmCafeSales frm = (frmCafeSales)Application.OpenForms["frmCafeSales"];
 
+                        //frm.FillSlkCustomers();
+
+                        //frm.slkCustomers.EditValue =  context.Customer_View.FirstOrDefault(Customer => Customer.Customer_Phone == Phone).Customer_Code;
+                        //frm.slkCustomers.Enabled = true;
+                        //frm.btnCustomerHistory.Enabled = true;
+                        //frm.txtParCode.Focus();
+                        this.Close();
+
+
+
+                    }
                 }
+                else if (st.Project_Type() == "Perfum")
+                {
+                    if (Application.OpenForms.OfType<frmCafeSales>().Any())
+                    {
+
+
+                        frmPerfumSales frm = (frmPerfumSales)Application.OpenForms["frmPerfumSales"];
+
+                        Int64 User_Code = st.User_Code();
+
+                        var result = context.Auth_View.Where(View => View.User_Code == User_Code && (View.User_IsDeleted == 0)).ToList();
+
+
+
+                        if (result.Any(xd => xd.Tab_Name == "btnser"))
+                        {
+                            //frm.btnser.Enabled = true;
+
+                        }
+                        else
+                        {
+                            //frm.btnser.Enabled = false;
+                        }
+
+
+                        if (result.Any(xd => xd.Tab_Name == "btnDiscount"))
+                        {
+                            frm.btnDiscount.Enabled = true;
+
+                        }
+                        else
+                        {
+                            frm.btnDiscount.Enabled = false;
+                        }
+
+                        this.Close();
+
+
+                    }
+                }
+                else if (st.Project_Type() == "SuperMarket")
+                {
+                    if (Application.OpenForms.OfType<frmSuperMarketSales>().Any())
+                    {
+
+
+                        frmSuperMarketSales frm = (frmSuperMarketSales)Application.OpenForms["frmSuperMarketSales"];
+
+                        Int64 User_Code = st.User_Code();
+
+                        var result = context.Auth_View.Where(View => View.User_Code == User_Code && (View.User_IsDeleted == 0)).ToList();
+
+
+
+                        if (result.Any(xd => xd.Tab_Name == "btnser"))
+                        {
+                            //frm.btnser.Enabled = true;
+
+                        }
+                        else
+                        {
+                            //frm.btnser.Enabled = false;
+                        }
+
+
+                        if (result.Any(xd => xd.Tab_Name == "btnDiscount"))
+                        {
+                            frm.btnDiscount.Enabled = true;
+
+                        }
+                        else
+                        {
+                            frm.btnDiscount.Enabled = false;
+                        }
+
+                        this.Close();
+
+
+                    }
+                }
+
 
 
 

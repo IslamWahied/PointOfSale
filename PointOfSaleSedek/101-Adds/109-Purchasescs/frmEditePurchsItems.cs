@@ -9,14 +9,14 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using PointOfSaleSedek._102_MaterialSkin;
-using EntityData;
+using DataRep;
 
 namespace PointOfSaleSedek._101_Adds
 {
     public partial class frmEditePurchsItems : DevExpress.XtraEditors.XtraForm
     {
         public Int64 ItemCode;
-        PointOfSaleEntities2 context = new PointOfSaleEntities2();
+        SaleEntities context = new SaleEntities();
         public frmEditePurchsItems()
         {
             InitializeComponent();

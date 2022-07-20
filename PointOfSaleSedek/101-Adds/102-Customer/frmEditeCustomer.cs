@@ -1,12 +1,12 @@
 ﻿using System;
 using PointOfSaleSedek.HelperClass;
-using EntityData;
+using DataRep;
 
 namespace PointOfSaleSedek._101_Adds._102_Customer
 {
     public partial class frmEditeCustomer : DevExpress.XtraEditors.XtraForm
     {
-        readonly PointOfSaleEntities2 context = new PointOfSaleEntities2();
+        readonly SaleEntities context = new SaleEntities();
         readonly Static st = new Static();
         public frmEditeCustomer()
         {

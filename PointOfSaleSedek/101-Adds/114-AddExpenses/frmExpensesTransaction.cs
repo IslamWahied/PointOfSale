@@ -1,5 +1,5 @@
 ﻿using DevExpress.XtraEditors;
-using EntityData;
+using DataRep;
 using PointOfSaleSedek._102_MaterialSkin;
 using PointOfSaleSedek.HelperClass;
 using System;
@@ -17,7 +17,7 @@ namespace PointOfSaleSedek._101_Adds._114_AddExpenses
     public partial class frmExpensesTransaction : DevExpress.XtraEditors.XtraForm
     {
         Static st = new Static();
-        readonly PointOfSaleEntities2 context = new PointOfSaleEntities2();
+        readonly SaleEntities context = new SaleEntities();
         public frmExpensesTransaction()
         {
             InitializeComponent();
@@ -39,6 +39,14 @@ namespace PointOfSaleSedek._101_Adds._114_AddExpenses
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
+            Int64 UserCode = st.User_Code();
+            var isShiftActive = context.Shift_View.Any(x => x.User_Id == UserCode && x.Shift_Flag == true);
+
+            if (!isShiftActive) {
+                MaterialMessageBox.Show("برجاء اضافة وردية للمستخدم", MessageBoxButtons.OK);
+                return;
+            }
+
             if (string.IsNullOrWhiteSpace(slkExpenses.Text))
             {
                 MaterialMessageBox.Show("برجاءاختيار المصروف", MessageBoxButtons.OK);
@@ -50,10 +58,13 @@ namespace PointOfSaleSedek._101_Adds._114_AddExpenses
                 MaterialMessageBox.Show("برجاءادخال قيمة المصروف", MessageBoxButtons.OK);
                 return;
             }
+
+
+
             else
             {
-
-
+                
+                var ShiftCode = context.Shift_View.Where(x => x.User_Id == UserCode && x.Shift_Flag == true).Select(xx => xx.Shift_Code).SingleOrDefault();
                 ExpensesTransaction _Expenses = new ExpensesTransaction()
                 {
                     ExpensesCode = Convert.ToInt64(slkExpenses.EditValue),
@@ -61,6 +72,7 @@ namespace PointOfSaleSedek._101_Adds._114_AddExpenses
                     ExpensesQT = Convert.ToInt64(txtDiscount.Text),
                     Date = DateTime.Now,
                     IsDeleted = 0,
+                    Shift_Code = ShiftCode,
                     Last_Modified_By = st.User_Code(),
                     Last_Modified_Date = DateTime.Now
                 

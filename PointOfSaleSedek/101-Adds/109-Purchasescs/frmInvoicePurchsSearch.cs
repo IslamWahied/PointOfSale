@@ -9,13 +9,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using EntityData;
+using DataRep;
 
 namespace PointOfSaleSedek._101_Adds
 {
     public partial class frmInvoicePurchsSearch : DevExpress.XtraEditors.XtraForm
     {
-        PointOfSaleEntities2 Context = new PointOfSaleEntities2();
+        SaleEntities Context = new SaleEntities();
         public frmInvoicePurchsSearch()
         {
             InitializeComponent();
@@ -25,7 +25,7 @@ namespace PointOfSaleSedek._101_Adds
         {
             
 
-            using (PointOfSaleEntities2 cont = new PointOfSaleEntities2())
+            using (SaleEntities cont = new SaleEntities())
             {
                 gcSaleMaster.DataSource = null;
 
@@ -96,10 +96,11 @@ namespace PointOfSaleSedek._101_Adds
             Context.SaveChanges();
 
 
-
-            using (PointOfSaleEntities2 context2 = new PointOfSaleEntities2())
+            
+            using (SaleEntities context2 = new SaleEntities())
             {
-                var Details = context2.SaleDetails.Where(w => w.SaleMasterCode == FocusRow.SaleMasterCode && w.EntryDate == FocusRow.EntryDate && w.Operation_Type_Id == 1 && w.IsDeleted == 0);
+                Int64 cn = FocusRow.SaleMasterCode;
+                var Details = context2.SaleDetails.Where(w => w.SaleMasterCode == cn && w.Operation_Type_Id == 1 && w.IsDeleted == 0).ToList();
                 context2.SaleDetails.RemoveRange(Details);
                 context2.SaveChanges();
             }

@@ -144,11 +144,9 @@
             // 
             // gvMain
             // 
-            this.gvMain.Appearance.Empty.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.gvMain.Appearance.Empty.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.gvMain.Appearance.Empty.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.gvMain.Appearance.Empty.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.gvMain.Appearance.Empty.Options.UseBackColor = true;
             this.gvMain.Appearance.Empty.Options.UseBorderColor = true;
             this.gvMain.Appearance.Empty.Options.UseForeColor = true;
             this.gvMain.AppearancePrint.Preview.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
@@ -165,6 +163,9 @@
             this.gvMain.GridControl = this.GridControl1;
             this.gvMain.Name = "gvMain";
             this.gvMain.OptionsSelection.CheckBoxSelectorColumnWidth = 25;
+            this.gvMain.OptionsSelection.CheckBoxSelectorField = "InActive";
+            this.gvMain.OptionsSelection.MultiSelect = true;
+            this.gvMain.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CheckBoxRowSelect;
             this.gvMain.OptionsSelection.UseIndicatorForSelection = false;
             this.gvMain.OptionsView.RowAutoHeight = true;
             // 
@@ -202,8 +203,6 @@
             this.gridColumn4.Caption = "حالة الصلاحية";
             this.gridColumn4.FieldName = "InActive";
             this.gridColumn4.Name = "gridColumn4";
-            this.gridColumn4.Visible = true;
-            this.gridColumn4.VisibleIndex = 0;
             // 
             // FrmAuthentication
             // 

@@ -14,14 +14,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using PointOfSaleSedek._101_Adds;
-using EntityData;
+using DataRep;
 using PointOfSaleSedek.HelperClass;
 
 namespace PointOfSaleSedek.Employees
 {
     public partial class FrmAddEmployees : DevExpress.XtraEditors.XtraForm
     {
-        readonly PointOfSaleEntities2 context = new PointOfSaleEntities2();
+        readonly SaleEntities context = new SaleEntities();
         readonly Static st = new Static();
         //readonly MaterialSkin.MaterialSkinManager skinManager;
         public FrmAddEmployees()
@@ -130,7 +130,7 @@ namespace PointOfSaleSedek.Employees
                 if (TestUpdate)
                 {
 
-                    using (PointOfSaleEntities2 ForCheck = new PointOfSaleEntities2())
+                    using (SaleEntities ForCheck = new SaleEntities())
                     {
 
                         bool TestUserName = ForCheck.Employees.Any(Emp => Emp.Employee_Name == TxtEmpName.Text && Emp.Employee_Code !=EmpCode &&  Emp.IsDeleted == 0);
@@ -175,7 +175,7 @@ namespace PointOfSaleSedek.Employees
                     _Employee.Last_Modified_User = st.User_Code();
                     context.SaveChanges();
 
-                    using (PointOfSaleEntities2 Contx2 = new PointOfSaleEntities2())
+                    using (SaleEntities Contx2 = new SaleEntities())
                     {
                     frm.gcEmployeeCard.DataSource = Contx2.Employee_View.Where(x => x.IsDeleted == 0).ToList();
                     frm.gcEmployeeCard.RefreshDataSource();
@@ -186,7 +186,7 @@ namespace PointOfSaleSedek.Employees
                 }
                 else
                 {
-                    using (PointOfSaleEntities2 ForCheck = new PointOfSaleEntities2())
+                    using (SaleEntities ForCheck = new SaleEntities())
                     {
 
                         bool TestUserName = ForCheck.Employees.Any(Emp => Emp.Employee_Name == TxtEmpName.Text && Emp.IsDeleted == 0);
@@ -265,7 +265,7 @@ namespace PointOfSaleSedek.Employees
 
                 
                    
-                    using (PointOfSaleEntities2 NewContext = new PointOfSaleEntities2())
+                    using (SaleEntities NewContext = new SaleEntities())
                     { 
                     
                         frm.gcEmployeeCard.DataSource = NewContext.Employee_View.Where(x => x.IsDeleted == 0).ToList();

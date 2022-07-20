@@ -10,14 +10,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using EntityData;
+using DataRep;
 
 
 namespace PointOfSaleSedek._101_Adds._112_Users
 {
     public partial class frmEditeUser : DevExpress.XtraEditors.XtraForm
     {
-        readonly PointOfSaleEntities2 context = new PointOfSaleEntities2();
+        readonly SaleEntities context = new SaleEntities();
         readonly Static st = new Static();
         public frmEditeUser()
         {
@@ -52,7 +52,7 @@ namespace PointOfSaleSedek._101_Adds._112_Users
             {
                 frmUser frm = (frmUser)Application.OpenForms["frmUser"];
                 Int64 EmpCode = Convert.ToInt64(txtEmpCode.Text);
-                using (PointOfSaleEntities2 ForCheck = new PointOfSaleEntities2())
+                using (SaleEntities ForCheck = new SaleEntities())
                 {
                     bool TestUserName = ForCheck.Users.Any(Emp => Emp.Emp_Code != EmpCode && Emp.IsDeleted == 0 && Emp.UserName == txtUserName.Text);
                     if (TestUserName)
@@ -85,7 +85,7 @@ namespace PointOfSaleSedek._101_Adds._112_Users
                 frmUser frmUserMain = new frmUser();
                 frmUserMain.gcEmployeeCard.DataSource = context.User_View.Where(x => x.IsDeleted == 0&&x.IsDeletedEmployee==0).OrderBy(x=>x.Employee_Code).ToList();
                 frmUserMain.gcEmployeeCard.RefreshDataSource();
-                using (PointOfSaleEntities2 NewReco = new PointOfSaleEntities2())
+                using (SaleEntities NewReco = new SaleEntities())
                 {
 
                     User_View result2 = NewReco.User_View.Where(x => x.Employee_Code == EmpCode && x.IsDeleted == 0&&x.IsDeletedEmployee==0).FirstOrDefault();

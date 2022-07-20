@@ -46,7 +46,7 @@
             this.simpleButton1.Appearance.ForeColor = System.Drawing.Color.White;
             this.simpleButton1.Appearance.Options.UseBackColor = true;
             this.simpleButton1.Appearance.Options.UseForeColor = true;
-            this.simpleButton1.Location = new System.Drawing.Point(99, 120);
+            this.simpleButton1.Location = new System.Drawing.Point(104, 189);
             this.simpleButton1.Name = "simpleButton1";
             this.simpleButton1.Size = new System.Drawing.Size(105, 38);
             this.simpleButton1.TabIndex = 151;
@@ -59,7 +59,7 @@
             this.materialLabel1.Depth = 0;
             this.materialLabel1.Font = new System.Drawing.Font("Roboto", 11F);
             this.materialLabel1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel1.Location = new System.Drawing.Point(20, 12);
+            this.materialLabel1.Location = new System.Drawing.Point(214, 73);
             this.materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel1.Name = "materialLabel1";
             this.materialLabel1.Size = new System.Drawing.Size(54, 19);
@@ -69,7 +69,7 @@
             // dtFrom
             // 
             this.dtFrom.EditValue = null;
-            this.dtFrom.Location = new System.Drawing.Point(17, 34);
+            this.dtFrom.Location = new System.Drawing.Point(17, 95);
             this.dtFrom.Name = "dtFrom";
             this.dtFrom.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -87,7 +87,7 @@
             this.materialLabel2.Depth = 0;
             this.materialLabel2.Font = new System.Drawing.Font("Roboto", 11F);
             this.materialLabel2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel2.Location = new System.Drawing.Point(20, 64);
+            this.materialLabel2.Location = new System.Drawing.Point(212, 131);
             this.materialLabel2.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel2.Name = "materialLabel2";
             this.materialLabel2.Size = new System.Drawing.Size(56, 19);
@@ -97,7 +97,7 @@
             // dtTo
             // 
             this.dtTo.EditValue = null;
-            this.dtTo.Location = new System.Drawing.Point(17, 86);
+            this.dtTo.Location = new System.Drawing.Point(17, 153);
             this.dtTo.Name = "dtTo";
             this.dtTo.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -113,19 +113,17 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(300, 170);
+            this.ClientSize = new System.Drawing.Size(306, 234);
             this.Controls.Add(this.materialLabel2);
             this.Controls.Add(this.dtTo);
             this.Controls.Add(this.simpleButton1);
             this.Controls.Add(this.materialLabel1);
             this.Controls.Add(this.dtFrom);
-            this.LookAndFeel.SkinName = "The Bezier";
-            this.LookAndFeel.UseDefaultLookAndFeel = false;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmPurchessReport";
-            this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.RightToLeftLayout = true;
+            this.ShowIcon = false;
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "تقرير المشتريات";
             this.Load += new System.EventHandler(this.frmPurchessReport_Load);

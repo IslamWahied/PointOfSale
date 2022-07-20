@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using EntityData;
+using DataRep;
 using PointOfSaleSedek._102_MaterialSkin;
 
 namespace PointOfSaleSedek._101_Adds
@@ -16,7 +16,7 @@ namespace PointOfSaleSedek._101_Adds
     public partial class frmAddBranches : DevExpress.XtraEditors.XtraForm
     {
 
-        PointOfSaleEntities2 Context = new PointOfSaleEntities2(); 
+        SaleEntities Context = new SaleEntities(); 
         public frmAddBranches()
         {
             InitializeComponent();
@@ -70,7 +70,7 @@ namespace PointOfSaleSedek._101_Adds
                 Context.SaveChanges();
 
 
-                using (PointOfSaleEntities2 NewContext = new PointOfSaleEntities2())
+                using (SaleEntities NewContext = new SaleEntities())
                 {
 
                     frm.gcEmployeeCard.DataSource = NewContext.Branches.Where(x => x.IsDeleted == 0).ToList();

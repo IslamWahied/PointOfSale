@@ -1,47 +1,153 @@
 ﻿using PointOfSaleSedek._101_Adds;
- 
- 
 using DevExpress.XtraBars.Ribbon;
- 
- 
- 
 using System;
 using System.Collections.Generic;
- 
 using System.Data;
 using System.Drawing;
 using System.Linq;
- 
 using PointOfSaleSedek._105_Reports;
 using PointOfSaleSedek._101_Adds.CasherShift;
 using PointOfSaleSedek._101_Adds._112_Users;
 using PointOfSaleSedek.HelperClass;
-using EntityData;
 using PointOfSaleSedek._101_Adds._102_Customer;
 using PointOfSaleSedek._101_Adds._113_BarCode;
 using PointOfSaleSedek._101_Adds._103_Authentication;
 using PointOfSaleSedek._102_Reports;
 using PointOfSaleSedek._114_Adds;
 using PointOfSaleSedek._101_Adds._114_AddExpenses;
+using DataRep;
+using System.Timers;
+using Google.Cloud.Firestore;
+using Timer = System.Timers.Timer;
+using System.Net;
 
 namespace PointOfSaleSedek
 {
     public partial class FrmMain : MaterialSkin.Controls.MaterialForm
     {
-        readonly PointOfSaleEntities2 db = new PointOfSaleEntities2();
+        SaleEntities context = new SaleEntities();
+        readonly SaleEntities db = new SaleEntities();
         readonly Static st = new Static();
+       Timer aTimer = new Timer(60 * 60 * 1000); //one hour in milliseconds
 
+       FirestoreDb fdb;
+
+
+          void OnTimedEvent(object source, ElapsedEventArgs e)
+        {
+
+            if (CheckForInternetConnection()) { 
+               try {
+                updateToFireBase();
+            }
+            catch  {
+            }
+            }
+         
+            
+        }
+
+
+        public static bool CheckForInternetConnection(int timeoutMs = 10000, string url = "http://www.google.com/")
+        {
+            try
+            {
+               
+                var request = (HttpWebRequest)WebRequest.Create(url);
+                request.KeepAlive = false;
+                request.Timeout = timeoutMs;
+                using (var response = (HttpWebResponse)request.GetResponse())
+                    return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+
+
+
+
+        void updateToFireBase()
+        {
+
+
+
+            //// Get Total Sale
+            DateTime today = DateTime.Now;
+            var Sales = context.SaleMasterViews.Where(x => x.IsDeleted == 0 && x.Operation_Type_Id == 2 && x.EntryDate.Day == today.Day && x.EntryDate.Month == today.Month && x.EntryDate.Year == today.Year).ToList<SaleMasterView>();
+            double TotalSales = 0;
+            Sales.ForEach(x =>
+            {
+                TotalSales += x.TotalBeforDiscount;
+            });
+
+
+
+
+            // Get Total Expenses
+            var Expenses = context.ExpensesViews.Where(x => x.IsDeleted == 0 && x.Date.Day == today.Day && x.Date.Month == today.Month && x.Date.Year == today.Year).ToList();
+            double TotalExpenses = 0;
+            Expenses.ForEach(x =>
+            {
+                TotalExpenses += x.ExpensesQT;
+            });
+
+
+
+            // Get TOtal Discount
+            var Descount = context.SaleMasterViews.Where(x => x.IsDeleted == 0 && x.Operation_Type_Id == 2 && x.Discount > 0 && x.EntryDate.Day == today.Day && x.EntryDate.Month == today.Month && x.EntryDate.Year == today.Year).ToList<SaleMasterView>();
+            double TotalDescount = 0;
+            Descount.ForEach(x =>
+            {
+                TotalDescount += x.Discount;
+            });
+
+
+            String projectID = "1";
+            String adminId = "1";
+            DocumentReference Doc = fdb.Collection("Balance").Document(adminId).Collection(projectID).Document();
+
+
+
+            Dictionary<string, object> data1 = new Dictionary<string, object>()
+            {
+                {"AdminId",01115730802 },
+                {"ProjectId",1 },
+                {"TotalSales",TotalSales},
+                {"TotalExpenses",TotalExpenses },
+                {"TotalDescount",TotalDescount },
+                {"LastDateUpdate", DateTime.Now.ToString("dd-MM-yyyy HH:mm:ss tt")},
+
+            };
+            Doc.SetAsync(data1);
+           
+        }
 
         public FrmMain()
         {
             InitializeComponent();
 
+
+            string path = AppDomain.CurrentDomain.BaseDirectory + @"foodapp.json";
+            Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", path);
+            fdb = FirestoreDb.Create("pointofsale-d3e8d");
+
             RibbonControl s = new RibbonControl();
             s.BackColor = Color.Red;
+
+            aTimer.Elapsed += new ElapsedEventHandler(OnTimedEvent);
+
+            aTimer.Start();
+
+
 
             // SplashScreenManager.CloseForm();
 
         }
+
+
 
 
 
@@ -82,6 +188,10 @@ namespace PointOfSaleSedek
             RbCodeTab.Visible = false;
             RbPurchessReport.Visible = false;
             RbSaleReport.Visible = false;
+
+            RbCancelationInvoiceReport.Visible = false;
+            RbProfitAndLossReport.Visible = false;
+            RbExpenses.Visible = false;
 
         }
 
@@ -182,6 +292,18 @@ namespace PointOfSaleSedek
                         RbCancelExpenses.Visible = true;
                         break;
 
+                    case "RbProfitAndLossReport":
+                        RbProfitAndLossReport.Visible = true;
+                        break;
+
+                    case "RbExpenses":
+                        RbExpenses.Visible = true;
+                        break;
+
+
+                    case "RbCancelationInvoiceReport":
+                        RbCancelationInvoiceReport.Visible = true;
+                        break;
 
                     default:
                     
@@ -212,7 +334,7 @@ namespace PointOfSaleSedek
                 RbCasherTab.Visible = true;
             }
 
-            if (RbPurches.Visible == false  )
+            if (RbPurches.Visible == false  && RbAddExpensesTran.Visible == false && RbCancelExpenses.Visible == false)
             {
                 RbInvoicesTab.Visible = false;
             }
@@ -256,7 +378,14 @@ namespace PointOfSaleSedek
 
 
 
-            if (RbSaleReport.Visible == false && RbPurchessReport.Visible == false)
+            if (RbSaleReport.Visible == false && RbPurchessReport.Visible == false &&
+                RbCancelationInvoiceReport.Visible == false
+                &&
+                RbProfitAndLossReport.Visible == false
+                &&
+                RbExpenses.Visible == false
+
+                )
             {
                 RbReportsTab.Visible = false;
             }
@@ -320,8 +449,21 @@ namespace PointOfSaleSedek
 
         private void barButtonItem8_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            frmSales frm = new frmSales();
-            frm.ShowDialog();
+
+            if (st.Project_Type() == "Cafe") {
+                frmCafeSales frm = new frmCafeSales();
+                frm.ShowDialog();
+            }
+            else if (st.Project_Type() == "Perfum") {
+                frmPerfumSales frm = new frmPerfumSales();
+                frm.ShowDialog();
+            }
+            else if (st.Project_Type() == "SuperMarket")
+            {
+                frmSuperMarketSales frm = new frmSuperMarketSales();
+                frm.ShowDialog();
+            }
+           
         }
 
         private void barButtonItem9_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -343,8 +485,23 @@ namespace PointOfSaleSedek
 
         private void barButtonItem12_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            frmItemCard frm = new frmItemCard();
-            frm.ShowDialog();
+
+            if (st.Project_Type() == "Cafe")
+            {
+                frmCafeItemCard frm = new frmCafeItemCard();
+                frm.ShowDialog();
+            }
+            else if (st.Project_Type() == "Perfum")
+            {
+                frmPerfumItemCard frm = new frmPerfumItemCard();
+                frm.ShowDialog();
+            }
+            else if (st.Project_Type() == "SuperMarket")
+            {
+                frmSuperMarketItemCard frm = new frmSuperMarketItemCard();
+                frm.ShowDialog();
+            }
+ 
         }
 
         private void barButtonItem13_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -426,6 +583,16 @@ namespace PointOfSaleSedek
         {
              
               Authentication();
+            if (CheckForInternetConnection())
+            {
+                try
+                {
+                    updateToFireBase();
+                }
+                catch
+                {
+                }
+            }
         }
 
         private void BrAddCustomer_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -442,8 +609,22 @@ namespace PointOfSaleSedek
 
         private void btnItems_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            frmItemCard frm = new frmItemCard();
-            frm.ShowDialog();
+            if (st.Project_Type() == "Cafe")
+            {
+                frmCafeItemCard frm = new frmCafeItemCard();
+                frm.ShowDialog();
+            }
+            else if (st.Project_Type() == "Perfum")
+            {
+                frmPerfumItemCard frm = new frmPerfumItemCard();
+                frm.ShowDialog();
+            }
+            else if (st.Project_Type() == "SuperMarket")
+            {
+                frmSuperMarketItemCard frm = new frmSuperMarketItemCard();
+                frm.ShowDialog();
+            }
+          
         }
 
         private void btnBranch_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -519,6 +700,17 @@ namespace PointOfSaleSedek
         {
             frmProfitandLossReport frm = new frmProfitandLossReport();
             frm.ShowDialog();
+        }
+
+        private void barButtonItem36_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            frmExpensescs frm = new frmExpensescs();
+            frm.ShowDialog();
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+
         }
     }
 }

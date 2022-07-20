@@ -10,14 +10,14 @@ using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using PointOfSaleSedek._102_MaterialSkin;
 using DevExpress.XtraGrid;
-using EntityData;
+using DataRep;
 
 
 namespace PointOfSaleSedek._114_Adds
 {
     public partial class frmExpenses : DevExpress.XtraEditors.XtraForm
     {
-        readonly PointOfSaleEntities2 context = new PointOfSaleEntities2();
+        readonly SaleEntities context = new SaleEntities();
         public frmExpenses()
         {
             InitializeComponent();
@@ -125,7 +125,7 @@ namespace PointOfSaleSedek._114_Adds
                 return;
 
             }
-            using (PointOfSaleEntities2 Context = new PointOfSaleEntities2())
+            using (SaleEntities Context = new SaleEntities())
             {
                 Expens deptDelete = Context.Expenses.Where(x=>x.ExpensesCode== ExpensCode).FirstOrDefault();
                 Context.Expenses.Remove(deptDelete);

@@ -7,7 +7,7 @@ using System.Linq;
  
 using System.Windows.Forms;
  
-using EntityData;
+using DataRep;
 
 using PointOfSaleSedek._102_MaterialSkin;
 
@@ -15,7 +15,7 @@ namespace PointOfSaleSedek._101_Adds
 {
     public partial class frmAddPurchsItems : DevExpress.XtraEditors.XtraForm
     {
-        readonly PointOfSaleEntities2 context = new PointOfSaleEntities2();
+        readonly SaleEntities context = new SaleEntities();
         public frmAddPurchsItems()
         {
             InitializeComponent();

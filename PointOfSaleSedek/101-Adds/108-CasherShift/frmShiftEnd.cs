@@ -10,19 +10,19 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using PointOfSaleSedek.HelperClass;
-using EntityData;
+using DataRep;
 
 namespace PointOfSaleSedek._101_Adds.CasherShift
 {
     public partial class frmShiftEnd : DevExpress.XtraEditors.XtraForm
     {
-        readonly PointOfSaleEntities2 Context = new PointOfSaleEntities2();
+        readonly SaleEntities Context = new SaleEntities();
         readonly Static st = new Static();
         public frmShiftEnd()
         {
             InitializeComponent();
             FillSlkShiftsOPen();
-            string DatatimeNow = Convert.ToString(DateTime.Now.ToString("MM/dd/yyyy"));
+            string DatatimeNow = Convert.ToString(DateTime.Now);
             dtEnd.Text = DatatimeNow;
         }
 
@@ -49,7 +49,7 @@ namespace PointOfSaleSedek._101_Adds.CasherShift
         {
             if (string.IsNullOrWhiteSpace(slkShiftsOpen.Text))
             {
-                string DatatimeNow = Convert.ToString(DateTime.Now.ToString("MM/dd/yyyy"));
+                string DatatimeNow = Convert.ToString(DateTime.Now);
                 dtEnd.Text = DatatimeNow;
                 txtAmountEnd.ResetText();
                 txtAmountStart.ResetText();
@@ -70,7 +70,7 @@ namespace PointOfSaleSedek._101_Adds.CasherShift
                 var ShiftSelected = Context.Shift_View.Where(Shift => Shift.IsDeleted == 0 &&  Shift.Shift_Flag == true&&Shift.Shift_Code==ShiftCode).FirstOrDefault();
                 txtAmountStart.Text = ShiftSelected.Shift_Start_Amount.ToString();
                 txtNoteStart.Text = ShiftSelected.Shift_Start_Notes;
-                txtdateStart.Text = Convert.ToString(ShiftSelected.Shift_Start_Date.ToString("MM/dd/yyyy"));
+                txtdateStart.Text = Convert.ToString(ShiftSelected.Shift_Start_Date);
 
                 try
                 {
@@ -86,6 +86,20 @@ namespace PointOfSaleSedek._101_Adds.CasherShift
                 }
 
 
+                try
+                {
+
+                    txtExpenses.Text = Context.ExpensesTransactions.Where(x => x.IsDeleted == 0 && x.Shift_Code == ShiftCode).Sum(x => x.ExpensesQT).ToString();
+
+                }
+                catch
+                {
+                    txtExpenses.Text = "0";
+
+
+                }
+
+
             }
 
         }
@@ -94,7 +108,7 @@ namespace PointOfSaleSedek._101_Adds.CasherShift
         {
             if (!string.IsNullOrWhiteSpace(txtAmountStart.Text) && !string.IsNullOrWhiteSpace(txtAmountEnd.Text))
             {
-                txtShiftIncrseOrDibilty.Text = Convert.ToString(Convert.ToDouble(txtAmountEnd.Text) - (Convert.ToDouble(txtAmountStart.Text)+ Convert.ToDouble(txtTotalSale.Text)));
+                txtShiftIncrseOrDibilty.Text = Convert.ToString((Convert.ToDouble(txtAmountEnd.Text) + Convert.ToDouble(txtExpenses.Text)) - (Convert.ToDouble(txtAmountStart.Text)+ Convert.ToDouble(txtTotalSale.Text)));
 
             }
             else
@@ -145,7 +159,8 @@ namespace PointOfSaleSedek._101_Adds.CasherShift
                 Context.SaveChanges();
                 Rest();
                 MaterialMessageBox.Show("تم اقفال الوردية", MessageBoxButtons.OK);
-                
+                this.Close();
+
             }
         }
     }

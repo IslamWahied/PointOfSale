@@ -1,22 +1,19 @@
-﻿using DevExpress.XtraEditors;
+﻿
 using PointOfSaleSedek._102_MaterialSkin;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
+
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 using System.Windows.Forms;
 using PointOfSaleSedek.HelperClass;
-using EntityData;
+using DataRep;
 
 namespace PointOfSaleSedek._101_Adds._112_Users
 {
     public partial class frmAddUser : DevExpress.XtraEditors.XtraForm
     {
-        readonly PointOfSaleEntities2 context = new PointOfSaleEntities2();
+        readonly SaleEntities context = new SaleEntities();
         readonly Static st = new Static();
         public frmAddUser()
         {
@@ -82,7 +79,7 @@ namespace PointOfSaleSedek._101_Adds._112_Users
                 if (TestUpdate)
                 {
 
-                    using (PointOfSaleEntities2 ForCheck = new PointOfSaleEntities2())
+                    using (SaleEntities ForCheck = new SaleEntities())
                     {
 
                         bool TestUserName = ForCheck.User_View.Any(User => User.UserName == txtUserName.Text && User.Employee_Code != EmpCode);
@@ -111,7 +108,7 @@ namespace PointOfSaleSedek._101_Adds._112_Users
                 }
                 else
                 {
-                    using (PointOfSaleEntities2 ForCheck = new PointOfSaleEntities2())
+                    using (SaleEntities ForCheck = new SaleEntities())
                     {
 
                         bool TestUserName = ForCheck.User_View.Any(User => User.UserName == txtUserName.Text && User.IsDeleted== 0 && User.IsDeletedEmployee == 0 );
@@ -139,7 +136,7 @@ namespace PointOfSaleSedek._101_Adds._112_Users
                     };
                     context.Users.Add(_User);
                     context.SaveChanges();
-                    using (PointOfSaleEntities2 NewContext = new PointOfSaleEntities2())
+                    using (SaleEntities NewContext = new SaleEntities())
                     {
                         frm.gcEmployeeCard.DataSource = NewContext.User_View.Where(x => x.IsDeleted==0&&x.IsDeletedEmployee==0).ToList();
                         frm.gcEmployeeCard.RefreshDataSource();
