@@ -80,7 +80,7 @@
             this.barButtonItem19 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem21 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem22 = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonItem23 = new DevExpress.XtraBars.BarButtonItem();
+            this.btnUploadData = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem24 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem25 = new DevExpress.XtraBars.BarButtonItem();
             this.btnEmployee = new DevExpress.XtraBars.BarButtonItem();
@@ -192,10 +192,10 @@
             // 
             // ribbonStatusBar1
             // 
-            this.ribbonStatusBar1.Location = new System.Drawing.Point(0, 652);
+            this.ribbonStatusBar1.Location = new System.Drawing.Point(0, 654);
             this.ribbonStatusBar1.Name = "ribbonStatusBar1";
             this.ribbonStatusBar1.Ribbon = this.RibbonControl1;
-            this.ribbonStatusBar1.Size = new System.Drawing.Size(1278, 29);
+            this.ribbonStatusBar1.Size = new System.Drawing.Size(1278, 27);
             // 
             // RibbonControl1
             // 
@@ -256,7 +256,7 @@
             this.barButtonItem19,
             this.barButtonItem21,
             this.barButtonItem22,
-            this.barButtonItem23,
+            this.btnUploadData,
             this.barButtonItem24,
             this.barButtonItem25,
             this.btnEmployee,
@@ -298,7 +298,7 @@
             this.RibbonControl1.OptionsCustomizationForm.FormIcon = ((System.Drawing.Icon)(resources.GetObject("resource.FormIcon")));
             this.RibbonControl1.OptionsPageCategories.AutoCorrectForeColor = DevExpress.Utils.DefaultBoolean.True;
             this.RibbonControl1.PageHeaderItemLinks.Add(this.btnRefershShiftsData);
-            this.RibbonControl1.PageHeaderItemLinks.Add(this.barButtonItem23);
+            this.RibbonControl1.PageHeaderItemLinks.Add(this.btnUploadData);
             this.RibbonControl1.PageHeaderItemLinks.Add(this.barButtonItem22);
             this.RibbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.BrAddauthenticationTab,
@@ -436,7 +436,6 @@
             this.brCustomerReport.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("brCustomerReport.ImageOptions.Image")));
             this.brCustomerReport.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("brCustomerReport.ImageOptions.LargeImage")));
             this.brCustomerReport.Name = "brCustomerReport";
-            this.brCustomerReport.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.BrCustomerReport_ItemClick_1);
             // 
             // brUserReport
             // 
@@ -445,7 +444,6 @@
             this.brUserReport.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("brUserReport.ImageOptions.Image")));
             this.brUserReport.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("brUserReport.ImageOptions.LargeImage")));
             this.brUserReport.Name = "brUserReport";
-            this.brUserReport.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.BrUserReport_ItemClick);
             // 
             // brAvailableFlatReport
             // 
@@ -729,17 +727,15 @@
             this.barButtonItem22.Name = "barButtonItem22";
             this.barButtonItem22.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem22_ItemClick);
             // 
-            // barButtonItem23
+            // btnUploadData
             // 
-            this.barButtonItem23.Caption = "تحديث";
-            this.barButtonItem23.Enabled = false;
-            this.barButtonItem23.Hint = "تحديث";
-            this.barButtonItem23.Id = 67;
-            this.barButtonItem23.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem23.ImageOptions.Image")));
-            this.barButtonItem23.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem23.ImageOptions.LargeImage")));
-            this.barButtonItem23.Name = "barButtonItem23";
-            this.barButtonItem23.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
-            this.barButtonItem23.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem23_ItemClick);
+            this.btnUploadData.Caption = "تحديث";
+            this.btnUploadData.Hint = "رفع البيانات";
+            this.btnUploadData.Id = 67;
+            this.btnUploadData.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnUploadData.ImageOptions.SvgImage")));
+            this.btnUploadData.Name = "btnUploadData";
+            this.btnUploadData.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            this.btnUploadData.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem23_ItemClick);
             // 
             // barButtonItem24
             // 
@@ -895,7 +891,6 @@
             this.barHeaderItem8.Caption = "اسم المستخدم";
             this.barHeaderItem8.Id = 89;
             this.barHeaderItem8.Name = "barHeaderItem8";
-            this.barHeaderItem8.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barHeaderItem8_ItemClick);
             // 
             // barStaticItem18
             // 
@@ -1318,7 +1313,7 @@
             this.imageSlider1.LayoutMode = DevExpress.Utils.Drawing.ImageLayoutMode.ZoomInside;
             this.imageSlider1.Location = new System.Drawing.Point(0, 135);
             this.imageSlider1.Name = "imageSlider1";
-            this.imageSlider1.Size = new System.Drawing.Size(1278, 517);
+            this.imageSlider1.Size = new System.Drawing.Size(1278, 519);
             this.imageSlider1.TabIndex = 2;
             this.imageSlider1.Text = "imageSlider1";
             // 
@@ -1519,7 +1514,7 @@
         private DevExpress.XtraBars.BarStaticItem barStaticItem11;
         private DevExpress.XtraBars.BarStaticItem barStaticItem4;
         private DevExpress.XtraBars.BarButtonItem barButtonItem22;
-        private DevExpress.XtraBars.BarButtonItem barButtonItem23;
+        private DevExpress.XtraBars.BarButtonItem btnUploadData;
         private DevExpress.XtraBars.Ribbon.RibbonPage RbCasherTab;
         private DevExpress.XtraBars.Ribbon.RibbonPage RbInvoicesTab;
         private DevExpress.XtraBars.Ribbon.RibbonPage RbStockTab;

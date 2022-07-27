@@ -29,5 +29,6 @@ namespace DataRep
         public long Payment_Type { get; set; }
         public long UserIdTakeOrder { get; set; }
         public long Customer_Code { get; set; }
+        public bool isUploaded { get; set; }
     }
 }

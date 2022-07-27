@@ -21,8 +21,11 @@ using Google.Cloud.Firestore;
 using Timer = System.Timers.Timer;
 using System.Net;
 using DevExpress.XtraBars;
-using System.Data.OleDb;
- 
+//using System.Data.OleDb;
+//using Newtonsoft.Json;
+using PointOfSaleSedek._102_MaterialSkin;
+using System.Windows.Forms;
+using DevExpress.XtraSplashScreen;
 
 namespace PointOfSaleSedek
 {
@@ -42,9 +45,15 @@ namespace PointOfSaleSedek
             if (CheckForInternetConnection()) { 
                try {
                 updateToFireBase();
-            }
+                    SplashScreenManager.CloseForm();
+                    MaterialMessageBox.Show("تم رفع البيانات بنجاح", MessageBoxButtons.OK);
+                }
             catch  {
-            }
+                    SplashScreenManager.CloseForm();
+                    MaterialMessageBox.Show("لا يوجد اتصال بالانترنت", MessageBoxButtons.OK);
+                    return;
+                }
+               
             }
          
             
@@ -70,63 +79,195 @@ namespace PointOfSaleSedek
 
 
 
-
-
         void updateToFireBase()
         {
+            // Date Now
+            SplashScreenManager.ShowForm(typeof(WaitForm1));
 
-
-
-            //// Get Total Sale
             DateTime today = DateTime.Now;
-            var Sales = context.SaleMasterViews.Where(x => x.IsDeleted == 0 && x.Operation_Type_Id == 2 && x.EntryDate.Day == today.Day && x.EntryDate.Month == today.Month && x.EntryDate.Year == today.Year).ToList<SaleMasterView>();
-            double TotalSales = 0;
-            Sales.ForEach(x =>
-            {
-                TotalSales += x.TotalBeforDiscount;
-            });
+
+
+            // Get ProjectManger Info
+            ProjectMangerInfo mangerInfo = context.ProjectMangerInfoes.FirstOrDefault(x => x.IsActive);
 
 
 
+            // Get Sale Master Data
 
-            // Get Total Expenses
-            var Expenses = context.ExpensesViews.Where(x => x.IsDeleted == 0 && x.Date.Day == today.Day && x.Date.Month == today.Month && x.Date.Year == today.Year).ToList();
-            double TotalExpenses = 0;
-            Expenses.ForEach(x =>
-            {
-                TotalExpenses += x.ExpensesQT;
-            });
-
-
-
-            // Get TOtal Discount
-            var Descount = context.SaleMasterViews.Where(x => x.IsDeleted == 0 && x.Operation_Type_Id == 2 && x.Discount > 0 && x.EntryDate.Day == today.Day && x.EntryDate.Month == today.Month && x.EntryDate.Year == today.Year).ToList<SaleMasterView>();
-            double TotalDescount = 0;
-            Descount.ForEach(x =>
-            {
-                TotalDescount += x.Discount;
-            });
-
-
-            String projectID = "1";
-            String adminId = "1";
-            DocumentReference Doc = fdb.Collection("Balance").Document(adminId).Collection(projectID).Document();
-
-
-
-            Dictionary<string, object> data1 = new Dictionary<string, object>()
-            {
-                {"AdminId",01115730802 },
-                {"ProjectId",1 },
-                {"TotalSales",TotalSales},
-                {"TotalExpenses",TotalExpenses },
-                {"TotalDescount",TotalDescount },
-                {"LastDateUpdate", DateTime.Now.ToString("dd-MM-yyyy HH:mm:ss tt")},
-
-            };
-            Doc.SetAsync(data1);
+           List<SaleMasterView> masterView = context.SaleMasterViews.Where(x=>x.isUploaded == false &&x.IsDeleted == 0).ToList();
            
+            masterView.ForEach(master => {
+
+                FirestoreDb fdb1 =  FirestoreDb.Create("pointofsale-d3e8d");
+
+                DocumentReference Doc = fdb.Collection("SaleMaster").Document("MangerMobile").Collection(mangerInfo.MangerMobile.ToString()).Document("ProjectId").Collection(mangerInfo.ProjectId.ToString()).Document();
+
+                Dictionary<string, object> data1 = new Dictionary<string, object>() {
+
+                {"SaleMasterCode",mangerInfo.MangerCode},
+                {"TotalBeforDiscount",master.TotalBeforDiscount},
+                { "Discount",master.Discount},
+                { "QtyTotal",master.QtyTotal},
+                { "EntryDate",master.EntryDate.ToString() },
+                { "FinalTotal", master.FinalTotal},
+                { "UserName",master.UserName},
+                { "Emp_Code",master.Emp_Code},
+                { "Shift_Code", master.Shift_Code},
+                { "PaymentType",master.PaymentType},
+                { "LastUpdateDate",today.ToString()},
+
+                };
+                Doc.SetAsync(data1);
+
+                SaleMaster _saleMaster;
+                _saleMaster = context.SaleMasters.SingleOrDefault(Salmaster => Salmaster.ShiftCode == master.Shift_Code && Salmaster.SaleMasterCode == master.SaleMasterCode && Salmaster.isUploaded == false);
+                _saleMaster.isUploaded = true;
+                context.SaveChanges();
+
+            });
+
+
+
+           
+
+
+
+
+
+            // Get Shifts  Data
+            List<Shift_View> masterShiftView = context.Shift_View.Where(x => x.isUploaded == false && x.IsDeleted == 0).ToList();
+            masterShiftView.ForEach(shift => {
+                FirestoreDb fdb2 = FirestoreDb.Create("pointofsale-d3e8d");
+
+                DocumentReference Doc = fdb.Collection("Shifts").Document("MangerMobile").Collection(mangerInfo.MangerMobile.ToString()).Document("ProjectId").Collection(mangerInfo.ProjectId.ToString()).Document();
+               
+
+                Dictionary<string, object> data1 = new Dictionary<string, object>() {
+
+                {"ShiftCode",shift.Shift_Code},
+                {"ShiftStartDate",shift.Shift_Start_Date.ToString()},
+                { "ShiftEndDate",shift.Shift_End_Date.ToString()},
+                { "ShiftStartAmount",shift.Shift_Start_Amount},
+                { "ShiftEndAmount",shift.Shift_End_Amount},
+                { "ShiftIncreasedisability", shift.Shift_Increase_disability},
+                { "ShiftStartNotes",shift.Shift_Start_Notes.ToString()},
+                { "ShiftEndNotes",shift.Shift_End_Notes.ToString()},
+              
+                { "UserName",shift.UserName},
+                { "EmpCode",shift.Emp_Code},
+                { "Expenses",shift.Expenses},
+                { "TotalSale",shift.TotalSale},
+                { "LastUpdateDate",today.ToString()},
+
+                };
+
+
+
+
+             
+                Doc.SetAsync(data1);
+                Shift _ShiftMaster;
+                _ShiftMaster = context.Shifts.SingleOrDefault(shft => shft.Shift_Code == shift.Shift_Code && shft.isUploaded == false);
+                _ShiftMaster.isUploaded = true;
+                context.SaveChanges();
+            });
+
+
+            // Get Expenses  Data
+            List<ExpensesView> masterExpensesViews = context.ExpensesViews.Where(x => x.isUploaded == false && x.IsDeleted == 0).ToList();
+
+
+            masterExpensesViews.ForEach(expenses => {
+                FirestoreDb fdb3 = FirestoreDb.Create("pointofsale-d3e8d");
+                DocumentReference Doc = fdb.Collection("Expenses").Document("MangerMobile").Collection(mangerInfo.MangerMobile.ToString()).Document("ProjectId").Collection(mangerInfo.ProjectId.ToString()).Document();
+               
+                Dictionary<string, object> data1 = new Dictionary<string, object>() {
+
+  
+                {"ExpensesName",expenses.ExpensesName},
+                {"UserName",expenses.UserName},
+                {"Date",expenses.Date.ToString()},
+                { "ExpensesNotes",expenses.ExpensesNotes},
+                { "ExpensesQT",expenses.ExpensesQT},
+                { "ExpensesCode",expenses.ExpensesCode},
+                { "Shift_Code", expenses.Shift_Code},
+                { "Employee_Name",expenses.Employee_Name},
+                { "Emp_Code",expenses.Emp_Code},
+                { "LastUpdateDate",today.ToString()},
+
+
+                };
+
+
+
+
+                Doc.SetAsync(data1);
+
+               ExpensesTransaction _ExpensesTransactionMaster;
+                _ExpensesTransactionMaster = context.ExpensesTransactions.SingleOrDefault(Expe => Expe.Shift_Code == expenses.Shift_Code && Expe.isUploaded == false);
+                _ExpensesTransactionMaster.isUploaded = true;
+                context.SaveChanges();
+            });
+
+
+            
         }
+
+        //void updateToFireBase()
+        //{
+
+
+
+        //    //// Get Total Sale
+        //    DateTime today = DateTime.Now;
+        //    var Sales = context.SaleMasterViews.Where(x => x.IsDeleted == 0 && x.Operation_Type_Id == 2 && x.EntryDate.Day == today.Day && x.EntryDate.Month == today.Month && x.EntryDate.Year == today.Year).ToList<SaleMasterView>();
+        //    double TotalSales = 0;
+        //    Sales.ForEach(x =>
+        //    {
+        //        TotalSales += x.TotalBeforDiscount;
+        //    });
+
+
+
+
+        //    // Get Total Expenses
+        //    var Expenses = context.ExpensesViews.Where(x => x.IsDeleted == 0 && x.Date.Day == today.Day && x.Date.Month == today.Month && x.Date.Year == today.Year).ToList();
+        //    double TotalExpenses = 0;
+        //    Expenses.ForEach(x =>
+        //    {
+        //        TotalExpenses += x.ExpensesQT;
+        //    });
+
+
+
+        //    // Get TOtal Discount
+        //    var Descount = context.SaleMasterViews.Where(x => x.IsDeleted == 0 && x.Operation_Type_Id == 2 && x.Discount > 0 && x.EntryDate.Day == today.Day && x.EntryDate.Month == today.Month && x.EntryDate.Year == today.Year).ToList<SaleMasterView>();
+        //    double TotalDescount = 0;
+        //    Descount.ForEach(x =>
+        //    {
+        //        TotalDescount += x.Discount;
+        //    });
+
+
+        //    String projectID = "1";
+        //    String adminId = "1";
+        //    DocumentReference Doc = fdb.Collection("Balance").Document(adminId).Collection(projectID).Document();
+
+
+
+        //    Dictionary<string, object> data1 = new Dictionary<string, object>()
+        //    {
+        //        {"AdminId",01115730802 },
+        //        {"ProjectId",1 },
+        //        {"TotalSales",TotalSales},
+        //        {"TotalExpenses",TotalExpenses },
+        //        {"TotalDescount",TotalDescount },
+        //        {"LastDateUpdate", DateTime.Now.ToString("dd-MM-yyyy HH:mm:ss tt")},
+
+        //    };
+        //    Doc.SetAsync(data1);
+
+        //}
 
         public FrmMain()
         {
@@ -183,6 +324,7 @@ namespace PointOfSaleSedek
 
             RbShifts.Visible = false;
             btnRefershShiftsData.Visibility = BarItemVisibility.Never;
+            btnUploadData.Visibility = BarItemVisibility.Never;
             RbCasherTab.Visible = false;
             RbStockTab.Visible = false;
             BrAddauthenticationTab.Visible = false;
@@ -190,6 +332,7 @@ namespace PointOfSaleSedek
             RbReportsTab.Visible = false;
             RbCodeTab.Visible = false;
             RbPurchessReport.Visible = false;
+
             RbSaleReport.Visible = false;
 
             RbCancelationInvoiceReport.Visible = false;
@@ -319,8 +462,12 @@ namespace PointOfSaleSedek
                         btnRefershShiftsData.Visibility = BarItemVisibility.Always;
                         break;
 
-                        
 
+                    case "btnUploadData":
+                        btnUploadData.Visibility = BarItemVisibility.Always;
+                        break;
+
+                        
 
 
 
@@ -431,44 +578,7 @@ namespace PointOfSaleSedek
 
 
 
-
-
-        private void BrCustomerReport_ItemClick_1(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-
-            //SplashScreenManager.ShowForm(typeof(WaitForm1));
-            //var result = (from a in db.Customer_Info where a.IsDeleted == 0 select a).ToList();
-
-            //Report rpt = new Report();
-            //rpt.Load(@"Reports\CustomerReport.frx");
-            //rpt.RegisterData(result, "Lines");
-            //rpt.Show();
-            //SplashScreenManager.CloseForm();
-
-        }
-
-
-
-
-
-        private void BrUserReport_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-
-            //SplashScreenManager.ShowForm(typeof(WaitForm1));
-            //var result = (from a in db.User_Detail_View where a.IsDeleted == 0 select a).ToList();
-            //Report rpt = new Report();
-            //rpt.Load(@"Reports\UsersReport.frx");
-            //rpt.RegisterData(result, "Lines");
-            //rpt.Show();
-            //SplashScreenManager.CloseForm();
-
-        }
-
-        private void BtnExit_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-           
-        }
-
+ 
         private void barButtonItem8_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
 
@@ -607,13 +717,27 @@ namespace PointOfSaleSedek
               Authentication();
             if (CheckForInternetConnection())
             {
+
                 try
                 {
                     updateToFireBase();
+                    SplashScreenManager.CloseForm();
+                    MaterialMessageBox.Show("تم رفع البيانات بنجاح", MessageBoxButtons.OK);
+                    
+
                 }
-                catch
+                catch (Exception xx)
                 {
+
+                    SplashScreenManager.CloseForm();
+                    MaterialMessageBox.Show(xx.Message, MessageBoxButtons.OK);
+                    return;
                 }
+            }
+            else {
+                SplashScreenManager.CloseForm();
+                MaterialMessageBox.Show("لا يوجد اتصال بالانترنت", MessageBoxButtons.OK);
+                return;
             }
         }
 
@@ -661,10 +785,7 @@ namespace PointOfSaleSedek
             frm.ShowDialog();
         }
 
-        private void barHeaderItem8_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-
-        }
+      
 
         private void barButtonItem27_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
@@ -791,29 +912,29 @@ namespace PointOfSaleSedek
 
         }
 
-          void dd()
-        {
+        //  void dd()
+        //{
  
-                    string d  = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + @"C:\Users\Eslam\Desktop\Autosaveds.xlsx" + ";Extended Properties=Excel 12.0;";
-            using (OleDbConnection connection = new OleDbConnection(d))
-            {
+        //            string d  = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + @"C:\Users\Eslam\Desktop\Autosaveds.xlsx" + ";Extended Properties=Excel 12.0;";
+        //    using (OleDbConnection connection = new OleDbConnection(d))
+        //    {
                
-                OleDbCommand command = new OleDbCommand("Select * FROM [Sheet1$]", connection);
-                connection.Open();
-                // Create DbDataReader to Data Worksheet
-                using (OleDbDataReader dr = command.ExecuteReader())
-                {
-                    dt.Load(dr);
+        //        OleDbCommand command = new OleDbCommand("Select * FROM [Sheet1$]", connection);
+        //        connection.Open();
+        //        // Create DbDataReader to Data Worksheet
+        //        using (OleDbDataReader dr = command.ExecuteReader())
+        //        {
+        //            dt.Load(dr);
 
-                    removeEmpityData();
+        //            removeEmpityData();
 
                    
 
 
-                }
-            }
-            Console.ReadKey();
-        }
+        //        }
+        //    }
+        //    Console.ReadKey();
+        //}
      
 
         private void barButtonItem38_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)

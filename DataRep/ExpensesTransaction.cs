@@ -24,5 +24,6 @@ namespace DataRep
         public int IsDeleted { get; set; }
         public long Shift_Code { get; set; }
         public Nullable<long> Emp_Code { get; set; }
+        public bool isUploaded { get; set; }
     }
 }

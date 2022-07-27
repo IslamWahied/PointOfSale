@@ -27,5 +27,6 @@ namespace DataRep
         public long Shift_Code { get; set; }
         public string Employee_Name { get; set; }
         public Nullable<long> Emp_Code { get; set; }
+        public bool isUploaded { get; set; }
     }
 }

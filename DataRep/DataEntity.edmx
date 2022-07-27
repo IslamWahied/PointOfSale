@@ -90,6 +90,7 @@
           <Property Name="IsDeleted" Type="int" Nullable="false" />
           <Property Name="Shift_Code" Type="bigint" Nullable="false" />
           <Property Name="Emp_Code" Type="bigint" />
+          <Property Name="isUploaded" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Item_History">
           <Key>
@@ -148,7 +149,7 @@
           <Property Name="IsDeleted" Type="int" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'Wesal.dbo.Operation_Type' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'PointOfSale.dbo.Operation_Type' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Operation_Type">
           <Key>
             <PropertyRef Name="Id" />
@@ -157,7 +158,7 @@ warning 6002: The table/view 'Wesal.dbo.Operation_Type' does not have a primary 
           <Property Name="Operation_Type_Name" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'Wesal.dbo.Payment_Type' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'PointOfSale.dbo.Payment_Type' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Payment_Type">
           <Key>
             <PropertyRef Name="Id" />
@@ -168,6 +169,17 @@ warning 6002: The table/view 'Wesal.dbo.Payment_Type' does not have a primary ke
           <Property Name="Code" Type="int" Nullable="false" />
           <Property Name="PaymentType" Type="nvarchar" MaxLength="50" />
           <Property Name="IsDeleted" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProjectMangerInfo">
+          <Key>
+            <PropertyRef Name="MangerCode" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MangerCode" Type="bigint" Nullable="false" />
+          <Property Name="MangerName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ProjectId" Type="bigint" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="MangerMobile" Type="nvarchar(max)" Nullable="false" />
         </EntityType>
         <EntityType Name="SaleDetail">
           <Key>
@@ -209,6 +221,7 @@ warning 6002: The table/view 'Wesal.dbo.Payment_Type' does not have a primary ke
           <Property Name="Payment_Type" Type="bigint" Nullable="false" />
           <Property Name="UserIdTakeOrder" Type="bigint" Nullable="false" />
           <Property Name="Customer_Code" Type="bigint" Nullable="false" />
+          <Property Name="isUploaded" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Sales">
           <Key>
@@ -254,6 +267,7 @@ warning 6002: The table/view 'Wesal.dbo.Payment_Type' does not have a primary ke
           <Property Name="Shift_End_Notes" Type="nvarchar" MaxLength="50" />
           <Property Name="Expenses" Type="float" Nullable="false" />
           <Property Name="TotalSale" Type="float" Nullable="false" />
+          <Property Name="isUploaded" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Tab_Info">
           <Key>
@@ -321,7 +335,7 @@ warning 6002: The table/view 'Wesal.dbo.Payment_Type' does not have a primary ke
           <Property Name="Operation_Type_Id" Type="int" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'Wesal.dbo.Auth_View' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'PointOfSale.dbo.Auth_View' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Auth_View">
           <Key>
             <PropertyRef Name="Tab_Name" />
@@ -341,7 +355,7 @@ warning 6002: The table/view 'Wesal.dbo.Auth_View' does not have a primary key d
           <Property Name="Id" Type="bigint" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'Wesal.dbo.Customer_View' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'PointOfSale.dbo.Customer_View' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Customer_View">
           <Key>
             <PropertyRef Name="Customer_Code" />
@@ -365,7 +379,7 @@ warning 6002: The table/view 'Wesal.dbo.Customer_View' does not have a primary k
           <Property Name="CustomerFavourit" Type="nvarchar(max)" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'Wesal.dbo.Employee_View' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'PointOfSale.dbo.Employee_View' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Employee_View">
           <Key>
             <PropertyRef Name="Branches_Name" />
@@ -394,7 +408,7 @@ warning 6002: The table/view 'Wesal.dbo.Employee_View' does not have a primary k
           <Property Name="Jop_Code" Type="bigint" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'Wesal.dbo.ExpensesView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'PointOfSale.dbo.ExpensesView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="ExpensesView">
           <Key>
             <PropertyRef Name="UserName" />
@@ -404,6 +418,7 @@ warning 6002: The table/view 'Wesal.dbo.ExpensesView' does not have a primary ke
             <PropertyRef Name="Id" />
             <PropertyRef Name="Date" />
             <PropertyRef Name="Shift_Code" />
+            <PropertyRef Name="isUploaded" />
           </Key>
           <Property Name="ExpensesName" Type="nvarchar" MaxLength="50" />
           <Property Name="UserName" Type="nvarchar" MaxLength="50" Nullable="false" />
@@ -418,9 +433,10 @@ warning 6002: The table/view 'Wesal.dbo.ExpensesView' does not have a primary ke
           <Property Name="Shift_Code" Type="bigint" Nullable="false" />
           <Property Name="Employee_Name" Type="nvarchar" MaxLength="50" />
           <Property Name="Emp_Code" Type="bigint" />
+          <Property Name="isUploaded" Type="bit" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'Wesal.dbo.ItemCardView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'PointOfSale.dbo.ItemCardView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="ItemCardView">
           <Key>
             <PropertyRef Name="ItemCode" />
@@ -447,7 +463,7 @@ warning 6002: The table/view 'Wesal.dbo.ItemCardView' does not have a primary ke
           <Property Name="Item_Count_InStoreg" Type="float" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'Wesal.dbo.SaleDetailView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'PointOfSale.dbo.SaleDetailView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="SaleDetailView">
           <Key>
             <PropertyRef Name="ItemCode" />
@@ -495,7 +511,7 @@ warning 6002: The table/view 'Wesal.dbo.SaleDetailView' does not have a primary 
           <Property Name="isOile" Type="bit" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'Wesal.dbo.SaleMasterView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'PointOfSale.dbo.SaleMasterView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="SaleMasterView">
           <Key>
             <PropertyRef Name="UserCode" />
@@ -513,6 +529,7 @@ warning 6002: The table/view 'Wesal.dbo.SaleMasterView' does not have a primary 
             <PropertyRef Name="Payment_Type" />
             <PropertyRef Name="UserIdTakeOrder" />
             <PropertyRef Name="Customer_Code" />
+            <PropertyRef Name="isUploaded" />
           </Key>
           <Property Name="UserCode" Type="bigint" Nullable="false" />
           <Property Name="Operation_Type_Id" Type="bigint" Nullable="false" />
@@ -531,9 +548,10 @@ warning 6002: The table/view 'Wesal.dbo.SaleMasterView' does not have a primary 
           <Property Name="Payment_Type" Type="bigint" Nullable="false" />
           <Property Name="UserIdTakeOrder" Type="bigint" Nullable="false" />
           <Property Name="Customer_Code" Type="bigint" Nullable="false" />
+          <Property Name="isUploaded" Type="bit" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'Wesal.dbo.Shift_View' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'PointOfSale.dbo.Shift_View' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Shift_View">
           <Key>
             <PropertyRef Name="Shift_Code" />
@@ -546,6 +564,7 @@ warning 6002: The table/view 'Wesal.dbo.Shift_View' does not have a primary key 
             <PropertyRef Name="User_Id" />
             <PropertyRef Name="Expenses" />
             <PropertyRef Name="TotalSale" />
+            <PropertyRef Name="isUploaded" />
           </Key>
           <Property Name="Shift_Code" Type="bigint" Nullable="false" />
           <Property Name="Shift_Start_Date" Type="datetime" Nullable="false" />
@@ -564,9 +583,10 @@ warning 6002: The table/view 'Wesal.dbo.Shift_View' does not have a primary key 
           <Property Name="User_Id" Type="bigint" Nullable="false" />
           <Property Name="Expenses" Type="float" Nullable="false" />
           <Property Name="TotalSale" Type="float" Nullable="false" />
+          <Property Name="isUploaded" Type="bit" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'Wesal.dbo.User_View' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'PointOfSale.dbo.User_View' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="User_View">
           <Key>
             <PropertyRef Name="Branches_Name" />
@@ -602,6 +622,7 @@ warning 6002: The table/view 'Wesal.dbo.User_View' does not have a primary key d
           <EntitySet Name="Item_History_transaction" EntityType="Self.Item_History_transaction" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ItemCard" EntityType="Self.ItemCard" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Jops" EntityType="Self.Jops" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProjectMangerInfo" EntityType="Self.ProjectMangerInfo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SaleDetail" EntityType="Self.SaleDetail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SaleMaster" EntityType="Self.SaleMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Sales" EntityType="Self.Sales" Schema="dbo" store:Type="Tables" />
@@ -691,7 +712,8 @@ warning 6002: The table/view 'Wesal.dbo.User_View' does not have a primary key d
     [ExpensesView].[Date] AS [Date], 
     [ExpensesView].[Shift_Code] AS [Shift_Code], 
     [ExpensesView].[Employee_Name] AS [Employee_Name], 
-    [ExpensesView].[Emp_Code] AS [Emp_Code]
+    [ExpensesView].[Emp_Code] AS [Emp_Code], 
+    [ExpensesView].[isUploaded] AS [isUploaded]
     FROM [dbo].[ExpensesView] AS [ExpensesView]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="ItemCardView" EntityType="Self.ItemCardView" store:Type="Views" store:Schema="dbo">
@@ -757,7 +779,8 @@ warning 6002: The table/view 'Wesal.dbo.User_View' does not have a primary key d
     [SaleMasterView].[PaymentType] AS [PaymentType], 
     [SaleMasterView].[Payment_Type] AS [Payment_Type], 
     [SaleMasterView].[UserIdTakeOrder] AS [UserIdTakeOrder], 
-    [SaleMasterView].[Customer_Code] AS [Customer_Code]
+    [SaleMasterView].[Customer_Code] AS [Customer_Code], 
+    [SaleMasterView].[isUploaded] AS [isUploaded]
     FROM [dbo].[SaleMasterView] AS [SaleMasterView]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="Shift_View" EntityType="Self.Shift_View" store:Type="Views" store:Schema="dbo">
@@ -778,7 +801,8 @@ warning 6002: The table/view 'Wesal.dbo.User_View' does not have a primary key d
     [Shift_View].[Emp_Code] AS [Emp_Code], 
     [Shift_View].[User_Id] AS [User_Id], 
     [Shift_View].[Expenses] AS [Expenses], 
-    [Shift_View].[TotalSale] AS [TotalSale]
+    [Shift_View].[TotalSale] AS [TotalSale], 
+    [Shift_View].[isUploaded] AS [isUploaded]
     FROM [dbo].[Shift_View] AS [Shift_View]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="User_View" EntityType="Self.User_View" store:Type="Views" store:Schema="dbo">
@@ -835,6 +859,7 @@ warning 6002: The table/view 'Wesal.dbo.User_View' does not have a primary key d
           <EntitySet Name="SaleMasterViews" EntityType="SaleModel.SaleMasterView" />
           <EntitySet Name="Shift_View" EntityType="SaleModel.Shift_View" />
           <EntitySet Name="User_View" EntityType="SaleModel.User_View" />
+          <EntitySet Name="ProjectMangerInfoes" EntityType="SaleModel.ProjectMangerInfo" />
         </EntityContainer>
         <EntityType Name="Branch">
           <Key>
@@ -921,6 +946,7 @@ warning 6002: The table/view 'Wesal.dbo.User_View' does not have a primary key d
           <Property Name="IsDeleted" Type="Int32" Nullable="false" />
           <Property Name="Shift_Code" Type="Int64" Nullable="false" />
           <Property Name="Emp_Code" Type="Int64" />
+          <Property Name="isUploaded" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="Item_History">
           <Key>
@@ -1018,6 +1044,7 @@ warning 6002: The table/view 'Wesal.dbo.User_View' does not have a primary key d
           <Property Name="Payment_Type" Type="Int64" Nullable="false" />
           <Property Name="UserIdTakeOrder" Type="Int64" Nullable="false" />
           <Property Name="Customer_Code" Type="Int64" Nullable="false" />
+          <Property Name="isUploaded" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="Sale">
           <Key>
@@ -1063,6 +1090,7 @@ warning 6002: The table/view 'Wesal.dbo.User_View' does not have a primary key d
           <Property Name="Shift_End_Notes" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Expenses" Type="Double" Nullable="false" />
           <Property Name="TotalSale" Type="Double" Nullable="false" />
+          <Property Name="isUploaded" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="Tab_Info">
           <Key>
@@ -1223,6 +1251,7 @@ warning 6002: The table/view 'Wesal.dbo.User_View' does not have a primary key d
             <PropertyRef Name="Id" />
             <PropertyRef Name="Date" />
             <PropertyRef Name="Shift_Code" />
+            <PropertyRef Name="isUploaded" />
           </Key>
           <Property Name="ExpensesName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -1237,6 +1266,7 @@ warning 6002: The table/view 'Wesal.dbo.User_View' does not have a primary key d
           <Property Name="Shift_Code" Type="Int64" Nullable="false" />
           <Property Name="Employee_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Emp_Code" Type="Int64" />
+          <Property Name="isUploaded" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="ItemCardView">
           <Key>
@@ -1326,6 +1356,7 @@ warning 6002: The table/view 'Wesal.dbo.User_View' does not have a primary key d
             <PropertyRef Name="Payment_Type" />
             <PropertyRef Name="UserIdTakeOrder" />
             <PropertyRef Name="Customer_Code" />
+            <PropertyRef Name="isUploaded" />
           </Key>
           <Property Name="UserCode" Type="Int64" Nullable="false" />
           <Property Name="Operation_Type_Id" Type="Int64" Nullable="false" />
@@ -1344,6 +1375,7 @@ warning 6002: The table/view 'Wesal.dbo.User_View' does not have a primary key d
           <Property Name="Payment_Type" Type="Int64" Nullable="false" />
           <Property Name="UserIdTakeOrder" Type="Int64" Nullable="false" />
           <Property Name="Customer_Code" Type="Int64" Nullable="false" />
+          <Property Name="isUploaded" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="Shift_View">
           <Key>
@@ -1357,6 +1389,7 @@ warning 6002: The table/view 'Wesal.dbo.User_View' does not have a primary key d
             <PropertyRef Name="User_Id" />
             <PropertyRef Name="Expenses" />
             <PropertyRef Name="TotalSale" />
+            <PropertyRef Name="isUploaded" />
           </Key>
           <Property Name="Shift_Code" Type="Int64" Nullable="false" />
           <Property Name="Shift_Start_Date" Type="DateTime" Nullable="false" Precision="3" />
@@ -1375,6 +1408,7 @@ warning 6002: The table/view 'Wesal.dbo.User_View' does not have a primary key d
           <Property Name="User_Id" Type="Int64" Nullable="false" />
           <Property Name="Expenses" Type="Double" Nullable="false" />
           <Property Name="TotalSale" Type="Double" Nullable="false" />
+          <Property Name="isUploaded" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="User_View">
           <Key>
@@ -1394,6 +1428,17 @@ warning 6002: The table/view 'Wesal.dbo.User_View' does not have a primary key d
           <Property Name="IsDeleted" Type="Int32" Nullable="false" />
           <Property Name="IsDeletedEmployee" Type="Int32" Nullable="false" />
           <Property Name="UserFlag" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProjectMangerInfo">
+          <Key>
+            <PropertyRef Name="MangerCode" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MangerCode" Type="Int64" Nullable="false" />
+          <Property Name="MangerName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ProjectId" Type="Int64" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="MangerMobile" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1482,6 +1527,7 @@ warning 6002: The table/view 'Wesal.dbo.User_View' does not have a primary key d
           <EntitySetMapping Name="ExpensesTransactions">
             <EntityTypeMapping TypeName="SaleModel.ExpensesTransaction">
               <MappingFragment StoreEntitySet="ExpensesTransaction">
+                <ScalarProperty Name="isUploaded" ColumnName="isUploaded" />
                 <ScalarProperty Name="Emp_Code" ColumnName="Emp_Code" />
                 <ScalarProperty Name="Shift_Code" ColumnName="Shift_Code" />
                 <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
@@ -1580,6 +1626,7 @@ warning 6002: The table/view 'Wesal.dbo.User_View' does not have a primary key d
           <EntitySetMapping Name="SaleMasters">
             <EntityTypeMapping TypeName="SaleModel.SaleMaster">
               <MappingFragment StoreEntitySet="SaleMaster">
+                <ScalarProperty Name="isUploaded" ColumnName="isUploaded" />
                 <ScalarProperty Name="Customer_Code" ColumnName="Customer_Code" />
                 <ScalarProperty Name="UserIdTakeOrder" ColumnName="UserIdTakeOrder" />
                 <ScalarProperty Name="Payment_Type" ColumnName="Payment_Type" />
@@ -1627,6 +1674,7 @@ warning 6002: The table/view 'Wesal.dbo.User_View' does not have a primary key d
           <EntitySetMapping Name="Shifts">
             <EntityTypeMapping TypeName="SaleModel.Shift">
               <MappingFragment StoreEntitySet="Shift">
+                <ScalarProperty Name="isUploaded" ColumnName="isUploaded" />
                 <ScalarProperty Name="TotalSale" ColumnName="TotalSale" />
                 <ScalarProperty Name="Expenses" ColumnName="Expenses" />
                 <ScalarProperty Name="Shift_End_Notes" ColumnName="Shift_End_Notes" />
@@ -1794,6 +1842,7 @@ warning 6002: The table/view 'Wesal.dbo.User_View' does not have a primary key d
           <EntitySetMapping Name="ExpensesViews">
             <EntityTypeMapping TypeName="SaleModel.ExpensesView">
               <MappingFragment StoreEntitySet="ExpensesView">
+                <ScalarProperty Name="isUploaded" ColumnName="isUploaded" />
                 <ScalarProperty Name="Emp_Code" ColumnName="Emp_Code" />
                 <ScalarProperty Name="Employee_Name" ColumnName="Employee_Name" />
                 <ScalarProperty Name="Shift_Code" ColumnName="Shift_Code" />
@@ -1862,6 +1911,7 @@ warning 6002: The table/view 'Wesal.dbo.User_View' does not have a primary key d
           <EntitySetMapping Name="SaleMasterViews">
             <EntityTypeMapping TypeName="SaleModel.SaleMasterView">
               <MappingFragment StoreEntitySet="SaleMasterView">
+                <ScalarProperty Name="isUploaded" ColumnName="isUploaded" />
                 <ScalarProperty Name="Customer_Code" ColumnName="Customer_Code" />
                 <ScalarProperty Name="UserIdTakeOrder" ColumnName="UserIdTakeOrder" />
                 <ScalarProperty Name="Payment_Type" ColumnName="Payment_Type" />
@@ -1885,6 +1935,7 @@ warning 6002: The table/view 'Wesal.dbo.User_View' does not have a primary key d
           <EntitySetMapping Name="Shift_View">
             <EntityTypeMapping TypeName="SaleModel.Shift_View">
               <MappingFragment StoreEntitySet="Shift_View">
+                <ScalarProperty Name="isUploaded" ColumnName="isUploaded" />
                 <ScalarProperty Name="TotalSale" ColumnName="TotalSale" />
                 <ScalarProperty Name="Expenses" ColumnName="Expenses" />
                 <ScalarProperty Name="User_Id" ColumnName="User_Id" />
@@ -1916,6 +1967,18 @@ warning 6002: The table/view 'Wesal.dbo.User_View' does not have a primary key d
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="Branches_Name" ColumnName="Branches_Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProjectMangerInfoes">
+            <EntityTypeMapping TypeName="SaleModel.ProjectMangerInfo">
+              <MappingFragment StoreEntitySet="ProjectMangerInfo">
+                <ScalarProperty Name="MangerMobile" ColumnName="MangerMobile" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+                <ScalarProperty Name="MangerName" ColumnName="MangerName" />
+                <ScalarProperty Name="MangerCode" ColumnName="MangerCode" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

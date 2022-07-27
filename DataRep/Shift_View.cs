@@ -31,5 +31,6 @@ namespace DataRep
         public long User_Id { get; set; }
         public double Expenses { get; set; }
         public double TotalSale { get; set; }
+        public bool isUploaded { get; set; }
     }
 }

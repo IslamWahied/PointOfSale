@@ -30,5 +30,6 @@ namespace DataRep
         public string Shift_End_Notes { get; set; }
         public double Expenses { get; set; }
         public double TotalSale { get; set; }
+        public bool isUploaded { get; set; }
     }
 }

@@ -58,6 +58,7 @@ namespace DataRep
         public virtual DbSet<SaleMasterView> SaleMasterViews { get; set; }
         public virtual DbSet<Shift_View> Shift_View { get; set; }
         public virtual DbSet<User_View> User_View { get; set; }
+        public virtual DbSet<ProjectMangerInfo> ProjectMangerInfoes { get; set; }
     
         public virtual int Delete_Trancation_By_User_Code(Nullable<long> user_Code, ObjectParameter message)
         {
