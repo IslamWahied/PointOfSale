@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="SaleModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="SaleModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Branches">
           <Key>
             <PropertyRef Name="Id" />
@@ -41,6 +41,7 @@
           <Property Name="SexTypeCode" Type="int" />
           <Property Name="Jop_Descrption" Type="nvarchar" MaxLength="50" />
           <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="CustomerFavourit" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Employee">
           <Key>
@@ -88,6 +89,7 @@
           <Property Name="Last_Modified_Date" Type="datetime" />
           <Property Name="IsDeleted" Type="int" Nullable="false" />
           <Property Name="Shift_Code" Type="bigint" Nullable="false" />
+          <Property Name="Emp_Code" Type="bigint" />
         </EntityType>
         <EntityType Name="Item_History">
           <Key>
@@ -146,7 +148,7 @@
           <Property Name="IsDeleted" Type="int" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'PointOfSale.dbo.Operation_Type' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'Wesal.dbo.Operation_Type' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Operation_Type">
           <Key>
             <PropertyRef Name="Id" />
@@ -155,7 +157,7 @@ warning 6002: The table/view 'PointOfSale.dbo.Operation_Type' does not have a pr
           <Property Name="Operation_Type_Name" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'PointOfSale.dbo.Payment_Type' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'Wesal.dbo.Payment_Type' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Payment_Type">
           <Key>
             <PropertyRef Name="Id" />
@@ -185,6 +187,8 @@ warning 6002: The table/view 'PointOfSale.dbo.Payment_Type' does not have a prim
           <Property Name="LastDateModif" Type="datetime" />
           <Property Name="CustomerCode" Type="bigint" Nullable="false" />
           <Property Name="shiftCode" Type="bigint" Nullable="false" />
+          <Property Name="LineSequence" Type="bigint" Nullable="false" />
+          <Property Name="isOile" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="SaleMaster">
           <Key>
@@ -248,6 +252,8 @@ warning 6002: The table/view 'PointOfSale.dbo.Payment_Type' does not have a prim
           <Property Name="Shift_Flag" Type="bit" Nullable="false" />
           <Property Name="Shift_Start_Notes" Type="nvarchar" MaxLength="50" />
           <Property Name="Shift_End_Notes" Type="nvarchar" MaxLength="50" />
+          <Property Name="Expenses" Type="float" Nullable="false" />
+          <Property Name="TotalSale" Type="float" Nullable="false" />
         </EntityType>
         <EntityType Name="Tab_Info">
           <Key>
@@ -315,7 +321,7 @@ warning 6002: The table/view 'PointOfSale.dbo.Payment_Type' does not have a prim
           <Property Name="Operation_Type_Id" Type="int" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'PointOfSale.dbo.Auth_View' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'Wesal.dbo.Auth_View' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Auth_View">
           <Key>
             <PropertyRef Name="Tab_Name" />
@@ -335,7 +341,7 @@ warning 6002: The table/view 'PointOfSale.dbo.Auth_View' does not have a primary
           <Property Name="Id" Type="bigint" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'PointOfSale.dbo.Customer_View' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'Wesal.dbo.Customer_View' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Customer_View">
           <Key>
             <PropertyRef Name="Customer_Code" />
@@ -356,9 +362,10 @@ warning 6002: The table/view 'PointOfSale.dbo.Customer_View' does not have a pri
           <Property Name="SexTypeCode" Type="int" />
           <Property Name="Jop_Descrption" Type="nvarchar" MaxLength="50" />
           <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="CustomerFavourit" Type="nvarchar(max)" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'PointOfSale.dbo.Employee_View' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'Wesal.dbo.Employee_View' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Employee_View">
           <Key>
             <PropertyRef Name="Branches_Name" />
@@ -387,7 +394,7 @@ warning 6002: The table/view 'PointOfSale.dbo.Employee_View' does not have a pri
           <Property Name="Jop_Code" Type="bigint" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'PointOfSale.dbo.ExpensesView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'Wesal.dbo.ExpensesView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="ExpensesView">
           <Key>
             <PropertyRef Name="UserName" />
@@ -409,9 +416,11 @@ warning 6002: The table/view 'PointOfSale.dbo.ExpensesView' does not have a prim
           <Property Name="Id" Type="int" Nullable="false" />
           <Property Name="Date" Type="datetime" Nullable="false" />
           <Property Name="Shift_Code" Type="bigint" Nullable="false" />
+          <Property Name="Employee_Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Emp_Code" Type="bigint" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'PointOfSale.dbo.ItemCardView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'Wesal.dbo.ItemCardView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="ItemCardView">
           <Key>
             <PropertyRef Name="ItemCode" />
@@ -438,7 +447,7 @@ warning 6002: The table/view 'PointOfSale.dbo.ItemCardView' does not have a prim
           <Property Name="Item_Count_InStoreg" Type="float" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'PointOfSale.dbo.SaleDetailView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'Wesal.dbo.SaleDetailView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="SaleDetailView">
           <Key>
             <PropertyRef Name="ItemCode" />
@@ -457,6 +466,8 @@ warning 6002: The table/view 'PointOfSale.dbo.SaleDetailView' does not have a pr
             <PropertyRef Name="Id" />
             <PropertyRef Name="CustomerCode" />
             <PropertyRef Name="shiftCode" />
+            <PropertyRef Name="LineSequence" />
+            <PropertyRef Name="isOile" />
           </Key>
           <Property Name="ItemCode" Type="bigint" Nullable="false" />
           <Property Name="CategoryCode" Type="bigint" />
@@ -480,9 +491,11 @@ warning 6002: The table/view 'PointOfSale.dbo.SaleDetailView' does not have a pr
           <Property Name="Id" Type="bigint" Nullable="false" />
           <Property Name="CustomerCode" Type="bigint" Nullable="false" />
           <Property Name="shiftCode" Type="bigint" Nullable="false" />
+          <Property Name="LineSequence" Type="bigint" Nullable="false" />
+          <Property Name="isOile" Type="bit" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'PointOfSale.dbo.SaleMasterView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'Wesal.dbo.SaleMasterView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="SaleMasterView">
           <Key>
             <PropertyRef Name="UserCode" />
@@ -508,7 +521,7 @@ warning 6002: The table/view 'PointOfSale.dbo.SaleMasterView' does not have a pr
           <Property Name="Discount" Type="float" Nullable="false" />
           <Property Name="QtyTotal" Type="float" Nullable="false" />
           <Property Name="LastDateModif" Type="datetime" />
-          <Property Name="EntryDate" Type="date" Nullable="false" />
+          <Property Name="EntryDate" Type="datetime" Nullable="false" />
           <Property Name="FinalTotal" Type="float" Nullable="false" />
           <Property Name="IsDeleted" Type="int" Nullable="false" />
           <Property Name="UserName" Type="nvarchar" MaxLength="50" Nullable="false" />
@@ -520,7 +533,7 @@ warning 6002: The table/view 'PointOfSale.dbo.SaleMasterView' does not have a pr
           <Property Name="Customer_Code" Type="bigint" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'PointOfSale.dbo.Shift_View' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'Wesal.dbo.Shift_View' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Shift_View">
           <Key>
             <PropertyRef Name="Shift_Code" />
@@ -531,6 +544,8 @@ warning 6002: The table/view 'PointOfSale.dbo.Shift_View' does not have a primar
             <PropertyRef Name="UserName" />
             <PropertyRef Name="Emp_Code" />
             <PropertyRef Name="User_Id" />
+            <PropertyRef Name="Expenses" />
+            <PropertyRef Name="TotalSale" />
           </Key>
           <Property Name="Shift_Code" Type="bigint" Nullable="false" />
           <Property Name="Shift_Start_Date" Type="datetime" Nullable="false" />
@@ -547,9 +562,11 @@ warning 6002: The table/view 'PointOfSale.dbo.Shift_View' does not have a primar
           <Property Name="UserName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Emp_Code" Type="bigint" Nullable="false" />
           <Property Name="User_Id" Type="bigint" Nullable="false" />
+          <Property Name="Expenses" Type="float" Nullable="false" />
+          <Property Name="TotalSale" Type="float" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'PointOfSale.dbo.User_View' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'Wesal.dbo.User_View' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="User_View">
           <Key>
             <PropertyRef Name="Branches_Name" />
@@ -635,7 +652,8 @@ warning 6002: The table/view 'PointOfSale.dbo.User_View' does not have a primary
     [Customer_View].[National_Id] AS [National_Id], 
     [Customer_View].[SexTypeCode] AS [SexTypeCode], 
     [Customer_View].[Jop_Descrption] AS [Jop_Descrption], 
-    [Customer_View].[Email] AS [Email]
+    [Customer_View].[Email] AS [Email], 
+    [Customer_View].[CustomerFavourit] AS [CustomerFavourit]
     FROM [dbo].[Customer_View] AS [Customer_View]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="Employee_View" EntityType="Self.Employee_View" store:Type="Views" store:Schema="dbo">
@@ -671,7 +689,9 @@ warning 6002: The table/view 'PointOfSale.dbo.User_View' does not have a primary
     [ExpensesView].[ExpensesCode] AS [ExpensesCode], 
     [ExpensesView].[Id] AS [Id], 
     [ExpensesView].[Date] AS [Date], 
-    [ExpensesView].[Shift_Code] AS [Shift_Code]
+    [ExpensesView].[Shift_Code] AS [Shift_Code], 
+    [ExpensesView].[Employee_Name] AS [Employee_Name], 
+    [ExpensesView].[Emp_Code] AS [Emp_Code]
     FROM [dbo].[ExpensesView] AS [ExpensesView]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="ItemCardView" EntityType="Self.ItemCardView" store:Type="Views" store:Schema="dbo">
@@ -714,7 +734,9 @@ warning 6002: The table/view 'PointOfSale.dbo.User_View' does not have a primary
     [SaleDetailView].[Emp_Code] AS [Emp_Code], 
     [SaleDetailView].[Id] AS [Id], 
     [SaleDetailView].[CustomerCode] AS [CustomerCode], 
-    [SaleDetailView].[shiftCode] AS [shiftCode]
+    [SaleDetailView].[shiftCode] AS [shiftCode], 
+    [SaleDetailView].[LineSequence] AS [LineSequence], 
+    [SaleDetailView].[isOile] AS [isOile]
     FROM [dbo].[SaleDetailView] AS [SaleDetailView]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="SaleMasterView" EntityType="Self.SaleMasterView" store:Type="Views" store:Schema="dbo">
@@ -754,7 +776,9 @@ warning 6002: The table/view 'PointOfSale.dbo.User_View' does not have a primary
     [Shift_View].[Shift_End_Notes] AS [Shift_End_Notes], 
     [Shift_View].[UserName] AS [UserName], 
     [Shift_View].[Emp_Code] AS [Emp_Code], 
-    [Shift_View].[User_Id] AS [User_Id]
+    [Shift_View].[User_Id] AS [User_Id], 
+    [Shift_View].[Expenses] AS [Expenses], 
+    [Shift_View].[TotalSale] AS [TotalSale]
     FROM [dbo].[Shift_View] AS [Shift_View]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="User_View" EntityType="Self.User_View" store:Type="Views" store:Schema="dbo">
@@ -770,18 +794,55 @@ warning 6002: The table/view 'PointOfSale.dbo.User_View' does not have a primary
     FROM [dbo].[User_View] AS [User_View]</DefiningQuery>
           </EntitySet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="SaleModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="SaleEntities" annotation:LazyLoadingEnabled="true">
+          <FunctionImport Name="Delete_Trancation_By_User_Code">
+            <Parameter Name="User_Code" Mode="In" Type="Int64" />
+            <Parameter Name="Message" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="TruncateTables" />
+          <EntitySet Name="Branches" EntityType="SaleModel.Branch" />
+          <EntitySet Name="Categories" EntityType="SaleModel.Category" />
+          <EntitySet Name="Customer_Info" EntityType="SaleModel.Customer_Info" />
+          <EntitySet Name="Employees" EntityType="SaleModel.Employee" />
+          <EntitySet Name="Expenses" EntityType="SaleModel.Expens" />
+          <EntitySet Name="ExpensesTransactions" EntityType="SaleModel.ExpensesTransaction" />
+          <EntitySet Name="Item_History" EntityType="SaleModel.Item_History" />
+          <EntitySet Name="Item_History_transaction" EntityType="SaleModel.Item_History_transaction" />
+          <EntitySet Name="ItemCards" EntityType="SaleModel.ItemCard" />
+          <EntitySet Name="Jops" EntityType="SaleModel.Jop" />
+          <EntitySet Name="SaleDetails" EntityType="SaleModel.SaleDetail" />
+          <EntitySet Name="SaleMasters" EntityType="SaleModel.SaleMaster" />
+          <EntitySet Name="Sales" EntityType="SaleModel.Sale" />
+          <EntitySet Name="SexTypes" EntityType="SaleModel.SexType" />
+          <EntitySet Name="Shifts" EntityType="SaleModel.Shift" />
+          <EntitySet Name="Tab_Info" EntityType="SaleModel.Tab_Info" />
+          <EntitySet Name="UnitCards" EntityType="SaleModel.UnitCard" />
+          <EntitySet Name="Users" EntityType="SaleModel.User" />
+          <EntitySet Name="User_Auth" EntityType="SaleModel.User_Auth" />
+          <EntitySet Name="UserEvents" EntityType="SaleModel.UserEvent" />
+          <EntitySet Name="Operation_Type" EntityType="SaleModel.Operation_Type" />
+          <EntitySet Name="Payment_Type" EntityType="SaleModel.Payment_Type" />
+          <EntitySet Name="Auth_View" EntityType="SaleModel.Auth_View" />
+          <EntitySet Name="Customer_View" EntityType="SaleModel.Customer_View" />
+          <EntitySet Name="Employee_View" EntityType="SaleModel.Employee_View" />
+          <EntitySet Name="ExpensesViews" EntityType="SaleModel.ExpensesView" />
+          <EntitySet Name="ItemCardViews" EntityType="SaleModel.ItemCardView" />
+          <EntitySet Name="SaleDetailViews" EntityType="SaleModel.SaleDetailView" />
+          <EntitySet Name="SaleMasterViews" EntityType="SaleModel.SaleMasterView" />
+          <EntitySet Name="Shift_View" EntityType="SaleModel.Shift_View" />
+          <EntitySet Name="User_View" EntityType="SaleModel.User_View" />
+        </EntityContainer>
         <EntityType Name="Branch">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Branches_Code" Type="Int64" Nullable="false" />
-          <Property Name="Branches_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Branches_Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="IsDeleted" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="Category">
@@ -799,7 +860,7 @@ warning 6002: The table/view 'PointOfSale.dbo.User_View' does not have a primary
           </Key>
           <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Customer_Code" Type="Int64" Nullable="false" />
-          <Property Name="Customer_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Customer_Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Customer_Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Customer_Address" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="Created_Date" Type="DateTime" Precision="3" />
@@ -811,6 +872,7 @@ warning 6002: The table/view 'PointOfSale.dbo.User_View' does not have a primary
           <Property Name="SexTypeCode" Type="Int32" />
           <Property Name="Jop_Descrption" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CustomerFavourit" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Employee">
           <Key>
@@ -858,6 +920,7 @@ warning 6002: The table/view 'PointOfSale.dbo.User_View' does not have a primary
           <Property Name="Last_Modified_Date" Type="DateTime" Precision="3" />
           <Property Name="IsDeleted" Type="Int32" Nullable="false" />
           <Property Name="Shift_Code" Type="Int64" Nullable="false" />
+          <Property Name="Emp_Code" Type="Int64" />
         </EntityType>
         <EntityType Name="Item_History">
           <Key>
@@ -933,6 +996,8 @@ warning 6002: The table/view 'PointOfSale.dbo.User_View' does not have a primary
           <Property Name="LastDateModif" Type="DateTime" Precision="3" />
           <Property Name="CustomerCode" Type="Int64" Nullable="false" />
           <Property Name="shiftCode" Type="Int64" Nullable="false" />
+          <Property Name="LineSequence" Type="Int64" Nullable="false" />
+          <Property Name="isOile" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="SaleMaster">
           <Key>
@@ -960,7 +1025,7 @@ warning 6002: The table/view 'PointOfSale.dbo.User_View' does not have a primary
           </Key>
           <Property Name="Id" Type="Int64" Nullable="false" />
           <Property Name="Sales_Code" Type="Int64" Nullable="false" />
-          <Property Name="Sales_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Sales_Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Sales_Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Sales_Address" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="Sales_NationalID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -996,6 +1061,8 @@ warning 6002: The table/view 'PointOfSale.dbo.User_View' does not have a primary
           <Property Name="Shift_Flag" Type="Boolean" Nullable="false" />
           <Property Name="Shift_Start_Notes" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Shift_End_Notes" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Expenses" Type="Double" Nullable="false" />
+          <Property Name="TotalSale" Type="Double" Nullable="false" />
         </EntityType>
         <EntityType Name="Tab_Info">
           <Key>
@@ -1003,8 +1070,8 @@ warning 6002: The table/view 'PointOfSale.dbo.User_View' does not have a primary
           </Key>
           <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Tab_Code" Type="Int64" Nullable="false" />
-          <Property Name="Tab_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Tab_Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Tab_Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Tab_Description" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Created_Date" Type="DateTime" Precision="3" />
           <Property Name="Last_Modified_Date" Type="DateTime" Precision="3" />
           <Property Name="Last_Modified_User" Type="Int64" />
@@ -1017,7 +1084,7 @@ warning 6002: The table/view 'PointOfSale.dbo.User_View' does not have a primary
           </Key>
           <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="UnitCode" Type="Int64" Nullable="false" />
-          <Property Name="UnitName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UnitName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="IsDeleted" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="User">
@@ -1026,8 +1093,8 @@ warning 6002: The table/view 'PointOfSale.dbo.User_View' does not have a primary
           </Key>
           <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Emp_Code" Type="Int64" Nullable="false" />
-          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Password" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="Created_Date" Type="DateTime" Precision="3" />
           <Property Name="Last_Modified_Date" Type="DateTime" Precision="3" />
           <Property Name="Last_Modified_User" Type="Int64" Nullable="false" />
@@ -1090,7 +1157,7 @@ warning 6002: The table/view 'PointOfSale.dbo.User_View' does not have a primary
             <PropertyRef Name="Tab_Info_Code" />
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Tab_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Tab_Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Tab_IsDeleted" Type="Int32" Nullable="false" />
           <Property Name="User_IsDeleted" Type="Int32" Nullable="false" />
           <Property Name="User_Code" Type="Int64" Nullable="false" />
@@ -1106,7 +1173,7 @@ warning 6002: The table/view 'PointOfSale.dbo.User_View' does not have a primary
           </Key>
           <Property Name="SexTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Customer_Code" Type="Int64" Nullable="false" />
-          <Property Name="Customer_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Customer_Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Customer_Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Customer_Address" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="Created_Date" Type="DateTime" Precision="3" />
@@ -1118,6 +1185,7 @@ warning 6002: The table/view 'PointOfSale.dbo.User_View' does not have a primary
           <Property Name="SexTypeCode" Type="Int32" />
           <Property Name="Jop_Descrption" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CustomerFavourit" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Employee_View">
           <Key>
@@ -1129,7 +1197,7 @@ warning 6002: The table/view 'PointOfSale.dbo.User_View' does not have a primary
             <PropertyRef Name="Jop_Code" />
           </Key>
           <Property Name="SexTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Branches_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Branches_Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="JobName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Employee_Code" Type="Int64" Nullable="false" />
           <Property Name="Employee_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -1157,7 +1225,7 @@ warning 6002: The table/view 'PointOfSale.dbo.User_View' does not have a primary
             <PropertyRef Name="Shift_Code" />
           </Key>
           <Property Name="ExpensesName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="IsDeleted" Type="Int32" Nullable="false" />
           <Property Name="Last_Modified_Date" Type="DateTime" Precision="3" />
           <Property Name="Last_Modified_By" Type="Int64" />
@@ -1167,6 +1235,8 @@ warning 6002: The table/view 'PointOfSale.dbo.User_View' does not have a primary
           <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Shift_Code" Type="Int64" Nullable="false" />
+          <Property Name="Employee_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Emp_Code" Type="Int64" />
         </EntityType>
         <EntityType Name="ItemCardView">
           <Key>
@@ -1181,7 +1251,7 @@ warning 6002: The table/view 'PointOfSale.dbo.User_View' does not have a primary
           </Key>
           <Property Name="ItemCode" Type="Int64" Nullable="false" />
           <Property Name="CategoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="UnitName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UnitName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="ParCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Price" Type="Double" Nullable="false" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -1211,6 +1281,8 @@ warning 6002: The table/view 'PointOfSale.dbo.User_View' does not have a primary
             <PropertyRef Name="Id" />
             <PropertyRef Name="CustomerCode" />
             <PropertyRef Name="shiftCode" />
+            <PropertyRef Name="isOile" />
+            <PropertyRef Name="LineSequence" />
           </Key>
           <Property Name="ItemCode" Type="Int64" Nullable="false" />
           <Property Name="CategoryCode" Type="Int64" />
@@ -1221,7 +1293,7 @@ warning 6002: The table/view 'PointOfSale.dbo.User_View' does not have a primary
           <Property Name="EntryDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Price" Type="Double" Nullable="false" />
           <Property Name="IsDeleted" Type="Int32" Nullable="false" />
-          <Property Name="UnitName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UnitName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="UnitCode" Type="Int64" />
           <Property Name="SaleMasterCode" Type="Int64" Nullable="false" />
           <Property Name="Operation_Type_Id" Type="Int64" Nullable="false" />
@@ -1229,11 +1301,13 @@ warning 6002: The table/view 'PointOfSale.dbo.User_View' does not have a primary
           <Property Name="CategoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="AddItem" Type="Boolean" />
           <Property Name="Item_Count_InStoreg" Type="Double" Nullable="false" />
-          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Emp_Code" Type="Int64" Nullable="false" />
           <Property Name="Id" Type="Int64" Nullable="false" />
           <Property Name="CustomerCode" Type="Int64" Nullable="false" />
           <Property Name="shiftCode" Type="Int64" Nullable="false" />
+          <Property Name="isOile" Type="Boolean" Nullable="false" />
+          <Property Name="LineSequence" Type="Int64" Nullable="false" />
         </EntityType>
         <EntityType Name="SaleMasterView">
           <Key>
@@ -1260,10 +1334,10 @@ warning 6002: The table/view 'PointOfSale.dbo.User_View' does not have a primary
           <Property Name="Discount" Type="Double" Nullable="false" />
           <Property Name="QtyTotal" Type="Double" Nullable="false" />
           <Property Name="LastDateModif" Type="DateTime" Precision="3" />
-          <Property Name="EntryDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="EntryDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="FinalTotal" Type="Double" Nullable="false" />
           <Property Name="IsDeleted" Type="Int32" Nullable="false" />
-          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Emp_Code" Type="Int64" Nullable="false" />
           <Property Name="Shift_Code" Type="Int64" Nullable="false" />
           <Property Name="PaymentType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -1281,6 +1355,8 @@ warning 6002: The table/view 'PointOfSale.dbo.User_View' does not have a primary
             <PropertyRef Name="UserName" />
             <PropertyRef Name="Emp_Code" />
             <PropertyRef Name="User_Id" />
+            <PropertyRef Name="Expenses" />
+            <PropertyRef Name="TotalSale" />
           </Key>
           <Property Name="Shift_Code" Type="Int64" Nullable="false" />
           <Property Name="Shift_Start_Date" Type="DateTime" Nullable="false" Precision="3" />
@@ -1294,9 +1370,11 @@ warning 6002: The table/view 'PointOfSale.dbo.User_View' does not have a primary
           <Property Name="Shift_Flag" Type="Boolean" Nullable="false" />
           <Property Name="Shift_Start_Notes" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Shift_End_Notes" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Emp_Code" Type="Int64" Nullable="false" />
           <Property Name="User_Id" Type="Int64" Nullable="false" />
+          <Property Name="Expenses" Type="Double" Nullable="false" />
+          <Property Name="TotalSale" Type="Double" Nullable="false" />
         </EntityType>
         <EntityType Name="User_View">
           <Key>
@@ -1308,564 +1386,539 @@ warning 6002: The table/view 'PointOfSale.dbo.User_View' does not have a primary
             <PropertyRef Name="IsDeletedEmployee" />
             <PropertyRef Name="UserFlag" />
           </Key>
-          <Property Name="Branches_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Password" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Branches_Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Employee_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Employee_Code" Type="Int64" Nullable="false" />
           <Property Name="IsDeleted" Type="Int32" Nullable="false" />
           <Property Name="IsDeletedEmployee" Type="Int32" Nullable="false" />
           <Property Name="UserFlag" Type="Boolean" Nullable="false" />
         </EntityType>
-        <EntityContainer Name="SaleEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Branches" EntityType="Self.Branch" />
-          <EntitySet Name="Categories" EntityType="Self.Category" />
-          <EntitySet Name="Customer_Info" EntityType="Self.Customer_Info" />
-          <EntitySet Name="Employees" EntityType="Self.Employee" />
-          <EntitySet Name="Expenses" EntityType="Self.Expens" />
-          <EntitySet Name="ExpensesTransactions" EntityType="Self.ExpensesTransaction" />
-          <EntitySet Name="Item_History" EntityType="Self.Item_History" />
-          <EntitySet Name="Item_History_transaction" EntityType="Self.Item_History_transaction" />
-          <EntitySet Name="ItemCards" EntityType="Self.ItemCard" />
-          <EntitySet Name="Jops" EntityType="Self.Jop" />
-          <EntitySet Name="SaleDetails" EntityType="Self.SaleDetail" />
-          <EntitySet Name="SaleMasters" EntityType="Self.SaleMaster" />
-          <EntitySet Name="Sales" EntityType="Self.Sale" />
-          <EntitySet Name="SexTypes" EntityType="Self.SexType" />
-          <EntitySet Name="Shifts" EntityType="Self.Shift" />
-          <EntitySet Name="Tab_Info" EntityType="Self.Tab_Info" />
-          <EntitySet Name="UnitCards" EntityType="Self.UnitCard" />
-          <EntitySet Name="Users" EntityType="Self.User" />
-          <EntitySet Name="User_Auth" EntityType="Self.User_Auth" />
-          <EntitySet Name="UserEvents" EntityType="Self.UserEvent" />
-          <EntitySet Name="Operation_Type" EntityType="Self.Operation_Type" />
-          <EntitySet Name="Payment_Type" EntityType="Self.Payment_Type" />
-          <EntitySet Name="Auth_View" EntityType="Self.Auth_View" />
-          <EntitySet Name="Customer_View" EntityType="Self.Customer_View" />
-          <EntitySet Name="Employee_View" EntityType="Self.Employee_View" />
-          <EntitySet Name="ExpensesViews" EntityType="Self.ExpensesView" />
-          <EntitySet Name="ItemCardViews" EntityType="Self.ItemCardView" />
-          <EntitySet Name="SaleDetailViews" EntityType="Self.SaleDetailView" />
-          <EntitySet Name="SaleMasterViews" EntityType="Self.SaleMasterView" />
-          <EntitySet Name="Shift_View" EntityType="Self.Shift_View" />
-          <EntitySet Name="User_View" EntityType="Self.User_View" />
-          <FunctionImport Name="Delete_Trancation_By_User_Code">
-            <Parameter Name="User_Code" Mode="In" Type="Int64" />
-            <Parameter Name="Message" Mode="InOut" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="TruncateTables" />
-        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="SaleModelStoreContainer" CdmEntityContainer="SaleEntities">
+          <FunctionImportMapping FunctionImportName="Delete_Trancation_By_User_Code" FunctionName="SaleModel.Store.Delete_Trancation_By_User_Code" />
+          <FunctionImportMapping FunctionImportName="TruncateTables" FunctionName="SaleModel.Store.TruncateTables" />
           <EntitySetMapping Name="Branches">
             <EntityTypeMapping TypeName="SaleModel.Branch">
               <MappingFragment StoreEntitySet="Branches">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Branches_Code" ColumnName="Branches_Code" />
-                <ScalarProperty Name="Branches_Name" ColumnName="Branches_Name" />
                 <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="Branches_Name" ColumnName="Branches_Name" />
+                <ScalarProperty Name="Branches_Code" ColumnName="Branches_Code" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Categories">
             <EntityTypeMapping TypeName="SaleModel.Category">
               <MappingFragment StoreEntitySet="Category">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="CategoryCode" ColumnName="CategoryCode" />
-                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
                 <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+                <ScalarProperty Name="CategoryCode" ColumnName="CategoryCode" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Customer_Info">
             <EntityTypeMapping TypeName="SaleModel.Customer_Info">
               <MappingFragment StoreEntitySet="Customer_Info">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Customer_Code" ColumnName="Customer_Code" />
-                <ScalarProperty Name="Customer_Name" ColumnName="Customer_Name" />
-                <ScalarProperty Name="Customer_Phone" ColumnName="Customer_Phone" />
-                <ScalarProperty Name="Customer_Address" ColumnName="Customer_Address" />
-                <ScalarProperty Name="Created_Date" ColumnName="Created_Date" />
-                <ScalarProperty Name="Last_Modified_Date" ColumnName="Last_Modified_Date" />
-                <ScalarProperty Name="Last_Modified_User" ColumnName="Last_Modified_User" />
-                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
-                <ScalarProperty Name="Customer_Notes" ColumnName="Customer_Notes" />
-                <ScalarProperty Name="National_Id" ColumnName="National_Id" />
-                <ScalarProperty Name="SexTypeCode" ColumnName="SexTypeCode" />
-                <ScalarProperty Name="Jop_Descrption" ColumnName="Jop_Descrption" />
+                <ScalarProperty Name="CustomerFavourit" ColumnName="CustomerFavourit" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Jop_Descrption" ColumnName="Jop_Descrption" />
+                <ScalarProperty Name="SexTypeCode" ColumnName="SexTypeCode" />
+                <ScalarProperty Name="National_Id" ColumnName="National_Id" />
+                <ScalarProperty Name="Customer_Notes" ColumnName="Customer_Notes" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="Last_Modified_User" ColumnName="Last_Modified_User" />
+                <ScalarProperty Name="Last_Modified_Date" ColumnName="Last_Modified_Date" />
+                <ScalarProperty Name="Created_Date" ColumnName="Created_Date" />
+                <ScalarProperty Name="Customer_Address" ColumnName="Customer_Address" />
+                <ScalarProperty Name="Customer_Phone" ColumnName="Customer_Phone" />
+                <ScalarProperty Name="Customer_Name" ColumnName="Customer_Name" />
+                <ScalarProperty Name="Customer_Code" ColumnName="Customer_Code" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Employees">
             <EntityTypeMapping TypeName="SaleModel.Employee">
               <MappingFragment StoreEntitySet="Employee">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Employee_Code" ColumnName="Employee_Code" />
-                <ScalarProperty Name="Employee_Name" ColumnName="Employee_Name" />
-                <ScalarProperty Name="Employee_National_Id" ColumnName="Employee_National_Id" />
-                <ScalarProperty Name="Employee_Address" ColumnName="Employee_Address" />
-                <ScalarProperty Name="Employee_Mobile_1" ColumnName="Employee_Mobile_1" />
-                <ScalarProperty Name="Employee_Mobile_2" ColumnName="Employee_Mobile_2" />
-                <ScalarProperty Name="Employee_Email" ColumnName="Employee_Email" />
-                <ScalarProperty Name="Jop_Code" ColumnName="Jop_Code" />
-                <ScalarProperty Name="Branch_ID" ColumnName="Branch_ID" />
-                <ScalarProperty Name="img_Url" ColumnName="img_Url" />
-                <ScalarProperty Name="Employee_Start_Jop" ColumnName="Employee_Start_Jop" />
-                <ScalarProperty Name="Employee_End_Jop" ColumnName="Employee_End_Jop" />
-                <ScalarProperty Name="Employee_Notes" ColumnName="Employee_Notes" />
-                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
-                <ScalarProperty Name="Created_Date" ColumnName="Created_Date" />
-                <ScalarProperty Name="Last_Modified_Date" ColumnName="Last_Modified_Date" />
-                <ScalarProperty Name="Last_Modified_User" ColumnName="Last_Modified_User" />
                 <ScalarProperty Name="SexTypeCode" ColumnName="SexTypeCode" />
+                <ScalarProperty Name="Last_Modified_User" ColumnName="Last_Modified_User" />
+                <ScalarProperty Name="Last_Modified_Date" ColumnName="Last_Modified_Date" />
+                <ScalarProperty Name="Created_Date" ColumnName="Created_Date" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="Employee_Notes" ColumnName="Employee_Notes" />
+                <ScalarProperty Name="Employee_End_Jop" ColumnName="Employee_End_Jop" />
+                <ScalarProperty Name="Employee_Start_Jop" ColumnName="Employee_Start_Jop" />
+                <ScalarProperty Name="img_Url" ColumnName="img_Url" />
+                <ScalarProperty Name="Branch_ID" ColumnName="Branch_ID" />
+                <ScalarProperty Name="Jop_Code" ColumnName="Jop_Code" />
+                <ScalarProperty Name="Employee_Email" ColumnName="Employee_Email" />
+                <ScalarProperty Name="Employee_Mobile_2" ColumnName="Employee_Mobile_2" />
+                <ScalarProperty Name="Employee_Mobile_1" ColumnName="Employee_Mobile_1" />
+                <ScalarProperty Name="Employee_Address" ColumnName="Employee_Address" />
+                <ScalarProperty Name="Employee_National_Id" ColumnName="Employee_National_Id" />
+                <ScalarProperty Name="Employee_Name" ColumnName="Employee_Name" />
+                <ScalarProperty Name="Employee_Code" ColumnName="Employee_Code" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Expenses">
             <EntityTypeMapping TypeName="SaleModel.Expens">
               <MappingFragment StoreEntitySet="Expenses">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="ExpensesName" ColumnName="ExpensesName" />
-                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
                 <ScalarProperty Name="ExpensesCode" ColumnName="ExpensesCode" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="ExpensesName" ColumnName="ExpensesName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ExpensesTransactions">
             <EntityTypeMapping TypeName="SaleModel.ExpensesTransaction">
               <MappingFragment StoreEntitySet="ExpensesTransaction">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="ExpensesCode" ColumnName="ExpensesCode" />
-                <ScalarProperty Name="ExpensesQT" ColumnName="ExpensesQT" />
-                <ScalarProperty Name="ExpensesNotes" ColumnName="ExpensesNotes" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
-                <ScalarProperty Name="Last_Modified_By" ColumnName="Last_Modified_By" />
-                <ScalarProperty Name="Last_Modified_Date" ColumnName="Last_Modified_Date" />
-                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="Emp_Code" ColumnName="Emp_Code" />
                 <ScalarProperty Name="Shift_Code" ColumnName="Shift_Code" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="Last_Modified_Date" ColumnName="Last_Modified_Date" />
+                <ScalarProperty Name="Last_Modified_By" ColumnName="Last_Modified_By" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="ExpensesNotes" ColumnName="ExpensesNotes" />
+                <ScalarProperty Name="ExpensesQT" ColumnName="ExpensesQT" />
+                <ScalarProperty Name="ExpensesCode" ColumnName="ExpensesCode" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Item_History">
             <EntityTypeMapping TypeName="SaleModel.Item_History">
               <MappingFragment StoreEntitySet="Item_History">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Item_Id" ColumnName="Item_Id" />
-                <ScalarProperty Name="Qty" ColumnName="Qty" />
-                <ScalarProperty Name="Price_Buy" ColumnName="Price_Buy" />
-                <ScalarProperty Name="Price_Sale" ColumnName="Price_Sale" />
-                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
-                <ScalarProperty Name="IsFinshed" ColumnName="IsFinshed" />
-                <ScalarProperty Name="Sale_Master_Code" ColumnName="Sale_Master_Code" />
-                <ScalarProperty Name="Is_Used" ColumnName="Is_Used" />
                 <ScalarProperty Name="Current_Qty_Now" ColumnName="Current_Qty_Now" />
+                <ScalarProperty Name="Is_Used" ColumnName="Is_Used" />
+                <ScalarProperty Name="Sale_Master_Code" ColumnName="Sale_Master_Code" />
+                <ScalarProperty Name="IsFinshed" ColumnName="IsFinshed" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="Price_Sale" ColumnName="Price_Sale" />
+                <ScalarProperty Name="Price_Buy" ColumnName="Price_Buy" />
+                <ScalarProperty Name="Qty" ColumnName="Qty" />
+                <ScalarProperty Name="Item_Id" ColumnName="Item_Id" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Item_History_transaction">
             <EntityTypeMapping TypeName="SaleModel.Item_History_transaction">
               <MappingFragment StoreEntitySet="Item_History_transaction">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="SaleMasterCode" ColumnName="SaleMasterCode" />
-                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
-                <ScalarProperty Name="Item_History_Id" ColumnName="Item_History_Id" />
-                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
-                <ScalarProperty Name="Trans_In" ColumnName="Trans_In" />
-                <ScalarProperty Name="Trans_Out" ColumnName="Trans_Out" />
-                <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
-                <ScalarProperty Name="Item_Id" ColumnName="Item_Id" />
                 <ScalarProperty Name="shiftCode" ColumnName="shiftCode" />
+                <ScalarProperty Name="Item_Id" ColumnName="Item_Id" />
+                <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+                <ScalarProperty Name="Trans_Out" ColumnName="Trans_Out" />
+                <ScalarProperty Name="Trans_In" ColumnName="Trans_In" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="Item_History_Id" ColumnName="Item_History_Id" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="SaleMasterCode" ColumnName="SaleMasterCode" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ItemCards">
             <EntityTypeMapping TypeName="SaleModel.ItemCard">
               <MappingFragment StoreEntitySet="ItemCard">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="ItemCode" ColumnName="ItemCode" />
-                <ScalarProperty Name="CategoryCode" ColumnName="CategoryCode" />
-                <ScalarProperty Name="ParCode" ColumnName="ParCode" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="UnitCode" ColumnName="UnitCode" />
-                <ScalarProperty Name="Item_Risk_limit" ColumnName="Item_Risk_limit" />
-                <ScalarProperty Name="PriceBuy" ColumnName="PriceBuy" />
-                <ScalarProperty Name="Price" ColumnName="Price" />
-                <ScalarProperty Name="AddItem" ColumnName="AddItem" />
-                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
                 <ScalarProperty Name="Item_Count_InStoreg" ColumnName="Item_Count_InStoreg" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="AddItem" ColumnName="AddItem" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="PriceBuy" ColumnName="PriceBuy" />
+                <ScalarProperty Name="Item_Risk_limit" ColumnName="Item_Risk_limit" />
+                <ScalarProperty Name="UnitCode" ColumnName="UnitCode" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ParCode" ColumnName="ParCode" />
+                <ScalarProperty Name="CategoryCode" ColumnName="CategoryCode" />
+                <ScalarProperty Name="ItemCode" ColumnName="ItemCode" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Jops">
             <EntityTypeMapping TypeName="SaleModel.Jop">
               <MappingFragment StoreEntitySet="Jops">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="JopCode" ColumnName="JopCode" />
-                <ScalarProperty Name="JobName" ColumnName="JobName" />
                 <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="JobName" ColumnName="JobName" />
+                <ScalarProperty Name="JopCode" ColumnName="JopCode" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="SaleDetails">
             <EntityTypeMapping TypeName="SaleModel.SaleDetail">
               <MappingFragment StoreEntitySet="SaleDetail">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="SaleMasterCode" ColumnName="SaleMasterCode" />
-                <ScalarProperty Name="SaleDetailCode" ColumnName="SaleDetailCode" />
-                <ScalarProperty Name="ItemCode" ColumnName="ItemCode" />
-                <ScalarProperty Name="Price" ColumnName="Price" />
-                <ScalarProperty Name="Qty" ColumnName="Qty" />
-                <ScalarProperty Name="Total" ColumnName="Total" />
-                <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
-                <ScalarProperty Name="Operation_Type_Id" ColumnName="Operation_Type_Id" />
-                <ScalarProperty Name="LastDateModif" ColumnName="LastDateModif" />
-                <ScalarProperty Name="CustomerCode" ColumnName="CustomerCode" />
+                <ScalarProperty Name="isOile" ColumnName="isOile" />
+                <ScalarProperty Name="LineSequence" ColumnName="LineSequence" />
                 <ScalarProperty Name="shiftCode" ColumnName="shiftCode" />
+                <ScalarProperty Name="CustomerCode" ColumnName="CustomerCode" />
+                <ScalarProperty Name="LastDateModif" ColumnName="LastDateModif" />
+                <ScalarProperty Name="Operation_Type_Id" ColumnName="Operation_Type_Id" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="Qty" ColumnName="Qty" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="ItemCode" ColumnName="ItemCode" />
+                <ScalarProperty Name="SaleDetailCode" ColumnName="SaleDetailCode" />
+                <ScalarProperty Name="SaleMasterCode" ColumnName="SaleMasterCode" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="SaleMasters">
             <EntityTypeMapping TypeName="SaleModel.SaleMaster">
               <MappingFragment StoreEntitySet="SaleMaster">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="UserCode" ColumnName="UserCode" />
-                <ScalarProperty Name="Operation_Type_Id" ColumnName="Operation_Type_Id" />
-                <ScalarProperty Name="SaleMasterCode" ColumnName="SaleMasterCode" />
-                <ScalarProperty Name="QtyTotal" ColumnName="QtyTotal" />
-                <ScalarProperty Name="TotalBeforDiscount" ColumnName="TotalBeforDiscount" />
-                <ScalarProperty Name="Discount" ColumnName="Discount" />
-                <ScalarProperty Name="FinalTotal" ColumnName="FinalTotal" />
-                <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
-                <ScalarProperty Name="LastDateModif" ColumnName="LastDateModif" />
-                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
-                <ScalarProperty Name="ShiftCode" ColumnName="ShiftCode" />
-                <ScalarProperty Name="Payment_Type" ColumnName="Payment_Type" />
-                <ScalarProperty Name="UserIdTakeOrder" ColumnName="UserIdTakeOrder" />
                 <ScalarProperty Name="Customer_Code" ColumnName="Customer_Code" />
+                <ScalarProperty Name="UserIdTakeOrder" ColumnName="UserIdTakeOrder" />
+                <ScalarProperty Name="Payment_Type" ColumnName="Payment_Type" />
+                <ScalarProperty Name="ShiftCode" ColumnName="ShiftCode" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="LastDateModif" ColumnName="LastDateModif" />
+                <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+                <ScalarProperty Name="FinalTotal" ColumnName="FinalTotal" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+                <ScalarProperty Name="TotalBeforDiscount" ColumnName="TotalBeforDiscount" />
+                <ScalarProperty Name="QtyTotal" ColumnName="QtyTotal" />
+                <ScalarProperty Name="SaleMasterCode" ColumnName="SaleMasterCode" />
+                <ScalarProperty Name="Operation_Type_Id" ColumnName="Operation_Type_Id" />
+                <ScalarProperty Name="UserCode" ColumnName="UserCode" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Sales">
             <EntityTypeMapping TypeName="SaleModel.Sale">
               <MappingFragment StoreEntitySet="Sales">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Sales_Code" ColumnName="Sales_Code" />
-                <ScalarProperty Name="Sales_Name" ColumnName="Sales_Name" />
-                <ScalarProperty Name="Sales_Phone" ColumnName="Sales_Phone" />
-                <ScalarProperty Name="Sales_Address" ColumnName="Sales_Address" />
-                <ScalarProperty Name="Sales_NationalID" ColumnName="Sales_NationalID" />
-                <ScalarProperty Name="Sales_Email" ColumnName="Sales_Email" />
-                <ScalarProperty Name="Created_Date" ColumnName="Created_Date" />
-                <ScalarProperty Name="Last_Modified_Date" ColumnName="Last_Modified_Date" />
-                <ScalarProperty Name="Last_Modified_User" ColumnName="Last_Modified_User" />
                 <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="Last_Modified_User" ColumnName="Last_Modified_User" />
+                <ScalarProperty Name="Last_Modified_Date" ColumnName="Last_Modified_Date" />
+                <ScalarProperty Name="Created_Date" ColumnName="Created_Date" />
+                <ScalarProperty Name="Sales_Email" ColumnName="Sales_Email" />
+                <ScalarProperty Name="Sales_NationalID" ColumnName="Sales_NationalID" />
+                <ScalarProperty Name="Sales_Address" ColumnName="Sales_Address" />
+                <ScalarProperty Name="Sales_Phone" ColumnName="Sales_Phone" />
+                <ScalarProperty Name="Sales_Name" ColumnName="Sales_Name" />
+                <ScalarProperty Name="Sales_Code" ColumnName="Sales_Code" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="SexTypes">
             <EntityTypeMapping TypeName="SaleModel.SexType">
               <MappingFragment StoreEntitySet="SexType">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="SexTypeCode" ColumnName="SexTypeCode" />
                 <ScalarProperty Name="SexTypeName" ColumnName="SexTypeName" />
+                <ScalarProperty Name="SexTypeCode" ColumnName="SexTypeCode" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Shifts">
             <EntityTypeMapping TypeName="SaleModel.Shift">
               <MappingFragment StoreEntitySet="Shift">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Shift_Code" ColumnName="Shift_Code" />
-                <ScalarProperty Name="User_Id" ColumnName="User_Id" />
-                <ScalarProperty Name="Shift_Start_Date" ColumnName="Shift_Start_Date" />
-                <ScalarProperty Name="Shift_End_Date" ColumnName="Shift_End_Date" />
-                <ScalarProperty Name="Shift_Start_Amount" ColumnName="Shift_Start_Amount" />
-                <ScalarProperty Name="Shift_End_Amount" ColumnName="Shift_End_Amount" />
-                <ScalarProperty Name="Shift_Increase_disability" ColumnName="Shift_Increase_disability" />
-                <ScalarProperty Name="Last_Modified_Date" ColumnName="Last_Modified_Date" />
-                <ScalarProperty Name="Last_Modified_User" ColumnName="Last_Modified_User" />
-                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
-                <ScalarProperty Name="Shift_Flag" ColumnName="Shift_Flag" />
-                <ScalarProperty Name="Shift_Start_Notes" ColumnName="Shift_Start_Notes" />
+                <ScalarProperty Name="TotalSale" ColumnName="TotalSale" />
+                <ScalarProperty Name="Expenses" ColumnName="Expenses" />
                 <ScalarProperty Name="Shift_End_Notes" ColumnName="Shift_End_Notes" />
+                <ScalarProperty Name="Shift_Start_Notes" ColumnName="Shift_Start_Notes" />
+                <ScalarProperty Name="Shift_Flag" ColumnName="Shift_Flag" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="Last_Modified_User" ColumnName="Last_Modified_User" />
+                <ScalarProperty Name="Last_Modified_Date" ColumnName="Last_Modified_Date" />
+                <ScalarProperty Name="Shift_Increase_disability" ColumnName="Shift_Increase_disability" />
+                <ScalarProperty Name="Shift_End_Amount" ColumnName="Shift_End_Amount" />
+                <ScalarProperty Name="Shift_Start_Amount" ColumnName="Shift_Start_Amount" />
+                <ScalarProperty Name="Shift_End_Date" ColumnName="Shift_End_Date" />
+                <ScalarProperty Name="Shift_Start_Date" ColumnName="Shift_Start_Date" />
+                <ScalarProperty Name="User_Id" ColumnName="User_Id" />
+                <ScalarProperty Name="Shift_Code" ColumnName="Shift_Code" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Tab_Info">
             <EntityTypeMapping TypeName="SaleModel.Tab_Info">
               <MappingFragment StoreEntitySet="Tab_Info">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Tab_Code" ColumnName="Tab_Code" />
-                <ScalarProperty Name="Tab_Name" ColumnName="Tab_Name" />
-                <ScalarProperty Name="Tab_Description" ColumnName="Tab_Description" />
-                <ScalarProperty Name="Created_Date" ColumnName="Created_Date" />
-                <ScalarProperty Name="Last_Modified_Date" ColumnName="Last_Modified_Date" />
-                <ScalarProperty Name="Last_Modified_User" ColumnName="Last_Modified_User" />
-                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
                 <ScalarProperty Name="InActive" ColumnName="InActive" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="Last_Modified_User" ColumnName="Last_Modified_User" />
+                <ScalarProperty Name="Last_Modified_Date" ColumnName="Last_Modified_Date" />
+                <ScalarProperty Name="Created_Date" ColumnName="Created_Date" />
+                <ScalarProperty Name="Tab_Description" ColumnName="Tab_Description" />
+                <ScalarProperty Name="Tab_Name" ColumnName="Tab_Name" />
+                <ScalarProperty Name="Tab_Code" ColumnName="Tab_Code" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="UnitCards">
             <EntityTypeMapping TypeName="SaleModel.UnitCard">
               <MappingFragment StoreEntitySet="UnitCard">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="UnitCode" ColumnName="UnitCode" />
-                <ScalarProperty Name="UnitName" ColumnName="UnitName" />
                 <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="UnitName" ColumnName="UnitName" />
+                <ScalarProperty Name="UnitCode" ColumnName="UnitCode" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="SaleModel.User">
               <MappingFragment StoreEntitySet="User">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Emp_Code" ColumnName="Emp_Code" />
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="Created_Date" ColumnName="Created_Date" />
-                <ScalarProperty Name="Last_Modified_Date" ColumnName="Last_Modified_Date" />
-                <ScalarProperty Name="Last_Modified_User" ColumnName="Last_Modified_User" />
-                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
                 <ScalarProperty Name="UserFlag" ColumnName="UserFlag" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="Last_Modified_User" ColumnName="Last_Modified_User" />
+                <ScalarProperty Name="Last_Modified_Date" ColumnName="Last_Modified_Date" />
+                <ScalarProperty Name="Created_Date" ColumnName="Created_Date" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Emp_Code" ColumnName="Emp_Code" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="User_Auth">
             <EntityTypeMapping TypeName="SaleModel.User_Auth">
               <MappingFragment StoreEntitySet="User_Auth">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Auth_Code" ColumnName="Auth_Code" />
-                <ScalarProperty Name="User_Code" ColumnName="User_Code" />
-                <ScalarProperty Name="Tab_Info_Code" ColumnName="Tab_Info_Code" />
-                <ScalarProperty Name="InActive" ColumnName="InActive" />
-                <ScalarProperty Name="Created_Date" ColumnName="Created_Date" />
-                <ScalarProperty Name="Last_Modified_Date" ColumnName="Last_Modified_Date" />
-                <ScalarProperty Name="Last_Modified_User" ColumnName="Last_Modified_User" />
                 <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="Last_Modified_User" ColumnName="Last_Modified_User" />
+                <ScalarProperty Name="Last_Modified_Date" ColumnName="Last_Modified_Date" />
+                <ScalarProperty Name="Created_Date" ColumnName="Created_Date" />
+                <ScalarProperty Name="InActive" ColumnName="InActive" />
+                <ScalarProperty Name="Tab_Info_Code" ColumnName="Tab_Info_Code" />
+                <ScalarProperty Name="User_Code" ColumnName="User_Code" />
+                <ScalarProperty Name="Auth_Code" ColumnName="Auth_Code" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="UserEvents">
             <EntityTypeMapping TypeName="SaleModel.UserEvent">
               <MappingFragment StoreEntitySet="UserEvents">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="EventCode" ColumnName="EventCode" />
-                <ScalarProperty Name="EventDate" ColumnName="EventDate" />
-                <ScalarProperty Name="EventName" ColumnName="EventName" />
-                <ScalarProperty Name="SaleMasterCode" ColumnName="SaleMasterCode" />
-                <ScalarProperty Name="SaleDate" ColumnName="SaleDate" />
-                <ScalarProperty Name="FinalTotal" ColumnName="FinalTotal" />
-                <ScalarProperty Name="UserCode" ColumnName="UserCode" />
                 <ScalarProperty Name="Operation_Type_Id" ColumnName="Operation_Type_Id" />
+                <ScalarProperty Name="UserCode" ColumnName="UserCode" />
+                <ScalarProperty Name="FinalTotal" ColumnName="FinalTotal" />
+                <ScalarProperty Name="SaleDate" ColumnName="SaleDate" />
+                <ScalarProperty Name="SaleMasterCode" ColumnName="SaleMasterCode" />
+                <ScalarProperty Name="EventName" ColumnName="EventName" />
+                <ScalarProperty Name="EventDate" ColumnName="EventDate" />
+                <ScalarProperty Name="EventCode" ColumnName="EventCode" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Operation_Type">
             <EntityTypeMapping TypeName="SaleModel.Operation_Type">
               <MappingFragment StoreEntitySet="Operation_Type">
-                <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Operation_Type_Name" ColumnName="Operation_Type_Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Payment_Type">
             <EntityTypeMapping TypeName="SaleModel.Payment_Type">
               <MappingFragment StoreEntitySet="Payment_Type">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Code" ColumnName="Code" />
-                <ScalarProperty Name="PaymentType" ColumnName="PaymentType" />
                 <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="PaymentType" ColumnName="PaymentType" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Auth_View">
             <EntityTypeMapping TypeName="SaleModel.Auth_View">
               <MappingFragment StoreEntitySet="Auth_View">
-                <ScalarProperty Name="Tab_Name" ColumnName="Tab_Name" />
-                <ScalarProperty Name="Tab_IsDeleted" ColumnName="Tab_IsDeleted" />
-                <ScalarProperty Name="User_IsDeleted" ColumnName="User_IsDeleted" />
-                <ScalarProperty Name="User_Code" ColumnName="User_Code" />
-                <ScalarProperty Name="Auth_Code" ColumnName="Auth_Code" />
-                <ScalarProperty Name="Tab_Info_Code" ColumnName="Tab_Info_Code" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Tab_Info_Code" ColumnName="Tab_Info_Code" />
+                <ScalarProperty Name="Auth_Code" ColumnName="Auth_Code" />
+                <ScalarProperty Name="User_Code" ColumnName="User_Code" />
+                <ScalarProperty Name="User_IsDeleted" ColumnName="User_IsDeleted" />
+                <ScalarProperty Name="Tab_IsDeleted" ColumnName="Tab_IsDeleted" />
+                <ScalarProperty Name="Tab_Name" ColumnName="Tab_Name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Customer_View">
             <EntityTypeMapping TypeName="SaleModel.Customer_View">
               <MappingFragment StoreEntitySet="Customer_View">
-                <ScalarProperty Name="SexTypeName" ColumnName="SexTypeName" />
-                <ScalarProperty Name="Customer_Code" ColumnName="Customer_Code" />
-                <ScalarProperty Name="Customer_Name" ColumnName="Customer_Name" />
-                <ScalarProperty Name="Customer_Phone" ColumnName="Customer_Phone" />
-                <ScalarProperty Name="Customer_Address" ColumnName="Customer_Address" />
-                <ScalarProperty Name="Created_Date" ColumnName="Created_Date" />
-                <ScalarProperty Name="Last_Modified_Date" ColumnName="Last_Modified_Date" />
-                <ScalarProperty Name="Last_Modified_User" ColumnName="Last_Modified_User" />
-                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
-                <ScalarProperty Name="Customer_Notes" ColumnName="Customer_Notes" />
-                <ScalarProperty Name="National_Id" ColumnName="National_Id" />
-                <ScalarProperty Name="SexTypeCode" ColumnName="SexTypeCode" />
-                <ScalarProperty Name="Jop_Descrption" ColumnName="Jop_Descrption" />
+                <ScalarProperty Name="CustomerFavourit" ColumnName="CustomerFavourit" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Jop_Descrption" ColumnName="Jop_Descrption" />
+                <ScalarProperty Name="SexTypeCode" ColumnName="SexTypeCode" />
+                <ScalarProperty Name="National_Id" ColumnName="National_Id" />
+                <ScalarProperty Name="Customer_Notes" ColumnName="Customer_Notes" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="Last_Modified_User" ColumnName="Last_Modified_User" />
+                <ScalarProperty Name="Last_Modified_Date" ColumnName="Last_Modified_Date" />
+                <ScalarProperty Name="Created_Date" ColumnName="Created_Date" />
+                <ScalarProperty Name="Customer_Address" ColumnName="Customer_Address" />
+                <ScalarProperty Name="Customer_Phone" ColumnName="Customer_Phone" />
+                <ScalarProperty Name="Customer_Name" ColumnName="Customer_Name" />
+                <ScalarProperty Name="Customer_Code" ColumnName="Customer_Code" />
+                <ScalarProperty Name="SexTypeName" ColumnName="SexTypeName" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Employee_View">
             <EntityTypeMapping TypeName="SaleModel.Employee_View">
               <MappingFragment StoreEntitySet="Employee_View">
-                <ScalarProperty Name="SexTypeName" ColumnName="SexTypeName" />
-                <ScalarProperty Name="Branches_Name" ColumnName="Branches_Name" />
-                <ScalarProperty Name="JobName" ColumnName="JobName" />
-                <ScalarProperty Name="Employee_Code" ColumnName="Employee_Code" />
-                <ScalarProperty Name="Employee_Name" ColumnName="Employee_Name" />
-                <ScalarProperty Name="Employee_National_Id" ColumnName="Employee_National_Id" />
-                <ScalarProperty Name="Employee_Mobile_1" ColumnName="Employee_Mobile_1" />
-                <ScalarProperty Name="Employee_Address" ColumnName="Employee_Address" />
-                <ScalarProperty Name="Employee_Mobile_2" ColumnName="Employee_Mobile_2" />
-                <ScalarProperty Name="Employee_Email" ColumnName="Employee_Email" />
-                <ScalarProperty Name="Branch_ID" ColumnName="Branch_ID" />
-                <ScalarProperty Name="Employee_Start_Jop" ColumnName="Employee_Start_Jop" />
-                <ScalarProperty Name="Employee_End_Jop" ColumnName="Employee_End_Jop" />
-                <ScalarProperty Name="Employee_Notes" ColumnName="Employee_Notes" />
-                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
-                <ScalarProperty Name="SexTypeCode" ColumnName="SexTypeCode" />
                 <ScalarProperty Name="Jop_Code" ColumnName="Jop_Code" />
+                <ScalarProperty Name="SexTypeCode" ColumnName="SexTypeCode" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="Employee_Notes" ColumnName="Employee_Notes" />
+                <ScalarProperty Name="Employee_End_Jop" ColumnName="Employee_End_Jop" />
+                <ScalarProperty Name="Employee_Start_Jop" ColumnName="Employee_Start_Jop" />
+                <ScalarProperty Name="Branch_ID" ColumnName="Branch_ID" />
+                <ScalarProperty Name="Employee_Email" ColumnName="Employee_Email" />
+                <ScalarProperty Name="Employee_Mobile_2" ColumnName="Employee_Mobile_2" />
+                <ScalarProperty Name="Employee_Address" ColumnName="Employee_Address" />
+                <ScalarProperty Name="Employee_Mobile_1" ColumnName="Employee_Mobile_1" />
+                <ScalarProperty Name="Employee_National_Id" ColumnName="Employee_National_Id" />
+                <ScalarProperty Name="Employee_Name" ColumnName="Employee_Name" />
+                <ScalarProperty Name="Employee_Code" ColumnName="Employee_Code" />
+                <ScalarProperty Name="JobName" ColumnName="JobName" />
+                <ScalarProperty Name="Branches_Name" ColumnName="Branches_Name" />
+                <ScalarProperty Name="SexTypeName" ColumnName="SexTypeName" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ExpensesViews">
             <EntityTypeMapping TypeName="SaleModel.ExpensesView">
               <MappingFragment StoreEntitySet="ExpensesView">
-                <ScalarProperty Name="ExpensesName" ColumnName="ExpensesName" />
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
-                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
-                <ScalarProperty Name="Last_Modified_Date" ColumnName="Last_Modified_Date" />
-                <ScalarProperty Name="Last_Modified_By" ColumnName="Last_Modified_By" />
-                <ScalarProperty Name="ExpensesNotes" ColumnName="ExpensesNotes" />
-                <ScalarProperty Name="ExpensesQT" ColumnName="ExpensesQT" />
-                <ScalarProperty Name="ExpensesCode" ColumnName="ExpensesCode" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Emp_Code" ColumnName="Emp_Code" />
+                <ScalarProperty Name="Employee_Name" ColumnName="Employee_Name" />
                 <ScalarProperty Name="Shift_Code" ColumnName="Shift_Code" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ExpensesCode" ColumnName="ExpensesCode" />
+                <ScalarProperty Name="ExpensesQT" ColumnName="ExpensesQT" />
+                <ScalarProperty Name="ExpensesNotes" ColumnName="ExpensesNotes" />
+                <ScalarProperty Name="Last_Modified_By" ColumnName="Last_Modified_By" />
+                <ScalarProperty Name="Last_Modified_Date" ColumnName="Last_Modified_Date" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="ExpensesName" ColumnName="ExpensesName" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ItemCardViews">
             <EntityTypeMapping TypeName="SaleModel.ItemCardView">
               <MappingFragment StoreEntitySet="ItemCardView">
-                <ScalarProperty Name="ItemCode" ColumnName="ItemCode" />
-                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
-                <ScalarProperty Name="UnitName" ColumnName="UnitName" />
-                <ScalarProperty Name="ParCode" ColumnName="ParCode" />
-                <ScalarProperty Name="Price" ColumnName="Price" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
-                <ScalarProperty Name="AddItem" ColumnName="AddItem" />
-                <ScalarProperty Name="CategoryCode" ColumnName="CategoryCode" />
-                <ScalarProperty Name="UnitCode" ColumnName="UnitCode" />
-                <ScalarProperty Name="PriceBuy" ColumnName="PriceBuy" />
-                <ScalarProperty Name="Item_Risk_limit" ColumnName="Item_Risk_limit" />
                 <ScalarProperty Name="Item_Count_InStoreg" ColumnName="Item_Count_InStoreg" />
+                <ScalarProperty Name="Item_Risk_limit" ColumnName="Item_Risk_limit" />
+                <ScalarProperty Name="PriceBuy" ColumnName="PriceBuy" />
+                <ScalarProperty Name="UnitCode" ColumnName="UnitCode" />
+                <ScalarProperty Name="CategoryCode" ColumnName="CategoryCode" />
+                <ScalarProperty Name="AddItem" ColumnName="AddItem" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="ParCode" ColumnName="ParCode" />
+                <ScalarProperty Name="UnitName" ColumnName="UnitName" />
+                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+                <ScalarProperty Name="ItemCode" ColumnName="ItemCode" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="SaleDetailViews">
             <EntityTypeMapping TypeName="SaleModel.SaleDetailView">
               <MappingFragment StoreEntitySet="SaleDetailView">
-                <ScalarProperty Name="ItemCode" ColumnName="ItemCode" />
-                <ScalarProperty Name="CategoryCode" ColumnName="CategoryCode" />
-                <ScalarProperty Name="ParCode" ColumnName="ParCode" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Qty" ColumnName="Qty" />
-                <ScalarProperty Name="Total" ColumnName="Total" />
-                <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
-                <ScalarProperty Name="Price" ColumnName="Price" />
-                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
-                <ScalarProperty Name="UnitName" ColumnName="UnitName" />
-                <ScalarProperty Name="UnitCode" ColumnName="UnitCode" />
-                <ScalarProperty Name="SaleMasterCode" ColumnName="SaleMasterCode" />
-                <ScalarProperty Name="Operation_Type_Id" ColumnName="Operation_Type_Id" />
-                <ScalarProperty Name="PriceBuy" ColumnName="PriceBuy" />
-                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
-                <ScalarProperty Name="AddItem" ColumnName="AddItem" />
-                <ScalarProperty Name="Item_Count_InStoreg" ColumnName="Item_Count_InStoreg" />
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
-                <ScalarProperty Name="Emp_Code" ColumnName="Emp_Code" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="CustomerCode" ColumnName="CustomerCode" />
+                <ScalarProperty Name="LineSequence" ColumnName="LineSequence" />
+                <ScalarProperty Name="isOile" ColumnName="isOile" />
                 <ScalarProperty Name="shiftCode" ColumnName="shiftCode" />
+                <ScalarProperty Name="CustomerCode" ColumnName="CustomerCode" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Emp_Code" ColumnName="Emp_Code" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Item_Count_InStoreg" ColumnName="Item_Count_InStoreg" />
+                <ScalarProperty Name="AddItem" ColumnName="AddItem" />
+                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+                <ScalarProperty Name="PriceBuy" ColumnName="PriceBuy" />
+                <ScalarProperty Name="Operation_Type_Id" ColumnName="Operation_Type_Id" />
+                <ScalarProperty Name="SaleMasterCode" ColumnName="SaleMasterCode" />
+                <ScalarProperty Name="UnitCode" ColumnName="UnitCode" />
+                <ScalarProperty Name="UnitName" ColumnName="UnitName" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="Qty" ColumnName="Qty" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ParCode" ColumnName="ParCode" />
+                <ScalarProperty Name="CategoryCode" ColumnName="CategoryCode" />
+                <ScalarProperty Name="ItemCode" ColumnName="ItemCode" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="SaleMasterViews">
             <EntityTypeMapping TypeName="SaleModel.SaleMasterView">
               <MappingFragment StoreEntitySet="SaleMasterView">
-                <ScalarProperty Name="UserCode" ColumnName="UserCode" />
-                <ScalarProperty Name="Operation_Type_Id" ColumnName="Operation_Type_Id" />
-                <ScalarProperty Name="SaleMasterCode" ColumnName="SaleMasterCode" />
-                <ScalarProperty Name="TotalBeforDiscount" ColumnName="TotalBeforDiscount" />
-                <ScalarProperty Name="Discount" ColumnName="Discount" />
-                <ScalarProperty Name="QtyTotal" ColumnName="QtyTotal" />
-                <ScalarProperty Name="LastDateModif" ColumnName="LastDateModif" />
-                <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
-                <ScalarProperty Name="FinalTotal" ColumnName="FinalTotal" />
-                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
-                <ScalarProperty Name="Emp_Code" ColumnName="Emp_Code" />
-                <ScalarProperty Name="Shift_Code" ColumnName="Shift_Code" />
-                <ScalarProperty Name="PaymentType" ColumnName="PaymentType" />
-                <ScalarProperty Name="Payment_Type" ColumnName="Payment_Type" />
-                <ScalarProperty Name="UserIdTakeOrder" ColumnName="UserIdTakeOrder" />
                 <ScalarProperty Name="Customer_Code" ColumnName="Customer_Code" />
+                <ScalarProperty Name="UserIdTakeOrder" ColumnName="UserIdTakeOrder" />
+                <ScalarProperty Name="Payment_Type" ColumnName="Payment_Type" />
+                <ScalarProperty Name="PaymentType" ColumnName="PaymentType" />
+                <ScalarProperty Name="Shift_Code" ColumnName="Shift_Code" />
+                <ScalarProperty Name="Emp_Code" ColumnName="Emp_Code" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="FinalTotal" ColumnName="FinalTotal" />
+                <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+                <ScalarProperty Name="LastDateModif" ColumnName="LastDateModif" />
+                <ScalarProperty Name="QtyTotal" ColumnName="QtyTotal" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+                <ScalarProperty Name="TotalBeforDiscount" ColumnName="TotalBeforDiscount" />
+                <ScalarProperty Name="SaleMasterCode" ColumnName="SaleMasterCode" />
+                <ScalarProperty Name="Operation_Type_Id" ColumnName="Operation_Type_Id" />
+                <ScalarProperty Name="UserCode" ColumnName="UserCode" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Shift_View">
             <EntityTypeMapping TypeName="SaleModel.Shift_View">
               <MappingFragment StoreEntitySet="Shift_View">
-                <ScalarProperty Name="Shift_Code" ColumnName="Shift_Code" />
-                <ScalarProperty Name="Shift_Start_Date" ColumnName="Shift_Start_Date" />
-                <ScalarProperty Name="Shift_End_Date" ColumnName="Shift_End_Date" />
-                <ScalarProperty Name="Shift_Start_Amount" ColumnName="Shift_Start_Amount" />
-                <ScalarProperty Name="Shift_End_Amount" ColumnName="Shift_End_Amount" />
-                <ScalarProperty Name="Last_Modified_Date" ColumnName="Last_Modified_Date" />
-                <ScalarProperty Name="Shift_Increase_disability" ColumnName="Shift_Increase_disability" />
-                <ScalarProperty Name="Last_Modified_User" ColumnName="Last_Modified_User" />
-                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
-                <ScalarProperty Name="Shift_Flag" ColumnName="Shift_Flag" />
-                <ScalarProperty Name="Shift_Start_Notes" ColumnName="Shift_Start_Notes" />
-                <ScalarProperty Name="Shift_End_Notes" ColumnName="Shift_End_Notes" />
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
-                <ScalarProperty Name="Emp_Code" ColumnName="Emp_Code" />
+                <ScalarProperty Name="TotalSale" ColumnName="TotalSale" />
+                <ScalarProperty Name="Expenses" ColumnName="Expenses" />
                 <ScalarProperty Name="User_Id" ColumnName="User_Id" />
+                <ScalarProperty Name="Emp_Code" ColumnName="Emp_Code" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Shift_End_Notes" ColumnName="Shift_End_Notes" />
+                <ScalarProperty Name="Shift_Start_Notes" ColumnName="Shift_Start_Notes" />
+                <ScalarProperty Name="Shift_Flag" ColumnName="Shift_Flag" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="Last_Modified_User" ColumnName="Last_Modified_User" />
+                <ScalarProperty Name="Shift_Increase_disability" ColumnName="Shift_Increase_disability" />
+                <ScalarProperty Name="Last_Modified_Date" ColumnName="Last_Modified_Date" />
+                <ScalarProperty Name="Shift_End_Amount" ColumnName="Shift_End_Amount" />
+                <ScalarProperty Name="Shift_Start_Amount" ColumnName="Shift_Start_Amount" />
+                <ScalarProperty Name="Shift_End_Date" ColumnName="Shift_End_Date" />
+                <ScalarProperty Name="Shift_Start_Date" ColumnName="Shift_Start_Date" />
+                <ScalarProperty Name="Shift_Code" ColumnName="Shift_Code" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="User_View">
             <EntityTypeMapping TypeName="SaleModel.User_View">
               <MappingFragment StoreEntitySet="User_View">
-                <ScalarProperty Name="Branches_Name" ColumnName="Branches_Name" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
-                <ScalarProperty Name="Employee_Name" ColumnName="Employee_Name" />
-                <ScalarProperty Name="Employee_Code" ColumnName="Employee_Code" />
-                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
-                <ScalarProperty Name="IsDeletedEmployee" ColumnName="IsDeletedEmployee" />
                 <ScalarProperty Name="UserFlag" ColumnName="UserFlag" />
+                <ScalarProperty Name="IsDeletedEmployee" ColumnName="IsDeletedEmployee" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="Employee_Code" ColumnName="Employee_Code" />
+                <ScalarProperty Name="Employee_Name" ColumnName="Employee_Name" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Branches_Name" ColumnName="Branches_Name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="Delete_Trancation_By_User_Code" FunctionName="SaleModel.Store.Delete_Trancation_By_User_Code" />
-          <FunctionImportMapping FunctionImportName="TruncateTables" FunctionName="SaleModel.Store.TruncateTables" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

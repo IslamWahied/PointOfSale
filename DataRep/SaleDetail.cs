@@ -28,5 +28,7 @@ namespace DataRep
         public Nullable<System.DateTime> LastDateModif { get; set; }
         public long CustomerCode { get; set; }
         public long shiftCode { get; set; }
+        public long LineSequence { get; set; }
+        public bool isOile { get; set; }
     }
 }

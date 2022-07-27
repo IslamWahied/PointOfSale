@@ -28,12 +28,35 @@ namespace PointOfSaleSedek._102_Reports
             string DatatimeNow = Convert.ToString(DateTime.Now.ToString("MM/dd/yyyy"));
             dtFrom.Text = DatatimeNow;
             dtTo.Text = DatatimeNow;
+            FillSlkEmployees();
+        }
+
+
+        public void FillSlkEmployees()
+        {
+            var result = context.Employee_View.Where(user => user.IsDeleted == 0 && user.Employee_Code !=0).ToList();
+            slkUsers.Properties.DataSource = result;
+            slkUsers.Properties.ValueMember = "Employee_Code";
+            slkUsers.Properties.DisplayMember = "Employee_Name";
+
         }
 
         private void simpleButton1_Click(object sender, EventArgs e)
         {
             var dateTo = Convert.ToDateTime(Convert.ToDateTime(dtTo.EditValue).AddDays(1));
-            var ExpenssesList = context.ExpensesViews.Where(a => a.Date >= dtFrom.DateTime && a.Date <= dateTo && a.IsDeleted == 0).ToList();
+            List<ExpensesView> ExpenssesList = new List<ExpensesView>();
+
+            if (string.IsNullOrWhiteSpace(slkUsers.Text))
+            {
+                ExpenssesList  = context.ExpensesViews.Where(a => a.Date >= dtFrom.DateTime   && a.Date <= dateTo && a.IsDeleted == 0).ToList();
+            }
+            else
+            {
+                Int64 empCode = Convert.ToInt64(slkUsers.EditValue);
+                ExpenssesList = context.ExpensesViews.Where(a => a.Date >= dtFrom.DateTime && a.Emp_Code == empCode && a.Date <= dateTo && a.IsDeleted == 0).ToList();
+            }
+
+            
             double FinalTotal = 0;
             if (ExpenssesList.Count > 0)
             {
@@ -62,9 +85,9 @@ namespace PointOfSaleSedek._102_Reports
                 rpt.RegisterData(ExpenssesList, "ExpenssesList");
                 rpt.RegisterData(_FinalTotalList, "FinalTotal");
 
-                // rpt.PrintSettings.ShowDialog = false;
-                //    rpt.Design();
-                rpt.Show();
+                 // rpt.PrintSettings.ShowDialog = false;
+                rpt.Design();
+                 rpt.Show();
             }
             else {
 
@@ -79,6 +102,13 @@ namespace PointOfSaleSedek._102_Reports
               
 
             }
+
+        private void slkShiftsOpen_Properties_EditValueChanged(object sender, EventArgs e)
+        {
+
         }
+
+        
+    }
     }
 

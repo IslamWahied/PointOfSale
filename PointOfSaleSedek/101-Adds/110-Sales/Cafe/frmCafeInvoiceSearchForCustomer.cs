@@ -77,10 +77,10 @@ namespace PointOfSaleSedek._101_Adds
                       //  frm.btnCustomerHistory.Enabled = false;
                     }
                   
-                    frm.gcSaleDetail.DataSource = null;
-                    frm.gcSaleDetail.RefreshDataSource();
-                    frm.gcSaleDetail.DataSource  = context.SaleDetailViews.Where(x=>x.SaleMasterCode == SaleMasterCode && x.EntryDate.Day == DateTime.Today.Day && x.EntryDate.Month == DateTime.Today.Month && x.EntryDate.Year == DateTime.Today.Year &&x.Operation_Type_Id==2).ToList();
-                    frm.gcSaleDetail.Enabled = false;
+                    frm.gcCafeSaleDetail.DataSource = null;
+                    frm.gcCafeSaleDetail.RefreshDataSource();
+                    frm.gcCafeSaleDetail.DataSource  = context.SaleDetailViews.Where(x=>x.SaleMasterCode == SaleMasterCode && x.EntryDate.Day == DateTime.Today.Day && x.EntryDate.Month == DateTime.Today.Month && x.EntryDate.Year == DateTime.Today.Year &&x.Operation_Type_Id==2).ToList();
+                    frm.gcCafeSaleDetail.Enabled = false;
                     //frm.slkCustomers.EditValue = FocusRow.Customer_Code;
                     //frm.slkCustomers.Enabled = false;
                     //frm.btnDiscount.Enabled = false;

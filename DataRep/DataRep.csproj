@@ -59,7 +59,6 @@
     <Compile Include="Category.cs">
       <DependentUpon>DataEntity.tt</DependentUpon>
     </Compile>
-    <Compile Include="Class1.cs" />
     <Compile Include="Customer_Info.cs">
       <DependentUpon>DataEntity.tt</DependentUpon>
     </Compile>

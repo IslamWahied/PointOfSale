@@ -25,5 +25,7 @@ namespace DataRep
         public int Id { get; set; }
         public System.DateTime Date { get; set; }
         public long Shift_Code { get; set; }
+        public string Employee_Name { get; set; }
+        public Nullable<long> Emp_Code { get; set; }
     }
 }

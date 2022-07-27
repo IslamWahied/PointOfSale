@@ -20,6 +20,9 @@ using System.Timers;
 using Google.Cloud.Firestore;
 using Timer = System.Timers.Timer;
 using System.Net;
+using DevExpress.XtraBars;
+using System.Data.OleDb;
+ 
 
 namespace PointOfSaleSedek
 {
@@ -178,8 +181,8 @@ namespace PointOfSaleSedek
             RbAddExpensesTran.Visible = false;
             RbCancelExpenses.Visible = false;
 
-
-
+            RbShifts.Visible = false;
+            btnRefershShiftsData.Visibility = BarItemVisibility.Never;
             RbCasherTab.Visible = false;
             RbStockTab.Visible = false;
             BrAddauthenticationTab.Visible = false;
@@ -305,6 +308,22 @@ namespace PointOfSaleSedek
                         RbCancelationInvoiceReport.Visible = true;
                         break;
 
+
+                    case "RbShifts":
+                        RbShifts.Visible = true;
+                        break;
+
+
+
+                    case "btnRefershShiftsData":
+                        btnRefershShiftsData.Visibility = BarItemVisibility.Always;
+                        break;
+
+                        
+
+
+
+
                     default:
                     
                         break;
@@ -378,12 +397,15 @@ namespace PointOfSaleSedek
 
 
 
-            if (RbSaleReport.Visible == false && RbPurchessReport.Visible == false &&
+            if (RbSaleReport.Visible == false &&
+                RbPurchessReport.Visible == false &&
                 RbCancelationInvoiceReport.Visible == false
                 &&
                 RbProfitAndLossReport.Visible == false
                 &&
                 RbExpenses.Visible == false
+                &&
+                RbShifts.Visible == false
 
                 )
             {
@@ -708,9 +730,151 @@ namespace PointOfSaleSedek
             frm.ShowDialog();
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
+        private void barButtonItem37_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            frmShiftsReport frm = new frmShiftsReport();
+            frm.ShowDialog();
+        }
+
+        DataTable dt = new DataTable();
+
+        void removeEmpityData() {
+
+            for (int i = dt.Rows.Count - 1; i >= 0; i--)
+            {
+                if (dt.Rows[i][1] == DBNull.Value)
+                {
+                    dt.Rows[i].Delete();
+                }
+            }
+            dt.AcceptChanges();
+
+
+            List<Customer_Info> _listcustomer = new List<Customer_Info>();
+
+
+            for (int i = dt.Rows.Count - 1; i >= 0; i--)
+            {
+
+                Int64? MaxCode = context.Customer_Info.Max(u => (Int64?)u.Customer_Code + 1);
+
+                if (MaxCode == 0 || MaxCode == null) {
+                    MaxCode = 1;
+                }
+
+                Customer_Info _customer = new Customer_Info()
+                {
+
+                    Customer_Phone = dt.Rows[i]["رقم الموبيل"].ToString(),
+                    Customer_Name = dt.Rows[i]["اسم العميل"].ToString(),
+                    CustomerFavourit = dt.Rows[i]["البرفن الخاص به"].ToString(),
+                    Created_Date = DateTime.Now,
+                    Customer_Code = Convert.ToInt64(MaxCode),
+                   
+                    SexTypeCode = Convert.ToInt32(1),
+                    Last_Modified_User = 0,
+                    
+                };
+
+                context.Customer_Info.Add(_customer);
+ 
+
+                context.SaveChanges();
+
+
+            }
+
+      
+         
+             
+
+
+        }
+
+          void dd()
+        {
+ 
+                    string d  = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + @"C:\Users\Eslam\Desktop\Autosaveds.xlsx" + ";Extended Properties=Excel 12.0;";
+            using (OleDbConnection connection = new OleDbConnection(d))
+            {
+               
+                OleDbCommand command = new OleDbCommand("Select * FROM [Sheet1$]", connection);
+                connection.Open();
+                // Create DbDataReader to Data Worksheet
+                using (OleDbDataReader dr = command.ExecuteReader())
+                {
+                    dt.Load(dr);
+
+                    removeEmpityData();
+
+                   
+
+
+                }
+            }
+            Console.ReadKey();
+        }
+     
+
+        private void barButtonItem38_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
 
+
+
+            //dd();
+
+
+
+            List<Shift_View> ressult = context.Shift_View.Where(Shift => Shift.IsDeleted == 0 && Shift.Shift_Flag == false).ToList();
+            if (ressult.Count > 0)
+            {
+
+                ressult.ForEach((Shift) =>
+                {
+
+                    // 1 - Get All Seles
+                    double totalShiftMaster = 0;
+                    double totalShiftExpense = 0;
+                    bool istotalShiftMaster = context.SaleMasters.Any(SaleMasters => SaleMasters.IsDeleted == 0 && SaleMasters.ShiftCode == Shift.Shift_Code && SaleMasters.Operation_Type_Id == 2);
+
+
+                    if (istotalShiftMaster)
+                    {
+                        totalShiftMaster = Convert.ToDouble(context.SaleMasters.Where(master => master.IsDeleted == 0 && master.ShiftCode == Shift.Shift_Code && master.Operation_Type_Id == 2).Sum(master => master.FinalTotal));
+
+                    }
+
+
+
+
+
+                    bool isExpenes = context.ExpensesTransactions.Any(Expense => Expense.IsDeleted == 0 && Expense.Shift_Code == Shift.Shift_Code);
+
+                    if (isExpenes)
+                    {
+                        totalShiftExpense = Convert.ToDouble(context.ExpensesTransactions.Where(Expense => Expense.IsDeleted == 0 && Expense.Shift_Code == Shift.Shift_Code).Sum(master => master.ExpensesQT));
+
+                    }
+
+
+                    // 2 - Get All Expenses
+
+
+
+                    Shift _Shift;
+                    _Shift = context.Shifts.SingleOrDefault(item => item.Shift_Code == Shift.Shift_Code && item.Shift_Flag == false);
+                    _Shift.Expenses = totalShiftExpense;
+                    _Shift.TotalSale = totalShiftMaster;
+                    _Shift.Shift_Increase_disability = (totalShiftExpense + _Shift.Shift_End_Amount) - (_Shift.Shift_Start_Amount + totalShiftMaster);
+                    context.SaveChanges();
+
+
+
+
+
+                });
+
+            }
         }
     }
 }

@@ -30,7 +30,7 @@ namespace PointOfSaleSedek._101_Adds._112_Users
 
         void FillEmpSlk()
         {
-            var result = context.Employee_View.Where(Branch => Branch.IsDeleted == 0).ToList();
+            var result = context.Employee_View.Where(Emp => Emp.IsDeleted == 0 && Emp.Employee_Code != 0).ToList();
             slkEmp.Properties.DataSource = result;
             slkEmp.Properties.ValueMember = "Employee_Code";
             slkEmp.Properties.DisplayMember = "Employee_Name";

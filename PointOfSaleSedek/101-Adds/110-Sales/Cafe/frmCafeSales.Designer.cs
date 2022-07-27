@@ -30,11 +30,11 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmCafeSales));
-            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions1 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions2 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject5 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject6 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject7 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject8 = new DevExpress.Utils.SerializableAppearanceObject();
             this.materialContextMenuStrip1 = new MaterialSkin.Controls.MaterialContextMenuStrip();
             this.حذفToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saleDetailBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -84,7 +84,7 @@
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.lblSaleMasterId = new DevExpress.XtraEditors.LabelControl();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
-            this.gcSaleDetail = new DevExpress.XtraGrid.GridControl();
+            this.gcCafeSaleDetail = new DevExpress.XtraGrid.GridControl();
             this.gvSaleDetail = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colSaleDetailCode = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -120,7 +120,7 @@
             this.tableLayoutPanel4.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
             this.tableLayoutPanel6.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gcSaleDetail)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gcCafeSaleDetail)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvSaleDetail)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
@@ -608,7 +608,7 @@
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel6, 9, 8);
             this.tableLayoutPanel1.Controls.Add(this.simpleButton1, 0, 8);
             this.tableLayoutPanel1.Controls.Add(this.tabItems, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.gcSaleDetail, 10, 2);
+            this.tableLayoutPanel1.Controls.Add(this.gcCafeSaleDetail, 10, 2);
             this.tableLayoutPanel1.Controls.Add(this.cmdItems, 4, 0);
             this.tableLayoutPanel1.Controls.Add(this.CmdCatagory, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.btnRefershItems, 0, 0);
@@ -988,22 +988,22 @@
             this.labelControl4.TabIndex = 28;
             this.labelControl4.Text = "رقم الفاتورة";
             // 
-            // gcSaleDetail
+            // gcCafeSaleDetail
             // 
-            this.gcSaleDetail.ContextMenuStrip = this.materialContextMenuStrip1;
-            this.gcSaleDetail.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gcSaleDetail.Location = new System.Drawing.Point(3, 83);
-            this.gcSaleDetail.MainView = this.gvSaleDetail;
-            this.gcSaleDetail.Name = "gcSaleDetail";
-            this.gcSaleDetail.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.gcCafeSaleDetail.ContextMenuStrip = this.materialContextMenuStrip1;
+            this.gcCafeSaleDetail.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gcCafeSaleDetail.Location = new System.Drawing.Point(3, 83);
+            this.gcCafeSaleDetail.MainView = this.gvSaleDetail;
+            this.gcCafeSaleDetail.Name = "gcCafeSaleDetail";
+            this.gcCafeSaleDetail.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemButtonEdit2});
-            this.tableLayoutPanel1.SetRowSpan(this.gcSaleDetail, 6);
-            this.gcSaleDetail.Size = new System.Drawing.Size(453, 557);
-            this.gcSaleDetail.TabIndex = 5;
-            this.gcSaleDetail.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.tableLayoutPanel1.SetRowSpan(this.gcCafeSaleDetail, 6);
+            this.gcCafeSaleDetail.Size = new System.Drawing.Size(453, 557);
+            this.gcCafeSaleDetail.TabIndex = 5;
+            this.gcCafeSaleDetail.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvSaleDetail,
             this.gridView1});
-            this.gcSaleDetail.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gcSaleDetail_KeyDown);
+            this.gcCafeSaleDetail.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gcSaleDetail_KeyDown);
             // 
             // gvSaleDetail
             // 
@@ -1029,7 +1029,7 @@
             this.colTotal,
             this.colSaleMasterCode,
             this.gridColumn1});
-            this.gvSaleDetail.GridControl = this.gcSaleDetail;
+            this.gvSaleDetail.GridControl = this.gcCafeSaleDetail;
             this.gvSaleDetail.Name = "gvSaleDetail";
             this.gvSaleDetail.OptionsCustomization.AllowColumnMoving = false;
             this.gvSaleDetail.OptionsCustomization.AllowColumnResizing = false;
@@ -1138,19 +1138,19 @@
             // repositoryItemButtonEdit2
             // 
             this.repositoryItemButtonEdit2.AutoHeight = false;
-            editorButtonImageOptions1.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions1.Image")));
-            serializableAppearanceObject1.Options.UseTextOptions = true;
-            serializableAppearanceObject1.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            serializableAppearanceObject1.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            editorButtonImageOptions2.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions2.Image")));
+            serializableAppearanceObject5.Options.UseTextOptions = true;
+            serializableAppearanceObject5.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            serializableAppearanceObject5.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.repositoryItemButtonEdit2.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions1, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, serializableAppearanceObject2, serializableAppearanceObject3, serializableAppearanceObject4, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions2, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject5, serializableAppearanceObject6, serializableAppearanceObject7, serializableAppearanceObject8, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
             this.repositoryItemButtonEdit2.Name = "repositoryItemButtonEdit2";
             this.repositoryItemButtonEdit2.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             this.repositoryItemButtonEdit2.Click += new System.EventHandler(this.repositoryItemButtonEdit2_Click);
             // 
             // gridView1
             // 
-            this.gridView1.GridControl = this.gcSaleDetail;
+            this.gridView1.GridControl = this.gcCafeSaleDetail;
             this.gridView1.Name = "gridView1";
             // 
             // cmdItems
@@ -1211,16 +1211,16 @@
             // 
             // timer1
             // 
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+          //  this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // frmSales
+            // frmCafeSales
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1237, 749);
             this.Controls.Add(this.tableLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "frmSales";
+            this.Name = "frmCafeSales";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.RightToLeftLayout = true;
             this.ShowInTaskbar = false;
@@ -1251,7 +1251,7 @@
             this.tableLayoutPanel5.PerformLayout();
             this.tableLayoutPanel6.ResumeLayout(false);
             this.tableLayoutPanel6.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gcSaleDetail)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gcCafeSaleDetail)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvSaleDetail)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
@@ -1303,7 +1303,7 @@
         private DevExpress.XtraEditors.LabelControl labelControl4;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private DevExpress.XtraEditors.LabelControl lblCurrency;
-        public DevExpress.XtraGrid.GridControl gcSaleDetail;
+        public DevExpress.XtraGrid.GridControl gcCafeSaleDetail;
         private DevExpress.XtraGrid.Views.Grid.GridView gvSaleDetail;
         private DevExpress.XtraGrid.Columns.GridColumn colId;
         private DevExpress.XtraGrid.Columns.GridColumn colSaleDetailCode;

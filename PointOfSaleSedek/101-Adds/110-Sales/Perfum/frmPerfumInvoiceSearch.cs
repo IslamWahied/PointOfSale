@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using DataRep;
 using PointOfSaleSedek._102_MaterialSkin;
 using PointOfSaleSedek.HelperClass;
+using PointOfSaleSedek.Model;
 
 namespace PointOfSaleSedek._101_Adds
 {
@@ -49,6 +50,7 @@ namespace PointOfSaleSedek._101_Adds
 
 
                 }
+                List<SaleDetailPrfumViewVm> listSaleDetailPrfumViewVm = new List<SaleDetailPrfumViewVm>();
 
                 frmPerfumSales frm = (frmPerfumSales)Application.OpenForms["frmPerfumSales"];
 
@@ -57,7 +59,7 @@ namespace PointOfSaleSedek._101_Adds
                 Int64 SaleMasterCode = FocusRow.SaleMasterCode;
 
 
-
+                frm.SlkPaymentsType.EditValue = FocusRow.Payment_Type;
 
                 frm.lblDiscount.Text = Convert.ToString(FocusRow.Discount);
                 frm.lblFinalBeforDesCound.Text = Convert.ToString(FocusRow.TotalBeforDiscount);
@@ -87,10 +89,85 @@ namespace PointOfSaleSedek._101_Adds
                      frm.btnCustomerHistory.Enabled = false;
                 }
 
-                frm.gcSaleDetail.DataSource = null;
-                frm.gcSaleDetail.RefreshDataSource();
-                frm.gcSaleDetail.DataSource = Context.SaleDetailViews.Where(x => x.SaleMasterCode == SaleMasterCode && x.shiftCode == FocusRow.Shift_Code && x.Operation_Type_Id == 2).ToList();
-                frm.gcSaleDetail.Enabled = false;
+                frm.gcPrfumSaleDetail.DataSource = null;
+                frm.gcPrfumSaleDetail.RefreshDataSource();
+               var  detail = Context.SaleDetailViews.Where(x => x.SaleMasterCode == SaleMasterCode && x.shiftCode == FocusRow.Shift_Code && x.Operation_Type_Id == 2).ToList();
+
+                if (detail.Count > 0)
+                {
+                   
+
+
+                    List<Int64> seq = new List<Int64>();
+
+                    detail.ForEach((xx) => {
+
+                        if (!seq.Any( u => u == xx.LineSequence)) {
+                            seq.Add(xx.LineSequence);
+                        }
+                    });
+
+
+
+                    seq.ForEach((x) => {
+                        SaleDetailPrfumViewVm SaleDetailPrfumViewVm = new SaleDetailPrfumViewVm();
+
+                        SaleDetailPrfumViewVm.Total = 0;
+
+                        detail.Where(vv => vv.LineSequence == x).ToList().ForEach(dd => {
+
+
+                            if (dd.isOile)
+                            {
+                                SaleDetailPrfumViewVm.OilIName = dd.Name;
+                                SaleDetailPrfumViewVm.OilItemCode = dd.ItemCode;
+                                SaleDetailPrfumViewVm.OilQty = dd.Qty;
+                                SaleDetailPrfumViewVm.OilPrice = dd.Price;
+                                SaleDetailPrfumViewVm.LineSequence = x;
+                                SaleDetailPrfumViewVm.Total += dd.Total;
+                               
+
+                            }
+                            else {
+
+                                SaleDetailPrfumViewVm.GlassIName = dd.Name;
+                                SaleDetailPrfumViewVm.GlassItemCode = dd.ItemCode;
+                                SaleDetailPrfumViewVm.GlassQty = dd.Qty;
+                                SaleDetailPrfumViewVm.GlassPrice = dd.Price;
+                                SaleDetailPrfumViewVm.LineSequence = x;
+                                SaleDetailPrfumViewVm.Total += dd.Total;
+
+                            }
+
+
+
+
+
+
+
+
+
+                        });
+
+
+                        listSaleDetailPrfumViewVm.Add(SaleDetailPrfumViewVm);
+
+
+                    });
+
+
+                    
+
+
+                }
+
+
+ 
+                frm.gcPrfumSaleDetail.DataSource = listSaleDetailPrfumViewVm;
+                frm.gcPrfumSaleDetail.RefreshDataSource();
+                frm.slkEmployees.EditValue = detail.FirstOrDefault().Emp_Code;
+
+                frm.gcPrfumSaleDetail.Enabled = false;
                 frm.slkCustomers.EditValue = FocusRow.Customer_Code;
                 frm.slkCustomers.Enabled = false;
                 frm.btnDiscount.Enabled = false;

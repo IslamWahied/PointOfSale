@@ -134,7 +134,7 @@ namespace PointOfSaleSedek._101_Adds
                 List<SaleDetailView> gcData = new  List<SaleDetailView>();
                 
                
-                var grd = frm.gcSaleDetail.DataSource as List<SaleDetailView>;
+                var grd = frm.gcCafeSaleDetail.DataSource as List<SaleDetailView>;
 
                 if (grd != null)
                 { 
@@ -204,8 +204,8 @@ namespace PointOfSaleSedek._101_Adds
 
 
        
-                frm.gcSaleDetail.DataSource = gcData;
-                frm.gcSaleDetail.RefreshDataSource();
+                frm.gcCafeSaleDetail.DataSource = gcData;
+                frm.gcCafeSaleDetail.RefreshDataSource();
                 double sum = 0;
                 gcData.ForEach(x =>
                 {

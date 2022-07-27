@@ -22,8 +22,19 @@ namespace PointOfSaleSedek._101_Adds._114_AddExpenses
         {
             InitializeComponent();
             FillSlkExpenses();
+            FillSlkEmployees();
         }
+        public void FillSlkEmployees()
+        {
+            var result = context.Employee_View.Where(user => user.IsDeleted == 0 && user.Employee_Code != 0).ToList();
+            slkEmployees.Properties.DataSource = result;
+            slkEmployees.Properties.ValueMember = "Employee_Code";
+            slkEmployees.Properties.DisplayMember = "Employee_Name";
 
+          
+            
+
+        }
         public void FillSlkExpenses()
         {
                 var Expenses = context.Expenses.Where(x => x.IsDeleted == 0).ToList();
@@ -63,25 +74,53 @@ namespace PointOfSaleSedek._101_Adds._114_AddExpenses
 
             else
             {
-                
                 var ShiftCode = context.Shift_View.Where(x => x.User_Id == UserCode && x.Shift_Flag == true).Select(xx => xx.Shift_Code).SingleOrDefault();
-                ExpensesTransaction _Expenses = new ExpensesTransaction()
+                // No Select Employee
+                if (!string.IsNullOrWhiteSpace(slkEmployees.Text))
                 {
-                    ExpensesCode = Convert.ToInt64(slkExpenses.EditValue),
-                    ExpensesNotes = txtNote.Text,
-                    ExpensesQT = Convert.ToInt64(txtDiscount.Text),
-                    Date = DateTime.Now,
-                    IsDeleted = 0,
-                    Shift_Code = ShiftCode,
-                    Last_Modified_By = st.User_Code(),
-                    Last_Modified_Date = DateTime.Now
-                
-                 
-                };
-                context.ExpensesTransactions.Add(_Expenses);
-                context.SaveChanges();
+                    ExpensesTransaction _Expenses = new ExpensesTransaction()
+                    {
+                        ExpensesCode = Convert.ToInt64(slkExpenses.EditValue),
+                        ExpensesNotes = txtNote.Text,
+                        ExpensesQT = Convert.ToInt64(txtDiscount.Text),
+                        Date = DateTime.Now,
+                        IsDeleted = 0,
+                        
+                        Shift_Code = ShiftCode,
+                        Last_Modified_By = st.User_Code(),
+                        Last_Modified_Date = DateTime.Now,
+                        Emp_Code = Convert.ToInt64(slkEmployees.EditValue)
 
-               
+
+                    };
+                    context.ExpensesTransactions.Add(_Expenses);
+                    
+
+                }
+                else
+                {
+
+                    ExpensesTransaction _Expenses = new ExpensesTransaction()
+                    {
+                        ExpensesCode = Convert.ToInt64(slkExpenses.EditValue),
+                        ExpensesNotes = txtNote.Text,
+                        ExpensesQT = Convert.ToInt64(txtDiscount.Text),
+                        Date = DateTime.Now,
+                        IsDeleted = 0,
+                        Shift_Code = ShiftCode,
+                        Last_Modified_By = st.User_Code(),
+                        Last_Modified_Date = DateTime.Now,
+                        Emp_Code = Convert.ToInt64(0)
+
+                    };
+                    context.ExpensesTransactions.Add(_Expenses);
+                    
+
+
+                }
+
+
+                context.SaveChanges();
                 txtDiscount.Text = "0";
                 txtNote.ResetText();
                

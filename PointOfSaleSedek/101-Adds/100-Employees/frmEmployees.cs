@@ -26,23 +26,14 @@ namespace PointOfSaleSedek._101_Adds
             FillGride();
         }
 
-        private void frmCustomers_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void gcItemCard_Click(object sender, EventArgs e)
-        {
-
-        }
-
+      
         void FillGride()
         {
             gcEmployeeCard.DataSource = null;
             using (SaleEntities Contexts = new SaleEntities())
             {
 
-                var empData = (from a in Contexts.Employee_View where a.IsDeleted == 0 select a).OrderBy(x => x.Employee_Code).ToList();
+                var empData = (from a in Contexts.Employee_View where a.IsDeleted == 0 && a.Employee_Code != 0 select a).OrderBy(x => x.Employee_Code).ToList();
                 
 
                 if (empData.Count > 0)

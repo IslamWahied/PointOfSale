@@ -29,5 +29,7 @@ namespace DataRep
         public string UserName { get; set; }
         public long Emp_Code { get; set; }
         public long User_Id { get; set; }
+        public double Expenses { get; set; }
+        public double TotalSale { get; set; }
     }
 }

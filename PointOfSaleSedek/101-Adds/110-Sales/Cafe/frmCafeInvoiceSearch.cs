@@ -30,13 +30,13 @@ namespace PointOfSaleSedek._101_Adds
 
             using (SaleEntities cont = new SaleEntities())
             {
-                gcSaleMaster.DataSource = null;
+                gcCafeSaleMaster.DataSource = null;
 
-                gcSaleMaster.DataSource = context.SaleMasterViews.Where(x => x.Shift_Code == ShiftCode && x.UserCode == UserCode && x.Operation_Type_Id == 2).ToList();
-                gcSaleMaster.RefreshDataSource();
+                gcCafeSaleMaster.DataSource = context.SaleMasterViews.Where(x => x.Shift_Code == ShiftCode && x.UserCode == UserCode && x.Operation_Type_Id == 2).ToList();
+                gcCafeSaleMaster.RefreshDataSource();
             }
 
-            if (gvSaleMaster.RowCount == 0)
+            if (gvCafeSaleMaster.RowCount == 0)
             {
 
                 groupControl1.Enabled = false;
@@ -57,7 +57,7 @@ namespace PointOfSaleSedek._101_Adds
             {
                 if (Application.OpenForms.OfType<frmCafeSales>().Any())
                 {
-                    if (gvSaleMaster.RowCount <= 0)
+                    if (gvCafeSaleMaster.RowCount <= 0)
                     {
 
                         MaterialMessageBox.Show("!لا يوجد اوردرات للمعاينة", MessageBoxButtons.OK);
@@ -69,7 +69,7 @@ namespace PointOfSaleSedek._101_Adds
                     frmCafeSales frm = (frmCafeSales)Application.OpenForms["frmCafeSales"];
 
                     //var RowCount = gvSaleDetail.RowCount;
-                    var FocusRow = gvSaleMaster.GetFocusedRow() as SaleMasterView;
+                    var FocusRow = gvCafeSaleMaster.GetFocusedRow() as SaleMasterView;
                     Int64 SaleMasterCode = FocusRow.SaleMasterCode;
 
 
@@ -99,10 +99,10 @@ namespace PointOfSaleSedek._101_Adds
                       //  frm.btnCustomerHistory.Enabled = false;
                     }
                   
-                    frm.gcSaleDetail.DataSource = null;
-                    frm.gcSaleDetail.RefreshDataSource();
-                    frm.gcSaleDetail.DataSource  = context.SaleDetailViews.Where(x=>x.SaleMasterCode == SaleMasterCode && x.shiftCode == FocusRow.Shift_Code  &&x.Operation_Type_Id==2).ToList();
-                    frm.gcSaleDetail.Enabled = false;
+                    frm.gcCafeSaleDetail.DataSource = null;
+                    frm.gcCafeSaleDetail.RefreshDataSource();
+                    frm.gcCafeSaleDetail.DataSource  = context.SaleDetailViews.Where(x=>x.SaleMasterCode == SaleMasterCode && x.shiftCode == FocusRow.Shift_Code  &&x.Operation_Type_Id==2).ToList();
+                    frm.gcCafeSaleDetail.Enabled = false;
                     //frm.slkCustomers.EditValue = FocusRow.Customer_Code;
                     //frm.slkCustomers.Enabled = false;
                     //frm.btnDiscount.Enabled = false;
@@ -149,7 +149,7 @@ namespace PointOfSaleSedek._101_Adds
 
         private void frmInvoiceSearch_Load(object sender, EventArgs e)
         {
-            if (gvSaleMaster.RowCount <= 0)
+            if (gvCafeSaleMaster.RowCount <= 0)
             {
 
                 groupControl1.Enabled = false;
@@ -160,7 +160,7 @@ namespace PointOfSaleSedek._101_Adds
 
         private void الغاءالفاتورةToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var FocusRow = gvSaleMaster.GetFocusedRow() as SaleMasterView;
+            var FocusRow = gvCafeSaleMaster.GetFocusedRow() as SaleMasterView;
             SaleMaster _SaleMaster;
             _SaleMaster = context.SaleMasters.SingleOrDefault(shft => shft.Operation_Type_Id == 2 && shft.ShiftCode == FocusRow.Shift_Code && shft.IsDeleted == 0 && shft.UserCode==FocusRow.UserCode &&shft.SaleMasterCode == FocusRow.SaleMasterCode);
             Int64 saleMasterCode = _SaleMaster.SaleMasterCode;
@@ -246,13 +246,13 @@ namespace PointOfSaleSedek._101_Adds
 
             using (SaleEntities cont  = new SaleEntities())
             {
-                gcSaleMaster.DataSource = null;
+                gcCafeSaleMaster.DataSource = null;
                
-                gcSaleMaster.DataSource = context.SaleMasterViews.Where(x =>x.Shift_Code == FocusRow.Shift_Code && x.Operation_Type_Id == 2 && x.IsDeleted == 0).ToList();
-                gcSaleMaster.RefreshDataSource();
+                gcCafeSaleMaster.DataSource = context.SaleMasterViews.Where(x =>x.Shift_Code == FocusRow.Shift_Code && x.Operation_Type_Id == 2 && x.IsDeleted == 0).ToList();
+                gcCafeSaleMaster.RefreshDataSource();
             }
 
-            if (gvSaleMaster.RowCount == 0)
+            if (gvCafeSaleMaster.RowCount == 0)
             {
 
                 groupControl1.Enabled = false;
@@ -298,21 +298,21 @@ namespace PointOfSaleSedek._101_Adds
                 {
                     string userCode = slkUsers.EditValue.ToString();
 
-                    gcSaleMaster.DataSource = context.SaleMasterViews.Where(x => x.UserCode.ToString() == userCode && x.EntryDate.Day == DateTime.Today.Day && x.EntryDate.Month == DateTime.Today.Month && x.EntryDate.Year == DateTime.Today.Year && x.Operation_Type_Id == 2).ToList();
+                    gcCafeSaleMaster.DataSource = context.SaleMasterViews.Where(x => x.UserCode.ToString() == userCode && x.EntryDate.Day == DateTime.Today.Day && x.EntryDate.Month == DateTime.Today.Month && x.EntryDate.Year == DateTime.Today.Year && x.Operation_Type_Id == 2).ToList();
                 }
                 else
                 {
                    
-                    gcSaleMaster.DataSource = context.SaleMasterViews.Where(x => x.EntryDate.Day == DateTime.Today.Day && x.EntryDate.Month == DateTime.Today.Month && x.EntryDate.Year == DateTime.Today.Year && x.Operation_Type_Id == 2 && x.Shift_Code == ShiftCode).ToList();
+                    gcCafeSaleMaster.DataSource = context.SaleMasterViews.Where(x => x.EntryDate.Day == DateTime.Today.Day && x.EntryDate.Month == DateTime.Today.Month && x.EntryDate.Year == DateTime.Today.Year && x.Operation_Type_Id == 2 && x.Shift_Code == ShiftCode).ToList();
                 }
 
-                gcSaleMaster.Refresh();
+                gcCafeSaleMaster.Refresh();
             }
             catch (Exception)
             {
 
-                gcSaleMaster.DataSource = context.SaleMasterViews.Where(x => x.EntryDate.Day == DateTime.Today.Day && x.EntryDate.Month == DateTime.Today.Month && x.EntryDate.Year == DateTime.Today.Year && x.Operation_Type_Id == 2 && x.Shift_Code == ShiftCode).ToList();
-                gcSaleMaster.Refresh();
+                gcCafeSaleMaster.DataSource = context.SaleMasterViews.Where(x => x.EntryDate.Day == DateTime.Today.Day && x.EntryDate.Month == DateTime.Today.Month && x.EntryDate.Year == DateTime.Today.Year && x.Operation_Type_Id == 2 && x.Shift_Code == ShiftCode).ToList();
+                gcCafeSaleMaster.Refresh();
             }
           
 

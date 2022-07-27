@@ -120,7 +120,9 @@ namespace PointOfSaleSedek._105_Reports
                         UnitCode = x.UnitCode,
                         UnitName = x.UnitName,
                         UserName = x.UserName,
-                        Discount = 0
+                        Discount = Master.FirstOrDefault(xx => xx.SaleMasterCode == x.SaleMasterCode && xx.Shift_Code == x.shiftCode && xx.IsDeleted == 0).Discount,
+                        shiftCode = x.shiftCode,
+                        FinalTotal = Master.FirstOrDefault(xx => xx.SaleMasterCode == x.SaleMasterCode && xx.Shift_Code == x.shiftCode && xx.IsDeleted == 0).FinalTotal
 
                     };
                     saleDetailViewVmList.Add(saleDetailViewVm);
@@ -132,7 +134,7 @@ namespace PointOfSaleSedek._105_Reports
                     saleDetailViewVmList.ForEach(Line =>
                     {
 
-                        if (Header.SaleMasterCode == Line.SaleMasterCode)
+                        if (Header.Shift_Code == Line.shiftCode)
                         {
 
                             Line.OrederTotal = Header.FinalTotal;
@@ -176,7 +178,7 @@ namespace PointOfSaleSedek._105_Reports
                 rpt.RegisterData(_FinalTotalList, "FinalTotal");
                 rpt.RegisterData(saleDetailViewVmList, "Lines");
               // rpt.PrintSettings.ShowDialog = false;
-            //   rpt.Design();
+            //rpt.Design();
             rpt.Show();
 
             }

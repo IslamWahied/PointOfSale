@@ -23,5 +23,6 @@ namespace DataRep
         public Nullable<System.DateTime> Last_Modified_Date { get; set; }
         public int IsDeleted { get; set; }
         public long Shift_Code { get; set; }
+        public Nullable<long> Emp_Code { get; set; }
     }
 }

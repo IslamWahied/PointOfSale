@@ -95,7 +95,7 @@ namespace PointOfSaleSedek._101_Adds._102_Customer
 
                         //frm.FillSlkCustomers();
 
-                        //frm.slkCustomers.EditValue =  context.Customer_View.FirstOrDefault(Customer => Customer.Customer_Phone == Phone).Customer_Code;
+                        //frm.slkCustomers.EditValue = context.Customer_View.FirstOrDefault(Customer => Customer.Customer_Phone == Phone).Customer_Code;
                         //frm.slkCustomers.Enabled = true;
                         //frm.btnCustomerHistory.Enabled = true;
                         //frm.txtParCode.Focus();
@@ -107,7 +107,7 @@ namespace PointOfSaleSedek._101_Adds._102_Customer
                 }
                 else if (st.Project_Type() == "Perfum")
                 {
-                    if (Application.OpenForms.OfType<frmCafeSales>().Any())
+                    if (Application.OpenForms.OfType<frmPerfumSales>().Any())
                     {
 
 
@@ -115,31 +115,13 @@ namespace PointOfSaleSedek._101_Adds._102_Customer
 
                         Int64 User_Code = st.User_Code();
 
-                        var result = context.Auth_View.Where(View => View.User_Code == User_Code && (View.User_IsDeleted == 0)).ToList();
 
+                        frm.FillSlkCustomers();
 
-
-                        if (result.Any(xd => xd.Tab_Name == "btnser"))
-                        {
-                            //frm.btnser.Enabled = true;
-
-                        }
-                        else
-                        {
-                            //frm.btnser.Enabled = false;
-                        }
-
-
-                        if (result.Any(xd => xd.Tab_Name == "btnDiscount"))
-                        {
-                            frm.btnDiscount.Enabled = true;
-
-                        }
-                        else
-                        {
-                            frm.btnDiscount.Enabled = false;
-                        }
-
+                        frm.slkCustomers.EditValue = context.Customer_View.FirstOrDefault(Customer => Customer.Customer_Phone == Phone).Customer_Code;
+                        frm.slkCustomers.Enabled = true;
+                        frm.btnCustomerHistory.Enabled = true;
+                        //frm.txtParCode.Focus();
                         this.Close();
 
 
@@ -153,33 +135,18 @@ namespace PointOfSaleSedek._101_Adds._102_Customer
 
                         frmSuperMarketSales frm = (frmSuperMarketSales)Application.OpenForms["frmSuperMarketSales"];
 
+                       
+                      
+
                         Int64 User_Code = st.User_Code();
 
-                        var result = context.Auth_View.Where(View => View.User_Code == User_Code && (View.User_IsDeleted == 0)).ToList();
 
+                        frm.FillSlkCustomers();
 
-
-                        if (result.Any(xd => xd.Tab_Name == "btnser"))
-                        {
-                            //frm.btnser.Enabled = true;
-
-                        }
-                        else
-                        {
-                            //frm.btnser.Enabled = false;
-                        }
-
-
-                        if (result.Any(xd => xd.Tab_Name == "btnDiscount"))
-                        {
-                            frm.btnDiscount.Enabled = true;
-
-                        }
-                        else
-                        {
-                            frm.btnDiscount.Enabled = false;
-                        }
-
+                        frm.slkCustomers.EditValue = context.Customer_View.FirstOrDefault(Customer => Customer.Customer_Phone == Phone).Customer_Code;
+                        frm.slkCustomers.Enabled = true;
+                        frm.btnCustomerHistory.Enabled = true;
+                        //frm.txtParCode.Focus();
                         this.Close();
 
 

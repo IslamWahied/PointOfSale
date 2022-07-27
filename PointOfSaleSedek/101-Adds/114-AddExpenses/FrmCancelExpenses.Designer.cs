@@ -31,30 +31,30 @@ namespace PointOfSaleSedek._101_Adds._114_AddExpenses
         {
             this.components = new System.ComponentModel.Container();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.btnShow = new DevExpress.XtraEditors.SimpleButton();
             this.dtFrom = new DevExpress.XtraEditors.DateEdit();
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
+            this.btnShow = new DevExpress.XtraEditors.SimpleButton();
+            this.dtTo = new DevExpress.XtraEditors.DateEdit();
+            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.gcItemCard = new DevExpress.XtraGrid.GridControl();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.حذفToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gcItemCard = new DevExpress.XtraGrid.GridControl();
             this.gvItemCard = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn10 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.dtTo = new DevExpress.XtraEditors.DateEdit();
-            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtFrom.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtFrom.Properties)).BeginInit();
-            this.tableLayoutPanel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gcItemCard)).BeginInit();
-            this.contextMenuStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gvItemCard)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtTo.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtTo.Properties)).BeginInit();
+            this.tableLayoutPanel2.SuspendLayout();
+            this.contextMenuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gcItemCard)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvItemCard)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -79,18 +79,6 @@ namespace PointOfSaleSedek._101_Adds._114_AddExpenses
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(745, 105);
             this.tableLayoutPanel1.TabIndex = 0;
-            // 
-            // btnShow
-            // 
-            this.btnShow.Appearance.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnShow.Appearance.Options.UseFont = true;
-            this.tableLayoutPanel1.SetColumnSpan(this.btnShow, 2);
-            this.btnShow.Location = new System.Drawing.Point(3, 72);
-            this.btnShow.Name = "btnShow";
-            this.btnShow.Size = new System.Drawing.Size(739, 30);
-            this.btnShow.TabIndex = 164;
-            this.btnShow.Text = "عرض";
-            this.btnShow.Click += new System.EventHandler(this.btnShow_Click);
             // 
             // dtFrom
             // 
@@ -125,6 +113,51 @@ namespace PointOfSaleSedek._101_Adds._114_AddExpenses
             this.labelControl5.TabIndex = 2;
             this.labelControl5.Text = "من تاريخ";
             // 
+            // btnShow
+            // 
+            this.btnShow.Appearance.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnShow.Appearance.Options.UseFont = true;
+            this.tableLayoutPanel1.SetColumnSpan(this.btnShow, 2);
+            this.btnShow.Location = new System.Drawing.Point(3, 72);
+            this.btnShow.Name = "btnShow";
+            this.btnShow.Size = new System.Drawing.Size(739, 30);
+            this.btnShow.TabIndex = 164;
+            this.btnShow.Text = "عرض";
+            this.btnShow.Click += new System.EventHandler(this.btnShow_Click);
+            // 
+            // dtTo
+            // 
+            this.dtTo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dtTo.EditValue = null;
+            this.dtTo.Location = new System.Drawing.Point(3, 36);
+            this.dtTo.Name = "dtTo";
+            this.dtTo.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtTo.Properties.Appearance.Options.UseFont = true;
+            this.dtTo.Properties.AutoHeight = false;
+            this.dtTo.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dtTo.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dtTo.Properties.CalendarView = DevExpress.XtraEditors.Repository.CalendarView.Fluent;
+            this.dtTo.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            this.dtTo.Properties.VistaDisplayMode = DevExpress.Utils.DefaultBoolean.False;
+            this.dtTo.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.dtTo.Size = new System.Drawing.Size(607, 30);
+            this.dtTo.TabIndex = 165;
+            // 
+            // labelControl1
+            // 
+            this.labelControl1.Appearance.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl1.Appearance.Options.UseFont = true;
+            this.labelControl1.Appearance.Options.UseTextOptions = true;
+            this.labelControl1.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.labelControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.labelControl1.Location = new System.Drawing.Point(616, 36);
+            this.labelControl1.Name = "labelControl1";
+            this.labelControl1.Size = new System.Drawing.Size(126, 30);
+            this.labelControl1.TabIndex = 166;
+            this.labelControl1.Text = "الي تاريخ";
+            // 
             // tableLayoutPanel2
             // 
             this.tableLayoutPanel2.ColumnCount = 1;
@@ -140,18 +173,6 @@ namespace PointOfSaleSedek._101_Adds._114_AddExpenses
             this.tableLayoutPanel2.Size = new System.Drawing.Size(748, 297);
             this.tableLayoutPanel2.TabIndex = 1;
             // 
-            // gcItemCard
-            // 
-            this.gcItemCard.ContextMenuStrip = this.contextMenuStrip1;
-            this.gcItemCard.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gcItemCard.Location = new System.Drawing.Point(3, 3);
-            this.gcItemCard.MainView = this.gvItemCard;
-            this.gcItemCard.Name = "gcItemCard";
-            this.gcItemCard.Size = new System.Drawing.Size(742, 291);
-            this.gcItemCard.TabIndex = 9;
-            this.gcItemCard.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gvItemCard});
-            // 
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -165,6 +186,18 @@ namespace PointOfSaleSedek._101_Adds._114_AddExpenses
             this.حذفToolStripMenuItem.Size = new System.Drawing.Size(99, 22);
             this.حذفToolStripMenuItem.Text = "حذف";
             this.حذفToolStripMenuItem.Click += new System.EventHandler(this.حذفToolStripMenuItem_Click);
+            // 
+            // gcItemCard
+            // 
+            this.gcItemCard.ContextMenuStrip = this.contextMenuStrip1;
+            this.gcItemCard.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gcItemCard.Location = new System.Drawing.Point(3, 3);
+            this.gcItemCard.MainView = this.gvItemCard;
+            this.gcItemCard.Name = "gcItemCard";
+            this.gcItemCard.Size = new System.Drawing.Size(742, 291);
+            this.gcItemCard.TabIndex = 10;
+            this.gcItemCard.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gvItemCard});
             // 
             // gvItemCard
             // 
@@ -249,39 +282,6 @@ namespace PointOfSaleSedek._101_Adds._114_AddExpenses
             this.gridColumn10.Visible = true;
             this.gridColumn10.VisibleIndex = 1;
             // 
-            // dtTo
-            // 
-            this.dtTo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dtTo.EditValue = null;
-            this.dtTo.Location = new System.Drawing.Point(3, 36);
-            this.dtTo.Name = "dtTo";
-            this.dtTo.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtTo.Properties.Appearance.Options.UseFont = true;
-            this.dtTo.Properties.AutoHeight = false;
-            this.dtTo.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dtTo.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dtTo.Properties.CalendarView = DevExpress.XtraEditors.Repository.CalendarView.Fluent;
-            this.dtTo.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-            this.dtTo.Properties.VistaDisplayMode = DevExpress.Utils.DefaultBoolean.False;
-            this.dtTo.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.dtTo.Size = new System.Drawing.Size(607, 30);
-            this.dtTo.TabIndex = 165;
-            // 
-            // labelControl1
-            // 
-            this.labelControl1.Appearance.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl1.Appearance.Options.UseFont = true;
-            this.labelControl1.Appearance.Options.UseTextOptions = true;
-            this.labelControl1.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.labelControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelControl1.Location = new System.Drawing.Point(616, 36);
-            this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(126, 30);
-            this.labelControl1.TabIndex = 166;
-            this.labelControl1.Text = "الي تاريخ";
-            // 
             // FrmCancelExpenses
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -304,12 +304,12 @@ namespace PointOfSaleSedek._101_Adds._114_AddExpenses
             this.tableLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtFrom.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtFrom.Properties)).EndInit();
-            this.tableLayoutPanel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.gcItemCard)).EndInit();
-            this.contextMenuStrip1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.gvItemCard)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtTo.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtTo.Properties)).EndInit();
+            this.tableLayoutPanel2.ResumeLayout(false);
+            this.contextMenuStrip1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.gcItemCard)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvItemCard)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -321,6 +321,10 @@ namespace PointOfSaleSedek._101_Adds._114_AddExpenses
         private DevExpress.XtraEditors.LabelControl labelControl5;
         private DevExpress.XtraEditors.DateEdit dtFrom;
         private DevExpress.XtraEditors.SimpleButton btnShow;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem حذفToolStripMenuItem;
+        private DevExpress.XtraEditors.DateEdit dtTo;
+        private DevExpress.XtraEditors.LabelControl labelControl1;
         public DevExpress.XtraGrid.GridControl gcItemCard;
         public DevExpress.XtraGrid.Views.Grid.GridView gvItemCard;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn7;
@@ -328,9 +332,5 @@ namespace PointOfSaleSedek._101_Adds._114_AddExpenses
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn10;
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem حذفToolStripMenuItem;
-        private DevExpress.XtraEditors.DateEdit dtTo;
-        private DevExpress.XtraEditors.LabelControl labelControl1;
     }
 }

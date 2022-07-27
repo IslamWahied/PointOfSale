@@ -176,7 +176,6 @@ namespace PointOfSaleSedek._101_Adds
             this.gcEmployeeCard.TabIndex = 8;
             this.gcEmployeeCard.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvEmployeeCard});
-            this.gcEmployeeCard.Click += new System.EventHandler(this.gcItemCard_Click);
             // 
             // gvEmployeeCard
             // 
@@ -398,7 +397,6 @@ namespace PointOfSaleSedek._101_Adds
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "بطاقة الموظف";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.Load += new System.EventHandler(this.frmCustomers_Load);
             this.materialContextMenuStrip1.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gcEmployeeCard)).EndInit();

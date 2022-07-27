@@ -33,10 +33,10 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.gcSaleMaster = new DevExpress.XtraGrid.GridControl();
+            this.gcCafeSaleMaster = new DevExpress.XtraGrid.GridControl();
             this.materialContextMenuStrip1 = new MaterialSkin.Controls.MaterialContextMenuStrip();
             this.الغاءالفاتورةToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.gvSaleMaster = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gvCafeSaleMaster = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -52,9 +52,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gcSaleMaster)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gcCafeSaleMaster)).BeginInit();
             this.materialContextMenuStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gvSaleMaster)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvCafeSaleMaster)).BeginInit();
             this.tableLayoutPanel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.slkUsers.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).BeginInit();
@@ -72,7 +72,7 @@
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(868, 383);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(870, 385);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // groupControl1
@@ -90,7 +90,7 @@
             this.groupControl1.LookAndFeel.SkinName = "The Bezier";
             this.groupControl1.LookAndFeel.UseDefaultLookAndFeel = false;
             this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Size = new System.Drawing.Size(862, 377);
+            this.groupControl1.Size = new System.Drawing.Size(864, 379);
             this.groupControl1.TabIndex = 0;
             this.groupControl1.Text = "بحث عن فاتورة";
             this.groupControl1.CustomButtonClick += new DevExpress.XtraBars.Docking2010.BaseButtonEventHandler(this.groupControl1_CustomButtonClick);
@@ -99,7 +99,7 @@
             // 
             this.tableLayoutPanel2.ColumnCount = 1;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Controls.Add(this.gcSaleMaster, 0, 1);
+            this.tableLayoutPanel2.Controls.Add(this.gcCafeSaleMaster, 0, 1);
             this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel3, 0, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(2, 37);
@@ -107,20 +107,20 @@
             this.tableLayoutPanel2.RowCount = 2;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(858, 338);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(860, 340);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
-            // gcSaleMaster
+            // gcCafeSaleMaster
             // 
-            this.gcSaleMaster.ContextMenuStrip = this.materialContextMenuStrip1;
-            this.gcSaleMaster.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gcSaleMaster.Location = new System.Drawing.Point(3, 19);
-            this.gcSaleMaster.MainView = this.gvSaleMaster;
-            this.gcSaleMaster.Name = "gcSaleMaster";
-            this.gcSaleMaster.Size = new System.Drawing.Size(852, 316);
-            this.gcSaleMaster.TabIndex = 0;
-            this.gcSaleMaster.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gvSaleMaster});
+            this.gcCafeSaleMaster.ContextMenuStrip = this.materialContextMenuStrip1;
+            this.gcCafeSaleMaster.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gcCafeSaleMaster.Location = new System.Drawing.Point(3, 19);
+            this.gcCafeSaleMaster.MainView = this.gvCafeSaleMaster;
+            this.gcCafeSaleMaster.Name = "gcCafeSaleMaster";
+            this.gcCafeSaleMaster.Size = new System.Drawing.Size(854, 318);
+            this.gcCafeSaleMaster.TabIndex = 0;
+            this.gcCafeSaleMaster.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gvCafeSaleMaster});
             // 
             // materialContextMenuStrip1
             // 
@@ -140,40 +140,40 @@
             this.الغاءالفاتورةToolStripMenuItem.Text = "الغاء الفاتورة";
             this.الغاءالفاتورةToolStripMenuItem.Click += new System.EventHandler(this.الغاءالفاتورةToolStripMenuItem_Click);
             // 
-            // gvSaleMaster
+            // gvCafeSaleMaster
             // 
-            this.gvSaleMaster.Appearance.FooterPanel.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gvSaleMaster.Appearance.FooterPanel.Options.UseFont = true;
-            this.gvSaleMaster.Appearance.FooterPanel.Options.UseTextOptions = true;
-            this.gvSaleMaster.Appearance.FooterPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gvSaleMaster.Appearance.FooterPanel.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.gvSaleMaster.Appearance.GroupRow.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gvSaleMaster.Appearance.GroupRow.Options.UseFont = true;
-            this.gvSaleMaster.Appearance.GroupRow.Options.UseTextOptions = true;
-            this.gvSaleMaster.Appearance.GroupRow.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gvSaleMaster.Appearance.GroupRow.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.gvSaleMaster.Appearance.HeaderPanel.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gvSaleMaster.Appearance.HeaderPanel.Options.UseFont = true;
-            this.gvSaleMaster.Appearance.HeaderPanel.Options.UseTextOptions = true;
-            this.gvSaleMaster.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gvSaleMaster.Appearance.HeaderPanel.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.gvSaleMaster.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gvCafeSaleMaster.Appearance.FooterPanel.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gvCafeSaleMaster.Appearance.FooterPanel.Options.UseFont = true;
+            this.gvCafeSaleMaster.Appearance.FooterPanel.Options.UseTextOptions = true;
+            this.gvCafeSaleMaster.Appearance.FooterPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gvCafeSaleMaster.Appearance.FooterPanel.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.gvCafeSaleMaster.Appearance.GroupRow.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gvCafeSaleMaster.Appearance.GroupRow.Options.UseFont = true;
+            this.gvCafeSaleMaster.Appearance.GroupRow.Options.UseTextOptions = true;
+            this.gvCafeSaleMaster.Appearance.GroupRow.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gvCafeSaleMaster.Appearance.GroupRow.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.gvCafeSaleMaster.Appearance.HeaderPanel.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gvCafeSaleMaster.Appearance.HeaderPanel.Options.UseFont = true;
+            this.gvCafeSaleMaster.Appearance.HeaderPanel.Options.UseTextOptions = true;
+            this.gvCafeSaleMaster.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gvCafeSaleMaster.Appearance.HeaderPanel.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.gvCafeSaleMaster.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.gridColumn1,
             this.gridColumn2,
             this.gridColumn3,
             this.gridColumn4,
             this.gridColumn5,
             this.gridColumn6});
-            this.gvSaleMaster.GridControl = this.gcSaleMaster;
-            this.gvSaleMaster.Name = "gvSaleMaster";
-            this.gvSaleMaster.OptionsCustomization.AllowColumnMoving = false;
-            this.gvSaleMaster.OptionsCustomization.AllowColumnResizing = false;
-            this.gvSaleMaster.OptionsMenu.EnableColumnMenu = false;
-            this.gvSaleMaster.OptionsMenu.EnableFooterMenu = false;
-            this.gvSaleMaster.OptionsView.ShowAutoFilterRow = true;
-            this.gvSaleMaster.OptionsView.ShowFilterPanelMode = DevExpress.XtraGrid.Views.Base.ShowFilterPanelMode.ShowAlways;
-            this.gvSaleMaster.OptionsView.ShowFooter = true;
-            this.gvSaleMaster.OptionsView.ShowGroupPanel = false;
+            this.gvCafeSaleMaster.GridControl = this.gcCafeSaleMaster;
+            this.gvCafeSaleMaster.Name = "gvCafeSaleMaster";
+            this.gvCafeSaleMaster.OptionsCustomization.AllowColumnMoving = false;
+            this.gvCafeSaleMaster.OptionsCustomization.AllowColumnResizing = false;
+            this.gvCafeSaleMaster.OptionsMenu.EnableColumnMenu = false;
+            this.gvCafeSaleMaster.OptionsMenu.EnableFooterMenu = false;
+            this.gvCafeSaleMaster.OptionsView.ShowAutoFilterRow = true;
+            this.gvCafeSaleMaster.OptionsView.ShowFilterPanelMode = DevExpress.XtraGrid.Views.Base.ShowFilterPanelMode.ShowAlways;
+            this.gvCafeSaleMaster.OptionsView.ShowFooter = true;
+            this.gvCafeSaleMaster.OptionsView.ShowGroupPanel = false;
             // 
             // gridColumn1
             // 
@@ -302,7 +302,7 @@
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 80.72289F));
             this.tableLayoutPanel3.Controls.Add(this.slkUsers, 1, 0);
             this.tableLayoutPanel3.Controls.Add(this.label1, 0, 0);
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(23, 3);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(25, 3);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 1;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -363,16 +363,16 @@
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.label1.Visible = false;
             // 
-            // frmInvoiceSearch
+            // frmCafeInvoiceSearch
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(868, 383);
+            this.ClientSize = new System.Drawing.Size(870, 385);
             this.Controls.Add(this.tableLayoutPanel1);
             this.IconOptions.ShowIcon = false;
             this.LookAndFeel.SkinName = "The Bezier";
             this.LookAndFeel.UseDefaultLookAndFeel = false;
-            this.Name = "frmInvoiceSearch";
+            this.Name = "frmCafeInvoiceSearch";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.RightToLeftLayout = true;
             this.ShowInTaskbar = false;
@@ -383,9 +383,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             this.groupControl1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.gcSaleMaster)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gcCafeSaleMaster)).EndInit();
             this.materialContextMenuStrip1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.gvSaleMaster)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvCafeSaleMaster)).EndInit();
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.slkUsers.Properties)).EndInit();
@@ -399,8 +399,8 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private DevExpress.XtraEditors.GroupControl groupControl1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
-        private DevExpress.XtraGrid.GridControl gcSaleMaster;
-        private DevExpress.XtraGrid.Views.Grid.GridView gvSaleMaster;
+        private DevExpress.XtraGrid.GridControl gcCafeSaleMaster;
+        private DevExpress.XtraGrid.Views.Grid.GridView gvCafeSaleMaster;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;

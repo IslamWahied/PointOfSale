@@ -5,37 +5,37 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="dcb4fd4f2c744c7db2ee248dd8371517" Name="Diagram1">
-        <EntityTypeShape EntityType="SaleModel.Branch" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SaleModel.Category" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SaleModel.Customer_Info" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SaleModel.Employee" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SaleModel.Expens" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SaleModel.ExpensesTransaction" Width="1.5" PointX="4.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SaleModel.Item_History" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SaleModel.Item_History_transaction" Width="1.5" PointX="6.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SaleModel.ItemCard" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SaleModel.Jop" Width="1.5" PointX="4.75" PointY="8.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SaleModel.SaleDetail" Width="1.5" PointX="8.75" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SaleModel.SaleMaster" Width="1.5" PointX="0.75" PointY="9.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SaleModel.Sale" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SaleModel.SexType" Width="1.5" PointX="10.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SaleModel.Shift" Width="1.5" PointX="6.75" PointY="10.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SaleModel.Tab_Info" Width="1.5" PointX="10.75" PointY="7.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SaleModel.UnitCard" Width="1.5" PointX="2.75" PointY="11.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SaleModel.User" Width="1.5" PointX="8.75" PointY="11.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SaleModel.User_Auth" Width="1.5" PointX="10.75" PointY="11.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SaleModel.UserEvent" Width="1.5" PointX="12.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SaleModel.Operation_Type" Width="1.5" PointX="12.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SaleModel.Payment_Type" Width="1.5" PointX="12.75" PointY="7.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SaleModel.Auth_View" Width="1.5" PointX="12.75" PointY="10.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SaleModel.Customer_View" Width="1.5" PointX="14.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SaleModel.Employee_View" Width="1.5" PointX="0.75" PointY="14.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SaleModel.ExpensesView" Width="1.5" PointX="2.75" PointY="14.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SaleModel.ItemCardView" Width="1.5" PointX="14.75" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SaleModel.SaleDetailView" Width="1.5" PointX="14.75" PointY="10.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SaleModel.SaleMasterView" Width="1.5" PointX="4.75" PointY="15.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SaleModel.Shift_View" Width="1.5" PointX="6.75" PointY="15.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SaleModel.User_View" Width="1.5" PointX="8.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SaleModel.Branch" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="SaleModel.Category" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="SaleModel.Customer_Info" Width="1.5" PointX="0.75" PointY="3.75" />
+        <EntityTypeShape EntityType="SaleModel.Employee" Width="1.5" PointX="2.75" PointY="3.75" />
+        <EntityTypeShape EntityType="SaleModel.Expens" Width="1.5" PointX="4.75" PointY="0.75" />
+        <EntityTypeShape EntityType="SaleModel.ExpensesTransaction" Width="1.5" PointX="4.75" PointY="3.75" />
+        <EntityTypeShape EntityType="SaleModel.Item_History" Width="1.5" PointX="6.75" PointY="0.75" />
+        <EntityTypeShape EntityType="SaleModel.Item_History_transaction" Width="1.5" PointX="6.75" PointY="4.75" />
+        <EntityTypeShape EntityType="SaleModel.ItemCard" Width="1.5" PointX="8.75" PointY="0.75" />
+        <EntityTypeShape EntityType="SaleModel.Jop" Width="1.5" PointX="4.75" PointY="8.75" />
+        <EntityTypeShape EntityType="SaleModel.SaleDetail" Width="1.5" PointX="8.75" PointY="5.75" />
+        <EntityTypeShape EntityType="SaleModel.SaleMaster" Width="1.5" PointX="0.75" PointY="9.75" />
+        <EntityTypeShape EntityType="SaleModel.Sale" Width="1.5" PointX="10.75" PointY="0.75" />
+        <EntityTypeShape EntityType="SaleModel.SexType" Width="1.5" PointX="10.75" PointY="4.75" />
+        <EntityTypeShape EntityType="SaleModel.Shift" Width="1.5" PointX="6.75" PointY="10.75" />
+        <EntityTypeShape EntityType="SaleModel.Tab_Info" Width="1.5" PointX="10.75" PointY="7.75" />
+        <EntityTypeShape EntityType="SaleModel.UnitCard" Width="1.5" PointX="2.75" PointY="11.75" />
+        <EntityTypeShape EntityType="SaleModel.User" Width="1.5" PointX="8.75" PointY="11.75" />
+        <EntityTypeShape EntityType="SaleModel.User_Auth" Width="1.5" PointX="10.75" PointY="11.75" />
+        <EntityTypeShape EntityType="SaleModel.UserEvent" Width="1.5" PointX="12.75" PointY="0.75" />
+        <EntityTypeShape EntityType="SaleModel.Operation_Type" Width="1.5" PointX="12.75" PointY="4.75" />
+        <EntityTypeShape EntityType="SaleModel.Payment_Type" Width="1.5" PointX="12.75" PointY="7.75" />
+        <EntityTypeShape EntityType="SaleModel.Auth_View" Width="1.5" PointX="12.75" PointY="10.75" />
+        <EntityTypeShape EntityType="SaleModel.Customer_View" Width="1.5" PointX="14.75" PointY="0.75" />
+        <EntityTypeShape EntityType="SaleModel.Employee_View" Width="1.5" PointX="0.75" PointY="14.75" />
+        <EntityTypeShape EntityType="SaleModel.ExpensesView" Width="1.5" PointX="2.75" PointY="14.75" />
+        <EntityTypeShape EntityType="SaleModel.ItemCardView" Width="1.5" PointX="14.75" PointY="5.75" />
+        <EntityTypeShape EntityType="SaleModel.SaleDetailView" Width="1.5" PointX="14.75" PointY="10.75" />
+        <EntityTypeShape EntityType="SaleModel.SaleMasterView" Width="1.5" PointX="4.75" PointY="15.75" />
+        <EntityTypeShape EntityType="SaleModel.Shift_View" Width="1.5" PointX="6.75" PointY="15.75" />
+        <EntityTypeShape EntityType="SaleModel.User_View" Width="1.5" PointX="8.75" PointY="15.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

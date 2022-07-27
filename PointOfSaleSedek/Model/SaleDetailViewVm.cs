@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PointOfSaleSedek.Model
 {
-  public  class SaleDetailViewVm
+    public class SaleDetailViewVm
     {
         public long ItemCode { get; set; }
         public Nullable<long> CategoryCode { get; set; }
@@ -27,8 +27,10 @@ namespace PointOfSaleSedek.Model
         public string CategoryName { get; set; }
         public Nullable<bool> AddItem { get; set; }
         public double Item_Count_InStoreg { get; set; }
+        public double FinalTotal { get; set; }
         public string UserName { get; set; }
         public long Emp_Code { get; set; }
         public long Id { get; set; }
+        public long shiftCode { get; set; }
     }
 }

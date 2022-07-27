@@ -33,6 +33,7 @@ namespace PointOfSaleSedek._101_Adds.CasherShift
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.slkShiftsOpen = new DevExpress.XtraEditors.SearchLookUpEdit();
             this.searchLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.txtShiftIncrseOrDibilty = new DevExpress.XtraEditors.TextEdit();
@@ -53,7 +54,6 @@ namespace PointOfSaleSedek._101_Adds.CasherShift
             this.txtAmountStart = new DevExpress.XtraEditors.TextEdit();
             this.labelControl9 = new DevExpress.XtraEditors.LabelControl();
             this.txtTotalSale = new DevExpress.XtraEditors.TextEdit();
-            this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.labelControl10 = new DevExpress.XtraEditors.LabelControl();
             this.txtExpenses = new DevExpress.XtraEditors.TextEdit();
             this.tableLayoutPanel1.SuspendLayout();
@@ -145,6 +145,20 @@ namespace PointOfSaleSedek._101_Adds.CasherShift
             this.searchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.searchLookUpEdit1View.OptionsView.ShowGroupPanel = false;
             // 
+            // gridColumn2
+            // 
+            this.gridColumn2.AppearanceCell.Options.UseTextOptions = true;
+            this.gridColumn2.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridColumn2.AppearanceHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.gridColumn2.AppearanceHeader.Options.UseBackColor = true;
+            this.gridColumn2.AppearanceHeader.Options.UseTextOptions = true;
+            this.gridColumn2.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridColumn2.Caption = "الاسم";
+            this.gridColumn2.FieldName = "UserName";
+            this.gridColumn2.Name = "gridColumn2";
+            this.gridColumn2.Visible = true;
+            this.gridColumn2.VisibleIndex = 0;
+            // 
             // labelControl1
             // 
             this.labelControl1.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
@@ -187,8 +201,9 @@ namespace PointOfSaleSedek._101_Adds.CasherShift
             // tableLayoutPanel2
             // 
             this.tableLayoutPanel2.ColumnCount = 2;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.76923F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 49.23077F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 133F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel2.Controls.Add(this.btnSave, 0, 1);
             this.tableLayoutPanel2.Controls.Add(this.btnCancel, 1, 1);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -197,7 +212,7 @@ namespace PointOfSaleSedek._101_Adds.CasherShift
             this.tableLayoutPanel2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.tableLayoutPanel2.RowCount = 2;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 13.33333F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 86.66666F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 86.66667F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(280, 53);
             this.tableLayoutPanel2.TabIndex = 156;
             // 
@@ -208,11 +223,11 @@ namespace PointOfSaleSedek._101_Adds.CasherShift
             this.btnSave.Appearance.Options.UseBackColor = true;
             this.btnSave.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnSave.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSave.ImageOptions.Image")));
-            this.btnSave.Location = new System.Drawing.Point(141, 10);
+            this.btnSave.Location = new System.Drawing.Point(136, 10);
             this.btnSave.LookAndFeel.SkinName = "The Bezier";
             this.btnSave.LookAndFeel.UseDefaultLookAndFeel = false;
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(136, 40);
+            this.btnSave.Size = new System.Drawing.Size(141, 40);
             this.btnSave.TabIndex = 0;
             this.btnSave.Text = "حفظ";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
@@ -226,10 +241,9 @@ namespace PointOfSaleSedek._101_Adds.CasherShift
             this.btnCancel.Location = new System.Drawing.Point(3, 10);
             this.btnCancel.LookAndFeel.UseDefaultLookAndFeel = false;
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(132, 40);
-            this.btnCancel.TabIndex = 1;
+            this.btnCancel.Size = new System.Drawing.Size(127, 40);
+            this.btnCancel.TabIndex = 2;
             this.btnCancel.Text = "الغاء";
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // labelControl2
             // 
@@ -420,20 +434,6 @@ namespace PointOfSaleSedek._101_Adds.CasherShift
             this.txtTotalSale.Size = new System.Drawing.Size(280, 40);
             this.txtTotalSale.TabIndex = 166;
             // 
-            // gridColumn2
-            // 
-            this.gridColumn2.AppearanceCell.Options.UseTextOptions = true;
-            this.gridColumn2.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumn2.AppearanceHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.gridColumn2.AppearanceHeader.Options.UseBackColor = true;
-            this.gridColumn2.AppearanceHeader.Options.UseTextOptions = true;
-            this.gridColumn2.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumn2.Caption = "الاسم";
-            this.gridColumn2.FieldName = "UserName";
-            this.gridColumn2.Name = "gridColumn2";
-            this.gridColumn2.Visible = true;
-            this.gridColumn2.VisibleIndex = 0;
-            // 
             // labelControl10
             // 
             this.labelControl10.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
@@ -467,7 +467,6 @@ namespace PointOfSaleSedek._101_Adds.CasherShift
             this.AcceptButton = this.btnSave;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(443, 435);
             this.Controls.Add(this.tableLayoutPanel1);
             this.IconOptions.ShowIcon = false;
@@ -476,6 +475,7 @@ namespace PointOfSaleSedek._101_Adds.CasherShift
             this.Name = "frmShiftEnd";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.RightToLeftLayout = true;
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "اغلاق وردية";
             this.tableLayoutPanel1.ResumeLayout(false);
@@ -514,7 +514,6 @@ namespace PointOfSaleSedek._101_Adds.CasherShift
         private DevExpress.XtraEditors.TextEdit txtdateStart;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private DevExpress.XtraEditors.SimpleButton btnSave;
-        private DevExpress.XtraEditors.SimpleButton btnCancel;
         private DevExpress.XtraEditors.LabelControl labelControl6;
         private DevExpress.XtraEditors.TextEdit txtNoteEnd;
         private DevExpress.XtraEditors.LabelControl labelControl7;
@@ -525,5 +524,6 @@ namespace PointOfSaleSedek._101_Adds.CasherShift
         private DevExpress.XtraEditors.TextEdit txtTotalSale;
         private DevExpress.XtraEditors.LabelControl labelControl10;
         private DevExpress.XtraEditors.TextEdit txtExpenses;
+        private DevExpress.XtraEditors.SimpleButton btnCancel;
     }
 }

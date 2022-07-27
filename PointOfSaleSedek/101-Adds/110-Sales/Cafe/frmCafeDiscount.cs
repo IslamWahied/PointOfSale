@@ -34,7 +34,7 @@ namespace PointOfSaleSedek._101_Adds
 
                     if (Application.OpenForms.OfType<frmCafeSales>().Any())
                     {
-                        frmCafeSales frm = (frmCafeSales)Application.OpenForms["frmSales"];
+                        frmCafeSales frm = (frmCafeSales)Application.OpenForms["frmCafeSales"];
                         frm.lblDiscount.Text = DisCount.ToString();
                         frm.lblFinalTotal.Text = (FinalAmount - DisCount).ToString();
                         this.Close();

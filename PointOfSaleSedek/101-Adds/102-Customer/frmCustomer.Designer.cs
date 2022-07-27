@@ -87,21 +87,21 @@ namespace PointOfSaleSedek._101_Adds._102_Customer
             this.جديدToolStripMenuItem.Name = "جديدToolStripMenuItem";
             this.جديدToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
             this.جديدToolStripMenuItem.Text = "جديد";
-            this.جديدToolStripMenuItem.Click += new System.EventHandler(this.جديدToolStripMenuItem_Click);
+            
             // 
             // تعديلToolStripMenuItem
             // 
             this.تعديلToolStripMenuItem.Name = "تعديلToolStripMenuItem";
             this.تعديلToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
             this.تعديلToolStripMenuItem.Text = "تعديل";
-            this.تعديلToolStripMenuItem.Click += new System.EventHandler(this.تعديلToolStripMenuItem_Click);
+            
             // 
             // حذفToolStripMenuItem
             // 
             this.حذفToolStripMenuItem.Name = "حذفToolStripMenuItem";
             this.حذفToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
             this.حذفToolStripMenuItem.Text = "حذف";
-            this.حذفToolStripMenuItem.Click += new System.EventHandler(this.حذفToolStripMenuItem_Click);
+          
             // 
             // gvEmployeeCard
             // 
@@ -278,7 +278,7 @@ namespace PointOfSaleSedek._101_Adds._102_Customer
             this.windowsUIButtonPanel.TabIndex = 10;
             this.windowsUIButtonPanel.Text = "windowsUIButtonPanel";
             this.windowsUIButtonPanel.UseButtonBackgroundImages = false;
-            this.windowsUIButtonPanel.ButtonClick += new DevExpress.XtraBars.Docking2010.ButtonEventHandler(this.windowsUIButtonPanel_ButtonClick);
+            
             // 
             // frmCustomer
             // 

@@ -1,16 +1,17 @@
-﻿using DevExpress.XtraEditors;
+﻿ 
 using PointOfSaleSedek._102_MaterialSkin;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+ 
 using System.Data;
-using System.Drawing;
+ 
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+ 
 using System.Windows.Forms;
 using PointOfSaleSedek.HelperClass;
 using DataRep;
+using FastReport;
+using PointOfSaleSedek.Model;
+using System.Collections.Generic;
 
 namespace PointOfSaleSedek._101_Adds.CasherShift
 {
@@ -52,6 +53,7 @@ namespace PointOfSaleSedek._101_Adds.CasherShift
                 string DatatimeNow = Convert.ToString(DateTime.Now);
                 dtEnd.Text = DatatimeNow;
                 txtAmountEnd.ResetText();
+                
                 txtAmountStart.ResetText();
                 txtdateStart.ResetText();
                 txtNoteEnd.ResetText();
@@ -64,6 +66,7 @@ namespace PointOfSaleSedek._101_Adds.CasherShift
             else
             {
                 dtEnd.ReadOnly = false;
+                
                 txtAmountEnd.ReadOnly = false;
                 txtNoteEnd.ReadOnly = false;
                 Int64 ShiftCode = Convert.ToInt64(slkShiftsOpen.EditValue);
@@ -100,6 +103,23 @@ namespace PointOfSaleSedek._101_Adds.CasherShift
                 }
 
 
+                try
+                {
+
+                    txtShiftIncrseOrDibilty.Text = Convert.ToString(Convert.ToDouble(txtAmountEnd.Text) + Convert.ToDouble(txtExpenses.Text) - (Convert.ToDouble(txtAmountStart.Text) + Convert.ToDouble(txtTotalSale.Text)));
+
+                }
+                catch
+                {
+                    txtShiftIncrseOrDibilty.Text = "0";
+
+
+                }
+
+
+
+
+
             }
 
         }
@@ -114,11 +134,20 @@ namespace PointOfSaleSedek._101_Adds.CasherShift
             else
             {
 
-                txtAmountEnd.Text = 0.ToString();
-   
-                txtShiftIncrseOrDibilty.Text = 0.ToString();
-            
-            
+                
+                try
+                {
+                    txtShiftIncrseOrDibilty.Text = Convert.ToString((Convert.ToDouble(0) + Convert.ToDouble(txtExpenses.Text)) - (Convert.ToDouble(txtAmountStart.Text) + Convert.ToDouble(txtTotalSale.Text)));
+                    txtAmountEnd.Text = 0.ToString();
+                }
+                catch (Exception)
+                {
+
+                    txtShiftIncrseOrDibilty.Text = "0";
+                }
+                
+
+
             }
              
         }
@@ -143,25 +172,62 @@ namespace PointOfSaleSedek._101_Adds.CasherShift
                 return;
             }
             else
-            { 
-            
+            {
+
+              
             Int64 ShiftCode = Convert.ToInt64(slkShiftsOpen.EditValue);
             Shift _Shift;
             _Shift = Context.Shifts.SingleOrDefault(shft => shft.Shift_Code == ShiftCode && shft.Shift_Flag==true&&shft.IsDeleted==0);
+                _Shift.Shift_Start_Amount = Convert.ToDouble(txtAmountStart.Text);
                 _Shift.Shift_End_Amount = Convert.ToDouble(txtAmountEnd.Text);
                 _Shift.Shift_Increase_disability = Convert.ToDouble(txtShiftIncrseOrDibilty.Text);
                 _Shift.Shift_End_Date = Convert.ToDateTime(dtEnd.EditValue); /*HelperClass.HelperClass.EncryptPassword(TxtPassword.Text);*/
                 _Shift.Shift_End_Notes = txtNoteEnd.Text; /*HelperClass.HelperClass.EncryptPassword(TxtPassword.Text);*/
-
+                _Shift.TotalSale = Convert.ToDouble(txtTotalSale.Text??"0");
+                _Shift.Expenses = Convert.ToDouble(txtExpenses.Text??"0");
                 _Shift.Shift_Flag =false;
                 _Shift.Last_Modified_Date = DateTime.Now;
                 _Shift.Last_Modified_User = st.User_Code();
                 Context.SaveChanges();
+
+
+                List<EndShiftReport> listendShiftReport = new List<EndShiftReport>();
+
+                EndShiftReport endShiftReport = new EndShiftReport()
+                {
+
+                    ShiftCode = ShiftCode.ToString(),
+                    ProfitOrExpenses = Convert.ToString((Convert.ToDouble(txtAmountEnd.Text) + Convert.ToDouble(txtExpenses.Text)) - (Convert.ToDouble(txtAmountStart.Text) + Convert.ToDouble(txtTotalSale.Text))),
+                    ShiftEndBalance = txtAmountEnd.Text,
+                    ShiftEndDate = dtEnd.EditValue.ToString(),
+                    ShiftEndNote = txtNoteEnd.Text,
+                    ShiftExpenses = txtExpenses.Text,
+                    ShiftSales = txtTotalSale.Text,
+                    ShiftStartBalance = txtAmountStart.Text,
+                    ShiftStartDate = txtdateStart.Text,
+                    ShiftStartNote = txtNoteStart.Text,
+                    UserName = slkShiftsOpen.Text
+
+                };
+
+                listendShiftReport.Add(endShiftReport);
+
+
+                Report rpt = new Report();
+                rpt.Load(@"Reports\endShift.frx");
+                rpt.RegisterData(listendShiftReport, "Lines");
+                rpt.PrintSettings.ShowDialog = false;
+               // rpt.Design();
+                rpt.Print();
+
+
                 Rest();
-                MaterialMessageBox.Show("تم اقفال الوردية", MessageBoxButtons.OK);
+                MaterialMessageBox.Show("تم اقفال الوردية ", MessageBoxButtons.OK);
                 this.Close();
 
             }
         }
+
+        
     }
 }

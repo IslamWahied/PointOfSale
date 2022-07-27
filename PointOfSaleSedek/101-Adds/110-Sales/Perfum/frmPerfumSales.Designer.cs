@@ -60,21 +60,22 @@
             this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
             this.lblFinalTotal = new DevExpress.XtraEditors.LabelControl();
             this.lblfinaltotalDisplay = new DevExpress.XtraEditors.LabelControl();
-            this.gcSaleDetail = new DevExpress.XtraGrid.GridControl();
-            this.gvSaleDetail = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gcPrfumSaleDetail = new DevExpress.XtraGrid.GridControl();
+            this.gvPrfumSaleDetail = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colSaleDetailCode = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colEntryDate = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colCode = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colQty = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colUnit = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colPrice = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colTotal = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colSaleMasterCode = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemButtonEdit3 = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
-            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.btnSave = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
@@ -118,10 +119,9 @@
             this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel7.SuspendLayout();
             this.tableLayoutPanel9.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gcSaleDetail)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvSaleDetail)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gcPrfumSaleDetail)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvPrfumSaleDetail)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             this.tableLayoutPanel4.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
@@ -184,7 +184,6 @@
             // repositoryItemButtonEdit2
             // 
             this.repositoryItemButtonEdit2.AutoHeight = false;
-            editorButtonImageOptions1.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions1.Image")));
             serializableAppearanceObject1.Options.UseTextOptions = true;
             serializableAppearanceObject1.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             serializableAppearanceObject1.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
@@ -201,7 +200,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Controls.Add(this.simpleButton2, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel3, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.gcSaleDetail, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.gcPrfumSaleDetail, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel4, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -400,86 +399,111 @@
             this.lblfinaltotalDisplay.TabIndex = 23;
             this.lblfinaltotalDisplay.Text = "الاجمالي";
             // 
-            // gcSaleDetail
+            // gcPrfumSaleDetail
             // 
-            this.gcSaleDetail.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.gcPrfumSaleDetail.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.gcSaleDetail.ContextMenuStrip = this.materialContextMenuStrip1;
+            this.gcPrfumSaleDetail.ContextMenuStrip = this.materialContextMenuStrip1;
             gridLevelNode1.RelationName = "Level1";
-            this.gcSaleDetail.LevelTree.Nodes.AddRange(new DevExpress.XtraGrid.GridLevelNode[] {
+            this.gcPrfumSaleDetail.LevelTree.Nodes.AddRange(new DevExpress.XtraGrid.GridLevelNode[] {
             gridLevelNode1});
-            this.gcSaleDetail.Location = new System.Drawing.Point(98, 92);
-            this.gcSaleDetail.MainView = this.gvSaleDetail;
-            this.gcSaleDetail.Name = "gcSaleDetail";
-            this.gcSaleDetail.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.gcPrfumSaleDetail.Location = new System.Drawing.Point(98, 92);
+            this.gcPrfumSaleDetail.MainView = this.gvPrfumSaleDetail;
+            this.gcPrfumSaleDetail.Name = "gcPrfumSaleDetail";
+            this.gcPrfumSaleDetail.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemButtonEdit3});
-            this.gcSaleDetail.Size = new System.Drawing.Size(1136, 482);
-            this.gcSaleDetail.TabIndex = 6;
-            this.gcSaleDetail.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gvSaleDetail,
-            this.gridView1});
-            this.gcSaleDetail.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gcSaleDetail_KeyDown);
+            this.gcPrfumSaleDetail.Size = new System.Drawing.Size(1136, 482);
+            this.gcPrfumSaleDetail.TabIndex = 6;
+            this.gcPrfumSaleDetail.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gvPrfumSaleDetail});
+            this.gcPrfumSaleDetail.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gcSaleDetail_KeyDown);
             // 
-            // gvSaleDetail
+            // gvPrfumSaleDetail
             // 
-            this.gvSaleDetail.Appearance.HeaderPanel.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gvSaleDetail.Appearance.HeaderPanel.Options.UseFont = true;
-            this.gvSaleDetail.Appearance.HeaderPanel.Options.UseTextOptions = true;
-            this.gvSaleDetail.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gvSaleDetail.Appearance.HeaderPanel.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.gvSaleDetail.Appearance.Row.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gvSaleDetail.Appearance.Row.Options.UseFont = true;
-            this.gvSaleDetail.Appearance.Row.Options.UseTextOptions = true;
-            this.gvSaleDetail.Appearance.Row.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gvSaleDetail.Appearance.Row.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.gvSaleDetail.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gvPrfumSaleDetail.Appearance.HeaderPanel.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gvPrfumSaleDetail.Appearance.HeaderPanel.Options.UseFont = true;
+            this.gvPrfumSaleDetail.Appearance.HeaderPanel.Options.UseTextOptions = true;
+            this.gvPrfumSaleDetail.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gvPrfumSaleDetail.Appearance.HeaderPanel.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.gvPrfumSaleDetail.Appearance.Row.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gvPrfumSaleDetail.Appearance.Row.Options.UseFont = true;
+            this.gvPrfumSaleDetail.Appearance.Row.Options.UseTextOptions = true;
+            this.gvPrfumSaleDetail.Appearance.Row.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gvPrfumSaleDetail.Appearance.Row.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.gvPrfumSaleDetail.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.colId,
             this.colSaleDetailCode,
             this.colEntryDate,
             this.colCode,
             this.colName,
             this.colQty,
+            this.gridColumn6,
+            this.gridColumn7,
             this.colUnit,
             this.colPrice,
             this.colTotal,
             this.colSaleMasterCode,
             this.gridColumn1});
-            this.gvSaleDetail.GridControl = this.gcSaleDetail;
-            this.gvSaleDetail.Name = "gvSaleDetail";
-            this.gvSaleDetail.OptionsCustomization.AllowColumnMoving = false;
-            this.gvSaleDetail.OptionsCustomization.AllowColumnResizing = false;
-            this.gvSaleDetail.OptionsFind.AllowFindPanel = false;
-            this.gvSaleDetail.OptionsMenu.EnableColumnMenu = false;
-            this.gvSaleDetail.OptionsMenu.EnableFooterMenu = false;
-            this.gvSaleDetail.OptionsView.EnableAppearanceEvenRow = true;
-            this.gvSaleDetail.OptionsView.EnableAppearanceOddRow = true;
-            this.gvSaleDetail.OptionsView.ShowFilterPanelMode = DevExpress.XtraGrid.Views.Base.ShowFilterPanelMode.Never;
-            this.gvSaleDetail.OptionsView.ShowGroupPanel = false;
-            this.gvSaleDetail.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.gvSaleDetail_CellValueChanged);
+            this.gvPrfumSaleDetail.GridControl = this.gcPrfumSaleDetail;
+            this.gvPrfumSaleDetail.Name = "gvPrfumSaleDetail";
+            this.gvPrfumSaleDetail.OptionsCustomization.AllowColumnMoving = false;
+            this.gvPrfumSaleDetail.OptionsCustomization.AllowColumnResizing = false;
+            this.gvPrfumSaleDetail.OptionsFind.AllowFindPanel = false;
+            this.gvPrfumSaleDetail.OptionsMenu.EnableColumnMenu = false;
+            this.gvPrfumSaleDetail.OptionsMenu.EnableFooterMenu = false;
+            this.gvPrfumSaleDetail.OptionsView.EnableAppearanceEvenRow = true;
+            this.gvPrfumSaleDetail.OptionsView.EnableAppearanceOddRow = true;
+            this.gvPrfumSaleDetail.OptionsView.ShowFilterPanelMode = DevExpress.XtraGrid.Views.Base.ShowFilterPanelMode.Never;
+            this.gvPrfumSaleDetail.OptionsView.ShowGroupPanel = false;
+            this.gvPrfumSaleDetail.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.gvSaleDetail_CellValueChanged);
             // 
             // colId
             // 
+            this.colId.AppearanceCell.Options.UseTextOptions = true;
+            this.colId.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colId.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.colId.AppearanceHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.colId.AppearanceHeader.Options.UseBackColor = true;
+            this.colId.AppearanceHeader.Options.UseTextOptions = true;
+            this.colId.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colId.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.colId.FieldName = "Id";
             this.colId.Name = "colId";
             this.colId.OptionsColumn.AllowEdit = false;
             // 
             // colSaleDetailCode
             // 
+            this.colSaleDetailCode.AppearanceCell.Options.UseTextOptions = true;
+            this.colSaleDetailCode.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colSaleDetailCode.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.colSaleDetailCode.AppearanceHeader.Options.UseTextOptions = true;
+            this.colSaleDetailCode.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colSaleDetailCode.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.colSaleDetailCode.FieldName = "SaleDetailCode";
             this.colSaleDetailCode.Name = "colSaleDetailCode";
             this.colSaleDetailCode.OptionsColumn.AllowEdit = false;
             // 
             // colEntryDate
             // 
+            this.colEntryDate.AppearanceCell.Options.UseTextOptions = true;
+            this.colEntryDate.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colEntryDate.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.colEntryDate.AppearanceHeader.Options.UseTextOptions = true;
+            this.colEntryDate.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colEntryDate.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.colEntryDate.FieldName = "EntryDate";
             this.colEntryDate.Name = "colEntryDate";
             this.colEntryDate.OptionsColumn.AllowEdit = false;
             // 
             // colCode
             // 
+            this.colCode.AppearanceCell.Options.UseTextOptions = true;
+            this.colCode.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colCode.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.colCode.AppearanceHeader.Options.UseTextOptions = true;
+            this.colCode.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colCode.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.colCode.FieldName = "Code";
             this.colCode.Name = "colCode";
             this.colCode.OptionsColumn.AllowEdit = false;
@@ -488,40 +512,97 @@
             // 
             this.colName.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.colName.AppearanceCell.Options.UseFont = true;
+            this.colName.AppearanceCell.Options.UseTextOptions = true;
+            this.colName.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colName.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.colName.AppearanceHeader.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.colName.AppearanceHeader.FontStyleDelta = System.Drawing.FontStyle.Bold;
             this.colName.AppearanceHeader.Options.UseFont = true;
-            this.colName.Caption = "الاسم";
-            this.colName.FieldName = "Name";
+            this.colName.AppearanceHeader.Options.UseTextOptions = true;
+            this.colName.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colName.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.colName.Caption = "اسم الزجاجة";
+            this.colName.FieldName = "GlassIName";
             this.colName.MinWidth = 40;
             this.colName.Name = "colName";
             this.colName.OptionsColumn.AllowEdit = false;
             this.colName.Visible = true;
-            this.colName.VisibleIndex = 0;
-            this.colName.Width = 347;
+            this.colName.VisibleIndex = 2;
+            this.colName.Width = 222;
             // 
             // colQty
             // 
             this.colQty.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.colQty.AppearanceCell.Options.UseFont = true;
+            this.colQty.AppearanceCell.Options.UseTextOptions = true;
+            this.colQty.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colQty.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.colQty.AppearanceHeader.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.colQty.AppearanceHeader.FontStyleDelta = System.Drawing.FontStyle.Bold;
             this.colQty.AppearanceHeader.Options.UseFont = true;
-            this.colQty.Caption = "الكمية";
-            this.colQty.FieldName = "Qty";
+            this.colQty.AppearanceHeader.Options.UseTextOptions = true;
+            this.colQty.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colQty.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.colQty.Caption = "العدد";
+            this.colQty.FieldName = "GlassQty";
             this.colQty.MinWidth = 40;
             this.colQty.Name = "colQty";
             this.colQty.OptionsColumn.AllowEdit = false;
             this.colQty.Visible = true;
-            this.colQty.VisibleIndex = 2;
-            this.colQty.Width = 192;
+            this.colQty.VisibleIndex = 3;
+            this.colQty.Width = 178;
+            // 
+            // gridColumn6
+            // 
+            this.gridColumn6.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 12F);
+            this.gridColumn6.AppearanceCell.Options.UseFont = true;
+            this.gridColumn6.AppearanceCell.Options.UseTextOptions = true;
+            this.gridColumn6.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridColumn6.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.gridColumn6.AppearanceHeader.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
+            this.gridColumn6.AppearanceHeader.Options.UseFont = true;
+            this.gridColumn6.AppearanceHeader.Options.UseTextOptions = true;
+            this.gridColumn6.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridColumn6.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.gridColumn6.Caption = "اسم الزيت";
+            this.gridColumn6.FieldName = "OilIName";
+            this.gridColumn6.Name = "gridColumn6";
+            this.gridColumn6.Visible = true;
+            this.gridColumn6.VisibleIndex = 0;
+            this.gridColumn6.Width = 187;
+            // 
+            // gridColumn7
+            // 
+            this.gridColumn7.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 12F);
+            this.gridColumn7.AppearanceCell.Options.UseFont = true;
+            this.gridColumn7.AppearanceCell.Options.UseTextOptions = true;
+            this.gridColumn7.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridColumn7.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.gridColumn7.AppearanceHeader.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
+            this.gridColumn7.AppearanceHeader.Options.UseFont = true;
+            this.gridColumn7.AppearanceHeader.Options.UseTextOptions = true;
+            this.gridColumn7.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridColumn7.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.gridColumn7.Caption = "عدد الجرام";
+            this.gridColumn7.FieldName = "OilQty";
+            this.gridColumn7.Name = "gridColumn7";
+            this.gridColumn7.OptionsColumn.AllowEdit = false;
+            this.gridColumn7.Visible = true;
+            this.gridColumn7.VisibleIndex = 1;
+            this.gridColumn7.Width = 187;
             // 
             // colUnit
             // 
             this.colUnit.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.colUnit.AppearanceCell.Options.UseFont = true;
+            this.colUnit.AppearanceCell.Options.UseTextOptions = true;
+            this.colUnit.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colUnit.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.colUnit.AppearanceHeader.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.colUnit.AppearanceHeader.Options.UseFont = true;
+            this.colUnit.AppearanceHeader.Options.UseTextOptions = true;
+            this.colUnit.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colUnit.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.colUnit.FieldName = "Unit";
             this.colUnit.MinWidth = 40;
             this.colUnit.Name = "colUnit";
@@ -531,63 +612,85 @@
             // 
             this.colPrice.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.colPrice.AppearanceCell.Options.UseFont = true;
+            this.colPrice.AppearanceCell.Options.UseTextOptions = true;
+            this.colPrice.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colPrice.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.colPrice.AppearanceHeader.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.colPrice.AppearanceHeader.FontStyleDelta = System.Drawing.FontStyle.Bold;
             this.colPrice.AppearanceHeader.Options.UseFont = true;
+            this.colPrice.AppearanceHeader.Options.UseTextOptions = true;
+            this.colPrice.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colPrice.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.colPrice.Caption = "السعر";
             this.colPrice.FieldName = "Price";
             this.colPrice.MinWidth = 40;
             this.colPrice.Name = "colPrice";
             this.colPrice.OptionsColumn.AllowEdit = false;
-            this.colPrice.Visible = true;
-            this.colPrice.VisibleIndex = 1;
             this.colPrice.Width = 161;
             // 
             // colTotal
             // 
             this.colTotal.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.colTotal.AppearanceCell.Options.UseFont = true;
+            this.colTotal.AppearanceCell.Options.UseTextOptions = true;
+            this.colTotal.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colTotal.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.colTotal.AppearanceHeader.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.colTotal.AppearanceHeader.Options.UseFont = true;
+            this.colTotal.AppearanceHeader.Options.UseTextOptions = true;
+            this.colTotal.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colTotal.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.colTotal.Caption = "الاجمالي";
             this.colTotal.FieldName = "Total";
             this.colTotal.MinWidth = 40;
             this.colTotal.Name = "colTotal";
             this.colTotal.OptionsColumn.AllowEdit = false;
             this.colTotal.Visible = true;
-            this.colTotal.VisibleIndex = 3;
-            this.colTotal.Width = 346;
+            this.colTotal.VisibleIndex = 4;
+            this.colTotal.Width = 172;
             // 
             // colSaleMasterCode
             // 
+            this.colSaleMasterCode.AppearanceCell.Options.UseTextOptions = true;
+            this.colSaleMasterCode.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colSaleMasterCode.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.colSaleMasterCode.AppearanceHeader.Options.UseTextOptions = true;
+            this.colSaleMasterCode.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colSaleMasterCode.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.colSaleMasterCode.FieldName = "SaleMasterCode";
             this.colSaleMasterCode.Name = "colSaleMasterCode";
             this.colSaleMasterCode.OptionsColumn.AllowEdit = false;
             // 
             // gridColumn1
             // 
+            this.gridColumn1.AppearanceCell.Options.UseImage = true;
+            this.gridColumn1.AppearanceCell.Options.UseTextOptions = true;
+            this.gridColumn1.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridColumn1.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.gridColumn1.AppearanceHeader.Options.UseImage = true;
+            this.gridColumn1.AppearanceHeader.Options.UseTextOptions = true;
+            this.gridColumn1.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridColumn1.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.gridColumn1.Caption = "gridColumn1";
             this.gridColumn1.ColumnEdit = this.repositoryItemButtonEdit3;
+            this.gridColumn1.ImageOptions.Alignment = System.Drawing.StringAlignment.Center;
             this.gridColumn1.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("gridColumn1.ImageOptions.Image")));
             this.gridColumn1.Name = "gridColumn1";
+            this.gridColumn1.OptionsColumn.ShowCaption = false;
             this.gridColumn1.Visible = true;
-            this.gridColumn1.VisibleIndex = 4;
-            this.gridColumn1.Width = 58;
+            this.gridColumn1.VisibleIndex = 5;
             // 
             // repositoryItemButtonEdit3
             // 
-            this.repositoryItemButtonEdit3.AutoHeight = false;
-            editorButtonImageOptions2.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions2.Image")));
+            editorButtonImageOptions2.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("editorButtonImageOptions2.SvgImage")));
             this.repositoryItemButtonEdit3.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions2, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject5, serializableAppearanceObject6, serializableAppearanceObject7, serializableAppearanceObject8, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            this.repositoryItemButtonEdit3.ContextImageOptions.Alignment = DevExpress.XtraEditors.ContextImageAlignment.Far;
+            this.repositoryItemButtonEdit3.ContextImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("repositoryItemButtonEdit3.ContextImageOptions.SvgImage")));
             this.repositoryItemButtonEdit3.HideSelection = false;
             this.repositoryItemButtonEdit3.Name = "repositoryItemButtonEdit3";
             this.repositoryItemButtonEdit3.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
-            this.repositoryItemButtonEdit3.Click += new System.EventHandler(this.repositoryItemButtonEdit3_Click);
-            // 
-            // gridView1
-            // 
-            this.gridView1.GridControl = this.gcSaleDetail;
-            this.gridView1.Name = "gridView1";
+            this.repositoryItemButtonEdit3.Click += new System.EventHandler(this.repositoryItemButtonEdit3_Click_1);
             // 
             // tableLayoutPanel4
             // 
@@ -636,7 +739,7 @@
             // 
             this.simpleButton1.AllowFocus = false;
             this.simpleButton1.Appearance.BackColor = System.Drawing.Color.Maroon;
-            this.simpleButton1.Appearance.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.simpleButton1.Appearance.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.simpleButton1.Appearance.Options.UseBackColor = true;
             this.simpleButton1.Appearance.Options.UseFont = true;
             this.simpleButton1.AutoSize = true;
@@ -649,7 +752,7 @@
             this.simpleButton1.Name = "simpleButton1";
             this.simpleButton1.Size = new System.Drawing.Size(83, 90);
             this.simpleButton1.TabIndex = 42;
-            this.simpleButton1.Text = "فواتير اليوم";
+            this.simpleButton1.Text = "فواتير الوردية";
             this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click);
             this.simpleButton1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.btnEdite_KeyDown);
             // 
@@ -1156,14 +1259,14 @@
             this.labelControl6.TabIndex = 38;
             this.labelControl6.Text = "البائع";
             // 
-            // frmSales
+            // frmPerfumSales
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1237, 749);
             this.Controls.Add(this.tableLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "frmSales";
+            this.Name = "frmPerfumSales";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.RightToLeftLayout = true;
             this.ShowInTaskbar = false;
@@ -1185,10 +1288,9 @@
             this.tableLayoutPanel7.PerformLayout();
             this.tableLayoutPanel9.ResumeLayout(false);
             this.tableLayoutPanel9.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gcSaleDetail)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvSaleDetail)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gcPrfumSaleDetail)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvPrfumSaleDetail)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             this.tableLayoutPanel4.ResumeLayout(false);
             this.tableLayoutPanel4.PerformLayout();
             this.tableLayoutPanel2.ResumeLayout(false);
@@ -1218,7 +1320,7 @@
         private System.Windows.Forms.Timer timer1;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repositoryItemButtonEdit2;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        public DevExpress.XtraGrid.GridControl gcSaleDetail;
+        public DevExpress.XtraGrid.GridControl gcPrfumSaleDetail;
         private DevExpress.XtraGrid.Columns.GridColumn colId;
         private DevExpress.XtraGrid.Columns.GridColumn colSaleDetailCode;
         private DevExpress.XtraGrid.Columns.GridColumn colEntryDate;
@@ -1236,11 +1338,8 @@
         private DevExpress.XtraEditors.LabelControl labelControl2;
         private DevExpress.XtraEditors.LabelControl labelControl5;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
-        private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repositoryItemButtonEdit3;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel8;
-        public DevExpress.XtraGrid.Views.Grid.GridView gridView1;
-        public DevExpress.XtraGrid.Views.Grid.GridView gvSaleDetail;
+        public DevExpress.XtraGrid.Views.Grid.GridView gvPrfumSaleDetail;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel9;
         public DevExpress.XtraEditors.LabelControl lblFinalTotal;
         public DevExpress.XtraEditors.LabelControl lblfinaltotalDisplay;
@@ -1276,5 +1375,9 @@
         public DevExpress.XtraEditors.SimpleButton btnCustomerHistory;
         public DevExpress.XtraEditors.SimpleButton btnser;
         public DevExpress.XtraEditors.SimpleButton btnAddItems;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn6;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn7;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
+        private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repositoryItemButtonEdit3;
     }
 }

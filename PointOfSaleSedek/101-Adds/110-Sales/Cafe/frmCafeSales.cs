@@ -106,7 +106,7 @@ namespace PointOfSaleSedek._101_Adds
                 MaxCode = 1;
             }
             HelperClass.HelperClass.EnableControls(tableLayoutPanel1);
-            gcSaleDetail.Enabled = true;
+            gcCafeSaleDetail.Enabled = true;
             txtParCode.Enabled = true;
               tabItems.Enabled = true;
 
@@ -127,7 +127,7 @@ namespace PointOfSaleSedek._101_Adds
             {
                 gvSaleDetail.SelectAll();
                 gvSaleDetail.DeleteSelectedRows();
-                gcSaleDetail.RefreshDataSource();
+                gcCafeSaleDetail.RefreshDataSource();
 
             }
 
@@ -242,8 +242,8 @@ namespace PointOfSaleSedek._101_Adds
                 gvSaleDetail.DeleteSelectedRows();
             }
 
-            gcSaleDetail.DataSource = null;
-            gcSaleDetail.RefreshDataSource();
+            gcCafeSaleDetail.DataSource = null;
+            gcCafeSaleDetail.RefreshDataSource();
             btnPrint.Enabled = false;
 
             Int64 User_Code = st.User_Code();
@@ -440,7 +440,7 @@ namespace PointOfSaleSedek._101_Adds
 
 
 
-            var GetDataFromGrid = gcSaleDetail.DataSource as List<SaleDetailView>;
+            var GetDataFromGrid = gcCafeSaleDetail.DataSource as List<SaleDetailView>;
 
             decimal finaltotal = Convert.ToInt64(lblFinalTotal.Text);
 
@@ -771,7 +771,7 @@ namespace PointOfSaleSedek._101_Adds
                 {
                     gvSaleDetail.SelectAll();
                     gvSaleDetail.DeleteSelectedRows();
-                    gcSaleDetail.RefreshDataSource();
+                    gcCafeSaleDetail.RefreshDataSource();
 
                 }
                 SaveSaleMaster(
@@ -991,7 +991,7 @@ namespace PointOfSaleSedek._101_Adds
             {
                 try
                 {
-                    List<SaleDetailView> gcData = gcSaleDetail.DataSource as List<SaleDetailView>;
+                    List<SaleDetailView> gcData = gcCafeSaleDetail.DataSource as List<SaleDetailView>;
 
                     SimpleButton b = (SimpleButton)sender;
 
@@ -1025,8 +1025,8 @@ namespace PointOfSaleSedek._101_Adds
                             sum += Convert.ToDouble(xx.Total);
                         });
 
-                        gcSaleDetail.DataSource = gcData;
-                        gcSaleDetail.RefreshDataSource();
+                        gcCafeSaleDetail.DataSource = gcData;
+                        gcCafeSaleDetail.RefreshDataSource();
 
                         lblItemQty.Text = gvSaleDetail.RowCount.ToString();
                         lblFinalBeforDesCound.Text = sum.ToString();
@@ -1071,13 +1071,13 @@ namespace PointOfSaleSedek._101_Adds
                         };
 
                         gcData.Add(_SaleDetailView);
-                        gcSaleDetail.DataSource = gcData;
+                        gcCafeSaleDetail.DataSource = gcData;
                         double sum = 0;
                         gcData.ForEach(x =>
                         {
                             sum += Convert.ToDouble(x.Total);
                         });
-                        gcSaleDetail.RefreshDataSource();
+                        gcCafeSaleDetail.RefreshDataSource();
 
                         lblItemQty.Text = gvSaleDetail.RowCount.ToString();
                         lblFinalBeforDesCound.Text = sum.ToString();
@@ -1148,7 +1148,7 @@ namespace PointOfSaleSedek._101_Adds
                     };
 
                     gcdata.Add(_SaleDetailView);
-                    gcSaleDetail.DataSource = gcdata;
+                    gcCafeSaleDetail.DataSource = gcdata;
                     double sum = 0;
                     gcdata.ForEach(x =>
                     {
@@ -1288,7 +1288,7 @@ namespace PointOfSaleSedek._101_Adds
                 try
                 {
                   
-                    List<SaleDetailView> gcData = gcSaleDetail.DataSource as List<SaleDetailView>;
+                    List<SaleDetailView> gcData = gcCafeSaleDetail.DataSource as List<SaleDetailView>;
 
                     var item = context.ItemCardViews.FirstOrDefault(x => x.ParCode == txtParCode.Text && x.IsDeleted == 0);
 
@@ -1322,8 +1322,8 @@ namespace PointOfSaleSedek._101_Adds
                             sum += Convert.ToDouble(xx.Total);
                         });
 
-                        gcSaleDetail.DataSource = gcData;
-                        gcSaleDetail.RefreshDataSource();
+                        gcCafeSaleDetail.DataSource = gcData;
+                        gcCafeSaleDetail.RefreshDataSource();
 
                         lblItemQty.Text = gvSaleDetail.RowCount.ToString();
                         lblFinalBeforDesCound.Text = sum.ToString();
@@ -1373,13 +1373,13 @@ namespace PointOfSaleSedek._101_Adds
                         };
 
                         gcData.Add(_SaleDetailView);
-                        gcSaleDetail.DataSource = gcData;
+                        gcCafeSaleDetail.DataSource = gcData;
                         double sum = 0;
                         gcData.ForEach(x =>
                         {
                             sum += Convert.ToDouble(x.Total);
                         });
-                        gcSaleDetail.RefreshDataSource();
+                        gcCafeSaleDetail.RefreshDataSource();
 
                         lblItemQty.Text = gvSaleDetail.RowCount.ToString();
                         lblFinalBeforDesCound.Text = sum.ToString();
@@ -1452,7 +1452,7 @@ namespace PointOfSaleSedek._101_Adds
                     };
 
                     gcdata.Add(_SaleDetailView);
-                    gcSaleDetail.DataSource = gcdata;
+                    gcCafeSaleDetail.DataSource = gcdata;
                     double sum = 0;
                     gcdata.ForEach(x =>
                     {
@@ -1614,7 +1614,7 @@ namespace PointOfSaleSedek._101_Adds
         {
             //frmInvoiceSearch frm = new frmInvoiceSearch();
             //frm.ShowDialog();
-            gcSaleDetail.Enabled = true;
+            gcCafeSaleDetail.Enabled = true;
             tabItems.Enabled = true;
             btnNew.Enabled = true;
             btnEdite.Enabled = false;
@@ -1660,7 +1660,7 @@ namespace PointOfSaleSedek._101_Adds
 
 
             Int64 SaleMasterCode = Convert.ToInt64(lblSaleMasterId.Text);
-            var GetDataFromGrid = gcSaleDetail.DataSource as List<SaleDetailView>;
+            var GetDataFromGrid = gcCafeSaleDetail.DataSource as List<SaleDetailView>;
             var Master = (from a in context.SaleMasterViews where a.SaleMasterCode == SaleMasterCode && a.Operation_Type_Id == 2 && a.Shift_Code == ShiftCode  select a).ToList();
             var Detail = (from a in context.SaleDetailViews where a.SaleMasterCode == SaleMasterCode && a.Operation_Type_Id == 2 && a.shiftCode == ShiftCode select a).ToList();
 
@@ -1818,9 +1818,9 @@ namespace PointOfSaleSedek._101_Adds
             var RowCount = gvSaleDetail.RowCount;
             var FocusRow = gvSaleDetail.GetFocusedRow() as SaleDetailView;
 
-            List<SaleDetailView> gcData = gcSaleDetail.DataSource as List<SaleDetailView>;
+            List<SaleDetailView> gcData = gcCafeSaleDetail.DataSource as List<SaleDetailView>;
             gcData.Remove(FocusRow);
-            gcSaleDetail.DataSource = gcData;
+            gcCafeSaleDetail.DataSource = gcData;
             double sum = 0;
             gcData.ForEach(x =>
             {
@@ -1829,7 +1829,7 @@ namespace PointOfSaleSedek._101_Adds
 
 
 
-            gcSaleDetail.RefreshDataSource();
+            gcCafeSaleDetail.RefreshDataSource();
 
             if (gvSaleDetail.RowCount <= 0)
             {
@@ -1905,9 +1905,9 @@ namespace PointOfSaleSedek._101_Adds
             var RowCount = gvSaleDetail.RowCount;
             var FocusRow = gvSaleDetail.GetFocusedRow() as SaleDetailView;
 
-            List<SaleDetailView> gcData = gcSaleDetail.DataSource as List<SaleDetailView>;
+            List<SaleDetailView> gcData = gcCafeSaleDetail.DataSource as List<SaleDetailView>;
             gcData.Remove(FocusRow);
-            gcSaleDetail.DataSource = gcData;
+            gcCafeSaleDetail.DataSource = gcData;
             double sum = 0;
             gcData.ForEach(x =>
             {
@@ -1916,7 +1916,7 @@ namespace PointOfSaleSedek._101_Adds
 
 
 
-            gcSaleDetail.RefreshDataSource();
+            gcCafeSaleDetail.RefreshDataSource();
 
             if (gvSaleDetail.RowCount <= 0)
             {
@@ -2113,13 +2113,13 @@ namespace PointOfSaleSedek._101_Adds
         }
 
          
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-             var x = DateTime.Now.ToString("hh:mm:ss");
-             var xx = DateTime.Now.ToString("MM/dd/yyyy");
-            dtEntryDate.Text = x + " " + xx;
+        //private void timer1_Tick(object sender, EventArgs e)
+        //{
+        //     var x = DateTime.Now.ToString("hh:mm:ss");
+        //     var xx = DateTime.Now.ToString("MM/dd/yyyy");
+        //    dtEntryDate.Text = x + " " + xx;
 
-        }
+        //}
 
         private void btnRefershItems_Click(object sender, EventArgs e)
         {
@@ -2144,7 +2144,7 @@ namespace PointOfSaleSedek._101_Adds
 
 
                     Int64 SaleMasterCode = Convert.ToInt64(lblSaleMasterId.Text);
-                    var GetDataFromGrid = gcSaleDetail.DataSource as List<SaleDetailView>;
+                    var GetDataFromGrid = gcCafeSaleDetail.DataSource as List<SaleDetailView>;
                     if (GetDataFromGrid == null || GetDataFromGrid.Count <= 0)
                     {
 
@@ -2259,7 +2259,7 @@ namespace PointOfSaleSedek._101_Adds
                 {
 
                     Int64 SaleMasterCode = Convert.ToInt64(lblSaleMasterId.Text);
-                    var GetDataFromGrid = gcSaleDetail.DataSource as List<SaleDetailView>;
+                    var GetDataFromGrid = gcCafeSaleDetail.DataSource as List<SaleDetailView>;
                     if (GetDataFromGrid == null || GetDataFromGrid.Count <= 0)
                     {
 
@@ -2433,7 +2433,7 @@ namespace PointOfSaleSedek._101_Adds
 
 
                     Int64 SaleMasterCode = Convert.ToInt64(lblSaleMasterId.Text);
-                    var GetDataFromGrid = gcSaleDetail.DataSource as List<SaleDetailView>;
+                    var GetDataFromGrid = gcCafeSaleDetail.DataSource as List<SaleDetailView>;
                     if (GetDataFromGrid == null || GetDataFromGrid.Count <= 0)
                     {
 

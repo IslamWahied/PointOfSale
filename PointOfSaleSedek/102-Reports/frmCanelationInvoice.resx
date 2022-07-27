@@ -164,7 +164,7 @@
     <value>Combo</value>
   </data>
   <data name="dtTo.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
-    <value>No</value>
+    <value>Yes</value>
   </data>
   <data name="dtTo.Size" type="System.Drawing.Size, System.Drawing">
     <value>251, 20</value>
@@ -227,7 +227,7 @@
     <value>Combo</value>
   </data>
   <data name="dtFrom.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
-    <value>No</value>
+    <value>Yes</value>
   </data>
   <data name="dtFrom.Size" type="System.Drawing.Size, System.Drawing">
     <value>251, 20</value>

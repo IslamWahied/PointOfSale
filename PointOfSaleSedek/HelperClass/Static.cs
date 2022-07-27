@@ -7,7 +7,7 @@ namespace PointOfSaleSedek.HelperClass
     {
 
        // public static String ProjectType = "Cafe";
-        public static String ProjectType = "Perfum";
+       public static String ProjectType = "Perfum";
      //   public static String ProjectType = "SuperMarket";
 
         public static Int64 _User_Code;

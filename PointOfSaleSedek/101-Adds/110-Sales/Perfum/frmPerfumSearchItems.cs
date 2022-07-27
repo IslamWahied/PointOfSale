@@ -9,6 +9,7 @@ using System.Windows.Forms;
  
 using PointOfSaleSedek._102_MaterialSkin;
 using DataRep;
+using PointOfSaleSedek.Model;
 
 namespace PointOfSaleSedek._101_Adds
 {
@@ -27,7 +28,10 @@ namespace PointOfSaleSedek._101_Adds
             FillSlkOilQty();
 
             FillGlassSlkItems();
- 
+
+            FillSlkItems();
+
+
         }
 
         public void FillOliSlkItems()
@@ -39,6 +43,18 @@ namespace PointOfSaleSedek._101_Adds
             slkOilItem.Properties.DisplayMember = "Name";
 
         }
+
+
+        public void FillSlkItems()
+        {
+            DataTable dt = new DataTable();
+            var result = context.ItemCardViews.Where(Item => Item.IsDeleted == 0 && Item.CategoryCode != 1 && Item.CategoryCode != 2).ToList();
+            slkAllItems.Properties.DataSource = result;
+            slkAllItems.Properties.ValueMember = "ItemCode";
+            slkAllItems.Properties.DisplayMember = "Name";
+
+        }
+
 
 
         public void FillGlassSlkItems()
@@ -530,73 +546,184 @@ Qty = 40
             this.Close();
         }
 
+
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (
-    String.IsNullOrWhiteSpace(slkOilItem.Text) ||
-    String.IsNullOrWhiteSpace(slkOilQty.Text) ||
-    String.IsNullOrWhiteSpace(slkBottleItem.Text) ||
-    String.IsNullOrWhiteSpace(txtBottleQty.Text)
-    )
-            {
+            //if (
+            //        string.IsNullOrWhiteSpace(slkOilItem.Text) ||
+            //        string.IsNullOrWhiteSpace(slkOilQty.Text) ||
+            //        string.IsNullOrWhiteSpace(slkBottleItem.Text) ||
+            //        string.IsNullOrWhiteSpace(txtBottleQty.Text)
+            //     )
+            //{
 
-                MaterialMessageBox.Show("برجاء ادخال جميع الحقول", MessageBoxButtons.OK);
+            //    MaterialMessageBox.Show("برجاء ادخال جميع الحقول", MessageBoxButtons.OK);
 
-                return;
-            }
+            //    return;
+            //}
 
 
             if (Application.OpenForms.OfType<frmPerfumSales>().Any())
             {
 
                 frmPerfumSales frm = (frmPerfumSales)Application.OpenForms["frmPerfumSales"];
-                List<SaleDetailView> gcData = new List<SaleDetailView>();
+                List<SaleDetailPrfumViewVm> gcData = new List<SaleDetailPrfumViewVm>();
 
-                var glassItemCode = Convert.ToInt64(slkBottleItem.EditValue) ;
-                var OilItemCode = Convert.ToInt64(slkOilItem.EditValue) ;
+                var glassItemCode = Convert.ToInt64(slkBottleItem.EditValue);
+                var AllItemCode = Convert.ToInt64(slkAllItems.EditValue);
+                var OilItemCode = Convert.ToInt64(slkOilItem.EditValue);
 
-                double OilQty = Convert.ToDouble(txtBottleQty.Text) * Convert.ToDouble(slkOilQty.Text); 
+                double OilQty = 0;
+                double glassQty = 0;
 
 
-                for (int i = 0; i < 2; i++)
+                double OilPrice = 0;
+                double glassPrice = 0;
+
+
+                if (!string.IsNullOrWhiteSpace(slkOilItem.Text) && string.IsNullOrWhiteSpace(slkOilQty.Text)) {
+
+                    MaterialMessageBox.Show("برجاء ادخال كمية الزيت ", MessageBoxButtons.OK);
+                    return;
+                }
+
+                if (!string.IsNullOrWhiteSpace(slkBottleItem.Text) && string.IsNullOrWhiteSpace(txtBottleQty.Text))
                 {
-                    if (i == 1)
+
+                    MaterialMessageBox.Show("برجاء ادخال كمية الزجاج ", MessageBoxButtons.OK);
+                    return;
+                }
+
+                if (!string.IsNullOrWhiteSpace(slkAllItems.Text) && string.IsNullOrWhiteSpace(txtAllItem.Text))
+                {
+
+                    MaterialMessageBox.Show("برجاء ادخال كمية المنتج ", MessageBoxButtons.OK);
+                    return;
+                }
+
+
+                SaleDetailPrfumViewVm _SaleDetailPrfumViewVm = new SaleDetailPrfumViewVm();
+                var grd = frm.gcPrfumSaleDetail.DataSource as List<SaleDetailPrfumViewVm>;
+
+                if (grd != null)
+                {
+                    gcData = grd;
+                }
+
+
+                var RowCount = frm.gvPrfumSaleDetail.RowCount;
+                if (!string.IsNullOrWhiteSpace(slkAllItems.Text) && slkAllItems.EditValue.ToString() != "0")
+                {
+                    if (!string.IsNullOrWhiteSpace(txtAllItem.Text))
                     {
+                        glassPrice = context.ItemCardViews.Where(x => x.ItemCode == AllItemCode && x.IsDeleted == 0).FirstOrDefault().Price;
+                        glassQty = Convert.ToDouble(txtAllItem.Text);
 
-                        var grd = frm.gcSaleDetail.DataSource as List<SaleDetailView>;
-
-                        if (grd != null)
+                          _SaleDetailPrfumViewVm = new SaleDetailPrfumViewVm()
                         {
-                            gcData = grd;
-                        }
-
-                  
-                        var RowCount = frm.gvSaleDetail.RowCount;
-
-                        ItemCardView itemCard = context.ItemCardViews.Where(x => x.ItemCode == OilItemCode && x.IsDeleted == 0).FirstOrDefault();
-                        if (itemCard == null)
-                        {
-                            return;
-                        }
+                            GlassIName = slkAllItems.Text ?? "",
+                            GlassItemCode = Convert.ToInt64(slkAllItems.EditValue ?? 0),
 
 
-                        SaleDetailView _SaleDetailView = new SaleDetailView()
-                        {
-                            ItemCode = itemCard.ItemCode,
-                            EntryDate = DateTime.Now,
-                            Price = Convert.ToDouble(itemCard.Price),
-                            Qty = OilQty,
-                            Total = OilQty * Convert.ToDouble(itemCard.Price),
-                            Name = itemCard.Name,
-                            UnitCode = itemCard.UnitCode,
-                            CategoryCode = itemCard.CategoryCode,
-                            ParCode = itemCard.ParCode,
-                            Operation_Type_Id = 2
+                            OilItemCode =0,
+                            OilIName = "لايوجد",
+
+                            GlassPrice = glassPrice,
+                            OilPrice = 0,
+
+                            GlassQty = glassQty,
+
+                            LineSequence = gcData.Count + 1,
+
+                            OilQty = OilQty,
+
+                            Total = (OilQty * OilPrice) + (glassQty * glassPrice)
+
+
+
                         };
 
-                        gcData.Add(_SaleDetailView);
-                        frm.gcSaleDetail.DataSource = gcData;
-                        frm.gcSaleDetail.RefreshDataSource();
+                    }
+                }
+                else {
+                    if (!string.IsNullOrWhiteSpace(slkOilQty.Text) && OilItemCode != 0)
+                    {
+
+                        if (OilItemCode != 0)
+                        {
+                            OilPrice = context.ItemCardViews.Where(x => x.ItemCode == OilItemCode && x.IsDeleted == 0).FirstOrDefault().Price;
+                            OilQty = Convert.ToDouble(slkOilQty.Text);
+                        }
+                        else {
+                            OilPrice = 0;
+                            OilQty = 0;
+                        }
+
+                       
+
+                    }
+
+                    if (!string.IsNullOrWhiteSpace(txtBottleQty.Text) )
+                    {
+                        if (glassItemCode != 0)
+                        {
+                            glassPrice = context.ItemCardViews.Where(x => x.ItemCode == glassItemCode && x.IsDeleted == 0).FirstOrDefault().Price;
+                            glassQty = Convert.ToDouble(txtBottleQty.Text);
+                        }
+                        else
+                        {
+                            glassPrice = 0;
+                            glassQty = 0;
+                        }
+                       
+
+                    }
+
+
+                      _SaleDetailPrfumViewVm = new SaleDetailPrfumViewVm()
+                    {
+                        GlassIName = slkBottleItem.Text != null && slkBottleItem.Text != ""  ? slkBottleItem.Text : "لايوجد",
+                        GlassItemCode = Convert.ToInt64(slkBottleItem.EditValue ?? 0),
+
+
+                        OilItemCode = Convert.ToInt64(slkOilItem.EditValue ?? 0),
+                        OilIName = slkOilItem.Text != null && slkOilItem.Text != "" ? slkOilItem.Text : "لايوجد",
+
+                          GlassPrice = glassPrice,
+                        OilPrice = OilPrice,
+
+                        GlassQty = glassQty,
+
+                        LineSequence = gcData.Count + 1,
+
+                        OilQty = OilQty,
+
+                        Total = (OilQty * OilPrice) + (glassQty * glassPrice)
+
+
+
+                    };
+                }
+
+               
+
+
+
+ 
+
+
+                
+         
+                       
+
+
+                 
+
+                
+
+                        gcData.Add(_SaleDetailPrfumViewVm);
+                        frm.gcPrfumSaleDetail.DataSource = gcData;
+                        frm.gcPrfumSaleDetail.RefreshDataSource();
                         double sum = 0;
 
                         gcData.ForEach(x =>
@@ -606,77 +733,220 @@ Qty = 40
                         frm.lblFinalBeforDesCound.Text = sum.ToString();
                         frm.lblFinalTotal.Text = Convert.ToString(sum - Convert.ToDouble(frm.lblDiscount.Text));
                         frm.lblItemQty.Text = (RowCount + 1).ToString();
-                    }
-                    else
-                    {
-
-
-
-                        var grd = frm.gcSaleDetail.DataSource as List<SaleDetailView>;
-
-                        if (grd != null)
-                        {
-                            gcData = grd;
-                        }
-
-
-                        var RowCount = frm.gvSaleDetail.RowCount;
-
-                        ItemCardView itemCard = context.ItemCardViews.Where(x => x.ItemCode == glassItemCode && x.IsDeleted == 0).FirstOrDefault();
-                        if (itemCard == null)
-                        {
-                            return;
-                        }
-
-
-                        SaleDetailView _SaleDetailView = new SaleDetailView()
-                        {
-                            ItemCode = itemCard.ItemCode,
-                            EntryDate = DateTime.Now,
-                            Price = Convert.ToDouble(itemCard.Price),
-                            Qty = Convert.ToDouble(txtBottleQty.Text),
-                            Total = Convert.ToDouble(txtBottleQty.Text) * Convert.ToDouble(itemCard.Price),
-                            Name = itemCard.Name,
-                            UnitCode = itemCard.UnitCode,
-                            CategoryCode = itemCard.CategoryCode,
-                            ParCode = itemCard.ParCode,
-                            Operation_Type_Id = 2
-                        };
-
-                        gcData.Add(_SaleDetailView);
-                        frm.gcSaleDetail.DataSource = gcData;
-                        frm.gcSaleDetail.RefreshDataSource();
-                        double sum = 0;
-
-                        gcData.ForEach(x =>
-                        {
-                            sum += Convert.ToDouble(x.Total);
-                        });
-                        frm.lblFinalBeforDesCound.Text = sum.ToString();
-                        frm.lblFinalTotal.Text = Convert.ToString(sum - Convert.ToDouble(frm.lblDiscount.Text));
-                        frm.lblItemQty.Text = (RowCount + 1).ToString();
-
-
-
-                    }
+                    
+                    
+ 
 
 
                 }
 
 
 
-                slkOilItem.Text="";
-                slkOilQty.Text="";
-                slkBottleItem.Text="";
-                txtBottleQty.Text="";
+            slkOilItem.Text = "";
+            slkOilItem.EditValue = 0;
+            slkOilQty.EditValue = 1;
+
+            slkBottleItem.Text = "";
+            slkBottleItem.EditValue = 0;
+            txtBottleQty.Text = "1";
+
+            slkAllItems.Text = "";
+            slkAllItems.EditValue = 0;
+            txtAllItem.Text = "1";
 
 
 
 
+        }
+
+        private void slkAllItems_EditValueChanged(object sender, EventArgs e)
+        {
+            if (!String.IsNullOrWhiteSpace(slkAllItems.Text)) {
+                slkOilItem.Text = "";
+                slkBottleItem.Text = "";
+                slkOilItem.EditValue = 0;
+                slkBottleItem.EditValue = 0;
+                txtBottleQty.Text = "1";
+                slkOilQty.EditValue = 1;
+            }
+        }
+
+        private void slkOilItem_EditValueChanged(object sender, EventArgs e)
+        {
+            if (!String.IsNullOrWhiteSpace(slkOilItem.Text))
+            {
+                slkAllItems.Text = "";
+
+                slkAllItems.EditValue = 0;
+               
+                txtAllItem.Text = "1";
+                
+            }
+        }
+
+        private void slkBottleItem_EditValueChanged(object sender, EventArgs e)
+        {
+            if (!String.IsNullOrWhiteSpace(slkBottleItem.Text))
+            {
+                slkAllItems.Text = "";
+
+                slkAllItems.EditValue = 0;
+
+                txtAllItem.Text = "1";
 
             }
         }
     }
+
+        //private void btnSave_Click(object sender, EventArgs e)
+        //{
+        //    if (
+        //            string.IsNullOrWhiteSpace(slkOilItem.Text) ||
+        //            string.IsNullOrWhiteSpace(slkOilQty.Text) ||
+        //            string.IsNullOrWhiteSpace(slkBottleItem.Text) ||
+        //            string.IsNullOrWhiteSpace(txtBottleQty.Text)
+        //         )
+        //    {
+
+        //        MaterialMessageBox.Show("برجاء ادخال جميع الحقول", MessageBoxButtons.OK);
+
+        //        return;
+        //    }
+
+
+        //    if (Application.OpenForms.OfType<frmPerfumSales>().Any())
+        //    {
+
+        //        frmPerfumSales frm = (frmPerfumSales)Application.OpenForms["frmPerfumSales"];
+        //        List<SaleDetailView> gcData = new List<SaleDetailView>();
+
+        //        var glassItemCode = Convert.ToInt64(slkBottleItem.EditValue) ;
+        //        var OilItemCode = Convert.ToInt64(slkOilItem.EditValue) ;
+
+        //        double OilQty = Convert.ToDouble(txtBottleQty.Text) * Convert.ToDouble(slkOilQty.Text); 
+
+
+        //        for (int i = 0; i < 2; i++)
+        //        {
+        //            if (i == 1)
+        //            {
+
+        //                var grd = frm.gcPrfumSaleDetail.DataSource as List<SaleDetailView>;
+
+        //                if (grd != null)
+        //                {
+        //                    gcData = grd;
+        //                }
+
+                  
+        //                var RowCount = frm.gvSaleDetail.RowCount;
+
+        //                ItemCardView itemCard = context.ItemCardViews.Where(x => x.ItemCode == OilItemCode && x.IsDeleted == 0).FirstOrDefault();
+        //                if (itemCard == null)
+        //                {
+        //                    return;
+        //                }
+
+
+        //                SaleDetailView _SaleDetailView = new SaleDetailView()
+        //                {
+        //                    ItemCode = itemCard.ItemCode,
+        //                    EntryDate = DateTime.Now,
+        //                    Price = Convert.ToDouble(itemCard.Price),
+        //                    Qty = OilQty,
+        //                    Total = OilQty * Convert.ToDouble(itemCard.Price),
+        //                    Name = itemCard.Name,
+        //                    UnitCode = itemCard.UnitCode,
+        //                    CategoryCode = itemCard.CategoryCode,
+        //                    ParCode = itemCard.ParCode,
+        //                    Operation_Type_Id = 2,
+        //                    LineSequence = 1,
+        //                    isOile = 1
+        //                };
+
+        //                gcData.Add(_SaleDetailView);
+        //                frm.gcPrfumSaleDetail.DataSource = gcData;
+        //                frm.gcPrfumSaleDetail.RefreshDataSource();
+        //                double sum = 0;
+
+        //                gcData.ForEach(x =>
+        //                {
+        //                    sum += Convert.ToDouble(x.Total);
+        //                });
+        //                frm.lblFinalBeforDesCound.Text = sum.ToString();
+        //                frm.lblFinalTotal.Text = Convert.ToString(sum - Convert.ToDouble(frm.lblDiscount.Text));
+        //                frm.lblItemQty.Text = (RowCount + 1).ToString();
+        //            }
+        //            else
+        //            {
+
+
+
+        //                var grd = frm.gcPrfumSaleDetail.DataSource as List<SaleDetailView>;
+
+        //                if (grd != null)
+        //                {
+        //                    gcData = grd;
+        //                }
+
+
+        //                var RowCount = frm.gvSaleDetail.RowCount;
+
+        //                ItemCardView itemCard = context.ItemCardViews.Where(x => x.ItemCode == glassItemCode && x.IsDeleted == 0).FirstOrDefault();
+        //                if (itemCard == null)
+        //                {
+        //                    return;
+        //                }
+
+
+        //                SaleDetailView _SaleDetailView = new SaleDetailView()
+        //                {
+        //                    ItemCode = itemCard.ItemCode,
+        //                    EntryDate = DateTime.Now,
+        //                    Price = Convert.ToDouble(itemCard.Price),
+        //                    Qty = Convert.ToDouble(txtBottleQty.Text),
+        //                    Total = Convert.ToDouble(txtBottleQty.Text) * Convert.ToDouble(itemCard.Price),
+        //                    Name = itemCard.Name,
+        //                    UnitCode = itemCard.UnitCode,
+        //                    CategoryCode = itemCard.CategoryCode,
+        //                    ParCode = itemCard.ParCode,
+        //                    Operation_Type_Id = 2
+        //                };
+
+        //                gcData.Add(_SaleDetailView);
+        //                frm.gcPrfumSaleDetail.DataSource = gcData;
+        //                frm.gcPrfumSaleDetail.RefreshDataSource();
+        //                double sum = 0;
+
+        //                gcData.ForEach(x =>
+        //                {
+        //                    sum += Convert.ToDouble(x.Total);
+        //                });
+        //                frm.lblFinalBeforDesCound.Text = sum.ToString();
+        //                frm.lblFinalTotal.Text = Convert.ToString(sum - Convert.ToDouble(frm.lblDiscount.Text));
+        //                frm.lblItemQty.Text = (RowCount + 1).ToString();
+
+
+
+        //            }
+
+
+        //        }
+
+
+
+        //        slkOilItem.Text="";
+        //        slkOilQty.Text="";
+        //        slkBottleItem.Text="";
+        //        txtBottleQty.Text="";
+
+
+
+
+
+        //    }
+        //}
+   // }
 }
 
 public class OilQty

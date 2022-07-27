@@ -105,6 +105,7 @@ namespace PointOfSaleSedek._101_Adds
                 frm.gvItemCard.SetFocusedRowCellValue("Name", result2.Name);
                 frm.gvItemCard.SetFocusedRowCellValue("UnitName", result2.UnitName);
                 frm.gvItemCard.SetFocusedRowCellValue("AddItem", result2.AddItem);
+                frm.gvItemCard.SetFocusedRowCellValue("CategoryCode", result2.CategoryCode);
                      
                 frm.gvItemCard.SetFocusedRowCellValue("Price", result2.Price);
                 frm.gvItemCard.SetFocusedRowCellValue("PriceBuy", 0);

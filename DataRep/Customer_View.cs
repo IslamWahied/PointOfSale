@@ -28,5 +28,6 @@ namespace DataRep
         public Nullable<int> SexTypeCode { get; set; }
         public string Jop_Descrption { get; set; }
         public string Email { get; set; }
+        public string CustomerFavourit { get; set; }
     }
 }
