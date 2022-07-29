@@ -44,7 +44,7 @@
             this.gridView3 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.gcItemCard = new DevExpress.XtraGrid.GridControl();
-            this.gvItemCard = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gvCafeItemCard = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -65,7 +65,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridView3)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcItemCard)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvItemCard)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvCafeItemCard)).BeginInit();
             this.tableLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -137,30 +137,30 @@
             this.gcItemCard.ContextMenuStrip = this.materialContextMenuStrip1;
             this.gcItemCard.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gcItemCard.Location = new System.Drawing.Point(3, 3);
-            this.gcItemCard.MainView = this.gvItemCard;
+            this.gcItemCard.MainView = this.gvCafeItemCard;
             this.gcItemCard.Name = "gcItemCard";
             this.gcItemCard.Size = new System.Drawing.Size(743, 368);
             this.gcItemCard.TabIndex = 8;
             this.gcItemCard.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gvItemCard});
+            this.gvCafeItemCard});
             // 
-            // gvItemCard
+            // gvCafeItemCard
             // 
-            this.gvItemCard.Appearance.FooterPanel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gvItemCard.Appearance.FooterPanel.Options.UseFont = true;
-            this.gvItemCard.Appearance.GroupPanel.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gvItemCard.Appearance.GroupPanel.Options.UseFont = true;
-            this.gvItemCard.Appearance.HeaderPanel.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gvItemCard.Appearance.HeaderPanel.Options.UseFont = true;
-            this.gvItemCard.Appearance.HeaderPanel.Options.UseTextOptions = true;
-            this.gvItemCard.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gvItemCard.Appearance.HeaderPanel.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.gvItemCard.Appearance.Row.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gvItemCard.Appearance.Row.Options.UseFont = true;
-            this.gvItemCard.Appearance.Row.Options.UseTextOptions = true;
-            this.gvItemCard.Appearance.Row.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gvItemCard.Appearance.Row.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.gvItemCard.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gvCafeItemCard.Appearance.FooterPanel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gvCafeItemCard.Appearance.FooterPanel.Options.UseFont = true;
+            this.gvCafeItemCard.Appearance.GroupPanel.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gvCafeItemCard.Appearance.GroupPanel.Options.UseFont = true;
+            this.gvCafeItemCard.Appearance.HeaderPanel.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gvCafeItemCard.Appearance.HeaderPanel.Options.UseFont = true;
+            this.gvCafeItemCard.Appearance.HeaderPanel.Options.UseTextOptions = true;
+            this.gvCafeItemCard.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gvCafeItemCard.Appearance.HeaderPanel.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.gvCafeItemCard.Appearance.Row.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gvCafeItemCard.Appearance.Row.Options.UseFont = true;
+            this.gvCafeItemCard.Appearance.Row.Options.UseTextOptions = true;
+            this.gvCafeItemCard.Appearance.Row.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gvCafeItemCard.Appearance.Row.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.gvCafeItemCard.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.gridColumn7,
             this.gridColumn1,
             this.gridColumn2,
@@ -173,16 +173,16 @@
             this.gridColumn9,
             this.gridColumn11,
             this.gridColumn12});
-            this.gvItemCard.GridControl = this.gcItemCard;
-            this.gvItemCard.GroupPanelText = "اسحب الحقل هنا للتجميع";
-            this.gvItemCard.Name = "gvItemCard";
-            this.gvItemCard.OptionsCustomization.AllowColumnResizing = false;
-            this.gvItemCard.OptionsFilter.AllowFilterEditor = false;
-            this.gvItemCard.OptionsMenu.EnableColumnMenu = false;
-            this.gvItemCard.OptionsMenu.EnableFooterMenu = false;
-            this.gvItemCard.OptionsView.EnableAppearanceOddRow = true;
-            this.gvItemCard.OptionsView.ShowAutoFilterRow = true;
-            this.gvItemCard.RowHeight = 30;
+            this.gvCafeItemCard.GridControl = this.gcItemCard;
+            this.gvCafeItemCard.GroupPanelText = "اسحب الحقل هنا للتجميع";
+            this.gvCafeItemCard.Name = "gvCafeItemCard";
+            this.gvCafeItemCard.OptionsCustomization.AllowColumnResizing = false;
+            this.gvCafeItemCard.OptionsFilter.AllowFilterEditor = false;
+            this.gvCafeItemCard.OptionsMenu.EnableColumnMenu = false;
+            this.gvCafeItemCard.OptionsMenu.EnableFooterMenu = false;
+            this.gvCafeItemCard.OptionsView.EnableAppearanceOddRow = true;
+            this.gvCafeItemCard.OptionsView.ShowAutoFilterRow = true;
+            this.gvCafeItemCard.RowHeight = 30;
             // 
             // gridColumn7
             // 
@@ -349,7 +349,7 @@
             this.windowsUIButtonPanel.UseButtonBackgroundImages = false;
             this.windowsUIButtonPanel.ButtonClick += new DevExpress.XtraBars.Docking2010.ButtonEventHandler(this.windowsUIButtonPanel_ButtonClick);
             // 
-            // frmItemCard
+            // frmCafeItemCard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -362,7 +362,7 @@
             this.LookAndFeel.UseWindowsXPTheme = true;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "frmItemCard";
+            this.Name = "frmCafeItemCard";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.RightToLeftLayout = true;
             this.ShowInTaskbar = false;
@@ -375,7 +375,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridView3)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gcItemCard)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvItemCard)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvCafeItemCard)).EndInit();
             this.tableLayoutPanel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -391,7 +391,7 @@
         private DevExpress.XtraGrid.Views.Grid.GridView gridView3;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         public DevExpress.XtraGrid.GridControl gcItemCard;
-        public DevExpress.XtraGrid.Views.Grid.GridView gvItemCard;
+        public DevExpress.XtraGrid.Views.Grid.GridView gvCafeItemCard;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn7;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;

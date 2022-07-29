@@ -66,6 +66,7 @@
           <Property Name="Last_Modified_Date" Type="datetime" />
           <Property Name="Last_Modified_User" Type="bigint" Nullable="false" />
           <Property Name="SexTypeCode" Type="int" Nullable="false" />
+          <Property Name="isUploaded" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Expenses">
           <Key>
@@ -922,6 +923,7 @@ warning 6002: The table/view 'PointOfSale.dbo.User_View' does not have a primary
           <Property Name="Last_Modified_Date" Type="DateTime" Precision="3" />
           <Property Name="Last_Modified_User" Type="Int64" Nullable="false" />
           <Property Name="SexTypeCode" Type="Int32" Nullable="false" />
+          <Property Name="isUploaded" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="Expens">
           <Key>
@@ -1492,6 +1494,7 @@ warning 6002: The table/view 'PointOfSale.dbo.User_View' does not have a primary
           <EntitySetMapping Name="Employees">
             <EntityTypeMapping TypeName="SaleModel.Employee">
               <MappingFragment StoreEntitySet="Employee">
+                <ScalarProperty Name="isUploaded" ColumnName="isUploaded" />
                 <ScalarProperty Name="SexTypeCode" ColumnName="SexTypeCode" />
                 <ScalarProperty Name="Last_Modified_User" ColumnName="Last_Modified_User" />
                 <ScalarProperty Name="Last_Modified_Date" ColumnName="Last_Modified_Date" />

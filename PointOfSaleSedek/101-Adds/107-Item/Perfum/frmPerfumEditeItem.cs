@@ -95,7 +95,7 @@ namespace PointOfSaleSedek._101_Adds
             
                     _ItemCard.Name = txtName.Text;
                     _ItemCard.ParCode ="0";
-                  //  _ItemCard.AddItem = (bool)chkAddItem.Checked;
+                  // _ItemCard.AddItem = (bool)chkAddItem.Checked;
                     _ItemCard.AddItem = true;
                     context.SaveChanges();
               

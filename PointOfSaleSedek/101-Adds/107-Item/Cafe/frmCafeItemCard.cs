@@ -35,7 +35,7 @@ namespace PointOfSaleSedek._101_Adds
         {
             frmCafeEditeItem frm = new frmCafeEditeItem();
 
-            var x = gvItemCard.GetFocusedRow() as ItemCardView;
+            var x = gvCafeItemCard.GetFocusedRow() as ItemCardView;
 
 
             frm.SlkCatgoryName.EditValue = x.CategoryCode;
@@ -44,7 +44,7 @@ namespace PointOfSaleSedek._101_Adds
             frm.txtPrice.Text = x.Price.ToString();
             frm.ItemCode = Convert.ToInt64(x.ItemCode);
             frm.txtParCode.Text = x.ParCode.ToString();
-         //   frm.txtPriceBuy.Text = x.PriceBuy.ToString();
+            //   frm.txtPriceBuy.Text = x.PriceBuy.ToString();
             frm.txtItemRisklimit.Text = x.Item_Risk_limit.ToString();
             frm.chkAddItem.Checked = (bool)x.AddItem;
             frm.txtParCode.ReadOnly = true;
@@ -60,7 +60,7 @@ namespace PointOfSaleSedek._101_Adds
             if (MaterialMessageBox.Show("تاكيد الحذف", MessageBoxButtons.YesNo) == DialogResult.OK)
             {
 
-                ItemCardView xx = gvItemCard.GetFocusedRow() as ItemCardView;
+                ItemCardView xx = gvCafeItemCard.GetFocusedRow() as ItemCardView;
 
 
                     ItemCard _ItemCard = new ItemCard();
@@ -108,7 +108,7 @@ namespace PointOfSaleSedek._101_Adds
             if (e.Button.Properties.Caption == "تعديل")
             {
 
-                if (gvItemCard.RowCount <= 0)
+                if (gvCafeItemCard.RowCount <= 0)
                 {
 
 
@@ -135,7 +135,7 @@ namespace PointOfSaleSedek._101_Adds
 
             if (e.Button.Properties.Caption == "حذف")
             {
-                if (gvItemCard.RowCount <= 0)
+                if (gvCafeItemCard.RowCount <= 0)
                 {
 
 
@@ -144,7 +144,7 @@ namespace PointOfSaleSedek._101_Adds
                 if (MaterialMessageBox.Show("تاكيد الحذف", MessageBoxButtons.YesNo) == DialogResult.OK)
                 {
 
-                    ItemCardView xx = gvItemCard.GetFocusedRow() as ItemCardView;
+                    ItemCardView xx = gvCafeItemCard.GetFocusedRow() as ItemCardView;
 
 
                     using (SaleEntities Contexts = new SaleEntities())
@@ -157,7 +157,7 @@ namespace PointOfSaleSedek._101_Adds
                         gcItemCard.DataSource = result;
                         gcItemCard.RefreshDataSource();
                         MaterialMessageBox.Show("تم الحذف", MessageBoxButtons.OK);
-                        if (gvItemCard.RowCount <= 0)
+                        if (gvCafeItemCard.RowCount <= 0)
                         {
 
                             gcItemCard.Enabled = false;
@@ -184,14 +184,14 @@ namespace PointOfSaleSedek._101_Adds
             else if (btn.Caption == "تعديل")
             {
 
-                if (gvItemCard.RowCount <= 0)
+                if (gvCafeItemCard.RowCount <= 0)
                 {
                     return;
                 }
 
                 frmCafeEditeItem frm = new frmCafeEditeItem();
 
-                var x = gvItemCard.GetFocusedRow() as ItemCardView;
+                var x = gvCafeItemCard.GetFocusedRow() as ItemCardView;
 
 
                 frm.SlkCatgoryName.EditValue = x.CategoryCode;
@@ -220,7 +220,7 @@ namespace PointOfSaleSedek._101_Adds
             else if (btn.Caption == "حذف")
             {
 
-                if (gvItemCard.RowCount <= 0)
+                if (gvCafeItemCard.RowCount <= 0)
                 {
                      
 
@@ -229,7 +229,7 @@ namespace PointOfSaleSedek._101_Adds
                 if (MaterialMessageBox.Show("تاكيد الحذف", MessageBoxButtons.YesNo) == DialogResult.OK)
                 {
 
-                    ItemCardView xx = gvItemCard.GetFocusedRow() as ItemCardView;
+                    ItemCardView xx = gvCafeItemCard.GetFocusedRow() as ItemCardView;
 
 
                     using (SaleEntities Contexts = new SaleEntities())
@@ -242,7 +242,7 @@ namespace PointOfSaleSedek._101_Adds
                         gcItemCard.DataSource = result;
                         gcItemCard.RefreshDataSource();
                         MaterialMessageBox.Show("تم الحذف", MessageBoxButtons.OK);
-                        if (gvItemCard.RowCount <= 0)
+                        if (gvCafeItemCard.RowCount <= 0)
                         {
                             gcItemCard.Enabled = false;
                             windowsUIButtonPanel.Buttons.ForEach(x =>
@@ -282,7 +282,7 @@ namespace PointOfSaleSedek._101_Adds
                     gcItemCard.DataSource = result;
                     gcItemCard.RefreshDataSource();
 
-                    if (gvItemCard.RowCount <= 0)
+                    if (gvCafeItemCard.RowCount <= 0)
                     {
 
                         gcItemCard.Enabled = false;
@@ -316,7 +316,7 @@ namespace PointOfSaleSedek._101_Adds
             else if (btn.Caption == "طباعة")
             {
 
-                if (gvItemCard.RowCount <= 0)
+                if (gvCafeItemCard.RowCount <= 0)
                 {
 
 
@@ -330,7 +330,7 @@ namespace PointOfSaleSedek._101_Adds
                     gcItemCard.DataSource = result;
                     gcItemCard.RefreshDataSource();
 
-                    if (gvItemCard.RowCount <= 0)
+                    if (gvCafeItemCard.RowCount <= 0)
                     {
 
                         gcItemCard.Enabled = false;
@@ -350,7 +350,7 @@ namespace PointOfSaleSedek._101_Adds
       public  void CheckGridDataCount()
         {
 
-            if (gvItemCard.RowCount <= 0)
+            if (gvCafeItemCard.RowCount <= 0)
             {
 
                 gcItemCard.Enabled = false;

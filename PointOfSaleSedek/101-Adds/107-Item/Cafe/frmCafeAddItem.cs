@@ -84,7 +84,7 @@ namespace PointOfSaleSedek._101_Adds
                 double price = 0;
                 //double priceBuy = 0;
 
-                frm.gvItemCard.AddNewRow();
+                frm.gvCafeItemCard.AddNewRow();
                 
                 bool TestUpdate = context.ItemCards.Any(Item => Item.ParCode == txtParCode.Text && Item.Name == txtName.Text);
                 Int64? MaxCode = context.ItemCards.Max(u => (Int64?)u.ItemCode);
@@ -147,7 +147,7 @@ namespace PointOfSaleSedek._101_Adds
                 frm.gcItemCard.DataSource = result;
                 frm.gcItemCard.RefreshDataSource();
                 SlkCatgoryName.Focus();
-                if (frm.gvItemCard.RowCount > 0)
+                if (frm.gvCafeItemCard.RowCount > 0)
                 {
 
                     

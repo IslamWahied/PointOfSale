@@ -86,7 +86,7 @@ namespace PointOfSaleSedek._102_Reports
                 rpt.RegisterData(_FinalTotalList, "FinalTotal");
 
                  // rpt.PrintSettings.ShowDialog = false;
-                rpt.Design();
+               // rpt.Design();
                  rpt.Show();
             }
             else {

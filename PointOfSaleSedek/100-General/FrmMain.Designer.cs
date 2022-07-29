@@ -192,10 +192,10 @@
             // 
             // ribbonStatusBar1
             // 
-            this.ribbonStatusBar1.Location = new System.Drawing.Point(0, 654);
+            this.ribbonStatusBar1.Location = new System.Drawing.Point(0, 652);
             this.ribbonStatusBar1.Name = "ribbonStatusBar1";
             this.ribbonStatusBar1.Ribbon = this.RibbonControl1;
-            this.ribbonStatusBar1.Size = new System.Drawing.Size(1278, 27);
+            this.ribbonStatusBar1.Size = new System.Drawing.Size(1278, 29);
             // 
             // RibbonControl1
             // 
@@ -1310,10 +1310,9 @@
             this.imageSlider1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.imageSlider1.Images.Add(((System.Drawing.Image)(resources.GetObject("imageSlider1.Images"))));
             this.imageSlider1.Images.Add(((System.Drawing.Image)(resources.GetObject("imageSlider1.Images1"))));
-            this.imageSlider1.LayoutMode = DevExpress.Utils.Drawing.ImageLayoutMode.ZoomInside;
             this.imageSlider1.Location = new System.Drawing.Point(0, 135);
             this.imageSlider1.Name = "imageSlider1";
-            this.imageSlider1.Size = new System.Drawing.Size(1278, 519);
+            this.imageSlider1.Size = new System.Drawing.Size(1278, 517);
             this.imageSlider1.TabIndex = 2;
             this.imageSlider1.Text = "imageSlider1";
             // 

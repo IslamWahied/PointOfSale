@@ -43,6 +43,7 @@ namespace PointOfSaleSedek._101_Adds._114_AddExpenses
             this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn9 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.slkShiftsUsers = new DevExpress.XtraEditors.SearchLookUpEdit();
             this.searchLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -53,7 +54,6 @@ namespace PointOfSaleSedek._101_Adds._114_AddExpenses
             this.dtTo = new DevExpress.XtraEditors.DateEdit();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
-            this.gridColumn9 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.contextMenuStrip1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcItemCard)).BeginInit();
@@ -209,7 +209,7 @@ namespace PointOfSaleSedek._101_Adds._114_AddExpenses
             this.gridColumn6.FieldName = "Shift_Increase_disability";
             this.gridColumn6.Name = "gridColumn6";
             this.gridColumn6.Visible = true;
-            this.gridColumn6.VisibleIndex = 0;
+            this.gridColumn6.VisibleIndex = 1;
             // 
             // gridColumn8
             // 
@@ -218,6 +218,14 @@ namespace PointOfSaleSedek._101_Adds._114_AddExpenses
             this.gridColumn8.Name = "gridColumn8";
             this.gridColumn8.Visible = true;
             this.gridColumn8.VisibleIndex = 2;
+            // 
+            // gridColumn9
+            // 
+            this.gridColumn9.Caption = "تاريخ غلق الوردية";
+            this.gridColumn9.FieldName = "Shift_End_Date";
+            this.gridColumn9.Name = "gridColumn9";
+            this.gridColumn9.Visible = true;
+            this.gridColumn9.VisibleIndex = 0;
             // 
             // tableLayoutPanel1
             // 
@@ -380,14 +388,6 @@ namespace PointOfSaleSedek._101_Adds._114_AddExpenses
             this.labelControl2.Size = new System.Drawing.Size(122, 33);
             this.labelControl2.TabIndex = 167;
             this.labelControl2.Text = "اسم المستخدم";
-            // 
-            // gridColumn9
-            // 
-            this.gridColumn9.Caption = "تاريخ غلق الوردية";
-            this.gridColumn9.FieldName = "Shift_End_Date";
-            this.gridColumn9.Name = "gridColumn9";
-            this.gridColumn9.Visible = true;
-            this.gridColumn9.VisibleIndex = 1;
             // 
             // frmShiftsReport
             // 

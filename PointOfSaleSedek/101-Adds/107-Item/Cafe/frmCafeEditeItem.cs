@@ -100,16 +100,16 @@ namespace PointOfSaleSedek._101_Adds
               
                     
                 ItemCardView result2 = context.ItemCardViews.Where(x => x.ItemCode == ItemCode && x.IsDeleted == 0).FirstOrDefault();
-             frm.gvItemCard.SetFocusedRowCellValue("CategoryName", result2.CategoryName);
-                frm.gvItemCard.SetFocusedRowCellValue("Name", result2.Name);
-                frm.gvItemCard.SetFocusedRowCellValue("UnitName", result2.UnitName);
-                frm.gvItemCard.SetFocusedRowCellValue("AddItem", result2.AddItem);
-                     
-                frm.gvItemCard.SetFocusedRowCellValue("Price", result2.Price);
-                frm.gvItemCard.SetFocusedRowCellValue("PriceBuy", 0);
-                frm.gvItemCard.SetFocusedRowCellValue("ParCode", result2.ParCode);
-                frm.gvItemCard.SetFocusedRowCellValue("Item_Risk_limit", result2.Item_Risk_limit);
-                frm.gvItemCard.RefreshData();
+             frm.gvCafeItemCard.SetFocusedRowCellValue("CategoryName", result2.CategoryName);
+                frm.gvCafeItemCard.SetFocusedRowCellValue("Name", result2.Name);
+                frm.gvCafeItemCard.SetFocusedRowCellValue("UnitName", result2.UnitName);
+                frm.gvCafeItemCard.SetFocusedRowCellValue("AddItem", result2.AddItem);
+                    frm.gvCafeItemCard.SetFocusedRowCellValue("CategoryCode", result2.CategoryCode);
+                    frm.gvCafeItemCard.SetFocusedRowCellValue("Price", result2.Price);
+                frm.gvCafeItemCard.SetFocusedRowCellValue("PriceBuy", 0);
+                frm.gvCafeItemCard.SetFocusedRowCellValue("ParCode", result2.ParCode);
+                frm.gvCafeItemCard.SetFocusedRowCellValue("Item_Risk_limit", result2.Item_Risk_limit);
+                frm.gvCafeItemCard.RefreshData();
                     HelperClass.HelperClass.ClearValues(tableLayoutPanel1);
 
                

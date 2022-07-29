@@ -150,9 +150,7 @@ namespace PointOfSaleSedek
                 { "ShiftStartAmount",shift.Shift_Start_Amount},
                 { "ShiftEndAmount",shift.Shift_End_Amount},
                 { "ShiftIncreasedisability", shift.Shift_Increase_disability},
-                { "ShiftStartNotes",shift.Shift_Start_Notes.ToString()},
-                { "ShiftEndNotes",shift.Shift_End_Notes.ToString()},
-              
+                
                 { "UserName",shift.UserName},
                 { "EmpCode",shift.Emp_Code},
                 { "Expenses",shift.Expenses},
@@ -210,7 +208,43 @@ namespace PointOfSaleSedek
             });
 
 
-            
+
+
+            // Get Employees  Data
+            List<Employee> masterEmployee = context.Employees.Where(x => x.isUploaded == false && x.IsDeleted == 0).ToList();
+
+
+            masterEmployee.ForEach(Employe => {
+                FirestoreDb fdb3 = FirestoreDb.Create("pointofsale-d3e8d");
+                DocumentReference Doc = fdb.Collection("Employee").Document("MangerMobile").Collection(mangerInfo.MangerMobile.ToString()).Document("ProjectId").Collection(mangerInfo.ProjectId.ToString()).Document();
+
+                Dictionary<string, object> data1 = new Dictionary<string, object>() {
+
+
+                {"BranchID",Employe.Branch_ID},
+                {"EmployeeCode",Employe.Employee_Code},
+                {"EmployeeName",Employe.Employee_Name},
+                {"EmployeeMobile1",Employe.Employee_Mobile_1},
+                {"EmployeeMobile2",Employe.Employee_Mobile_2},
+                {"SexTypeCode",Employe.SexTypeCode},
+                { "LastUpdateDate",today.ToString()},
+                };
+
+
+
+
+                Doc.SetAsync(data1);
+
+                Employee _Employee;
+                _Employee = context.Employees.SingleOrDefault(emp => emp.Employee_Code == Employe.Employee_Code && emp.isUploaded == false);
+                _Employee.isUploaded = true;
+                context.SaveChanges();
+            });
+
+
+
+
+
         }
 
         //void updateToFireBase()

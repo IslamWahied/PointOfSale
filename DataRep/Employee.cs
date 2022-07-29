@@ -33,5 +33,6 @@ namespace DataRep
         public Nullable<System.DateTime> Last_Modified_Date { get; set; }
         public long Last_Modified_User { get; set; }
         public int SexTypeCode { get; set; }
+        public bool isUploaded { get; set; }
     }
 }
