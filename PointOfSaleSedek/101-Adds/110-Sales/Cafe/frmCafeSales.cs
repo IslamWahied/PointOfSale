@@ -235,7 +235,8 @@ namespace PointOfSaleSedek._101_Adds
             lblItemQty.Text = "0";
             lblDiscount.Text = "0";
             lblUserName.Text = "المدير";
-            
+            dtEntryDate.Text = context.Employee_View.Where(x => x.Employee_Code == UserCode).First().Employee_Name.ToString() ?? "";
+
             while (gvSaleDetail.RowCount > 0)
             {
                 gvSaleDetail.SelectAll();

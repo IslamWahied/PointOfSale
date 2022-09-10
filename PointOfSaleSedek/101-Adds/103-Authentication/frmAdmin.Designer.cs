@@ -62,30 +62,34 @@ namespace PointOfSaleSedek._101_Adds
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 48.95833F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 51.04167F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 75F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(345, 193);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(405, 253);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // labelControl1
             // 
+            this.labelControl1.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl1.Appearance.Options.UseFont = true;
             this.labelControl1.Appearance.Options.UseTextOptions = true;
             this.labelControl1.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.labelControl1.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.labelControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelControl1.Location = new System.Drawing.Point(263, 3);
+            this.labelControl1.Location = new System.Drawing.Point(308, 3);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(79, 51);
+            this.labelControl1.Size = new System.Drawing.Size(94, 81);
             this.labelControl1.TabIndex = 0;
-            this.labelControl1.Text = "كلمة المرور";
+            this.labelControl1.Text = "اسم المستخدم";
             // 
             // labelControl2
             // 
+            this.labelControl2.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl2.Appearance.Options.UseFont = true;
             this.labelControl2.Appearance.Options.UseTextOptions = true;
             this.labelControl2.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.labelControl2.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.labelControl2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelControl2.Location = new System.Drawing.Point(263, 60);
+            this.labelControl2.Location = new System.Drawing.Point(308, 90);
             this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(79, 54);
+            this.labelControl2.Size = new System.Drawing.Size(94, 84);
             this.labelControl2.TabIndex = 1;
             this.labelControl2.Text = "الرقم السري";
             // 
@@ -96,7 +100,7 @@ namespace PointOfSaleSedek._101_Adds
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.74627F));
             this.tableLayoutPanel2.Controls.Add(this.btnOk, 0, 1);
             this.tableLayoutPanel2.Controls.Add(this.btnCancel, 1, 1);
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 120);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 180);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.tableLayoutPanel2.RowCount = 2;
@@ -141,24 +145,28 @@ namespace PointOfSaleSedek._101_Adds
             this.txtUserName.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtUserName.Location = new System.Drawing.Point(3, 3);
             this.txtUserName.Name = "txtUserName";
+            this.txtUserName.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtUserName.Properties.Appearance.Options.UseFont = true;
             this.txtUserName.Properties.Appearance.Options.UseTextOptions = true;
             this.txtUserName.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.txtUserName.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.txtUserName.Properties.AutoHeight = false;
-            this.txtUserName.Size = new System.Drawing.Size(254, 51);
+            this.txtUserName.Size = new System.Drawing.Size(299, 81);
             this.txtUserName.TabIndex = 0;
             // 
             // txtPassword
             // 
             this.txtPassword.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtPassword.Location = new System.Drawing.Point(3, 60);
+            this.txtPassword.Location = new System.Drawing.Point(3, 90);
             this.txtPassword.Name = "txtPassword";
+            this.txtPassword.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPassword.Properties.Appearance.Options.UseFont = true;
             this.txtPassword.Properties.Appearance.Options.UseTextOptions = true;
             this.txtPassword.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.txtPassword.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.txtPassword.Properties.AutoHeight = false;
             this.txtPassword.Properties.UseSystemPasswordChar = true;
-            this.txtPassword.Size = new System.Drawing.Size(254, 54);
+            this.txtPassword.Size = new System.Drawing.Size(299, 84);
             this.txtPassword.TabIndex = 1;
             // 
             // frmAdmin
@@ -167,16 +175,16 @@ namespace PointOfSaleSedek._101_Adds
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(345, 193);
+            this.ClientSize = new System.Drawing.Size(405, 253);
             this.ControlBox = false;
             this.Controls.Add(this.tableLayoutPanel1);
             this.IconOptions.ShowIcon = false;
             this.LookAndFeel.SkinName = "The Bezier";
             this.LookAndFeel.UseDefaultLookAndFeel = false;
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(345, 223);
+            this.MaximumSize = new System.Drawing.Size(405, 283);
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(345, 223);
+            this.MinimumSize = new System.Drawing.Size(405, 283);
             this.Name = "frmAdmin";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.RightToLeftLayout = true;

@@ -12,14 +12,12 @@ namespace DataRep
     using System;
     using System.Collections.Generic;
     
-    public partial class ProjectMangerInfo
+    public partial class ProjectInfo
     {
-        public long Id { get; set; }
-        public long MangerCode { get; set; }
-        public string MangerName { get; set; }
-        public long ProjectId { get; set; }
-        public bool IsActive { get; set; }
-        public string MangerMobile { get; set; }
-        public bool isUploaded { get; set; }
+        public int Id { get; set; }
+        public long ProjectCode { get; set; }
+        public string ProjectName { get; set; }
+        public bool isActive { get; set; }
+        public string ImageUrl { get; set; }
     }
 }

@@ -225,6 +225,13 @@ namespace PointOfSaleSedek._101_Adds
 
         private void الغاءالفاتورةToolStripMenuItem_Click(object sender, EventArgs e)
         {
+
+
+
+
+
+
+
             var FocusRow = gvSaleMaster.GetFocusedRow() as SaleMasterView;
             SaleMaster _SaleMaster;
             _SaleMaster = Context.SaleMasters.SingleOrDefault(shft => shft.Operation_Type_Id == 2 && shft.ShiftCode == FocusRow.Shift_Code && shft.IsDeleted == 0 && shft.UserCode == FocusRow.UserCode && shft.SaleMasterCode == FocusRow.SaleMasterCode);

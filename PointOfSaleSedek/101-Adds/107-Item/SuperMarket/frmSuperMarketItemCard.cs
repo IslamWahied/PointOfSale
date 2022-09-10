@@ -48,7 +48,7 @@ namespace PointOfSaleSedek._101_Adds
             frm.txtParCode.Text = x.ParCode.ToString();
          //   frm.txtPriceBuy.Text = x.PriceBuy.ToString();
             frm.txtItemRisklimit.Text = x.Item_Risk_limit.ToString();
-            frm.chkAddItem.Checked = (bool)x.AddItem;
+            //frm.chkAddItem.Checked = (bool)x.AddItem;
             frm.txtParCode.ReadOnly = true;
             frm.SlkCatgoryName.Focus();
 
@@ -127,7 +127,7 @@ namespace PointOfSaleSedek._101_Adds
                 frm.txtPrice.Text = x.Price.ToString();
             //    frm.txtPriceBuy.Text = x.PriceBuy.ToString();
                 frm.txtParCode.Text = x.ParCode;
-                frm.chkAddItem.Checked = (bool)x.AddItem;
+                //frm.chkAddItem.Checked = (bool)x.AddItem;
 
 
                 frm.Show();
@@ -204,7 +204,7 @@ namespace PointOfSaleSedek._101_Adds
                 frm.txtParCode.Text = x.ParCode.ToString();
               //  frm.txtPriceBuy.Text = x.PriceBuy.ToString();
                 frm.txtItemRisklimit.Text = x.Item_Risk_limit.ToString();
-                frm.chkAddItem.Checked = (bool)x.AddItem;
+                //frm.chkAddItem.Checked = (bool)x.AddItem;
                 frm.txtParCode.ReadOnly = true;
                 frm.SlkCatgoryName.Focus();
 

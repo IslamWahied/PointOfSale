@@ -163,9 +163,9 @@
             this.BtnExit.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BtnExit.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("BtnExit.ImageOptions.Image")));
             this.BtnExit.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.BottomCenter;
-            this.BtnExit.Location = new System.Drawing.Point(700, 646);
+            this.BtnExit.Location = new System.Drawing.Point(723, 646);
             this.BtnExit.Name = "BtnExit";
-            this.BtnExit.Size = new System.Drawing.Size(104, 100);
+            this.BtnExit.Size = new System.Drawing.Size(81, 100);
             this.BtnExit.TabIndex = 35;
             this.BtnExit.Text = "خروج";
             this.BtnExit.Click += new System.EventHandler(this.BtnExit_Click);
@@ -285,7 +285,7 @@
             this.btnEnter.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnEnter.Location = new System.Drawing.Point(542, 512);
             this.btnEnter.Name = "btnEnter";
-            this.btnEnter.Size = new System.Drawing.Size(152, 128);
+            this.btnEnter.Size = new System.Drawing.Size(175, 128);
             this.btnEnter.TabIndex = 19;
             this.btnEnter.Text = "Enter";
             // 
@@ -340,7 +340,7 @@
             this.btnClear.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnClear.Location = new System.Drawing.Point(618, 426);
             this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(76, 80);
+            this.btnClear.Size = new System.Drawing.Size(99, 80);
             this.btnClear.TabIndex = 13;
             this.btnClear.Text = "Clear";
             this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
@@ -354,7 +354,7 @@
             this.btn9.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btn9.Location = new System.Drawing.Point(618, 346);
             this.btn9.Name = "btn9";
-            this.btn9.Size = new System.Drawing.Size(76, 74);
+            this.btn9.Size = new System.Drawing.Size(99, 74);
             this.btn9.TabIndex = 12;
             this.btn9.Text = "9";
             this.btn9.Click += new System.EventHandler(this.btn9_Click);
@@ -396,7 +396,7 @@
             this.btn6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btn6.Location = new System.Drawing.Point(618, 266);
             this.btn6.Name = "btn6";
-            this.btn6.Size = new System.Drawing.Size(76, 74);
+            this.btn6.Size = new System.Drawing.Size(99, 74);
             this.btn6.TabIndex = 9;
             this.btn6.Text = "6";
             this.btn6.Click += new System.EventHandler(this.btn6_Click);
@@ -467,7 +467,7 @@
             this.btn3.Location = new System.Drawing.Point(618, 190);
             this.btn3.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat;
             this.btn3.Name = "btn3";
-            this.btn3.Size = new System.Drawing.Size(76, 70);
+            this.btn3.Size = new System.Drawing.Size(99, 70);
             this.btn3.TabIndex = 4;
             this.btn3.Text = "3";
             this.btn3.Click += new System.EventHandler(this.btn3_Click);
@@ -499,7 +499,7 @@
             this.txtQty.Properties.Mask.ShowPlaceHolders = false;
             this.txtQty.Properties.ReadOnly = true;
             this.txtQty.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.txtQty.Size = new System.Drawing.Size(232, 101);
+            this.txtQty.Size = new System.Drawing.Size(255, 101);
             this.txtQty.TabIndex = 3;
             // 
             // txtParCode
@@ -517,7 +517,7 @@
             this.txtParCode.Properties.Mask.EditMask = "\\d{0,50}";
             this.txtParCode.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
             this.tableLayoutPanel1.SetRowSpan(this.txtParCode, 2);
-            this.txtParCode.Size = new System.Drawing.Size(232, 74);
+            this.txtParCode.Size = new System.Drawing.Size(255, 74);
             this.txtParCode.TabIndex = 2;
             this.txtParCode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtParCode_KeyDown);
             this.txtParCode.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtParCode_KeyUp);
@@ -538,10 +538,10 @@
             this.tabItems.Appearance.Options.UseFont = true;
             this.tableLayoutPanel1.SetColumnSpan(this.tabItems, 7);
             this.tabItems.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabItems.Location = new System.Drawing.Point(700, 52);
+            this.tabItems.Location = new System.Drawing.Point(723, 52);
             this.tabItems.Name = "tabItems";
             this.tableLayoutPanel1.SetRowSpan(this.tabItems, 7);
-            this.tabItems.Size = new System.Drawing.Size(534, 588);
+            this.tabItems.Size = new System.Drawing.Size(511, 588);
             this.tabItems.TabIndex = 0;
             this.tabItems.SelectedPageChanged += new DevExpress.XtraTab.TabPageChangedEventHandler(this.tabItems_SelectedPageChanged);
             // 
@@ -574,8 +574,8 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 5.739693F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 5.658852F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 5.658852F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 8.892482F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 6.628941F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 7.033144F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 8.488278F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 6.143897F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 6.467259F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 37.02506F));
@@ -845,7 +845,7 @@
             this.tableLayoutPanel4.RowCount = 2;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 46.01227F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 53.98773F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(76, 100);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(99, 100);
             this.tableLayoutPanel4.TabIndex = 38;
             // 
             // lblUserName
@@ -862,7 +862,7 @@
             this.lblUserName.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblUserName.Location = new System.Drawing.Point(3, 49);
             this.lblUserName.Name = "lblUserName";
-            this.lblUserName.Size = new System.Drawing.Size(70, 48);
+            this.lblUserName.Size = new System.Drawing.Size(93, 48);
             this.lblUserName.TabIndex = 29;
             this.lblUserName.Text = "Name";
             // 
@@ -880,7 +880,7 @@
             this.labelControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.labelControl1.Location = new System.Drawing.Point(3, 3);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(70, 40);
+            this.labelControl1.Size = new System.Drawing.Size(93, 40);
             this.labelControl1.TabIndex = 30;
             this.labelControl1.Text = "المستخدم";
             // 
@@ -1157,14 +1157,14 @@
             // 
             this.tableLayoutPanel1.SetColumnSpan(this.cmdItems, 3);
             this.cmdItems.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cmdItems.Location = new System.Drawing.Point(700, 3);
+            this.cmdItems.Location = new System.Drawing.Point(723, 3);
             this.cmdItems.Name = "cmdItems";
             this.cmdItems.Properties.AutoHeight = false;
             this.cmdItems.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cmdItems.Properties.NullValuePrompt = "البحث عن منتج";
             this.cmdItems.Properties.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBoxEdit2_Properties_KeyDown);
-            this.cmdItems.Size = new System.Drawing.Size(244, 43);
+            this.cmdItems.Size = new System.Drawing.Size(221, 43);
             this.cmdItems.TabIndex = 42;
             this.cmdItems.SelectedIndexChanged += new System.EventHandler(this.cmdItems_SelectedIndexChanged);
             // 

@@ -95,7 +95,7 @@ namespace PointOfSaleSedek._101_Adds
             
                     _ItemCard.Name = txtName.Text;
                     _ItemCard.ParCode = txtParCode.Text;
-                    _ItemCard.AddItem = (bool)chkAddItem.Checked;
+                    _ItemCard.AddItem = true;
                     context.SaveChanges();
               
                     
@@ -121,15 +121,7 @@ namespace PointOfSaleSedek._101_Adds
 
 
         }
-
-
-     
-
-      
-
-        
-
-      
+         
         private void btnAdd_Click_1(object sender, EventArgs e)
         {
             AddItem();
@@ -138,6 +130,11 @@ namespace PointOfSaleSedek._101_Adds
         private void btnCancel_Click_2(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

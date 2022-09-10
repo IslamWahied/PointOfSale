@@ -116,6 +116,9 @@
     <Compile Include="Payment_Type.cs">
       <DependentUpon>DataEntity.tt</DependentUpon>
     </Compile>
+    <Compile Include="ProjectInfo.cs">
+      <DependentUpon>DataEntity.tt</DependentUpon>
+    </Compile>
     <Compile Include="ProjectMangerInfo.cs">
       <DependentUpon>DataEntity.tt</DependentUpon>
     </Compile>

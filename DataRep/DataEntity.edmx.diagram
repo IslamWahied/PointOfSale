@@ -37,6 +37,7 @@
         <EntityTypeShape EntityType="SaleModel.Shift_View" Width="1.5" PointX="6.75" PointY="15.75" />
         <EntityTypeShape EntityType="SaleModel.User_View" Width="1.5" PointX="8.75" PointY="15.75" />
         <EntityTypeShape EntityType="SaleModel.ProjectMangerInfo" Width="1.5" PointX="11.375" PointY="15.75" />
+        <EntityTypeShape EntityType="SaleModel.ProjectInfo" Width="1.5" PointX="17.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

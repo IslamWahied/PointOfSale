@@ -45,12 +45,12 @@ namespace PointOfSaleSedek
             if (CheckForInternetConnection()) { 
                try {
                 updateToFireBase();
-                    SplashScreenManager.CloseForm();
-                    MaterialMessageBox.Show("تم رفع البيانات بنجاح", MessageBoxButtons.OK);
+                   
+                    //MaterialMessageBox.Show("تم رفع البيانات بنجاح", MessageBoxButtons.OK);
                 }
             catch  {
-                    SplashScreenManager.CloseForm();
-                    MaterialMessageBox.Show("لا يوجد اتصال بالانترنت", MessageBoxButtons.OK);
+                   
+                    //MaterialMessageBox.Show("لا يوجد اتصال بالانترنت", MessageBoxButtons.OK);
                     return;
                 }
                
@@ -82,42 +82,45 @@ namespace PointOfSaleSedek
         void updateToFireBase()
         {
             // Date Now
-            SplashScreenManager.ShowForm(typeof(WaitForm1));
+            
 
             DateTime today = DateTime.Now;
 
 
-            // Get ProjectManger Info
-            ProjectMangerInfo mangerInfo = context.ProjectMangerInfoes.FirstOrDefault(x => x.IsActive);
+           
+              ProjectInfo ProjectInfos = context.ProjectInfoes.FirstOrDefault();
 
 
 
             // Get Sale Master Data
 
-           List<SaleMasterView> masterView = context.SaleMasterViews.Where(x=>x.isUploaded == false &&x.IsDeleted == 0).ToList();
-           
-            masterView.ForEach(master => {
+            List<SaleMasterView> masterView = context.SaleMasterViews.Where(x => x.isUploaded == false && x.IsDeleted == 0).ToList();
 
-                FirestoreDb fdb1 =  FirestoreDb.Create("pointofsale-d3e8d");
+            masterView.ForEach(master =>
+            {
 
-                DocumentReference Doc = fdb.Collection("SaleMaster").Document("MangerMobile").Collection(mangerInfo.MangerMobile.ToString()).Document("ProjectId").Collection(mangerInfo.ProjectId.ToString()).Document();
+                FirestoreDb fdb1 = FirestoreDb.Create("pointofsale-d3e8d");
+
+                DocumentReference Doc1 = fdb.Collection("SaleMaster").Document("ProjectCode").Collection(ProjectInfos.ProjectCode.ToString()).Document();
 
                 Dictionary<string, object> data1 = new Dictionary<string, object>() {
 
-                {"SaleMasterCode",mangerInfo.MangerCode},
+                {"SaleMasterCode",master.SaleMasterCode},
                 {"TotalBeforDiscount",master.TotalBeforDiscount},
                 { "Discount",master.Discount},
                 { "QtyTotal",master.QtyTotal},
-                { "EntryDate",master.EntryDate.ToString() },
+                { "EntryDate",master.EntryDate.ToString("MM-dd-yyyy hh:mm tt")},
                 { "FinalTotal", master.FinalTotal},
                 { "UserName",master.UserName},
                 { "Emp_Code",master.Emp_Code},
                 { "Shift_Code", master.Shift_Code},
                 { "PaymentType",master.PaymentType},
-                { "LastUpdateDate",today.ToString()},
+                { "OperationTypeId",master.Operation_Type_Id},
+
+                { "LastUpdateDate",today.ToString("MM-dd-yyyy hh:mm tt")},
 
                 };
-                Doc.SetAsync(data1);
+                Doc1.SetAsync(data1);
 
                 SaleMaster _saleMaster;
                 _saleMaster = context.SaleMasters.SingleOrDefault(Salmaster => Salmaster.ShiftCode == master.Shift_Code && Salmaster.SaleMasterCode == master.SaleMasterCode && Salmaster.isUploaded == false);
@@ -128,42 +131,46 @@ namespace PointOfSaleSedek
 
 
 
-           
+
 
 
 
 
 
             // Get Shifts  Data
-            List<Shift_View> masterShiftView = context.Shift_View.Where(x => x.isUploaded == false && x.IsDeleted == 0).ToList();
-            masterShiftView.ForEach(shift => {
+            List<Shift_View> masterShiftView = context.Shift_View.Where(x => x.isUploaded == false && x.Shift_Flag == false &&x.IsDeleted == 0).ToList();
+          
+           
+            masterShiftView.ForEach(shift =>
+            {
                 FirestoreDb fdb2 = FirestoreDb.Create("pointofsale-d3e8d");
 
-                DocumentReference Doc = fdb.Collection("Shifts").Document("MangerMobile").Collection(mangerInfo.MangerMobile.ToString()).Document("ProjectId").Collection(mangerInfo.ProjectId.ToString()).Document();
-               
+                DocumentReference Doc2 = fdb.Collection("Shifts").Document("ProjectCode").Collection(ProjectInfos.ProjectCode.ToString()).Document();
+       
 
-                Dictionary<string, object> data1 = new Dictionary<string, object>() {
+                Dictionary<string, object> data2 = new Dictionary<string, object>() {
 
                 {"ShiftCode",shift.Shift_Code},
-                {"ShiftStartDate",shift.Shift_Start_Date.ToString()},
-                { "ShiftEndDate",shift.Shift_End_Date.ToString()},
+                {"ShiftStartDate",shift.Shift_Start_Date.ToString("MM-dd-yyyy hh:mm tt")},
+                {"ShiftEndDate",shift.Shift_End_Date?.ToString("MM-dd-yyyy hh:mm tt")},
+                 
                 { "ShiftStartAmount",shift.Shift_Start_Amount},
                 { "ShiftEndAmount",shift.Shift_End_Amount},
                 { "ShiftIncreasedisability", shift.Shift_Increase_disability},
-                
+
                 { "UserName",shift.UserName},
                 { "EmpCode",shift.Emp_Code},
                 { "Expenses",shift.Expenses},
                 { "TotalSale",shift.TotalSale},
-                { "LastUpdateDate",today.ToString()},
+                { "LastUpdateDate",today.ToString("MM-dd-yyyy hh:mm tt")},
 
                 };
 
 
 
 
-             
-                Doc.SetAsync(data1);
+
+                Doc2.SetAsync(data2);
                 Shift _ShiftMaster;
                 _ShiftMaster = context.Shifts.SingleOrDefault(shft => shft.Shift_Code == shift.Shift_Code && shft.isUploaded == false);
                 _ShiftMaster.isUploaded = true;
@@ -175,23 +182,24 @@ namespace PointOfSaleSedek
             List<ExpensesView> masterExpensesViews = context.ExpensesViews.Where(x => x.isUploaded == false && x.IsDeleted == 0).ToList();
 
 
-            masterExpensesViews.ForEach(expenses => {
+            masterExpensesViews.ForEach(expenses =>
+            {
                 FirestoreDb fdb3 = FirestoreDb.Create("pointofsale-d3e8d");
-                DocumentReference Doc = fdb.Collection("Expenses").Document("MangerMobile").Collection(mangerInfo.MangerMobile.ToString()).Document("ProjectId").Collection(mangerInfo.ProjectId.ToString()).Document();
-               
-                Dictionary<string, object> data1 = new Dictionary<string, object>() {
+                DocumentReference Doc3 = fdb.Collection("Expenses").Document("ProjectCode").Collection(ProjectInfos.ProjectCode.ToString()).Document();
 
-  
+                Dictionary<string, object> data3 = new Dictionary<string, object>() {
+
+
                 {"ExpensesName",expenses.ExpensesName},
                 {"UserName",expenses.UserName},
-                {"Date",expenses.Date.ToString()},
+                {"Date",expenses.Date.ToString("MM-dd-yyyy hh:mm tt")},
                 { "ExpensesNotes",expenses.ExpensesNotes},
                 { "ExpensesQT",expenses.ExpensesQT},
                 { "ExpensesCode",expenses.ExpensesCode},
                 { "Shift_Code", expenses.Shift_Code},
                 { "Employee_Name",expenses.Employee_Name},
                 { "Emp_Code",expenses.Emp_Code},
-                { "LastUpdateDate",today.ToString()},
+                { "LastUpdateDate",today.ToString("MM-dd-yyyy hh:mm tt")},
 
 
                 };
@@ -199,10 +207,10 @@ namespace PointOfSaleSedek
 
 
 
-                Doc.SetAsync(data1);
+                Doc3.SetAsync(data3);
 
-               ExpensesTransaction _ExpensesTransactionMaster;
-                _ExpensesTransactionMaster = context.ExpensesTransactions.SingleOrDefault(Expe => Expe.Shift_Code == expenses.Shift_Code && Expe.isUploaded == false);
+                ExpensesTransaction _ExpensesTransactionMaster;
+                _ExpensesTransactionMaster = context.ExpensesTransactions.Where(Expe => Expe.Shift_Code == expenses.Shift_Code && Expe.isUploaded == false && Expe.Id == expenses.Id).First();
                 _ExpensesTransactionMaster.isUploaded = true;
                 context.SaveChanges();
             });
@@ -214,11 +222,12 @@ namespace PointOfSaleSedek
             List<Employee> masterEmployee = context.Employees.Where(x => x.isUploaded == false && x.IsDeleted == 0).ToList();
 
 
-            masterEmployee.ForEach(Employe => {
+            masterEmployee.ForEach(Employe =>
+            {
                 FirestoreDb fdb3 = FirestoreDb.Create("pointofsale-d3e8d");
-                DocumentReference Doc = fdb.Collection("Employee").Document("MangerMobile").Collection(mangerInfo.MangerMobile.ToString()).Document("ProjectId").Collection(mangerInfo.ProjectId.ToString()).Document();
+                DocumentReference Doc4 = fdb.Collection("Employee").Document("ProjectCode").Collection(ProjectInfos.ProjectCode.ToString()).Document();
 
-                Dictionary<string, object> data1 = new Dictionary<string, object>() {
+                Dictionary<string, object> data4 = new Dictionary<string, object>() {
 
 
                 {"BranchID",Employe.Branch_ID},
@@ -227,13 +236,13 @@ namespace PointOfSaleSedek
                 {"EmployeeMobile1",Employe.Employee_Mobile_1},
                 {"EmployeeMobile2",Employe.Employee_Mobile_2},
                 {"SexTypeCode",Employe.SexTypeCode},
-                { "LastUpdateDate",today.ToString()},
+                { "LastUpdateDate",today.ToString("MM-dd-yyyy hh:mm tt")},
                 };
 
 
 
 
-                Doc.SetAsync(data1);
+                Doc4.SetAsync(data4);
 
                 Employee _Employee;
                 _Employee = context.Employees.SingleOrDefault(emp => emp.Employee_Code == Employe.Employee_Code && emp.isUploaded == false);
@@ -242,6 +251,76 @@ namespace PointOfSaleSedek
             });
 
 
+
+
+            // Upload Project Info
+            List<ProjectMangerInfo> projectMangerInfos = context.ProjectMangerInfoes.Where(element => element.isUploaded == false).ToList();
+
+            List<Dictionary<string, object>> listUsers = new List<Dictionary<string, object>>();
+            // Upload Ussers
+
+
+            FirestoreDb fdb5 = FirestoreDb.Create("pointofsale-d3e8d");
+            DocumentReference Doc5 = fdb.Collection("UsersInfo").Document();
+            projectMangerInfos.ForEach(element => {
+
+                Dictionary<string, object> data5 = new Dictionary<string, object>() {
+
+
+
+                {"MangerCode",element.MangerCode},
+                {"MangerName",element.MangerName},
+                { "ProjectSequence",0},
+                { "ProjectId",0},
+              
+                { "IsActive",element.IsActive},
+                { "MangerMobile",element.MangerMobile},
+            };
+
+                listUsers.Add(data5);
+
+                Doc5.SetAsync(data5);
+
+                ProjectMangerInfo _ProjectMangerInfo;
+                _ProjectMangerInfo = context.ProjectMangerInfoes.SingleOrDefault(emp => emp.MangerCode == element.MangerCode && emp.isUploaded == false);
+                _ProjectMangerInfo.isUploaded = true;
+                context.SaveChanges();
+
+
+            });
+              
+
+            FirestoreDb fdb6 = FirestoreDb.Create("pointofsale-d3e8d");
+            DocumentReference Doc6 = fdb.Collection("Projects").Document(ProjectInfos.ProjectCode.ToString());
+            Dictionary<string, object> data6 = new Dictionary<string, object>() {
+
+                {"ProjectCode",ProjectInfos.ProjectCode},
+                {"ProjectName",ProjectInfos.ProjectName},
+                {"image",ProjectInfos.ImageUrl??""},
+                  
+                {"IsActive",ProjectInfos.isActive},
+                {"listUsers",listUsers},
+
+            };
+            Doc6.SetAsync(data6);
+
+
+
+            
+               
+                DocumentReference Doc14 = fdb.Collection("LastUpdateDate").Document("ProjectCode").Collection(ProjectInfos.ProjectCode.ToString()).Document("1");
+
+                Dictionary<string, object> data14 = new Dictionary<string, object>() {
+                { "LastUpdateDate",today.ToString("MM-dd-yyyy hh:mm tt")},
+                };
+
+
+
+
+                Doc14.SetAsync(data14);
+
+               
+            
 
 
 
@@ -360,7 +439,7 @@ namespace PointOfSaleSedek
             btnRefershShiftsData.Visibility = BarItemVisibility.Never;
             btnUploadData.Visibility = BarItemVisibility.Never;
             RbCasherTab.Visible = false;
-            RbStockTab.Visible = false;
+           
             BrAddauthenticationTab.Visible = false;
             RbInvoicesTab.Visible = false;
             RbReportsTab.Visible = false;
@@ -501,9 +580,7 @@ namespace PointOfSaleSedek
                         btnUploadData.Visibility = BarItemVisibility.Always;
                         break;
 
-                        
-
-
+   
 
                     default:
                     
@@ -513,6 +590,17 @@ namespace PointOfSaleSedek
 
 
             }
+
+
+            if (RbUser.Visible == false && RbAuth.Visible == false)
+            {
+                BrAddauthenticationTab.Visible = false;
+            }
+            else
+            {
+                BrAddauthenticationTab.Visible = true;
+            }
+
 
             //RbReportsTab.Visible = true;
             if (RbAddEmployee.Visible == false && RbBarCode.Visible == false && RbCode.Visible == false && RbItems.Visible == false && RbBranches.Visible == false && RbAddExpenses.Visible == false && RbCancelExpenses.Visible == false)
@@ -545,15 +633,7 @@ namespace PointOfSaleSedek
 
 
 
-            if (RbStore.Visible == false)
-            {
-                RbStockTab.Visible = false;
-            }
-            else
-            {
-                RbStockTab.Visible = true;
-            }
-
+            
 
 
             if (RbUser.Visible == false && RbAuth.Visible == false)
@@ -567,15 +647,7 @@ namespace PointOfSaleSedek
 
 
 
-            if (RbUser.Visible == false && RbAuth.Visible == false)
-            {
-                BrAddauthenticationTab.Visible = false;
-            }
-            else
-            {
-                BrAddauthenticationTab.Visible = true;
-            }
-
+          
 
 
             if (RbSaleReport.Visible == false &&
@@ -587,6 +659,8 @@ namespace PointOfSaleSedek
                 RbExpenses.Visible == false
                 &&
                 RbShifts.Visible == false
+                &&
+                RbStore.Visible == false
 
                 )
             {
@@ -754,6 +828,7 @@ namespace PointOfSaleSedek
 
                 try
                 {
+                    SplashScreenManager.ShowForm(typeof(WaitForm1));
                     updateToFireBase();
                     SplashScreenManager.CloseForm();
                     MaterialMessageBox.Show("تم رفع البيانات بنجاح", MessageBoxButtons.OK);
@@ -1030,6 +1105,12 @@ namespace PointOfSaleSedek
                 });
 
             }
+        }
+
+        private void barButtonItem23_ItemClick_1(object sender, ItemClickEventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+            this.MaximizeBox = false;
         }
     }
 }

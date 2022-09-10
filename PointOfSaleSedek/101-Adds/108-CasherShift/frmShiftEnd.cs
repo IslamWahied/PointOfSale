@@ -171,6 +171,14 @@ namespace PointOfSaleSedek._101_Adds.CasherShift
                 MaterialMessageBox.Show("برجاء اختيار وردية", MessageBoxButtons.OK);
                 return;
             }
+
+
+            if (dtEnd.EditValue == null || string.IsNullOrWhiteSpace(dtEnd.Text))
+            {
+
+                MaterialMessageBox.Show("برجاء اختيار تاريخ اقفال الوردية", MessageBoxButtons.OK);
+                return;
+            }
             else
             {
 

@@ -50,8 +50,6 @@
             this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.txtPrice = new DevExpress.XtraEditors.TextEdit();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
-            this.chkAddItem = new DevExpress.XtraEditors.CheckEdit();
             this.lblRisklimit = new DevExpress.XtraEditors.LabelControl();
             this.txtRisklimit = new DevExpress.XtraEditors.TextEdit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
@@ -65,7 +63,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.SlkUnit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPrice.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chkAddItem.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtRisklimit.Properties)).BeginInit();
             this.SuspendLayout();
             // 
@@ -93,7 +90,7 @@
             this.tableLayoutPanel1.ColumnCount = 2;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 72.97297F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 27.02703F));
-            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 7);
+            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 6);
             this.tableLayoutPanel1.Controls.Add(this.labelControl1, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.txtParCode, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.labelControl5, 1, 0);
@@ -104,23 +101,20 @@
             this.tableLayoutPanel1.Controls.Add(this.SlkUnit, 0, 3);
             this.tableLayoutPanel1.Controls.Add(this.txtPrice, 0, 5);
             this.tableLayoutPanel1.Controls.Add(this.labelControl4, 1, 5);
-            this.tableLayoutPanel1.Controls.Add(this.labelControl6, 0, 6);
-            this.tableLayoutPanel1.Controls.Add(this.chkAddItem, 1, 6);
             this.tableLayoutPanel1.Controls.Add(this.lblRisklimit, 1, 4);
             this.tableLayoutPanel1.Controls.Add(this.txtRisklimit, 0, 4);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(2, 27);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.tableLayoutPanel1.RowCount = 8;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.72085F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.01413F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.72085F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.48763F));
+            this.tableLayoutPanel1.RowCount = 7;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.30052F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 13.50604F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.30052F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.2867F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 44F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.55015F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10.94225F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25.46012F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15.50152F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 27.05167F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(334, 373);
             this.tableLayoutPanel1.TabIndex = 0;
@@ -133,13 +127,13 @@
             this.tableLayoutPanel2.Controls.Add(this.btnAdd, 0, 1);
             this.tableLayoutPanel2.Controls.Add(this.btnCancel, 1, 1);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 289);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 286);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.tableLayoutPanel2.RowCount = 2;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25.75758F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 74.24242F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(237, 81);
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 41.11111F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 58.88889F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(237, 84);
             this.tableLayoutPanel2.TabIndex = 12;
             // 
             // btnAdd
@@ -149,13 +143,13 @@
             this.btnAdd.Appearance.Options.UseBackColor = true;
             this.btnAdd.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnAdd.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnAdd.ImageOptions.Image")));
-            this.btnAdd.Location = new System.Drawing.Point(127, 23);
+            this.btnAdd.Location = new System.Drawing.Point(127, 37);
             this.btnAdd.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue;
             this.btnAdd.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue;
             this.btnAdd.LookAndFeel.SkinName = "The Bezier";
             this.btnAdd.LookAndFeel.UseDefaultLookAndFeel = false;
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(107, 55);
+            this.btnAdd.Size = new System.Drawing.Size(107, 44);
             this.btnAdd.TabIndex = 0;
             this.btnAdd.Text = "اضافة";
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
@@ -165,9 +159,9 @@
             this.btnCancel.AllowFocus = false;
             this.btnCancel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnCancel.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnCancel.ImageOptions.Image")));
-            this.btnCancel.Location = new System.Drawing.Point(3, 23);
+            this.btnCancel.Location = new System.Drawing.Point(3, 37);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(118, 55);
+            this.btnCancel.Size = new System.Drawing.Size(118, 44);
             this.btnCancel.TabIndex = 1;
             this.btnCancel.Text = "اغلاق";
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
@@ -177,16 +171,16 @@
             this.labelControl1.Appearance.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl1.Appearance.Options.UseFont = true;
             this.labelControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelControl1.Location = new System.Drawing.Point(246, 44);
+            this.labelControl1.Location = new System.Drawing.Point(246, 49);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(85, 33);
+            this.labelControl1.Size = new System.Drawing.Size(85, 38);
             this.labelControl1.TabIndex = 2;
             this.labelControl1.Text = "الباركود";
             // 
             // txtParCode
             // 
             this.txtParCode.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtParCode.Location = new System.Drawing.Point(3, 44);
+            this.txtParCode.Location = new System.Drawing.Point(3, 49);
             this.txtParCode.Name = "txtParCode";
             this.txtParCode.Properties.AllowFocused = false;
             this.txtParCode.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -195,7 +189,7 @@
             this.txtParCode.Properties.Mask.EditMask = "\\d{0,50}";
             this.txtParCode.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
             this.txtParCode.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.txtParCode.Size = new System.Drawing.Size(237, 33);
+            this.txtParCode.Size = new System.Drawing.Size(237, 38);
             this.txtParCode.TabIndex = 3;
             // 
             // labelControl5
@@ -205,7 +199,7 @@
             this.labelControl5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.labelControl5.Location = new System.Drawing.Point(246, 3);
             this.labelControl5.Name = "labelControl5";
-            this.labelControl5.Size = new System.Drawing.Size(85, 35);
+            this.labelControl5.Size = new System.Drawing.Size(85, 40);
             this.labelControl5.TabIndex = 0;
             this.labelControl5.Text = "المجموعة";
             // 
@@ -221,7 +215,7 @@
             this.SlkCatgoryName.Properties.NullText = "";
             this.SlkCatgoryName.Properties.PopupView = this.searchLookUpEdit1View;
             this.SlkCatgoryName.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.SlkCatgoryName.Size = new System.Drawing.Size(237, 35);
+            this.SlkCatgoryName.Size = new System.Drawing.Size(237, 40);
             this.SlkCatgoryName.TabIndex = 13;
             // 
             // searchLookUpEdit1View
@@ -267,21 +261,21 @@
             // txtName
             // 
             this.txtName.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtName.Location = new System.Drawing.Point(3, 83);
+            this.txtName.Location = new System.Drawing.Point(3, 93);
             this.txtName.Name = "txtName";
             this.txtName.Properties.AllowFocused = false;
             this.txtName.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtName.Properties.Appearance.Options.UseFont = true;
             this.txtName.Properties.AutoHeight = false;
             this.txtName.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.txtName.Size = new System.Drawing.Size(237, 35);
+            this.txtName.Size = new System.Drawing.Size(237, 40);
             this.txtName.TabIndex = 5;
             // 
             // labelControl2
             // 
             this.labelControl2.Appearance.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl2.Appearance.Options.UseFont = true;
-            this.labelControl2.Location = new System.Drawing.Point(246, 83);
+            this.labelControl2.Location = new System.Drawing.Point(246, 93);
             this.labelControl2.Name = "labelControl2";
             this.labelControl2.Size = new System.Drawing.Size(62, 18);
             this.labelControl2.TabIndex = 4;
@@ -291,7 +285,7 @@
             // 
             this.labelControl3.Appearance.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl3.Appearance.Options.UseFont = true;
-            this.labelControl3.Location = new System.Drawing.Point(246, 124);
+            this.labelControl3.Location = new System.Drawing.Point(246, 139);
             this.labelControl3.Name = "labelControl3";
             this.labelControl3.Size = new System.Drawing.Size(68, 18);
             this.labelControl3.TabIndex = 6;
@@ -300,7 +294,7 @@
             // SlkUnit
             // 
             this.SlkUnit.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.SlkUnit.Location = new System.Drawing.Point(3, 124);
+            this.SlkUnit.Location = new System.Drawing.Point(3, 139);
             this.SlkUnit.Name = "SlkUnit";
             this.SlkUnit.Properties.AllowFocused = false;
             this.SlkUnit.Properties.AutoHeight = false;
@@ -309,7 +303,7 @@
             this.SlkUnit.Properties.NullText = "";
             this.SlkUnit.Properties.PopupView = this.gridView1;
             this.SlkUnit.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.SlkUnit.Size = new System.Drawing.Size(237, 41);
+            this.SlkUnit.Size = new System.Drawing.Size(237, 47);
             this.SlkUnit.TabIndex = 14;
             // 
             // gridView1
@@ -355,7 +349,7 @@
             // txtPrice
             // 
             this.txtPrice.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtPrice.Location = new System.Drawing.Point(3, 215);
+            this.txtPrice.Location = new System.Drawing.Point(3, 236);
             this.txtPrice.Name = "txtPrice";
             this.txtPrice.Properties.AllowFocused = false;
             this.txtPrice.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -364,59 +358,25 @@
             this.txtPrice.Properties.Mask.EditMask = "\\d+(\\R.\\d{0,2})?";
             this.txtPrice.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
             this.txtPrice.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.txtPrice.Size = new System.Drawing.Size(237, 32);
+            this.txtPrice.Size = new System.Drawing.Size(237, 44);
             this.txtPrice.TabIndex = 9;
             // 
             // labelControl4
             // 
             this.labelControl4.Appearance.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl4.Appearance.Options.UseFont = true;
-            this.labelControl4.Location = new System.Drawing.Point(246, 215);
+            this.labelControl4.Location = new System.Drawing.Point(246, 236);
             this.labelControl4.Name = "labelControl4";
             this.labelControl4.Size = new System.Drawing.Size(51, 18);
             this.labelControl4.TabIndex = 8;
             this.labelControl4.Text = "سعر البيع";
-            // 
-            // labelControl6
-            // 
-            this.labelControl6.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.labelControl6.Appearance.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl6.Appearance.Options.UseFont = true;
-            this.labelControl6.Location = new System.Drawing.Point(75, 258);
-            this.labelControl6.Name = "labelControl6";
-            this.labelControl6.Size = new System.Drawing.Size(165, 19);
-            this.labelControl6.TabIndex = 11;
-            this.labelControl6.Text = "اضافة الصنف الي لوحة الازرار";
-            // 
-            // chkAddItem
-            // 
-            this.chkAddItem.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.chkAddItem.Location = new System.Drawing.Point(273, 258);
-            this.chkAddItem.Name = "chkAddItem";
-            this.chkAddItem.Properties.AllowFocused = false;
-            this.chkAddItem.Properties.Appearance.Options.UseTextOptions = true;
-            this.chkAddItem.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.chkAddItem.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.chkAddItem.Properties.AppearanceDisabled.Options.UseTextOptions = true;
-            this.chkAddItem.Properties.AppearanceDisabled.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.chkAddItem.Properties.AppearanceDisabled.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.chkAddItem.Properties.AppearanceFocused.Options.UseTextOptions = true;
-            this.chkAddItem.Properties.AppearanceFocused.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.chkAddItem.Properties.AppearanceReadOnly.Options.UseTextOptions = true;
-            this.chkAddItem.Properties.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.chkAddItem.Properties.AppearanceReadOnly.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.chkAddItem.Properties.Caption = "";
-            this.chkAddItem.Properties.LookAndFeel.UseDefaultLookAndFeel = false;
-            this.chkAddItem.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.chkAddItem.Size = new System.Drawing.Size(30, 20);
-            this.chkAddItem.TabIndex = 10;
             // 
             // lblRisklimit
             // 
             this.lblRisklimit.Appearance.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold);
             this.lblRisklimit.Appearance.Options.UseFont = true;
             this.lblRisklimit.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblRisklimit.Location = new System.Drawing.Point(246, 171);
+            this.lblRisklimit.Location = new System.Drawing.Point(246, 192);
             this.lblRisklimit.Name = "lblRisklimit";
             this.lblRisklimit.Size = new System.Drawing.Size(85, 38);
             this.lblRisklimit.TabIndex = 17;
@@ -425,7 +385,7 @@
             // txtRisklimit
             // 
             this.txtRisklimit.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtRisklimit.Location = new System.Drawing.Point(3, 171);
+            this.txtRisklimit.Location = new System.Drawing.Point(3, 192);
             this.txtRisklimit.Name = "txtRisklimit";
             this.txtRisklimit.Properties.AllowFocused = false;
             this.txtRisklimit.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -437,7 +397,7 @@
             this.txtRisklimit.Size = new System.Drawing.Size(237, 38);
             this.txtRisklimit.TabIndex = 18;
             // 
-            // frmAddItem
+            // frmSuperMarketAddItem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -445,7 +405,8 @@
             this.Controls.Add(this.groupControl1);
             this.MaximumSize = new System.Drawing.Size(338, 402);
             this.MinimumSize = new System.Drawing.Size(338, 402);
-            this.Name = "frmAddItem";
+            this.Name = "frmSuperMarketAddItem";
+            this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmAddItem";
@@ -463,7 +424,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.SlkUnit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPrice.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chkAddItem.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtRisklimit.Properties)).EndInit();
             this.ResumeLayout(false);
 
@@ -477,11 +437,9 @@
         private DevExpress.XtraEditors.LabelControl labelControl2;
         private DevExpress.XtraEditors.LabelControl labelControl3;
         private DevExpress.XtraEditors.LabelControl labelControl4;
-        private DevExpress.XtraEditors.LabelControl labelControl6;
         private DevExpress.XtraEditors.TextEdit txtParCode;
         private DevExpress.XtraEditors.TextEdit txtName;
         private DevExpress.XtraEditors.TextEdit txtPrice;
-        private DevExpress.XtraEditors.CheckEdit chkAddItem;
         private DevExpress.XtraEditors.LabelControl labelControl5;
         private DevExpress.XtraGrid.Views.Grid.GridView searchLookUpEdit1View;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;

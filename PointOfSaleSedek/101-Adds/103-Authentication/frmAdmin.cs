@@ -16,8 +16,11 @@ namespace PointOfSaleSedek._101_Adds
 {
     public partial class frmAdmin : DevExpress.XtraEditors.XtraForm
     {
-        public String Status = "New";
+        public string Status = "New";
         readonly Static st = new Static();
+
+        bool isAdmin = false;
+        public string authName = "";
 
         readonly SaleEntities context = new SaleEntities();
         public frmAdmin()
@@ -72,43 +75,92 @@ namespace PointOfSaleSedek._101_Adds
             }
             else if (st.Project_Type() == "Perfum")
             {
-                if (Application.OpenForms.OfType<frmCafeSales>().Any())
+
+
+                bool isFind = context.User_View.Any(Users => Users.UserName == txtUserName.Text && Users.UserFlag == true && Users.Password == txtPassword.Text && Users.IsDeleted == 0 && Users.IsDeletedEmployee == 0);
+
+                if (isFind)
                 {
+                    Int64 adminCode = context.User_View.Where(Users => Users.UserName == txtUserName.Text && Users.UserFlag == true && Users.Password == txtPassword.Text && Users.IsDeleted == 0 && Users.IsDeletedEmployee == 0).First().Employee_Code;
+
+                    isAdmin = context.Auth_View.Any(View => View.User_Code == adminCode && View.User_IsDeleted == 0 && View.Tab_Name == authName);
 
 
-                    frmPerfumSales frm = (frmPerfumSales)Application.OpenForms["frmPerfumSales"];
-
-                    Int64 User_Code = st.User_Code();
-
-                    var result = context.Auth_View.Where(View => View.User_Code == User_Code && (View.User_IsDeleted == 0)).ToList();
-
-
-
-                    if (result.Any(xd => xd.Tab_Name == "btnser"))
+                    if (isAdmin)
                     {
-                        //frm.btnser.Enabled = true;
+
+                        if (authName == "btnser")
+                        {
+                            this.Close();
+
+                            frmPerfumInvoiceSearch frm = new frmPerfumInvoiceSearch();
+                            frm.ShowDialog();
+                        }
+                        else if (authName == "btnDiscount")
+                        {
+                            this.Close();
+                            frmPerfumDiscount frm = new frmPerfumDiscount();
+
+                            frm.ShowDialog();
+
+                        }
+
+                        //else if(authName)
+
+
 
                     }
                     else
                     {
-                        //frm.btnser.Enabled = false;
+                        MaterialMessageBox.Show(" ليس لديك صلاحية", MessageBoxButtons.OK);
+                        return;
                     }
-
-
-                    if (result.Any(xd => xd.Tab_Name == "btnDiscount"))
-                    {
-                        frm.btnDiscount.Enabled = true;
-
-                    }
-                    else
-                    {
-                        frm.btnDiscount.Enabled = false;
-                    }
-
-                    this.Close();
-
+                }
+                else {
+                    MaterialMessageBox.Show(" ليس لديك صلاحية", MessageBoxButtons.OK);
+                    return;
 
                 }
+              
+
+
+                //if (Application.OpenForms.OfType<frmCafeSales>().Any())
+                //{
+
+
+                //    frmPerfumSales frm = (frmPerfumSales)Application.OpenForms["frmPerfumSales"];
+
+                //    Int64 User_Code = st.User_Code();
+
+                //    var result = context.Auth_View.Where(View => View.User_Code == User_Code && (View.User_IsDeleted == 0)).ToList();
+
+
+
+                //    if (result.Any(xd => xd.Tab_Name == "btnser"))
+                //    {
+                //        //frm.btnser.Enabled = true;
+
+                //    }
+                //    else
+                //    {
+                //        //frm.btnser.Enabled = false;
+                //    }
+
+
+                //    if (result.Any(xd => xd.Tab_Name == "btnDiscount"))
+                //    {
+                //        frm.btnDiscount.Enabled = true;
+
+                //    }
+                //    else
+                //    {
+                //        frm.btnDiscount.Enabled = false;
+                //    }
+
+                //    this.Close();
+
+
+                //}
             }
             else if (st.Project_Type() == "SuperMarket")
             {

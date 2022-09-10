@@ -141,7 +141,7 @@ namespace PointOfSaleSedek._101_Adds._102_Customer
                         Int64 User_Code = st.User_Code();
 
 
-                        frm.FillSlkCustomers();
+                        frm.FillSlkCustomer();
 
                         frm.slkCustomers.EditValue = context.Customer_View.FirstOrDefault(Customer => Customer.Customer_Phone == Phone).Customer_Code;
                         frm.slkCustomers.Enabled = true;

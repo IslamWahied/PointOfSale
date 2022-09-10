@@ -112,7 +112,7 @@ namespace PointOfSaleSedek._101_Adds
              lblFinalBeforDesCound.Text = "0";
              lblItemQty.Text = "0";
              lblDiscount.Text = "0";
-             lblUserName.Text = "المدير";
+             lblUserName.Text = context.Employee_View.Where(x=>x.Employee_Code == UserCode).First().Employee_Name.ToString()??"";
           //dtEntryDate.DateTime = DateTime.Now;
              while (gvPrfumSaleDetail.RowCount > 0)
              {
@@ -666,7 +666,7 @@ namespace PointOfSaleSedek._101_Adds
 
             var GetDataFromGrid = gcPrfumSaleDetail.DataSource as List<SaleDetailPrfumViewVm>;
 
-            decimal finaltotal = Convert.ToInt64(lblFinalTotal.Text);
+            double finaltotal = Convert.ToDouble(lblFinalTotal.Text);
 
             if (GetDataFromGrid == null || GetDataFromGrid.Count <= 0)
             {
@@ -1202,7 +1202,8 @@ namespace PointOfSaleSedek._101_Adds
             else
             {
                 frmAdmin frm = new frmAdmin();
-                frm.Show();
+                frm.authName = "btnser";
+                frm.ShowDialog();
             }
         }
 
@@ -1324,7 +1325,7 @@ namespace PointOfSaleSedek._101_Adds
                 Int64 SaleMasterCode = Convert.ToInt64(lblSaleMasterId.Text);
                 var GetDataFromGrid = gcPrfumSaleDetail.DataSource as List<SaleDetailPrfumViewVm>;
 
-                decimal finaltotal = Convert.ToInt64(lblFinalTotal.Text);
+                 double finaltotal = Convert.ToDouble(lblFinalTotal.Text);
 
                 if (GetDataFromGrid == null || GetDataFromGrid.Count <= 0)
                 {
@@ -1437,7 +1438,8 @@ namespace PointOfSaleSedek._101_Adds
             else
             {
                 frmAdmin frm = new frmAdmin();
-                frm.ShowDialog();
+                frm.authName = "btnDiscount";
+                frm.Show();
             }
         }
 
@@ -1692,7 +1694,7 @@ namespace PointOfSaleSedek._101_Adds
 
         public void FillSlkEmployees()
         {
-            var result = context.Employee_View.Where(user => user.IsDeleted == 0).ToList();
+            var result = context.Employee_View.Where(user => user.IsDeleted == 0 && user.Employee_Code != 0).ToList();
             slkEmployees.Properties.DataSource = result;
             slkEmployees.Properties.ValueMember = "Employee_Code";
             slkEmployees.Properties.DisplayMember = "Employee_Name";
@@ -1724,31 +1726,38 @@ namespace PointOfSaleSedek._101_Adds
             List<string> textlist = new List<string>();
            string text = "";
 
-            var customercode = Convert.ToInt64(slkCustomers.EditValue);
-            context.SaleDetailViews.Where(x => x.CustomerCode == customercode && x.CategoryCode == 1).Distinct().ForEach(x=> {
+            using (SaleEntities NewReco = new SaleEntities())
+            {
+
+                var customercode = Convert.ToInt64(slkCustomers.EditValue);
+                NewReco.SaleDetailViews.Where(x => x.CustomerCode == customercode && x.CategoryCode == 1).Distinct().ForEach(x => {
 
 
-                textlist.Add(x.Name.ToString());
-               
-            });
+                    textlist.Add(x.Name.ToString());
 
-            textlist.Distinct().ForEach(x => {
-                text +=  x + " / ";
-            });
+                });
 
-
+                textlist.Distinct().ForEach(x => {
+                    text += x + " / ";
+                });
 
 
-            var customerFav = context.Customer_Info.FirstOrDefault(x => x.Customer_Code == customercode).CustomerFavourit;
+
+
+                var customerFav = NewReco.Customer_Info.FirstOrDefault(x => x.Customer_Code == customercode).CustomerFavourit;
                 frmPerfumCustomerHistory frm = new frmPerfumCustomerHistory();
 
-            if (!String.IsNullOrWhiteSpace(customerFav)) {
+                if (!String.IsNullOrWhiteSpace(customerFav))
+                {
 
-                text = text + customerFav;
+                    text = text + customerFav;
+                }
+                frm.txtHistory.Text = text;
+
+                frm.ShowDialog();
             }
-            frm.txtHistory.Text = text;
 
-            frm.ShowDialog();
+           
         }
 
         private void simpleButton4_Click_1(object sender, EventArgs e)

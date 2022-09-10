@@ -171,6 +171,21 @@ warning 6002: The table/view 'PointOfSale.dbo.Payment_Type' does not have a prim
           <Property Name="PaymentType" Type="nvarchar" MaxLength="50" />
           <Property Name="IsDeleted" Type="int" Nullable="false" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'PointOfSale.dbo.ProjectInfo' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ProjectInfo">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="ProjectCode" />
+            <PropertyRef Name="ProjectName" />
+            <PropertyRef Name="isActive" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProjectCode" Type="bigint" Nullable="false" />
+          <Property Name="ProjectName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="isActive" Type="bit" Nullable="false" />
+          <Property Name="ImageUrl" Type="nvarchar(max)" />
+        </EntityType>
         <EntityType Name="ProjectMangerInfo">
           <Key>
             <PropertyRef Name="MangerCode" />
@@ -181,6 +196,7 @@ warning 6002: The table/view 'PointOfSale.dbo.Payment_Type' does not have a prim
           <Property Name="ProjectId" Type="bigint" Nullable="false" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="MangerMobile" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="isUploaded" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="SaleDetail">
           <Key>
@@ -648,6 +664,15 @@ warning 6002: The table/view 'PointOfSale.dbo.User_View' does not have a primary
     [Payment_Type].[IsDeleted] AS [IsDeleted]
     FROM [dbo].[Payment_Type] AS [Payment_Type]</DefiningQuery>
           </EntitySet>
+          <EntitySet Name="ProjectInfo" EntityType="Self.ProjectInfo" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ProjectInfo].[Id] AS [Id], 
+    [ProjectInfo].[ProjectCode] AS [ProjectCode], 
+    [ProjectInfo].[ProjectName] AS [ProjectName], 
+    [ProjectInfo].[isActive] AS [isActive], 
+    [ProjectInfo].[ImageUrl] AS [ImageUrl]
+    FROM [dbo].[ProjectInfo] AS [ProjectInfo]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="Auth_View" EntityType="Self.Auth_View" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [Auth_View].[Tab_Name] AS [Tab_Name], 
@@ -861,6 +886,7 @@ warning 6002: The table/view 'PointOfSale.dbo.User_View' does not have a primary
           <EntitySet Name="Shift_View" EntityType="SaleModel.Shift_View" />
           <EntitySet Name="User_View" EntityType="SaleModel.User_View" />
           <EntitySet Name="ProjectMangerInfoes" EntityType="SaleModel.ProjectMangerInfo" />
+          <EntitySet Name="ProjectInfoes" EntityType="SaleModel.ProjectInfo" />
         </EntityContainer>
         <EntityType Name="Branch">
           <Key>
@@ -1441,6 +1467,20 @@ warning 6002: The table/view 'PointOfSale.dbo.User_View' does not have a primary
           <Property Name="ProjectId" Type="Int64" Nullable="false" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <Property Name="MangerMobile" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="isUploaded" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProjectInfo">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="ProjectCode" />
+            <PropertyRef Name="ProjectName" />
+            <PropertyRef Name="isActive" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProjectCode" Type="Int64" Nullable="false" />
+          <Property Name="ProjectName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="isActive" Type="Boolean" Nullable="false" />
+          <Property Name="ImageUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1976,11 +2016,23 @@ warning 6002: The table/view 'PointOfSale.dbo.User_View' does not have a primary
           <EntitySetMapping Name="ProjectMangerInfoes">
             <EntityTypeMapping TypeName="SaleModel.ProjectMangerInfo">
               <MappingFragment StoreEntitySet="ProjectMangerInfo">
+                <ScalarProperty Name="isUploaded" ColumnName="isUploaded" />
                 <ScalarProperty Name="MangerMobile" ColumnName="MangerMobile" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
                 <ScalarProperty Name="MangerName" ColumnName="MangerName" />
                 <ScalarProperty Name="MangerCode" ColumnName="MangerCode" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProjectInfoes">
+            <EntityTypeMapping TypeName="SaleModel.ProjectInfo">
+              <MappingFragment StoreEntitySet="ProjectInfo">
+                <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
+                <ScalarProperty Name="ProjectCode" ColumnName="ProjectCode" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

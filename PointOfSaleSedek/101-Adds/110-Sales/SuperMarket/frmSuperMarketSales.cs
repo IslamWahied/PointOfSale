@@ -51,7 +51,9 @@ namespace PointOfSaleSedek._101_Adds
             btnEdite.Enabled = false;
             btnDiscount.Enabled = true;
             txtParCode.Enabled = true;
+            txtParCode.Text = "";
             txtParCode.Focus();
+       
 
 
             HelperClass.HelperClass.EnableControls(tableLayoutPanel1);
@@ -81,6 +83,8 @@ namespace PointOfSaleSedek._101_Adds
 
             //timer1.Start();
             this.Status = "New";
+            txtParCode.Text = "";
+  
             txtParCode.Focus();
             btnEdite.Enabled = false;
 
@@ -101,6 +105,7 @@ namespace PointOfSaleSedek._101_Adds
 
 
             NewForLoad();
+            txtParCode.Text = "";
             txtParCode.Focus();
         }
 
@@ -110,7 +115,7 @@ namespace PointOfSaleSedek._101_Adds
         {
             HelperClass.HelperClass.ClearValues(tableLayoutPanel1);
             FillSlkPaymentType();
-            FillSlkCustomers();
+            FillSlkCustomer();
             Int64? MaxCode = context.SaleMasters.Where(x => x.EntryDate.Day == DateTime.Today.Day && x.EntryDate.Month == DateTime.Today.Month && x.EntryDate.Year == DateTime.Today.Year && (x.Operation_Type_Id == 2 || x.Operation_Type_Id == 3)).Max(u => (Int64?)u.SaleMasterCode + 1);
             if (MaxCode == null || MaxCode == 0)
             {
@@ -140,15 +145,15 @@ namespace PointOfSaleSedek._101_Adds
 
 
 
-            if (result.Any(xd => xd.Tab_Name == "btnser"))
-            {
-                btnser.Enabled = true;
+            //if (result.Any(xd => xd.Tab_Name == "btnser"))
+            //{
+            //    btnser.Enabled = true;
 
-            }
-            else
-            {
-                btnser.Enabled = false;
-            }
+            //}
+            //else
+            //{
+            //    btnser.Enabled = false;
+            //}
 
 
             if (result.Any(xd => xd.Tab_Name == "btnDiscount"))
@@ -162,6 +167,7 @@ namespace PointOfSaleSedek._101_Adds
             }
             //context.Categories.ForEach(x => tabItems.TabPages.Add(x.CategoryName));
 
+            txtParCode.Text = "";
             txtParCode.Focus();
 
 
@@ -203,6 +209,7 @@ namespace PointOfSaleSedek._101_Adds
             lblItemQty.Text = (RowCount - 1).ToString();
             txtParCode.ResetText();
 
+            txtParCode.Text = "";
             txtParCode.Focus();
 
 
@@ -234,6 +241,7 @@ namespace PointOfSaleSedek._101_Adds
             txtParCode.ResetText();
 
 
+            txtParCode.Text = "";
             txtParCode.Focus();
 
         }
@@ -796,21 +804,24 @@ namespace PointOfSaleSedek._101_Adds
             slkCustomers.Reset();
             slkCustomers.Refresh();
             txtParCode.ResetText();
+            txtParCode.Text = "";
+            txtParCode.Focus();
+
             Int64 User_Code = st.User_Code();
 
             var result = context.Auth_View.Where(View => View.User_Code == User_Code && (View.User_IsDeleted == 0)).ToList();
 
 
 
-            if (result.Any(xd => xd.Tab_Name == "btnser"))
-            {
-                btnser.Enabled = true;
+            //if (result.Any(xd => xd.Tab_Name == "btnser"))
+            //{
+            //    btnser.Enabled = true;
 
-            }
-            else
-            {
-                btnser.Enabled = false;
-            }
+            //}
+            //else
+            //{
+            //    btnser.Enabled = false;
+            //}
 
 
             if (result.Any(xd => xd.Tab_Name == "btnDiscount"))
@@ -822,7 +833,9 @@ namespace PointOfSaleSedek._101_Adds
             {
                 btnDiscount.Enabled = false;
             }
+            txtParCode.Text = "";
             txtParCode.Focus();
+
             this.Status = "New";
              
 
@@ -1065,6 +1078,9 @@ namespace PointOfSaleSedek._101_Adds
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
+
+ 
+
             Int64 User_Code = st.User_Code();
 
             var result = context.Auth_View.Any(View => View.User_Code == User_Code && (View.User_IsDeleted == 0) && (View.Tab_Name == "btnDiscount"));
@@ -1078,14 +1094,17 @@ namespace PointOfSaleSedek._101_Adds
             else
             {
                 frmAdmin frm = new frmAdmin();
-                frm.ShowDialog();
+                frm.authName = "btnDiscount";
+                frm.Show();
             }
+            txtParCode.Text = "";
             txtParCode.Focus();
         }
 
         private void btnNew_Click(object sender, EventArgs e)
         {
             New();
+            txtParCode.Text = "";
             txtParCode.Focus();
         }
 
@@ -1125,7 +1144,8 @@ namespace PointOfSaleSedek._101_Adds
             lblFinalTotal.Text = Convert.ToString(sum - Convert.ToDouble(lblDiscount.Text));
             lblItemQty.Text = (RowCount - 1).ToString();
             txtParCode.ResetText();
-            
+
+            txtParCode.Text = "";
             txtParCode.Focus();
         }
 
@@ -1199,19 +1219,20 @@ namespace PointOfSaleSedek._101_Adds
 
             
                 SaveSaleDetail();
-             txtParCode.Focus();
+            txtParCode.Text = "";
+            txtParCode.Focus();
 
 
 
 
         }
 
-       
-        
-  
-      
 
-        public void FillSlkCustomers()
+
+
+
+
+        public void FillSlkCustomer()
         {
             var result = context.Customer_View.Where(Customer => Customer.IsDeleted == 0).ToList();
             slkCustomers.Properties.DataSource = result;
@@ -1260,6 +1281,9 @@ namespace PointOfSaleSedek._101_Adds
 
                         lblFinalTotal.Text = Convert.ToString(sum - Convert.ToDouble(lblDiscount.Text));
                         txtParCode.ResetText();
+
+                        txtParCode.Text = "";
+            
 
                         txtParCode.Focus();
 
@@ -1310,7 +1334,8 @@ namespace PointOfSaleSedek._101_Adds
                         lblFinalTotal.Text = Convert.ToString(sum - Convert.ToDouble(lblDiscount.Text));
                         txtParCode.ResetText();
 
-
+                        txtParCode.Text = "";
+                  
                         txtParCode.Focus();
 
                     }
@@ -1371,6 +1396,8 @@ namespace PointOfSaleSedek._101_Adds
                     lblItemQty.Text = (RowCount + 1).ToString();
                     txtParCode.ResetText();
                     //  txtQty.ResetText();
+                    txtParCode.Text = "";
+          
                     txtParCode.Focus();
                     //  btnAdd.Enabled = true;
                 }
@@ -1428,23 +1455,12 @@ namespace PointOfSaleSedek._101_Adds
                     }
 
 
-                    else if (this.Status == "New")
-                    {
-
-
+                    
 
                         SaveSaleDetail();
 
 
-                    }
-                    else if (this.Status == "Old")
-                    {
-
-
-                        SaveSaleDetail();
-
-
-                    }
+                   
 
 
                 }
@@ -1459,14 +1475,16 @@ namespace PointOfSaleSedek._101_Adds
         {
             frmSuperMarketSearchItems frm = new frmSuperMarketSearchItems();
             frm.ShowDialog();
-             txtParCode.Focus();
+            txtParCode.Text = "";
+         
+            txtParCode.Focus();
         }
 
         private void simpleButton4_Click(object sender, EventArgs e)
         {
             frmAddCustomer frm = new frmAddCustomer();
             frm.ShowDialog();
-            txtParCode.Focus();
+        //    txtParCode.Focus();
 
         }
 
@@ -1489,6 +1507,7 @@ namespace PointOfSaleSedek._101_Adds
         {
             frmSuperMarketInvoiceSearchForCustomer frm = new frmSuperMarketInvoiceSearchForCustomer();
             frm.ShowDialog();
+            txtParCode.Text = "";
             txtParCode.Focus();
         }
 
@@ -1519,6 +1538,7 @@ namespace PointOfSaleSedek._101_Adds
             lblItemQty.Text = (RowCount - 1).ToString();
             txtParCode.ResetText();
 
+            txtParCode.Text = "";
             txtParCode.Focus();
         }
     }

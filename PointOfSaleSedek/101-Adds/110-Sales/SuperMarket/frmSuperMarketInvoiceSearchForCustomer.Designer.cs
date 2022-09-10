@@ -34,8 +34,6 @@
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.gcSaleMaster = new DevExpress.XtraGrid.GridControl();
-            this.materialContextMenuStrip1 = new MaterialSkin.Controls.MaterialContextMenuStrip();
-            this.الغاءالفاتورةToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gvSaleMaster = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -48,7 +46,6 @@
             this.groupControl1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcSaleMaster)).BeginInit();
-            this.materialContextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gvSaleMaster)).BeginInit();
             this.SuspendLayout();
             // 
@@ -64,7 +61,7 @@
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(826, 357);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(836, 359);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // groupControl1
@@ -82,7 +79,7 @@
             this.groupControl1.LookAndFeel.SkinName = "The Bezier";
             this.groupControl1.LookAndFeel.UseDefaultLookAndFeel = false;
             this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Size = new System.Drawing.Size(820, 351);
+            this.groupControl1.Size = new System.Drawing.Size(830, 353);
             this.groupControl1.TabIndex = 0;
             this.groupControl1.Text = "بحث عن فاتورة";
             this.groupControl1.CustomButtonClick += new DevExpress.XtraBars.Docking2010.BaseButtonEventHandler(this.groupControl1_CustomButtonClick);
@@ -99,38 +96,19 @@
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(816, 312);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(826, 314);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // gcSaleMaster
             // 
-            this.gcSaleMaster.ContextMenuStrip = this.materialContextMenuStrip1;
             this.gcSaleMaster.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gcSaleMaster.Location = new System.Drawing.Point(3, 3);
             this.gcSaleMaster.MainView = this.gvSaleMaster;
             this.gcSaleMaster.Name = "gcSaleMaster";
-            this.gcSaleMaster.Size = new System.Drawing.Size(810, 306);
+            this.gcSaleMaster.Size = new System.Drawing.Size(820, 308);
             this.gcSaleMaster.TabIndex = 0;
             this.gcSaleMaster.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvSaleMaster});
-            // 
-            // materialContextMenuStrip1
-            // 
-            this.materialContextMenuStrip1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.materialContextMenuStrip1.Depth = 0;
-            this.materialContextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.الغاءالفاتورةToolStripMenuItem});
-            this.materialContextMenuStrip1.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialContextMenuStrip1.Name = "materialContextMenuStrip1";
-            this.materialContextMenuStrip1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.materialContextMenuStrip1.Size = new System.Drawing.Size(136, 26);
-            // 
-            // الغاءالفاتورةToolStripMenuItem
-            // 
-            this.الغاءالفاتورةToolStripMenuItem.Name = "الغاءالفاتورةToolStripMenuItem";
-            this.الغاءالفاتورةToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
-            this.الغاءالفاتورةToolStripMenuItem.Text = "الغاء الفاتورة";
-            this.الغاءالفاتورةToolStripMenuItem.Click += new System.EventHandler(this.الغاءالفاتورةToolStripMenuItem_Click);
             // 
             // gvSaleMaster
             // 
@@ -285,16 +263,16 @@
             this.gridColumn6.Caption = "gridColumn6";
             this.gridColumn6.Name = "gridColumn6";
             // 
-            // frmInvoiceSearchForCustomer
+            // frmSuperMarketInvoiceSearchForCustomer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(826, 357);
+            this.ClientSize = new System.Drawing.Size(836, 359);
             this.Controls.Add(this.tableLayoutPanel1);
             this.IconOptions.ShowIcon = false;
             this.LookAndFeel.SkinName = "The Bezier";
             this.LookAndFeel.UseDefaultLookAndFeel = false;
-            this.Name = "frmInvoiceSearchForCustomer";
+            this.Name = "frmSuperMarketInvoiceSearchForCustomer";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.RightToLeftLayout = true;
             this.ShowInTaskbar = false;
@@ -306,7 +284,6 @@
             this.groupControl1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gcSaleMaster)).EndInit();
-            this.materialContextMenuStrip1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gvSaleMaster)).EndInit();
             this.ResumeLayout(false);
 
@@ -325,7 +302,5 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn6;
-        private MaterialSkin.Controls.MaterialContextMenuStrip materialContextMenuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem الغاءالفاتورةToolStripMenuItem;
     }
 }

@@ -17,7 +17,6 @@ namespace PointOfSaleSedek._101_Adds
         public frmSuperMarketAddItem()
         {
             InitializeComponent();
-
         }
 
         
@@ -141,7 +140,7 @@ namespace PointOfSaleSedek._101_Adds
                     Item_Count_InStoreg = 0,
                     PriceBuy = 0,
                     UnitCode = Convert.ToInt64(SlkUnit.EditValue),
-                    AddItem = chkAddItem.Checked,
+                    AddItem = true,
                     Item_Risk_limit = Convert.ToDouble(txtRisklimit.Text)
                 };
                 context.ItemCards.Add(_ItemCard);
