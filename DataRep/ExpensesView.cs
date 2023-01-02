@@ -28,5 +28,9 @@ namespace DataRep
         public string Employee_Name { get; set; }
         public Nullable<long> Emp_Code { get; set; }
         public bool isUploaded { get; set; }
+        public string Warehouse_Name { get; set; }
+        public long Warehouse_Code { get; set; }
+        public long Branches_Code { get; set; }
+        public string Branches_Name { get; set; }
     }
 }

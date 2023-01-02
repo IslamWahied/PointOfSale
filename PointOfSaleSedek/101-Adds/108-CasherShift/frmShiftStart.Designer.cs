@@ -77,7 +77,7 @@ namespace PointOfSaleSedek._101_Adds.CasherShift
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 34F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 47F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 56F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(351, 201);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(335, 201);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // txtNote
@@ -85,18 +85,24 @@ namespace PointOfSaleSedek._101_Adds.CasherShift
             this.txtNote.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtNote.Location = new System.Drawing.Point(3, 100);
             this.txtNote.Name = "txtNote";
+            this.txtNote.Properties.Appearance.Options.UseTextOptions = true;
+            this.txtNote.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.txtNote.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.txtNote.Properties.AutoHeight = false;
-            this.txtNote.Size = new System.Drawing.Size(225, 41);
+            this.txtNote.Size = new System.Drawing.Size(214, 41);
             this.txtNote.TabIndex = 155;
             // 
             // labelControl4
             // 
             this.labelControl4.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl4.Appearance.Options.UseFont = true;
+            this.labelControl4.Appearance.Options.UseTextOptions = true;
+            this.labelControl4.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.labelControl4.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.labelControl4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelControl4.Location = new System.Drawing.Point(234, 100);
+            this.labelControl4.Location = new System.Drawing.Point(223, 100);
             this.labelControl4.Name = "labelControl4";
-            this.labelControl4.Size = new System.Drawing.Size(114, 41);
+            this.labelControl4.Size = new System.Drawing.Size(109, 41);
             this.labelControl4.TabIndex = 154;
             this.labelControl4.Text = "ملاحظات";
             // 
@@ -106,13 +112,16 @@ namespace PointOfSaleSedek._101_Adds.CasherShift
             this.slkUser.EditValue = " ";
             this.slkUser.Location = new System.Drawing.Point(3, 3);
             this.slkUser.Name = "slkUser";
+            this.slkUser.Properties.Appearance.Options.UseTextOptions = true;
+            this.slkUser.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.slkUser.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.slkUser.Properties.AutoHeight = false;
             this.slkUser.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.slkUser.Properties.NullText = " ";
             this.slkUser.Properties.PopupView = this.searchLookUpEdit1View;
             this.slkUser.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.slkUser.Size = new System.Drawing.Size(225, 23);
+            this.slkUser.Size = new System.Drawing.Size(214, 23);
             this.slkUser.TabIndex = 153;
             // 
             // searchLookUpEdit1View
@@ -160,17 +169,20 @@ namespace PointOfSaleSedek._101_Adds.CasherShift
             this.dtFrom.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             this.dtFrom.Properties.VistaDisplayMode = DevExpress.Utils.DefaultBoolean.False;
             this.dtFrom.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.dtFrom.Size = new System.Drawing.Size(225, 28);
+            this.dtFrom.Size = new System.Drawing.Size(214, 28);
             this.dtFrom.TabIndex = 151;
             // 
             // labelControl1
             // 
             this.labelControl1.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl1.Appearance.Options.UseFont = true;
+            this.labelControl1.Appearance.Options.UseTextOptions = true;
+            this.labelControl1.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.labelControl1.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.labelControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelControl1.Location = new System.Drawing.Point(234, 3);
+            this.labelControl1.Location = new System.Drawing.Point(223, 3);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(114, 23);
+            this.labelControl1.Size = new System.Drawing.Size(109, 23);
             this.labelControl1.TabIndex = 0;
             this.labelControl1.Text = "المستخدم";
             // 
@@ -178,10 +190,13 @@ namespace PointOfSaleSedek._101_Adds.CasherShift
             // 
             this.labelControl2.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl2.Appearance.Options.UseFont = true;
+            this.labelControl2.Appearance.Options.UseTextOptions = true;
+            this.labelControl2.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.labelControl2.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.labelControl2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelControl2.Location = new System.Drawing.Point(234, 32);
+            this.labelControl2.Location = new System.Drawing.Point(223, 32);
             this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(114, 28);
+            this.labelControl2.Size = new System.Drawing.Size(109, 28);
             this.labelControl2.TabIndex = 1;
             this.labelControl2.Text = "تاريخ بداية الوردية";
             // 
@@ -189,10 +204,13 @@ namespace PointOfSaleSedek._101_Adds.CasherShift
             // 
             this.labelControl3.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl3.Appearance.Options.UseFont = true;
+            this.labelControl3.Appearance.Options.UseTextOptions = true;
+            this.labelControl3.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.labelControl3.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.labelControl3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelControl3.Location = new System.Drawing.Point(234, 66);
+            this.labelControl3.Location = new System.Drawing.Point(223, 66);
             this.labelControl3.Name = "labelControl3";
-            this.labelControl3.Size = new System.Drawing.Size(114, 28);
+            this.labelControl3.Size = new System.Drawing.Size(109, 28);
             this.labelControl3.TabIndex = 2;
             this.labelControl3.Text = "رصيد بداية الوردية";
             // 
@@ -208,7 +226,7 @@ namespace PointOfSaleSedek._101_Adds.CasherShift
             this.txtStartAmount.Properties.AutoHeight = false;
             this.txtStartAmount.Properties.Mask.EditMask = "\\d{0,50}";
             this.txtStartAmount.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
-            this.txtStartAmount.Size = new System.Drawing.Size(225, 28);
+            this.txtStartAmount.Size = new System.Drawing.Size(214, 28);
             this.txtStartAmount.TabIndex = 152;
             // 
             // tableLayoutPanel2
@@ -225,7 +243,7 @@ namespace PointOfSaleSedek._101_Adds.CasherShift
             this.tableLayoutPanel2.RowCount = 2;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.32877F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 87.67123F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(225, 51);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(214, 51);
             this.tableLayoutPanel2.TabIndex = 156;
             // 
             // btnSave
@@ -235,13 +253,13 @@ namespace PointOfSaleSedek._101_Adds.CasherShift
             this.btnSave.Appearance.Options.UseBackColor = true;
             this.btnSave.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnSave.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSave.ImageOptions.Image")));
-            this.btnSave.Location = new System.Drawing.Point(123, 9);
+            this.btnSave.Location = new System.Drawing.Point(117, 9);
             this.btnSave.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue;
             this.btnSave.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue;
             this.btnSave.LookAndFeel.SkinName = "The Bezier";
             this.btnSave.LookAndFeel.UseDefaultLookAndFeel = false;
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(99, 39);
+            this.btnSave.Size = new System.Drawing.Size(94, 39);
             this.btnSave.TabIndex = 0;
             this.btnSave.Text = "حفظ";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
@@ -253,7 +271,7 @@ namespace PointOfSaleSedek._101_Adds.CasherShift
             this.btnCancel.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnCancel.ImageOptions.Image")));
             this.btnCancel.Location = new System.Drawing.Point(3, 9);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(114, 39);
+            this.btnCancel.Size = new System.Drawing.Size(108, 39);
             this.btnCancel.TabIndex = 1;
             this.btnCancel.Text = "الغاء";
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
@@ -264,7 +282,7 @@ namespace PointOfSaleSedek._101_Adds.CasherShift
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(351, 201);
+            this.ClientSize = new System.Drawing.Size(335, 201);
             this.Controls.Add(this.tableLayoutPanel1);
             this.IconOptions.ShowIcon = false;
             this.MaximizeBox = false;

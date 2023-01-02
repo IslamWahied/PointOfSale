@@ -1,0 +1,341 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{EC11FEA7-43B0-43AE-9C0E-F5A54AA8C4FF}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BackOfficeEntity</RootNamespace>
+    <AssemblyName>BackOfficeEntity</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Accessibility" />
+    <Reference Include="Microsoft.QualityTools.Testing.Fakes, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core.4.0.0.0.Fakes">
+      <HintPath>FakesAssemblies\System.Core.4.0.0.0.Fakes.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity.Repository.2.0.0.1.Fakes">
+      <HintPath>FakesAssemblies\System.Data.Entity.Repository.2.0.0.1.Fakes.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.SqlClient.4.6.1.5.Fakes">
+      <HintPath>FakesAssemblies\System.Data.SqlClient.4.6.1.5.Fakes.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Auth_View.cs">
+      <DependentUpon>BackOffice.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BackOffice.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BackOffice.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BackOffice.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BackOffice.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BackOffice.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BackOffice.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="BackOfficeTranDetail_View.cs">
+      <DependentUpon>BackOffice.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Back_Office_Transaction_Detail.cs">
+      <DependentUpon>BackOffice.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Back_Office_Transaction_Master.cs">
+      <DependentUpon>BackOffice.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Branch.cs">
+      <DependentUpon>BackOffice.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Branch_Back_Office.cs">
+      <DependentUpon>BackOffice.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Category.cs">
+      <DependentUpon>BackOffice.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Category_Back_Office.cs">
+      <DependentUpon>BackOffice.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Customer_Info.cs">
+      <DependentUpon>BackOffice.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Customer_Info_Back_Office.cs">
+      <DependentUpon>BackOffice.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Customer_View.cs">
+      <DependentUpon>BackOffice.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Employee.cs">
+      <DependentUpon>BackOffice.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Employee_Back_Office.cs">
+      <DependentUpon>BackOffice.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Employee_View.cs">
+      <DependentUpon>BackOffice.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Event_Type.cs">
+      <DependentUpon>BackOffice.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Event_Type_Back_Office.cs">
+      <DependentUpon>BackOffice.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Expens.cs">
+      <DependentUpon>BackOffice.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ExpensesTransaction.cs">
+      <DependentUpon>BackOffice.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ExpensesTransaction_Back_Office.cs">
+      <DependentUpon>BackOffice.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ExpensesView.cs">
+      <DependentUpon>BackOffice.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Expenses_Back_Office.cs">
+      <DependentUpon>BackOffice.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ItemCard.cs">
+      <DependentUpon>BackOffice.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ItemCardView.cs">
+      <DependentUpon>BackOffice.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ItemCard_Back_Office.cs">
+      <DependentUpon>BackOffice.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Item_Balance.cs">
+      <DependentUpon>BackOffice.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Item_History.cs">
+      <DependentUpon>BackOffice.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Item_History_Back_Office.cs">
+      <DependentUpon>BackOffice.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Item_History_transaction.cs">
+      <DependentUpon>BackOffice.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Item_History_transaction_Back_Office.cs">
+      <DependentUpon>BackOffice.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Jop.cs">
+      <DependentUpon>BackOffice.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Jops_Back_Office.cs">
+      <DependentUpon>BackOffice.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Operation_Type.cs">
+      <DependentUpon>BackOffice.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Operation_Type_Back_Office.cs">
+      <DependentUpon>BackOffice.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Payment_Type.cs">
+      <DependentUpon>BackOffice.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Payment_Type_Back_Office.cs">
+      <DependentUpon>BackOffice.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PO.cs">
+      <DependentUpon>BackOffice.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PO_View.cs">
+      <DependentUpon>BackOffice.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProjectInfo.cs">
+      <DependentUpon>BackOffice.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProjectInfo_Back_Office.cs">
+      <DependentUpon>BackOffice.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProjectMangerInfo.cs">
+      <DependentUpon>BackOffice.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProjectMangerInfo_Back_Office.cs">
+      <DependentUpon>BackOffice.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Project_Tables.cs">
+      <DependentUpon>BackOffice.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Project_Tables_Back_Office.cs">
+      <DependentUpon>BackOffice.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Sale.cs">
+      <DependentUpon>BackOffice.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SaleDetail.cs">
+      <DependentUpon>BackOffice.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SaleDetailView.cs">
+      <DependentUpon>BackOffice.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SaleDetail_Back_Office.cs">
+      <DependentUpon>BackOffice.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SaleMaster.cs">
+      <DependentUpon>BackOffice.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SaleMasterView.cs">
+      <DependentUpon>BackOffice.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SaleMaster_Back_Office.cs">
+      <DependentUpon>BackOffice.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Sales_Back_Office.cs">
+      <DependentUpon>BackOffice.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SexType.cs">
+      <DependentUpon>BackOffice.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SexType_Back_Office.cs">
+      <DependentUpon>BackOffice.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Shift.cs">
+      <DependentUpon>BackOffice.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Shift_Back_Office.cs">
+      <DependentUpon>BackOffice.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Shift_View.cs">
+      <DependentUpon>BackOffice.tt</DependentUpon>
+    </Compile>
+    <Compile Include="State.cs">
+      <DependentUpon>BackOffice.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Tab_Info.cs">
+      <DependentUpon>BackOffice.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Tab_Info_Back_Office.cs">
+      <DependentUpon>BackOffice.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UnitCard.cs">
+      <DependentUpon>BackOffice.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UnitCard_Back_Office.cs">
+      <DependentUpon>BackOffice.tt</DependentUpon>
+    </Compile>
+    <Compile Include="User.cs">
+      <DependentUpon>BackOffice.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserEvent.cs">
+      <DependentUpon>BackOffice.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserEvents_Back_Office.cs">
+      <DependentUpon>BackOffice.tt</DependentUpon>
+    </Compile>
+    <Compile Include="User_Auth.cs">
+      <DependentUpon>BackOffice.tt</DependentUpon>
+    </Compile>
+    <Compile Include="User_Auth_Back_Office.cs">
+      <DependentUpon>BackOffice.tt</DependentUpon>
+    </Compile>
+    <Compile Include="User_Back_Office.cs">
+      <DependentUpon>BackOffice.tt</DependentUpon>
+    </Compile>
+    <Compile Include="User_View.cs">
+      <DependentUpon>BackOffice.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Warehouse.cs">
+      <DependentUpon>BackOffice.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Warehouse_Back_Office.cs">
+      <DependentUpon>BackOffice.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Warehouse_Transaction.cs">
+      <DependentUpon>BackOffice.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Warehouse_Transaction_Back_Office.cs">
+      <DependentUpon>BackOffice.tt</DependentUpon>
+    </Compile>
+    <Compile Include="warhouse_view.cs">
+      <DependentUpon>BackOffice.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="BackOffice.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>BackOffice.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
+    <None Include="BackOffice.edmx.diagram">
+      <DependentUpon>BackOffice.edmx</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="BackOffice.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>BackOffice.Context.cs</LastGenOutput>
+      <DependentUpon>BackOffice.edmx</DependentUpon>
+    </Content>
+    <Content Include="BackOffice.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>BackOffice.edmx</DependentUpon>
+      <LastGenOutput>BackOffice.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="EntityFramework">
+      <Version>6.4.4</Version>
+    </PackageReference>
+    <PackageReference Include="package.mscorlib">
+      <Version>1.0.1</Version>
+    </PackageReference>
+    <PackageReference Include="System.Core">
+      <Version>3.5.21022.801</Version>
+    </PackageReference>
+    <PackageReference Include="System.Data.Entity.Repository">
+      <Version>2.0.0.1</Version>
+    </PackageReference>
+    <PackageReference Include="System.Data.SqlClient">
+      <Version>4.8.5</Version>
+    </PackageReference>
+    <PackageReference Include="System.Runtime.Serialization.Formatters">
+      <Version>4.3.0</Version>
+    </PackageReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

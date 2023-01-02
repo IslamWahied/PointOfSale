@@ -25,5 +25,6 @@ namespace DataRep
         public System.DateTime Last_Modified_Date { get; set; }
         public long Last_Modified_User { get; set; }
         public int IsDeleted { get; set; }
+        public bool is_Back_Office_Updated { get; set; }
     }
 }

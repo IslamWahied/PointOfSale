@@ -1,5 +1,6 @@
 ﻿ 
 using PointOfSaleSedek._102_MaterialSkin;
+using PointOfSaleSedek.HelperClass;
 using System;
  
 using System.Linq;
@@ -12,11 +13,27 @@ namespace PointOfSaleSedek._101_Adds
     {
 
         public decimal lblFinalAmount { get; set; }
+        readonly Static st = new Static();
         public frmCafeDiscount()
         {
             InitializeComponent();
+            langu();
         }
 
+
+ 
+        void langu()
+        {
+
+            this.RightToLeft = st.isEnglish() ? RightToLeft.No : RightToLeft.Yes;
+            tableLayoutPanel2.RightToLeft = st.isEnglish() ? RightToLeft.Yes : RightToLeft.No;
+            this.Text = st.isEnglish() ? "Add Discount" : "اضافة خصم";
+            labelControl1.Text= st.isEnglish() ? "Discount value" : "قيمة الخصم";
+
+          
+            btnAdd.Text = st.isEnglish() ? "Add" : "اضافة";
+            btnCancel.Text = st.isEnglish() ? "Close" : "اغلاق";
+        }
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -44,7 +61,7 @@ namespace PointOfSaleSedek._101_Adds
                 else
                 {
 
-                    MaterialMessageBox.Show("قيمة الخصم اكبر من قيمة الفاتورة", MessageBoxButtons.OK);
+                    MaterialMessageBox.Show(st.isEnglish() ? "The value of the discount is greater than the value of the invoice" : "قيمة الخصم اكبر من قيمة الفاتورة", MessageBoxButtons.OK);
                     return;
 
                 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PointOfSaleSedek.HelperClass;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,10 +14,17 @@ namespace PointOfSaleSedek._102_MaterialSkin
     public partial class FrmYesNo : MaterialSkin.Controls.MaterialForm
     {
         public string Message { get; set; }
+        readonly Static st = new Static();
         public FrmYesNo()
         {
             InitializeComponent();
+            this.RightToLeft = st.isEnglish() ? RightToLeft.No : RightToLeft.Yes;
            
+            this.LblMessage.TextAlign = st.isEnglish() ? ContentAlignment.TopLeft : ContentAlignment.TopRight;
+            this.Text = st.isEnglish() ? "Message Confirmation" : "رسالة تاكيد";
+            this.btnOk.Text = st.isEnglish() ? "Ok" : "تاكيد";
+            this.btnClose.Text = st.isEnglish() ? "Close" : "اغلاق";
+
         }
         void FillLabal()
         {

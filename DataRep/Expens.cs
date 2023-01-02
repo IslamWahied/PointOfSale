@@ -18,5 +18,6 @@ namespace DataRep
         public string ExpensesName { get; set; }
         public int IsDeleted { get; set; }
         public long ExpensesCode { get; set; }
+        public long Branch_Code { get; set; }
     }
 }

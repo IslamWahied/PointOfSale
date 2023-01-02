@@ -17,13 +17,30 @@ namespace PointOfSaleSedek._101_Adds._114_AddExpenses
     public partial class frmExpensesTransaction : DevExpress.XtraEditors.XtraForm
     {
         Static st = new Static();
-        readonly SaleEntities context = new SaleEntities();
+        readonly POSEntity context = new POSEntity();
         public frmExpensesTransaction()
         {
             InitializeComponent();
             FillSlkExpenses();
             FillSlkEmployees();
+            langu();
         }
+
+        void langu()
+        {
+            this.RightToLeft = st.isEnglish() ? RightToLeft.No : RightToLeft.Yes;
+            this.tableLayoutPanel2.RightToLeft = st.isEnglish() ? RightToLeft.Yes : RightToLeft.No;
+            this.Text = st.isEnglish() ? "Add Expenses" : "اضافة مصروف";
+            this.materialLabel9.Text = st.isEnglish() ? "Expense Name" : "اسم المصروف";
+            this.materialLabel5.Text = st.isEnglish() ? "Amount" : "المبلغ";
+            this.materialLabel6.Text = st.isEnglish() ? "Note" : "الملاحظات";
+            this.materialLabel1.Text = st.isEnglish() ? "Employee (optional)" : "الموظف(اختياري)";
+            gridColumn2.Caption = st.isEnglish() ? "Name" : "الاسم";
+            gridColumn4.Caption = st.isEnglish() ? "Name" : "الاسم";
+            btnAdd.Text = st.isEnglish() ? "Save" : "حفظ";
+             btnCancel.Text = st.isEnglish() ? "Close" : "اغلاق";
+        }
+
         public void FillSlkEmployees()
         {
             var result = context.Employee_View.Where(user => user.IsDeleted == 0 && user.Employee_Code != 0).ToList();
@@ -50,23 +67,23 @@ namespace PointOfSaleSedek._101_Adds._114_AddExpenses
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            Int64 UserCode = st.User_Code();
+            Int64 UserCode = st.GetUser_Code();
             var isShiftActive = context.Shift_View.Any(x => x.User_Id == UserCode && x.Shift_Flag == true);
 
             if (!isShiftActive) {
-                MaterialMessageBox.Show("برجاء اضافة وردية للمستخدم", MessageBoxButtons.OK);
+                MaterialMessageBox.Show(st.isEnglish()? "Please add a Shift to This user":"برجاء اضافة وردية للمستخدم", MessageBoxButtons.OK);
                 return;
             }
 
             if (string.IsNullOrWhiteSpace(slkExpenses.Text))
             {
-                MaterialMessageBox.Show("برجاءاختيار المصروف", MessageBoxButtons.OK);
+                MaterialMessageBox.Show(st.isEnglish()? "Please choose the expense" : "برجاءاختيار المصروف", MessageBoxButtons.OK);
                 return;
             }
 
             if (string.IsNullOrWhiteSpace(txtDiscount.Text))
             {
-                MaterialMessageBox.Show("برجاءادخال قيمة المصروف", MessageBoxButtons.OK);
+                MaterialMessageBox.Show(st.isEnglish()?"Please enter the expense amount":"برجاءادخال قيمة المصروف", MessageBoxButtons.OK);
                 return;
             }
 
@@ -75,9 +92,11 @@ namespace PointOfSaleSedek._101_Adds._114_AddExpenses
             else
             {
                 var ShiftCode = context.Shift_View.Where(x => x.User_Id == UserCode && x.Shift_Flag == true).Select(xx => xx.Shift_Code).SingleOrDefault();
+                var BranchCode = st.GetBranch_Code();
                 // No Select Employee
                 if (!string.IsNullOrWhiteSpace(slkEmployees.Text))
                 {
+               
                     ExpensesTransaction _Expenses = new ExpensesTransaction()
                     {
                         ExpensesCode = Convert.ToInt64(slkExpenses.EditValue),
@@ -86,8 +105,9 @@ namespace PointOfSaleSedek._101_Adds._114_AddExpenses
                         Date = DateTime.Now,
                         IsDeleted = 0,
                         
+                        Branch_Id = BranchCode,
                         Shift_Code = ShiftCode,
-                        Last_Modified_By = st.User_Code(),
+                        Last_Modified_By = st.GetUser_Code(),
                         Last_Modified_Date = DateTime.Now,
                         Emp_Code = Convert.ToInt64(slkEmployees.EditValue)
 
@@ -107,16 +127,15 @@ namespace PointOfSaleSedek._101_Adds._114_AddExpenses
                         ExpensesQT = Convert.ToInt64(txtDiscount.Text),
                         Date = DateTime.Now,
                         IsDeleted = 0,
+                        Branch_Id = BranchCode,
                         Shift_Code = ShiftCode,
-                        Last_Modified_By = st.User_Code(),
+                        Last_Modified_By = st.GetUser_Code(),
                         Last_Modified_Date = DateTime.Now,
                         Emp_Code = Convert.ToInt64(0)
 
                     };
                     context.ExpensesTransactions.Add(_Expenses);
-                    
-
-
+                   
                 }
 
 
@@ -125,7 +144,7 @@ namespace PointOfSaleSedek._101_Adds._114_AddExpenses
                 txtNote.ResetText();
                
              
-                MaterialMessageBox.Show("تم الحفظ", MessageBoxButtons.OK);
+                MaterialMessageBox.Show(st.isEnglish()? "Saved successfully" : "تم الحفظ", MessageBoxButtons.OK);
 
             }
 

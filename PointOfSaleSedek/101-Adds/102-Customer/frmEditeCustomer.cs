@@ -6,7 +6,7 @@ namespace PointOfSaleSedek._101_Adds._102_Customer
 {
     public partial class frmEditeCustomer : DevExpress.XtraEditors.XtraForm
     {
-        readonly SaleEntities context = new SaleEntities();
+        readonly POSEntity context = new POSEntity();
         readonly Static st = new Static();
         public frmEditeCustomer()
         {

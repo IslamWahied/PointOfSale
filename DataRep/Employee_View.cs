@@ -31,5 +31,7 @@ namespace DataRep
         public int IsDeleted { get; set; }
         public int SexTypeCode { get; set; }
         public long Jop_Code { get; set; }
+        public long Warehouse_Code { get; set; }
+        public string Warehouse_Name { get; set; }
     }
 }

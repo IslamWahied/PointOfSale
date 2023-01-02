@@ -10,21 +10,65 @@ using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using PointOfSaleSedek._102_MaterialSkin;
 using DataRep;
+using PointOfSaleSedek.HelperClass;
 
 namespace PointOfSaleSedek._101_Adds
 {
     public partial class frmEditePurchsItems : DevExpress.XtraEditors.XtraForm
     {
         public Int64 ItemCode;
-        SaleEntities context = new SaleEntities();
+        POSEntity context = new POSEntity();
+        Static st = new Static();
         public frmEditePurchsItems()
         {
             InitializeComponent();
+            langu();
+            FillslkWarhouse();
             txtBoxNumber.Enabled = false;
             txtUnitForBoxNumber.Enabled = false;
            
         }
 
+
+        public void FillslkWarhouse()
+        {
+            DataTable dt = new DataTable();
+            var result = context.warhouse_view.Where(user => user.isDelete == 0 && user.IsDeleted == 0).ToList();
+            slkWarhouse.Properties.DataSource = result;
+            slkWarhouse.Properties.ValueMember = "Warehouse_Code";
+            slkWarhouse.Properties.DisplayMember = "Warehouse_Name";
+            slkWarhouse.EditValue = 0;
+
+
+        }
+        void langu()
+        {
+            this.RightToLeft = st.isEnglish() ? RightToLeft.No : RightToLeft.Yes;
+            tableLayoutPanel88.RightToLeft = st.isEnglish() ? RightToLeft.Yes : RightToLeft.No;
+            this.Text = st.isEnglish() ? "Modify Item" : "تعديل صنف بالفاتورة";
+            labelControl5.Text = st.isEnglish() ? "Items" : "المنتج";
+            labelControl1.Text = st.isEnglish() ? "Category" : "المجموعة";
+            labelControl2.Text = st.isEnglish() ? "Item Name" : "اسم الصنف";
+            labelControl3.Text = st.isEnglish() ? "Unit" : "وحدة القياس";
+            labelControl7.Text = st.isEnglish() ? "Purchasing Price" : "سعر الشراء";
+            labelControl4.Text = st.isEnglish() ? "Selling Price" : "سعر البيع";
+            labelControl10.Text = st.isEnglish() ? "Unit" : "بالوحده";
+            labelControl11.Text = st.isEnglish() ? "Box" : "بالكرتونة";
+            labelControl8.Text = st.isEnglish() ? "Count" : "العدد";
+            labelControl6.Text = st.isEnglish() ? "Unit Count" : "الوحدات";
+            labelControl9.Text = st.isEnglish() ? "Total" : "الاجمالي";
+            labelControl12.Text = st.isEnglish() ? "Warhouse" : "المخزن";
+            gridColumn4.Caption = st.isEnglish() ? "Name" : "الاسم";
+
+            btnAdd.Text = st.isEnglish() ? "Add" : "اضافة";
+            btnCancel.Text = st.isEnglish() ? "Close" : "اغلاق";
+
+
+
+
+
+
+        }
         private void chkUnits_CheckedChanged(object sender, EventArgs e)
         {
             if (chkUnits.Checked == true)
@@ -157,7 +201,16 @@ namespace PointOfSaleSedek._101_Adds
             {
 
 
-                MaterialMessageBox.Show("يوجد حقول فارغة", MessageBoxButtons.OK);
+                MaterialMessageBox.Show(st.isEnglish()?"There are empty fields":"يوجد حقول فارغة", MessageBoxButtons.OK);
+                return;
+
+
+            }
+
+            else if (string.IsNullOrWhiteSpace(slkWarhouse.Text))
+            {
+
+                MaterialMessageBox.Show(st.isEnglish() ? "Please select a Warhouse" : "برجاء اختيار مخزن", MessageBoxButtons.OK);
                 return;
 
 
@@ -178,6 +231,7 @@ namespace PointOfSaleSedek._101_Adds
                 frm.gvItemCard.SetFocusedRowCellValue("PriceBuy",txtPriceBuy.Text);
                 frm.gvItemCard.SetFocusedRowCellValue("Price", txtPrice.Text);
                 frm.gvItemCard.SetFocusedRowCellValue("Qty", txtFinalUnitsNumber.Text);
+                frm.gvItemCard.SetFocusedRowCellValue("Warehouse_Name", slkWarhouse.Text);
                 frm.gvItemCard.SetFocusedRowCellValue("Total", Convert.ToDouble(txtPriceBuy.Text)* Convert.ToDouble(txtFinalUnitsNumber.Text));
                 frm.gvItemCard.RefreshData();
                 HelperClass.HelperClass.ClearValues(tableLayoutPanel88);

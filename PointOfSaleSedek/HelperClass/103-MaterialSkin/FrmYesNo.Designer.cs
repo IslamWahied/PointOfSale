@@ -65,12 +65,13 @@
             this.LblMessage.Location = new System.Drawing.Point(4, 68);
             this.LblMessage.MouseState = MaterialSkin.MouseState.HOVER;
             this.LblMessage.Name = "LblMessage";
-            this.LblMessage.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.LblMessage.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.LblMessage.Size = new System.Drawing.Size(354, 91);
             this.LblMessage.TabIndex = 189;
-            this.LblMessage.Text = " ";
+            this.LblMessage.Text = "سيبسي";
+            this.LblMessage.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // frmYesNo
+            // FrmYesNo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -81,10 +82,11 @@
             this.Controls.Add(this.LblMessage);
             this.MaximumSize = new System.Drawing.Size(362, 209);
             this.MinimumSize = new System.Drawing.Size(362, 209);
-            this.Name = "frmYesNo";
+            this.Name = "FrmYesNo";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "رساله تاكيد ";
+            this.TopMost = true;
             this.Load += new System.EventHandler(this.FrmYesNo_Load);
             this.ResumeLayout(false);
 

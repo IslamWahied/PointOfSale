@@ -17,13 +17,14 @@ using PointOfSaleSedek.HelperClass;
 using DataRep;
 using FastReport;
 using PointOfSaleSedek.Model;
+using PointOfSaleSedek._101_Adds._102_Customer;
 
 namespace PointOfSaleSedek._101_Adds
 {
 
     public partial class frmCafeSales : Form
     {
-        SaleEntities context = new SaleEntities();
+        POSEntity context = new POSEntity();
         public String Status = "New";
         public bool SearchStatus = false;
         Static st = new Static();
@@ -33,10 +34,47 @@ namespace PointOfSaleSedek._101_Adds
         public frmCafeSales()
         {
             InitializeComponent();
+            langu();
             NewForLoad();
             txtParCode.Focus();
 
            
+        }
+        void langu()
+        {
+
+            //this.RightToLeft = st.isEnglish() ? RightToLeft.No : RightToLeft.Yes;
+            //tableLayoutPanel2.RightToLeft = st.isEnglish() ? RightToLeft.Yes : RightToLeft.No;
+            
+            simpleButton1.Text = st.isEnglish() ? "Invoices" : "الفواتير";
+            btnNew.Text = st.isEnglish() ? "New" : "جديد";
+            btnEdite.Text = st.isEnglish() ? "Edite" : "تعديل";
+            btnSave.Text = st.isEnglish() ? "Pay" : "دفع";
+            btnser.Text = st.isEnglish() ? "New" : "جديد";
+            btnCustomerHistory.Text = st.isEnglish() ? "invoices" : "فواتيره";
+            gridColumn5.Caption = st.isEnglish() ? "Name" : "الاسم";
+            gridColumn4.Caption = st.isEnglish() ? "Mobile" : "الموبيل";
+            paymentType.Text = st.isEnglish() ? "Payment" : "طريقة الدفع";
+            gridColumn3.Caption = st.isEnglish() ? "Payment Type" : "طريقة الدفع";
+            btnDiscount.Text = st.isEnglish() ? "Discount" : "خصم";
+            btnPrint.Text = st.isEnglish() ? "Print" : "طباعة";
+            BtnExit.Text = st.isEnglish() ? "Exit" : "خروج";
+            labelControl1.Text = st.isEnglish() ? "User" : "المستخدم";
+            labelControl3.Text = st.isEnglish() ? "Items" : "الاصناف";
+            labelControl4.Text = st.isEnglish() ? "Invoice" : "الفاتورة";
+            labelControl5.Text = st.isEnglish() ? "Total Before Discount" : "الاجمالي قبل الخصم";
+            labelControl7.Text = st.isEnglish() ? "Customers" : "العملاء";
+            colTotal.Caption = st.isEnglish() ? "Total" : "الاجمالي";
+            labelControl2.Text = st.isEnglish() ? "Discount Value" : "قيمة الخصم ";
+            lblCurrency.Text = st.isEnglish() ? "Qatari Riyal" : "ريال قطري";
+            colName.Caption = st.isEnglish() ? "Name" : "الاسم";
+            colName.FieldName = st.isEnglish() ? "Name_En" : "Name";
+            colPrice.Caption = st.isEnglish() ? "Price" : "السعر";
+            colQty.Caption = st.isEnglish() ? "Qty" : "الكمية";
+            materialContextMenuStrip1.Items[0].Text = st.isEnglish() ? "Remove" : "حذف";
+
+
+
         }
 
         private void btnClear_Click(object sender, EventArgs e)
@@ -98,7 +136,7 @@ namespace PointOfSaleSedek._101_Adds
              HelperClass.HelperClass.EnableControls(tableLayoutPanel1);
 
 
-            Int64 UserCode = st.User_Code();
+            Int64 UserCode = st.GetUser_Code();
             var ShiftCode = context.Shift_View.Where(x => x.User_Id == UserCode && x.Shift_Flag == true).Select(xx => xx.Shift_Code).SingleOrDefault();
             Int64? MaxCode = context.SaleMasters.Where(x => x.ShiftCode == ShiftCode && (x.Operation_Type_Id == 2 || x.Operation_Type_Id == 3)).Max(u => (Int64?)u.SaleMasterCode + 1);
             if (MaxCode == null || MaxCode == 0)
@@ -122,7 +160,7 @@ namespace PointOfSaleSedek._101_Adds
             lblItemQty.Text = "0";
 
             lblDiscount.Text = "0";
-            //dtEntryDate.DateTime = DateTime.Now;
+           //dtEntryDate.DateTime = DateTime.Now;
             while (gvSaleDetail.RowCount > 0)
             {
                 gvSaleDetail.SelectAll();
@@ -132,14 +170,14 @@ namespace PointOfSaleSedek._101_Adds
             }
 
 
-            //slkCustomers.Text = "";
-            //slkCustomers.SelectedText = "";
-            //slkCustomers.Enabled = true;
-            //slkCustomers.EditValue = 0;
-            //slkCustomers.Reset();
-            //slkCustomers.Refresh();
+            slkCustomers.Text = "";
+            slkCustomers.SelectedText = "";
+            slkCustomers.Enabled = true;
+            slkCustomers.EditValue = 0;
+            slkCustomers.Reset();
+            slkCustomers.Refresh();
             txtParCode.ResetText();
-            Int64 User_Code = st.User_Code();
+            Int64 User_Code = st.GetUser_Code();
 
             var result = context.Auth_View.Where(View => View.User_Code == User_Code && (View.User_IsDeleted == 0)).ToList();
 
@@ -210,11 +248,11 @@ namespace PointOfSaleSedek._101_Adds
         void NewForLoad()
         {
             HelperClass.HelperClass.ClearValues(tableLayoutPanel1);
-            //FillSlkPaymentType();
-            //FillSlkCustomers();
+             FillSlkPaymentType();
+            FillSlkCustomers();
 
 
-            Int64 UserCode = st.User_Code();
+            Int64 UserCode = st.GetUser_Code();
             var ShiftCode = context.Shift_View.Where(x => x.User_Id == UserCode && x.Shift_Flag == true).Select(xx => xx.Shift_Code).SingleOrDefault();
             Int64? MaxCode = context.SaleMasters.Where(x => x.ShiftCode == ShiftCode && (x.Operation_Type_Id == 2 || x.Operation_Type_Id == 3)).Max(u => (Int64?)u.SaleMasterCode + 1);
             if (MaxCode == null || MaxCode == 0)
@@ -229,13 +267,13 @@ namespace PointOfSaleSedek._101_Adds
             }
 
             lblSaleMasterId.Text = MaxCode.ToString();
-             lblCurrency.Text = "جنية مصري";
+            lblCurrency.Text = st.isEnglish() ? "Ryal" : "ريال"; ;
             lblFinalTotal.Text = "0";
             lblFinalBeforDesCound.Text = "0";
             lblItemQty.Text = "0";
             lblDiscount.Text = "0";
-            lblUserName.Text = "المدير";
-            dtEntryDate.Text = context.Employee_View.Where(x => x.Employee_Code == UserCode).First().Employee_Name.ToString() ?? "";
+            lblUserName.Text = st.GetUserName();
+           // dtEntryDate.Text = context.Employee_View.Where(x => x.Employee_Code == UserCode).First().Employee_Name.ToString() ?? "";
 
             while (gvSaleDetail.RowCount > 0)
             {
@@ -247,7 +285,7 @@ namespace PointOfSaleSedek._101_Adds
             gcCafeSaleDetail.RefreshDataSource();
             btnPrint.Enabled = false;
 
-            Int64 User_Code = st.User_Code();
+            Int64 User_Code = st.GetUser_Code();
 
             var result = context.Auth_View.Where(View => View.User_Code == User_Code && (View.User_IsDeleted == 0)).ToList();
 
@@ -282,12 +320,21 @@ namespace PointOfSaleSedek._101_Adds
         }
 
 
+        public void FillSlkCustomers()
+        {
+            var result = context.Customer_View.Where(Customer => Customer.IsDeleted == 0).ToList();
+            slkCustomers.Properties.DataSource = result;
+            slkCustomers.Properties.ValueMember = "Customer_Code";
+            slkCustomers.Properties.DisplayMember = "Customer_Name";
+        }
+
+
         //Save SaleMaster Date
         //public void SaveSaleMaster()
 
         //{
 
-        //    Int64 UserCode = st.User_Code();
+        //    Int64 UserCode = st.GetUser_Code();
         //    var ShiftCode = context.Shift_View.Where(x => x.User_Id == UserCode && x.Shift_Flag == true).Select(xx=>xx.Shift_Code).SingleOrDefault();
 
         //    if (this.Status == "Old")
@@ -309,7 +356,7 @@ namespace PointOfSaleSedek._101_Adds
         //            _SaleMasters.Operation_Type_Id = 2;
         //            SaleMasterCode = Int64.Parse(lblSaleMasterId.Text);
 
-        //            _SaleMasters.UserCode = st.User_Code();
+        //            _SaleMasters.UserCode = st.GetUser_Code();
         //            context.SaveChanges();
 
 
@@ -349,42 +396,62 @@ namespace PointOfSaleSedek._101_Adds
 
         //}
 
+        public void FillSlkPaymentType()
+        {
+            DataTable dt = new DataTable();
+            var result = context.Payment_Type.Where(user => user.IsDeleted == 0).ToList();
+            slkPaymentType.Properties.DataSource = result;
+            slkPaymentType.Properties.ValueMember = "Code";
+            slkPaymentType.Properties.DisplayMember = "PaymentType";
 
+            slkPaymentType.EditValue = result[0].Code;
 
-        public void SaveSaleMaster(Int64 ShiftCode, Int64 UserCode, Double Discount, Double TotalBeforDiscount, Double FinalTotal, Double QtyTotal, Int64 SaleMasterCode)
+        }
+
+        public void SaveSaleMaster(Int64 ShiftCode, Int64 UserCode, Double Discount, Double TotalBeforDiscount, Double FinalTotal, Double QtyTotal, Int64 SaleMasterCode, Double cash, Double visa)
 
         {
-            //if (slkCustomers.EditValue == null)
-            //{
-            //    slkCustomers.EditValue = 0;
-            //}
+            var Warehouse_Code = st.Get_Warehouse_Code();
+            var Branch_Code = st.GetBranch_Code();
+            if (slkCustomers.EditValue == null)
+            {
+                slkCustomers.EditValue = 0;
+            }
 
 
-            //if (slkCustomers.EditValue == null)
-            //{
-            //    slkCustomers.EditValue = 0;
-            //}
+            if (slkCustomers.EditValue == null)
+            {
+                slkCustomers.EditValue = 0;
+            }
 
             if (this.Status == "Old")
             {
 
 
-                bool TestUpdate = context.SaleMasters.Any(SaleMaster => SaleMaster.SaleMasterCode == SaleMasterCode && SaleMaster.EntryDate.Day == DateTime.Today.Day && SaleMaster.EntryDate.Month == DateTime.Today.Month && SaleMaster.EntryDate.Year == DateTime.Today.Year && SaleMaster.Operation_Type_Id == 2);
+                bool TestUpdate = context.SaleMasters.Any(SaleMaster => SaleMaster.SaleMasterCode == SaleMasterCode && SaleMaster.Branch_Id == Branch_Code && SaleMaster.ShiftCode == ShiftCode  && SaleMaster.Operation_Type_Id == 2);
 
                 if (TestUpdate)
                 {
                     SaleMaster _SaleMasters;
-                    _SaleMasters = context.SaleMasters.SingleOrDefault(Master => Master.SaleMasterCode == SaleMasterCode && Master.EntryDate.Day == DateTime.Today.Day && Master.EntryDate.Month == DateTime.Today.Month && Master.EntryDate.Year == DateTime.Today.Year && Master.Operation_Type_Id == 2);
+                    _SaleMasters = context.SaleMasters.SingleOrDefault(SaleMaster => SaleMaster.SaleMasterCode == SaleMasterCode && SaleMaster.Branch_Id == Branch_Code && SaleMaster.ShiftCode == ShiftCode && SaleMaster.Operation_Type_Id == 2);
                     _SaleMasters.LastDateModif = DateTime.Now;
                     _SaleMasters.TotalBeforDiscount = double.Parse(lblFinalBeforDesCound.Text);
                     _SaleMasters.Discount = double.Parse(lblDiscount.Text);
                     _SaleMasters.FinalTotal = double.Parse(lblFinalTotal.Text);
                     _SaleMasters.ShiftCode = ShiftCode;
+                    
+                    _SaleMasters.Visa = visa;
+                    _SaleMasters.Cash = cash;
                     _SaleMasters.QtyTotal = double.Parse(lblItemQty.Text);
                     _SaleMasters.Operation_Type_Id = 2;
+                    _SaleMasters.Payment_Type = Int64.Parse(slkPaymentType.EditValue.ToString());
+                    
+                    //_SaleMasters.Customer_Code = Int64.Parse(slkCustomers.EditValue.ToString());
+
+
                     SaleMasterCode = Int64.Parse(lblSaleMasterId.Text);
 
-                    _SaleMasters.UserCode = st.User_Code();
+                    _SaleMasters.UserCode = st.GetUser_Code();
                     context.SaveChanges();
 
 
@@ -406,13 +473,16 @@ namespace PointOfSaleSedek._101_Adds
                     TotalBeforDiscount = double.Parse(lblFinalBeforDesCound.Text),
                     FinalTotal = double.Parse(lblFinalTotal.Text),
                     ShiftCode = ShiftCode,
-                  //  Payment_Type = Int64.Parse(slkPaymentType.EditValue.ToString()),
-                     Payment_Type = 1,
+                    Payment_Type = Int64.Parse(slkPaymentType.EditValue.ToString()),
+                     Branch_Id = Branch_Code,
+                     Cash = cash,
+                     Visa =visa,
+                     
                     UserIdTakeOrder = UserCode,
-                    //Customer_Code = Int64.Parse(slkCustomers.EditValue.ToString()),
-                    Customer_Code = 0,
+                     Customer_Code = Int64.Parse(slkCustomers.EditValue.ToString()),
+                    //Customer_Code = 0,
                     QtyTotal = double.Parse(lblItemQty.Text),
-                    SaleMasterCode = Int64.Parse(lblSaleMasterId.Text),
+                    SaleMasterCode = SaleMasterCode,
                     Operation_Type_Id = 2,
 
                     UserCode = UserCode,
@@ -429,389 +499,396 @@ namespace PointOfSaleSedek._101_Adds
         }
 
 
-        public void SaveSaleDetail()
+        /// <summary>
+        /// ///////////////////////////// Save Detail /////////////////
+        /// 1 - Check Old OR New
+        /// 2- Validate
+        /// 
+        /// 
+        /// 3- Check Item Qty With WareHouse 
+        /// 4- Update WareHouse
+        /// 5- Save Detial 
+        /// 6-  Save Master 
+        /// 
+        /// 
+        /// 
+        /// </summary>
+        /// 
+
+        public void printSaleInvoice2(Int64 shiftCode, Int64 SaleMasterCode)
+        {
+            New();
+
+            var Master = (from a in context.SaleMasterViews where a.Shift_Code == shiftCode && a.SaleMasterCode == SaleMasterCode && a.Operation_Type_Id == 2 select a).ToList();
+            var Detail = (from a in context.SaleDetailViews where a.SaleMasterCode == SaleMasterCode && a.Operation_Type_Id == 2 && a.shiftCode == shiftCode select a).ToList();
+
+
+            Report rpt = new Report();
+            rpt.Load(@"Reports\SaleInvoice.frx");
+            rpt.RegisterData(Master, "Header");
+            rpt.RegisterData(Detail, "Lines");
+            rpt.PrintSettings.ShowDialog = false;
+            rpt.PrintSettings.Copies = 2;
+            //rpt.Design();
+            rpt.Print();
+
+        }
+
+        public  void printSaleInvoice(Int64 shiftCode, Int64 SaleMasterCode)
         {
 
-
-            //if (slkPaymentType.EditValue == null || slkPaymentType.EditValue.ToString() == "0" || slkPaymentType.Text.Trim() == "")
-            //{
-            //    MaterialMessageBox.Show("برجاء اختيار طريقة الدفع", MessageBoxButtons.OK);
-            //    return;
-            //}
+            New();
+            var Master = (from a in context.SaleMasterViews where a.Shift_Code == shiftCode && a.SaleMasterCode == SaleMasterCode && a.Operation_Type_Id == 2 select a).ToList();
+            var Detail = (from a in context.SaleDetailViews where a.SaleMasterCode == SaleMasterCode && a.Operation_Type_Id == 2 && a.shiftCode == shiftCode select a).ToList();
 
 
+            Report rpt = new Report();
+            rpt.Load(@"Reports\SaleInvoice.frx");
+            rpt.RegisterData(Master, "Header");
+            rpt.RegisterData(Detail, "Lines");
+            rpt.PrintSettings.ShowDialog = false;
+            //rpt.Design();
+            rpt.Print();
 
-            var GetDataFromGrid = gcCafeSaleDetail.DataSource as List<SaleDetailView>;
+        }
 
-            decimal finaltotal = Convert.ToInt64(lblFinalTotal.Text);
+        public void Update_Item_Qty_Oly(Int64 Sale_Master_Code, double Qty,DateTime OrderDate, Int64 History_Id, Int64 Item_Id,Int64 shiftCode)
+        {
+
+            var Warehouse_Code = st.Get_Warehouse_Code();
+            var Branch_Code = st.GetBranch_Code();
+            using (POSEntity _context2 = new POSEntity())
+            {
+               
+                Item_History item_History = _context2.Item_History.SingleOrDefault(Item => Item.Id == History_Id && Item.Warhouse_Code == Warehouse_Code);
+                item_History.Current_Qty_Now -= Qty;
+                
+                item_History.Is_Used = (bool)true;
+                item_History.IsFinshed = (bool)false;
+               
+                Item_History_transaction _Item_History_transaction = new Item_History_transaction()
+                {
+                    OrderDate = OrderDate,
+                    Item_History_Id = History_Id,
+                    CreatedDate = DateTime.Now,
+                    Trans_In = 0,
+                    Trans_Out = Qty,
+                    IsDeleted = 0,
+                    shiftCode = shiftCode,
+                    Branch_Id = Branch_Code,
+                    from_Warhouse_Code = Warehouse_Code,
+                    Item_Id = Item_Id,
+                    SaleMasterCode = Sale_Master_Code
+
+                };
+                _context2.Item_History_transaction.Add(_Item_History_transaction);
+
+                _context2.SaveChanges();
+
+            
+            }
+           
+        }
+
+      public  void Update_Item_Qty_And_Finshed(Int64 Sale_Master_Code, double Qty, DateTime OrderDate, Int64 History_Id, Int64 Item_Id, Int64 shiftCode)
+        {
+
+            var Warehouse_Code = st.Get_Warehouse_Code();
+            var Branch_Code = st.GetBranch_Code();
+
+
+            using (POSEntity context100 = new POSEntity())
+            {
+                Item_History item_History = context100.Item_History.SingleOrDefault(Item => Item.Id == History_Id && Item.Warhouse_Code == Warehouse_Code);
+                item_History.Current_Qty_Now -= Qty;
+                item_History.Is_Used = (bool)true;
+                item_History.IsFinshed = (bool)true;
+
+                Item_History_transaction _Item_History_transaction = new Item_History_transaction()
+                {
+                    OrderDate = OrderDate,
+                    Item_History_Id = History_Id,
+                    CreatedDate = DateTime.Now,
+                    Trans_In = 0,
+                    Trans_Out = Qty,
+                    shiftCode = shiftCode,
+                    IsDeleted = 0,
+                    Item_Id = Item_Id,
+                    Branch_Id = Branch_Code,
+                    from_Warhouse_Code = Warehouse_Code,
+                    SaleMasterCode = Sale_Master_Code
+
+                };
+                context100.Item_History_transaction.Add(_Item_History_transaction);
+
+
+                context100.SaveChanges();
+            }
+
+
+        }
+
+        public bool vaildate(Int64 shiftCode, List<SaleDetailView> GetDataFromGrid, Int64 SaleMasterCode)
+        {
+
+            bool isVaild = true;
+            var Warehouse_Code = st.Get_Warehouse_Code();
+            var Branch_Code = st.GetBranch_Code();
+            decimal finaltotal = Convert.ToDecimal(lblFinalTotal.Text);
+
+
+
+
+
+            if (slkPaymentType.EditValue == null || slkPaymentType.EditValue.ToString() == "0" || slkPaymentType.Text.Trim() == "")
+            {
+                MaterialMessageBox.Show("برجاء اختيار طريقة الدفع", MessageBoxButtons.OK);
+                isVaild = false;
+            }
+
+
+
+
 
             if (GetDataFromGrid == null || GetDataFromGrid.Count <= 0)
             {
 
 
-                MaterialMessageBox.Show("لا يوجد اصناف", MessageBoxButtons.OK);
-                return;
+                MaterialMessageBox.Show(st.isEnglish() ? "There are no items" : "لا يوجد اصناف", MessageBoxButtons.OK);
 
+                isVaild = false;
 
             }
 
             if (finaltotal < 0)
             {
 
-                MaterialMessageBox.Show("لا يمكن قبول قيمة فاتورة اقل من الصفر", MessageBoxButtons.OK);
-                return;
+                MaterialMessageBox.Show(st.isEnglish() ? "An invoice value less than zero cannot be accepted" : "لا يمكن قبول قيمة فاتورة اقل من الصفر", MessageBoxButtons.OK);
+                isVaild = false;
             }
 
 
+            if (shiftCode == 0)
+            {
 
 
-            List<SaleDetail> ArryOfSaleDetail = new List<SaleDetail>();
+                if (MaterialMessageBox.Show(st.isEnglish() ? "Please Start New Shift for this user" : "برجاء اضافة وردية لهذا المستخدم", MessageBoxButtons.OK) == DialogResult.OK)
+                {
+                    isVaild = false;
+                    this.Close();
+                }
 
-            Int64 UserCode = st.User_Code();
-            var ShiftCode = context.Shift_View.Where(x => x.User_Id == UserCode && x.Shift_Flag == true).Select(xx => xx.Shift_Code).SingleOrDefault();
-            Int64 SaleMasterCode = Int64.Parse(lblSaleMasterId.Text);
+
+
+            }
 
 
             if (this.Status == "Old")
             {
-                bool TestUpdate = context.SaleMasters.Any(SaleMaster => SaleMaster.SaleMasterCode == SaleMasterCode && SaleMaster.Operation_Type_Id == 2 && SaleMaster.ShiftCode == ShiftCode);
 
-                if (TestUpdate)
+
+
+                // Vildate QTy
+                using (POSEntity ContVald = new POSEntity())
                 {
 
-                    var SaleDetails = context.SaleDetails.Where(Masters => Masters.SaleMasterCode == SaleMasterCode && Masters.Operation_Type_Id == 2 && Masters.shiftCode == ShiftCode);
+                    bool TestUpdate = ContVald.SaleMasters.Any(SaleMaster => SaleMaster.SaleMasterCode == SaleMasterCode && SaleMaster.Branch_Id == Branch_Code && SaleMaster.Operation_Type_Id == 2 && SaleMaster.ShiftCode == shiftCode);
 
-
-                    // Vildate QTy
-                    //using (SaleEntities ContVald = new SaleEntities())
-                    //{
-                    //    GetDataFromGrid.ForEach(item =>
-                    //    {
-
-                    //        var qty = item.Qty;
-
-                    //        var DayOfYears = item.EntryDate.Day;
-                    //        var Years = item.EntryDate.Year;
-                    //        var Months = item.EntryDate.Month;
-
-                    //        var Item_Qty_List_Tran_History = ContVald.Item_History_transaction.Where(w => w.Item_Id == item.ItemCode && w.IsDeleted == 0 && w.SaleMasterCode == item.SaleMasterCode && w.OrderDate.Day == DayOfYears && w.OrderDate.Month == Months && w.OrderDate.Year == Years).ToList();
-                    //        var item_Qt_Tran_History = Item_Qty_List_Tran_History.Where(x => x.Item_Id == item.ItemCode && x.SaleMasterCode == item.SaleMasterCode).Sum(x => x.Trans_Out);
-
-
-                    //        var Item_Qty_List = ContVald.Item_History.Where(w => w.Item_Id == item.ItemCode && w.IsFinshed == false).ToList();
-                    //        var item_Qt = Item_Qty_List.Where(x => x.Item_Id == item.ItemCode && x.IsFinshed == false).Sum(x => x.Current_Qty_Now);
-                    //        var Total = item_Qt_Tran_History + item_Qt;
-
-                    //        if (Total < qty)
-                    //        {
-                    //            MaterialMessageBox.Show("كمية" + item.Name + "غير كافية في المخزن حيث يوجد " + item_Qt + "فقط هل تريد اكمال العملية ", MessageBoxButtons.OKCancel);
-                    //            return;
-                    //        }
-                    //    });
-
-                    //}
-
-                    using (SaleEntities context2 = new SaleEntities())
+                    if (!TestUpdate)
                     {
-                        var Details = context2.SaleDetails.Where(w => w.SaleMasterCode == SaleMasterCode && w.shiftCode == ShiftCode);
-                        context2.SaleDetails.RemoveRange(Details);
-                        context2.SaveChanges();
-
+                        if (MaterialMessageBox.Show(st.isEnglish() ? "There is no data for this invoice" : "لا يوجد بيانات لتلك الفاتورة", MessageBoxButtons.OK) == DialogResult.OK)
+                        {
+                            
+                            return false;
+                        }
 
 
                     }
+                    GetDataFromGrid.ForEach(item =>
+                    {
+
+                        //الكميه المطلوبه جديد
+                        double qty = item.Qty;
+
+                        double item_Qt_Tran_History = 0;
+                        try
+                        {
+                           
+                            //الكمية القديمه في الفاتورة
+                              item_Qt_Tran_History = ContVald.Item_History_transaction.Where(w => w.Item_Id == item.ItemCode && w.from_Warhouse_Code == Warehouse_Code && w.IsDeleted == 0 && w.SaleMasterCode == SaleMasterCode && w.shiftCode == shiftCode).Sum(x => x.Trans_Out);
+                        }
+                        catch {
+
+                            item_Qt_Tran_History = 0;
+                        }
+                      
+
+
+                        double item_Qt = 0;
+                        try
+                        {
+                            // الكمية المتاحة الان في المخزن
+                            item_Qt = ContVald.Item_History.Where(w => w.Item_Id == item.ItemCode && w.Warhouse_Code == Warehouse_Code && w.IsFinshed == false).Sum(x => x.Current_Qty_Now);
+                        }
+                        catch
+                        {
+                            item_Qt = 0;
+                        }
+
+
+                        // جمع الكمية القديمه + الكمية المتاحة
+                        double Total = item_Qt_Tran_History + item_Qt;
 
 
 
 
-                    List<Item_History_transaction> _Item_History_transaction = new List<Item_History_transaction>();
+                        if (Total < qty)
+                        {
 
-                    var DayOfYear = DateTime.Today.Day;
-                    var Year = DateTime.Today.Year;
-                    var Month = DateTime.Today.Month;
-                    _Item_History_transaction = context.Item_History_transaction.Where(w => w.SaleMasterCode == SaleMasterCode && w.shiftCode == ShiftCode && w.IsDeleted == 0).ToList();
+                            if (MaterialMessageBox.Show(st.isEnglish() ? "Quantity " + item.Name_En + " is not enough, as only " + item_Qt + " are available. Do you want to confirm the sale?" : "كمية" + item.Name + "غير كافية في المخزن حيث يوجد " + item_Qt + "فقط هل تريد اكمال العملية ", MessageBoxButtons.YesNo) == DialogResult.Cancel)
+                            {
+                                isVaild = false;
+                                return;
 
-                    _Item_History_transaction.ForEach(x => {
 
-                        Item_History item_History;
-                        item_History = context.Item_History.SingleOrDefault(Item => Item.Item_Id == x.Item_Id && Item.Id == x.Item_History_Id);
-                        item_History.Current_Qty_Now -= x.Trans_Out;
-
-                        item_History.IsFinshed = false;
-                        context.SaveChanges();
+                            }
 
 
 
+                        }
+                    });
 
-                        List<Item_History_transaction> __Item_History_transaction = new List<Item_History_transaction>();
-                        __Item_History_transaction = context.Item_History_transaction.Where(Item =>Item.shiftCode == ShiftCode  && Item.SaleMasterCode == x.SaleMasterCode && Item.Item_Id == x.Item_Id && Item.IsDeleted == 0).ToList();
-                        __Item_History_transaction.ForEach(xx => {
+                 
 
-                            Item_History_transaction Item_History_transaction;
-                            Item_History_transaction = context.Item_History_transaction.SingleOrDefault(Item => Item.Id == xx.Id);
-
-                            Item_History_transaction.IsDeleted = 1;
-
-
-                            context.SaveChanges();
-                        });
+                }
 
 
 
 
 
+             
+
+            }
+
+            if (this.Status == "New") {
+                // Vildate QTy
+                using (POSEntity ContVald = new POSEntity())
+                {
+
+                   
+                    GetDataFromGrid.ForEach(item =>
+                    {
+
+                        //الكميه المطلوبه جديد
+                        double qty = Convert.ToDouble(item.Qty);
+                        double item_Qt = 0;
+                        try
+                        {
+                            // الكمية المتاحة الان في المخزن
+                            item_Qt =  ContVald.Item_History.Where(w => w.Item_Id == item.ItemCode && w.Warhouse_Code == Warehouse_Code && w.IsFinshed == false).Sum(x => x.Current_Qty_Now);
+                        }
+                        catch {
+                            item_Qt = 0;
+                        }
+                       
+
+                        if (item_Qt < qty)
+                        {
+
+                            if (MaterialMessageBox.Show(st.isEnglish() ? "Quantity " + item.Name + " is not enough, as only " + item_Qt.ToString() + " are available. Do you want to confirm the sale?" : "كمية" + item.Name + "غير كافية في المخزن حيث يوجد " + item_Qt.ToString() + "فقط هل تريد اكمال العملية ", MessageBoxButtons.YesNo) == DialogResult.Cancel)
+                            {
+                                isVaild = false;
+                               
+
+
+                            }
 
 
 
+                        }
                     });
 
 
-                    foreach (var item in GetDataFromGrid)
-                    {
-
-                        var qty = item.Qty;
-
-                        #region
-                        //  var Item_Qty_List = context.Item_History.Where(w => w.Item_Id == item.ItemCode && w.IsFinshed == false).ToList();
-                        //   var item_Qt =   Item_Qty_List.Where(x => x.Item_Id == item.ItemCode && x.IsFinshed == true).Sum(x => x.Current_Qty_Now);
-
-
-                        //Item_Qty_List.ForEach(x =>
-                        //{
-                        //    if (qty > 0)
-                        //    {
-                        //        // لو الكمية المطلوبه اكبر من الكمية الموجوده في الصف 
-                        //        if (qty > x.Current_Qty_Now)
-                        //        {
-                        //            qty = qty - x.Current_Qty_Now;
-
-                        //            Update_Item_Qty_And_Finshed(x.Sale_Master_Code, x.Current_Qty_Now, x.CreatedDate, x.Id, x.Item_Id);
-                        //        }
-                        //        else if (qty < x.Current_Qty_Now)
-                        //        {
-
-
-                        //            Update_Item_Qty_Oly(x.Sale_Master_Code, qty, x.CreatedDate,x.Id,x.Item_Id);
-                        //            qty = 0;
-                        //        }
-                        //        else if (qty == x.Current_Qty_Now)
-                        //        {
-
-                        //            Update_Item_Qty_And_Finshed(x.Sale_Master_Code, qty, x.CreatedDate, x.Id, x.Item_Id);
-                        //            qty = 0;
-                        //        }
-
-
-                        //    }
-
-
-                        //});
-                        #endregion
-
-                        SaleDetail _SaleDetail = new SaleDetail()
-                        {
-                            ItemCode = item.ItemCode,
-                            Price = item.Price,
-                            Qty = item.Qty,
-                            Total = item.Total,
-                            EntryDate = DateTime.Now,
-                            shiftCode =  ShiftCode,
-                            SaleDetailCode = Int64.Parse(lblSaleMasterId.Text),
-                            SaleMasterCode = Int64.Parse(lblSaleMasterId.Text),
-                            LastDateModif = DateTime.Now,
-                            Operation_Type_Id = 2,
-                            UserId = st.User_Code()
-
-
-
-                        };
-
-                        ArryOfSaleDetail.Add(_SaleDetail);
-
-                    }
-
-
-                    context.SaleDetails.AddRange(ArryOfSaleDetail);
-                    context.SaveChanges();
-
-                    SaveSaleMaster(
-                         ShiftCode: ShiftCode,
-                         UserCode: st.User_Code(),
-                         Discount: double.Parse(lblDiscount.Text),
-                         TotalBeforDiscount: double.Parse(lblFinalBeforDesCound.Text),
-                         FinalTotal: double.Parse(lblFinalTotal.Text),
-                         QtyTotal: double.Parse(lblItemQty.Text),
-                         SaleMasterCode: Int64.Parse(lblSaleMasterId.Text)
-                        );
-
-
-
-                    var Master = (from a in context.SaleMasterViews where a.Shift_Code == ShiftCode select a).ToList();
-                    var Detail = (from a in context.SaleDetailViews where a.SaleMasterCode == SaleMasterCode && a.Operation_Type_Id == 2 && a.shiftCode == ShiftCode select a).ToList();
-
-                    New();
-                    Report rpt = new Report();
-                    rpt.Load(@"Reports\SaleInvoice.frx");
-                    rpt.RegisterData(Master, "Header");
-                    rpt.RegisterData(Detail, "Lines");
-                   rpt.PrintSettings.ShowDialog = false;
-                    //rpt.Design();
-                    rpt.Print();
-
-
 
                 }
-
-
-
-
-
             }
-            else
+
+            return isVaild;
+
+        }
+
+
+
+
+      public  Int64 SaleMasterCode;
+      public  Int64 ShiftCode;
+      public  Int64 UserCode;
+      public  Int64 Branch_Code;
+      public  Int64 Warehouse_Code;
+        public Item_History item_History;
+        public Item_History_transaction _Item_History_transaction = new Item_History_transaction();
+        public List<SaleDetailView> GetDataFromGrid = new List<SaleDetailView>();
+        public List<Item_History> Item_Qty_List = new List<Item_History>();
+        public List<SaleDetail> ArryOfSaleDetail = new List<SaleDetail>();
+        public void SaveSaleDetail()
+        {
+
+            SaleMasterCode =  Int64.Parse(lblSaleMasterId.Text);
+                  
+              Warehouse_Code = st.Get_Warehouse_Code();
+              Branch_Code = st.GetBranch_Code();
+              UserCode = st.GetUser_Code();
+                      ShiftCode = 0;
+                    try
+                            {
+                                ShiftCode = context.Shift_View.Where(x => x.User_Id == UserCode && x.Shift_Flag == true).Select(xx => xx.Shift_Code).SingleOrDefault();
+                            }
+                            catch
+                            {
+                                ShiftCode = 0;
+                            }
+                   
+                  
+                   
+
+
+
+            GetDataFromGrid = gcCafeSaleDetail.DataSource as List<SaleDetailView>;
+
+
+
+
+
+            bool isVald = vaildate(shiftCode: ShiftCode, GetDataFromGrid: GetDataFromGrid, SaleMasterCode: SaleMasterCode);
+
+            // Vaidate
+            if (!isVald)
             {
-                #region
-                //using (SaleEntities ContVald = new SaleEntities())
-                //{
-                //    foreach (var item in GetDataFromGrid)
-                //    {
 
-
-
-
-                //        var Item_Qty_List = ContVald.Item_History.Where(w => w.Item_Id == item.ItemCode && w.IsFinshed == false).ToList().Sum(x => x.Current_Qty_Now);
-
-
-
-                //        if (Item_Qty_List < item.Qty)
-                //        {
-
-                //            if (MaterialMessageBox.Show("كمية   " + item.Name + " غير كافية في المخزن حيث يوجد  " + Item_Qty_List + "  فقط  ", MessageBoxButtons.YesNo) != DialogResult.OK)
-                //            {
-
-
-                //                return;
-                //            }
-                //        }
-
-
-                //    }
-
-                //}
-                // Vildate QTy
-                #endregion
-
-                foreach (var item in GetDataFromGrid)
-                {
-
-                    var qty = item.Qty;
-
-
-                    var Item_Qty_List = context.Item_History.Where(w => w.Item_Id == item.ItemCode && w.IsFinshed == false).ToList();
-
-
-                    #region
-                    //item_qty_list.foreach(x =>
-                    //{
-                    //    if (qty > 0)
-                    //    {
-                    //        // لو الكمية المطلوبه اكبر من الكمية الموجوده في الصف 
-                    //        if (qty > x.current_qty_now)
-                    //        {
-                    //            qty = qty - x.current_qty_now;
-
-                    //            update_item_qty_and_finshed(salemastercode, x.current_qty_now, x.createddate, x.id, x.item_id);
-                    //        }
-                    //        else if (qty < x.current_qty_now)
-                    //        {
-
-
-                    //            update_item_qty_oly(salemastercode, qty, x.createddate, x.id, x.item_id);
-                    //            qty = 0;
-                    //        }
-                    //        else if (qty == x.current_qty_now)
-                    //        {
-
-                    //            update_item_qty_and_finshed(salemastercode, qty, x.createddate, x.id, x.item_id);
-                    //            qty = 0;
-                    //        }
-
-
-                    //    }
-
-
-                    //});
-
-                    #endregion
-
-
-
-                    SaleDetail _SaleDetail = new SaleDetail()
-                    {
-                        ItemCode = item.ItemCode,
-                        Price = item.Price,
-                        Qty = item.Qty,
-                        shiftCode = ShiftCode,
-                        Total = item.Total,
-                        EntryDate = DateTime.Now,
-                        
-                        SaleDetailCode = Int64.Parse(lblSaleMasterId.Text),
-                        SaleMasterCode = Int64.Parse(lblSaleMasterId.Text),
-                        UserId = st.User_Code(),
-                        Operation_Type_Id = 2,
-
-                    };
-
-                    ArryOfSaleDetail.Add(_SaleDetail);
-
-                }
-
-
-                context.SaleDetails.AddRange(ArryOfSaleDetail);
-                context.SaveChanges();
-                while (gvSaleDetail.RowCount > 0)
-                {
-                    gvSaleDetail.SelectAll();
-                    gvSaleDetail.DeleteSelectedRows();
-                    gcCafeSaleDetail.RefreshDataSource();
-
-                }
-                SaveSaleMaster(
-                         ShiftCode: ShiftCode,
-                         UserCode: st.User_Code(),
-
-                         Discount: double.Parse(lblDiscount.Text),
-                         TotalBeforDiscount: double.Parse(lblFinalBeforDesCound.Text),
-                         FinalTotal: double.Parse(lblFinalTotal.Text),
-                         QtyTotal: double.Parse(lblItemQty.Text),
-                         SaleMasterCode: Int64.Parse(lblSaleMasterId.Text)
-                        );
-
-
-                New();
-                var Master = (from a in context.SaleMasterViews where a.SaleMasterCode == SaleMasterCode && a.Operation_Type_Id == 2 && a.Shift_Code == ShiftCode  select a).ToList();
-                var Detail = (from a in context.SaleDetailViews where a.SaleMasterCode == SaleMasterCode && a.Operation_Type_Id == 2 && a.shiftCode == ShiftCode select a).ToList();
-
-                Report rpt = new Report();
-                rpt.Load(@"Reports\SaleInvoice.frx");
-                rpt.RegisterData(Master, "Header");
-                rpt.RegisterData(Detail, "Lines");
-                rpt.PrintSettings.ShowDialog = false;
-                //rpt.Design();
-                rpt.Print();
-
-
+                return;
             }
 
+            else {
+
+                frmCafeCash frm = new frmCafeCash();
+                double x = Convert.ToDouble(lblFinalTotal.Text);
+
+                frm.total = x * -1;
+                frm.lblTotal.Text = (x * -1).ToString();
+                frm.ShowDialog();
 
 
+              
 
+            }
+  
         }
 
         //public void SaveSaleDetail()
         //{
         //    List<SaleDetail> ArryOfSaleDetail = new List<SaleDetail>();
         //    var GetDataFromGrid = gcSaleDetail.DataSource as List<SaleDetailView>;
-        //    Int64 UserCode = st.User_Code();
+        //    Int64 UserCode = st.GetUser_Code();
         //    var ShiftCode = context.Shift_View.Where(x => x.User_Id == UserCode && x.Shift_Flag == true).Select(xx => xx.Shift_Code).SingleOrDefault();
 
         //    if (this.Status == "Old")
@@ -828,7 +905,7 @@ namespace PointOfSaleSedek._101_Adds
 
 
 
-        //            using (SaleEntities context2 = new SaleEntities())
+        //            using (POSEntity context2 = new POSEntity())
         //            {
         //                var Details = context2.SaleDetails.Where(w => w.SaleMasterCode == SaleMasterCode && w.EntryDate == DateTime.Today);
         //                context2.SaleDetails.RemoveRange(Details);
@@ -849,7 +926,7 @@ namespace PointOfSaleSedek._101_Adds
         //                    SaleMasterCode = Int64.Parse(lblSaleMasterId.Text),
 
         //                    Operation_Type_Id = 2,
-        //                     UserId =  st.User_Code()
+        //                     UserId =  st.GetUser_Code()
 
 
 
@@ -890,7 +967,7 @@ namespace PointOfSaleSedek._101_Adds
         //                EntryDate = DateTime.Now,
         //                SaleDetailCode = Int64.Parse(lblSaleMasterId.Text),
         //                SaleMasterCode = Int64.Parse(lblSaleMasterId.Text),
-        //                UserId = st.User_Code(),
+        //                UserId = st.GetUser_Code(),
         //                Operation_Type_Id = 2,
 
 
@@ -936,7 +1013,7 @@ namespace PointOfSaleSedek._101_Adds
                     b.Appearance.BackColor = Color.SteelBlue;
                     b.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat;
                     b.Appearance.BorderColor = Color.Firebrick;
-                    b.Text = c.Name;
+                    b.Text = c.Name_En + Environment.NewLine +  c.Name + Environment.NewLine;
                     b.Tag = item;
                     b.Click += B_Click;
                     flp.Controls.Add(b);
@@ -986,6 +1063,8 @@ namespace PointOfSaleSedek._101_Adds
 
         private void B_Click(object sender, EventArgs e)
         {
+
+            List<SaleDetailView> grdData = gcCafeSaleDetail.DataSource as List<SaleDetailView>;
             // Get GrideData
             var RowCount = gvSaleDetail.RowCount;
             if (RowCount > 0)
@@ -996,10 +1075,10 @@ namespace PointOfSaleSedek._101_Adds
 
                     SimpleButton b = (SimpleButton)sender;
 
-                    bool TestUpdate = gcData.Any(User => User.Name == b.Text);
+                    bool TestUpdate = gcData.Any(User => User.Name_En + Environment.NewLine + User.Name + Environment.NewLine == b.Text);
 
                     double Qty = 0;
-                    if (string.IsNullOrWhiteSpace(txtQty.Text))
+                    if (string.IsNullOrWhiteSpace(txtQty.Text) || txtQty.Text.Trim() == "0" || txtQty.Text.Trim() == "")
                     {
                         Qty = 1;
                     }
@@ -1013,7 +1092,7 @@ namespace PointOfSaleSedek._101_Adds
                     {
                         gcData.ForEach(x =>
                         {
-                            if (x.Name == b.Text)
+                            if (x.Name_En + Environment.NewLine + x.Name + Environment.NewLine == b.Text)
                             {
                                 x.Qty += Qty;
                                 x.Total = x.Qty * x.Price;
@@ -1045,8 +1124,8 @@ namespace PointOfSaleSedek._101_Adds
 
 
 
-                        ItemCard ii = context.ItemCards.Where(x => x.Name == b.Text && x.IsDeleted == 0).FirstOrDefault();
-                        if (string.IsNullOrWhiteSpace(txtQty.Text))
+                        ItemCard ii = context.ItemCards.Where(x => x.Name_En + Environment.NewLine + x.Name + Environment.NewLine == b.Text && x.IsDeleted == 0).FirstOrDefault();
+                        if (string.IsNullOrWhiteSpace(txtQty.Text) || txtQty.Text.Trim() == "0" || txtQty.Text.Trim() == "")
                         {
 
                             txtQty.Text = "1";
@@ -1062,11 +1141,13 @@ namespace PointOfSaleSedek._101_Adds
                             Total = Convert.ToDouble(txtQty.Text) * Convert.ToDouble(ii.Price),
                             Name = ii.Name,
                             Operation_Type_Id = 2,
+
                             UnitCode = ii.UnitCode,
                             CategoryCode = ii.CategoryCode,
                             ParCode = ii.ParCode,
-
-
+                            LineSequence = gcData.Count == 0? 1 : gcData.Count + 1,
+                            Name_En = ii.Name_En,
+                            
 
 
                         };
@@ -1116,14 +1197,15 @@ namespace PointOfSaleSedek._101_Adds
                 try
                 {
                     List<SaleDetailView> gcdata = new List<SaleDetailView>();
+                 
                     SimpleButton b = (SimpleButton)sender;
                     var ccc = b.Tag;
 
-                    ItemCard ii = context.ItemCards.Where(x => x.Name == b.Text && x.IsDeleted == 0).FirstOrDefault();
+                    ItemCard ii = context.ItemCards.Where(x => x.Name_En + Environment.NewLine + x.Name + Environment.NewLine == b.Text && x.IsDeleted == 0).FirstOrDefault();
 
 
 
-                    if (string.IsNullOrWhiteSpace(txtQty.Text))
+                    if (string.IsNullOrWhiteSpace(txtQty.Text) || txtQty.Text.Trim() == "0" || txtQty.Text.Trim() == "")
                     {
 
                         txtQty.Text = "1";
@@ -1138,6 +1220,9 @@ namespace PointOfSaleSedek._101_Adds
                         Qty = double.Parse(txtQty.Text),
                         Total = Convert.ToDouble(txtQty.Text) * Convert.ToDouble(ii.Price),
                         Name = ii.Name,
+                        Name_En = ii.Name_En,
+                        CustomerCode = 0,
+                        LineSequence = grdData == null || grdData.Count == 0 ? 1 : grdData.Count + 1,
                         Operation_Type_Id = 2,
                         UnitCode = ii.UnitCode,
                         CategoryCode = ii.CategoryCode,
@@ -1280,7 +1365,7 @@ namespace PointOfSaleSedek._101_Adds
 
         private void txtParCode_KeyUp(object sender, KeyEventArgs e)
         {
-            Int64 UserCode = st.User_Code();
+            Int64 UserCode = st.GetUser_Code();
             var ShiftCode = context.Shift_View.Where(x => x.User_Id == UserCode && x.Shift_Flag == true).Select(xx => xx.Shift_Code).SingleOrDefault();
             // Get GrideData
             var RowCount = gvSaleDetail.RowCount;
@@ -1363,6 +1448,8 @@ namespace PointOfSaleSedek._101_Adds
                             Qty = double.Parse(txtQty.Text),
                             Total = Convert.ToDouble(txtQty.Text) * Convert.ToDouble(ii.Price),
                             Name = ii.Name,
+                            Name_En = ii.Name_En,
+                            LineSequence = gcData.Count == 0 ? 1 : gcData.Count + 1,
                             shiftCode = ShiftCode,
                             UnitCode = ii.UnitCode,
                             Operation_Type_Id = 2,
@@ -1434,6 +1521,8 @@ namespace PointOfSaleSedek._101_Adds
 
                     }
 
+                    List<SaleDetailView> gcData = gcCafeSaleDetail.DataSource as List<SaleDetailView>;
+
                     SaleDetailView _SaleDetailView = new SaleDetailView()
                     {
                         ItemCode = ii.ItemCode,
@@ -1442,6 +1531,10 @@ namespace PointOfSaleSedek._101_Adds
                         Qty = double.Parse(txtQty.Text),
                         Total = Convert.ToDouble(txtQty.Text) * Convert.ToDouble(ii.Price),
                         Name = ii.Name,
+                        Name_En = ii.Name_En,
+                        
+                        LineSequence = gcData ==null || gcData.Count == 0 ? 1 : gcData.Count + 1,
+
                         shiftCode = ShiftCode,
                         UnitCode = ii.UnitCode,
                         CategoryCode = ii.CategoryCode,
@@ -1525,11 +1618,11 @@ namespace PointOfSaleSedek._101_Adds
             btnSave.Enabled = false;
             LoadCatagory();
             LoadItems();
-            var UserId = Convert.ToInt64(st.User_Code());
+            var UserId = Convert.ToInt64(st.GetUser_Code());
             var Check = context.Shifts.Any(x => x.Shift_Flag == true && x.User_Id == UserId && x.IsDeleted == 0);
             if (!Check)
             {
-                if (MaterialMessageBox.Show("برجاء اضافة وردية لهذا المستخدم", MessageBoxButtons.OK) == DialogResult.OK)
+                if (MaterialMessageBox.Show(st.isEnglish() ? "Please Start New Shift for this user" :"برجاء اضافة وردية لهذا المستخدم", MessageBoxButtons.OK) == DialogResult.OK)
                 {
                     this.Close();
                 }
@@ -1552,63 +1645,8 @@ namespace PointOfSaleSedek._101_Adds
             SaveSaleDetail();
             txtParCode.Focus();
 
-            ////Int64 SaleMasterCode = Convert.ToInt64(lblSaleMasterId.Text);
-            //var GetDataFromGrid = gcSaleDetail.DataSource as List<SaleDetailView>;
-            //if (GetDataFromGrid.Count <= 0 || GetDataFromGrid == null)
-            //{
-
-
-            //    MaterialMessageBox.Show("لا يوجد اصناف", MessageBoxButtons.OK);
-            //    return;
-
-
-            //}
-
-
-            //else if (this.Status == "New")
-            //{
-
-            //    SplashScreenManager.ShowForm(typeof(WaitForm1));
-            //    SaveSaleMaster();
-            //    SaveSaleDetail();
-            //    SplashScreenManager.CloseForm();
-
-            //    //var Master = (from a in context.SaleMasterViews where a.SaleMasterCode == SaleMasterCode && a.Operation_Type_Id == 2 && a.EntryDate == DateTime.Today select a).ToList();
-            //    //var Detail = (from a in context.SaleDetailViews where a.SaleMasterCode == SaleMasterCode && a.Operation_Type_Id == 2 && a.EntryDate == DateTime.Today select a).ToList();
-
-            //    //Report rpt = new Report();
-            //    //rpt.Load(@"Reports\SaleInvoice.frx");
-            //    //rpt.RegisterData(Master, "Header");
-            //    //rpt.RegisterData(Detail, "Lines");
-            //    ////  rpt.PrintSettings.ShowDialog = false;
-            //    //// rpt.Design();
-            //    //rpt.Print();
-
-
-
-
-
-
-            //}
-            //else if (this.Status == "Old")
-            //{
-
-            //    SaveSaleMaster();
-            //    SaveSaleDetail();
-            //    //var Master = (from a in context.SaleMasterViews where a.SaleMasterCode == SaleMasterCode && a.Operation_Type_Id == 2 && a.EntryDate == DateTime.Today select a).ToList();
-            //    //var Detail = (from a in context.SaleDetailViews where a.SaleMasterCode == SaleMasterCode && a.Operation_Type_Id == 2 && a.EntryDate == DateTime.Today select a).ToList();
-
-            //    //Report rpt = new Report();
-            //    //rpt.Load(@"Reports\SaleInvoice.frx");
-            //    //rpt.RegisterData(Master, "Header");
-            //    //rpt.RegisterData(Detail, "Lines");
-            //    //// rpt.PrintSettings.ShowDialog = false;
-            //    ////rpt.Design();
-            //    //rpt.Print();
-
-            //}
-
-            //New();
+         
+         
         }
 
         private void btnEdite_Click_1(object sender, EventArgs e)
@@ -1621,13 +1659,18 @@ namespace PointOfSaleSedek._101_Adds
             btnEdite.Enabled = false;
             BtnExit.Enabled = true;
             btnDiscount.Enabled = true;
+            if (gvSaleDetail.RowCount > 0) {
+
+                btnSave.Enabled  = true;
+            }
+
             txtParCode.Focus();
             HelperClass.HelperClass.EnableControls(tableLayoutPanel1);
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            Int64 User_Code = st.User_Code();
+            Int64 User_Code = st.GetUser_Code();
             
             var result = context.Auth_View.Any(View => View.User_Code == User_Code && (View.User_IsDeleted == 0) && (View.Tab_Name == "btnDiscount"));
             if (result)
@@ -1639,7 +1682,8 @@ namespace PointOfSaleSedek._101_Adds
             }
             else
             {
-                frmAdmin frm = new frmAdmin();
+                 
+                   frmAdmin frm = new frmAdmin();
                 frm.ShowDialog();
             }
 
@@ -1649,28 +1693,32 @@ namespace PointOfSaleSedek._101_Adds
 
         }
 
+
+
+
         private void btnPrint_Click(object sender, EventArgs e)
         {
 
 
-            Int64 UserCode = st.User_Code();
+            Int64 UserCode = st.GetUser_Code();
             var ShiftCode = context.Shift_View.Where(x => x.User_Id == UserCode && x.Shift_Flag == true).Select(xx => xx.Shift_Code).SingleOrDefault();
-            double FinalTotal = 0;
-            double TotalDiscount = 0;
+            //double FinalTotal = 0;
+            //double TotalDiscount = 0;
 
 
 
             Int64 SaleMasterCode = Convert.ToInt64(lblSaleMasterId.Text);
-            var GetDataFromGrid = gcCafeSaleDetail.DataSource as List<SaleDetailView>;
-            var Master = (from a in context.SaleMasterViews where a.SaleMasterCode == SaleMasterCode && a.Operation_Type_Id == 2 && a.Shift_Code == ShiftCode  select a).ToList();
-            var Detail = (from a in context.SaleDetailViews where a.SaleMasterCode == SaleMasterCode && a.Operation_Type_Id == 2 && a.shiftCode == ShiftCode select a).ToList();
 
+
+
+            var GetDataFromGrid = gcCafeSaleDetail.DataSource as List<SaleDetailView>;
+           
 
             if (GetDataFromGrid.Count <= 0 || GetDataFromGrid == null)
             {
 
 
-                MaterialMessageBox.Show("لا يوجد اصناف", MessageBoxButtons.OK);
+                MaterialMessageBox.Show(st.isEnglish() ? "There are no items" : "لا يوجد اصناف", MessageBoxButtons.OK);
                 return;
 
 
@@ -1678,95 +1726,98 @@ namespace PointOfSaleSedek._101_Adds
             else
             {
 
-                List<SaleDetailViewVm> saleDetailViewVmList = new List<SaleDetailViewVm>();
+                printSaleInvoice(ShiftCode, SaleMasterCode);
 
-                foreach (var x in Detail)
-                {
-                    SaleDetailViewVm saleDetailViewVm = new SaleDetailViewVm()
-                    {
+                //List<SaleDetailViewVm> saleDetailViewVmList = new List<SaleDetailViewVm>();
 
-                        AddItem = x.AddItem,
-                        SaleMasterCode = x.SaleMasterCode,
-                        CategoryCode = x.CategoryCode,
-                        CategoryName = x.CategoryName,
-                        Emp_Code = x.Emp_Code,
-                        EntryDate = x.EntryDate,
-                        Id = x.Id,
-                        IsDeleted = x.IsDeleted,
-                        ItemCode = x.ItemCode,
-                        Item_Count_InStoreg = x.Item_Count_InStoreg,
-                        Name = x.Name,
-                        Operation_Type_Id = x.Operation_Type_Id,
-                        OrederTotal = 0,
-                        
-                        ParCode = x.ParCode,
-                        Price = x.Price,
-                        PriceBuy = x.PriceBuy,
-                        Qty = x.Qty,
-                        Total = x.Total,
-                        UnitCode = x.UnitCode,
-                        UnitName = x.UnitName,
-                        UserName = x.UserName,
-                        Discount = 0
+                //foreach (var x in Detail)
+                //{
+                //    SaleDetailViewVm saleDetailViewVm = new SaleDetailViewVm()
+                //    {
 
-                    };
-                    saleDetailViewVmList.Add(saleDetailViewVm);
+                //        AddItem = x.AddItem,
+                //        SaleMasterCode = x.SaleMasterCode,
+                //        CategoryCode = x.CategoryCode,
+                //        CategoryName = x.CategoryName,
+                //        Emp_Code = x.Emp_Code,
+                //        EntryDate = x.EntryDate,
+                //        Id = x.Id,
+                //        IsDeleted = x.IsDeleted,
+                //        ItemCode = x.ItemCode,
+                //        Item_Count_InStoreg = x.Item_Count_InStoreg,
+                //        Name = x.Name,
+                //        Name_En = x.Name_En,
+                //        Operation_Type_Id = x.Operation_Type_Id,
+                //        OrederTotal = 0,
 
-                }
+                //        ParCode = x.ParCode,
+                //        Price = x.Price,
+                //        PriceBuy = x.PriceBuy,
+                //        Qty = x.Qty,
+                //        Total = x.Total,
+                //        UnitCode = x.UnitCode,
+                //        UnitName = x.UnitName,
+                //        UserName = x.UserName,
+                //        Discount = 0
 
-                Master.ForEach(Header =>
-                {
-                    saleDetailViewVmList.ForEach(Line =>
-                    {
+                //    };
+                //    saleDetailViewVmList.Add(saleDetailViewVm);
 
-                        if (Header.SaleMasterCode == Line.SaleMasterCode)
-                        {
+                //}
 
-                            Line.OrederTotal = Header.FinalTotal;
-                            Line.Discount = Header.Discount;
+                //Master.ForEach(Header =>
+                //{
+                //    saleDetailViewVmList.ForEach(Line =>
+                //    {
 
-                        }
+                //        if (Header.SaleMasterCode == Line.SaleMasterCode)
+                //        {
 
+                //            Line.OrederTotal = Header.FinalTotal;
+                //            Line.Discount = Header.Discount;
 
-
-                    });
-
-                });
-
-
-                Master.ForEach(x =>
-                {
-
-                    FinalTotal += x.FinalTotal;
-                    TotalDiscount += x.Discount;
-
-                });
+                //        }
 
 
 
+                //    });
 
-                FinalTotal _FinalTotal = new FinalTotal()
-                {
-                    Total = FinalTotal,
-                    TotalDiscount = TotalDiscount
+                //});
 
 
+                //Master.ForEach(x =>
+                //{
 
-                };
-                List<FinalTotal> _FinalTotalList = new List<FinalTotal>();
-                _FinalTotalList.Add(_FinalTotal);
+                //    FinalTotal += x.FinalTotal;
+                //    TotalDiscount += x.Discount;
+
+                //});
 
 
 
 
-                Report rpt = new Report();
-                rpt.Load(@"Reports\SaleInvoice.frx");
-                rpt.RegisterData(Master, "Header");
-                rpt.RegisterData(_FinalTotalList, "FinalTotal");
-                rpt.RegisterData(saleDetailViewVmList, "Lines");
-                 rpt.PrintSettings.ShowDialog = false;
-                //  rpt.Design();
-                rpt.Print();
+                //FinalTotal _FinalTotal = new FinalTotal()
+                //{
+                //    Total = FinalTotal,
+                //    TotalDiscount = TotalDiscount
+
+
+
+                //};
+                //List<FinalTotal> _FinalTotalList = new List<FinalTotal>();
+                //_FinalTotalList.Add(_FinalTotal);
+
+
+
+
+                //Report rpt = new Report();
+                //rpt.Load(@"Reports\SaleInvoice.frx");
+                //rpt.RegisterData(Master, "Header");
+                //rpt.RegisterData(_FinalTotalList, "FinalTotal");
+                //rpt.RegisterData(saleDetailViewVmList, "Lines");
+                // rpt.PrintSettings.ShowDialog = false;
+                //  //rpt.Design();
+                //rpt.Show();
 
             }
 
@@ -1816,44 +1867,58 @@ namespace PointOfSaleSedek._101_Adds
 
         private void حذفToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var RowCount = gvSaleDetail.RowCount;
-            var FocusRow = gvSaleDetail.GetFocusedRow() as SaleDetailView;
 
-            List<SaleDetailView> gcData = gcCafeSaleDetail.DataSource as List<SaleDetailView>;
-            gcData.Remove(FocusRow);
-            gcCafeSaleDetail.DataSource = gcData;
-            double sum = 0;
-            gcData.ForEach(x =>
+            try
             {
-                sum += Convert.ToDouble(x.Total);
-            });
+                var RowCount = gvSaleDetail.RowCount;
+                var FocusRow = gvSaleDetail.GetFocusedRow() as SaleDetailView;
+
+                if (RowCount > 0 && FocusRow != null)
+                {
+
+                    List<SaleDetailView> gcData = gcCafeSaleDetail.DataSource as List<SaleDetailView>;
+                    gcData.Remove(FocusRow);
+                    gcCafeSaleDetail.DataSource = gcData;
+                    double sum = 0;
+                    gcData.ForEach(x =>
+                    {
+                        sum += Convert.ToDouble(x.Total);
+                    });
 
 
 
-            gcCafeSaleDetail.RefreshDataSource();
+                    gcCafeSaleDetail.RefreshDataSource();
 
-            if (gvSaleDetail.RowCount <= 0)
-            {
-                btnSave.Enabled = false;
+                    if (gvSaleDetail.RowCount <= 0)
+                    {
+                        btnSave.Enabled = false;
 
+                    }
+                    else
+                    {
+
+                        btnSave.Enabled = true;
+
+
+                    }
+
+                    lblFinalBeforDesCound.Text = sum.ToString();
+                    lblFinalTotal.Text = Convert.ToString(sum - Convert.ToDouble(lblDiscount.Text));
+                    lblItemQty.Text = (RowCount - 1).ToString();
+                    txtParCode.ResetText();
+                    txtQty.ResetText();
+                    txtParCode.Focus();
+                }
             }
-            else
-            {
-
-                btnSave.Enabled = true;
-
-
+            catch { 
+            
+            
+            
             }
+          
+         
 
-
-
-            lblFinalBeforDesCound.Text = sum.ToString();
-
-            lblFinalTotal.Text = Convert.ToString(sum - Convert.ToDouble(lblDiscount.Text));
-            lblItemQty.Text = (RowCount - 1).ToString();
-            txtParCode.ResetText();
-            txtQty.ResetText();
-            txtParCode.Focus();
+          
 
 
         }
@@ -1870,7 +1935,7 @@ namespace PointOfSaleSedek._101_Adds
         private void simpleButton1_Click(object sender, EventArgs e)
         {
 
-            //Int64 User_Code = st.User_Code();
+            //Int64 User_Code = st.GetUser_Code();
 
             //var result = context.Auth_View.Any(View => View.User_Code == User_Code && (View.User_IsDeleted == 0) && (View.Tab_Name == "btnser"));
             //if (result)
@@ -1884,19 +1949,19 @@ namespace PointOfSaleSedek._101_Adds
             //    frmAdmin frm = new frmAdmin();
             //    frm.ShowDialog();
             //}
-            Int64 User_Code = st.User_Code();
+            Int64 User_Code = st.GetUser_Code();
 
             var result = context.Auth_View.Any(View => View.User_Code == User_Code && (View.User_IsDeleted == 0) && (View.Tab_Name == "btnser"));
             if (result)
             {
                 frmCafeInvoiceSearch frm = new frmCafeInvoiceSearch();
-                frm.Show();
+                frm.ShowDialog();
 
             }
             else
             {
                 frmAdmin frm = new frmAdmin();
-                frm.Show();
+                frm.ShowDialog();
             }
 
         }
@@ -2018,46 +2083,49 @@ namespace PointOfSaleSedek._101_Adds
                 {
 
                     ItemCardView item = context.ItemCardViews.Where(x => x.Name == cmdItems.Text && x.AddItem == true).FirstOrDefault() ;
-
-
-                    tb.Appearance.Header.Font = new Font("Calibri", 13, FontStyle.Bold);
-                    FlowLayoutPanel flp = new FlowLayoutPanel();
-                    flp.Dock = DockStyle.Fill;
-
-                 
-
-                    SimpleButton b = new SimpleButton();
-                    b.Size = new Size(120, 120);
-                    b.Font = new Font("Calibri", 11, FontStyle.Bold);
-                    b.ImageOptions.Image = imageCollection1.Images[0];
-                    b.ImageOptions.ImageToTextAlignment = ImageAlignToText.BottomCenter;
-                    b.Appearance.BackColor = Color.SteelBlue;
-                    b.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat;
-                    b.Appearance.BorderColor = Color.Firebrick;
-                    b.Text = item.Name;
-                    b.Tag = item;
-                    b.Click += B_Click;
-                    flp.Controls.Add(b);
-
-
-                    flp.AutoScroll = true;
-
-                    for (int i = 0; i < tb.TabControl.TabPages.Count; i++)
-                        if (tb.TabControl.TabPages[i].Text == item.CategoryName)
+                        if (item  != null)
                         {
-                            tb.TabControl.SelectedTabPage = tb.TabControl.TabPages[i];
-                            break;
+                            tb.Appearance.Header.Font = new Font("Calibri", 13, FontStyle.Bold);
+                            FlowLayoutPanel flp = new FlowLayoutPanel();
+                            flp.Dock = DockStyle.Fill;
+
+
+
+                            SimpleButton b = new SimpleButton();
+                            b.Size = new Size(120, 120);
+                            b.Font = new Font("Calibri", 11, FontStyle.Bold);
+                            b.ImageOptions.Image = imageCollection1.Images[0];
+                            b.ImageOptions.ImageToTextAlignment = ImageAlignToText.BottomCenter;
+                            b.Appearance.BackColor = Color.SteelBlue;
+                            b.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat;
+                            b.Appearance.BorderColor = Color.Firebrick;
+                            b.Text = item.Name;
+                            b.Tag = item;
+                            b.Click += B_Click;
+                            flp.Controls.Add(b);
+
+
+                            flp.AutoScroll = true;
+
+                            for (int i = 0; i < tb.TabControl.TabPages.Count; i++)
+                                if (tb.TabControl.TabPages[i].Text == item.CategoryName)
+                                {
+                                    tb.TabControl.SelectedTabPage = tb.TabControl.TabPages[i];
+                                    break;
+                                }
+
+                            tb.Controls.Clear();
+                            tb.Controls.Add(flp);
+                            tabItems.TabPages.Where(x => x.Text == item.Name);
+
                         }
-                    
-                    tb.Controls.Clear();
-                    tb.Controls.Add(flp);
-                   tabItems.TabPages.Where(x => x.Text== item.Name);
-                   
-                }
-                txtParCode.Focus();
-                cmdItems.Text = null;
-                cmdItems.Properties.NullValuePrompt = "البحث عن منتج";
-                this.SearchStatus = true;
+                        //txtParCode.Focus();
+                        //cmdItems.Text = null;
+                        //cmdItems.Properties.NullValuePrompt = st.isEnglish() ? "Find a product" : "البحث عن منتج";
+                        this.SearchStatus = true;
+                    }
+
+                       
                 
                
                 }
@@ -2150,7 +2218,7 @@ namespace PointOfSaleSedek._101_Adds
                     {
 
 
-                        MaterialMessageBox.Show("لا يوجد اصناف", MessageBoxButtons.OK);
+                        MaterialMessageBox.Show(st.isEnglish() ? "There are no items" : "لا يوجد اصناف", MessageBoxButtons.OK);
                         return;
 
 
@@ -2265,7 +2333,7 @@ namespace PointOfSaleSedek._101_Adds
                     {
 
 
-                        MaterialMessageBox.Show("لا يوجد اصناف", MessageBoxButtons.OK);
+                        MaterialMessageBox.Show(st.isEnglish() ? "There are no items" : "لا يوجد اصناف", MessageBoxButtons.OK);
                         return;
 
 
@@ -2374,63 +2442,6 @@ namespace PointOfSaleSedek._101_Adds
                 else if (e.KeyCode == Keys.Escape)
                 {
 
-                    //Int64 SaleMasterCode = Convert.ToInt64(lblSaleMasterId.Text);
-                    // var GetDataFromGrid = gcSaleDetail.DataSource as List<SaleDetailView>;
-                    // if (GetDataFromGrid == null || GetDataFromGrid.Count <= 0)
-                    // {
-
-
-                    //     MaterialMessageBox.Show("لا يوجد اصناف", MessageBoxButtons.OK);
-                    //     return;
-
-
-                    // }
-
-
-                    // else if (this.Status == "New")
-                    // {
-
-                    //     SplashScreenManager.ShowForm(typeof(WaitForm1));
-                    //     SaveSaleMaster();
-                    //     SaveSaleDetail();
-                    //     SplashScreenManager.CloseForm();
-
-                    //     var Master = (from a in context.SaleMasterViews where a.SaleMasterCode == SaleMasterCode && a.Operation_Type_Id == 2 && a.EntryDate == DateTime.Today select a).ToList();
-                    //     var Detail = (from a in context.SaleDetailViews where a.SaleMasterCode == SaleMasterCode && a.Operation_Type_Id == 2 && a.EntryDate == DateTime.Today select a).ToList();
-
-                    //     Report rpt = new Report();
-                    //     rpt.Load(@"c:\Users\islam\Desktop\Untitled.frx");
-                    //     rpt.RegisterData(Master, "Header");
-                    //     rpt.RegisterData(Detail, "Lines");
-                    //       //rpt.PrintSettings.ShowDialog = false;
-                    //      //rpt.Design();
-                    //     rpt.Design();
-
-
-
-
-
-
-                    // }
-                    // else if (this.Status == "Old")
-                    // {
-
-                    //     SaveSaleMaster();
-                    //     SaveSaleDetail();
-                    //     var Master = (from a in context.SaleMasterViews where a.SaleMasterCode == SaleMasterCode && a.Operation_Type_Id == 2 && a.EntryDate == DateTime.Today select a).ToList();
-                    //     var Detail = (from a in context.SaleDetailViews where a.SaleMasterCode == SaleMasterCode && a.Operation_Type_Id == 2 && a.EntryDate == DateTime.Today select a).ToList();
-
-                    //     Report rpt = new Report();
-                    //     rpt.Load(@"Reports\Untitled.frx");
-                    //     rpt.RegisterData(Master, "Header");
-                    //     rpt.RegisterData(Detail, "Lines");
-                    //     // rpt.PrintSettings.ShowDialog = false;
-                    //     //rpt.Design();
-                    //     //rpt.Show();
-
-                    // }
-
-                    // New();
 
 
                     Int64 SaleMasterCode = Convert.ToInt64(lblSaleMasterId.Text);
@@ -2439,7 +2450,7 @@ namespace PointOfSaleSedek._101_Adds
                     {
 
 
-                        MaterialMessageBox.Show("لا يوجد اصناف", MessageBoxButtons.OK);
+                        MaterialMessageBox.Show(st.isEnglish() ? "There are no items" : "لا يوجد اصناف", MessageBoxButtons.OK);
                         return;
 
 
@@ -2490,7 +2501,7 @@ namespace PointOfSaleSedek._101_Adds
                     }
                 }
                 CmdCatagory.Text = null;
-                CmdCatagory.Properties.NullValuePrompt = "البحث عن مجموعة";
+                CmdCatagory.Properties.NullValuePrompt = st.isEnglish() ? "Search for a Category" :"البحث عن مجموعة";
 
 
             }
@@ -2506,7 +2517,7 @@ namespace PointOfSaleSedek._101_Adds
                 }
             }
             CmdCatagory.Text = null;
-            CmdCatagory.Properties.NullValuePrompt = "البحث عن مجموعة";
+            CmdCatagory.Properties.NullValuePrompt = st.isEnglish() ? "Search for a Category" : "البحث عن مجموعة";
         }
 
         private void cmdItems_SelectedIndexChanged(object sender, EventArgs e)
@@ -2569,49 +2580,273 @@ namespace PointOfSaleSedek._101_Adds
 
                     ItemCardView item = context.ItemCardViews.Where(x => x.Name == cmdItems.Text && x.AddItem == true).FirstOrDefault();
 
-
-                    tb.Appearance.Header.Font = new Font("Calibri", 13, FontStyle.Bold);
-                    FlowLayoutPanel flp = new FlowLayoutPanel();
-                    flp.Dock = DockStyle.Fill;
-
-
-
-                    SimpleButton b = new SimpleButton();
-                    b.Size = new Size(120, 120);
-                    b.Font = new Font("Calibri", 11, FontStyle.Bold);
-                    b.ImageOptions.Image = imageCollection1.Images[0];
-                    b.ImageOptions.ImageToTextAlignment = ImageAlignToText.BottomCenter;
-                    b.Appearance.BackColor = Color.SteelBlue;
-                    b.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat;
-                    b.Appearance.BorderColor = Color.Firebrick;
-                    b.Text = item.Name;
-                    b.Tag = item;
-                    b.Click += B_Click;
-                    flp.Controls.Add(b);
+                    if (item != null)
+                    {
+                        tb.Appearance.Header.Font = new Font("Calibri", 13, FontStyle.Bold);
+                        FlowLayoutPanel flp = new FlowLayoutPanel();
+                        flp.Dock = DockStyle.Fill;
 
 
-                    flp.AutoScroll = true;
 
-                    for (int i = 0; i < tb.TabControl.TabPages.Count; i++)
-                        if (tb.TabControl.TabPages[i].Text == item.CategoryName)
-                        {
-                            tb.TabControl.SelectedTabPage = tb.TabControl.TabPages[i];
-                            break;
-                        }
+                        SimpleButton b = new SimpleButton();
+                        b.Size = new Size(120, 120);
+                        b.Font = new Font("Calibri", 11, FontStyle.Bold);
+                        b.ImageOptions.Image = imageCollection1.Images[0];
+                        b.ImageOptions.ImageToTextAlignment = ImageAlignToText.BottomCenter;
+                        b.Appearance.BackColor = Color.SteelBlue;
+                        b.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat;
+                        b.Appearance.BorderColor = Color.Firebrick;
+                        b.Text = item.Name;
+                        b.Tag = item;
+                        b.Click += B_Click;
+                        flp.Controls.Add(b);
 
-                    tb.Controls.Clear();
-                    tb.Controls.Add(flp);
-                    tabItems.TabPages.Where(x => x.Text == item.Name);
 
+                        flp.AutoScroll = true;
+
+                        for (int i = 0; i < tb.TabControl.TabPages.Count; i++)
+                            if (tb.TabControl.TabPages[i].Text == item.CategoryName)
+                            {
+                                tb.TabControl.SelectedTabPage = tb.TabControl.TabPages[i];
+                                break;
+                            }
+
+                        tb.Controls.Clear();
+                        tb.Controls.Add(flp);
+                        tabItems.TabPages.Where(x => x.Text == item.Name);
+
+                    }
+                    //txtParCode.Focus();
+                    //cmdItems.Text = null;
+                    //cmdItems.Properties.NullValuePrompt = st.isEnglish() ? "Search for products" :"البحث عن منتج";
+                    this.SearchStatus = true;
                 }
-                txtParCode.Focus();
-                cmdItems.Text = null;
-                cmdItems.Properties.NullValuePrompt = "البحث عن منتج";
-                this.SearchStatus = true;
+                    
 
 
             }
         }
+
+        private void tabItems_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnser_Click(object sender, EventArgs e)
+        {
+            frmAddCustomer frm = new frmAddCustomer();
+            frm.ShowDialog();
+        }
+
+        private void btnCustomerHistory_Click(object sender, EventArgs e)
+        {
+            frmCafeInvoiceSearchForCustomer frm = new frmCafeInvoiceSearchForCustomer();
+            frm.ShowDialog();
+            txtParCode.Text = "";
+            txtParCode.Focus();
+        }
+
+        private void slkCustomers_EditValueChanged(object sender, EventArgs e)
+        {
+            if (slkCustomers.EditValue != null && slkCustomers.EditValue.ToString() != "0" && slkCustomers.Text.Trim() != "")
+            {
+                btnCustomerHistory.Enabled = true;
+            }
+            else
+            {
+                btnCustomerHistory.Enabled = false;
+            }
+        }
+
+        private void btnBack_Click_1(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrWhiteSpace(txtQty.Text))
+            {
+
+                txtQty.Text = txtQty.Text.Remove(txtQty.Text.Length - 1, 1);
+                txtParCode.Focus();
+            }
+        }
+
+        
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            SaveSaleDetail();
+            txtParCode.Focus();
+        }
+
+        private void repositoryItemButtonEdit3_Click(object sender, EventArgs e)
+        {
+            var RowCount = gvSaleDetail.RowCount;
+            var FocusRow = gvSaleDetail.GetFocusedRow() as SaleDetailView;
+
+            List<SaleDetailView> gcData = gcCafeSaleDetail.DataSource as List<SaleDetailView>;
+            gcData.Remove(FocusRow);
+            gcCafeSaleDetail.DataSource = gcData;
+            double sum = 0;
+            gcData.ForEach(x =>
+            {
+                sum += Convert.ToDouble(x.Total);
+            });
+
+
+
+            gcCafeSaleDetail.RefreshDataSource();
+
+            if (gvSaleDetail.RowCount <= 0)
+            {
+                btnSave.Enabled = false;
+
+            }
+            else
+            {
+
+                btnSave.Enabled = true;
+
+
+            }
+
+
+
+            lblFinalBeforDesCound.Text = sum.ToString();
+
+            lblFinalTotal.Text = Convert.ToString(sum - Convert.ToDouble(lblDiscount.Text));
+            lblItemQty.Text = (RowCount - 1).ToString();
+            txtParCode.ResetText();
+            txtQty.ResetText();
+            txtParCode.Focus();
+        }
+
+        private void gvSaleDetail_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
+        {
+
+          var text =   e.Column.Name;
+            if (text == "colQty") {
+                List<SaleDetailView> gcData = gcCafeSaleDetail.DataSource as List<SaleDetailView>;
+                var FocusRow = gvSaleDetail.GetFocusedRow() as SaleDetailView;
+
+                try
+                {
+                    if (Convert.ToDouble(e.Value) <= 0)
+                    {
+                        gcData.Where(x => x.ItemCode == FocusRow.ItemCode).ToList()[0].Qty = 1.0;
+                    }
+                    else
+                    {
+
+                        gcData.Where(x => x.ItemCode == FocusRow.ItemCode).ToList()[0].Qty = Convert.ToDouble(e.Value);
+                    }
+                }
+                catch
+                {
+                    gcData.Where(x => x.ItemCode == FocusRow.ItemCode).ToList()[0].Qty = 1.0;
+                }
+
+                double sum = 0;
+                gcData.ForEach(x =>
+                {
+                    x.Total = x.Qty * x.Price;
+                    sum += Convert.ToDouble(x.Total);
+                });
+                gcCafeSaleDetail.DataSource = null;
+                gcCafeSaleDetail.DataSource = gcData;
+                gcCafeSaleDetail.RefreshDataSource();
+
+                lblItemQty.Text = gvSaleDetail.RowCount.ToString();
+                lblFinalBeforDesCound.Text = sum.ToString();
+                lblFinalTotal.Text = Convert.ToString(sum - Convert.ToDouble(lblDiscount.Text));
+                txtParCode.ResetText();
+                txtParCode.Text = "";
+                txtParCode.Focus();
+            }
+            else if(text == "colTotal") {
+
+                List<SaleDetailView> gcData = gcCafeSaleDetail.DataSource as List<SaleDetailView>;
+                var FocusRow = gvSaleDetail.GetFocusedRow() as SaleDetailView;
+
+                try
+                {
+                    if (Convert.ToDouble(e.Value) <= 0)
+                    {
+                        gcData.Where(x => x.ItemCode == FocusRow.ItemCode).ToList()[0].Total = 1.0;
+                    }
+                    else
+                    {
+
+                        gcData.Where(x => x.ItemCode == FocusRow.ItemCode).ToList()[0].Total = Convert.ToDouble(e.Value);
+                    }
+                }
+                catch
+                {
+                    gcData.Where(x => x.ItemCode == FocusRow.ItemCode).ToList()[0].Total = 1.0;
+                }
+
+                double sum = 0;
+                gcData.ForEach(x =>
+                {
+                    x.Qty  = x.Total / x.Price;
+                    sum += Convert.ToDouble(x.Total);
+                });
+                gcCafeSaleDetail.DataSource = null;
+                gcCafeSaleDetail.DataSource = gcData;
+                gcCafeSaleDetail.RefreshDataSource();
+
+                lblItemQty.Text = gvSaleDetail.RowCount.ToString();
+                lblFinalBeforDesCound.Text = sum.ToString();
+                lblFinalTotal.Text = Convert.ToString(sum - Convert.ToDouble(lblDiscount.Text));
+                txtParCode.ResetText();
+                txtParCode.Text = "";
+                txtParCode.Focus();
+            }
+
+        }
+
+        private void gvSaleDetail_CellValueChanging(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
+         {
+            //List<SaleDetailView> gcData = gcCafeSaleDetail.DataSource as List<SaleDetailView>;
+            //var FocusRow = gvSaleDetail.GetFocusedRow() as SaleDetailView;
+
+            //try
+            //{
+            //    if (Convert.ToDouble(e.Value) <= 0)
+            //    {
+            //        gcData.Where(x => x.ItemCode == FocusRow.ItemCode).ToList()[0].Qty = 1.0;
+            //    }
+            //    else
+            //    {
+
+            //        gcData.Where(x => x.ItemCode == FocusRow.ItemCode).ToList()[0].Qty = Convert.ToDouble(e.Value);
+            //    }
+            //}
+            //catch {
+            //    gcData.Where(x => x.ItemCode == FocusRow.ItemCode).ToList()[0].Qty = 1.0;
+            //}
+          
+
+             
+            //double sum = 0;
+            //gcData.ForEach(x =>
+            //{
+            //    x.Total = x.Qty * x.Price;
+            //    sum += Convert.ToDouble(x.Total);
+            //});
+            //gcCafeSaleDetail.DataSource = null;
+            //gcCafeSaleDetail.DataSource = gcData;
+            //gcCafeSaleDetail.RefreshDataSource();
+
+            //lblItemQty.Text = gvSaleDetail.RowCount.ToString();
+            //lblFinalBeforDesCound.Text = sum.ToString();
+
+            //lblFinalTotal.Text = Convert.ToString(sum - Convert.ToDouble(lblDiscount.Text));
+            ////txtParCode.ResetText();
+
+
+            ////txtParCode.Text = "";
+            ////txtParCode.Focus();
+        }
+
+        
     }
 
 

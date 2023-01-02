@@ -17,14 +17,38 @@ namespace PointOfSaleSedek._101_Adds
 {
     public partial class frmSuperMarketInvoiceSearch : DevExpress.XtraEditors.XtraForm
     {
-        readonly SaleEntities context = new SaleEntities();
+        readonly POSEntity context = new POSEntity();
         readonly Static st = new Static();
         public frmSuperMarketInvoiceSearch()
         {
             InitializeComponent();
+            langu();
             FillGrid();
         }
-       void FillGrid()
+
+        void langu()
+        {
+
+            this.RightToLeft = st.isEnglish() ? RightToLeft.No : RightToLeft.Yes;
+            tableLayoutPanel2.RightToLeft = st.isEnglish() ? RightToLeft.Yes : RightToLeft.No;
+            this.gridColumn1.Caption = st.isEnglish() ? "invoice number" : "رقم الفاتورة";
+            this.gridColumn2.Caption = st.isEnglish() ? "Date" : "التاريخ";
+
+            this.gridColumn3.Caption = st.isEnglish() ? "Total" : "الاجمالي";
+            this.gridColumn3.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+           new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "FinalTotal",  st.isEnglish()?"Total = {0:N}": "الاجمالي = {0:N}")});
+            this.gridColumn4.Caption = st.isEnglish() ? "Created by" : "البائع";
+            materialContextMenuStrip1.Items[0].Text = st.isEnglish() ? "Cancel This Invoice" : "اللغاء الفاتورة";
+
+            this.groupControl1.CustomHeaderButtons[0].Properties.Caption = st.isEnglish() ? "Preview" : "معاينة";
+            this.groupControl1.Text = st.isEnglish() ? "invoice number" : "رقم الفاتورة";
+            this.groupControl1.Text = st.isEnglish() ? "invoice number" : "رقم الفاتورة";
+
+
+
+
+        }
+        void FillGrid()
         {
              
             gcSaleMaster.DataSource = context.SaleMasterViews.Where(x => x.EntryDate.Day == DateTime.Today.Day && x.EntryDate.Month == DateTime.Today.Month && x.EntryDate.Year == DateTime.Today.Year && x.Operation_Type_Id==2).ToList();
@@ -35,14 +59,14 @@ namespace PointOfSaleSedek._101_Adds
 
         private void groupControl1_CustomButtonClick(object sender, DevExpress.XtraBars.Docking2010.BaseButtonEventArgs e)
         {
-            if (e.Button.Properties.Caption == "معاينة")
+            if (e.Button.Properties.Caption == "معاينة" || e.Button.Properties.Caption == "Preview")
             {
                 if (Application.OpenForms.OfType<frmSuperMarketSales>().Any())
                 {
                     if (gvSaleMaster.RowCount <= 0)
                     {
 
-                        MaterialMessageBox.Show("!لا يوجد اوردرات للمعاينة", MessageBoxButtons.OK);
+                        MaterialMessageBox.Show(st.isEnglish() ? "There are no orders for viewing" : "!لا يوجد اوردرات للمعاينة", MessageBoxButtons.OK);
                         return;
 
 
@@ -88,7 +112,7 @@ namespace PointOfSaleSedek._101_Adds
                     frm.btnDiscount.Enabled = false;
                     frm.btnAddCustomer.Enabled = false;
                   
-                    Int64 User_Code = st.User_Code();
+                    Int64 User_Code = st.GetUser_Code();
 
                     var result = context.Auth_View.Where(View => View.User_Code == User_Code && (View.User_IsDeleted == 0)).ToList();
 
@@ -158,7 +182,7 @@ namespace PointOfSaleSedek._101_Adds
                 _item_History_Transactions.ForEach(x => {
 
                    
-                    using (SaleEntities cont = new SaleEntities())
+                    using (POSEntity cont = new POSEntity())
                     {
                         Item_History _item_History;
 
@@ -198,7 +222,7 @@ namespace PointOfSaleSedek._101_Adds
 
 
 
-            using (SaleEntities context2 = new SaleEntities())
+            using (POSEntity context2 = new POSEntity())
             {
                 var Details = context2.SaleDetails.Where(w => w.SaleMasterCode == FocusRow.SaleMasterCode && w.EntryDate.Day == FocusRow.EntryDate.Day && w.EntryDate.Month == FocusRow.EntryDate.Month && w.EntryDate.Year == FocusRow.EntryDate.Year && w.Operation_Type_Id==2 && w.IsDeleted == 0).ToList();
                 if (Details.Count > 0)
@@ -223,7 +247,7 @@ namespace PointOfSaleSedek._101_Adds
             
 
 
-            using (SaleEntities cont  = new SaleEntities())
+            using (POSEntity cont  = new POSEntity())
             {
                 gcSaleMaster.DataSource = null;
                

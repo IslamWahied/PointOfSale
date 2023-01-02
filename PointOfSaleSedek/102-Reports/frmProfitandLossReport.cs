@@ -1,6 +1,7 @@
 ﻿
 using DataRep;
 using FastReport;
+using PointOfSaleSedek.HelperClass;
 using PointOfSaleSedek.Model;
 using System;
 using System.Collections.Generic;
@@ -16,58 +17,214 @@ namespace PointOfSaleSedek._102_Reports
 {
     public partial class frmProfitandLossReport : MaterialSkin.Controls.MaterialForm
     {
-        SaleEntities context = new SaleEntities();
+        POSEntity context = new POSEntity();
+        BackOfficeEntity.db_a8f74e_posEntities _server = new BackOfficeEntity.db_a8f74e_posEntities();
+        readonly Static st = new Static();
         public frmProfitandLossReport()
         {
             InitializeComponent();
+            langu();
+            FillslkWarhouse();
+        }
+
+        public void FillslkWarhouse()
+        {
+            DataTable dt = new DataTable();
+            var result = context.Branches.ToList();
+            slkWarhouse.Properties.DataSource = result;
+            slkWarhouse.Properties.ValueMember = "Branches_Code";
+            slkWarhouse.Properties.DisplayMember = "Branches_Name";
+
+            Int64 branchCode = st.GetBranch_Code();
+            if (branchCode != 0)
+            {
+                slkWarhouse.EditValue = branchCode;
+                slkWarhouse.Enabled = false;
+               
+            }
+        }
+        void langu()
+        {
+
+            //this.RightToLeft = st.isEnglish() ? RightToLeft.Yes : RightToLeft.No;
+            //this.RightToLeftLayout = st.isEnglish() ? true : false;
+            this.Text = st.isEnglish() ? "Profits and Losses Bills" : "تقرير المصروفات";
+
+
+            materialLabel1.Text = st.isEnglish() ? "From Date" : "من تاريخ";
+
+          
+
+
+
+            materialLabel2.Text = st.isEnglish() ? "To Date" : "الي تاريخ";
+          
+
+
+            simpleButton1.Text = st.isEnglish() ? "View" : "عرض";
+
         }
 
         private void simpleButton1_Click(object sender, EventArgs e)
         {
 
+            Int64 selectedBranch = 0;
 
+            if (!String.IsNullOrWhiteSpace(slkWarhouse.Text)) {
+                selectedBranch = Convert.ToInt64(slkWarhouse.EditValue);
+            }
 
-            // Get Total Sale
-            var dateTo = Convert.ToDateTime(Convert.ToDateTime(dtTo.EditValue).AddDays(1));
-            var Sales = context.SaleMasterViews.Where(x=>x.IsDeleted==0 && x.Operation_Type_Id==2 && x.EntryDate >= dtFrom.DateTime && x.EntryDate <= dateTo).ToList<SaleMasterView>();
-            double TotalSales = 0;
-            Sales.ForEach(x =>
-            {
-                TotalSales += x.TotalBeforDiscount;
-            });
-
-
-
-
-
-            // Get Total Expenses
-            var Expenses = context.ExpensesViews.Where(x => x.IsDeleted == 0 && x.Date  >= dtFrom.DateTime &&  x.Date  <= dateTo).ToList();
-            double TotalExpenses = 0;
-            Expenses.ForEach(x =>
-            {
-                TotalExpenses += x.ExpensesQT;
-            });
-
-
-            // Get TOtal Discount
-            var Descount = context.SaleMasterViews.Where(x => x.IsDeleted == 0 && x.Operation_Type_Id == 2 && x.Discount>0 && x.EntryDate >= dtFrom.DateTime && x.EntryDate <= dateTo).ToList<SaleMasterView>();
             double TotalDescount = 0;
-            Descount.ForEach(x =>
-            {
-                TotalDescount += x.Discount;
-            });
+            double TotalExpenses = 0;
+            double TotalSales = 0;
 
-
-            // Get Purchess Count
-            var Purchess = context.SaleMasterViews.Where(x => x.IsDeleted == 0 && x.Operation_Type_Id == 1 && x.EntryDate >= dtFrom.DateTime && x.EntryDate <= dateTo).ToList<SaleMasterView>();
             double TotalPurchess = 0;
-            Purchess.ForEach(x =>
-            {
-                TotalPurchess += x.FinalTotal;
-            });
 
+            // Back Office Server
+            Int64 branchCode = st.GetBranch_Code();
+            if (branchCode == 0)
+            {
+
+                // All
+                if (selectedBranch == 0)
+                {
+                    // Get Total Sale
+                    var dateTo = Convert.ToDateTime(Convert.ToDateTime(dtTo.EditValue).AddDays(1));
+                    var Sales = _server.SaleMasterViews.Where(x => x.IsDeleted == 0 && x.Operation_Type_Id == 2 && x.EntryDate >= dtFrom.DateTime && x.EntryDate <= dateTo).ToList<BackOfficeEntity.SaleMasterView>();
+                    TotalSales = 0;
+                    Sales.ForEach(x =>
+                    {
+                        TotalSales += x.TotalBeforDiscount;
+                    });
+
+
+
+
+
+                    // Get Total Expenses
+                    var Expenses = _server.ExpensesViews.Where(x => x.IsDeleted == 0 && x.Date >= dtFrom.DateTime && x.Date <= dateTo).ToList();
+                    TotalExpenses = 0;
+                    Expenses.ForEach(x =>
+                    {
+                        TotalExpenses += x.ExpensesQT;
+                    });
+
+
+                    // Get TOtal Discount
+                    var Descount = _server.SaleMasterViews.Where(x => x.IsDeleted == 0 && x.Operation_Type_Id == 2 && x.Discount > 0 && x.EntryDate >= dtFrom.DateTime && x.EntryDate <= dateTo).ToList<BackOfficeEntity.SaleMasterView>();
+                    TotalDescount = 0;
+                    Descount.ForEach(x =>
+                    {
+                        TotalDescount += x.Discount;
+                    });
+
+
+                    // Get Purchess Count
+                    var Purchess = _server.SaleMasterViews.Where(x => x.IsDeleted == 0 && x.Operation_Type_Id == 1 && x.EntryDate >= dtFrom.DateTime && x.EntryDate <= dateTo).ToList<BackOfficeEntity.SaleMasterView>();
+                    TotalPurchess = 0;
+                    Purchess.ForEach(x =>
+                    {
+                        TotalPurchess += x.FinalTotal;
+                    });
+
+                }
+                // Only Branch
+                else
+                {
+
+
+                    // Get Total Sale
+                    var dateTo = Convert.ToDateTime(Convert.ToDateTime(dtTo.EditValue).AddDays(1));
+                    var Sales = _server.SaleMasterViews.Where(x => x.IsDeleted == 0 && x.Operation_Type_Id == 2 && x.EntryDate >= dtFrom.DateTime && x.EntryDate <= dateTo && x.Branches_Code == selectedBranch).ToList<BackOfficeEntity.SaleMasterView>();
+                    TotalSales = 0;
+                    Sales.ForEach(x =>
+                    {
+                        TotalSales += x.TotalBeforDiscount;
+                    });
+
+
+
+
+
+                    // Get Total Expenses
+                    var Expenses = _server.ExpensesViews.Where(x => x.IsDeleted == 0 && x.Date >= dtFrom.DateTime && x.Date <= dateTo && x.Branches_Code == selectedBranch).ToList();
+                    TotalExpenses = 0;
+                    Expenses.ForEach(x =>
+                    {
+                        TotalExpenses += x.ExpensesQT;
+                    });
+
+
+                    // Get TOtal Discount
+                    var Descount = _server.SaleMasterViews.Where(x => x.IsDeleted == 0 && x.Operation_Type_Id == 2 && x.Discount > 0 && x.EntryDate >= dtFrom.DateTime && x.EntryDate <= dateTo && x.Branches_Code == selectedBranch).ToList<BackOfficeEntity.SaleMasterView>();
+                    TotalDescount = 0;
+                    Descount.ForEach(x =>
+                    {
+                        TotalDescount += x.Discount;
+                    });
+
+
+                    // Get Purchess Count
+                    var Purchess = _server.SaleMasterViews.Where(x => x.IsDeleted == 0 && x.Operation_Type_Id == 1 && x.EntryDate >= dtFrom.DateTime && x.EntryDate <= dateTo && x.Branches_Code == selectedBranch).ToList<BackOfficeEntity.SaleMasterView>();
+                    TotalPurchess = 0;
+                    Purchess.ForEach(x =>
+                    {
+                        TotalPurchess += x.FinalTotal;
+                    });
+                }
+
+
+
+            }
+            else
+            {
+                // Branch Local
+                // Get Total Sale
+                var dateTo = Convert.ToDateTime(Convert.ToDateTime(dtTo.EditValue).AddDays(1));
+                var Sales = context.SaleMasterViews.Where(x => x.IsDeleted == 0 && x.Operation_Type_Id == 2 && x.EntryDate >= dtFrom.DateTime && x.EntryDate <= dateTo).ToList<SaleMasterView>();
+                  TotalSales = 0;
+                Sales.ForEach(x =>
+                {
+                    TotalSales += x.TotalBeforDiscount;
+                });
+
+
+
+
+
+                // Get Total Expenses
+                var Expenses = context.ExpensesViews.Where(x => x.IsDeleted == 0 && x.Date >= dtFrom.DateTime && x.Date <= dateTo).ToList();
+                  TotalExpenses = 0;
+                Expenses.ForEach(x =>
+                {
+                    TotalExpenses += x.ExpensesQT;
+                });
+
+
+                // Get TOtal Discount
+                var Descount = context.SaleMasterViews.Where(x => x.IsDeleted == 0 && x.Operation_Type_Id == 2 && x.Discount > 0 && x.EntryDate >= dtFrom.DateTime && x.EntryDate <= dateTo).ToList<SaleMasterView>();
+                  TotalDescount = 0;
+                Descount.ForEach(x =>
+                {
+                    TotalDescount += x.Discount;
+                });
+
+
+                // Get Purchess Count
+                var Purchess = context.SaleMasterViews.Where(x => x.IsDeleted == 0 && x.Operation_Type_Id == 1 && x.EntryDate >= dtFrom.DateTime && x.EntryDate <= dateTo).ToList<SaleMasterView>();
+                  TotalPurchess = 0;
+                Purchess.ForEach(x =>
+                {
+                    TotalPurchess += x.FinalTotal;
+                });
+
+            }
+
+             
 
             List<ProfitAndLosse> _profitAndLosseList = new List<ProfitAndLosse>();
+
+
             ProfitAndLosse _profitAndLosse = new ProfitAndLosse() { 
             
             Descount = TotalDescount,

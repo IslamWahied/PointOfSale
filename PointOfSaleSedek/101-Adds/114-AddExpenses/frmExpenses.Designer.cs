@@ -198,6 +198,7 @@
             this.gvUnitCard.OptionsView.ShowAutoFilterRow = true;
             this.gvUnitCard.OptionsView.ShowFilterPanelMode = DevExpress.XtraGrid.Views.Base.ShowFilterPanelMode.ShowAlways;
             this.gvUnitCard.OptionsView.ShowFooter = true;
+            this.gvUnitCard.RowHeight = 30;
             // 
             // gridColumn2
             // 
@@ -250,6 +251,8 @@
             // 
             this.labelControl2.Appearance.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl2.Appearance.Options.UseFont = true;
+            this.labelControl2.Appearance.Options.UseTextOptions = true;
+            this.labelControl2.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.labelControl2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.labelControl2.Location = new System.Drawing.Point(316, 3);
             this.labelControl2.Name = "labelControl2";

@@ -24,5 +24,9 @@ namespace DataRep
         public long Sale_Master_Code { get; set; }
         public bool Is_Used { get; set; }
         public double Current_Qty_Now { get; set; }
+        public long Branch_Id { get; set; }
+        public long Warhouse_Code { get; set; }
+        public long Warhouse_Transfer_Code { get; set; }
+        public bool is_Back_Office_Updated { get; set; }
     }
 }

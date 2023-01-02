@@ -45,18 +45,21 @@ namespace PointOfSaleSedek._101_Adds
             // 
             this.labelControl1.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl1.Appearance.Options.UseFont = true;
+            this.labelControl1.Appearance.Options.UseTextOptions = true;
+            this.labelControl1.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.labelControl1.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.labelControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelControl1.Location = new System.Drawing.Point(241, 3);
+            this.labelControl1.Location = new System.Drawing.Point(222, 3);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(82, 55);
+            this.labelControl1.Size = new System.Drawing.Size(101, 55);
             this.labelControl1.TabIndex = 0;
             this.labelControl1.Text = "قيمة الخصم";
             // 
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 26.99387F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 73.00613F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 32.82209F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 67.17792F));
             this.tableLayoutPanel1.Controls.Add(this.labelControl1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.txtDiscount, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 1, 1);
@@ -86,7 +89,7 @@ namespace PointOfSaleSedek._101_Adds
             this.txtDiscount.Properties.LookAndFeel.UseDefaultLookAndFeel = false;
             this.txtDiscount.Properties.Mask.EditMask = "\\d+(\\R.\\d{0,2})?";
             this.txtDiscount.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
-            this.txtDiscount.Size = new System.Drawing.Size(232, 55);
+            this.txtDiscount.Size = new System.Drawing.Size(213, 55);
             this.txtDiscount.TabIndex = 24;
             // 
             // tableLayoutPanel2
@@ -103,7 +106,7 @@ namespace PointOfSaleSedek._101_Adds
             this.tableLayoutPanel2.RowCount = 2;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 21.53846F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 78.46154F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(232, 66);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(213, 66);
             this.tableLayoutPanel2.TabIndex = 25;
             // 
             // btnAdd
@@ -113,13 +116,13 @@ namespace PointOfSaleSedek._101_Adds
             this.btnAdd.Appearance.Options.UseBackColor = true;
             this.btnAdd.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnAdd.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnAdd.ImageOptions.Image")));
-            this.btnAdd.Location = new System.Drawing.Point(120, 17);
+            this.btnAdd.Location = new System.Drawing.Point(110, 17);
             this.btnAdd.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue;
             this.btnAdd.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.GhostWhite;
             this.btnAdd.LookAndFeel.SkinName = "The Bezier";
             this.btnAdd.LookAndFeel.UseDefaultLookAndFeel = false;
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(109, 46);
+            this.btnAdd.Size = new System.Drawing.Size(100, 46);
             this.btnAdd.TabIndex = 0;
             this.btnAdd.Text = "اضافة";
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
@@ -132,12 +135,12 @@ namespace PointOfSaleSedek._101_Adds
             this.btnCancel.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnCancel.ImageOptions.Image")));
             this.btnCancel.Location = new System.Drawing.Point(3, 17);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(111, 46);
+            this.btnCancel.Size = new System.Drawing.Size(101, 46);
             this.btnCancel.TabIndex = 1;
             this.btnCancel.Text = "اغلاق";
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
-            // frmDiscount
+            // frmCafeDiscount
             // 
             this.AcceptButton = this.btnAdd;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -152,7 +155,7 @@ namespace PointOfSaleSedek._101_Adds
             this.MaximumSize = new System.Drawing.Size(326, 163);
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(326, 163);
-            this.Name = "frmDiscount";
+            this.Name = "frmCafeDiscount";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.RightToLeftLayout = true;
             this.ShowInTaskbar = false;

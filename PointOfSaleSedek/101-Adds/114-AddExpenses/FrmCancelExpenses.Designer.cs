@@ -37,9 +37,9 @@ namespace PointOfSaleSedek._101_Adds._114_AddExpenses
             this.dtTo = new DevExpress.XtraEditors.DateEdit();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.gcItemCard = new DevExpress.XtraGrid.GridControl();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.حذفToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.gcItemCard = new DevExpress.XtraGrid.GridControl();
             this.gvItemCard = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -52,8 +52,8 @@ namespace PointOfSaleSedek._101_Adds._114_AddExpenses
             ((System.ComponentModel.ISupportInitialize)(this.dtTo.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtTo.Properties)).BeginInit();
             this.tableLayoutPanel2.SuspendLayout();
-            this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcItemCard)).BeginInit();
+            this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gvItemCard)).BeginInit();
             this.SuspendLayout();
             // 
@@ -88,6 +88,9 @@ namespace PointOfSaleSedek._101_Adds._114_AddExpenses
             this.dtFrom.Name = "dtFrom";
             this.dtFrom.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtFrom.Properties.Appearance.Options.UseFont = true;
+            this.dtFrom.Properties.Appearance.Options.UseTextOptions = true;
+            this.dtFrom.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.dtFrom.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.dtFrom.Properties.AutoHeight = false;
             this.dtFrom.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -133,6 +136,9 @@ namespace PointOfSaleSedek._101_Adds._114_AddExpenses
             this.dtTo.Name = "dtTo";
             this.dtTo.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtTo.Properties.Appearance.Options.UseFont = true;
+            this.dtTo.Properties.Appearance.Options.UseTextOptions = true;
+            this.dtTo.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.dtTo.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.dtTo.Properties.AutoHeight = false;
             this.dtTo.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -173,6 +179,18 @@ namespace PointOfSaleSedek._101_Adds._114_AddExpenses
             this.tableLayoutPanel2.Size = new System.Drawing.Size(748, 297);
             this.tableLayoutPanel2.TabIndex = 1;
             // 
+            // gcItemCard
+            // 
+            this.gcItemCard.ContextMenuStrip = this.contextMenuStrip1;
+            this.gcItemCard.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gcItemCard.Location = new System.Drawing.Point(3, 3);
+            this.gcItemCard.MainView = this.gvItemCard;
+            this.gcItemCard.Name = "gcItemCard";
+            this.gcItemCard.Size = new System.Drawing.Size(742, 291);
+            this.gcItemCard.TabIndex = 10;
+            this.gcItemCard.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gvItemCard});
+            // 
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -186,18 +204,6 @@ namespace PointOfSaleSedek._101_Adds._114_AddExpenses
             this.حذفToolStripMenuItem.Size = new System.Drawing.Size(99, 22);
             this.حذفToolStripMenuItem.Text = "حذف";
             this.حذفToolStripMenuItem.Click += new System.EventHandler(this.حذفToolStripMenuItem_Click);
-            // 
-            // gcItemCard
-            // 
-            this.gcItemCard.ContextMenuStrip = this.contextMenuStrip1;
-            this.gcItemCard.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gcItemCard.Location = new System.Drawing.Point(3, 3);
-            this.gcItemCard.MainView = this.gvItemCard;
-            this.gcItemCard.Name = "gcItemCard";
-            this.gcItemCard.Size = new System.Drawing.Size(742, 291);
-            this.gcItemCard.TabIndex = 10;
-            this.gcItemCard.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gvItemCard});
             // 
             // gvItemCard
             // 
@@ -307,8 +313,8 @@ namespace PointOfSaleSedek._101_Adds._114_AddExpenses
             ((System.ComponentModel.ISupportInitialize)(this.dtTo.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtTo.Properties)).EndInit();
             this.tableLayoutPanel2.ResumeLayout(false);
-            this.contextMenuStrip1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gcItemCard)).EndInit();
+            this.contextMenuStrip1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gvItemCard)).EndInit();
             this.ResumeLayout(false);
 

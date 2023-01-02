@@ -12,16 +12,51 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using PointOfSaleSedek.Model;
 using FastReport;
+using PointOfSaleSedek.HelperClass;
 
 namespace PointOfSaleSedek._101_Adds._114_AddExpenses
 {
     public partial class frmShiftsReport : DevExpress.XtraEditors.XtraForm
     {
-        SaleEntities Context = new SaleEntities();
+        POSEntity Context = new POSEntity();
+        readonly Static st = new Static();
         public frmShiftsReport()
         {
             InitializeComponent();
+            langu();
         }
+
+
+
+        void langu()
+        {
+
+            //this.RightToLeft = st.isEnglish() ? RightToLeft.Yes : RightToLeft.No;
+            //this.RightToLeftLayout = st.isEnglish() ? true : false;
+            this.Text = st.isEnglish() ? "Canceled Bills" : "الفواتير الملغاه";
+
+
+            labelControl5.Text = st.isEnglish() ? "From Date" : "من تاريخ";
+            labelControl1.Text = st.isEnglish() ? "To Date" : "الي تاريخ";
+            labelControl2.Text = st.isEnglish() ? "UserName" : "اسم المستخدم";
+
+            btnShow.Text = st.isEnglish() ? "View" : "عرض";
+
+            gridColumn7.Caption = st.isEnglish() ? "Shift No" : "رقم الوردية";
+            gridColumn3.Caption = st.isEnglish() ? "UserName" : "اسم المستخدم";
+            gridColumn5.Caption = st.isEnglish() ? "Shift Start Date" : "تاريخ بداية الوردية";
+            gridColumn10.Caption = st.isEnglish() ? "Shift Start Balance" : "رصيد بداية الوردية";
+            gridColumn1.Caption = st.isEnglish() ? "Total sales" : "اجمالي المبيعات";
+            gridColumn2.Caption = st.isEnglish() ? "Total Expenses" : "اجمالي المصروفات";
+            gridColumn8.Caption = st.isEnglish() ? "Balance End Shift" : "رصيد نهاية الوردية";
+            gridColumn6.Caption = st.isEnglish() ? "Increase or Decrease" : "الزيادة او العجز";
+            gridColumn9.Caption = st.isEnglish() ? "Shift Close Date" : "تاريخ غلق الوردية";
+            gridColumn4.Caption = st.isEnglish() ? "Name" : "الاسم";
+
+            gvItemCard.GroupPanelText = st.isEnglish() ? "Drag the field here to collect" : "اسحب الحقل هنا للتجميع";
+             contextMenuStrip1.Items[0].Text = st.isEnglish() ? "Print" : "طباعة";
+        }
+
 
         private void FrmCancelExpenses_Load(object sender, EventArgs e)
         {
@@ -74,7 +109,7 @@ namespace PointOfSaleSedek._101_Adds._114_AddExpenses
 
         private void حذفToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (MaterialMessageBox.Show("تاكيد الحذف", MessageBoxButtons.YesNo) == DialogResult.OK)
+            if (MaterialMessageBox.Show(st.isEnglish() ? "Are you Sure To Delete?": "هل انت متأكد من الحذف؟", MessageBoxButtons.YesNo) == DialogResult.OK)
             {
                 ////ExpensesView xx = gridControl1.GetFocusedRow() as ExpensesView;
                 //ExpensesTransaction _Expens = new ExpensesTransaction();

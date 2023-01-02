@@ -187,7 +187,7 @@
             this.labelControl1.Name = "labelControl1";
             this.labelControl1.Size = new System.Drawing.Size(141, 37);
             this.labelControl1.TabIndex = 24;
-            this.labelControl1.Text = "نوع الزيت";
+            this.labelControl1.Text = "الاسم";
             // 
             // slkOilQty
             // 
@@ -225,7 +225,7 @@
             this.gridColumn4.AppearanceHeader.Options.UseTextOptions = true;
             this.gridColumn4.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gridColumn4.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.gridColumn4.Caption = "الاسم";
+            this.gridColumn4.Caption = "الكمية";
             this.gridColumn4.FieldName = "Qty";
             this.gridColumn4.Name = "gridColumn4";
             this.gridColumn4.Visible = true;
@@ -392,7 +392,7 @@
             this.labelControl3.Name = "labelControl3";
             this.labelControl3.Size = new System.Drawing.Size(140, 41);
             this.labelControl3.TabIndex = 24;
-            this.labelControl3.Text = "نوع الزجاجة";
+            this.labelControl3.Text = "الاسم";
             // 
             // labelControl2
             // 
@@ -414,7 +414,7 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 5.797101F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 94.2029F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 126F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 224F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 227F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel2.Controls.Add(this.btnSave, 2, 0);
             this.tableLayoutPanel2.Controls.Add(this.btnCancel, 1, 0);
@@ -439,7 +439,7 @@
             this.btnSave.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.btnSave.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnSave.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSave.ImageOptions.Image")));
-            this.btnSave.Location = new System.Drawing.Point(134, 3);
+            this.btnSave.Location = new System.Drawing.Point(131, 3);
             this.btnSave.LookAndFeel.SkinName = "The Bezier";
             this.btnSave.LookAndFeel.UseDefaultLookAndFeel = false;
             this.btnSave.Name = "btnSave";
@@ -455,7 +455,7 @@
             this.btnCancel.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnCancel.ImageOptions.Image")));
             this.btnCancel.Location = new System.Drawing.Point(10, 3);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(118, 50);
+            this.btnCancel.Size = new System.Drawing.Size(115, 50);
             this.btnCancel.TabIndex = 4;
             this.btnCancel.Text = "اغلاق";
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click_1);

@@ -30,5 +30,9 @@ namespace DataRep
         public long shiftCode { get; set; }
         public long LineSequence { get; set; }
         public bool isOile { get; set; }
+        public long Branch_Id { get; set; }
+        public long Warhouse_Code { get; set; }
+        public double Item_DisCount { get; set; }
+        public bool is_Back_Office_Updated { get; set; }
     }
 }

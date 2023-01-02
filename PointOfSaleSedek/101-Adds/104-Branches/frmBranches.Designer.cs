@@ -39,13 +39,13 @@ namespace PointOfSaleSedek._101_Adds
             this.windowsUIButtonPanel = new DevExpress.XtraBars.Docking2010.WindowsUIButtonPanel();
             this.materialContextMenuStrip1 = new MaterialSkin.Controls.MaterialContextMenuStrip();
             this.اضافةصنفجديدToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.تعديلToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.حذفToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.gcEmployeeCard = new DevExpress.XtraGrid.GridControl();
             this.gvEmployeeCard = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn12 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridView3 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -84,11 +84,11 @@ namespace PointOfSaleSedek._101_Adds
             windowsUIButtonImageOptions5.ImageUri.Uri = "Preview;Size32x32;GrayScaled";
             windowsUIButtonImageOptions6.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("windowsUIButtonImageOptions6.SvgImage")));
             this.windowsUIButtonPanel.Buttons.AddRange(new DevExpress.XtraEditors.ButtonPanel.IBaseButton[] {
-            new DevExpress.XtraBars.Docking2010.WindowsUIButton("جديد", true, windowsUIButtonImageOptions1, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, true, null, true, false, true, null, -1, false),
+            new DevExpress.XtraBars.Docking2010.WindowsUIButton("جديد", true, windowsUIButtonImageOptions1, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, true, null, true, false, false, null, -1, false),
             new DevExpress.XtraBars.Docking2010.WindowsUIButton("تعديل", true, windowsUIButtonImageOptions2, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, true, null, true, false, false, null, -1, false),
-            new DevExpress.XtraBars.Docking2010.WindowsUIButton("حذف", true, windowsUIButtonImageOptions3, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, true, null, true, false, true, null, -1, false),
+            new DevExpress.XtraBars.Docking2010.WindowsUIButton("حذف", true, windowsUIButtonImageOptions3, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, true, null, true, false, false, null, -1, false),
             new DevExpress.XtraBars.Docking2010.WindowsUIButton("تحديث", true, windowsUIButtonImageOptions4, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, true, null, true, false, false, null, -1, false),
-            new DevExpress.XtraBars.Docking2010.WindowsUISeparator(),
+            new DevExpress.XtraBars.Docking2010.WindowsUISeparator(null, false, -1),
             new DevExpress.XtraBars.Docking2010.WindowsUIButton("طباعة", true, windowsUIButtonImageOptions5, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, true, null, true, false, false, null, -1, false),
             new DevExpress.XtraBars.Docking2010.WindowsUIButton("خروج", true, windowsUIButtonImageOptions6, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, true, null, true, false, true, null, -1, false)});
             this.windowsUIButtonPanel.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -111,31 +111,25 @@ namespace PointOfSaleSedek._101_Adds
             this.materialContextMenuStrip1.Depth = 0;
             this.materialContextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.اضافةصنفجديدToolStripMenuItem,
-            this.تعديلToolStripMenuItem,
             this.حذفToolStripMenuItem});
             this.materialContextMenuStrip1.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialContextMenuStrip1.Name = "materialContextMenuStrip1";
             this.materialContextMenuStrip1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.materialContextMenuStrip1.Size = new System.Drawing.Size(104, 70);
+            this.materialContextMenuStrip1.Size = new System.Drawing.Size(101, 48);
             // 
             // اضافةصنفجديدToolStripMenuItem
             // 
             this.اضافةصنفجديدToolStripMenuItem.Name = "اضافةصنفجديدToolStripMenuItem";
-            this.اضافةصنفجديدToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
+            this.اضافةصنفجديدToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
             this.اضافةصنفجديدToolStripMenuItem.Text = " جديد";
-            // 
-            // تعديلToolStripMenuItem
-            // 
-            this.تعديلToolStripMenuItem.Name = "تعديلToolStripMenuItem";
-            this.تعديلToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
-            this.تعديلToolStripMenuItem.Text = "تعديل";
-            this.تعديلToolStripMenuItem.Click += new System.EventHandler(this.تعديلToolStripMenuItem_Click);
+            this.اضافةصنفجديدToolStripMenuItem.Click += new System.EventHandler(this.اضافةصنفجديدToolStripMenuItem_Click);
             // 
             // حذفToolStripMenuItem
             // 
             this.حذفToolStripMenuItem.Name = "حذفToolStripMenuItem";
-            this.حذفToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
+            this.حذفToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
             this.حذفToolStripMenuItem.Text = "حذف";
+            this.حذفToolStripMenuItem.Click += new System.EventHandler(this.حذفToolStripMenuItem_Click);
             // 
             // tableLayoutPanel1
             // 
@@ -181,7 +175,8 @@ namespace PointOfSaleSedek._101_Adds
             this.gvEmployeeCard.Appearance.Row.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.gvEmployeeCard.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.gridColumn12,
-            this.gridColumn3});
+            this.gridColumn3,
+            this.gridColumn1});
             this.gvEmployeeCard.GridControl = this.gcEmployeeCard;
             this.gvEmployeeCard.GroupPanelText = "اسحب الحقل هنا للتجميع";
             this.gvEmployeeCard.Name = "gvEmployeeCard";
@@ -201,16 +196,27 @@ namespace PointOfSaleSedek._101_Adds
             this.gridColumn12.OptionsColumn.AllowEdit = false;
             this.gridColumn12.Visible = true;
             this.gridColumn12.VisibleIndex = 0;
-            this.gridColumn12.Width = 127;
+            this.gridColumn12.Width = 190;
             // 
             // gridColumn3
             // 
             this.gridColumn3.Caption = "اسم الفرع";
             this.gridColumn3.FieldName = "Branches_Name";
             this.gridColumn3.Name = "gridColumn3";
+            this.gridColumn3.OptionsColumn.AllowEdit = false;
             this.gridColumn3.Visible = true;
             this.gridColumn3.VisibleIndex = 1;
-            this.gridColumn3.Width = 205;
+            this.gridColumn3.Width = 233;
+            // 
+            // gridColumn1
+            // 
+            this.gridColumn1.Caption = "المخزن";
+            this.gridColumn1.FieldName = "Warehouse_Name";
+            this.gridColumn1.Name = "gridColumn1";
+            this.gridColumn1.OptionsColumn.AllowEdit = false;
+            this.gridColumn1.Visible = true;
+            this.gridColumn1.VisibleIndex = 2;
+            this.gridColumn1.Width = 188;
             // 
             // gridView3
             // 
@@ -271,7 +277,6 @@ namespace PointOfSaleSedek._101_Adds
         private DevExpress.XtraBars.Docking2010.WindowsUIButtonPanel windowsUIButtonPanel;
         private MaterialSkin.Controls.MaterialContextMenuStrip materialContextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem اضافةصنفجديدToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem تعديلToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem حذفToolStripMenuItem;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView3;
@@ -282,5 +287,6 @@ namespace PointOfSaleSedek._101_Adds
         public DevExpress.XtraGrid.Views.Grid.GridView gvEmployeeCard;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn12;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
     }
 }

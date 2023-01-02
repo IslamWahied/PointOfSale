@@ -8,21 +8,49 @@ using System.Linq;
  
 using System.Windows.Forms;
 using DataRep;
+using PointOfSaleSedek.HelperClass;
 
 namespace PointOfSaleSedek._101_Adds
 {
     public partial class frmPerfumAddItem : MaterialSkin.Controls.MaterialForm
     {
         
-        readonly SaleEntities context = new SaleEntities();
-         
+        readonly POSEntity context = new POSEntity();
+        readonly Static st = new Static();
+
         public frmPerfumAddItem()
         {
             InitializeComponent();
+            langu();
 
         }
+        void langu()
+        {
 
-        
+            this.RightToLeft = st.isEnglish() ? RightToLeft.No : RightToLeft.Yes;
+            this.groupControl1.Text = st.isEnglish() ? "Add Item" : "اضافة صنف";
+            tableLayoutPanel1.RightToLeft = st.isEnglish() ? RightToLeft.Yes : RightToLeft.No;
+            tableLayoutPanel2.RightToLeft = st.isEnglish() ? RightToLeft.Yes : RightToLeft.No;
+            groupControl1.RightToLeft = st.isEnglish() ? RightToLeft.Yes : RightToLeft.No;
+
+
+
+            labelControl5.Text = st.isEnglish() ? "Category" : "المجموعة";
+             
+            labelControl2.Text = st.isEnglish() ? "Item Name" : "اسم الصنف";
+            labelControl3.Text = st.isEnglish() ? "Unit" : "وحدة القياس";
+            lblRisklimit.Text = st.isEnglish() ? "Danger Limit" : "حد الخطر";
+            labelControl4.Text = st.isEnglish() ? "Selling Price" : "سعر البيع";
+             
+
+            gridColumn1.Caption = st.isEnglish() ? "Code" : "التسلسل";
+            gridColumn2.Caption = st.isEnglish() ? "Name" : "الاسم";
+            gridColumn4.Caption = st.isEnglish() ? "Name" : "الاسم";
+
+            btnAdd.Text = st.isEnglish() ? "Add" : "اضافة";
+            btnCancel.Text = st.isEnglish() ? "Close" : "اغلاق";
+        }
+
         void GetAllCatgory()
         {
 
@@ -55,7 +83,7 @@ namespace PointOfSaleSedek._101_Adds
         void AddItem()
         {
 
-            using (SaleEntities Contexts = new SaleEntities())
+            using (POSEntity Contexts = new POSEntity())
             {
 
 

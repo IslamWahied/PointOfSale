@@ -18,5 +18,6 @@ namespace DataRep
         public long CategoryCode { get; set; }
         public string CategoryName { get; set; }
         public int IsDeleted { get; set; }
+        public long Branch_Code { get; set; }
     }
 }

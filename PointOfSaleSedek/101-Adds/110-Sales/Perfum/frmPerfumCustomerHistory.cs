@@ -11,7 +11,7 @@ namespace PointOfSaleSedek._101_Adds._110_Sales
 {
     public partial class frmPerfumCustomerHistory : DevExpress.XtraEditors.XtraForm
     {
-        SaleEntities context = new SaleEntities();
+        POSEntity context = new POSEntity();
         public frmPerfumCustomerHistory()
         {
             InitializeComponent();

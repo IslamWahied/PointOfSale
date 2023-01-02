@@ -12,29 +12,54 @@ using FastReport;
 using PointOfSaleSedek._102_MaterialSkin;
 using DataRep;
 using PointOfSaleSedek.Model;
+using PointOfSaleSedek.HelperClass;
 
 namespace PointOfSaleSedek._105_Reports
 {
     public partial class frmPurchessReport : MaterialSkin.Controls.MaterialForm
     {
-        SaleEntities context = new SaleEntities();
+        POSEntity context = new POSEntity();
+        readonly Static st = new Static();
         public frmPurchessReport()
         {
             InitializeComponent();
+            langu();
         }
+        void langu()
+        {
+
+            //this.RightToLeft = st.isEnglish() ? RightToLeft.Yes : RightToLeft.No;
+            //this.RightToLeftLayout = st.isEnglish() ? true : false;
+            this.Text = st.isEnglish() ? "Purchess Bills" : "تقرير المشتريات";
+
+
+            materialLabel1.Text = st.isEnglish() ? "From Date" : "من تاريخ";
+
+            
+
+
+
+            materialLabel2.Text = st.isEnglish() ? "To Date" : "الي تاريخ";
+             
+
+
+            simpleButton1.Text = st.isEnglish() ? "View" : "عرض";
+
+        }
+
 
         private void simpleButton1_Click(object sender, EventArgs e)
         {
             var dateTo = Convert.ToDateTime(Convert.ToDateTime(dtFrom.EditValue).AddDays(1));
+            Int64 branchCode = st.GetBranch_Code();
 
-             
-            var Master = (from a in context.SaleMasterViews where a.EntryDate >= dtFrom.DateTime  && a.EntryDate <= dateTo && a.Operation_Type_Id == 1 &&a.IsDeleted == 0  select a).ToList();
-            var Detail = (from a in context.SaleDetailViews where a.EntryDate >= dtFrom.DateTime && a.EntryDate <= dateTo && a.Operation_Type_Id == 1 && a.IsDeleted == 0 select a).ToList();
+            var Master = (from a in context.SaleMasterViews where a.EntryDate >= dtFrom.DateTime  && a.EntryDate <= dateTo && a.Operation_Type_Id == 1&& a.Branches_Code == branchCode && a.IsDeleted == 0  select a).ToList();
+            var Detail = (from a in context.SaleDetailViews where a.EntryDate >= dtFrom.DateTime && a.EntryDate <= dateTo && a.Operation_Type_Id == 1 && a.Branches_Code == branchCode && a.IsDeleted == 0 select a).ToList();
 
             if (Master.Count == 0 || Detail.Count == 0)
 
             {
-                MaterialMessageBox.Show("لا يوجد فواتير لهذا التاريخ", MessageBoxButtons.OK);
+                MaterialMessageBox.Show(st.isEnglish() ? "There are no invoices for this date" : "لا يوجد فواتير لهذا التاريخ", MessageBoxButtons.OK);
                 return;
 
             }

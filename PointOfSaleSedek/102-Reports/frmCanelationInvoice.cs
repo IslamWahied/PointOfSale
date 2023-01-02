@@ -1,6 +1,7 @@
 ﻿using DataRep;
 using FastReport;
 using PointOfSaleSedek._102_MaterialSkin;
+using PointOfSaleSedek.HelperClass;
 using PointOfSaleSedek.Model;
 using System;
 using System.Collections.Generic;
@@ -16,13 +17,33 @@ namespace PointOfSaleSedek._102_Reports
 {
     public partial class frmCanelationInvoice : MaterialSkin.Controls.MaterialForm
     {
-        SaleEntities context = new SaleEntities();
+        POSEntity context = new POSEntity();
+        readonly Static st = new Static();
 
         public frmCanelationInvoice()
         {
             InitializeComponent();
+            langu();
         }
+        void langu()
+        {
 
+            //this.RightToLeft = st.isEnglish() ? RightToLeft.Yes : RightToLeft.No;
+            //this.RightToLeftLayout = st.isEnglish() ? true : false;
+            this.Text = st.isEnglish() ? "Canceled Bills" : "الفواتير الملغاه";
+
+          
+            materialLabel1.Text = st.isEnglish() ? "From Date" : "من تاريخ";
+            materialLabel1.TextAlign = st.isEnglish() ? ContentAlignment.MiddleRight : ContentAlignment.MiddleLeft;
+
+
+            materialLabel2.Text = st.isEnglish() ? "To Date" : "الي تاريخ";
+            materialLabel2.TextAlign = st.isEnglish() ? ContentAlignment.MiddleRight : ContentAlignment.MiddleLeft;
+
+
+            simpleButton1.Text = st.isEnglish() ? "View" : "عرض";
+       
+        }
         private void frmCanelationInvoice_Load(object sender, EventArgs e)
         {
             string DatatimeNow = Convert.ToString(DateTime.Now.ToString("MM/dd/yyyy"));
@@ -40,7 +61,7 @@ namespace PointOfSaleSedek._102_Reports
             if (Master.Count == 0 || Detail.Count == 0)
 
             {
-                MaterialMessageBox.Show("لا يوجد فواتير لهذا التاريخ", MessageBoxButtons.OK);
+                MaterialMessageBox.Show(st.isEnglish()?"There are no invoices for this date":"لا يوجد فواتير لهذا التاريخ", MessageBoxButtons.OK);
                 return;
 
             }

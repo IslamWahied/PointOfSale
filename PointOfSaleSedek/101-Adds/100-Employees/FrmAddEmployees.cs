@@ -1,6 +1,4 @@
-﻿
- 
-using PointOfSaleSedek._102_MaterialSkin;
+﻿using PointOfSaleSedek._102_MaterialSkin;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraSplashScreen;
 using MaterialSkin;
@@ -21,12 +19,13 @@ namespace PointOfSaleSedek.Employees
 {
     public partial class FrmAddEmployees : DevExpress.XtraEditors.XtraForm
     {
-        readonly SaleEntities context = new SaleEntities();
+        readonly POSEntity context = new POSEntity();
         readonly Static st = new Static();
         //readonly MaterialSkin.MaterialSkinManager skinManager;
         public FrmAddEmployees()
         {
             InitializeComponent();
+            langu();
             Int64? MaxCode = context.Employees.Where(x => x.IsDeleted == 0).Max(u => (Int64?)u.Employee_Code + 1);
             if (MaxCode == null || MaxCode == 0)
             {
@@ -40,6 +39,35 @@ namespace PointOfSaleSedek.Employees
             FillSexSlk();
 
 
+        }
+
+
+        void langu()
+        {
+
+            this.RightToLeft = st.isEnglish() ? RightToLeft.No : RightToLeft.Yes;
+            tableLayoutPanel2.RightToLeft = st.isEnglish() ? RightToLeft.Yes : RightToLeft.No;
+            this.Text = st.isEnglish() ? "Add Employee" : "اضافة موظف";
+
+            materialLabel10.Text = st.isEnglish() ? "Code":"كود الموظف";
+            TxtEmpEmail.Text = st.isEnglish() ? "Email" : "الايميل";
+            materialLabel11.Text = st.isEnglish() ? "Mobile 1":"موبيل 1";
+            materialLabel4.Text = st.isEnglish() ? "Mobile 2":"موبيل 2";
+            gridColumn3.Caption = st.isEnglish() ? "Name":"الاسم";
+            gridColumn4.Caption = st.isEnglish() ? "Name":"الاسم";
+            gridColumn1.Caption = st.isEnglish() ? "Name":"الاسم";
+            materialLabel1.Text = st.isEnglish() ? "Name":"الاسم";
+            materialLabel3.Text = st.isEnglish() ? "Email" : "الايميل";
+            materialLabel13.Text = st.isEnglish() ? "Sex":"الجنس";
+            materialLabel2.Text = st.isEnglish() ? "National ID" : "الرقم القومي";
+            materialLabel12.Text = st.isEnglish() ? "Branch" : "الفرع";
+            materialLabel7.Text = st.isEnglish() ? "Jop" : "الوظيفة";
+            materialLabel8.Text = st.isEnglish() ? "Date Of Hiring" : "تاريخ التوظيف";
+            materialLabel9.Text = st.isEnglish() ? "Resignation Date" : "تاريخ الاستقالة";
+            materialLabel5.Text = st.isEnglish() ? "Address" : "العنوان";
+            materialLabel6.Text = st.isEnglish() ? "Notes" : "ملاحظات";
+            btnAdd.Text = st.isEnglish() ? "Add": "اضافة";
+            btnCancel.Text = st.isEnglish() ? "Close": "اغلاق";
         }
 
         void FillJopSlk()
@@ -80,19 +108,19 @@ namespace PointOfSaleSedek.Employees
             if (string.IsNullOrWhiteSpace(txtEmpCode.Text))
             {
 
-                MaterialMessageBox.Show("برجاء ادخال كود العميل", MessageBoxButtons.OK);
+                MaterialMessageBox.Show(st.isEnglish() ? "Please enter the customer code" :"برجاء ادخال كود العميل", MessageBoxButtons.OK);
                 return;
 
             }
             if (string.IsNullOrWhiteSpace(TxtEmpName.Text))
             {
-                MaterialMessageBox.Show("برجاء ادخال اسم العميل", MessageBoxButtons.OK);
+                MaterialMessageBox.Show(st.isEnglish() ? "Please enter the customer's name" :"برجاء ادخال اسم العميل", MessageBoxButtons.OK);
                 return;
             }
             if (string.IsNullOrWhiteSpace(slkSex.Text))
             {
 
-                MaterialMessageBox.Show("برجاءاختيار الجنس", MessageBoxButtons.OK);
+                MaterialMessageBox.Show(st.isEnglish() ? "Please select a gender" : "برجاءاختيار الجنس", MessageBoxButtons.OK);
                 return;
 
             }
@@ -100,14 +128,14 @@ namespace PointOfSaleSedek.Employees
             if (string.IsNullOrWhiteSpace(slkJop.Text))
             {
 
-                MaterialMessageBox.Show("برجاءاختيار الوظيفة", MessageBoxButtons.OK);
+                MaterialMessageBox.Show(st.isEnglish() ? "Please choose a job" :"برجاءاختيار الوظيفة", MessageBoxButtons.OK);
                 return;
 
             }
             if (string.IsNullOrWhiteSpace(slkBranch.Text))
             {
 
-                MaterialMessageBox.Show("برجاءاختيار الفرع", MessageBoxButtons.OK);
+                MaterialMessageBox.Show(st.isEnglish() ? "Please select a branch" :"برجاءاختيار الفرع", MessageBoxButtons.OK);
                 return;
 
             }
@@ -115,7 +143,7 @@ namespace PointOfSaleSedek.Employees
             if (string.IsNullOrWhiteSpace(dtEmpStartJop.Text))
             {
 
-                MaterialMessageBox.Show("برجاءاختيار تاريخ تعين الموظف", MessageBoxButtons.OK);
+                MaterialMessageBox.Show(st.isEnglish() ? "Please select the employee's employment start date" :"برجاءاختيار تاريخ تعين الموظف", MessageBoxButtons.OK);
                 return;
 
             }
@@ -130,13 +158,13 @@ namespace PointOfSaleSedek.Employees
                 if (TestUpdate)
                 {
 
-                    using (SaleEntities ForCheck = new SaleEntities())
+                    using (POSEntity ForCheck = new POSEntity())
                     {
 
                         bool TestUserName = ForCheck.Employees.Any(Emp => Emp.Employee_Name == TxtEmpName.Text && Emp.Employee_Code !=EmpCode &&  Emp.IsDeleted == 0);
                         if (TestUserName)
                         {
-                        MaterialMessageBox.Show("تم تسجيل هذا الاسم لموظف اخر", MessageBoxButtons.OK);
+                        MaterialMessageBox.Show(st.isEnglish() ? "This name has been registered for another employee" :"تم تسجيل هذا الاسم لموظف اخر", MessageBoxButtons.OK);
                         return;
 
                         }
@@ -144,7 +172,7 @@ namespace PointOfSaleSedek.Employees
                         if (TestUserName)
                         {
 
-                            MaterialMessageBox.Show("تم تسجيل رقم البطاقة لموظف اخر", MessageBoxButtons.OK);
+                            MaterialMessageBox.Show(st.isEnglish() ? "The card number has been registered to another employee" :"تم تسجيل رقم البطاقة لموظف اخر", MessageBoxButtons.OK);
                             return;
 
                         }
@@ -159,6 +187,7 @@ namespace PointOfSaleSedek.Employees
                     _Employee.Employee_Mobile_2 = txtEmpMob2.Text;
                     _Employee.Employee_National_Id = TxtEmpNataionalId.Text;
                     _Employee.Employee_Email = TxtEmpEmail.Text;
+                    _Employee.Branch_ID = Convert.ToInt64(slkBranch.EditValue);
                     _Employee.Employee_Address = TxtEmpAddress.Text;
                     _Employee.Employee_Start_Jop = Convert.ToDateTime(dtEmpStartJop.EditValue);
                     if (!string.IsNullOrWhiteSpace(dtEmpEndJop.Text))
@@ -172,28 +201,28 @@ namespace PointOfSaleSedek.Employees
                   
 
                     _Employee.Last_Modified_Date = DateTime.Now;
-                    _Employee.Last_Modified_User = st.User_Code();
+                    _Employee.Last_Modified_User = st.GetUser_Code();
                     context.SaveChanges();
 
-                    using (SaleEntities Contx2 = new SaleEntities())
+                    using (POSEntity Contx2 = new POSEntity())
                     {
                     frm.gcEmployeeCard.DataSource = Contx2.Employee_View.Where(x => x.IsDeleted == 0).ToList();
                     frm.gcEmployeeCard.RefreshDataSource();
-                    MaterialMessageBox.Show("تم التعديل", MessageBoxButtons.OK);
+                    MaterialMessageBox.Show(st.isEnglish() ? "Modified" :"تم التعديل", MessageBoxButtons.OK);
 
                     }
 
                 }
                 else
                 {
-                    using (SaleEntities ForCheck = new SaleEntities())
+                    using (POSEntity ForCheck = new POSEntity())
                     {
 
                         bool TestUserName = ForCheck.Employees.Any(Emp => Emp.Employee_Name == TxtEmpName.Text && Emp.IsDeleted == 0);
                         if (TestUserName)
                         { 
                         
-                        MaterialMessageBox.Show("تم تسجيل هذا الاسم لموظف اخر", MessageBoxButtons.OK);
+                        MaterialMessageBox.Show(st.isEnglish() ? "This name has been registered for another employee" :"تم تسجيل هذا الاسم لموظف اخر", MessageBoxButtons.OK);
                         return;
                         
                         }
@@ -201,7 +230,7 @@ namespace PointOfSaleSedek.Employees
                         if (TestNatId)
                         {
 
-                            MaterialMessageBox.Show("تم تسجيل رقم البطاقة لموظف اخر", MessageBoxButtons.OK);
+                            MaterialMessageBox.Show(st.isEnglish() ? "The card number has been registered to another employee" :"تم تسجيل رقم البطاقة لموظف اخر", MessageBoxButtons.OK);
                             return;
 
                         }
@@ -223,9 +252,10 @@ namespace PointOfSaleSedek.Employees
                             Employee_End_Jop = Convert.ToDateTime(dtEmpEndJop.Text),
                             Employee_Notes = TxtEmpNote.Text,
                             Created_Date = DateTime.Now,
+                            
                             SexTypeCode = Convert.ToInt16(slkSex.EditValue),
-                            Branch_ID = Convert.ToInt64(slkBranch.EditValue),
-                            Last_Modified_User = st.User_Code(),
+                            Branch_ID =0,
+                            Last_Modified_User = st.GetUser_Code(),
                             Jop_Code = Convert.ToInt64(slkJop.EditValue),
                             img_Url = "",
 
@@ -246,12 +276,13 @@ namespace PointOfSaleSedek.Employees
                             Employee_Email = TxtEmpEmail.Text,
                             Employee_Address = TxtEmpAddress.Text,
                             Employee_Start_Jop = Convert.ToDateTime(dtEmpStartJop.EditValue),
+                            
                     
                             Employee_Notes = TxtEmpNote.Text,
                             Created_Date = DateTime.Now,
                             SexTypeCode = Convert.ToInt16(slkSex.EditValue),
-                            Branch_ID = Convert.ToInt64(slkBranch.EditValue),
-                            Last_Modified_User = st.User_Code(),
+                            Branch_ID = 0,
+                            Last_Modified_User = st.GetUser_Code(),
                            
                             Jop_Code = Convert.ToInt64(slkJop.EditValue),
                             img_Url = "",
@@ -265,12 +296,18 @@ namespace PointOfSaleSedek.Employees
 
                 
                    
-                    using (SaleEntities NewContext = new SaleEntities())
+                    using (POSEntity NewContext = new POSEntity())
                     { 
                     
-                        frm.gcEmployeeCard.DataSource = NewContext.Employee_View.Where(x => x.IsDeleted == 0).ToList();
+                        frm.gcEmployeeCard.DataSource = NewContext.Employee_View.Where(x => x.IsDeleted == 0 && x.Employee_Code != 0).ToList();
+                        frm.gcEmployeeCard.Enabled = true;
+
                     frm.gcEmployeeCard.RefreshDataSource();
-                        MaterialMessageBox.Show("تم تسجيل العميل بنجاح", MessageBoxButtons.OK);
+
+                        MaterialMessageBox.Show(st.isEnglish() ? "Customer has been registered successfully" :"تم تسجيل العميل بنجاح", MessageBoxButtons.OK);
+                        this.Close();
+
+
 
 
                     }
@@ -300,30 +337,30 @@ namespace PointOfSaleSedek.Employees
 
         private void BtnSave_Click(object sender, EventArgs e)
         {
-            #region Vaildate
-            if (string.IsNullOrWhiteSpace(txtEmpCode.Text))
-            {
+            //#region Vaildate
+            //if (string.IsNullOrWhiteSpace(txtEmpCode.Text))
+            //{
 
-                MaterialMessageBox.Show("برجاء ادخال كود للعميل", MessageBoxButtons.OK);
-                return;
-
-
-            }
-            if (string.IsNullOrEmpty(txtEmpMob2.Text))
-            {
-
-                MaterialMessageBox.Show("برجاء ادخال رقم الموبيل", MessageBoxButtons.OK);
-                return;
+            //    MaterialMessageBox.Show(st.isEnglish() ? "Please enter the customer code" :"برجاء ادخال كود للعميل", MessageBoxButtons.OK);
+            //    return;
 
 
-            }
-            if (string.IsNullOrEmpty(TxtEmpName.Text))
-            {
-                MaterialMessageBox.Show("برجاء ادخال اسم العميل", MessageBoxButtons.OK);
+            //}
+            //if (string.IsNullOrEmpty(txtEmpMob2.Text))
+            //{
 
-                return;
-            }
-            #endregion
+            //    MaterialMessageBox.Show(st.isEnglish() ? "Please enter the mobile number" :"برجاء ادخال رقم الموبيل", MessageBoxButtons.OK);
+            //    return;
+
+
+            //}
+            //if (string.IsNullOrEmpty(TxtEmpName.Text))
+            //{
+            //    MaterialMessageBox.Show(st.isEnglish() ? "Please enter the customer's name" :"برجاء ادخال اسم العميل", MessageBoxButtons.OK);
+
+            //    return;
+            //}
+            //#endregion
            
             Save();
           
@@ -335,7 +372,7 @@ namespace PointOfSaleSedek.Employees
         {
             if (string.IsNullOrEmpty(txtEmpMob2.Text))
             {
-                MaterialMessageBox.Show("برجاء ادخال رقم الموبيل", MessageBoxButtons.OK);
+                MaterialMessageBox.Show(st.isEnglish() ? "Please enter the mobile number" :"برجاء ادخال رقم الموبيل", MessageBoxButtons.OK);
                
                 return;
             }
@@ -367,7 +404,15 @@ namespace PointOfSaleSedek.Employees
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            Save();
+            try
+            {
+                Save();
+                Rest();
+            }
+            catch { 
+            }
+
+          
         }
     }
 }

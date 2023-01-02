@@ -27,5 +27,8 @@ namespace DataRep
         public double PriceBuy { get; set; }
         public Nullable<double> Item_Risk_limit { get; set; }
         public double Item_Count_InStoreg { get; set; }
+        public string Name_En { get; set; }
+        public long Branch_Code { get; set; }
+        public Nullable<System.DateTime> Last_Update_Date { get; set; }
     }
 }

@@ -12,21 +12,45 @@ using PointOfSaleSedek._102_MaterialSkin;
  
 using DevExpress.XtraBars.Docking2010;
 using DataRep;
+using PointOfSaleSedek.HelperClass;
 
 namespace PointOfSaleSedek._101_Adds
 {
     public partial class frmPerfumItemCard : DevExpress.XtraEditors.XtraForm
     {
-        readonly SaleEntities context = new SaleEntities();
+        readonly POSEntity context = new POSEntity();
+        readonly Static st = new Static();
         public frmPerfumItemCard()
         {
             InitializeComponent();
+            langu();
 
-           
+
 
         }
+        void langu()
+        {
+            this.RightToLeft = st.isEnglish() ? RightToLeft.No : RightToLeft.Yes;
 
-         
+            gridColumn1.Caption = st.isEnglish() ? "Code" : "التسلسل";
+            gridColumn7.Caption = st.isEnglish() ? "Category" : "المجموعه";
+            gridColumn10.Caption = st.isEnglish() ? "BarCode" : "الباركود";
+            gridColumn2.Caption = st.isEnglish() ? "Item Name" : "اسم الصنف";
+            gridColumn3.Caption = st.isEnglish() ? "Unit" : "وحدة القياس";
+            gridColumn4.Caption = st.isEnglish() ? "Selling Price" : "سعر البيع";
+            gridColumn12.Caption = st.isEnglish() ? "Danger Limit" : "حد الخطر";
+            
+            windowsUIButtonPanel.Buttons[0].Properties.Caption = st.isEnglish() ? "New" : "جديد";
+            windowsUIButtonPanel.Buttons[1].Properties.Caption = st.isEnglish() ? "Edite" : "تعديل";
+            windowsUIButtonPanel.Buttons[2].Properties.Caption = st.isEnglish() ? "Delete" : "حذف";
+            windowsUIButtonPanel.Buttons[3].Properties.Caption = st.isEnglish() ? "Refresh" : "تحديث";
+            windowsUIButtonPanel.Buttons[5].Properties.Caption = st.isEnglish() ? "Print" : "طباعة";
+            windowsUIButtonPanel.Buttons[6].Properties.Caption = st.isEnglish() ? "Exit" : "خروج";
+            materialContextMenuStrip1.Items[0].Text = st.isEnglish() ? "New" : "جديد";
+            materialContextMenuStrip1.Items[1].Text = st.isEnglish() ? "Edite" : "تعديل";
+            materialContextMenuStrip1.Items[2].Text = st.isEnglish() ? "Delete" : "حذف";
+        }
+
         private void اضافةصنفجديدToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmPerfumAddItem frm = new frmPerfumAddItem();
@@ -70,7 +94,7 @@ namespace PointOfSaleSedek._101_Adds
                 _ItemCard.IsDeleted = 1;
                     
                     context.SaveChanges();
-                using (SaleEntities Contexts = new SaleEntities())
+                using (POSEntity Contexts = new POSEntity())
                 {
 
                     var result = (from a in Contexts.ItemCardViews where a.IsDeleted == 0 select a).ToList();
@@ -149,7 +173,7 @@ namespace PointOfSaleSedek._101_Adds
                     ItemCardView xx = gvItemCard.GetFocusedRow() as ItemCardView;
 
 
-                    using (SaleEntities Contexts = new SaleEntities())
+                    using (POSEntity Contexts = new POSEntity())
                     {
                         ItemCard _ItemCard = new ItemCard();
                         _ItemCard = Contexts.ItemCards.SingleOrDefault(item => item.ItemCode == xx.ItemCode);
@@ -234,7 +258,7 @@ namespace PointOfSaleSedek._101_Adds
                     ItemCardView xx = gvItemCard.GetFocusedRow() as ItemCardView;
 
 
-                    using (SaleEntities Contexts = new SaleEntities())
+                    using (POSEntity Contexts = new POSEntity())
                     {
                         ItemCard _ItemCard = new ItemCard();
                         _ItemCard = Contexts.ItemCards.SingleOrDefault(item => item.ItemCode == xx.ItemCode);
@@ -277,7 +301,7 @@ namespace PointOfSaleSedek._101_Adds
             else if (btn.Caption == "تحديث")
             {
 
-                using (SaleEntities Contexts = new SaleEntities())
+                using (POSEntity Contexts = new POSEntity())
                 {
                     
                     var result = (from a in Contexts.ItemCardViews where a.IsDeleted == 0 select a).ToList();
@@ -325,7 +349,7 @@ namespace PointOfSaleSedek._101_Adds
                     return;
                 }
 
-                using (SaleEntities Contexts = new SaleEntities())
+                using (POSEntity Contexts = new POSEntity())
                 {
 
                     var result = (from a in Contexts.ItemCardViews where a.IsDeleted == 0 select a).ToList();

@@ -18,5 +18,7 @@ namespace DataRep
         public long JopCode { get; set; }
         public string JobName { get; set; }
         public int IsDeleted { get; set; }
+        public long Branch_Code { get; set; }
+        public bool is_Back_Office_Updated { get; set; }
     }
 }

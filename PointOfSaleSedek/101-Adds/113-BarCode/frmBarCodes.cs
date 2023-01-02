@@ -13,19 +13,39 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using PointOfSaleSedek.HelperClass;
 
 namespace PointOfSaleSedek._101_Adds._113_BarCode
 {
     public partial class frmBarCodes : DevExpress.XtraEditors.XtraForm
     {
-        readonly SaleEntities context = new SaleEntities();
+        readonly POSEntity context = new POSEntity();
+        readonly Static st = new Static();
         public frmBarCodes()
         {
             InitializeComponent();
             FillSlkItems();
+            langu();
         }
-            public void FillSlkItems()
+
+
+
+        void langu()
+        {
+
+            this.RightToLeft = st.isEnglish() ? RightToLeft.No : RightToLeft.Yes;
+            this.tableLayoutPanel1.RightToLeft = st.isEnglish() ? RightToLeft.Yes : RightToLeft.No;
+            this.Text = st.isEnglish() ? "Item Barcode Print" : "طباعة باركود الاصناف";
+            this.label1.Text = st.isEnglish() ? "Item Name" : "اسم الصنف";
+            this.label2.Text = st.isEnglish() ? "Number Of Prints" : "عدد مرات الطباعة";
+           btnPrint.Text = st.isEnglish() ? "Print" : "طباعة";
+           btnCancel.Text = st.isEnglish() ? "Close" : "اغلاق";
+            gridColumn1.Caption = st.isEnglish() ? "Barcode" :"باركود";
+            gridColumn2.Caption = st.isEnglish() ? "Name" :"الاسم";
+        }
+
+
+        public void FillSlkItems()
             {
                 DataTable dt = new DataTable();
                 var result = context.ItemCardViews.Where(user => user.IsDeleted == 0).ToList();
@@ -48,7 +68,7 @@ namespace PointOfSaleSedek._101_Adds._113_BarCode
             if (string.IsNullOrWhiteSpace(slkItem.Text))
             {
 
-                MaterialMessageBox.Show("برجاء اختيار منتج", MessageBoxButtons.OK);
+                MaterialMessageBox.Show(st.isEnglish()? "Please select a product":"برجاء اختيار منتج", MessageBoxButtons.OK);
                 return;
 
 
@@ -57,7 +77,7 @@ namespace PointOfSaleSedek._101_Adds._113_BarCode
             else if (string.IsNullOrWhiteSpace(txtNumberOfPaper.Text)|| txtNumberOfPaper.Text =="0")
             {
 
-                MaterialMessageBox.Show("برجاء ادخال عدد النسخ", MessageBoxButtons.OK);
+                MaterialMessageBox.Show(st.isEnglish()?"Please enter the number of copies":"برجاء ادخال عدد النسخ", MessageBoxButtons.OK);
                 return;
 
 
@@ -73,7 +93,7 @@ namespace PointOfSaleSedek._101_Adds._113_BarCode
                 {
 
                     btnPrint.Enabled = false;
-                    btnPrint.Text =  "جاري الطباعة"; 
+                    btnPrint.Text = st.isEnglish()? "printing...": "...جاري الطباعة"; 
                    
                 for (int i = 0; i < NumberOfPage; i++)
                 {
@@ -89,7 +109,7 @@ namespace PointOfSaleSedek._101_Adds._113_BarCode
                          rpt.Print();
                     }
                     btnPrint.Enabled = true;
-                    btnPrint.Text = "الطباعة";
+                    btnPrint.Text =st.isEnglish()? "Print" : "الطباعة";
                     txtNumberOfPaper.Text = "1";
                    
                 }
@@ -104,15 +124,15 @@ namespace PointOfSaleSedek._101_Adds._113_BarCode
 
 
 
-            //PrintDialog pd = new PrintDialog();
-            //PrintDocument doc = new PrintDocument();
-            //doc.PrintPage += Doc_PrintPage;
-            //pd.Document = doc;
-            //if (pd.ShowDialog() == DialogResult.OK)
-            //{
-            //    doc.Print();
+            PrintDialog pd = new PrintDialog();
+            PrintDocument doc = new PrintDocument();
+            doc.PrintPage += Doc_PrintPage;
+            pd.Document = doc;
+            if (pd.ShowDialog() == DialogResult.OK)
+            {
+                doc.Print();
 
-            //}
+            }
         }
 
         private void Doc_PrintPage(object sender, PrintPageEventArgs e)

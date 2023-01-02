@@ -1,6 +1,7 @@
 ﻿using DataRep;
 using FastReport;
 using PointOfSaleSedek._102_MaterialSkin;
+using PointOfSaleSedek.HelperClass;
 using PointOfSaleSedek.Model;
 using System;
 using System.Collections.Generic;
@@ -15,10 +16,34 @@ namespace PointOfSaleSedek._102_Reports
 {
     public partial class frmExpensescs : MaterialSkin.Controls.MaterialForm
     {
-        SaleEntities context = new SaleEntities();
+        POSEntity context = new POSEntity();
+        readonly Static st = new Static();
         public frmExpensescs()
         {
             InitializeComponent();
+            langu();
+        }
+
+        void langu()
+        {
+
+            //this.RightToLeft = st.isEnglish() ? RightToLeft.Yes : RightToLeft.No;
+            //this.RightToLeftLayout = st.isEnglish() ? true : false;
+            this.Text = st.isEnglish() ? "Expensescs Bills" : "تقرير المصروفات";
+
+
+            materialLabel1.Text = st.isEnglish() ? "From Date" : "من تاريخ";
+
+            gridColumn7.Caption = st.isEnglish() ? "Name" : "الاسم";
+
+
+
+            materialLabel2.Text = st.isEnglish() ? "To Date" : "الي تاريخ";
+            this.materialLabel3.Text = st.isEnglish() ? "Employee (optional)" : "الموظف(اختياري)";
+
+
+            simpleButton1.Text = st.isEnglish() ? "View" : "عرض";
+
         }
 
         private void frmExpensescs_Load(object sender, EventArgs e)
@@ -91,9 +116,9 @@ namespace PointOfSaleSedek._102_Reports
             }
             else {
 
-                
 
-                    MaterialMessageBox.Show("لا يوجد مصروفات لهذه المده", MessageBoxButtons.OK);
+                MaterialMessageBox.Show(st.isEnglish() ? "There are no charges for this date" : "لا يوجد مصروفات لهذا التاريخ", MessageBoxButtons.OK);
+     
                     return;
                 
             }

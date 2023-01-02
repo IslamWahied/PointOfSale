@@ -15,7 +15,7 @@ namespace PointOfSaleSedek._101_Adds
 {
     public partial class frmSuperMarketInvoiceSearchForCustomer : DevExpress.XtraEditors.XtraForm
     {
-        readonly SaleEntities context = new SaleEntities();
+        readonly POSEntity context = new POSEntity();
         readonly Static st = new Static();
         public frmSuperMarketInvoiceSearchForCustomer()
         {
@@ -87,7 +87,7 @@ namespace PointOfSaleSedek._101_Adds
                     frm.btnAddCustomer.Enabled = false;
                     frm.txtParCode.Enabled = false;
                   
-                    Int64 User_Code = st.User_Code();
+                    Int64 User_Code = st.GetUser_Code();
 
                     var result = context.Auth_View.Where(View => View.User_Code == User_Code && (View.User_IsDeleted == 0)).ToList();
 
@@ -157,7 +157,7 @@ namespace PointOfSaleSedek._101_Adds
                 _item_History_Transactions.ForEach(x => {
 
                    
-                    using (SaleEntities cont = new SaleEntities())
+                    using (POSEntity cont = new POSEntity())
                     {
                         Item_History _item_History;
 
@@ -197,7 +197,7 @@ namespace PointOfSaleSedek._101_Adds
 
 
 
-            using (SaleEntities context2 = new SaleEntities())
+            using (POSEntity context2 = new POSEntity())
             {
                 var Details = context2.SaleDetails.Where(w => w.SaleMasterCode == FocusRow.SaleMasterCode && w.EntryDate.Day == FocusRow.EntryDate.Day && w.EntryDate.Month == FocusRow.EntryDate.Month && w.EntryDate.Year == FocusRow.EntryDate.Year && w.Operation_Type_Id==2 && w.IsDeleted == 0).ToList();
                 if (Details.Count > 0)
@@ -222,7 +222,7 @@ namespace PointOfSaleSedek._101_Adds
             
 
 
-            using (SaleEntities cont  = new SaleEntities())
+            using (POSEntity cont  = new POSEntity())
             {
                 gcSaleMaster.DataSource = null;
                

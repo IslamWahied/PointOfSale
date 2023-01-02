@@ -21,5 +21,8 @@ namespace DataRep
         public long Auth_Code { get; set; }
         public long Tab_Info_Code { get; set; }
         public long Id { get; set; }
+        public string Tab_Description_Eng { get; set; }
+        public long Branch_Code { get; set; }
+        public bool is_Back_Office_Updated { get; set; }
     }
 }

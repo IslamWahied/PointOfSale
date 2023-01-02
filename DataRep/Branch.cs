@@ -18,5 +18,7 @@ namespace DataRep
         public long Branches_Code { get; set; }
         public string Branches_Name { get; set; }
         public int IsDeleted { get; set; }
+        public long Warhouse_Code { get; set; }
+        public bool Is_Back_Office { get; set; }
     }
 }

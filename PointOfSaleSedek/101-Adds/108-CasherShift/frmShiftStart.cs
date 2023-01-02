@@ -10,19 +10,39 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DataRep;
+using PointOfSaleSedek.HelperClass;
 
 namespace PointOfSaleSedek._101_Adds.CasherShift
 {
     public partial class frmShiftStart : DevExpress.XtraEditors.XtraForm
     {
-        SaleEntities Context = new SaleEntities();
+        POSEntity Context = new POSEntity();
+        readonly Static st = new Static();
         public frmShiftStart()
         {
             InitializeComponent();
             FillSlkUser();
+            langu();
               string DatatimeNow = Convert.ToString(DateTime.Now);
        
             dtFrom.Text = DatatimeNow;
+        }
+
+
+        void langu()
+        {
+            this.RightToLeft = st.isEnglish() ? RightToLeft.No : RightToLeft.Yes;
+
+            this.Text = st.isEnglish() ? "New Shift" : "وردية جديدة";
+            labelControl1.Text = st.isEnglish() ? "UserName" : "المستخدم";
+            labelControl2.Text = st.isEnglish() ? "Shift Start Date" : "تاريخ بداية الوردية";
+            labelControl3.Text = st.isEnglish() ? "Shift Start Balance" : "رصيد بداية الوردية";
+            labelControl4.Text = st.isEnglish() ? "Notes" : "الملاحظات";
+            
+            gridColumn2.Caption = st.isEnglish() ? "Name" : "الاسم";
+            btnSave.Text = st.isEnglish() ? "Save" : "اضافة";
+            btnCancel.Text = st.isEnglish() ? "Close" : "اغلاق";
+
         }
         public void FillSlkUser()
         {
@@ -34,7 +54,7 @@ namespace PointOfSaleSedek._101_Adds.CasherShift
 
            foreach (var item in resultList)
             {
-                bool ressult = Context.Shift_View.Any(Shift => Shift.IsDeleted == 0 && Shift.Emp_Code == item.Employee_Code && Shift.Shift_Flag == true);
+                bool ressult = Context.Shift_View.Any(Shift => Shift.IsDeleted == 0 && Shift.Emp_Code == item.Employee_Code && Shift.Shift_Flag == true  && Shift.Shift_Code != 0);
                 if (!ressult) {
 
                     listUserView.Add(item);
@@ -61,21 +81,21 @@ namespace PointOfSaleSedek._101_Adds.CasherShift
             if (string.IsNullOrWhiteSpace(slkUser.Text))
             {
 
-                MaterialMessageBox.Show("برجاء اختيار المستخدم ", MessageBoxButtons.OK);
+                MaterialMessageBox.Show(st.isEnglish() ? "Please select the user" :"برجاء اختيار المستخدم ", MessageBoxButtons.OK);
                 return;
 
             }
            else if (string.IsNullOrWhiteSpace(dtFrom.Text))
             {
 
-                MaterialMessageBox.Show("برجاء اختيار تاريخ بداية الوردية ", MessageBoxButtons.OK);
+                MaterialMessageBox.Show(st.isEnglish() ? "Please choose the start date of the shift" :"برجاء اختيار تاريخ بداية الوردية ", MessageBoxButtons.OK);
                 return;
 
             }
            else if (string.IsNullOrWhiteSpace(txtStartAmount.Text))
             {
 
-                MaterialMessageBox.Show("برجاء ادخال رصيد بداية الوردية ", MessageBoxButtons.OK);
+                MaterialMessageBox.Show(st.isEnglish() ? "Please choose the start date of the shift" : "برجاء اختيار تاريخ بداية الوردية ", MessageBoxButtons.OK);
                 return;
 
             }
@@ -106,14 +126,14 @@ namespace PointOfSaleSedek._101_Adds.CasherShift
                 string DatatimeNow = Convert.ToString(DateTime.Now);
 
                 dtFrom.Text = DatatimeNow;
-                MaterialMessageBox.Show("تم الحفظ", MessageBoxButtons.OK);
+                MaterialMessageBox.Show(st.isEnglish()? "Saved successfully":"تم الحفظ", MessageBoxButtons.OK);
                 this.Close();
 
             }
             else
                     {
 
-                MaterialMessageBox.Show("يوجد وردية مفعلة لهذا المستخدم ", MessageBoxButtons.OK);
+                MaterialMessageBox.Show(st.isEnglish() ? "This user has an active shift" :"يوجد وردية مفعلة لهذا المستخدم", MessageBoxButtons.OK);
                 return;
 
                

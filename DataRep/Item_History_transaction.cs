@@ -24,5 +24,10 @@ namespace DataRep
         public System.DateTime OrderDate { get; set; }
         public long Item_Id { get; set; }
         public long shiftCode { get; set; }
+        public long Branch_Id { get; set; }
+        public long To_Warhouse_Code { get; set; }
+        public long from_Warhouse_Code { get; set; }
+        public bool is_Back_Office_Updated { get; set; }
+        public long Warhouse_Transfer_Code { get; set; }
     }
 }

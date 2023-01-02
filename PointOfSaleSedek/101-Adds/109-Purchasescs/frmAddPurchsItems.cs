@@ -10,20 +10,48 @@ using System.Windows.Forms;
 using DataRep;
 
 using PointOfSaleSedek._102_MaterialSkin;
+using PointOfSaleSedek.HelperClass;
 
 namespace PointOfSaleSedek._101_Adds
 {
     public partial class frmAddPurchsItems : DevExpress.XtraEditors.XtraForm
     {
-        readonly SaleEntities context = new SaleEntities();
+        readonly POSEntity context = new POSEntity();
+        Static st = new Static();
         public frmAddPurchsItems()
         {
             InitializeComponent();
+            langu();
             txtBoxNumber.Enabled = false;
             txtUnitForBoxNumber.Enabled = false;
             FillSlkItems();
+            FillslkWarhouse();
             txtFinalUnitsNumber.Text = "1";
+            
 
+        }
+        void langu()
+        {
+            this.RightToLeft = st.isEnglish() ? RightToLeft.No : RightToLeft.Yes;
+             tableLayoutPanel1.RightToLeft  = st.isEnglish() ? RightToLeft.Yes : RightToLeft.No;
+            this.Text = st.isEnglish() ? "Add Item" : "اضافة منتج";
+            labelControl5.Text = st.isEnglish() ? "Items" : "المنتج";
+            labelControl1.Text = st.isEnglish() ? "Category" : "المجموعة";
+            labelControl2.Text = st.isEnglish() ? "Item Name" : "اسم الصنف";
+            labelControl3.Text = st.isEnglish() ? "Unit" : "وحدة القياس";
+            labelControl7.Text = st.isEnglish() ? "Purchasing Price" : "سعر الشراء";
+            labelControl4.Text = st.isEnglish() ? "Selling Price" : "سعر البيع";
+            labelControl10.Text = st.isEnglish() ? "Unit" : "بالوحده";
+            labelControl11.Text = st.isEnglish() ? "Box" : "بالكرتونة";
+            labelControl12.Text = st.isEnglish() ? "Warhouse" : "المخزن";
+            labelControl8.Text = st.isEnglish() ? "Box" : "العدد";
+            labelControl6.Text = st.isEnglish() ? "Unit Count" : "الوحدات";
+            labelControl9.Text = st.isEnglish() ? "Total" : "الاجمالي";
+            gridColumn1.Caption = st.isEnglish() ? "ParCode" : "باركود";
+            gridColumn2.Caption = st.isEnglish() ? "Name" : "الاسم";
+            gridColumn4.Caption = st.isEnglish() ? "Name" : "الاسم";
+            btnAdd.Text = st.isEnglish() ? "Add" : "اضافة";
+            btnCancel.Text = st.isEnglish() ? "Close" : "اغلاق";
 
         }
 
@@ -58,10 +86,25 @@ namespace PointOfSaleSedek._101_Adds
 
             //}
         }
+
+
+        
+
+        public void FillslkWarhouse()
+        {
+            DataTable dt = new DataTable();
+            var result = context.Warehouses.Where(user => user.isDelete == 0 ).ToList();
+            slkWarhouse.Properties.DataSource = result;
+            slkWarhouse.Properties.ValueMember = "Warehouse_Code";
+            slkWarhouse.Properties.DisplayMember = "Warehouse_Name";
+            slkWarhouse.EditValue = 0;
+
+        }
         public void FillSlkItems()
         {
             DataTable dt = new DataTable();
-            var result = context.ItemCardViews.Where(user => user.IsDeleted == 0).ToList();
+            Int64 branchCode = st.GetBranch_Code();
+            var result = context.ItemCardViews.Where(user => user.IsDeleted == 0 && user.Branch_Code == branchCode).ToList();
             slkItem.Properties.DataSource = result;
             slkItem.Properties.ValueMember = "ItemCode";
             slkItem.Properties.DisplayMember = "Name";
@@ -200,13 +243,14 @@ namespace PointOfSaleSedek._101_Adds
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
+            Int64 branchCode = st.GetBranch_Code();
 
             try
             {
-                if (!string.IsNullOrWhiteSpace(slkItem.Text))
+                if (!string.IsNullOrWhiteSpace(slkItem.Text) && !string.IsNullOrWhiteSpace(slkWarhouse.Text))
                 {
                     Int64 ItemCode = Convert.ToInt64(slkItem.EditValue);
-                    ItemCardView item1 = context.ItemCardViews.FirstOrDefault(x => x.ItemCode == ItemCode);
+                    ItemCardView item1 = context.ItemCardViews.FirstOrDefault(x => x.ItemCode == ItemCode && x.Branch_Code == branchCode );
 
                     if (item1 != null)
                     {
@@ -255,7 +299,10 @@ namespace PointOfSaleSedek._101_Adds
                                         PriceBuy = Convert.ToDouble(txtPriceBuy.Text),
                                         Qty = Convert.ToDouble(txtFinalUnitsNumber.Text),
                                         Total = Convert.ToDouble(txtFinalUnitsNumber.Text) * Convert.ToDouble(txtPriceBuy.Text),
-
+                                        Branches_Code = st.GetBranch_Code(),
+                                      Warhouse_Code = Convert.ToInt64(slkWarhouse.EditValue),
+                                        Name_En = item1.Name_En,
+                                        Warehouse_Name = slkWarhouse.Text,
                                         CategoryCode = item1.CategoryCode,
                                         ItemCode = item1.ItemCode,
                                         Operation_Type_Id = 2,
@@ -294,7 +341,9 @@ namespace PointOfSaleSedek._101_Adds
                                             PriceBuy = Convert.ToDouble(txtPriceBuy.Text),
                                             Qty = Convert.ToDouble(txtFinalUnitsNumber.Text),
                                             Total = Convert.ToDouble(txtFinalUnitsNumber.Text) * Convert.ToDouble(txtPriceBuy.Text),
-
+                                            Branches_Code = st.GetBranch_Code(),
+                                            Warehouse_Name = slkWarhouse.Text,
+                                            Warhouse_Code = Convert.ToInt64(slkWarhouse.EditValue),
                                             CategoryCode = item1.CategoryCode,
                                             ItemCode = item1.ItemCode,
                                             Operation_Type_Id = 2,
@@ -307,7 +356,7 @@ namespace PointOfSaleSedek._101_Adds
                                         DetailListV2.Add(Detail);
                                         frm.gcItemCard.DataSource = DetailListV2;
                                         frm.gcItemCard.RefreshDataSource();
-                                        Rest();
+                              
 
                                     }
 
@@ -324,13 +373,25 @@ namespace PointOfSaleSedek._101_Adds
 
 
                         }
-
+                        Rest();
                     }
                 }
                 else
                 {
-                    MaterialMessageBox.Show("برجاء اختيار منتج", MessageBoxButtons.OK);
-                    return;
+                    if (string.IsNullOrWhiteSpace(slkItem.Text))
+                    {
+                        MaterialMessageBox.Show(st.isEnglish() ? "Please select a product" : "برجاء اختيار منتج", MessageBoxButtons.OK);
+                        return;
+                    }
+                    else if (string.IsNullOrWhiteSpace(slkWarhouse.Text)) {
+
+                        MaterialMessageBox.Show(st.isEnglish() ? "Please select a Warhouse" : "برجاء اختيار مخزن", MessageBoxButtons.OK);
+                        return;
+
+
+                    }
+                 
+                   
 
                 }
 
@@ -342,7 +403,7 @@ namespace PointOfSaleSedek._101_Adds
             }
 
 
-            Rest();
+           
 
         }
         void Rest()
@@ -353,10 +414,12 @@ namespace PointOfSaleSedek._101_Adds
             txtPrice.ResetText();
             txtUnit.ResetText();
             txtPriceBuy.ResetText();
+
             txtName.ResetText();
             txtFinalUnitsNumber.Text = "1";
             //txtFinalUnitsNumber.ResetText();
             txtUnitForBoxNumber.ResetText();
+          
             slkItem.Text="";
             txtCatgoryName.ResetText();
             chkBox.Checked = false;
@@ -377,7 +440,8 @@ namespace PointOfSaleSedek._101_Adds
                 try
                 {
                     Int64 ItemCode = Convert.ToInt64(slkItem.EditValue);
-                    ItemCardView item = context.ItemCardViews.FirstOrDefault(x => x.ItemCode == ItemCode);
+                    Int64 branchCode = st.GetBranch_Code();
+                    ItemCardView item = context.ItemCardViews.FirstOrDefault(x => x.ItemCode == ItemCode && x.Branch_Code == branchCode);
                     if (item != null)
                     {
                         txtName.Text = item.Name;

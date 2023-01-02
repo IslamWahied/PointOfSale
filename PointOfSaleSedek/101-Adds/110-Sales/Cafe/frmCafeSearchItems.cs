@@ -4,17 +4,41 @@ using System.Data;
 using System.Linq;
 using System.Windows.Forms;
 using DataRep;
+using PointOfSaleSedek.HelperClass;
 
 namespace PointOfSaleSedek._101_Adds
 {
     public partial class frmCafeSearchItems : DevExpress.XtraEditors.XtraForm
     {
-        readonly SaleEntities context = new SaleEntities();
+        readonly POSEntity context = new POSEntity();
+        readonly Static st = new Static();
+
         public frmCafeSearchItems()
         {
             InitializeComponent();
             FillSlkItems();
             slkItem.Focus();
+            langu();
+
+        }
+
+        void langu()
+        {
+
+            this.RightToLeft = st.isEnglish() ? RightToLeft.No : RightToLeft.Yes;
+            tableLayoutPanel2.RightToLeft = st.isEnglish() ? RightToLeft.Yes : RightToLeft.No;
+            this.Text = st.isEnglish() ? "Search" : "بحث";
+            labelControl5.Text = st.isEnglish() ? "BarCode" : "الباركود";
+            labelControl1.Text = st.isEnglish() ? "Category" : "المجموعة";
+            labelControl2.Text = st.isEnglish() ? "Item Name" : "اسم المنتج";
+            labelControl3.Text = st.isEnglish() ? "Unit" : "وحدة القياس";
+            labelControl4.Text = st.isEnglish() ? "Selling Price" : "سعر البيع";
+            labelControl6.Text = st.isEnglish() ? "Quantity" : "الكمية";
+            gridColumn1.Caption = st.isEnglish() ? "ParCode" : "الباركود";
+            gridColumn2.Caption = st.isEnglish() ? "Name" : "الاسم";
+
+            btnSave.Text = st.isEnglish() ? "Add" : "اضافة";
+            btnCancel.Text = st.isEnglish() ? "Close" : "اغلاق";
         }
 
         public void FillSlkItems()
@@ -129,18 +153,22 @@ namespace PointOfSaleSedek._101_Adds
            {
 
 
-                frmCafeSales frm = (frmCafeSales)Application.OpenForms["frmSales"];
+                frmCafeSales frm = (frmCafeSales)Application.OpenForms["frmCafeSales"];
 
                 List<SaleDetailView> gcData = new  List<SaleDetailView>();
-                
-               
-                var grd = frm.gcCafeSaleDetail.DataSource as List<SaleDetailView>;
 
-                if (grd != null)
-                { 
-                gcData = grd;
-                
+
+                if (frm.gcCafeSaleDetail.DataSource != null) {
+                    var grd = frm.gcCafeSaleDetail.DataSource as List<SaleDetailView>;
+                    gcData = grd;
                 }
+             
+
+                //if (grd != null)
+                //{ 
+                //gcData = grd;
+                
+                //}
 
 
 

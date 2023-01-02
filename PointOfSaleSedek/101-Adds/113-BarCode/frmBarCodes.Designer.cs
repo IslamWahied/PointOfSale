@@ -62,9 +62,10 @@ namespace PointOfSaleSedek._101_Adds._113_BarCode
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.tableLayoutPanel1.RowCount = 3;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 48.32215F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 38F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 41F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 51.67785F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(405, 131);
             this.tableLayoutPanel1.TabIndex = 5;
@@ -74,17 +75,19 @@ namespace PointOfSaleSedek._101_Adds._113_BarCode
             // 
             this.txtNumberOfPaper.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtNumberOfPaper.EditValue = "1";
-            this.txtNumberOfPaper.Location = new System.Drawing.Point(3, 47);
+            this.txtNumberOfPaper.Location = new System.Drawing.Point(3, 46);
             this.txtNumberOfPaper.Name = "txtNumberOfPaper";
             this.txtNumberOfPaper.Properties.Appearance.BackColor = System.Drawing.Color.White;
             this.txtNumberOfPaper.Properties.Appearance.Options.UseBackColor = true;
+            this.txtNumberOfPaper.Properties.Appearance.Options.UseTextOptions = true;
+            this.txtNumberOfPaper.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.txtNumberOfPaper.Properties.AutoHeight = false;
             this.txtNumberOfPaper.Properties.Mask.EditMask = "\\d{0,12}";
             this.txtNumberOfPaper.Properties.Mask.IgnoreMaskBlank = false;
             this.txtNumberOfPaper.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
             this.txtNumberOfPaper.Properties.Mask.ShowPlaceHolders = false;
             this.txtNumberOfPaper.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.txtNumberOfPaper.Size = new System.Drawing.Size(243, 32);
+            this.txtNumberOfPaper.Size = new System.Drawing.Size(243, 35);
             this.txtNumberOfPaper.TabIndex = 240;
             // 
             // tableLayoutPanel3
@@ -92,17 +95,17 @@ namespace PointOfSaleSedek._101_Adds._113_BarCode
             this.tableLayoutPanel3.ColumnCount = 3;
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 52.60417F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 47.39583F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 13F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 16F));
             this.tableLayoutPanel3.Controls.Add(this.btnCancel, 0, 1);
             this.tableLayoutPanel3.Controls.Add(this.btnPrint, 0, 1);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 85);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 87);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.tableLayoutPanel3.RowCount = 2;
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 22.72727F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 77.27273F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(243, 43);
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 17.3913F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 82.6087F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(243, 41);
             this.tableLayoutPanel3.TabIndex = 236;
             this.tableLayoutPanel3.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel3_Paint);
             // 
@@ -111,9 +114,9 @@ namespace PointOfSaleSedek._101_Adds._113_BarCode
             this.btnCancel.AllowFocus = false;
             this.btnCancel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnCancel.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnCancel.ImageOptions.Image")));
-            this.btnCancel.Location = new System.Drawing.Point(17, 12);
+            this.btnCancel.Location = new System.Drawing.Point(20, 10);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(103, 28);
+            this.btnCancel.Size = new System.Drawing.Size(101, 28);
             this.btnCancel.TabIndex = 2;
             this.btnCancel.Text = "اغلاق";
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click_1);
@@ -123,9 +126,9 @@ namespace PointOfSaleSedek._101_Adds._113_BarCode
             this.btnPrint.AllowFocus = false;
             this.btnPrint.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnPrint.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnPrint.ImageOptions.Image")));
-            this.btnPrint.Location = new System.Drawing.Point(126, 12);
+            this.btnPrint.Location = new System.Drawing.Point(127, 10);
             this.btnPrint.Name = "btnPrint";
-            this.btnPrint.Size = new System.Drawing.Size(114, 28);
+            this.btnPrint.Size = new System.Drawing.Size(113, 28);
             this.btnPrint.TabIndex = 1;
             this.btnPrint.Text = "طباعة";
             this.btnPrint.Click += new System.EventHandler(this.btnCancel_Click);
@@ -138,9 +141,10 @@ namespace PointOfSaleSedek._101_Adds._113_BarCode
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(252, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(150, 44);
+            this.label1.Size = new System.Drawing.Size(150, 43);
             this.label1.TabIndex = 238;
             this.label1.Text = "اسم المنتج";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label2
             // 
@@ -148,11 +152,12 @@ namespace PointOfSaleSedek._101_Adds._113_BarCode
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(252, 44);
+            this.label2.Location = new System.Drawing.Point(252, 43);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(150, 38);
+            this.label2.Size = new System.Drawing.Size(150, 41);
             this.label2.TabIndex = 239;
             this.label2.Text = "عدد مرات الطباعة";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // slkItem
             // 
@@ -161,13 +166,16 @@ namespace PointOfSaleSedek._101_Adds._113_BarCode
             | System.Windows.Forms.AnchorStyles.Right)));
             this.slkItem.Location = new System.Drawing.Point(3, 3);
             this.slkItem.Name = "slkItem";
+            this.slkItem.Properties.Appearance.Options.UseTextOptions = true;
+            this.slkItem.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.slkItem.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.slkItem.Properties.AutoHeight = false;
             this.slkItem.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.slkItem.Properties.NullText = "";
             this.slkItem.Properties.PopupView = this.searchLookUpEdit1View;
             this.slkItem.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.slkItem.Size = new System.Drawing.Size(243, 38);
+            this.slkItem.Size = new System.Drawing.Size(243, 37);
             this.slkItem.TabIndex = 237;
             this.slkItem.EditValueChanged += new System.EventHandler(this.slkItem_EditValueChanged);
             // 

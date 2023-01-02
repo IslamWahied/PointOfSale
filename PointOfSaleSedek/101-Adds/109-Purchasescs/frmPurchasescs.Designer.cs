@@ -48,6 +48,7 @@
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.gcItemCard = new DevExpress.XtraGrid.GridControl();
             this.gvItemCard = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColumn14 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -87,33 +88,33 @@
             this.materialContextMenuStrip1.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialContextMenuStrip1.Name = "materialContextMenuStrip1";
             this.materialContextMenuStrip1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.materialContextMenuStrip1.Size = new System.Drawing.Size(181, 114);
+            this.materialContextMenuStrip1.Size = new System.Drawing.Size(137, 92);
             // 
             // اضافةجديدةToolStripMenuItem
             // 
             this.اضافةجديدةToolStripMenuItem.Name = "اضافةجديدةToolStripMenuItem";
-            this.اضافةجديدةToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.اضافةجديدةToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.اضافةجديدةToolStripMenuItem.Text = "اضافة جديدة";
             this.اضافةجديدةToolStripMenuItem.Click += new System.EventHandler(this.اضافةجديدةToolStripMenuItem_Click);
             // 
             // تعديلToolStripMenuItem
             // 
             this.تعديلToolStripMenuItem.Name = "تعديلToolStripMenuItem";
-            this.تعديلToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.تعديلToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.تعديلToolStripMenuItem.Text = "تعديل";
             this.تعديلToolStripMenuItem.Click += new System.EventHandler(this.تعديلToolStripMenuItem_Click);
             // 
             // حذفToolStripMenuItem
             // 
             this.حذفToolStripMenuItem.Name = "حذفToolStripMenuItem";
-            this.حذفToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.حذفToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.حذفToolStripMenuItem.Text = "حذف";
             this.حذفToolStripMenuItem.Click += new System.EventHandler(this.حذفToolStripMenuItem_Click);
             // 
             // اضافةصنفجديدToolStripMenuItem
             // 
             this.اضافةصنفجديدToolStripMenuItem.Name = "اضافةصنفجديدToolStripMenuItem";
-            this.اضافةصنفجديدToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.اضافةصنفجديدToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.اضافةصنفجديدToolStripMenuItem.Text = "فاتورة جديدة";
             this.اضافةصنفجديدToolStripMenuItem.Click += new System.EventHandler(this.اضافةصنفجديدToolStripMenuItem_Click);
             // 
@@ -196,6 +197,7 @@
             this.gvItemCard.Appearance.Row.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gvItemCard.Appearance.Row.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.gvItemCard.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumn14,
             this.gridColumn7,
             this.gridColumn1,
             this.gridColumn2,
@@ -221,13 +223,23 @@
             this.gvItemCard.OptionsView.ShowFooter = true;
             this.gvItemCard.RowHeight = 30;
             // 
+            // gridColumn14
+            // 
+            this.gridColumn14.Caption = "المخزن";
+            this.gridColumn14.FieldName = "Warehouse_Name";
+            this.gridColumn14.Name = "gridColumn14";
+            this.gridColumn14.OptionsColumn.AllowEdit = false;
+            this.gridColumn14.Visible = true;
+            this.gridColumn14.VisibleIndex = 3;
+            // 
             // gridColumn7
             // 
             this.gridColumn7.Caption = "المجموعة";
             this.gridColumn7.FieldName = "CategoryName";
             this.gridColumn7.Name = "gridColumn7";
+            this.gridColumn7.OptionsColumn.AllowEdit = false;
             this.gridColumn7.Visible = true;
-            this.gridColumn7.VisibleIndex = 0;
+            this.gridColumn7.VisibleIndex = 2;
             // 
             // gridColumn1
             // 
@@ -247,7 +259,7 @@
             this.gridColumn2.OptionsFilter.AutoFilterCondition = DevExpress.XtraGrid.Columns.AutoFilterCondition.Contains;
             this.gridColumn2.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
             this.gridColumn2.Visible = true;
-            this.gridColumn2.VisibleIndex = 2;
+            this.gridColumn2.VisibleIndex = 1;
             // 
             // gridColumn3
             // 
@@ -258,7 +270,7 @@
             this.gridColumn3.OptionsFilter.AutoFilterCondition = DevExpress.XtraGrid.Columns.AutoFilterCondition.Contains;
             this.gridColumn3.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
             this.gridColumn3.Visible = true;
-            this.gridColumn3.VisibleIndex = 3;
+            this.gridColumn3.VisibleIndex = 4;
             // 
             // gridColumn10
             // 
@@ -267,7 +279,7 @@
             this.gridColumn10.Name = "gridColumn10";
             this.gridColumn10.OptionsColumn.AllowEdit = false;
             this.gridColumn10.Visible = true;
-            this.gridColumn10.VisibleIndex = 1;
+            this.gridColumn10.VisibleIndex = 0;
             // 
             // gridColumn4
             // 
@@ -285,24 +297,28 @@
             this.gridColumn6.Caption = "كود المجموعة";
             this.gridColumn6.FieldName = "CategoryCode";
             this.gridColumn6.Name = "gridColumn6";
+            this.gridColumn6.OptionsColumn.AllowEdit = false;
             // 
             // gridColumn5
             // 
             this.gridColumn5.Caption = "ItemId";
             this.gridColumn5.FieldName = "Id";
             this.gridColumn5.Name = "gridColumn5";
+            this.gridColumn5.OptionsColumn.AllowEdit = false;
             // 
             // gridColumn8
             // 
             this.gridColumn8.Caption = "الباركود";
             this.gridColumn8.FieldName = "ParCode";
             this.gridColumn8.Name = "gridColumn8";
+            this.gridColumn8.OptionsColumn.AllowEdit = false;
             // 
             // gridColumn9
             // 
             this.gridColumn9.Caption = "اضافة في النافذه";
             this.gridColumn9.FieldName = "AddItem";
             this.gridColumn9.Name = "gridColumn9";
+            this.gridColumn9.OptionsColumn.AllowEdit = false;
             // 
             // gridColumn11
             // 
@@ -317,25 +333,25 @@
             this.gridColumn11.Name = "gridColumn11";
             this.gridColumn11.OptionsColumn.AllowEdit = false;
             this.gridColumn11.Visible = true;
-            this.gridColumn11.VisibleIndex = 4;
+            this.gridColumn11.VisibleIndex = 6;
             // 
             // gridColumn12
             // 
             this.gridColumn12.Caption = "الكمية";
             this.gridColumn12.FieldName = "Qty";
             this.gridColumn12.Name = "gridColumn12";
+            this.gridColumn12.OptionsColumn.AllowEdit = false;
             this.gridColumn12.Visible = true;
-            this.gridColumn12.VisibleIndex = 6;
+            this.gridColumn12.VisibleIndex = 7;
             // 
             // gridColumn13
             // 
             this.gridColumn13.Caption = "المبلغ";
             this.gridColumn13.FieldName = "Total";
             this.gridColumn13.Name = "gridColumn13";
-            this.gridColumn13.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Total", "الاجمالي =  {0:N}")});
+            this.gridColumn13.OptionsColumn.AllowEdit = false;
             this.gridColumn13.Visible = true;
-            this.gridColumn13.VisibleIndex = 7;
+            this.gridColumn13.VisibleIndex = 8;
             // 
             // gridView1
             // 
@@ -382,7 +398,7 @@
             windowsUIButtonImageOptions6.ImageUri.Uri = "Preview;Size32x32;GrayScaled";
             windowsUIButtonImageOptions7.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("windowsUIButtonImageOptions7.SvgImage")));
             this.windowsUIButtonPanel.Buttons.AddRange(new DevExpress.XtraEditors.ButtonPanel.IBaseButton[] {
-            new DevExpress.XtraBars.Docking2010.WindowsUIButton("اضافة جديدة", true, windowsUIButtonImageOptions1, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, true, null, true, false, false, null, -1, false),
+            new DevExpress.XtraBars.Docking2010.WindowsUIButton("جديدة", true, windowsUIButtonImageOptions1, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, true, null, true, false, false, null, -1, false),
             new DevExpress.XtraBars.Docking2010.WindowsUIButton("تعديل", true, windowsUIButtonImageOptions2, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, true, null, true, false, false, null, -1, false),
             new DevExpress.XtraBars.Docking2010.WindowsUIButton("حفظ", true, windowsUIButtonImageOptions3, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, true, null, true, false, true, null, -1, false),
             new DevExpress.XtraBars.Docking2010.WindowsUIButton("جديد", true, windowsUIButtonImageOptions4, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, true, null, true, false, false, null, -1, false),
@@ -466,5 +482,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn13;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
         private System.Windows.Forms.ToolStripMenuItem اضافةجديدةToolStripMenuItem;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn14;
     }
 }

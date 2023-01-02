@@ -84,19 +84,23 @@ namespace PointOfSaleSedek._101_Adds._112_Users
             // 
             // labelControl6
             // 
-            this.labelControl6.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.labelControl6.Appearance.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl6.Appearance.Options.UseFont = true;
-            this.labelControl6.Location = new System.Drawing.Point(121, 182);
+            this.labelControl6.Appearance.Options.UseTextOptions = true;
+            this.labelControl6.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.labelControl6.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.labelControl6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.labelControl6.Location = new System.Drawing.Point(3, 138);
             this.labelControl6.Name = "labelControl6";
-            this.labelControl6.Size = new System.Drawing.Size(135, 19);
+            this.labelControl6.Size = new System.Drawing.Size(279, 42);
             this.labelControl6.TabIndex = 232;
             this.labelControl6.Text = "تفعيل كمستخدم للبرنامج";
+            this.labelControl6.Click += new System.EventHandler(this.labelControl6_Click);
             // 
             // chkAddUser
             // 
-            this.chkAddUser.Dock = System.Windows.Forms.DockStyle.Left;
-            this.chkAddUser.Location = new System.Drawing.Point(262, 171);
+            this.chkAddUser.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.chkAddUser.Location = new System.Drawing.Point(288, 138);
             this.chkAddUser.Name = "chkAddUser";
             this.chkAddUser.Properties.AllowFocused = false;
             this.chkAddUser.Properties.Appearance.Options.UseTextOptions = true;
@@ -107,13 +111,15 @@ namespace PointOfSaleSedek._101_Adds._112_Users
             this.chkAddUser.Properties.AppearanceDisabled.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.chkAddUser.Properties.AppearanceFocused.Options.UseTextOptions = true;
             this.chkAddUser.Properties.AppearanceFocused.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.chkAddUser.Properties.AppearanceFocused.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.chkAddUser.Properties.AppearanceReadOnly.Options.UseTextOptions = true;
             this.chkAddUser.Properties.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.chkAddUser.Properties.AppearanceReadOnly.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.chkAddUser.Properties.Caption = "";
+            this.chkAddUser.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.chkAddUser.Properties.LookAndFeel.UseDefaultLookAndFeel = false;
             this.chkAddUser.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.chkAddUser.Size = new System.Drawing.Size(36, 42);
+            this.chkAddUser.Size = new System.Drawing.Size(88, 42);
             this.chkAddUser.TabIndex = 231;
             // 
             // materialLabel13
@@ -123,12 +129,13 @@ namespace PointOfSaleSedek._101_Adds._112_Users
             this.materialLabel13.Dock = System.Windows.Forms.DockStyle.Fill;
             this.materialLabel13.Font = new System.Drawing.Font("Roboto", 11F);
             this.materialLabel13.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel13.Location = new System.Drawing.Point(262, 130);
+            this.materialLabel13.Location = new System.Drawing.Point(288, 97);
             this.materialLabel13.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel13.Name = "materialLabel13";
-            this.materialLabel13.Size = new System.Drawing.Size(80, 38);
+            this.materialLabel13.Size = new System.Drawing.Size(88, 38);
             this.materialLabel13.TabIndex = 229;
             this.materialLabel13.Text = "الباسورد";
+            this.materialLabel13.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // materialLabel11
             // 
@@ -137,12 +144,13 @@ namespace PointOfSaleSedek._101_Adds._112_Users
             this.materialLabel11.Dock = System.Windows.Forms.DockStyle.Fill;
             this.materialLabel11.Font = new System.Drawing.Font("Roboto", 11F);
             this.materialLabel11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel11.Location = new System.Drawing.Point(262, 32);
+            this.materialLabel11.Location = new System.Drawing.Point(288, 32);
             this.materialLabel11.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel11.Name = "materialLabel11";
-            this.materialLabel11.Size = new System.Drawing.Size(80, 33);
+            this.materialLabel11.Size = new System.Drawing.Size(88, 33);
             this.materialLabel11.TabIndex = 224;
             this.materialLabel11.Text = "اسم الموظف";
+            this.materialLabel11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // txtEmpCode
             // 
@@ -167,7 +175,7 @@ namespace PointOfSaleSedek._101_Adds._112_Users
             this.txtEmpCode.Properties.Mask.ShowPlaceHolders = false;
             this.txtEmpCode.Properties.ReadOnly = true;
             this.txtEmpCode.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.txtEmpCode.Size = new System.Drawing.Size(253, 26);
+            this.txtEmpCode.Size = new System.Drawing.Size(279, 26);
             this.txtEmpCode.TabIndex = 221;
             // 
             // materialLabel10
@@ -177,18 +185,22 @@ namespace PointOfSaleSedek._101_Adds._112_Users
             this.materialLabel10.Dock = System.Windows.Forms.DockStyle.Fill;
             this.materialLabel10.Font = new System.Drawing.Font("Roboto", 11F);
             this.materialLabel10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel10.Location = new System.Drawing.Point(262, 0);
+            this.materialLabel10.Location = new System.Drawing.Point(288, 0);
             this.materialLabel10.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel10.Name = "materialLabel10";
-            this.materialLabel10.Size = new System.Drawing.Size(80, 32);
+            this.materialLabel10.Size = new System.Drawing.Size(88, 32);
             this.materialLabel10.TabIndex = 220;
             this.materialLabel10.Text = "كود الموظف";
+            this.materialLabel10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // txtUserName
             // 
             this.txtUserName.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtUserName.Location = new System.Drawing.Point(3, 101);
+            this.txtUserName.Location = new System.Drawing.Point(3, 68);
             this.txtUserName.Name = "txtUserName";
+            this.txtUserName.Properties.Appearance.Options.UseTextOptions = true;
+            this.txtUserName.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.txtUserName.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.txtUserName.Properties.AutoHeight = false;
             this.txtUserName.Properties.Mask.AutoComplete = DevExpress.XtraEditors.Mask.AutoCompleteType.Optimistic;
             this.txtUserName.Properties.Mask.EditMask = "[^ ]*";
@@ -197,7 +209,7 @@ namespace PointOfSaleSedek._101_Adds._112_Users
             this.txtUserName.Properties.Mask.ShowPlaceHolders = false;
             this.txtUserName.Properties.MaxLength = 50;
             this.txtUserName.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.txtUserName.Size = new System.Drawing.Size(253, 26);
+            this.txtUserName.Size = new System.Drawing.Size(279, 26);
             this.txtUserName.TabIndex = 201;
             // 
             // materialLabel1
@@ -207,12 +219,13 @@ namespace PointOfSaleSedek._101_Adds._112_Users
             this.materialLabel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.materialLabel1.Font = new System.Drawing.Font("Roboto", 11F);
             this.materialLabel1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel1.Location = new System.Drawing.Point(262, 98);
+            this.materialLabel1.Location = new System.Drawing.Point(288, 65);
             this.materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel1.Name = "materialLabel1";
-            this.materialLabel1.Size = new System.Drawing.Size(80, 32);
+            this.materialLabel1.Size = new System.Drawing.Size(88, 32);
             this.materialLabel1.TabIndex = 207;
             this.materialLabel1.Text = "كلمة المرور";
+            this.materialLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // txtBranch
             // 
@@ -228,7 +241,7 @@ namespace PointOfSaleSedek._101_Adds._112_Users
             this.txtBranch.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
             this.txtBranch.Properties.Mask.ShowPlaceHolders = false;
             this.txtBranch.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.txtBranch.Size = new System.Drawing.Size(253, 27);
+            this.txtBranch.Size = new System.Drawing.Size(279, 1);
             this.txtBranch.TabIndex = 200;
             // 
             // tableLayoutPanel3
@@ -238,7 +251,7 @@ namespace PointOfSaleSedek._101_Adds._112_Users
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 49.02597F));
             this.tableLayoutPanel3.Controls.Add(this.btnAdd, 0, 1);
             this.tableLayoutPanel3.Controls.Add(this.btnCancel, 1, 1);
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 219);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 186);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.tableLayoutPanel3.RowCount = 2;
@@ -284,10 +297,10 @@ namespace PointOfSaleSedek._101_Adds._112_Users
             this.materialLabel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.materialLabel4.Font = new System.Drawing.Font("Roboto", 11F);
             this.materialLabel4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel4.Location = new System.Drawing.Point(262, 65);
+            this.materialLabel4.Location = new System.Drawing.Point(288, 65);
             this.materialLabel4.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel4.Name = "materialLabel4";
-            this.materialLabel4.Size = new System.Drawing.Size(80, 33);
+            this.materialLabel4.Size = new System.Drawing.Size(88, 1);
             this.materialLabel4.TabIndex = 208;
             this.materialLabel4.Text = "الفرع";
             // 
@@ -316,13 +329,12 @@ namespace PointOfSaleSedek._101_Adds._112_Users
             this.tableLayoutPanel2.RowCount = 7;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 0F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 38F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 48F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 135F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(345, 290);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(379, 253);
             this.tableLayoutPanel2.TabIndex = 224;
             // 
             // txtEmpName
@@ -333,6 +345,9 @@ namespace PointOfSaleSedek._101_Adds._112_Users
             this.txtEmpName.Name = "txtEmpName";
             this.txtEmpName.Properties.Appearance.BackColor = System.Drawing.Color.White;
             this.txtEmpName.Properties.Appearance.Options.UseBackColor = true;
+            this.txtEmpName.Properties.Appearance.Options.UseTextOptions = true;
+            this.txtEmpName.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.txtEmpName.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.txtEmpName.Properties.AutoHeight = false;
             this.txtEmpName.Properties.Mask.EditMask = "\\d{0,12}";
             this.txtEmpName.Properties.Mask.IgnoreMaskBlank = false;
@@ -340,14 +355,17 @@ namespace PointOfSaleSedek._101_Adds._112_Users
             this.txtEmpName.Properties.Mask.ShowPlaceHolders = false;
             this.txtEmpName.Properties.ReadOnly = true;
             this.txtEmpName.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.txtEmpName.Size = new System.Drawing.Size(253, 27);
+            this.txtEmpName.Size = new System.Drawing.Size(279, 27);
             this.txtEmpName.TabIndex = 225;
             // 
             // txtPassword
             // 
             this.txtPassword.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtPassword.Location = new System.Drawing.Point(3, 133);
+            this.txtPassword.Location = new System.Drawing.Point(3, 100);
             this.txtPassword.Name = "txtPassword";
+            this.txtPassword.Properties.Appearance.Options.UseTextOptions = true;
+            this.txtPassword.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.txtPassword.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.txtPassword.Properties.AutoHeight = false;
             this.txtPassword.Properties.Mask.AutoComplete = DevExpress.XtraEditors.Mask.AutoCompleteType.Optimistic;
             this.txtPassword.Properties.Mask.EditMask = "[^ ]*";
@@ -357,23 +375,22 @@ namespace PointOfSaleSedek._101_Adds._112_Users
             this.txtPassword.Properties.MaxLength = 50;
             this.txtPassword.Properties.UseSystemPasswordChar = true;
             this.txtPassword.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.txtPassword.Size = new System.Drawing.Size(253, 32);
+            this.txtPassword.Size = new System.Drawing.Size(279, 32);
             this.txtPassword.TabIndex = 233;
             // 
             // frmEditeUser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(345, 290);
+            this.ClientSize = new System.Drawing.Size(379, 253);
             this.ControlBox = false;
             this.Controls.Add(this.tableLayoutPanel2);
-            this.MaximumSize = new System.Drawing.Size(355, 322);
-            this.MinimumSize = new System.Drawing.Size(355, 322);
             this.Name = "frmEditeUser";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.RightToLeftLayout = true;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "تعديل بيانات المستخدم";
+            this.TopMost = true;
             ((System.ComponentModel.ISupportInitialize)(this.chkAddUser.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtEmpCode.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtUserName.Properties)).EndInit();

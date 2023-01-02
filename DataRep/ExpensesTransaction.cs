@@ -25,5 +25,7 @@ namespace DataRep
         public long Shift_Code { get; set; }
         public Nullable<long> Emp_Code { get; set; }
         public bool isUploaded { get; set; }
+        public long Branch_Id { get; set; }
+        public bool is_Back_Office_Updated { get; set; }
     }
 }

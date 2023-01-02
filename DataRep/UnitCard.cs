@@ -18,5 +18,6 @@ namespace DataRep
         public long UnitCode { get; set; }
         public string UnitName { get; set; }
         public int IsDeleted { get; set; }
+        public long Branch_Code { get; set; }
     }
 }

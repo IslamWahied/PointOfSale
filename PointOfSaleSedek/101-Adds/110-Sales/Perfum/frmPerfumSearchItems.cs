@@ -10,19 +10,21 @@ using System.Windows.Forms;
 using PointOfSaleSedek._102_MaterialSkin;
 using DataRep;
 using PointOfSaleSedek.Model;
+using PointOfSaleSedek.HelperClass;
 
 namespace PointOfSaleSedek._101_Adds
 {
     
     public partial class frmPerfumSearchItems : DevExpress.XtraEditors.XtraForm
     {
+        readonly Static st = new Static();
 
-       
 
-        readonly SaleEntities context = new SaleEntities();
+        readonly POSEntity context = new POSEntity();
         public frmPerfumSearchItems()
         {
             InitializeComponent();
+            langu();
             FillOliSlkItems();
 
             FillSlkOilQty();
@@ -32,6 +34,41 @@ namespace PointOfSaleSedek._101_Adds
             FillSlkItems();
 
 
+        }
+
+        void langu()
+        {
+
+            this.RightToLeft = st.isEnglish() ? RightToLeft.No : RightToLeft.Yes;
+            tableLayoutPanel2.RightToLeft = st.isEnglish() ? RightToLeft.Yes : RightToLeft.No;
+            this.Text = st.isEnglish() ? "Search" : "بحث";
+ 
+            labelControl1.Text = st.isEnglish() ? "Name" : "الاسم";
+            labelControl5.Text = st.isEnglish() ? "Quantity" : "الكمية";
+            labelControl7.Text = st.isEnglish() ? "Bottle" : "زجاج";
+
+            labelControl3.Text = st.isEnglish() ? "Name" : "الاسم";
+            labelControl2.Text = st.isEnglish() ? "Quantity" : "الكمية";
+            labelControl6.Text = st.isEnglish() ? "Oil" : "زيت";
+            labelControl10.Text = st.isEnglish() ? "Other Products" : "منتجات اخري";
+
+            labelControl8.Text = st.isEnglish() ? "Name" : "الاسم";
+            labelControl9.Text = st.isEnglish() ? "Quantity" : "الكمية";
+
+            gridColumn1.Caption = st.isEnglish() ? "ParCode" : "الباركود";
+            gridColumn2.Caption = st.isEnglish() ? "Name" : "الاسم";
+
+            gridColumn3.Caption = st.isEnglish() ? "ParCode" : "الباركود";
+            gridColumn5.Caption = st.isEnglish() ? "Name" : "الاسم";
+
+
+            gridColumn6.Caption = st.isEnglish() ? "ParCode" : "الباركود";
+            gridColumn7.Caption = st.isEnglish() ? "Name" : "الاسم";
+
+            gridColumn4.Caption = st.isEnglish() ? "Quantity" : "الكمية";
+
+            btnSave.Text = st.isEnglish() ? "Add" : "اضافة";
+            btnCancel.Text = st.isEnglish() ? "Close" : "اغلاق";
         }
 
         public void FillOliSlkItems()

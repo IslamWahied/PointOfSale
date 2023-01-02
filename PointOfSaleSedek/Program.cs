@@ -7,6 +7,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using PointOfSaleSedek.HelperClass;
+using PointOfSaleSedek._101_Adds._111_Warehouse;
 
 namespace PointOfSaleSedekSedek
 {
@@ -20,7 +22,9 @@ namespace PointOfSaleSedekSedek
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FrmLogin());
+           // Application.Run(new SplashScreen1());
+             Application.Run(new FrmLogin());
+          //  Application.Run(new TransferWarhouse());
         }
     }
 }

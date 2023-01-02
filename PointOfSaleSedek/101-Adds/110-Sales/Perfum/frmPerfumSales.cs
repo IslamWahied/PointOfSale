@@ -16,7 +16,7 @@ namespace PointOfSaleSedek._101_Adds
 
     public partial class frmPerfumSales : Form
     {
-        SaleEntities context = new SaleEntities();
+        POSEntity context = new POSEntity();
         public string Status = "New";
         public bool SearchStatus = false;
         Static st = new Static();
@@ -78,7 +78,7 @@ namespace PointOfSaleSedek._101_Adds
                 
                  btnEdite.Enabled = false;
 
-            var UserId = Convert.ToInt64(st.User_Code());
+            var UserId = Convert.ToInt64(st.GetUser_Code());
             var Check = context.Shifts.Any(x => x.Shift_Flag == true && x.User_Id == UserId && x.IsDeleted == 0);
             if (!Check)
             {
@@ -99,7 +99,7 @@ namespace PointOfSaleSedek._101_Adds
 
             this.Status = "New";
             HelperClass.HelperClass.ClearValues(tableLayoutPanel1);
-            Int64 UserCode = st.User_Code();
+            Int64 UserCode = st.GetUser_Code();
             var ShiftCode = context.Shift_View.Where(x => x.User_Id == UserCode && x.Shift_Flag == true).Select(xx => xx.Shift_Code).SingleOrDefault();
             Int64? MaxCode = context.SaleMasters.Where(x => x.ShiftCode == ShiftCode && (x.Operation_Type_Id == 2 || x.Operation_Type_Id == 3)).Max(u => (Int64?)u.SaleMasterCode + 1);
             if (MaxCode == null || MaxCode == 0)
@@ -234,7 +234,7 @@ namespace PointOfSaleSedek._101_Adds
                     SaleMasterCode = Int64.Parse(lblSaleMasterId.Text);
                     _SaleMasters.Payment_Type = Int64.Parse(SlkPaymentsType.EditValue.ToString());
 
-                    _SaleMasters.UserCode = st.User_Code();
+                    _SaleMasters.UserCode = st.GetUser_Code();
                     context.SaveChanges();
 
 
@@ -313,7 +313,7 @@ namespace PointOfSaleSedek._101_Adds
 
         //    List<SaleDetail> ArryOfSaleDetail = new List<SaleDetail>();
 
-        //    Int64 UserCode = st.User_Code();
+        //    Int64 UserCode = st.GetUser_Code();
         //    var ShiftCode = context.Shift_View.Where(x => x.User_Id == UserCode && x.Shift_Flag == true).Select(xx => xx.Shift_Code).SingleOrDefault();
         //    Int64 SaleMasterCode = Int64.Parse(lblSaleMasterId.Text);
 
@@ -329,7 +329,7 @@ namespace PointOfSaleSedek._101_Adds
 
 
         //            // Vildate QTy
-        //            //using (PointOfSaleEntities ContVald = new PointOfSaleEntities())
+        //            //using (POSEntity ContVald = new POSEntity())
         //            //{
         //            //    GetDataFromGrid.ForEach(item =>
         //            //    {
@@ -357,7 +357,7 @@ namespace PointOfSaleSedek._101_Adds
 
         //            //}
 
-        //            using (SaleEntities context2 = new SaleEntities())
+        //            using (POSEntity context2 = new POSEntity())
         //            {
         //                var Details = context2.SaleDetails.Where(w => w.SaleMasterCode == SaleMasterCode && w.shiftCode == ShiftCode).ToList();
         //                context2.SaleDetails.RemoveRange(Details);
@@ -467,7 +467,7 @@ namespace PointOfSaleSedek._101_Adds
         //                    SaleMasterCode = Int64.Parse(lblSaleMasterId.Text),
         //                    LastDateModif = DateTime.Now,
         //                    Operation_Type_Id = 2,
-        //                    UserId = st.User_Code()
+        //                    UserId = st.GetUser_Code()
 
 
 
@@ -485,7 +485,7 @@ namespace PointOfSaleSedek._101_Adds
 
         //                 ShiftCode: ShiftCode,
 
-        //                 UserCode: st.User_Code(),
+        //                 UserCode: st.GetUser_Code(),
         //                 Discount: double.Parse(lblDiscount.Text),
         //                 TotalBeforDiscount: double.Parse(lblFinalBeforDesCound.Text),
         //                 FinalTotal: double.Parse(lblFinalTotal.Text),
@@ -519,7 +519,7 @@ namespace PointOfSaleSedek._101_Adds
         //    else
         //    {
         //        #region
-        //        //using (PointOfSaleEntities ContVald = new PointOfSaleEntities())
+        //        //using (POSEntity ContVald = new POSEntity())
         //        //{
         //        //    foreach (var item in GetDataFromGrid)
         //        //    {
@@ -605,7 +605,7 @@ namespace PointOfSaleSedek._101_Adds
         //                CustomerCode = Convert.ToInt64(slkCustomers.EditValue),
         //                SaleDetailCode = Int64.Parse(lblSaleMasterId.Text),
         //                SaleMasterCode = Int64.Parse(lblSaleMasterId.Text),
-        //                UserId = st.User_Code(),
+        //                UserId = st.GetUser_Code(),
         //                Operation_Type_Id = 2,
 
         //            };
@@ -626,7 +626,7 @@ namespace PointOfSaleSedek._101_Adds
         //        }
         //        SaveSaleMaster(
         //                 ShiftCode: ShiftCode,
-        //                 UserCode: st.User_Code(),
+        //                 UserCode: st.GetUser_Code(),
 
         //                 Discount: double.Parse(lblDiscount.Text),
         //                 TotalBeforDiscount: double.Parse(lblFinalBeforDesCound.Text),
@@ -690,7 +690,7 @@ namespace PointOfSaleSedek._101_Adds
 
             List<SaleDetail> ArryOfSaleDetail = new List<SaleDetail>();
 
-            Int64 UserCode = st.User_Code();
+            Int64 UserCode = st.GetUser_Code();
             var ShiftCode = context.Shift_View.Where(x => x.User_Id == UserCode && x.Shift_Flag == true).Select(xx => xx.Shift_Code).SingleOrDefault();
             Int64 SaleMasterCode = Int64.Parse(lblSaleMasterId.Text);
 
@@ -706,7 +706,7 @@ namespace PointOfSaleSedek._101_Adds
 
 
 
-                    using (SaleEntities context2 = new SaleEntities())
+                    using (POSEntity context2 = new POSEntity())
                     {
                         var Details = context2.SaleDetails.Where(w => w.SaleMasterCode == SaleMasterCode && w.shiftCode == ShiftCode).ToList();
                         context2.SaleDetails.RemoveRange(Details);
@@ -823,7 +823,7 @@ namespace PointOfSaleSedek._101_Adds
                                 CustomerCode = Convert.ToInt64(slkCustomers.EditValue),
                                 SaleDetailCode = Int64.Parse(lblSaleMasterId.Text),
                                 SaleMasterCode = Int64.Parse(lblSaleMasterId.Text),
-                                UserId = st.User_Code(),
+                                UserId = st.GetUser_Code(),
                                 Operation_Type_Id = 2,
                                 LineSequence = item.LineSequence,
                                 isOile = true
@@ -848,7 +848,7 @@ namespace PointOfSaleSedek._101_Adds
                                 CustomerCode = Convert.ToInt64(slkCustomers.EditValue),
                                 SaleDetailCode = Int64.Parse(lblSaleMasterId.Text),
                                 SaleMasterCode = Int64.Parse(lblSaleMasterId.Text),
-                                UserId = st.User_Code(),
+                                UserId = st.GetUser_Code(),
                                 Operation_Type_Id = 2,
                                 LineSequence = item.LineSequence,
                                 isOile = false
@@ -871,7 +871,7 @@ namespace PointOfSaleSedek._101_Adds
                         
                          ShiftCode: ShiftCode,
                          
-                         UserCode: st.User_Code(),
+                         UserCode: st.GetUser_Code(),
                          Discount: double.Parse(lblDiscount.Text),
                          TotalBeforDiscount: double.Parse(lblFinalBeforDesCound.Text),
                          FinalTotal: double.Parse(lblFinalTotal.Text),
@@ -924,7 +924,7 @@ namespace PointOfSaleSedek._101_Adds
                             CustomerCode = Convert.ToInt64(slkCustomers.EditValue),
                             SaleDetailCode = Int64.Parse(lblSaleMasterId.Text),
                             SaleMasterCode = Int64.Parse(lblSaleMasterId.Text),
-                            UserId = st.User_Code(),
+                            UserId = st.GetUser_Code(),
                             Operation_Type_Id = 2,
                             LineSequence = item.LineSequence,
                             isOile = true
@@ -949,7 +949,7 @@ namespace PointOfSaleSedek._101_Adds
                             CustomerCode = Convert.ToInt64(slkCustomers.EditValue),
                             SaleDetailCode = Int64.Parse(lblSaleMasterId.Text),
                             SaleMasterCode = Int64.Parse(lblSaleMasterId.Text),
-                            UserId = st.User_Code(),
+                            UserId = st.GetUser_Code(),
                             Operation_Type_Id = 2,
                             LineSequence = item.LineSequence,
                             isOile = false
@@ -970,7 +970,7 @@ namespace PointOfSaleSedek._101_Adds
 
                 SaveSaleMaster(
                        ShiftCode: ShiftCode,
-                       UserCode: st.User_Code(),
+                       UserCode: st.GetUser_Code(),
                        Discount: double.Parse(lblDiscount.Text),
                        TotalBeforDiscount: double.Parse(lblFinalBeforDesCound.Text),
                        FinalTotal: double.Parse(lblFinalTotal.Text),
@@ -1013,7 +1013,7 @@ namespace PointOfSaleSedek._101_Adds
         void Update_Item_Qty_Oly(Int64 Sale_Master_Code, double Qty,DateTime OrderDate, Int64 History_Id, Int64 Item_Id)
         {
 
-            using (SaleEntities _context2 = new SaleEntities())
+            using (POSEntity _context2 = new POSEntity())
             {
                 Item_History item_History;
                 item_History = _context2.Item_History.SingleOrDefault(Item => Item.Id == History_Id);
@@ -1021,7 +1021,7 @@ namespace PointOfSaleSedek._101_Adds
                 item_History.Is_Used = (bool)true;
                 _context2.SaveChanges();
             }
-            using (SaleEntities _context = new SaleEntities())
+            using (POSEntity _context = new POSEntity())
             {
                 Item_History_transaction _Item_History_transaction = new Item_History_transaction()
                 {
@@ -1081,7 +1081,7 @@ namespace PointOfSaleSedek._101_Adds
         void New()
         {
 
-            Int64 UserCode = st.User_Code();
+            Int64 UserCode = st.GetUser_Code();
             var ShiftCode = context.Shift_View.Where(x => x.User_Id == UserCode && x.Shift_Flag == true).Select(xx => xx.Shift_Code).SingleOrDefault();
             Int64? MaxCode = context.SaleMasters.Where(x => x.ShiftCode == ShiftCode && (x.Operation_Type_Id == 2 || x.Operation_Type_Id == 3)).Max(u => (Int64?)u.SaleMasterCode + 1);
             if (MaxCode == null || MaxCode == 0)
@@ -1108,7 +1108,7 @@ namespace PointOfSaleSedek._101_Adds
 
             slkCustomers.Text = "";
             SlkPaymentsType.EditValue = 1;
-            var usercode = st.User_Code();
+            var usercode = st.GetUser_Code();
             slkEmployees.EditValue = context.Employee_View.Where(user => user.IsDeleted == 0 && user.Employee_Code == usercode).ToList().FirstOrDefault().Employee_Code;
 
 
@@ -1190,7 +1190,7 @@ namespace PointOfSaleSedek._101_Adds
 
         private void simpleButton1_Click(object sender, EventArgs e)
         {
-            Int64 User_Code = st.User_Code();
+            Int64 User_Code = st.GetUser_Code();
 
             var result = context.Auth_View.Any(View => View.User_Code == User_Code && (View.User_IsDeleted == 0) && (View.Tab_Name == "btnser"));
             if (result)
@@ -1425,7 +1425,7 @@ namespace PointOfSaleSedek._101_Adds
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            Int64 User_Code = st.User_Code();
+            Int64 User_Code = st.GetUser_Code();
 
             var result = context.Auth_View.Any(View => View.User_Code == User_Code && (View.User_IsDeleted == 0) && (View.Tab_Name == "btnDiscount"));
             if (result)
@@ -1699,7 +1699,7 @@ namespace PointOfSaleSedek._101_Adds
             slkEmployees.Properties.ValueMember = "Employee_Code";
             slkEmployees.Properties.DisplayMember = "Employee_Name";
 
-            var usercode = st.User_Code();
+            var usercode = st.GetUser_Code();
             slkEmployees.EditValue = context.Employee_View.Where(user => user.IsDeleted == 0&&user.Employee_Code == usercode).ToList().FirstOrDefault().Employee_Code;
         //    slkEmployees.Text = context.Employee_View.Where(user => user.IsDeleted == 0).ToList().FirstOrDefault().;
 
@@ -1726,7 +1726,7 @@ namespace PointOfSaleSedek._101_Adds
             List<string> textlist = new List<string>();
            string text = "";
 
-            using (SaleEntities NewReco = new SaleEntities())
+            using (POSEntity NewReco = new POSEntity())
             {
 
                 var customercode = Convert.ToInt64(slkCustomers.EditValue);

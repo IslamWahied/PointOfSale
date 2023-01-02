@@ -17,16 +17,54 @@ namespace PointOfSaleSedek._101_Adds.CasherShift
 {
     public partial class frmShiftEnd : DevExpress.XtraEditors.XtraForm
     {
-        readonly SaleEntities Context = new SaleEntities();
+        readonly POSEntity Context = new POSEntity();
         readonly Static st = new Static();
         public frmShiftEnd()
         {
             InitializeComponent();
+            langu();
             FillSlkShiftsOPen();
             string DatatimeNow = Convert.ToString(DateTime.Now);
             dtEnd.Text = DatatimeNow;
         }
 
+
+        void langu()
+        {
+            this.RightToLeft = st.isEnglish() ? RightToLeft.No : RightToLeft.Yes;
+            tableLayoutPanel1.RightToLeft = st.isEnglish() ? RightToLeft.No : RightToLeft.Yes;
+
+            this.Text = st.isEnglish() ? "Close Shift" : "اغلاق الوردية";
+
+            labelControl1.Text = st.isEnglish() ? "Open Shifts" : "الورديات المفتوحة";
+
+            labelControl5.Text = st.isEnglish() ? "Shift Start Date" : "تاريخ بداية الوردية";
+
+
+            labelControl2.Text = st.isEnglish() ? "Shift End Date" : "تاريخ نهاية الوردية";
+
+
+            labelControl7.Text = st.isEnglish() ? "Shift Start Balance" : "رصيد بداية الوردية";
+
+
+            labelControl9.Text = st.isEnglish() ? "Total sales" : "اجمالي المبيعات";
+            labelControl10.Text = st.isEnglish() ? "Total Expenses" : "اجمالي المصروفات";
+
+
+            labelControl8.Text = st.isEnglish() ? "Balance Of End Shift" : "رصيد نهاية الوردية";
+
+
+
+            
+            labelControl3.Text = st.isEnglish() ? "Decrease or Increase" : "العجز او الزيادة";
+
+
+            labelControl4.Text = st.isEnglish() ? "Shift Start Note" : "ملاحظات بداية الوردية";
+            labelControl6.Text = st.isEnglish() ? "Shift End Note" : "ملاحظات نهاية الوردية";
+            btnSave.Text = st.isEnglish() ? "Save" : "اضافة";
+            btnCancel.Text = st.isEnglish() ? "Close" : "اغلاق";
+            gridColumn2.Caption  = st.isEnglish() ? "Name" : "الاسم";
+        }
         private void labelControl2_Click(object sender, EventArgs e)
         {
 
@@ -34,7 +72,7 @@ namespace PointOfSaleSedek._101_Adds.CasherShift
         public void FillSlkShiftsOPen()
         {
             
-            var result = Context.Shift_View.Where(Shift => Shift.IsDeleted == 0  &&Shift.Shift_Flag==true).ToList();
+            var result = Context.Shift_View.Where(Shift => Shift.IsDeleted == 0  &&Shift.Shift_Flag==true && Shift.Shift_Code != 0).ToList();
             slkShiftsOpen.Properties.DataSource = result;
             slkShiftsOpen.Properties.ValueMember = "Shift_Code";
             slkShiftsOpen.Properties.DisplayMember = "UserName";
@@ -168,7 +206,7 @@ namespace PointOfSaleSedek._101_Adds.CasherShift
             if (string.IsNullOrWhiteSpace(slkShiftsOpen.Text))
             {
 
-                MaterialMessageBox.Show("برجاء اختيار وردية", MessageBoxButtons.OK);
+                MaterialMessageBox.Show(st.isEnglish() ? "Please choose a Shift" :"برجاء اختيار وردية", MessageBoxButtons.OK);
                 return;
             }
 
@@ -176,7 +214,7 @@ namespace PointOfSaleSedek._101_Adds.CasherShift
             if (dtEnd.EditValue == null || string.IsNullOrWhiteSpace(dtEnd.Text))
             {
 
-                MaterialMessageBox.Show("برجاء اختيار تاريخ اقفال الوردية", MessageBoxButtons.OK);
+                MaterialMessageBox.Show(st.isEnglish() ? "Please select a shift closing date" :"برجاء اختيار تاريخ اقفال الوردية", MessageBoxButtons.OK);
                 return;
             }
             else
@@ -195,7 +233,7 @@ namespace PointOfSaleSedek._101_Adds.CasherShift
                 _Shift.Expenses = Convert.ToDouble(txtExpenses.Text??"0");
                 _Shift.Shift_Flag =false;
                 _Shift.Last_Modified_Date = DateTime.Now;
-                _Shift.Last_Modified_User = st.User_Code();
+                _Shift.Last_Modified_User = st.GetUser_Code();
                 Context.SaveChanges();
 
 
@@ -225,12 +263,12 @@ namespace PointOfSaleSedek._101_Adds.CasherShift
                 rpt.Load(@"Reports\endShift.frx");
                 rpt.RegisterData(listendShiftReport, "Lines");
                 rpt.PrintSettings.ShowDialog = false;
-               // rpt.Design();
                 rpt.Print();
+              //  rpt.Print();
 
 
                 Rest();
-                MaterialMessageBox.Show("تم اقفال الوردية ", MessageBoxButtons.OK);
+                MaterialMessageBox.Show(st.isEnglish() ? "Shift Closed" :"تم اقفال الوردية ", MessageBoxButtons.OK);
                 this.Close();
 
             }

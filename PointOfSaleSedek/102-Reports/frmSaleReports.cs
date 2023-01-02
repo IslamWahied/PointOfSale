@@ -12,17 +12,36 @@ using PointOfSaleSedek._102_MaterialSkin;
 using FastReport;
 using DataRep;
 using PointOfSaleSedek.Model;
+using PointOfSaleSedek.HelperClass;
 
 namespace PointOfSaleSedek._105_Reports
 {
     public partial class frmSaleReports : DevExpress.XtraEditors.XtraForm
     {
-        SaleEntities context = new SaleEntities();
+        POSEntity context = new POSEntity();
+        readonly Static st = new Static();
         public frmSaleReports()
         {
             InitializeComponent();
+            langu();
             FillSlkUser();
 
+        }
+        void langu()
+        {
+
+            this.RightToLeft = st.isEnglish() ? RightToLeft.No : RightToLeft.Yes;
+            this.Text = st.isEnglish() ? "Sales Bill" : "فاتورة مبيعات";
+
+            materialLabel3.Text = st.isEnglish() ? "UserName" : "اسم المستخدم";
+            materialLabel1.Text = st.isEnglish() ? "From Date" : "من تاريخ";
+            materialLabel2.Text = st.isEnglish() ? "To Date" : "الي تاريخ";
+            simpleButton1.Text = st.isEnglish() ? "View" : "عرض";
+            materialLabel1.Text = st.isEnglish() ? "Name" : "الاسم";
+            
+            materialLabel2.Text = st.isEnglish() ? "National ID" : "الرقم القومي";
+          
+             
         }
 
         public void FillSlkUser()
@@ -85,7 +104,7 @@ namespace PointOfSaleSedek._105_Reports
             if (Master.Count == 0 || Detail.Count == 0)
 
             {
-                MaterialMessageBox.Show("لا يوجد فواتير لهذا التاريخ", MessageBoxButtons.OK);
+                MaterialMessageBox.Show(st.isEnglish() ? "There are no invoices for this date" : "لا يوجد فواتير لهذا التاريخ", MessageBoxButtons.OK);
                 return;
 
             }

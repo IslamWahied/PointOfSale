@@ -9,16 +9,37 @@ namespace PointOfSaleSedek._101_Adds._102_Customer
 {
     public partial class frmAddCustomer : DevExpress.XtraEditors.XtraForm
     {
-        readonly SaleEntities context = new SaleEntities();
+        readonly POSEntity context = new POSEntity();
         readonly Static st = new Static();
         public frmAddCustomer()
         {
             InitializeComponent();
+
+            langu();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
+
+        }
+
+
+        void langu()
+        {
+
+            this.RightToLeft = st.isEnglish() ? RightToLeft.No : RightToLeft.Yes;
+            tableLayoutPanel2.RightToLeft = st.isEnglish() ? RightToLeft.Yes : RightToLeft.No;
+            this.Text = st.isEnglish() ? "Add Customer" : "اضافة عميل";
+            materialLabel1.Text = st.isEnglish() ? "Name" : "الاسم";
+            materialLabel11.Text = st.isEnglish() ? "Mobile" : "الموبيل";
+            materialLabel13.Text = st.isEnglish() ? "Gender" : "النوع";
+
+            gridColumn4.Caption = st.isEnglish() ? "Name" : "الاسم";
+            gridColumn4.FieldName = st.isEnglish() ? "SexTypeName_En" : "SexTypeName";
+            btnAdd.Text = st.isEnglish() ? "Save" : "حفظ";
+            btnCancel.Text = st.isEnglish() ? "Close" : "اغلاق";
+
         }
 
         void FillSexSlk()
@@ -28,7 +49,7 @@ namespace PointOfSaleSedek._101_Adds._102_Customer
                 var result = context.SexTypes.ToList();
                 slkSex.Properties.DataSource = result;
             slkSex.Properties.ValueMember = "SexTypeCode";
-            slkSex.Properties.DisplayMember = "SexTypeName";
+            slkSex.Properties.DisplayMember = st.isEnglish() ? "SexTypeName_En" : "SexTypeName";
 
              
             slkSex.EditValue = result[0].SexTypeCode;
@@ -47,7 +68,7 @@ namespace PointOfSaleSedek._101_Adds._102_Customer
             
             if (String.IsNullOrWhiteSpace(slkSex.Text) || String.IsNullOrWhiteSpace(TxtEmpName.Text) || String.IsNullOrWhiteSpace(txtEmpMob1.Text))
             {
-                MaterialMessageBox.Show("برجاء ادخال جميع الحقول", MessageBoxButtons.OK);
+                MaterialMessageBox.Show(st.isEnglish() ? "Please enter all fields" :"برجاء ادخال جميع الحقول", MessageBoxButtons.OK);
                 return;
             }
 
@@ -62,7 +83,7 @@ namespace PointOfSaleSedek._101_Adds._102_Customer
 
             if (isOldCustomer)
             {
-                MaterialMessageBox.Show("تم تسجل هذا العميل من قبل", MessageBoxButtons.OK);
+                MaterialMessageBox.Show(st.isEnglish() ? "This customer has already been registered" : "تم تسجل هذا العميل من قبل", MessageBoxButtons.OK);
                 return;
             }
             else
@@ -75,8 +96,9 @@ namespace PointOfSaleSedek._101_Adds._102_Customer
                     Created_Date = DateTime.Now,
                     Customer_Code = Convert.ToInt64(MaxCode),
                     Customer_Name = TxtEmpName.Text,
+                    Branch_Code = st.GetBranch_Code(),
                     SexTypeCode = Convert.ToInt32(slkSex.EditValue),
-                    Last_Modified_User = st.User_Code(),
+                    Last_Modified_User = st.GetUser_Code(),
             };
                 context.Customer_Info.Add(_customer);
                 context.SaveChanges();
@@ -93,12 +115,12 @@ namespace PointOfSaleSedek._101_Adds._102_Customer
 
                         frmCafeSales frm = (frmCafeSales)Application.OpenForms["frmCafeSales"];
 
-                        //frm.FillSlkCustomers();
+                        frm.FillSlkCustomers();
 
-                        //frm.slkCustomers.EditValue = context.Customer_View.FirstOrDefault(Customer => Customer.Customer_Phone == Phone).Customer_Code;
-                        //frm.slkCustomers.Enabled = true;
-                        //frm.btnCustomerHistory.Enabled = true;
-                        //frm.txtParCode.Focus();
+                        frm.slkCustomers.EditValue = context.Customer_View.FirstOrDefault(Customer => Customer.Customer_Phone == Phone).Customer_Code;
+                        frm.slkCustomers.Enabled = true;
+                        frm.btnCustomerHistory.Enabled = true;
+                        frm.txtParCode.Focus();
                         this.Close();
 
 
@@ -113,7 +135,7 @@ namespace PointOfSaleSedek._101_Adds._102_Customer
 
                         frmPerfumSales frm = (frmPerfumSales)Application.OpenForms["frmPerfumSales"];
 
-                        Int64 User_Code = st.User_Code();
+                        Int64 User_Code = st.GetUser_Code();
 
 
                         frm.FillSlkCustomers();
@@ -138,7 +160,7 @@ namespace PointOfSaleSedek._101_Adds._102_Customer
                        
                       
 
-                        Int64 User_Code = st.User_Code();
+                        Int64 User_Code = st.GetUser_Code();
 
 
                         frm.FillSlkCustomer();

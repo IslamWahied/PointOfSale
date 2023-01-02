@@ -21,7 +21,7 @@ namespace PointOfSaleSedek._101_Adds
 
     public partial class frmSuperMarketSales : Form
     {
-        SaleEntities context = new SaleEntities();
+        POSEntity context = new POSEntity();
         public String Status = "New";
         public bool SearchStatus = false;
         Static st = new Static();
@@ -88,7 +88,7 @@ namespace PointOfSaleSedek._101_Adds
             txtParCode.Focus();
             btnEdite.Enabled = false;
 
-            var UserId = Convert.ToInt64(st.User_Code());
+            var UserId = Convert.ToInt64(st.GetUser_Code());
             var Check = context.Shifts.Any(x => x.Shift_Flag == true && x.User_Id == UserId && x.IsDeleted == 0);
             if (!Check)
             {
@@ -139,7 +139,7 @@ namespace PointOfSaleSedek._101_Adds
             gcSaleDetail.RefreshDataSource();
             btnPrint.Enabled = false;
 
-            Int64 User_Code = st.User_Code();
+            Int64 User_Code = st.GetUser_Code();
 
             var result = context.Auth_View.Where(View => View.User_Code == User_Code && (View.User_IsDeleted == 0)).ToList();
 
@@ -279,7 +279,7 @@ namespace PointOfSaleSedek._101_Adds
                     _SaleMasters.Operation_Type_Id = 2;
                     SaleMasterCode = Int64.Parse(lblSaleMasterId.Text);
 
-                    _SaleMasters.UserCode = st.User_Code();
+                    _SaleMasters.UserCode = st.GetUser_Code();
                     context.SaveChanges();
 
 
@@ -359,7 +359,7 @@ namespace PointOfSaleSedek._101_Adds
 
             List<SaleDetail> ArryOfSaleDetail = new List<SaleDetail>();
             
-            Int64 UserCode = st.User_Code();
+            Int64 UserCode = st.GetUser_Code();
             var ShiftCode = context.Shift_View.Where(x => x.User_Id == UserCode && x.Shift_Flag == true).Select(xx => xx.Shift_Code).SingleOrDefault();
             Int64 SaleMasterCode = Int64.Parse(lblSaleMasterId.Text);
 
@@ -375,7 +375,7 @@ namespace PointOfSaleSedek._101_Adds
 
 
                     // Vildate QTy
-                    using (SaleEntities ContVald = new SaleEntities())
+                    using (POSEntity ContVald = new POSEntity())
                     {
                         GetDataFromGrid.ForEach(item =>
                         {
@@ -403,7 +403,7 @@ namespace PointOfSaleSedek._101_Adds
 
                     }
 
-                    using (SaleEntities context2 = new SaleEntities())
+                    using (POSEntity context2 = new POSEntity())
                     {
                         var Details = context2.SaleDetails.Where(w => w.SaleMasterCode == SaleMasterCode && w.EntryDate.Day == DateTime.Today.Day && w.EntryDate.Month == DateTime.Today.Month && w.EntryDate.Year == DateTime.Today.Year);
                         context2.SaleDetails.RemoveRange(Details);
@@ -509,9 +509,9 @@ namespace PointOfSaleSedek._101_Adds
                             EntryDate = DateTime.Now,
                             SaleDetailCode = Int64.Parse(lblSaleMasterId.Text),
                             SaleMasterCode = Int64.Parse(lblSaleMasterId.Text),
-
+                            shiftCode = item.shiftCode,
                             Operation_Type_Id = 2,
-                            UserId = st.User_Code()
+                            UserId = st.GetUser_Code()
 
 
 
@@ -527,7 +527,7 @@ namespace PointOfSaleSedek._101_Adds
 
                     SaveSaleMaster(
                          ShiftCode: ShiftCode,
-                         UserCode: st.User_Code(),
+                         UserCode: st.GetUser_Code(),
                          Discount: double.Parse(lblDiscount.Text),
                          TotalBeforDiscount: double.Parse(lblFinalBeforDesCound.Text),
                          FinalTotal: double.Parse(lblFinalTotal.Text),
@@ -560,7 +560,7 @@ namespace PointOfSaleSedek._101_Adds
             else
             {
                 #region
-                using (SaleEntities ContVald = new SaleEntities())
+                using (POSEntity ContVald = new POSEntity())
                 {
                     foreach (var item in GetDataFromGrid)
                     {
@@ -641,10 +641,11 @@ namespace PointOfSaleSedek._101_Adds
                         Price = item.Price,
                         Qty = item.Qty,
                         Total = item.Total,
+                        shiftCode = ShiftCode,
                         EntryDate = DateTime.Now,
                         SaleDetailCode = Int64.Parse(lblSaleMasterId.Text),
                         SaleMasterCode = Int64.Parse(lblSaleMasterId.Text),
-                        UserId = st.User_Code(),
+                        UserId = st.GetUser_Code(),
                         Operation_Type_Id = 2,
 
                     };
@@ -665,7 +666,7 @@ namespace PointOfSaleSedek._101_Adds
                 }
                 SaveSaleMaster(
                          ShiftCode: ShiftCode,
-                         UserCode: st.User_Code(),
+                         UserCode: st.GetUser_Code(),
                          
                          Discount: double.Parse(lblDiscount.Text),
                          TotalBeforDiscount: double.Parse(lblFinalBeforDesCound.Text),
@@ -676,15 +677,23 @@ namespace PointOfSaleSedek._101_Adds
 
 
                 New();
-                //var Master = (from a in context.SaleMasterViews where a.SaleMasterCode == SaleMasterCode && a.Operation_Type_Id == 2 && a.EntryDate == DateTime.Today select a).ToList();
-                //var Detail = (from a in context.SaleDetailViews where a.SaleMasterCode == SaleMasterCode && a.Operation_Type_Id == 2 && a.EntryDate == DateTime.Today select a).ToList();
 
-                //Report rpt = new Report();
-                //rpt.Load(@"Reports\SaleInvoice.frx");
-                //rpt.RegisterData(Master, "Header");
-                //rpt.RegisterData(Detail, "Lines");
-                //rpt.PrintSettings.ShowDialog = false;
-                ////rpt.Design();
+               List<SaleMasterView> Master;
+               List<SaleDetailView> Detail;
+                using (POSEntity context23 = new POSEntity())
+                {
+                    var ShiftCode2 = context23.Shift_View.Where(x => x.User_Id == UserCode && x.Shift_Flag == true).Select(xx => xx.Shift_Code).SingleOrDefault();
+                    Master = (from a in context23.SaleMasterViews where a.SaleMasterCode == SaleMasterCode && a.Operation_Type_Id == 2 && a.Shift_Code  == ShiftCode2 select a).ToList();
+                    Detail = (from a in context23.SaleDetailViews where a.SaleMasterCode == SaleMasterCode && a.Operation_Type_Id == 2 && a.shiftCode == ShiftCode2 select a).ToList();
+
+                }
+
+                Report rpt = new Report();
+                rpt.Load(@"Reports\SaleInvoice.frx");
+                rpt.RegisterData(Master, "Header");
+                rpt.RegisterData(Detail, "Lines");
+                rpt.PrintSettings.ShowDialog = false;
+                rpt.Show();
                 //rpt.Print();
 
 
@@ -700,7 +709,7 @@ namespace PointOfSaleSedek._101_Adds
         //void Update_Item_Qty_Oly(Int64 Sale_Master_Code, double Qty,DateTime OrderDate, Int64 History_Id, Int64 Item_Id)
         //{
 
-        //    using (PointOfSaleEntities2 _context2 = new PointOfSaleEntities2())
+        //    using (POSEntity2 _context2 = new POSEntity2())
         //    {
         //        Item_History item_History;
         //        item_History = _context2.Item_History.SingleOrDefault(Item => Item.Id == History_Id);
@@ -708,7 +717,7 @@ namespace PointOfSaleSedek._101_Adds
         //        item_History.Is_Used = (bool)true;
         //        _context2.SaveChanges();
         //    }
-        //    using (PointOfSaleEntities2 _context = new PointOfSaleEntities2())
+        //    using (POSEntity2 _context = new POSEntity2())
         //    {
         //        Item_History_transaction _Item_History_transaction = new Item_History_transaction()
         //        {
@@ -807,7 +816,7 @@ namespace PointOfSaleSedek._101_Adds
             txtParCode.Text = "";
             txtParCode.Focus();
 
-            Int64 User_Code = st.User_Code();
+            Int64 User_Code = st.GetUser_Code();
 
             var result = context.Auth_View.Where(View => View.User_Code == User_Code && (View.User_IsDeleted == 0)).ToList();
 
@@ -900,7 +909,7 @@ namespace PointOfSaleSedek._101_Adds
 
         private void simpleButton1_Click(object sender, EventArgs e)
         {
-            Int64 User_Code = st.User_Code();
+            Int64 User_Code = st.GetUser_Code();
 
             var result = context.Auth_View.Any(View => View.User_Code == User_Code && (View.User_IsDeleted == 0) && (View.Tab_Name == "btnser"));
             if (result)
@@ -1028,8 +1037,8 @@ namespace PointOfSaleSedek._101_Adds
                 rpt.RegisterData(_FinalTotalList, "FinalTotal");
                 rpt.RegisterData(saleDetailViewVmList, "Lines");
                 // rpt.PrintSettings.ShowDialog = false;
-                 //  rpt.Design();
-                rpt.Show();
+                   rpt.Design();
+             //   rpt.Show();
 
             }
 
@@ -1081,7 +1090,7 @@ namespace PointOfSaleSedek._101_Adds
 
  
 
-            Int64 User_Code = st.User_Code();
+            Int64 User_Code = st.GetUser_Code();
 
             var result = context.Auth_View.Any(View => View.User_Code == User_Code && (View.User_IsDeleted == 0) && (View.Tab_Name == "btnDiscount"));
             if (result)

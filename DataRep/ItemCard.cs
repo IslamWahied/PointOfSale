@@ -26,5 +26,9 @@ namespace DataRep
         public Nullable<bool> AddItem { get; set; }
         public int IsDeleted { get; set; }
         public double Item_Count_InStoreg { get; set; }
+        public string Name_En { get; set; }
+        public bool is_Back_Office_Updated { get; set; }
+        public long Branch_Code { get; set; }
+        public Nullable<System.DateTime> Last_Update_Date { get; set; }
     }
 }

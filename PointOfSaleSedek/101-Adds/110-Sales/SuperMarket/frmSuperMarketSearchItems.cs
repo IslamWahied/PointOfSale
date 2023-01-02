@@ -8,17 +8,38 @@ using System.Linq;
 using System.Windows.Forms;
  
 using DataRep;
+using PointOfSaleSedek.HelperClass;
 
 namespace PointOfSaleSedek._101_Adds
 {
     public partial class frmSuperMarketSearchItems : DevExpress.XtraEditors.XtraForm
     {
-        readonly SaleEntities context = new SaleEntities();
+        readonly POSEntity context = new POSEntity();
+        readonly Static st = new Static();
         public frmSuperMarketSearchItems()
         {
             InitializeComponent();
             FillSlkItems();
             slkItem.Focus();
+            langu();
+        }
+
+        void langu()
+        {
+
+            this.RightToLeft = st.isEnglish() ? RightToLeft.No : RightToLeft.Yes;
+            tableLayoutPanel2.RightToLeft = st.isEnglish() ? RightToLeft.Yes : RightToLeft.No;
+            this.Text = st.isEnglish() ? "Search" : "بحث";
+            labelControl5.Text = st.isEnglish() ? "BarCode" : "الباركود";
+            labelControl1.Text = st.isEnglish() ? "Category" : "المجموعة";
+            labelControl2.Text = st.isEnglish() ? "Item Name" : "اسم المنتج";
+            labelControl3.Text = st.isEnglish() ? "Unit" : "وحدة القياس";
+            labelControl4.Text = st.isEnglish() ? "Selling Price" : "سعر البيع";
+            labelControl6.Text = st.isEnglish() ? "Quantity" : "الكمية";
+
+
+            btnSave.Text = st.isEnglish() ? "Add" : "اضافة";
+            btnCancel.Text = st.isEnglish() ? "Close" : "اغلاق";
         }
 
         public void FillSlkItems()

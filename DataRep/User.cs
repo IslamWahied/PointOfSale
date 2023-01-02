@@ -23,5 +23,6 @@ namespace DataRep
         public long Last_Modified_User { get; set; }
         public int IsDeleted { get; set; }
         public bool UserFlag { get; set; }
+        public long Branch_Code { get; set; }
     }
 }

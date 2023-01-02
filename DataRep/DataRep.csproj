@@ -51,148 +51,266 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Auth_View.cs">
-      <DependentUpon>DataEntity.tt</DependentUpon>
+      <DependentUpon>POSEnt.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BackOfficeTranDetail_View.cs">
+      <DependentUpon>POSEnt.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Back_Office_Transaction_Detail.cs">
+      <DependentUpon>POSEnt.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Back_Office_Transaction_Master.cs">
+      <DependentUpon>POSEnt.tt</DependentUpon>
     </Compile>
     <Compile Include="Branch.cs">
-      <DependentUpon>DataEntity.tt</DependentUpon>
+      <DependentUpon>POSEnt.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Branch_Back_Office.cs">
+      <DependentUpon>POSEnt.tt</DependentUpon>
     </Compile>
     <Compile Include="Category.cs">
-      <DependentUpon>DataEntity.tt</DependentUpon>
+      <DependentUpon>POSEnt.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Category_Back_Office.cs">
+      <DependentUpon>POSEnt.tt</DependentUpon>
     </Compile>
     <Compile Include="Customer_Info.cs">
-      <DependentUpon>DataEntity.tt</DependentUpon>
+      <DependentUpon>POSEnt.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Customer_Info_Back_Office.cs">
+      <DependentUpon>POSEnt.tt</DependentUpon>
     </Compile>
     <Compile Include="Customer_View.cs">
-      <DependentUpon>DataEntity.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataEntity.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DataEntity.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataEntity.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DataEntity.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataEntity.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DataEntity.edmx</DependentUpon>
+      <DependentUpon>POSEnt.tt</DependentUpon>
     </Compile>
     <Compile Include="Employee.cs">
-      <DependentUpon>DataEntity.tt</DependentUpon>
+      <DependentUpon>POSEnt.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Employee_Back_Office.cs">
+      <DependentUpon>POSEnt.tt</DependentUpon>
     </Compile>
     <Compile Include="Employee_View.cs">
-      <DependentUpon>DataEntity.tt</DependentUpon>
+      <DependentUpon>POSEnt.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Event_Type.cs">
+      <DependentUpon>POSEnt.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Event_Type_Back_Office.cs">
+      <DependentUpon>POSEnt.tt</DependentUpon>
     </Compile>
     <Compile Include="Expens.cs">
-      <DependentUpon>DataEntity.tt</DependentUpon>
+      <DependentUpon>POSEnt.tt</DependentUpon>
     </Compile>
     <Compile Include="ExpensesTransaction.cs">
-      <DependentUpon>DataEntity.tt</DependentUpon>
+      <DependentUpon>POSEnt.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ExpensesTransaction_Back_Office.cs">
+      <DependentUpon>POSEnt.tt</DependentUpon>
     </Compile>
     <Compile Include="ExpensesView.cs">
-      <DependentUpon>DataEntity.tt</DependentUpon>
+      <DependentUpon>POSEnt.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Expenses_Back_Office.cs">
+      <DependentUpon>POSEnt.tt</DependentUpon>
     </Compile>
     <Compile Include="ItemCard.cs">
-      <DependentUpon>DataEntity.tt</DependentUpon>
+      <DependentUpon>POSEnt.tt</DependentUpon>
     </Compile>
     <Compile Include="ItemCardView.cs">
-      <DependentUpon>DataEntity.tt</DependentUpon>
+      <DependentUpon>POSEnt.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ItemCard_Back_Office.cs">
+      <DependentUpon>POSEnt.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Item_Balance.cs">
+      <DependentUpon>POSEnt.tt</DependentUpon>
     </Compile>
     <Compile Include="Item_History.cs">
-      <DependentUpon>DataEntity.tt</DependentUpon>
+      <DependentUpon>POSEnt.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Item_History_Back_Office.cs">
+      <DependentUpon>POSEnt.tt</DependentUpon>
     </Compile>
     <Compile Include="Item_History_transaction.cs">
-      <DependentUpon>DataEntity.tt</DependentUpon>
+      <DependentUpon>POSEnt.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Item_History_transaction_Back_Office.cs">
+      <DependentUpon>POSEnt.tt</DependentUpon>
     </Compile>
     <Compile Include="Jop.cs">
-      <DependentUpon>DataEntity.tt</DependentUpon>
+      <DependentUpon>POSEnt.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Jops_Back_Office.cs">
+      <DependentUpon>POSEnt.tt</DependentUpon>
     </Compile>
     <Compile Include="Operation_Type.cs">
-      <DependentUpon>DataEntity.tt</DependentUpon>
+      <DependentUpon>POSEnt.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Operation_Type_Back_Office.cs">
+      <DependentUpon>POSEnt.tt</DependentUpon>
     </Compile>
     <Compile Include="Payment_Type.cs">
-      <DependentUpon>DataEntity.tt</DependentUpon>
+      <DependentUpon>POSEnt.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Payment_Type_Back_Office.cs">
+      <DependentUpon>POSEnt.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PO.cs">
+      <DependentUpon>POSEnt.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POSEnt.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>POSEnt.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POSEnt.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>POSEnt.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POSEnt.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>POSEnt.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="PO_View.cs">
+      <DependentUpon>POSEnt.tt</DependentUpon>
     </Compile>
     <Compile Include="ProjectInfo.cs">
-      <DependentUpon>DataEntity.tt</DependentUpon>
+      <DependentUpon>POSEnt.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProjectInfo_Back_Office.cs">
+      <DependentUpon>POSEnt.tt</DependentUpon>
     </Compile>
     <Compile Include="ProjectMangerInfo.cs">
-      <DependentUpon>DataEntity.tt</DependentUpon>
+      <DependentUpon>POSEnt.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProjectMangerInfo_Back_Office.cs">
+      <DependentUpon>POSEnt.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Project_Tables.cs">
+      <DependentUpon>POSEnt.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Project_Tables_Back_Office.cs">
+      <DependentUpon>POSEnt.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sale.cs">
-      <DependentUpon>DataEntity.tt</DependentUpon>
+      <DependentUpon>POSEnt.tt</DependentUpon>
     </Compile>
     <Compile Include="SaleDetail.cs">
-      <DependentUpon>DataEntity.tt</DependentUpon>
+      <DependentUpon>POSEnt.tt</DependentUpon>
     </Compile>
     <Compile Include="SaleDetailView.cs">
-      <DependentUpon>DataEntity.tt</DependentUpon>
+      <DependentUpon>POSEnt.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SaleDetail_Back_Office.cs">
+      <DependentUpon>POSEnt.tt</DependentUpon>
     </Compile>
     <Compile Include="SaleMaster.cs">
-      <DependentUpon>DataEntity.tt</DependentUpon>
+      <DependentUpon>POSEnt.tt</DependentUpon>
     </Compile>
     <Compile Include="SaleMasterView.cs">
-      <DependentUpon>DataEntity.tt</DependentUpon>
+      <DependentUpon>POSEnt.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SaleMaster_Back_Office.cs">
+      <DependentUpon>POSEnt.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Sales_Back_Office.cs">
+      <DependentUpon>POSEnt.tt</DependentUpon>
     </Compile>
     <Compile Include="SexType.cs">
-      <DependentUpon>DataEntity.tt</DependentUpon>
+      <DependentUpon>POSEnt.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SexType_Back_Office.cs">
+      <DependentUpon>POSEnt.tt</DependentUpon>
     </Compile>
     <Compile Include="Shift.cs">
-      <DependentUpon>DataEntity.tt</DependentUpon>
+      <DependentUpon>POSEnt.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Shift_Back_Office.cs">
+      <DependentUpon>POSEnt.tt</DependentUpon>
     </Compile>
     <Compile Include="Shift_View.cs">
-      <DependentUpon>DataEntity.tt</DependentUpon>
+      <DependentUpon>POSEnt.tt</DependentUpon>
+    </Compile>
+    <Compile Include="State.cs">
+      <DependentUpon>POSEnt.tt</DependentUpon>
     </Compile>
     <Compile Include="Tab_Info.cs">
-      <DependentUpon>DataEntity.tt</DependentUpon>
+      <DependentUpon>POSEnt.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Tab_Info_Back_Office.cs">
+      <DependentUpon>POSEnt.tt</DependentUpon>
     </Compile>
     <Compile Include="UnitCard.cs">
-      <DependentUpon>DataEntity.tt</DependentUpon>
+      <DependentUpon>POSEnt.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UnitCard_Back_Office.cs">
+      <DependentUpon>POSEnt.tt</DependentUpon>
     </Compile>
     <Compile Include="User.cs">
-      <DependentUpon>DataEntity.tt</DependentUpon>
+      <DependentUpon>POSEnt.tt</DependentUpon>
     </Compile>
     <Compile Include="UserEvent.cs">
-      <DependentUpon>DataEntity.tt</DependentUpon>
+      <DependentUpon>POSEnt.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserEvents_Back_Office.cs">
+      <DependentUpon>POSEnt.tt</DependentUpon>
     </Compile>
     <Compile Include="User_Auth.cs">
-      <DependentUpon>DataEntity.tt</DependentUpon>
+      <DependentUpon>POSEnt.tt</DependentUpon>
+    </Compile>
+    <Compile Include="User_Auth_Back_Office.cs">
+      <DependentUpon>POSEnt.tt</DependentUpon>
+    </Compile>
+    <Compile Include="User_Back_Office.cs">
+      <DependentUpon>POSEnt.tt</DependentUpon>
     </Compile>
     <Compile Include="User_View.cs">
-      <DependentUpon>DataEntity.tt</DependentUpon>
+      <DependentUpon>POSEnt.tt</DependentUpon>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <EntityDeploy Include="DataEntity.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>DataEntity.Designer.cs</LastGenOutput>
-    </EntityDeploy>
+    <Compile Include="Warehouse.cs">
+      <DependentUpon>POSEnt.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Warehouse_Back_Office.cs">
+      <DependentUpon>POSEnt.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Warehouse_Transaction.cs">
+      <DependentUpon>POSEnt.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Warehouse_Transaction_Back_Office.cs">
+      <DependentUpon>POSEnt.tt</DependentUpon>
+    </Compile>
+    <Compile Include="warhouse_view.cs">
+      <DependentUpon>POSEnt.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
-    <None Include="DataEntity.edmx.diagram">
-      <DependentUpon>DataEntity.edmx</DependentUpon>
-    </None>
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="DataEntity.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>DataEntity.Context.cs</LastGenOutput>
-      <DependentUpon>DataEntity.edmx</DependentUpon>
-    </Content>
-    <Content Include="DataEntity.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DataEntity.edmx</DependentUpon>
-      <LastGenOutput>DataEntity.cs</LastGenOutput>
-    </Content>
+    <EntityDeploy Include="POSEnt.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>POSEnt.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="POSEnt.edmx.diagram">
+      <DependentUpon>POSEnt.edmx</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="POSEnt.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>POSEnt.edmx</DependentUpon>
+      <LastGenOutput>POSEnt.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="POSEnt.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>POSEnt.edmx</DependentUpon>
+      <LastGenOutput>POSEnt.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -36,7 +36,12 @@ namespace DataRep
         public long Id { get; set; }
         public long CustomerCode { get; set; }
         public long shiftCode { get; set; }
-        public bool isOile { get; set; }
         public long LineSequence { get; set; }
+        public bool isOile { get; set; }
+        public string Name_En { get; set; }
+        public long Warhouse_Code { get; set; }
+        public string Warehouse_Name { get; set; }
+        public double Item_DisCount { get; set; }
+        public long Branches_Code { get; set; }
     }
 }

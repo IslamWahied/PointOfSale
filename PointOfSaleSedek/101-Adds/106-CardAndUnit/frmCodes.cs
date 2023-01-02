@@ -11,31 +11,57 @@ using DevExpress.XtraEditors;
 using PointOfSaleSedek._102_MaterialSkin;
 using DevExpress.XtraGrid;
 using DataRep;
-
+using PointOfSaleSedek.HelperClass;
 
 namespace PointOfSaleSedek._101_Adds
 {
     public partial class frmCodes : DevExpress.XtraEditors.XtraForm
     {
-        readonly SaleEntities context = new SaleEntities();
+        readonly POSEntity context = new POSEntity();
+        readonly Static st = new Static();
         public frmCodes()
         {
             InitializeComponent();
+            langu();
             FillCategorygrid();
             FillUnitegrid();
         }
 
-        
+
+
+        void langu()
+        {
+
+            this.RightToLeft = st.isEnglish() ? RightToLeft.No : RightToLeft.Yes;
+            this.Text = st.isEnglish() ? "Categories" : "الرموز";
+            xtraTabPage1.Text = st.isEnglish() ? "Categories" : "المجموعات";
+            xtraTabPage2.Text = st.isEnglish() ? "Units" : "الوحدات";
+            labelControl1.Text = st.isEnglish() ? "Category Name" : "اسم المجموعة";
+            labelControl2.Text = st.isEnglish() ? "Unit Name" : "اسم الوحدة";
+
+            gridColumn1.Caption = st.isEnglish() ? "Category" : "المجموعة";
+            gridColumn2.Caption = st.isEnglish() ? "Unit" : "الوحدة";
+            colDelete.Caption = st.isEnglish() ? "Delete" : "حذف";
+            colDelete1.Caption = st.isEnglish() ? "Delete" : "حذف";
+ 
+            gvCategory.GroupPanelText = st.isEnglish() ? "Drag the field here to collect" : "اسحب الحقل هنا للتجميع";
+            gvUnitCard.GroupPanelText = st.isEnglish() ? "Drag the field here to collect" : "اسحب الحقل هنا للتجميع";
+ 
+
+        }
+
         public void FillCategorygrid()
         {
-            var result = (from a in context.Categories /*where a.IsDeleted == 0*/ select a).ToList();
+            Int64 branchCode = st.GetBranch_Code();
+            var result = (from a in context.Categories where a.IsDeleted == 0 && a.Branch_Code == branchCode  select a).ToList();
             gcCategory.DataSource = result;
         }
 
 
         public void FillUnitegrid()
         {
-            var result = (from a in context.UnitCards where a.IsDeleted == 0 select a).ToList();
+            Int64 branchCode = st.GetBranch_Code();
+            var result = (from a in context.UnitCards where a.IsDeleted == 0 &&  a.Branch_Code == branchCode select a).ToList();
             gcUnitCard.DataSource = result;
         }
         private void txtCategoryName_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
@@ -48,7 +74,7 @@ namespace PointOfSaleSedek._101_Adds
             if (string.IsNullOrWhiteSpace(txtCategoryName.Text))
             {
 
-                MaterialMessageBox.Show("!برجاء كتابة اسم المجموعة", MessageBoxButtons.OK);
+                MaterialMessageBox.Show(st.isEnglish() ? "Please write the name of the Category!" :"!برجاء كتابة اسم المجموعة", MessageBoxButtons.OK);
                 return;
             }
 
@@ -57,7 +83,7 @@ namespace PointOfSaleSedek._101_Adds
             {
 
 
-                MaterialMessageBox.Show("!تم نسجبلة من قبل", MessageBoxButtons.OK);
+                MaterialMessageBox.Show(st.isEnglish() ? "Previously registered!" :"!تم نسجبلة من قبل", MessageBoxButtons.OK);
 
             }
             else
@@ -77,6 +103,7 @@ namespace PointOfSaleSedek._101_Adds
 
                     CategoryCode = NewCode,
                     CategoryName = txtCategoryName.Text,
+                    Branch_Code = 0,
 
 
                 };
@@ -95,7 +122,7 @@ namespace PointOfSaleSedek._101_Adds
             if (string.IsNullOrWhiteSpace(txtUnitName.Text))
             {
 
-                MaterialMessageBox.Show("!برجاء كتابة اسم الوحدة", MessageBoxButtons.OK);
+                MaterialMessageBox.Show(st.isEnglish() ? "Please write the unit name!" :"!برجاء كتابة اسم الوحدة", MessageBoxButtons.OK);
                 return;
             }
 
@@ -104,7 +131,7 @@ namespace PointOfSaleSedek._101_Adds
             {
 
 
-                MaterialMessageBox.Show("!تم نسجبلة من قبل", MessageBoxButtons.OK);
+                MaterialMessageBox.Show(st.isEnglish() ? "Previously registered!" : "!تم نسجبلة من قبل", MessageBoxButtons.OK);
 
             }
             else
@@ -124,6 +151,7 @@ namespace PointOfSaleSedek._101_Adds
 
                     UnitCode = Convert.ToInt64(NewCode),
                     UnitName = txtUnitName.Text,
+                    Branch_Code = 0
 
 
                 };
@@ -156,7 +184,7 @@ namespace PointOfSaleSedek._101_Adds
             if (gvCategory.RowCount <= 0)
             {
 
-               MaterialMessageBox.Show("!لا يوجد بيانات للحذف", MessageBoxButtons.OK);
+               MaterialMessageBox.Show(st.isEnglish() ? "No Data To Delete!" :"!لا يوجد بيانات للحذف", MessageBoxButtons.OK);
                 return;
             }
 
@@ -164,16 +192,17 @@ namespace PointOfSaleSedek._101_Adds
             Int64 CategoryCode = Convert.ToInt64(xx.CategoryCode);
 
             bool CheckRelation = context.ItemCardViews.Where(x => x.IsDeleted == 0).Any(x => x.CategoryCode == CategoryCode);
+            bool CheckBackOfficeRelation = context.Category_Back_Office.Where(x => x.IsDeleted == 0  && x.Event_Code !=3).Any(x => x.CategoryCode == CategoryCode);
 
-            if (CheckRelation)
+            if (CheckRelation && CheckBackOfficeRelation)
             {
 
-                MaterialMessageBox.Show("لا يمكن حذف هذه المجموعة لوجود منتجات عليها", MessageBoxButtons.OK);
+                MaterialMessageBox.Show(st.isEnglish() ? "This group cannot be deleted because there are products on it" :"لا يمكن حذف هذه المجموعة لوجود منتجات عليها", MessageBoxButtons.OK);
                 return;
 
             }
 
-            using (SaleEntities Context = new SaleEntities())
+            using (POSEntity Context = new POSEntity())
             {
                 Category deptDelete = Context.Categories.Where(x=>x.CategoryCode == CategoryCode).FirstOrDefault();
                 Context.Categories.Remove(deptDelete);
@@ -206,22 +235,23 @@ namespace PointOfSaleSedek._101_Adds
             if (gvUnitCard.RowCount <= 0)
             {
 
-                MaterialMessageBox.Show("!لا يوجد بيانات للحذف", MessageBoxButtons.OK);
+                MaterialMessageBox.Show(st.isEnglish() ? "No Data To Delete!" : "!لا يوجد بيانات للحذف", MessageBoxButtons.OK);
                 return;
             }
 
             UnitCard xx = gvUnitCard.GetFocusedRow() as UnitCard;
             Int64 UnitCode = Convert.ToInt64(xx.UnitCode);
             bool CheckRelation = context.ItemCardViews.Where(x => x.IsDeleted == 0).Any(x => x.UnitCode == UnitCode);
+            bool CheckBackOfficeRelation = context.UnitCard_Back_Office.Where(x => x.IsDeleted == 0 && x.Event_Code != 3).Any(x => x.UnitCode == UnitCode);
 
-            if (CheckRelation)
+            if (CheckRelation && CheckBackOfficeRelation)
             {
 
-                MaterialMessageBox.Show("لا يمكن حذف هذه الوحدة لوجود منتجات عليها", MessageBoxButtons.OK);
+                MaterialMessageBox.Show(st.isEnglish() ? "This group cannot be deleted because there are products on it" : "لا يمكن حذف هذه المجموعة لوجود منتجات عليها", MessageBoxButtons.OK);
                 return;
 
             }
-            using (SaleEntities Context = new SaleEntities())
+            using (POSEntity Context = new POSEntity())
             {
                 UnitCard deptDelete = Context.UnitCards.Where(x=>x.UnitCode== UnitCode).FirstOrDefault();
                 Context.UnitCards.Remove(deptDelete);
@@ -230,6 +260,16 @@ namespace PointOfSaleSedek._101_Adds
             }
         }
 
-        
+        private void txtUnitName_KeyDown_1(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+
+                AddUnite();
+
+
+
+            }
+        }
     }
 }

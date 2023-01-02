@@ -17,11 +17,36 @@ namespace PointOfSaleSedek._101_Adds._112_Users
 {
     public partial class frmEditeUser : DevExpress.XtraEditors.XtraForm
     {
-        readonly SaleEntities context = new SaleEntities();
+        readonly POSEntity context = new POSEntity();
         readonly Static st = new Static();
         public frmEditeUser()
         {
             InitializeComponent();
+            langu();
+        }
+
+        public void langu()
+        {
+            this.RightToLeft = st.isEnglish() ? RightToLeft.No : RightToLeft.Yes;
+            this.RightToLeftLayout = st.isEnglish() ? false : true;
+
+            tableLayoutPanel2.RightToLeft = st.isEnglish() ? RightToLeft.Yes : RightToLeft.No;
+            tableLayoutPanel3.RightToLeft = st.isEnglish() ? RightToLeft.Yes : RightToLeft.No;
+
+            this.Text = st.isEnglish() ? "Add New User" : "اضافة مستخدم جديد";
+            materialLabel11.Text = st.isEnglish() ? "Employee Name" : "اسم الموظف";
+
+            materialLabel4.Text = st.isEnglish() ? "Branche" : "الفرع";
+            materialLabel10.Text = st.isEnglish() ? "Code" : "كود الموظف";
+            materialLabel1.Text = st.isEnglish() ? "UserName" : "كلمة الدخول";
+            materialLabel13.Text = st.isEnglish() ? "Password" : "كلمة السر";
+            labelControl6.Text = st.isEnglish() ? "Activate as a user of the program" : "تفعيل كمستخدم للبرنامج";
+
+            btnAdd.Text = st.isEnglish() ? "Add" : "اضافة";
+            btnCancel.Text = st.isEnglish() ? "Cancel" : "اغلاق";
+
+            txtEmpName.Text = st.isEnglish() ? "Employee Name" : "اسم الموظف";
+
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -35,39 +60,35 @@ namespace PointOfSaleSedek._101_Adds._112_Users
         }
         void EditUser()
         {
-            
            
-            if (string.IsNullOrWhiteSpace(txtUserName.Text) || txtUserName.Text.Length<=1)
+            if (string.IsNullOrWhiteSpace(txtUserName.Text) || txtUserName.Text.Length <= 1)
             {
-                MaterialMessageBox.Show("يجب ان تكون كلمة الدخول اكثر من حرف", MessageBoxButtons.OK);
+                MaterialMessageBox.Show(st.isEnglish() ? "The UserName must be more than one character" : "يجب ان تكون كلمة الدخول اكثر من حرف", MessageBoxButtons.OK);
                 return;
             }
             if (string.IsNullOrWhiteSpace(txtPassword.Text) || txtPassword.Text.Length <= 1)
             {
-                MaterialMessageBox.Show("يجب ان يكون الباسورد اكثر من حرف", MessageBoxButtons.OK);
+                MaterialMessageBox.Show(st.isEnglish() ? "The password must be more than one character" : "يجب ان يكون الباسورد اكثر من حرف", MessageBoxButtons.OK);
                 return;
             }
+
+
+          
 
             if (Application.OpenForms.OfType<frmUser>().Any())
             {
                 frmUser frm = (frmUser)Application.OpenForms["frmUser"];
                 Int64 EmpCode = Convert.ToInt64(txtEmpCode.Text);
-                using (SaleEntities ForCheck = new SaleEntities())
+                using (POSEntity ForCheck = new POSEntity())
                 {
                     bool TestUserName = ForCheck.Users.Any(Emp => Emp.Emp_Code != EmpCode && Emp.IsDeleted == 0 && Emp.UserName == txtUserName.Text);
                     if (TestUserName)
                     {
-                        MaterialMessageBox.Show("تم تسجيل هذا الاسم لموظف اخر", MessageBoxButtons.OK);
+                        MaterialMessageBox.Show(st.isEnglish() ? "This name has been registered for another user" : "تم تسجيل هذا الاسم لمستخدم اخر", MessageBoxButtons.OK);
                         return;
                     }
                    
-                    if (TestUserName)
-                    {
-
-                        MaterialMessageBox.Show("تم تسجيل رقم البطاقة لموظف اخر", MessageBoxButtons.OK);
-                        return;
-
-                    }
+                    
 
 
                 }
@@ -75,20 +96,17 @@ namespace PointOfSaleSedek._101_Adds._112_Users
                 User _User;
                 _User = context.Users.SingleOrDefault(Employee => Employee.Emp_Code == EmpCode&&Employee.IsDeleted==0);
                 _User.Last_Modified_Date = DateTime.Now;
-                _User.Last_Modified_User = st.User_Code();
+                _User.Last_Modified_User = st.GetUser_Code();
                 _User.UserName = txtUserName.Text;
                 _User.Password = txtPassword.Text;
                 _User.UserFlag =  (bool)chkAddUser.Checked;
                 context.SaveChanges();
                 
-
-                frmUser frmUserMain = new frmUser();
-                frmUserMain.gcEmployeeCard.DataSource = context.User_View.Where(x => x.IsDeleted == 0&&x.IsDeletedEmployee==0).OrderBy(x=>x.Employee_Code).ToList();
-                frmUserMain.gcEmployeeCard.RefreshDataSource();
-                using (SaleEntities NewReco = new SaleEntities())
+ 
+                using (POSEntity NewReco = new POSEntity())
                 {
-
-                    User_View result2 = NewReco.User_View.Where(x => x.Employee_Code == EmpCode && x.IsDeleted == 0&&x.IsDeletedEmployee==0).FirstOrDefault();
+                    var branchCode = st.GetBranch_Code();
+                    User_View result2 = NewReco.User_View.Where(x => x.Employee_Code == EmpCode && x.IsDeleted == 0&&x.IsDeletedEmployee==0 && x.Branches_Code == branchCode).FirstOrDefault();
 
 
                     frm.gvEmployeeCard.SetFocusedRowCellValue("Employee_Code", result2.Employee_Code);
@@ -108,6 +126,11 @@ namespace PointOfSaleSedek._101_Adds._112_Users
                 this.Close();
             }
 
+        }
+
+        private void labelControl6_Click(object sender, EventArgs e)
+        {
+            chkAddUser.Checked = !chkAddUser.Checked;
         }
     }
 }

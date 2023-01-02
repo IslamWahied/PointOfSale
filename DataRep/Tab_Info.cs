@@ -23,5 +23,6 @@ namespace DataRep
         public Nullable<long> Last_Modified_User { get; set; }
         public int IsDeleted { get; set; }
         public bool InActive { get; set; }
+        public string Tab_Description_Eng { get; set; }
     }
 }

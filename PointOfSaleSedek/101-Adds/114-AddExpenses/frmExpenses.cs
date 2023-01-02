@@ -11,27 +11,44 @@ using DevExpress.XtraEditors;
 using PointOfSaleSedek._102_MaterialSkin;
 using DevExpress.XtraGrid;
 using DataRep;
-
+using PointOfSaleSedek.HelperClass;
 
 namespace PointOfSaleSedek._114_Adds
 {
     public partial class frmExpenses : DevExpress.XtraEditors.XtraForm
     {
-        readonly SaleEntities context = new SaleEntities();
+        readonly POSEntity context = new POSEntity();
+        readonly Static st = new Static();
+
         public frmExpenses()
         {
             InitializeComponent();
 
             FillExpensesGrid();
+            langu();
+
+
         }
 
-        
-       
+
+        void langu()
+        {
+
+            this.RightToLeft = st.isEnglish() ? RightToLeft.No : RightToLeft.Yes;
+            this.Text = st.isEnglish() ? "Add Expenses" : "اضافة مصروف";
+            this.labelControl2.Text = st.isEnglish() ? "Name" : "الاسم";
+            this.gridColumn2.Caption = st.isEnglish() ? "Expenses Name" : "اسم المصروف";
+            this.colDelete1.Caption = st.isEnglish() ? "Delete" : "حذف";
+            gvUnitCard.GroupPanelText = st.isEnglish() ? "Drag the field here to collect" : "اسحب الحقل هنا للتجميع";
+           
+           
+        }
 
 
         public void FillExpensesGrid()
         {
-            var result = (from a in context.Expenses where a.IsDeleted == 0 select a).ToList();
+            var branchCode = st.GetBranch_Code();
+            var result = (from a in context.Expenses where a.IsDeleted == 0 && a.Branch_Code == branchCode select a).ToList();
             gcExpenses.DataSource = result;
         }
         
@@ -42,7 +59,7 @@ namespace PointOfSaleSedek._114_Adds
             if (string.IsNullOrWhiteSpace(txtExpenses.Text))
             {
 
-                MaterialMessageBox.Show("!برجاء كتابة اسم المصروف ", MessageBoxButtons.OK);
+                MaterialMessageBox.Show(st.isEnglish() ? "Please write the name of the expense !" : "!برجاء كتابة اسم المصروف ", MessageBoxButtons.OK);
                 return;
             }
 
@@ -51,7 +68,7 @@ namespace PointOfSaleSedek._114_Adds
             {
 
 
-                MaterialMessageBox.Show("!تم نسجبلة من قبل", MessageBoxButtons.OK);
+                MaterialMessageBox.Show(st.isEnglish() ? "Expenses has been registered" : "!تم نسجبلة من قبل", MessageBoxButtons.OK);
 
             }
             else
@@ -71,6 +88,8 @@ namespace PointOfSaleSedek._114_Adds
                 {
                     ExpensesCode = Convert.ToInt64(NewCode),
                     ExpensesName = txtExpenses.Text,
+                    Branch_Code = 0,
+                    
                    
                 };
                 context.Expenses.Add(_Expenses);
@@ -110,22 +129,23 @@ namespace PointOfSaleSedek._114_Adds
             if (gvUnitCard.RowCount <= 0)
             {
 
-                MaterialMessageBox.Show("!لا يوجد بيانات للحذف", MessageBoxButtons.OK);
+                MaterialMessageBox.Show(st.isEnglish() ? "No data to delete!" : "!لا يوجد بيانات للحذف", MessageBoxButtons.OK);
                 return;
             }
 
             Expens xx = gvUnitCard.GetFocusedRow() as Expens;
             Int64 ExpensCode = Convert.ToInt64(xx.ExpensesCode);
             bool CheckRelation = context.ExpensesTransactions.Where(x => x.IsDeleted == 0  ).Any(x => x.ExpensesCode == ExpensCode);
+            bool CheckBackOfficeRelation = context.Expenses_Back_Office.Where(x => x.IsDeleted == 0 && x.Event_Code != 3).Any(x => x.ExpensesCode == ExpensCode);
 
             if (CheckRelation)
             {
 
-                MaterialMessageBox.Show("لا يمكن حذف هذا المصروف لوجود عمليات عليه", MessageBoxButtons.OK);
+                MaterialMessageBox.Show(st.isEnglish() ? "This expense cannot be deleted due to operations on it":"لا يمكن حذف هذا المصروف لوجود عمليات عليه", MessageBoxButtons.OK);
                 return;
 
             }
-            using (SaleEntities Context = new SaleEntities())
+            using (POSEntity Context = new POSEntity())
             {
                 Expens deptDelete = Context.Expenses.Where(x=>x.ExpensesCode== ExpensCode).FirstOrDefault();
                 Context.Expenses.Remove(deptDelete);

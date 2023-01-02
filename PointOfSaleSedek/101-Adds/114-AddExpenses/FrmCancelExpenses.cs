@@ -10,16 +10,45 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using PointOfSaleSedek.HelperClass;
 
 namespace PointOfSaleSedek._101_Adds._114_AddExpenses
 {
     public partial class FrmCancelExpenses : DevExpress.XtraEditors.XtraForm
     {
-        SaleEntities context = new SaleEntities();
+        POSEntity context = new POSEntity();
+        Static st = new Static();
         public FrmCancelExpenses()
         {
             InitializeComponent();
+            langu();
         }
+
+
+        void langu()
+        {
+
+            this.RightToLeft = st.isEnglish() ? RightToLeft.No : RightToLeft.Yes;
+            this.tableLayoutPanel1.RightToLeft = st.isEnglish() ? RightToLeft.Yes : RightToLeft.No;
+            this.tableLayoutPanel2.RightToLeft = st.isEnglish() ? RightToLeft.Yes : RightToLeft.No;
+
+            this.Text = st.isEnglish() ? "Cancel Expense" : "اللغاء مصروف";
+            this.labelControl5.Text = st.isEnglish() ? "From Date" : "من تاريخ";
+            this.labelControl1.Text = st.isEnglish() ? "To Date" : "الي تاريخ";
+            btnShow.Text = st.isEnglish() ? "View" : "عرض";
+
+            this.gridColumn7.Caption = st.isEnglish() ? "Invoice No" : "رقم الفاتورة";
+            this.gridColumn1.Caption = st.isEnglish() ? "Total" : "المبلغ";
+            this.gridColumn2.Caption = st.isEnglish() ? "Note" : "الملاحظات";
+            this.gridColumn10.Caption = st.isEnglish() ? "Date" : "التاريخ";
+            this.gridColumn3.Caption = st.isEnglish() ? "UserName" : "المستخدم";
+            contextMenuStrip1.Items[0].Text = st.isEnglish() ? "Delete" : "حذف";
+            gvItemCard.GroupPanelText = st.isEnglish() ? "Drag the field here to collect" : "اسحب الحقل هنا للتجميع";
+
+
+
+        }
+
 
         private void FrmCancelExpenses_Load(object sender, EventArgs e)
         {
@@ -36,7 +65,7 @@ namespace PointOfSaleSedek._101_Adds._114_AddExpenses
             if (Master.Count == 0)
 
             {
-                MaterialMessageBox.Show("لا يوجد نتائج لهذا التاريخ", MessageBoxButtons.OK);
+                MaterialMessageBox.Show(st.isEnglish()?"There are no results for this date":"لا يوجد نتائج لهذا التاريخ", MessageBoxButtons.OK);
                 return;
 
             }
@@ -80,14 +109,17 @@ namespace PointOfSaleSedek._101_Adds._114_AddExpenses
 
         private void حذفToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (MaterialMessageBox.Show("تاكيد الحذف", MessageBoxButtons.YesNo) == DialogResult.OK)
+            if (MaterialMessageBox.Show(st.isEnglish()? "Are you sure to delete?" : "تاكيد الحذف", MessageBoxButtons.YesNo) == DialogResult.OK)
             {
                 ExpensesView xx = gvItemCard.GetFocusedRow() as ExpensesView;
                 ExpensesTransaction _Expens = new ExpensesTransaction();
-                _Expens = context.ExpensesTransactions.SingleOrDefault(item => item.Id == xx.Id );
-                _Expens.IsDeleted = 1;
-                context.SaveChanges();
-                FillGride();
+                if (_Expens != null) {
+                    _Expens = context.ExpensesTransactions.SingleOrDefault(item => item.Id == xx.Id);
+                    _Expens.IsDeleted = 1;
+                    context.SaveChanges();
+                    FillGride();
+                }
+                
             }
         }
     }

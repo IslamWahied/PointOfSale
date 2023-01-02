@@ -34,18 +34,18 @@ namespace PointOfSaleSedek._101_Adds._114_AddExpenses
             this.txtNote = new System.Windows.Forms.RichTextBox();
             this.materialLabel5 = new MaterialSkin.Controls.MaterialLabel();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.btnAdd = new DevExpress.XtraEditors.SimpleButton();
-            this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.materialLabel9 = new MaterialSkin.Controls.MaterialLabel();
             this.materialLabel6 = new MaterialSkin.Controls.MaterialLabel();
+            this.materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
+            this.btnAdd = new DevExpress.XtraEditors.SimpleButton();
+            this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.slkExpenses = new DevExpress.XtraEditors.SearchLookUpEdit();
             this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.txtDiscount = new DevExpress.XtraEditors.TextEdit();
             this.slkEmployees = new DevExpress.XtraEditors.SearchLookUpEdit();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.slkExpenses.Properties)).BeginInit();
@@ -72,7 +72,7 @@ namespace PointOfSaleSedek._101_Adds._114_AddExpenses
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.tableLayoutPanel2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.tableLayoutPanel2.RowCount = 5;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 19.99207F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 19.99207F));
@@ -85,7 +85,7 @@ namespace PointOfSaleSedek._101_Adds._114_AddExpenses
             // txtNote
             // 
             this.txtNote.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtNote.Location = new System.Drawing.Point(3, 67);
+            this.txtNote.Location = new System.Drawing.Point(113, 67);
             this.txtNote.MaxLength = 100;
             this.txtNote.Name = "txtNote";
             this.txtNote.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -100,7 +100,7 @@ namespace PointOfSaleSedek._101_Adds._114_AddExpenses
             this.materialLabel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.materialLabel5.Font = new System.Drawing.Font("Roboto", 11F);
             this.materialLabel5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel5.Location = new System.Drawing.Point(334, 32);
+            this.materialLabel5.Location = new System.Drawing.Point(3, 32);
             this.materialLabel5.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel5.Name = "materialLabel5";
             this.materialLabel5.Size = new System.Drawing.Size(104, 32);
@@ -116,7 +116,7 @@ namespace PointOfSaleSedek._101_Adds._114_AddExpenses
             this.tableLayoutPanel3.Controls.Add(this.btnAdd, 0, 1);
             this.tableLayoutPanel3.Controls.Add(this.btnCancel, 1, 1);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 139);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(113, 139);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.tableLayoutPanel3.RowCount = 2;
@@ -124,6 +124,51 @@ namespace PointOfSaleSedek._101_Adds._114_AddExpenses
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 86.44068F));
             this.tableLayoutPanel3.Size = new System.Drawing.Size(325, 62);
             this.tableLayoutPanel3.TabIndex = 12;
+            // 
+            // materialLabel9
+            // 
+            this.materialLabel9.AutoSize = true;
+            this.materialLabel9.Depth = 0;
+            this.materialLabel9.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.materialLabel9.Font = new System.Drawing.Font("Roboto", 11F);
+            this.materialLabel9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.materialLabel9.Location = new System.Drawing.Point(3, 0);
+            this.materialLabel9.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel9.Name = "materialLabel9";
+            this.materialLabel9.Size = new System.Drawing.Size(104, 32);
+            this.materialLabel9.TabIndex = 217;
+            this.materialLabel9.Text = "المصروف";
+            this.materialLabel9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // materialLabel6
+            // 
+            this.materialLabel6.AutoSize = true;
+            this.materialLabel6.Depth = 0;
+            this.materialLabel6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.materialLabel6.Font = new System.Drawing.Font("Roboto", 11F);
+            this.materialLabel6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.materialLabel6.Location = new System.Drawing.Point(3, 64);
+            this.materialLabel6.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel6.Name = "materialLabel6";
+            this.materialLabel6.Size = new System.Drawing.Size(104, 32);
+            this.materialLabel6.TabIndex = 213;
+            this.materialLabel6.Text = "ملاحظات";
+            this.materialLabel6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // materialLabel1
+            // 
+            this.materialLabel1.AutoSize = true;
+            this.materialLabel1.Depth = 0;
+            this.materialLabel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.materialLabel1.Font = new System.Drawing.Font("Roboto", 11F);
+            this.materialLabel1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.materialLabel1.Location = new System.Drawing.Point(3, 96);
+            this.materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel1.Name = "materialLabel1";
+            this.materialLabel1.Size = new System.Drawing.Size(104, 40);
+            this.materialLabel1.TabIndex = 234;
+            this.materialLabel1.Text = "الموظف(اختياري)";
+            this.materialLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // btnAdd
             // 
@@ -155,42 +200,15 @@ namespace PointOfSaleSedek._101_Adds._114_AddExpenses
             this.btnCancel.Text = "اغلاق";
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
-            // materialLabel9
-            // 
-            this.materialLabel9.AutoSize = true;
-            this.materialLabel9.Depth = 0;
-            this.materialLabel9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.materialLabel9.Font = new System.Drawing.Font("Roboto", 11F);
-            this.materialLabel9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel9.Location = new System.Drawing.Point(334, 0);
-            this.materialLabel9.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialLabel9.Name = "materialLabel9";
-            this.materialLabel9.Size = new System.Drawing.Size(104, 32);
-            this.materialLabel9.TabIndex = 217;
-            this.materialLabel9.Text = "المصروف";
-            this.materialLabel9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // materialLabel6
-            // 
-            this.materialLabel6.AutoSize = true;
-            this.materialLabel6.Depth = 0;
-            this.materialLabel6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.materialLabel6.Font = new System.Drawing.Font("Roboto", 11F);
-            this.materialLabel6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel6.Location = new System.Drawing.Point(334, 64);
-            this.materialLabel6.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialLabel6.Name = "materialLabel6";
-            this.materialLabel6.Size = new System.Drawing.Size(104, 32);
-            this.materialLabel6.TabIndex = 213;
-            this.materialLabel6.Text = "ملاحظات";
-            this.materialLabel6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // slkExpenses
             // 
             this.slkExpenses.Dock = System.Windows.Forms.DockStyle.Fill;
             this.slkExpenses.EditValue = " ";
-            this.slkExpenses.Location = new System.Drawing.Point(3, 3);
+            this.slkExpenses.Location = new System.Drawing.Point(113, 3);
             this.slkExpenses.Name = "slkExpenses";
+            this.slkExpenses.Properties.Appearance.Options.UseTextOptions = true;
+            this.slkExpenses.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.slkExpenses.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.slkExpenses.Properties.AutoHeight = false;
             this.slkExpenses.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -209,25 +227,11 @@ namespace PointOfSaleSedek._101_Adds._114_AddExpenses
             this.gridView2.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.gridView2.OptionsView.ShowGroupPanel = false;
             // 
-            // gridColumn4
-            // 
-            this.gridColumn4.AppearanceCell.Options.UseTextOptions = true;
-            this.gridColumn4.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumn4.AppearanceHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.gridColumn4.AppearanceHeader.Options.UseBackColor = true;
-            this.gridColumn4.AppearanceHeader.Options.UseTextOptions = true;
-            this.gridColumn4.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumn4.Caption = "الاسم";
-            this.gridColumn4.FieldName = "ExpensesName";
-            this.gridColumn4.Name = "gridColumn4";
-            this.gridColumn4.Visible = true;
-            this.gridColumn4.VisibleIndex = 0;
-            // 
             // txtDiscount
             // 
             this.txtDiscount.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtDiscount.EditValue = "0";
-            this.txtDiscount.Location = new System.Drawing.Point(3, 35);
+            this.txtDiscount.Location = new System.Drawing.Point(113, 35);
             this.txtDiscount.Name = "txtDiscount";
             this.txtDiscount.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDiscount.Properties.Appearance.Options.UseFont = true;
@@ -245,7 +249,7 @@ namespace PointOfSaleSedek._101_Adds._114_AddExpenses
             // slkEmployees
             // 
             this.slkEmployees.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.slkEmployees.Location = new System.Drawing.Point(3, 99);
+            this.slkEmployees.Location = new System.Drawing.Point(113, 99);
             this.slkEmployees.Name = "slkEmployees";
             this.slkEmployees.Properties.AllowFocused = false;
             this.slkEmployees.Properties.Appearance.Options.UseTextOptions = true;
@@ -269,6 +273,20 @@ namespace PointOfSaleSedek._101_Adds._114_AddExpenses
             this.gridView1.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.gridView1.OptionsView.ShowGroupPanel = false;
             // 
+            // gridColumn4
+            // 
+            this.gridColumn4.AppearanceCell.Options.UseTextOptions = true;
+            this.gridColumn4.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridColumn4.AppearanceHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.gridColumn4.AppearanceHeader.Options.UseBackColor = true;
+            this.gridColumn4.AppearanceHeader.Options.UseTextOptions = true;
+            this.gridColumn4.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridColumn4.Caption = "الاسم";
+            this.gridColumn4.FieldName = "ExpensesName";
+            this.gridColumn4.Name = "gridColumn4";
+            this.gridColumn4.Visible = true;
+            this.gridColumn4.VisibleIndex = 0;
+            // 
             // gridColumn2
             // 
             this.gridColumn2.AppearanceCell.Options.UseTextOptions = true;
@@ -284,21 +302,6 @@ namespace PointOfSaleSedek._101_Adds._114_AddExpenses
             this.gridColumn2.Name = "gridColumn2";
             this.gridColumn2.Visible = true;
             this.gridColumn2.VisibleIndex = 0;
-            // 
-            // materialLabel1
-            // 
-            this.materialLabel1.AutoSize = true;
-            this.materialLabel1.Depth = 0;
-            this.materialLabel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.materialLabel1.Font = new System.Drawing.Font("Roboto", 11F);
-            this.materialLabel1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel1.Location = new System.Drawing.Point(334, 96);
-            this.materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialLabel1.Name = "materialLabel1";
-            this.materialLabel1.Size = new System.Drawing.Size(104, 40);
-            this.materialLabel1.TabIndex = 234;
-            this.materialLabel1.Text = "الموظف(اختياري)";
-            this.materialLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // frmExpensesTransaction
             // 

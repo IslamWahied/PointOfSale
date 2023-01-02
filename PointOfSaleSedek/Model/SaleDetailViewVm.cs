@@ -11,6 +11,7 @@ namespace PointOfSaleSedek.Model
         public long ItemCode { get; set; }
         public Nullable<long> CategoryCode { get; set; }
         public string ParCode { get; set; }
+        public string Name_En { get; set; }
         public string Name { get; set; }
         public double Qty { get; set; }
         public double Total { get; set; }

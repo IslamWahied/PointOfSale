@@ -29,5 +29,6 @@ namespace DataRep
         public string Jop_Descrption { get; set; }
         public string Email { get; set; }
         public string CustomerFavourit { get; set; }
+        public long Branch_Code { get; set; }
     }
 }

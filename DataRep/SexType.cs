@@ -17,5 +17,6 @@ namespace DataRep
         public int Id { get; set; }
         public int SexTypeCode { get; set; }
         public string SexTypeName { get; set; }
+        public string SexTypeName_En { get; set; }
     }
 }

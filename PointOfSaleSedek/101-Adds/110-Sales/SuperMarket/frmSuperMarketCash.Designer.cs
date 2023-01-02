@@ -228,7 +228,7 @@ namespace PointOfSaleSedek._101_Adds
             this.btnCancel.TabIndex = 1;
             this.btnCancel.Text = "اغلاق";
             // 
-            // frmCash
+            // frmSuperMarketCash
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -241,7 +241,7 @@ namespace PointOfSaleSedek._101_Adds
             this.LookAndFeel.UseDefaultLookAndFeel = false;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "frmCash";
+            this.Name = "frmSuperMarketCash";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.RightToLeftLayout = true;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

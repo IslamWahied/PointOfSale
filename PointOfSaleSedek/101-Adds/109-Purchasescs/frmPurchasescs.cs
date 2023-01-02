@@ -1,14 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
- 
 using System.Data;
- 
 using System.Linq;
- 
 using System.Windows.Forms;
- 
 using PointOfSaleSedek.HelperClass;
- 
 using PointOfSaleSedek._102_MaterialSkin;
 using DevExpress.XtraBars.Docking2010;
 using DataRep;
@@ -20,10 +15,11 @@ namespace PointOfSaleSedek._101_Adds
     {
         public string Status = "New";
         Static st = new Static();
-        SaleEntities Context = new SaleEntities();
+        POSEntity Context = new POSEntity();
         public frmPurchasescs()
         {
             InitializeComponent();
+            Int64 branchCode = st.GetBranch_Code();
             //HelperClass.HelperClass.DisableControls(tableLayoutPanel1);
             //HelperClass.HelperClass.DisableControls(tableLayoutPanel2);
             //Int64? MaxCode = Context.SaleMasters.Where(x => x.Operation_Type_Id == 1 & x.IsDeleted == 0).Max(u => (Int64?)u.SaleMasterCode + 1);
@@ -31,13 +27,49 @@ namespace PointOfSaleSedek._101_Adds
             //{
             //    MaxCode = 1;
             //}
-            Int64? MaxCode = Context.SaleMasters.Where(x =>  x.Operation_Type_Id == 1 || x.Operation_Type_Id == 6).Max(u => (Int64?)u.SaleMasterCode + 1);
+            Int64? MaxCode = Context.SaleMasters.Where(x =>  (x.Operation_Type_Id == 1 || x.Operation_Type_Id == 6) && x.Branch_Id == branchCode).Max(u => (Int64?)u.SaleMasterCode + 1);
             if (MaxCode == null || MaxCode == 0)
             {
                 MaxCode = 1;
             }
             groupControl1.CustomHeaderButtons[1].Properties.Caption = MaxCode.ToString();
+            langu();
+        }
 
+        void langu()
+        {
+            this.RightToLeft = st.isEnglish() ? RightToLeft.No : RightToLeft.Yes;
+
+            gridColumn1.Caption = st.isEnglish() ? "Code" : "التسلسل";
+            gridColumn7.Caption = st.isEnglish() ? "Category" : "المجموعه";
+            gridColumn10.Caption = st.isEnglish() ? "BarCode" : "الباركود";
+            gridColumn2.Caption = st.isEnglish() ? "Item Name" : "اسم الصنف";
+            gridColumn3.Caption = st.isEnglish() ? "Unit" : "وحدة القياس";
+            gridColumn4.Caption = st.isEnglish() ? "Selling Price" : "سعر البيع";
+            gridColumn12.Caption = st.isEnglish() ? "Quantity" : "الكمية";
+            gridColumn13.Caption = st.isEnglish() ? "Price" : "المبلغ";
+            gridColumn11.Caption = st.isEnglish() ? "Purchasing price" : "حد الخطر";
+
+            gridColumn14.Caption = st.isEnglish() ? "Warhouse" : "المخزن";
+            gridColumn11.Caption = st.isEnglish() ? "Purchasing price" : "حد الخطر";
+            this.gvItemCard.GroupPanelText = st.isEnglish() ? "Drag the field here to collect" : "اسحب الحقل هنا للتجميع";
+            gvItemCard.GroupPanelText = st.isEnglish() ? "Drag the field here to collect" : "اسحب الحقل هنا للتجميع";
+            windowsUIButtonPanel.Buttons[0].Properties.Caption = st.isEnglish() ? "New" : "جديد";
+            windowsUIButtonPanel.Buttons[1].Properties.Caption = st.isEnglish() ? "Edite" : "تعديل";
+            windowsUIButtonPanel.Buttons[2].Properties.Caption = st.isEnglish() ? "Save" : "حفظ";
+    
+            windowsUIButtonPanel.Buttons[6].Properties.Caption = st.isEnglish() ? "Search" : "بحث";
+            windowsUIButtonPanel.Buttons[7].Properties.Caption = st.isEnglish() ? "Exit" : "خروج";
+
+            materialContextMenuStrip1.Items[0].Text = st.isEnglish() ? "New" : "جديد";
+            materialContextMenuStrip1.Items[1].Text = st.isEnglish() ? "Edite" : "تعديل";
+            materialContextMenuStrip1.Items[2].Text = st.isEnglish() ? "Delete" : "حذف";
+            materialContextMenuStrip1.Items[3].Text = st.isEnglish() ? "New Invoice" : "فاتورة جديدة";
+
+            groupControl1.CustomHeaderButtons[0].Properties.Caption = st.isEnglish() ? "Invoice No" : "فاتورة رقم";
+
+            this.gridColumn13.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Total",st.isEnglish() ?"Total =  {0:N}": "الاجمالي =  {0:N}")});
         }
 
 
@@ -45,8 +77,8 @@ namespace PointOfSaleSedek._101_Adds
 
         public void SaveSaleMaster()
         {
-            Int64 UserCode = st.User_Code();
-            var ShiftCode = Context.Shift_View.Where(x => x.User_Id == UserCode && x.Shift_Flag == true).Select(xx => xx.Shift_Code).SingleOrDefault();
+            Int64 UserCode = st.GetUser_Code();
+            var ShiftCode = Context.Shift_View.Where(x => x.User_Id == UserCode  && x.Shift_Flag == true).Select(xx => xx.Shift_Code).SingleOrDefault();
             Int64 SalMasterCode = Convert.ToInt64(groupControl1.CustomHeaderButtons[1].Properties.Caption);
             if (this.Status == "New")
             {
@@ -65,16 +97,19 @@ namespace PointOfSaleSedek._101_Adds
                         Qty += x.Qty;
 
                     });
+               
                     SaleMaster _SaleMaster = new SaleMaster()
                     {
 
                         EntryDate = DateTime.Now,
                         FinalTotal = sum,
                         QtyTotal = Qty,
+                        
                         SaleMasterCode = SalMasterCode,
+                        Branch_Id = st.GetBranch_Code(),
                         Payment_Type = 1,
                         IsDeleted = 0,
-                        UserIdTakeOrder = st.User_Code(),
+                        UserIdTakeOrder = st.GetUser_Code(),
                         Operation_Type_Id = 1,
                         UserCode = UserCode,
                          ShiftCode = ShiftCode,
@@ -95,8 +130,9 @@ namespace PointOfSaleSedek._101_Adds
 
                 if (DataFromGrid != null && DataFromGrid.Count > 0)
                 {
+                    Int64 branchCode = st.GetBranch_Code();
 
-                    Context.SaleMasters.RemoveRange(Context.SaleMasters.Where(x => x.SaleMasterCode == SalMasterCode && x.IsDeleted == 0 && x.Operation_Type_Id == 1));
+                    Context.SaleMasters.RemoveRange(Context.SaleMasters.Where(x => x.SaleMasterCode == SalMasterCode && x.Branch_Id  == branchCode && x.IsDeleted == 0 && x.Operation_Type_Id == 1));
                     Context.SaveChanges();
 
                     double sum = 0;
@@ -113,12 +149,14 @@ namespace PointOfSaleSedek._101_Adds
 
                         EntryDate = DateTime.Now,
                         FinalTotal = sum,
+                        
                         QtyTotal = Qty,
+                        Branch_Id = branchCode,
                         SaleMasterCode = SalMasterCode,
                         Operation_Type_Id = 1,
                         Payment_Type = 1,
                         IsDeleted = 0,
-                        UserIdTakeOrder = st.User_Code(),
+                        UserIdTakeOrder = st.GetUser_Code(),
                         UserCode = UserCode,
                         ShiftCode = ShiftCode,
                         LastDateModif = DateTime.Now
@@ -153,6 +191,9 @@ namespace PointOfSaleSedek._101_Adds
                         {
                             ItemCode = item.ItemCode,
                             Price = item.PriceBuy,
+                            Branch_Id = item.Branches_Code,
+                            shiftCode = item.shiftCode,
+                            Warhouse_Code = item.Warhouse_Code,
                             
                             Qty = item.Qty,
                             Total = item.Total,
@@ -163,7 +204,7 @@ namespace PointOfSaleSedek._101_Adds
                             LastDateModif = DateTime.Now,
                             IsDeleted = 0,
                          
-                            UserId = st.User_Code(),
+                            UserId = st.GetUser_Code(),
                             Operation_Type_Id = 1,
                         };
 
@@ -173,21 +214,15 @@ namespace PointOfSaleSedek._101_Adds
                             Item_Id = item.ItemCode,
                             Price_Buy = item.PriceBuy,
                             Price_Sale = item.Price,
+                            Branch_Id = st.GetBranch_Code(),
                             Qty = item.Qty,
                             Current_Qty_Now = item.Qty,
                             CreatedDate = DateTime.Now,
+                         Warhouse_Code = item.Warhouse_Code,
                             IsFinshed = false,
                             Sale_Master_Code = SalMasterCode
 
-                            //ItemCode = item.ItemCode,
-                            //Price = item.Price,
-                            //Qty = item.Qty,
-                            //Total = item.Total,
-                            //EntryDate = DateTime.Now,
-                            //SaleDetailCode = SalMasterCode,
-                            //SaleMasterCode = SalMasterCode,
-                            //UserId = st.User_Code(),
-                            //Operation_Type_Id = 1,
+                         
                         };
 
 
@@ -209,17 +244,19 @@ namespace PointOfSaleSedek._101_Adds
                 //3  - Insert Lins
                 // 4- Insert Header
 
-             
-              
-                Context.Item_History.RemoveRange(Context.Item_History.Where(x => x.Sale_Master_Code == SalMasterCode && x.Is_Used ==false ));
-                Context.SaleDetails.RemoveRange(Context.SaleDetails.Where(x => x.SaleMasterCode == SalMasterCode && x.IsDeleted == 0 && x.Operation_Type_Id == 1));
+
+                Int64 branchCode = st.GetBranch_Code();
+                Context.Item_History.RemoveRange(Context.Item_History.Where(x => x.Sale_Master_Code == SalMasterCode && x.Is_Used ==false && x.Branch_Id == branchCode));
+                Context.SaleDetails.RemoveRange(Context.SaleDetails.Where(x => x.SaleMasterCode == SalMasterCode && x.IsDeleted == 0 && x.Operation_Type_Id == 1 && x.Branch_Id == branchCode));
 
                 List<SaleDetail> ArryOfSaleDetail = new List<SaleDetail>();
                 List<Item_History> ArryOfItem_History = new List<Item_History>();
                 var GetDataFromGrid = gcItemCard.DataSource as List<SaleDetailView>;
                 if (GetDataFromGrid != null && GetDataFromGrid.Count>0)
                 {
-
+                    Int64 UserCode = st.GetUser_Code();
+                   
+                    var ShiftCode = Context.Shift_View.Where(x => x.User_Id == UserCode  && x.Shift_Flag == true).Select(xx => xx.Shift_Code).SingleOrDefault();
                     foreach (var item in GetDataFromGrid)
                     {
                         SaleDetail _SaleDetail = new SaleDetail()
@@ -229,12 +266,14 @@ namespace PointOfSaleSedek._101_Adds
                             Qty = item.Qty,
                             Total = item.Total,
                             EntryDate = DateTime.Now,
+                            shiftCode = ShiftCode,
                             SaleDetailCode = SalMasterCode,
                             SaleMasterCode = SalMasterCode,
-                            UserId = st.User_Code(),
+                            UserId = st.GetUser_Code(),
                             CustomerCode = 0,
                             IsDeleted = 0,
-                            
+                            Warhouse_Code = item.Warhouse_Code,
+                            Branch_Id = branchCode,
                             Operation_Type_Id = 1,
                             LastDateModif = DateTime.Now
                         };
@@ -246,18 +285,12 @@ namespace PointOfSaleSedek._101_Adds
                             Price_Sale = item.Price,
                             Qty = item.Qty,
                             Current_Qty_Now = item.Qty,
+                           Warhouse_Code  = item.Warhouse_Code,
+                            Branch_Id = branchCode,
                             CreatedDate = DateTime.Now,
                             IsFinshed = false,
                             Sale_Master_Code = SalMasterCode
-                            //ItemCode = item.ItemCode,
-                            //Price = item.Price,
-                            //Qty = item.Qty,
-                            //Total = item.Total,
-                            //EntryDate = DateTime.Now,
-                            //SaleDetailCode = SalMasterCode,
-                            //SaleMasterCode = SalMasterCode,
-                            //UserId = st.User_Code(),
-                            //Operation_Type_Id = 1,
+                           
                         };
                         ArryOfSaleDetail.Add(_SaleDetail);
                         ArryOfItem_History.Add(_Item_History);
@@ -290,6 +323,7 @@ namespace PointOfSaleSedek._101_Adds
                 frm.txtUnit.Text = x.UnitName;
                 frm.txtName.Text = x.Name;
                 frm.txtCatgoryName.Text = x.CategoryName;
+                frm.slkWarhouse.EditValue = x.Warhouse_Code;
                 frm.txtPrice.Text = x.Price.ToString();
                 frm.txtParCode.Text = x.ParCode.ToString();
                 frm.txtPriceBuy.Text = x.PriceBuy.ToString();
@@ -343,15 +377,20 @@ namespace PointOfSaleSedek._101_Adds
 
         void Update_Item_Price_Sale(Int64 ItemCode, double PriceBuy, double PriceSale)
         {
-
+            Int64 branchCode = st.GetBranch_Code();
             ItemCard _ItemCard;
-            _ItemCard = Context.ItemCards.SingleOrDefault(Item => Item.ItemCode==ItemCode&&Item.IsDeleted==0);
-            _ItemCard.Price = PriceSale;
-         
-            _ItemCard.PriceBuy = PriceBuy;
+            _ItemCard = Context.ItemCards.SingleOrDefault(Item => Item.ItemCode==ItemCode&&Item.IsDeleted==0 && Item.Branch_Code == branchCode );
+
+            if (_ItemCard != null) {
+                _ItemCard.Price = PriceSale;
+
+                _ItemCard.PriceBuy = PriceBuy;
 
 
-            Context.SaveChanges();
+                Context.SaveChanges();
+                
+            }
+          
 
 
         }
@@ -359,12 +398,12 @@ namespace PointOfSaleSedek._101_Adds
         private void windowsUIButtonPanel_ButtonClick_1(object sender, ButtonEventArgs e)
         {
             WindowsUIButton btn = e.Button as WindowsUIButton;
-            if (btn.Caption == "اضافة جديدة")
+            if (btn.Caption == "جديد" || btn.Caption == "New")
             {
                 frmAddPurchsItems frm = new frmAddPurchsItems();
                 frm.ShowDialog();
             }
-            else if (btn.Caption == "تعديل")
+            else if (btn.Caption == "تعديل" || btn.Caption == "Edite")
             {
 
                 var x = gvItemCard.GetFocusedRow() as SaleDetailView;
@@ -372,10 +411,11 @@ namespace PointOfSaleSedek._101_Adds
                 {
 
                     frmEditePurchsItems frm = new frmEditePurchsItems();
-                    //frm.SlkCatgoryName.EditValue = x.CategoryCode;
+                    
                     frm.txtUnit.Text = x.UnitName;
                     frm.txtName.Text = x.Name;
                     frm.txtCatgoryName.Text = x.CategoryName;
+                    frm.slkWarhouse.EditValue = x.Warhouse_Code;
                     frm.txtPrice.Text = x.Price.ToString();
                     frm.txtParCode.Text = x.ParCode.ToString();
                     frm.txtPriceBuy.Text = x.PriceBuy.ToString();
@@ -391,24 +431,29 @@ namespace PointOfSaleSedek._101_Adds
                 }
 
             }
-            else if (btn.Caption == "حفظ")
+            else if (btn.Caption == "حفظ" || btn.Caption == "Save")
             {
+
+
+
+
                 var DataFromGrid = gvItemCard.DataSource as List<SaleDetailView>;
 
 
                 if (DataFromGrid != null && DataFromGrid.Count > 0)
                 {
+                    Int64 branchCode = st.GetBranch_Code();
                     Int64 SalMasterCode = Convert.ToInt64(groupControl1.CustomHeaderButtons[1].Properties.Caption);
-                    var Item_History_List = Context.Item_History.Where(x => x.Sale_Master_Code == SalMasterCode).ToList();
-                    foreach (var item in Item_History_List)
-                    {
-                        if (item.Is_Used == true || item.IsFinshed == true)
-                        {
-                            MaterialMessageBox.Show("لايمكن حذف او التعديل علي الفاتوره بسبب حدوث عمليات بيع عليها", MessageBoxButtons.OK);
-                           
-                        return;
-                        }
-                    }
+                    var Item_History_List = Context.Item_History.Where(x => x.Sale_Master_Code == SalMasterCode && x.Branch_Id == branchCode).ToList();
+                    //foreach (var item in Item_History_List)
+                    //{
+                    //    if (item.Is_Used == true || item.IsFinshed == true)
+                    //    {
+                    //        MaterialMessageBox.Show(st.isEnglish()?"It is not possible to delete or modify the invoice due to sales on it":"لايمكن حذف او التعديل علي الفاتوره بسبب حدوث عمليات بيع عليها", MessageBoxButtons.OK);
+                    //    return;
+                    //    }
+                        
+                    //}
 
 
 
@@ -426,14 +471,14 @@ namespace PointOfSaleSedek._101_Adds
                     if (this.Status == "New")
                     {
 
-                        MaterialMessageBox.Show((MaxCode - 1).ToString() + " : تم حفظ الفاتوره رقم ", MessageBoxButtons.OK);
+                        MaterialMessageBox.Show(st.isEnglish()? "Invoice No  " +(MaxCode - 1).ToString()+ " has been saved" : "  تم حفظ الفاتوره رقم :" + (MaxCode - 1).ToString() , MessageBoxButtons.OK);
                         this.Status = "New";
                         return;
                     }
                     else
                     {
 
-                        MaterialMessageBox.Show("تم تعديل الفاتوره ", MessageBoxButtons.OK);
+                        MaterialMessageBox.Show(st.isEnglish()? "Invoice has been modified" : "تم تعديل الفاتوره ", MessageBoxButtons.OK);
                         this.Status = "New";
                         return;
                     }
@@ -444,7 +489,7 @@ namespace PointOfSaleSedek._101_Adds
                 {
 
 
-                    MaterialMessageBox.Show("لايوجد بيانات لتتم عملية الحفظ", MessageBoxButtons.OK);
+                    MaterialMessageBox.Show(st.isEnglish()? "There is no data to save" : "لايوجد بيانات لتتم عملية الحفظ", MessageBoxButtons.OK);
                     this.Status = "New";
                     return;
 
@@ -452,7 +497,7 @@ namespace PointOfSaleSedek._101_Adds
                 }
 
             }
-            else if (btn.Caption == "بحث")
+            else if (btn.Caption == "بحث" || btn.Caption == "Search")
             {
 
                 frmInvoicePurchsSearch frm = new frmInvoicePurchsSearch();
@@ -460,20 +505,20 @@ namespace PointOfSaleSedek._101_Adds
 
 
             }
-            else if (btn.Caption == "جديد")
-            {
-                Int64? MaxCode = Context.SaleMasters.Where(x => x.Operation_Type_Id == 1 || x.Operation_Type_Id == 6).Max(u => (Int64?)u.SaleMasterCode + 1);
-                gcItemCard.DataSource = null;
-                gcItemCard.RefreshDataSource();
-                if (MaxCode == null || MaxCode == 0)
-                {
-                    MaxCode = 1;
-                }
-                this.Status = "New";
-                groupControl1.CustomHeaderButtons[1].Properties.Caption = MaxCode.ToString();
+            //else if (btn.Caption == "جديد" || btn.Caption == "New")
+            //{
+            //    Int64? MaxCode = Context.SaleMasters.Where(x => x.Operation_Type_Id == 1 || x.Operation_Type_Id == 6).Max(u => (Int64?)u.SaleMasterCode + 1);
+            //    gcItemCard.DataSource = null;
+            //    gcItemCard.RefreshDataSource();
+            //    if (MaxCode == null || MaxCode == 0)
+            //    {
+            //        MaxCode = 1;
+            //    }
+            //    this.Status = "New";
+            //    groupControl1.CustomHeaderButtons[1].Properties.Caption = MaxCode.ToString();
 
-            }
-            else if (btn.Caption == "حذف")
+            //}
+            else if (btn.Caption == "حذف" || btn.Caption == "Delete")
             {
 
                 var x = gvItemCard.GetFocusedRow() as SaleDetailView;
@@ -491,11 +536,11 @@ namespace PointOfSaleSedek._101_Adds
                 }
 
             }
-            else if (btn.Caption == "خروج")
+            else if (btn.Caption == "خروج" || btn.Caption == "Exit")
             {
 
 
-                if (MaterialMessageBox.Show("تاكيد الاغلاق", MessageBoxButtons.YesNo) == DialogResult.OK)
+                if (MaterialMessageBox.Show(st.isEnglish()? "Confirm exit" : "تاكيد الاغلاق", MessageBoxButtons.YesNo) == DialogResult.OK)
                 {
 
                     this.Close();
@@ -515,16 +560,16 @@ namespace PointOfSaleSedek._101_Adds
         private void frmPurchasescs_Load(object sender, EventArgs e)
         {
              
-            var UserId = Convert.ToInt64(st.User_Code());
-            var Check = Context.Shifts.Any(x => x.Shift_Flag == true && x.User_Id == UserId && x.IsDeleted == 0);
-            if (!Check)
-            {
-                if (MaterialMessageBox.Show("برجاء اضافة وردية لهذا المستخدم", MessageBoxButtons.OK) == DialogResult.OK)
-                {
-                    this.Close();
-                }
+            //var UserId = Convert.ToInt64(st.GetUser_Code());
+            //var Check = Context.Shifts.Any(x => x.Shift_Flag == true && x.User_Id == UserId && x.IsDeleted == 0);
+            //if (!Check)
+            //{
+            //    if (MaterialMessageBox.Show(st.isEnglish()? "Please Stert Shift for this user":"برجاء اضافة وردية لهذا المستخدم", MessageBoxButtons.OK) == DialogResult.OK)
+            //    {
+            //        this.Close();
+            //    }
 
-            }
+            //}
         }
     }
 }

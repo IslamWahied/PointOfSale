@@ -54,8 +54,8 @@
             this.Message.Name = "Message";
             this.Message.Size = new System.Drawing.Size(354, 91);
             this.Message.TabIndex = 192;
-            this.Message.Text = " ";
-            this.Message.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.Message.Text = "يبيب";
+            this.Message.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // FrmYes
             // 
@@ -70,6 +70,7 @@
             this.Name = "FrmYes";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "تاكيد";
+            this.TopMost = true;
             this.Load += new System.EventHandler(this.FrmYes_Load);
             this.ResumeLayout(false);
 

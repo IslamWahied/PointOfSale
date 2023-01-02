@@ -18,9 +18,12 @@ namespace DataRep
         public string Password { get; set; }
         public string UserName { get; set; }
         public string Employee_Name { get; set; }
-        public long Employee_Code { get; set; }
+        public Nullable<long> Employee_Code { get; set; }
         public int IsDeleted { get; set; }
-        public int IsDeletedEmployee { get; set; }
+        public Nullable<int> IsDeletedEmployee { get; set; }
         public bool UserFlag { get; set; }
+        public string Warehouse_Name { get; set; }
+        public long Warehouse_Code { get; set; }
+        public long Branches_Code { get; set; }
     }
 }
