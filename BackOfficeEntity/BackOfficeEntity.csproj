@@ -214,6 +214,9 @@
     <Compile Include="SaleMaster.cs">
       <DependentUpon>BackOffice.tt</DependentUpon>
     </Compile>
+    <Compile Include="SaleMasterReport.cs">
+      <DependentUpon>BackOffice.tt</DependentUpon>
+    </Compile>
     <Compile Include="SaleMasterView.cs">
       <DependentUpon>BackOffice.tt</DependentUpon>
     </Compile>

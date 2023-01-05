@@ -1248,6 +1248,49 @@ warning 6002: The table/view 'db_a8f74e_pos.dbo.SaleDetailView' does not have a 
           <Property Name="Branches_Code" Type="bigint" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
+warning 6002: The table/view 'db_a8f74e_pos.dbo.SaleMasterReport' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="SaleMasterReport">
+          <Key>
+            <PropertyRef Name="UserCode" />
+            <PropertyRef Name="Operation_Type_Id" />
+            <PropertyRef Name="SaleMasterCode" />
+            <PropertyRef Name="TotalBeforDiscount" />
+            <PropertyRef Name="Discount" />
+            <PropertyRef Name="QtyTotal" />
+            <PropertyRef Name="EntryDate" />
+            <PropertyRef Name="FinalTotal" />
+            <PropertyRef Name="IsDeleted" />
+            <PropertyRef Name="Payment_Type" />
+            <PropertyRef Name="UserIdTakeOrder" />
+            <PropertyRef Name="Customer_Code" />
+            <PropertyRef Name="isUploaded" />
+            <PropertyRef Name="Branches_Code" />
+            <PropertyRef Name="Branches_Name" />
+            <PropertyRef Name="Cash" />
+            <PropertyRef Name="Visa" />
+          </Key>
+          <Property Name="UserCode" Type="bigint" Nullable="false" />
+          <Property Name="Operation_Type_Id" Type="bigint" Nullable="false" />
+          <Property Name="SaleMasterCode" Type="bigint" Nullable="false" />
+          <Property Name="TotalBeforDiscount" Type="float" Nullable="false" />
+          <Property Name="Discount" Type="float" Nullable="false" />
+          <Property Name="QtyTotal" Type="float" Nullable="false" />
+          <Property Name="LastDateModif" Type="datetime" />
+          <Property Name="EntryDate" Type="datetime" Nullable="false" />
+          <Property Name="FinalTotal" Type="float" Nullable="false" />
+          <Property Name="IsDeleted" Type="int" Nullable="false" />
+          <Property Name="PaymentType" Type="nvarchar" MaxLength="50" />
+          <Property Name="Payment_Type" Type="bigint" Nullable="false" />
+          <Property Name="UserIdTakeOrder" Type="bigint" Nullable="false" />
+          <Property Name="Customer_Code" Type="bigint" Nullable="false" />
+          <Property Name="isUploaded" Type="bit" Nullable="false" />
+          <Property Name="Branches_Code" Type="bigint" Nullable="false" />
+          <Property Name="Branches_Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Cash" Type="float" Nullable="false" />
+          <Property Name="Visa" Type="float" Nullable="false" />
+          <Property Name="Employee_Name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
 warning 6002: The table/view 'db_a8f74e_pos.dbo.SaleMasterView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="SaleMasterView">
           <Key>
@@ -1639,6 +1682,30 @@ FROM [dbo].[PO_View] AS [PO_View]</DefiningQuery>
 [SaleDetailView].[Branches_Code] AS [Branches_Code]
 FROM [dbo].[SaleDetailView] AS [SaleDetailView]</DefiningQuery>
           </EntitySet>
+          <EntitySet Name="SaleMasterReport" EntityType="Self.SaleMasterReport" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[SaleMasterReport].[UserCode] AS [UserCode], 
+[SaleMasterReport].[Operation_Type_Id] AS [Operation_Type_Id], 
+[SaleMasterReport].[SaleMasterCode] AS [SaleMasterCode], 
+[SaleMasterReport].[TotalBeforDiscount] AS [TotalBeforDiscount], 
+[SaleMasterReport].[Discount] AS [Discount], 
+[SaleMasterReport].[QtyTotal] AS [QtyTotal], 
+[SaleMasterReport].[LastDateModif] AS [LastDateModif], 
+[SaleMasterReport].[EntryDate] AS [EntryDate], 
+[SaleMasterReport].[FinalTotal] AS [FinalTotal], 
+[SaleMasterReport].[IsDeleted] AS [IsDeleted], 
+[SaleMasterReport].[PaymentType] AS [PaymentType], 
+[SaleMasterReport].[Payment_Type] AS [Payment_Type], 
+[SaleMasterReport].[UserIdTakeOrder] AS [UserIdTakeOrder], 
+[SaleMasterReport].[Customer_Code] AS [Customer_Code], 
+[SaleMasterReport].[isUploaded] AS [isUploaded], 
+[SaleMasterReport].[Branches_Code] AS [Branches_Code], 
+[SaleMasterReport].[Branches_Name] AS [Branches_Name], 
+[SaleMasterReport].[Cash] AS [Cash], 
+[SaleMasterReport].[Visa] AS [Visa], 
+[SaleMasterReport].[Employee_Name] AS [Employee_Name]
+FROM [dbo].[SaleMasterReport] AS [SaleMasterReport]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="SaleMasterView" EntityType="Self.SaleMasterView" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
 [SaleMasterView].[UserCode] AS [UserCode], 
@@ -1795,6 +1862,7 @@ FROM [dbo].[warhouse_view] AS [warhouse_view]</DefiningQuery>
           <EntitySet Name="ItemCardViews" EntityType="db_a8f74e_posModel.ItemCardView" />
           <EntitySet Name="PO_View" EntityType="db_a8f74e_posModel.PO_View" />
           <EntitySet Name="SaleDetailViews" EntityType="db_a8f74e_posModel.SaleDetailView" />
+          <EntitySet Name="SaleMasterReports" EntityType="db_a8f74e_posModel.SaleMasterReport" />
           <EntitySet Name="SaleMasterViews" EntityType="db_a8f74e_posModel.SaleMasterView" />
           <EntitySet Name="Shift_View" EntityType="db_a8f74e_posModel.Shift_View" />
           <EntitySet Name="User_View" EntityType="db_a8f74e_posModel.User_View" />
@@ -3017,6 +3085,47 @@ FROM [dbo].[warhouse_view] AS [warhouse_view]</DefiningQuery>
           <Property Name="Warehouse_Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Item_DisCount" Type="Double" Nullable="false" />
           <Property Name="Branches_Code" Type="Int64" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SaleMasterReport">
+          <Key>
+            <PropertyRef Name="UserCode" />
+            <PropertyRef Name="Operation_Type_Id" />
+            <PropertyRef Name="SaleMasterCode" />
+            <PropertyRef Name="TotalBeforDiscount" />
+            <PropertyRef Name="Discount" />
+            <PropertyRef Name="QtyTotal" />
+            <PropertyRef Name="EntryDate" />
+            <PropertyRef Name="FinalTotal" />
+            <PropertyRef Name="IsDeleted" />
+            <PropertyRef Name="Payment_Type" />
+            <PropertyRef Name="UserIdTakeOrder" />
+            <PropertyRef Name="Customer_Code" />
+            <PropertyRef Name="isUploaded" />
+            <PropertyRef Name="Branches_Code" />
+            <PropertyRef Name="Branches_Name" />
+            <PropertyRef Name="Cash" />
+            <PropertyRef Name="Visa" />
+          </Key>
+          <Property Name="UserCode" Type="Int64" Nullable="false" />
+          <Property Name="Operation_Type_Id" Type="Int64" Nullable="false" />
+          <Property Name="SaleMasterCode" Type="Int64" Nullable="false" />
+          <Property Name="TotalBeforDiscount" Type="Double" Nullable="false" />
+          <Property Name="Discount" Type="Double" Nullable="false" />
+          <Property Name="QtyTotal" Type="Double" Nullable="false" />
+          <Property Name="LastDateModif" Type="DateTime" Precision="3" />
+          <Property Name="EntryDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FinalTotal" Type="Double" Nullable="false" />
+          <Property Name="IsDeleted" Type="Int32" Nullable="false" />
+          <Property Name="PaymentType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Payment_Type" Type="Int64" Nullable="false" />
+          <Property Name="UserIdTakeOrder" Type="Int64" Nullable="false" />
+          <Property Name="Customer_Code" Type="Int64" Nullable="false" />
+          <Property Name="isUploaded" Type="Boolean" Nullable="false" />
+          <Property Name="Branches_Code" Type="Int64" Nullable="false" />
+          <Property Name="Branches_Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Cash" Type="Double" Nullable="false" />
+          <Property Name="Visa" Type="Double" Nullable="false" />
+          <Property Name="Employee_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="SaleMasterView">
           <Key>
@@ -4347,6 +4456,32 @@ FROM [dbo].[warhouse_view] AS [warhouse_view]</DefiningQuery>
                 <ScalarProperty Name="ParCode" ColumnName="ParCode" />
                 <ScalarProperty Name="CategoryCode" ColumnName="CategoryCode" />
                 <ScalarProperty Name="ItemCode" ColumnName="ItemCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SaleMasterReports">
+            <EntityTypeMapping TypeName="db_a8f74e_posModel.SaleMasterReport">
+              <MappingFragment StoreEntitySet="SaleMasterReport">
+                <ScalarProperty Name="Employee_Name" ColumnName="Employee_Name" />
+                <ScalarProperty Name="Visa" ColumnName="Visa" />
+                <ScalarProperty Name="Cash" ColumnName="Cash" />
+                <ScalarProperty Name="Branches_Name" ColumnName="Branches_Name" />
+                <ScalarProperty Name="Branches_Code" ColumnName="Branches_Code" />
+                <ScalarProperty Name="isUploaded" ColumnName="isUploaded" />
+                <ScalarProperty Name="Customer_Code" ColumnName="Customer_Code" />
+                <ScalarProperty Name="UserIdTakeOrder" ColumnName="UserIdTakeOrder" />
+                <ScalarProperty Name="Payment_Type" ColumnName="Payment_Type" />
+                <ScalarProperty Name="PaymentType" ColumnName="PaymentType" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="FinalTotal" ColumnName="FinalTotal" />
+                <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+                <ScalarProperty Name="LastDateModif" ColumnName="LastDateModif" />
+                <ScalarProperty Name="QtyTotal" ColumnName="QtyTotal" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+                <ScalarProperty Name="TotalBeforDiscount" ColumnName="TotalBeforDiscount" />
+                <ScalarProperty Name="SaleMasterCode" ColumnName="SaleMasterCode" />
+                <ScalarProperty Name="Operation_Type_Id" ColumnName="Operation_Type_Id" />
+                <ScalarProperty Name="UserCode" ColumnName="UserCode" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

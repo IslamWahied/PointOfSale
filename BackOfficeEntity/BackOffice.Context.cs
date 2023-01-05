@@ -96,6 +96,7 @@ namespace BackOfficeEntity
         public DbSet<ItemCardView> ItemCardViews { get; set; }
         public DbSet<PO_View> PO_View { get; set; }
         public DbSet<SaleDetailView> SaleDetailViews { get; set; }
+        public DbSet<SaleMasterReport> SaleMasterReports { get; set; }
         public DbSet<SaleMasterView> SaleMasterViews { get; set; }
         public DbSet<Shift_View> Shift_View { get; set; }
         public DbSet<User_View> User_View { get; set; }

@@ -63,7 +63,7 @@ namespace PointOfSaleSedek._101_Adds
             this.tableLayoutPanel2.RowCount = 2;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 65F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(534, 283);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(934, 591);
             this.tableLayoutPanel2.TabIndex = 1;
             // 
             // windowsUIButtonPanel
@@ -103,12 +103,12 @@ namespace PointOfSaleSedek._101_Adds
             this.windowsUIButtonPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.windowsUIButtonPanel.EnableImageTransparency = true;
             this.windowsUIButtonPanel.ForeColor = System.Drawing.Color.White;
-            this.windowsUIButtonPanel.Location = new System.Drawing.Point(4, 223);
+            this.windowsUIButtonPanel.Location = new System.Drawing.Point(4, 531);
             this.windowsUIButtonPanel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.windowsUIButtonPanel.MaximumSize = new System.Drawing.Size(0, 60);
             this.windowsUIButtonPanel.MinimumSize = new System.Drawing.Size(60, 60);
             this.windowsUIButtonPanel.Name = "windowsUIButtonPanel";
-            this.windowsUIButtonPanel.Size = new System.Drawing.Size(526, 60);
+            this.windowsUIButtonPanel.Size = new System.Drawing.Size(926, 60);
             this.windowsUIButtonPanel.TabIndex = 11;
             this.windowsUIButtonPanel.Text = "windowsUIButtonPanel";
             this.windowsUIButtonPanel.UseButtonBackgroundImages = false;
@@ -120,7 +120,7 @@ namespace PointOfSaleSedek._101_Adds
             this.gcItemCard.Location = new System.Drawing.Point(3, 3);
             this.gcItemCard.MainView = this.gvItemCard;
             this.gcItemCard.Name = "gcItemCard";
-            this.gcItemCard.Size = new System.Drawing.Size(528, 212);
+            this.gcItemCard.Size = new System.Drawing.Size(928, 520);
             this.gcItemCard.TabIndex = 9;
             this.gcItemCard.TabStop = false;
             this.gcItemCard.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -154,16 +154,18 @@ namespace PointOfSaleSedek._101_Adds
             this.gridColumn5});
             this.gvItemCard.GridControl = this.gcItemCard;
             this.gvItemCard.GroupPanelText = "اسحب الحقل هنا للتجميع";
+            this.gvItemCard.GroupSummary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Count, "Created_Date", null, "", new System.DateTime(2023, 1, 3, 23, 54, 37, 492))});
             this.gvItemCard.Name = "gvItemCard";
             this.gvItemCard.OptionsCustomization.AllowColumnResizing = false;
             this.gvItemCard.OptionsFilter.AllowFilterEditor = false;
             this.gvItemCard.OptionsMenu.EnableColumnMenu = false;
             this.gvItemCard.OptionsMenu.EnableFooterMenu = false;
+            this.gvItemCard.OptionsMenu.EnableGroupRowMenu = true;
             this.gvItemCard.OptionsView.EnableAppearanceOddRow = true;
             this.gvItemCard.OptionsView.ShowAutoFilterRow = true;
             this.gvItemCard.RowHeight = 30;
             this.gvItemCard.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(this.gvItemCard_RowCellStyle);
-           // this.gvItemCard.RowStyle += new DevExpress.XtraGrid.Views.Grid.RowStyleEventHandler(this.gvItemCard_RowStyle);
             // 
             // gridColumn1
             // 
@@ -215,7 +217,7 @@ namespace PointOfSaleSedek._101_Adds
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(534, 283);
+            this.ClientSize = new System.Drawing.Size(934, 591);
             this.Controls.Add(this.tableLayoutPanel2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.IconOptions.ShowIcon = false;

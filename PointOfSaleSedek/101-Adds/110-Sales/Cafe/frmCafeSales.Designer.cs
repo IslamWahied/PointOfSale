@@ -534,7 +534,7 @@
             this.tabItems.Size = new System.Drawing.Size(447, 586);
             this.tabItems.TabIndex = 0;
             this.tabItems.SelectedPageChanged += new DevExpress.XtraTab.TabPageChangedEventHandler(this.tabItems_SelectedPageChanged);
-            this.tabItems.Click += new System.EventHandler(this.tabItems_Click);
+           
             // 
             // simpleButton1
             // 
@@ -1231,7 +1231,7 @@
             this.gvSaleDetail.OptionsView.ShowFilterPanelMode = DevExpress.XtraGrid.Views.Base.ShowFilterPanelMode.Never;
             this.gvSaleDetail.OptionsView.ShowGroupPanel = false;
             this.gvSaleDetail.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.gvSaleDetail_CellValueChanged);
-            this.gvSaleDetail.CellValueChanging += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.gvSaleDetail_CellValueChanging);
+           
             // 
             // colId
             // 

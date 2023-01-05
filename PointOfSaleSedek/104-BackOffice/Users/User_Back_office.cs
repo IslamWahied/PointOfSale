@@ -308,12 +308,7 @@ namespace PointOfSaleSedek._101_Adds._111_Warehouse
                                 };
                                 Contexts2.Employees.Add(emp);
                                 Contexts2.SaveChanges();
-
-
-
-
-
-
+                                 
                             }
 
 

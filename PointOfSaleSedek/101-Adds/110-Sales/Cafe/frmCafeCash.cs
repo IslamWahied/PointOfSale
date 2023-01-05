@@ -2,6 +2,7 @@
 using DataRep;
 using PointOfSaleSedek.HelperClass;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -87,14 +88,14 @@ namespace PointOfSaleSedek._101_Adds
                 frmCafeSales frm = (frmCafeSales)Application.OpenForms["frmCafeSales"];
                 if (frm.Status == "Old")
                 {
-
+                    
 
                     // Remove All Old Invoce Detail  (Sale Detail)
-                    var Details = context.SaleDetails.Where(w => w.SaleMasterCode == frm.SaleMasterCode && w.shiftCode == frm.ShiftCode && w.Warhouse_Code == frm.Warehouse_Code);
+                    var Details = context.SaleDetails.Where(w => w.SaleMasterCode == frm.SaleMasterCode && w.shiftCode == frm.ShiftCode && w.Warhouse_Code == frm.Warehouse_Code).ToList();
                     context.SaleDetails.RemoveRange(Details);
                     context.SaveChanges();
 
-
+                    frm.ArryOfSaleDetail = new List<SaleDetail>();
 
                     // عمل ارجاع للكميات الماخوذه من المخزن
 
@@ -132,7 +133,7 @@ namespace PointOfSaleSedek._101_Adds
 
 
 
-                    //''''''''''''''''''''''''''''''
+                  
                     using (POSEntity context120 = new POSEntity())
                     {
                         foreach (var item in frm.GetDataFromGrid)
@@ -176,8 +177,6 @@ namespace PointOfSaleSedek._101_Adds
 
 
                                 }
-
-
                             });
                             #endregion
 
@@ -235,7 +234,8 @@ namespace PointOfSaleSedek._101_Adds
                     {
                         try
                         {
-                            newMasterCode = context100.SaleMasters.Where(x => x.ShiftCode == frm.ShiftCode && x.Branch_Id == frm.Branch_Code && (x.Operation_Type_Id == 2 || x.Operation_Type_Id == 3)).Max(u => (Int64)u.SaleMasterCode + 1);
+                            newMasterCode = context100.SaleMasters.Where(x =>  x.Branch_Id == frm.Branch_Code &&  (x.Operation_Type_Id == 2 || x.Operation_Type_Id == 3) && (((x.ShiftCode == frm.ShiftCode) || (x.EntryDate.Year == DateTime.Now.Year && x.EntryDate.Month == DateTime.Now.Month && x.EntryDate.Day == DateTime.Now.Day)))).Max(u => (Int64)u.SaleMasterCode + 1);
+                            
                         }
                         catch
                         {

@@ -1162,7 +1162,63 @@ namespace PointOfSaleSedek
 
         }
 
+        void UploadShiftsForServer()
+        {
+            _server = new BackOfficeEntity.db_a8f74e_posEntities();
 
+            using (POSEntity Contexts5 = new POSEntity())
+            {
+                var shifts = Contexts5.Shifts.Where(e => e.is_Back_Office_Updated == false).ToList();
+
+                shifts.ForEach(xx => {
+
+
+                    BackOfficeEntity.Shift shift = new BackOfficeEntity.Shift()
+                    {
+
+                       Branch_Id = xx.Branch_Id,
+                       Expenses = xx.Expenses,
+                       IsDeleted = xx.IsDeleted,
+                       isUploaded = xx.isUploaded,
+                       is_Back_Office_Updated = xx.is_Back_Office_Updated,
+                       Last_Modified_Date = xx.Last_Modified_Date,
+                        Last_Modified_User = xx.Last_Modified_User,
+                        Shift_Code = xx.Shift_Code,
+                        Shift_End_Amount = xx.Shift_End_Amount,
+                        Shift_End_Date = xx.Shift_End_Date,
+                        Shift_End_Notes = xx.Shift_End_Notes,
+                        Shift_Flag = xx.Shift_Flag,
+                        Shift_Increase_disability = xx.Shift_Increase_disability,
+                        Shift_Start_Amount = xx.Shift_Start_Amount,
+                        Shift_Start_Date = xx.Shift_Start_Date,
+                        Shift_Start_Notes =  xx.Shift_Start_Notes,
+                        TotalSale = xx.TotalSale,
+                        User_Id = xx.User_Id
+
+
+                    };
+
+                    _server.Shifts.Add(shift);
+
+                    _server.SaveChanges();
+
+
+                    Shift _Shift;
+                    _Shift = Contexts5.Shifts.SingleOrDefault(Salmaster => Salmaster.Id == xx.Id);
+                    _Shift.is_Back_Office_Updated = true;
+                    Contexts5.SaveChanges();
+
+
+                });
+
+
+
+
+
+
+            }
+
+        }
         void UploadExpensesForServer() {
             _server = new BackOfficeEntity.db_a8f74e_posEntities();
 
