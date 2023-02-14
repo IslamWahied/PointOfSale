@@ -11,7 +11,9 @@ namespace PointOfSaleSedek.Model
         public string ShiftStartDate { get; set; }
         public string ShiftEndDate { get; set; }
         public string ShiftStartBalance { get; set; }
+        public string ShiftSalesVisa { get; set; }
         public string ShiftSales { get; set; }
+        public string ShiftSalesCash { get; set; }
         public string ShiftExpenses { get; set; }
         public string ShiftEndBalance { get; set; }
         public string ProfitOrExpenses { get; set; }

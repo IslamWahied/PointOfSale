@@ -66,6 +66,9 @@ namespace PointOfSaleSedek._101_Adds
             materialContextMenuStrip1.Items[2].Text = st.isEnglish() ? "Delete" : "حذف";
             materialContextMenuStrip1.Items[3].Text = st.isEnglish() ? "New Invoice" : "فاتورة جديدة";
 
+            windowsUIButtonPanel.Buttons[0].Properties.Caption = st.isEnglish() ? "Close" : "اغلاق";
+            windowsUIButtonPanel.Buttons[2].Properties.Caption = st.isEnglish() ? "Print" : "طباعة";
+
             groupControl1.CustomHeaderButtons[0].Properties.Caption = st.isEnglish() ? "Invoice No" : "فاتورة رقم";
 
             this.gridColumn13.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {

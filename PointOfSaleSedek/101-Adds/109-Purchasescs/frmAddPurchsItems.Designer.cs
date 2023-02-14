@@ -122,7 +122,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(302, 368);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(318, 345);
             this.tableLayoutPanel1.TabIndex = 2;
             // 
             // labelControl1
@@ -133,9 +133,9 @@
             this.labelControl1.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.labelControl1.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.labelControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelControl1.Location = new System.Drawing.Point(199, 32);
+            this.labelControl1.Location = new System.Drawing.Point(209, 32);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(100, 26);
+            this.labelControl1.Size = new System.Drawing.Size(106, 26);
             this.labelControl1.TabIndex = 2;
             this.labelControl1.Text = "المجموعة";
             // 
@@ -152,7 +152,7 @@
             this.txtCatgoryName.Properties.Mask.EditMask = " ";
             this.txtCatgoryName.Properties.ReadOnly = true;
             this.txtCatgoryName.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.txtCatgoryName.Size = new System.Drawing.Size(190, 26);
+            this.txtCatgoryName.Size = new System.Drawing.Size(200, 26);
             this.txtCatgoryName.TabIndex = 3;
             // 
             // labelControl5
@@ -163,9 +163,9 @@
             this.labelControl5.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.labelControl5.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.labelControl5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelControl5.Location = new System.Drawing.Point(199, 3);
+            this.labelControl5.Location = new System.Drawing.Point(209, 3);
             this.labelControl5.Name = "labelControl5";
-            this.labelControl5.Size = new System.Drawing.Size(100, 23);
+            this.labelControl5.Size = new System.Drawing.Size(106, 23);
             this.labelControl5.TabIndex = 0;
             this.labelControl5.Text = "منتج";
             // 
@@ -182,7 +182,7 @@
             this.txtPriceBuy.Properties.Mask.EditMask = "\\d+(\\R.\\d{0,2})?";
             this.txtPriceBuy.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
             this.txtPriceBuy.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.txtPriceBuy.Size = new System.Drawing.Size(190, 28);
+            this.txtPriceBuy.Size = new System.Drawing.Size(200, 28);
             this.txtPriceBuy.TabIndex = 1;
             // 
             // labelControl7
@@ -193,9 +193,9 @@
             this.labelControl7.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.labelControl7.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.labelControl7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelControl7.Location = new System.Drawing.Point(199, 125);
+            this.labelControl7.Location = new System.Drawing.Point(209, 125);
             this.labelControl7.Name = "labelControl7";
-            this.labelControl7.Size = new System.Drawing.Size(100, 28);
+            this.labelControl7.Size = new System.Drawing.Size(106, 28);
             this.labelControl7.TabIndex = 16;
             this.labelControl7.Text = "سعر الشراء";
             // 
@@ -211,7 +211,7 @@
             this.txtName.Properties.AutoHeight = false;
             this.txtName.Properties.ReadOnly = true;
             this.txtName.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.txtName.Size = new System.Drawing.Size(190, 25);
+            this.txtName.Size = new System.Drawing.Size(200, 25);
             this.txtName.TabIndex = 5;
             // 
             // labelControl2
@@ -222,9 +222,9 @@
             this.labelControl2.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.labelControl2.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.labelControl2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelControl2.Location = new System.Drawing.Point(199, 64);
+            this.labelControl2.Location = new System.Drawing.Point(209, 64);
             this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(100, 25);
+            this.labelControl2.Size = new System.Drawing.Size(106, 25);
             this.labelControl2.TabIndex = 4;
             this.labelControl2.Text = "اسم الصنف";
             // 
@@ -236,9 +236,9 @@
             this.labelControl3.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.labelControl3.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.labelControl3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelControl3.Location = new System.Drawing.Point(199, 95);
+            this.labelControl3.Location = new System.Drawing.Point(209, 95);
             this.labelControl3.Name = "labelControl3";
-            this.labelControl3.Size = new System.Drawing.Size(100, 24);
+            this.labelControl3.Size = new System.Drawing.Size(106, 24);
             this.labelControl3.TabIndex = 6;
             this.labelControl3.Text = "وحدة القياس";
             // 
@@ -255,7 +255,7 @@
             this.txtPrice.Properties.Mask.EditMask = "\\d+(\\R.\\d{0,2})?";
             this.txtPrice.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
             this.txtPrice.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.txtPrice.Size = new System.Drawing.Size(190, 32);
+            this.txtPrice.Size = new System.Drawing.Size(200, 32);
             this.txtPrice.TabIndex = 2;
             // 
             // labelControl4
@@ -266,9 +266,9 @@
             this.labelControl4.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.labelControl4.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.labelControl4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelControl4.Location = new System.Drawing.Point(199, 159);
+            this.labelControl4.Location = new System.Drawing.Point(209, 159);
             this.labelControl4.Name = "labelControl4";
-            this.labelControl4.Size = new System.Drawing.Size(100, 32);
+            this.labelControl4.Size = new System.Drawing.Size(106, 32);
             this.labelControl4.TabIndex = 8;
             this.labelControl4.Text = "سعر البيع";
             // 
@@ -285,7 +285,7 @@
             this.txtUnit.Properties.AutoHeight = false;
             this.txtUnit.Properties.ReadOnly = true;
             this.txtUnit.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.txtUnit.Size = new System.Drawing.Size(190, 24);
+            this.txtUnit.Size = new System.Drawing.Size(200, 24);
             this.txtUnit.TabIndex = 18;
             // 
             // tableLayoutPanel3
@@ -309,7 +309,7 @@
             this.tableLayoutPanel3.RowCount = 2;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 49F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(190, 81);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(200, 81);
             this.tableLayoutPanel3.TabIndex = 19;
             // 
             // labelControl9
@@ -322,7 +322,7 @@
             this.labelControl9.Dock = System.Windows.Forms.DockStyle.Fill;
             this.labelControl9.Location = new System.Drawing.Point(3, 3);
             this.labelControl9.Name = "labelControl9";
-            this.labelControl9.Size = new System.Drawing.Size(67, 26);
+            this.labelControl9.Size = new System.Drawing.Size(77, 26);
             this.labelControl9.TabIndex = 25;
             this.labelControl9.Text = "الاجمالي";
             // 
@@ -334,7 +334,7 @@
             this.labelControl8.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.labelControl8.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.labelControl8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelControl8.Location = new System.Drawing.Point(134, 3);
+            this.labelControl8.Location = new System.Drawing.Point(144, 3);
             this.labelControl8.Name = "labelControl8";
             this.labelControl8.Size = new System.Drawing.Size(53, 26);
             this.labelControl8.TabIndex = 22;
@@ -343,7 +343,7 @@
             // txtBoxNumber
             // 
             this.txtBoxNumber.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtBoxNumber.Location = new System.Drawing.Point(134, 35);
+            this.txtBoxNumber.Location = new System.Drawing.Point(144, 35);
             this.txtBoxNumber.Name = "txtBoxNumber";
             this.txtBoxNumber.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBoxNumber.Properties.Appearance.Options.UseFont = true;
@@ -361,7 +361,7 @@
             // txtUnitForBoxNumber
             // 
             this.txtUnitForBoxNumber.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtUnitForBoxNumber.Location = new System.Drawing.Point(76, 35);
+            this.txtUnitForBoxNumber.Location = new System.Drawing.Point(86, 35);
             this.txtUnitForBoxNumber.Name = "txtUnitForBoxNumber";
             this.txtUnitForBoxNumber.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtUnitForBoxNumber.Properties.Appearance.Options.UseFont = true;
@@ -384,7 +384,7 @@
             this.labelControl6.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.labelControl6.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.labelControl6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelControl6.Location = new System.Drawing.Point(76, 3);
+            this.labelControl6.Location = new System.Drawing.Point(86, 3);
             this.labelControl6.Name = "labelControl6";
             this.labelControl6.Size = new System.Drawing.Size(52, 26);
             this.labelControl6.TabIndex = 20;
@@ -404,7 +404,7 @@
             this.txtFinalUnitsNumber.Properties.Mask.EditMask = "\\d+(\\R.\\d{0,2})?";
             this.txtFinalUnitsNumber.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
             this.txtFinalUnitsNumber.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.txtFinalUnitsNumber.Size = new System.Drawing.Size(67, 43);
+            this.txtFinalUnitsNumber.Size = new System.Drawing.Size(77, 43);
             this.txtFinalUnitsNumber.TabIndex = 2;
             this.txtFinalUnitsNumber.EditValueChanged += new System.EventHandler(this.txtFinalUnitsNumber_EditValueChanged);
             // 
@@ -463,12 +463,12 @@
             this.tableLayoutPanel4.Controls.Add(this.chkUnits, 1, 1);
             this.tableLayoutPanel4.Controls.Add(this.labelControl10, 1, 0);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(199, 197);
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(209, 197);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 2;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 17F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(100, 81);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(106, 81);
             this.tableLayoutPanel4.TabIndex = 3;
             // 
             // labelControl11
@@ -512,7 +512,7 @@
             this.chkUnits.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkUnits.Depth = 0;
             this.chkUnits.Font = new System.Drawing.Font("Roboto", 10F);
-            this.chkUnits.Location = new System.Drawing.Point(65, 42);
+            this.chkUnits.Location = new System.Drawing.Point(66, 42);
             this.chkUnits.Margin = new System.Windows.Forms.Padding(0);
             this.chkUnits.MouseLocation = new System.Drawing.Point(-1, -1);
             this.chkUnits.MouseState = MaterialSkin.MouseState.HOVER;
@@ -533,7 +533,7 @@
             this.labelControl10.Dock = System.Windows.Forms.DockStyle.Fill;
             this.labelControl10.Location = new System.Drawing.Point(56, 3);
             this.labelControl10.Name = "labelControl10";
-            this.labelControl10.Size = new System.Drawing.Size(45, 27);
+            this.labelControl10.Size = new System.Drawing.Size(47, 27);
             this.labelControl10.TabIndex = 21;
             this.labelControl10.Text = "وحدة";
             // 
@@ -551,7 +551,7 @@
             this.slkItem.Properties.NullText = "";
             this.slkItem.Properties.PopupView = this.searchLookUpEdit1View;
             this.slkItem.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.slkItem.Size = new System.Drawing.Size(190, 23);
+            this.slkItem.Size = new System.Drawing.Size(200, 23);
             this.slkItem.TabIndex = 20;
             this.slkItem.EditValueChanged += new System.EventHandler(this.slkItem_EditValueChanged);
             // 
@@ -607,7 +607,7 @@
             this.slkWarhouse.Properties.NullText = "";
             this.slkWarhouse.Properties.PopupView = this.gridView1;
             this.slkWarhouse.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.slkWarhouse.Size = new System.Drawing.Size(190, 1);
+            this.slkWarhouse.Size = new System.Drawing.Size(200, 1);
             this.slkWarhouse.TabIndex = 21;
             // 
             // gridView1
@@ -641,9 +641,9 @@
             this.labelControl12.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.labelControl12.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.labelControl12.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelControl12.Location = new System.Drawing.Point(199, 3);
+            this.labelControl12.Location = new System.Drawing.Point(209, 3);
             this.labelControl12.Name = "labelControl12";
-            this.labelControl12.Size = new System.Drawing.Size(100, 1);
+            this.labelControl12.Size = new System.Drawing.Size(106, 1);
             this.labelControl12.TabIndex = 22;
             this.labelControl12.Text = "المخزن";
             this.labelControl12.Visible = false;
@@ -671,16 +671,16 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(302, 368);
+            this.ClientSize = new System.Drawing.Size(318, 345);
             this.ContextMenuStrip = this.materialContextMenuStrip1;
             this.Controls.Add(this.tableLayoutPanel1);
             this.IconOptions.ShowIcon = false;
             this.LookAndFeel.SkinName = "The Bezier";
             this.LookAndFeel.UseDefaultLookAndFeel = false;
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(308, 398);
+            this.MaximumSize = new System.Drawing.Size(318, 375);
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(300, 398);
+            this.MinimumSize = new System.Drawing.Size(318, 375);
             this.Name = "frmAddPurchsItems";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.RightToLeftLayout = true;

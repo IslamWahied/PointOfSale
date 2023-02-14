@@ -230,6 +230,7 @@ namespace PointOfSaleSedek._101_Adds
 
                     // Get New SaleMaster Code
                     Int64 newMasterCode = 0;
+                    frm.ArryOfSaleDetail = new List<SaleDetail>();
                     using (POSEntity context100 = new POSEntity())
                     {
                         try
@@ -249,9 +250,7 @@ namespace PointOfSaleSedek._101_Adds
 
 
                     // Save Header
-                    frm.SaveSaleMaster(
-                         cash: Convert.ToDouble(txtCash.Text),
-                             visa: Convert.ToDouble(txtVisa.Text),
+                    frm.SaveSaleMaster(cash: Convert.ToDouble(txtCash.Text),visa: Convert.ToDouble(txtVisa.Text),
                    ShiftCode: frm.ShiftCode,
                    UserCode: st.GetUser_Code(),
                    Discount: double.Parse(frm.lblDiscount.Text),

@@ -64,6 +64,8 @@ namespace PointOfSaleSedek._101_Adds.CasherShift
             btnSave.Text = st.isEnglish() ? "Save" : "اضافة";
             btnCancel.Text = st.isEnglish() ? "Close" : "اغلاق";
             gridColumn2.Caption  = st.isEnglish() ? "Name" : "الاسم";
+            label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
         }
         private void labelControl2_Click(object sender, EventArgs e)
         {
@@ -116,12 +118,26 @@ namespace PointOfSaleSedek._101_Adds.CasherShift
                 try
                 {
 
-                    txtTotalSale.Text = Context.SaleMasterViews.Where(x => x.IsDeleted == 0 && x.Operation_Type_Id == 2 && x.Shift_Code == ShiftCode).Sum(x => x.FinalTotal).ToString();
+                    totalVisa.Text = Context.SaleMasterViews.Where(x => x.IsDeleted == 0 && x.Operation_Type_Id == 2 && x.Shift_Code == ShiftCode).Sum(x => x.Visa).ToString();
 
                 }
                 catch
                 {
-                    txtTotalSale.Text = "0";
+                    totalVisa.Text = "0";
+
+
+                }
+
+
+                try
+                {
+
+                    totalCash.Text = Context.SaleMasterViews.Where(x => x.IsDeleted == 0 && x.Operation_Type_Id == 2 && x.Shift_Code == ShiftCode).Sum(x => x.Cash).ToString();
+
+                }
+                catch
+                {
+                    totalCash.Text = "0";
 
 
                 }
@@ -144,7 +160,7 @@ namespace PointOfSaleSedek._101_Adds.CasherShift
                 try
                 {
 
-                    txtShiftIncrseOrDibilty.Text = Convert.ToString(Convert.ToDouble(txtAmountEnd.Text) + Convert.ToDouble(txtExpenses.Text) - (Convert.ToDouble(txtAmountStart.Text) + Convert.ToDouble(txtTotalSale.Text)));
+                    txtShiftIncrseOrDibilty.Text = Convert.ToString(Convert.ToDouble(txtAmountEnd.Text) + Convert.ToDouble(txtExpenses.Text) - (Convert.ToDouble(txtAmountStart.Text) + Convert.ToDouble(totalCash.Text) + Convert.ToDouble(totalVisa.Text)));
 
                 }
                 catch
@@ -159,6 +175,25 @@ namespace PointOfSaleSedek._101_Adds.CasherShift
 
 
             }
+            var valu = Convert.ToDouble(txtShiftIncrseOrDibilty.Text);
+
+            if (valu > 0)
+            {
+                txtShiftIncrseOrDibilty.ForeColor = System.Drawing.Color.Green;
+                if (!txtShiftIncrseOrDibilty.Text.Contains("+")) {
+                    txtShiftIncrseOrDibilty.Text = "+" + txtShiftIncrseOrDibilty.Text;
+                }
+
+                
+            }
+            else if (valu == 0)
+            {
+                txtShiftIncrseOrDibilty.ForeColor = System.Drawing.Color.Black;
+            }
+            else
+            {
+                txtShiftIncrseOrDibilty.ForeColor = System.Drawing.Color.Red;
+            }
 
         }
 
@@ -166,8 +201,9 @@ namespace PointOfSaleSedek._101_Adds.CasherShift
         {
             if (!string.IsNullOrWhiteSpace(txtAmountStart.Text) && !string.IsNullOrWhiteSpace(txtAmountEnd.Text))
             {
-                txtShiftIncrseOrDibilty.Text = Convert.ToString((Convert.ToDouble(txtAmountEnd.Text) + Convert.ToDouble(txtExpenses.Text)) - (Convert.ToDouble(txtAmountStart.Text)+ Convert.ToDouble(txtTotalSale.Text)));
-
+                txtShiftIncrseOrDibilty.Text = Convert.ToString((Convert.ToDouble(txtAmountEnd.Text) + Convert.ToDouble(txtExpenses.Text)) - (Convert.ToDouble(txtAmountStart.Text)+ Convert.ToDouble(totalVisa.Text) + Convert.ToDouble(totalCash.Text)));
+              
+               
             }
             else
             {
@@ -175,7 +211,7 @@ namespace PointOfSaleSedek._101_Adds.CasherShift
                 
                 try
                 {
-                    txtShiftIncrseOrDibilty.Text = Convert.ToString((Convert.ToDouble(0) + Convert.ToDouble(txtExpenses.Text)) - (Convert.ToDouble(txtAmountStart.Text) + Convert.ToDouble(txtTotalSale.Text)));
+                    txtShiftIncrseOrDibilty.Text = Convert.ToString((Convert.ToDouble(0) + Convert.ToDouble(txtExpenses.Text)) - (Convert.ToDouble(txtAmountStart.Text) + Convert.ToDouble(totalVisa.Text) + Convert.ToDouble(totalCash.Text)));
                     txtAmountEnd.Text = 0.ToString();
                 }
                 catch (Exception)
@@ -187,7 +223,26 @@ namespace PointOfSaleSedek._101_Adds.CasherShift
 
 
             }
-             
+            var valu = Convert.ToDouble(txtShiftIncrseOrDibilty.Text);
+
+            if (valu > 0)
+            {
+                txtShiftIncrseOrDibilty.ForeColor = System.Drawing.Color.Green;
+                if (!txtShiftIncrseOrDibilty.Text.Contains("+"))
+                {
+                    txtShiftIncrseOrDibilty.Text = "+" + txtShiftIncrseOrDibilty.Text;
+                }
+
+            }
+            else if (valu == 0)
+            {
+                txtShiftIncrseOrDibilty.ForeColor = System.Drawing.Color.Black;
+            }
+            else
+            {
+                txtShiftIncrseOrDibilty.ForeColor = System.Drawing.Color.Red;
+            }
+
         }
         void Rest()
         {
@@ -229,10 +284,13 @@ namespace PointOfSaleSedek._101_Adds.CasherShift
                 _Shift.Shift_Increase_disability = Convert.ToDouble(txtShiftIncrseOrDibilty.Text);
                 _Shift.Shift_End_Date = Convert.ToDateTime(dtEnd.EditValue); /*HelperClass.HelperClass.EncryptPassword(TxtPassword.Text);*/
                 _Shift.Shift_End_Notes = txtNoteEnd.Text; /*HelperClass.HelperClass.EncryptPassword(TxtPassword.Text);*/
-                _Shift.TotalSale = Convert.ToDouble(txtTotalSale.Text??"0");
+                _Shift.TotalSale = Convert.ToDouble(totalCash.Text??"0") + Convert.ToDouble(totalVisa.Text ?? "0");
                 _Shift.Expenses = Convert.ToDouble(txtExpenses.Text??"0");
                 _Shift.Shift_Flag =false;
-                _Shift.Last_Modified_Date = DateTime.Now;
+                
+                _Shift.Visa = Convert.ToDouble(totalVisa.Text ?? "0");
+                _Shift.Cash = Convert.ToDouble(totalCash.Text ?? "0");
+                  _Shift.Last_Modified_Date = DateTime.Now;
                 _Shift.Last_Modified_User = st.GetUser_Code();
                 Context.SaveChanges();
 
@@ -243,12 +301,14 @@ namespace PointOfSaleSedek._101_Adds.CasherShift
                 {
 
                     ShiftCode = ShiftCode.ToString(),
-                    ProfitOrExpenses = Convert.ToString((Convert.ToDouble(txtAmountEnd.Text) + Convert.ToDouble(txtExpenses.Text)) - (Convert.ToDouble(txtAmountStart.Text) + Convert.ToDouble(txtTotalSale.Text))),
+                    ProfitOrExpenses = Convert.ToString((Convert.ToDouble(txtAmountEnd.Text) + Convert.ToDouble(txtExpenses.Text)) - (Convert.ToDouble(txtAmountStart.Text) + Convert.ToDouble(totalVisa.Text) + Convert.ToDouble(totalCash.Text))),
                     ShiftEndBalance = txtAmountEnd.Text,
                     ShiftEndDate = dtEnd.EditValue.ToString(),
                     ShiftEndNote = txtNoteEnd.Text,
                     ShiftExpenses = txtExpenses.Text,
-                    ShiftSales = txtTotalSale.Text,
+                    ShiftSalesVisa = totalVisa.Text,
+                    ShiftSales = Convert.ToString(Convert.ToDouble(totalCash.Text ?? "0") + Convert.ToDouble(totalVisa.Text ?? "0")),
+                ShiftSalesCash = totalCash.Text,
                     ShiftStartBalance = txtAmountStart.Text,
                     ShiftStartDate = txtdateStart.Text,
                     ShiftStartNote = txtNoteStart.Text,
@@ -263,8 +323,8 @@ namespace PointOfSaleSedek._101_Adds.CasherShift
                 rpt.Load(@"Reports\endShift.frx");
                 rpt.RegisterData(listendShiftReport, "Lines");
                 rpt.PrintSettings.ShowDialog = false;
+              //  rpt.Design();
                 rpt.Print();
-              //  rpt.Print();
 
 
                 Rest();
@@ -274,6 +334,6 @@ namespace PointOfSaleSedek._101_Adds.CasherShift
             }
         }
 
-        
+       
     }
 }

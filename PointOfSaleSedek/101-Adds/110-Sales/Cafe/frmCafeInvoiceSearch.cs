@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using PointOfSaleSedek._102_MaterialSkin;
 using DataRep;
 using PointOfSaleSedek.HelperClass;
+using System.Drawing;
 
 namespace PointOfSaleSedek._101_Adds
 {
@@ -56,7 +57,7 @@ namespace PointOfSaleSedek._101_Adds
             {
                 gcCafeSaleMaster.DataSource = null;
 
-                gcCafeSaleMaster.DataSource = context.SaleMasterViews.Where(x => x.Shift_Code == ShiftCode && x.Branches_Code == Branch_Code  &&x.IsDeleted == 0 &&x.UserCode == UserCode && x.Operation_Type_Id == 2).ToList();
+                gcCafeSaleMaster.DataSource = context.SaleMasterViews.Where(x => x.Shift_Code == ShiftCode && x.Branches_Code == Branch_Code   &&x.UserCode == UserCode  && (x.Operation_Type_Id == 2 )).ToList();
                 gcCafeSaleMaster.RefreshDataSource();
             }
 
@@ -96,6 +97,11 @@ namespace PointOfSaleSedek._101_Adds
 
                     //var RowCount = gvSaleDetail.RowCount;
                     var FocusRow = gvCafeSaleMaster.GetFocusedRow() as SaleMasterView;
+
+                    if (FocusRow.Operation_Type_Id != 2)
+                    {
+                        return;
+                    }
                     Int64 SaleMasterCode = FocusRow.SaleMasterCode;
 
 
@@ -128,7 +134,7 @@ namespace PointOfSaleSedek._101_Adds
                     frm.gcCafeSaleDetail.DataSource = null;
                     frm.gcCafeSaleDetail.RefreshDataSource();
                    
-                    var ccc = context.SaleDetailViews.Where(x => x.SaleMasterCode == SaleMasterCode && x.Warhouse_Code == Warehouse_Code  &&x.shiftCode == FocusRow.Shift_Code && x.Branches_Code == Branch_Code && x.Operation_Type_Id == 2).ToList();
+                    var ccc = context.SaleDetailViews.Where(x => x.SaleMasterCode == SaleMasterCode && x.Warhouse_Code == Warehouse_Code  &&x.shiftCode == FocusRow.Shift_Code && x.Branches_Code == Branch_Code).ToList();
                     frm.gcCafeSaleDetail.DataSource = ccc;
                    frm.gcCafeSaleDetail.Enabled = false;
                     frm.slkCustomers.EditValue = FocusRow.Customer_Code;
@@ -190,6 +196,9 @@ namespace PointOfSaleSedek._101_Adds
         {
 
             var FocusRow = gvCafeSaleMaster.GetFocusedRow() as SaleMasterView;
+            if (FocusRow.Operation_Type_Id == 3) {
+                return;
+            }
             var Warehouse_Code = st.Get_Warehouse_Code();
             var Branch_Code = st.GetBranch_Code();
 
@@ -356,6 +365,22 @@ namespace PointOfSaleSedek._101_Adds
                 gcCafeSaleMaster.Refresh();
             }
           
+
+        }
+
+        private void gvCafeSaleMaster_RowStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowStyleEventArgs e)
+        {
+            
+                String isDeleted = Convert.ToString(gvCafeSaleMaster.GetRowCellValue(e.RowHandle, "Operation_Type_Id"));
+               
+
+                if (isDeleted == "3")
+                {
+                    e.Appearance.BackColor = Color.Red;
+                }
+                 
+
+               
 
         }
     }

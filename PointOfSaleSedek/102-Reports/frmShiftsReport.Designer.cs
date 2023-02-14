@@ -32,10 +32,13 @@ namespace PointOfSaleSedek._101_Adds._114_AddExpenses
             this.components = new System.ComponentModel.Container();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.حذفToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.الفواتيرToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.gcItemCard = new DevExpress.XtraGrid.GridControl();
             this.gvItemCard = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn12 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn11 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn10 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -70,16 +73,24 @@ namespace PointOfSaleSedek._101_Adds._114_AddExpenses
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.حذفToolStripMenuItem});
+            this.حذفToolStripMenuItem,
+            this.الفواتيرToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(105, 26);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(110, 48);
             // 
             // حذفToolStripMenuItem
             // 
             this.حذفToolStripMenuItem.Name = "حذفToolStripMenuItem";
-            this.حذفToolStripMenuItem.Size = new System.Drawing.Size(104, 22);
+            this.حذفToolStripMenuItem.Size = new System.Drawing.Size(109, 22);
             this.حذفToolStripMenuItem.Text = "طباعة";
             this.حذفToolStripMenuItem.Click += new System.EventHandler(this.حذفToolStripMenuItem_Click_1);
+            // 
+            // الفواتيرToolStripMenuItem
+            // 
+            this.الفواتيرToolStripMenuItem.Name = "الفواتيرToolStripMenuItem";
+            this.الفواتيرToolStripMenuItem.Size = new System.Drawing.Size(109, 22);
+            this.الفواتيرToolStripMenuItem.Text = "الفواتير";
+            this.الفواتيرToolStripMenuItem.Click += new System.EventHandler(this.الفواتيرToolStripMenuItem_Click);
             // 
             // tableLayoutPanel2
             // 
@@ -126,6 +137,8 @@ namespace PointOfSaleSedek._101_Adds._114_AddExpenses
             this.gvItemCard.Appearance.Row.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.gvItemCard.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.gridColumn7,
+            this.gridColumn12,
+            this.gridColumn11,
             this.gridColumn1,
             this.gridColumn2,
             this.gridColumn10,
@@ -150,8 +163,25 @@ namespace PointOfSaleSedek._101_Adds._114_AddExpenses
             this.gridColumn7.Caption = "رقم الوردية";
             this.gridColumn7.FieldName = "Shift_Code";
             this.gridColumn7.Name = "gridColumn7";
+            this.gridColumn7.OptionsColumn.AllowEdit = false;
             this.gridColumn7.Visible = true;
-            this.gridColumn7.VisibleIndex = 8;
+            this.gridColumn7.VisibleIndex = 0;
+            // 
+            // gridColumn12
+            // 
+            this.gridColumn12.Caption = "Visa";
+            this.gridColumn12.FieldName = "Visa";
+            this.gridColumn12.Name = "gridColumn12";
+            this.gridColumn12.Visible = true;
+            this.gridColumn12.VisibleIndex = 6;
+            // 
+            // gridColumn11
+            // 
+            this.gridColumn11.Caption = "Cash";
+            this.gridColumn11.FieldName = "Cash";
+            this.gridColumn11.Name = "gridColumn11";
+            this.gridColumn11.Visible = true;
+            this.gridColumn11.VisibleIndex = 7;
             // 
             // gridColumn1
             // 
@@ -162,7 +192,7 @@ namespace PointOfSaleSedek._101_Adds._114_AddExpenses
             this.gridColumn1.OptionsFilter.AutoFilterCondition = DevExpress.XtraGrid.Columns.AutoFilterCondition.Contains;
             this.gridColumn1.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
             this.gridColumn1.Visible = true;
-            this.gridColumn1.VisibleIndex = 4;
+            this.gridColumn1.VisibleIndex = 8;
             // 
             // gridColumn2
             // 
@@ -173,7 +203,7 @@ namespace PointOfSaleSedek._101_Adds._114_AddExpenses
             this.gridColumn2.OptionsFilter.AutoFilterCondition = DevExpress.XtraGrid.Columns.AutoFilterCondition.Contains;
             this.gridColumn2.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
             this.gridColumn2.Visible = true;
-            this.gridColumn2.VisibleIndex = 3;
+            this.gridColumn2.VisibleIndex = 5;
             // 
             // gridColumn10
             // 
@@ -182,7 +212,7 @@ namespace PointOfSaleSedek._101_Adds._114_AddExpenses
             this.gridColumn10.Name = "gridColumn10";
             this.gridColumn10.OptionsColumn.AllowEdit = false;
             this.gridColumn10.Visible = true;
-            this.gridColumn10.VisibleIndex = 5;
+            this.gridColumn10.VisibleIndex = 9;
             // 
             // gridColumn3
             // 
@@ -193,39 +223,43 @@ namespace PointOfSaleSedek._101_Adds._114_AddExpenses
             this.gridColumn3.OptionsFilter.AutoFilterCondition = DevExpress.XtraGrid.Columns.AutoFilterCondition.Contains;
             this.gridColumn3.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
             this.gridColumn3.Visible = true;
-            this.gridColumn3.VisibleIndex = 7;
+            this.gridColumn3.VisibleIndex = 10;
             // 
             // gridColumn5
             // 
             this.gridColumn5.Caption = "تاريخ بداية الوردية";
             this.gridColumn5.FieldName = "Shift_Start_Date";
             this.gridColumn5.Name = "gridColumn5";
+            this.gridColumn5.OptionsColumn.AllowEdit = false;
             this.gridColumn5.Visible = true;
-            this.gridColumn5.VisibleIndex = 6;
+            this.gridColumn5.VisibleIndex = 1;
             // 
             // gridColumn6
             // 
             this.gridColumn6.Caption = "الزيادة او العجز";
             this.gridColumn6.FieldName = "Shift_Increase_disability";
             this.gridColumn6.Name = "gridColumn6";
+            this.gridColumn6.OptionsColumn.AllowEdit = false;
             this.gridColumn6.Visible = true;
-            this.gridColumn6.VisibleIndex = 1;
+            this.gridColumn6.VisibleIndex = 3;
             // 
             // gridColumn8
             // 
             this.gridColumn8.Caption = "رصيد نهاية الوردية";
             this.gridColumn8.FieldName = "Shift_End_Amount";
             this.gridColumn8.Name = "gridColumn8";
+            this.gridColumn8.OptionsColumn.AllowEdit = false;
             this.gridColumn8.Visible = true;
-            this.gridColumn8.VisibleIndex = 2;
+            this.gridColumn8.VisibleIndex = 4;
             // 
             // gridColumn9
             // 
             this.gridColumn9.Caption = "تاريخ غلق الوردية";
             this.gridColumn9.FieldName = "Shift_End_Date";
             this.gridColumn9.Name = "gridColumn9";
+            this.gridColumn9.OptionsColumn.AllowEdit = false;
             this.gridColumn9.Visible = true;
-            this.gridColumn9.VisibleIndex = 0;
+            this.gridColumn9.VisibleIndex = 2;
             // 
             // tableLayoutPanel1
             // 
@@ -302,6 +336,9 @@ namespace PointOfSaleSedek._101_Adds._114_AddExpenses
             this.dtFrom.Name = "dtFrom";
             this.dtFrom.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtFrom.Properties.Appearance.Options.UseFont = true;
+            this.dtFrom.Properties.Appearance.Options.UseTextOptions = true;
+            this.dtFrom.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.dtFrom.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.dtFrom.Properties.AutoHeight = false;
             this.dtFrom.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -349,6 +386,9 @@ namespace PointOfSaleSedek._101_Adds._114_AddExpenses
             this.dtTo.Name = "dtTo";
             this.dtTo.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtTo.Properties.Appearance.Options.UseFont = true;
+            this.dtTo.Properties.Appearance.Options.UseTextOptions = true;
+            this.dtTo.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.dtTo.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.dtTo.Properties.AutoHeight = false;
             this.dtTo.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -449,5 +489,8 @@ namespace PointOfSaleSedek._101_Adds._114_AddExpenses
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn6;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn8;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn9;
+        private System.Windows.Forms.ToolStripMenuItem الفواتيرToolStripMenuItem;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn12;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn11;
     }
 }

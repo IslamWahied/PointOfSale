@@ -14,6 +14,8 @@ namespace DataRep
     
     public partial class PO_View
     {
+        public string Name { get; set; }
+        public long ItemCode { get; set; }
         public long Employee_Code { get; set; }
         public string Employee_Name { get; set; }
         public string State_Name { get; set; }
@@ -25,6 +27,7 @@ namespace DataRep
         public long id { get; set; }
         public long Warehouse_Transaction_Code { get; set; }
         public string Reason { get; set; }
+        public string Name_En { get; set; }
         public string To_Warehouse { get; set; }
         public string From_Warehouse { get; set; }
     }

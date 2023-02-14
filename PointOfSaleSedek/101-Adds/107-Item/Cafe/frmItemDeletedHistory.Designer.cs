@@ -1,6 +1,6 @@
 ﻿namespace PointOfSaleSedek._101_Adds
 {
-    partial class frmCafeItemCard
+    partial class frmItemDeletedHistory
     {
         /// <summary>
         /// Required designer variable.
@@ -28,23 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DevExpress.XtraBars.Docking2010.WindowsUIButtonImageOptions windowsUIButtonImageOptions1 = new DevExpress.XtraBars.Docking2010.WindowsUIButtonImageOptions();
-            DevExpress.XtraBars.Docking2010.WindowsUIButtonImageOptions windowsUIButtonImageOptions2 = new DevExpress.XtraBars.Docking2010.WindowsUIButtonImageOptions();
-            DevExpress.XtraBars.Docking2010.WindowsUIButtonImageOptions windowsUIButtonImageOptions3 = new DevExpress.XtraBars.Docking2010.WindowsUIButtonImageOptions();
-            DevExpress.XtraBars.Docking2010.WindowsUIButtonImageOptions windowsUIButtonImageOptions4 = new DevExpress.XtraBars.Docking2010.WindowsUIButtonImageOptions();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmCafeItemCard));
-            DevExpress.XtraBars.Docking2010.WindowsUIButtonImageOptions windowsUIButtonImageOptions5 = new DevExpress.XtraBars.Docking2010.WindowsUIButtonImageOptions();
-            DevExpress.XtraBars.Docking2010.WindowsUIButtonImageOptions windowsUIButtonImageOptions6 = new DevExpress.XtraBars.Docking2010.WindowsUIButtonImageOptions();
-            DevExpress.XtraBars.Docking2010.WindowsUIButtonImageOptions windowsUIButtonImageOptions7 = new DevExpress.XtraBars.Docking2010.WindowsUIButtonImageOptions();
-            this.materialContextMenuStrip1 = new MaterialSkin.Controls.MaterialContextMenuStrip();
-            this.اضافةصنفجديدToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.تعديلToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.حذفToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.gridView3 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmItemDeletedHistory));
+            DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions buttonImageOptions1 = new DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.gcItemCard = new DevExpress.XtraGrid.GridControl();
+            this.materialContextMenuStrip1 = new MaterialSkin.Controls.MaterialContextMenuStrip();
+            this.الغاءالفاتورةToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gvCafeItemCard = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -59,80 +50,62 @@
             this.gridColumn11 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn12 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn13 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.windowsUIButtonPanel = new DevExpress.XtraBars.Docking2010.WindowsUIButtonPanel();
-            this.materialContextMenuStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView3)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gcItemCard)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvCafeItemCard)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
+            this.groupControl1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gcItemCard)).BeginInit();
+            this.materialContextMenuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gvCafeItemCard)).BeginInit();
             this.SuspendLayout();
-            // 
-            // materialContextMenuStrip1
-            // 
-            this.materialContextMenuStrip1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.materialContextMenuStrip1.Depth = 0;
-            this.materialContextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.اضافةصنفجديدToolStripMenuItem,
-            this.تعديلToolStripMenuItem,
-            this.حذفToolStripMenuItem});
-            this.materialContextMenuStrip1.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialContextMenuStrip1.Name = "materialContextMenuStrip1";
-            this.materialContextMenuStrip1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.materialContextMenuStrip1.Size = new System.Drawing.Size(104, 70);
-            // 
-            // اضافةصنفجديدToolStripMenuItem
-            // 
-            this.اضافةصنفجديدToolStripMenuItem.Name = "اضافةصنفجديدToolStripMenuItem";
-            this.اضافةصنفجديدToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
-            this.اضافةصنفجديدToolStripMenuItem.Text = " جديد";
-            this.اضافةصنفجديدToolStripMenuItem.Click += new System.EventHandler(this.اضافةصنفجديدToolStripMenuItem_Click);
-            // 
-            // تعديلToolStripMenuItem
-            // 
-            this.تعديلToolStripMenuItem.Name = "تعديلToolStripMenuItem";
-            this.تعديلToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
-            this.تعديلToolStripMenuItem.Text = "تعديل";
-            this.تعديلToolStripMenuItem.Click += new System.EventHandler(this.تعديلToolStripMenuItem_Click);
-            // 
-            // حذفToolStripMenuItem
-            // 
-            this.حذفToolStripMenuItem.Name = "حذفToolStripMenuItem";
-            this.حذفToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
-            this.حذفToolStripMenuItem.Text = "حذف";
-            this.حذفToolStripMenuItem.Click += new System.EventHandler(this.حذفToolStripMenuItem_Click);
-            // 
-            // gridView1
-            // 
-            this.gridView1.Name = "gridView1";
-            // 
-            // gridView2
-            // 
-            this.gridView2.Name = "gridView2";
-            // 
-            // gridView3
-            // 
-            this.gridView3.Name = "gridView3";
             // 
             // tableLayoutPanel1
             // 
-            this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Controls.Add(this.gcItemCard, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.groupControl1, 0, 0);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(749, 374);
-            this.tableLayoutPanel1.TabIndex = 1;
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(920, 403);
+            this.tableLayoutPanel1.TabIndex = 0;
+            // 
+            // groupControl1
+            // 
+            this.groupControl1.AppearanceCaption.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupControl1.AppearanceCaption.Options.UseFont = true;
+            this.groupControl1.CaptionImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("groupControl1.CaptionImageOptions.Image")));
+            this.groupControl1.Controls.Add(this.tableLayoutPanel2);
+            buttonImageOptions1.Image = ((System.Drawing.Image)(resources.GetObject("buttonImageOptions1.Image")));
+            this.groupControl1.CustomHeaderButtons.AddRange(new DevExpress.XtraEditors.ButtonPanel.IBaseButton[] {
+            new DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("معاينة", true, buttonImageOptions1, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, true, null, true, false, true, null, -1)});
+            this.groupControl1.CustomHeaderButtonsLocation = DevExpress.Utils.GroupElementLocation.AfterText;
+            this.groupControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupControl1.Location = new System.Drawing.Point(3, 3);
+            this.groupControl1.LookAndFeel.SkinName = "The Bezier";
+            this.groupControl1.LookAndFeel.UseDefaultLookAndFeel = false;
+            this.groupControl1.Name = "groupControl1";
+            this.groupControl1.Size = new System.Drawing.Size(914, 397);
+            this.groupControl1.TabIndex = 0;
+            this.groupControl1.CustomButtonClick += new DevExpress.XtraBars.Docking2010.BaseButtonEventHandler(this.groupControl1_CustomButtonClick);
+            // 
+            // tableLayoutPanel2
+            // 
+            this.tableLayoutPanel2.ColumnCount = 1;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel2.Controls.Add(this.gcItemCard, 0, 0);
+            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(2, 37);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RowCount = 1;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 374F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(910, 358);
+            this.tableLayoutPanel2.TabIndex = 0;
             // 
             // gcItemCard
             // 
@@ -141,10 +114,28 @@
             this.gcItemCard.Location = new System.Drawing.Point(3, 3);
             this.gcItemCard.MainView = this.gvCafeItemCard;
             this.gcItemCard.Name = "gcItemCard";
-            this.gcItemCard.Size = new System.Drawing.Size(743, 368);
-            this.gcItemCard.TabIndex = 8;
+            this.gcItemCard.Size = new System.Drawing.Size(904, 368);
+            this.gcItemCard.TabIndex = 9;
             this.gcItemCard.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvCafeItemCard});
+            // 
+            // materialContextMenuStrip1
+            // 
+            this.materialContextMenuStrip1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.materialContextMenuStrip1.Depth = 0;
+            this.materialContextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.الغاءالفاتورةToolStripMenuItem});
+            this.materialContextMenuStrip1.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialContextMenuStrip1.Name = "materialContextMenuStrip1";
+            this.materialContextMenuStrip1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.materialContextMenuStrip1.Size = new System.Drawing.Size(85, 26);
+            // 
+            // الغاءالفاتورةToolStripMenuItem
+            // 
+            this.الغاءالفاتورةToolStripMenuItem.Name = "الغاءالفاتورةToolStripMenuItem";
+            this.الغاءالفاتورةToolStripMenuItem.Size = new System.Drawing.Size(84, 22);
+            this.الغاءالفاتورةToolStripMenuItem.Text = "rE";
+            this.الغاءالفاتورةToolStripMenuItem.Click += new System.EventHandler(this.الغاءالفاتورةToolStripMenuItem_Click);
             // 
             // gvCafeItemCard
             // 
@@ -308,109 +299,40 @@
             this.gridColumn13.Visible = true;
             this.gridColumn13.VisibleIndex = 4;
             // 
-            // tableLayoutPanel2
-            // 
-            this.tableLayoutPanel2.ColumnCount = 1;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Controls.Add(this.windowsUIButtonPanel, 0, 0);
-            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 377);
-            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 1;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(749, 65);
-            this.tableLayoutPanel2.TabIndex = 2;
-            // 
-            // windowsUIButtonPanel
-            // 
-            this.windowsUIButtonPanel.AppearanceButton.Hovered.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(130)))), ((int)(((byte)(130)))));
-            this.windowsUIButtonPanel.AppearanceButton.Hovered.FontSizeDelta = -1;
-            this.windowsUIButtonPanel.AppearanceButton.Hovered.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(130)))), ((int)(((byte)(130)))));
-            this.windowsUIButtonPanel.AppearanceButton.Hovered.Options.UseBackColor = true;
-            this.windowsUIButtonPanel.AppearanceButton.Hovered.Options.UseFont = true;
-            this.windowsUIButtonPanel.AppearanceButton.Hovered.Options.UseForeColor = true;
-            this.windowsUIButtonPanel.AppearanceButton.Normal.FontSizeDelta = -1;
-            this.windowsUIButtonPanel.AppearanceButton.Normal.Options.UseFont = true;
-            this.windowsUIButtonPanel.AppearanceButton.Pressed.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(159)))), ((int)(((byte)(159)))), ((int)(((byte)(159)))));
-            this.windowsUIButtonPanel.AppearanceButton.Pressed.FontSizeDelta = -1;
-            this.windowsUIButtonPanel.AppearanceButton.Pressed.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(159)))), ((int)(((byte)(159)))), ((int)(((byte)(159)))));
-            this.windowsUIButtonPanel.AppearanceButton.Pressed.Options.UseBackColor = true;
-            this.windowsUIButtonPanel.AppearanceButton.Pressed.Options.UseFont = true;
-            this.windowsUIButtonPanel.AppearanceButton.Pressed.Options.UseForeColor = true;
-            this.windowsUIButtonPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(63)))), ((int)(((byte)(63)))));
-            windowsUIButtonImageOptions1.ImageUri.Uri = "New;Size32x32;GrayScaled";
-            windowsUIButtonImageOptions2.ImageUri.Uri = "Edit;Size32x32;GrayScaled";
-            windowsUIButtonImageOptions3.ImageUri.Uri = "Edit/Delete;Size32x32;GrayScaled";
-            windowsUIButtonImageOptions4.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("windowsUIButtonImageOptions4.SvgImage")));
-            windowsUIButtonImageOptions5.ImageUri.Uri = "Refresh;Size32x32;GrayScaled";
-            windowsUIButtonImageOptions6.ImageUri.Uri = "Preview;Size32x32;GrayScaled";
-            windowsUIButtonImageOptions7.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("windowsUIButtonImageOptions7.SvgImage")));
-            this.windowsUIButtonPanel.Buttons.AddRange(new DevExpress.XtraEditors.ButtonPanel.IBaseButton[] {
-            new DevExpress.XtraBars.Docking2010.WindowsUIButton("جديد", true, windowsUIButtonImageOptions1, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, true, null, true, false, true, null, -1, false),
-            new DevExpress.XtraBars.Docking2010.WindowsUIButton("تعديل", true, windowsUIButtonImageOptions2, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, true, null, true, false, true, null, -1, false),
-            new DevExpress.XtraBars.Docking2010.WindowsUIButton("حذف", true, windowsUIButtonImageOptions3, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, true, null, true, false, true, null, -1, false),
-            new DevExpress.XtraBars.Docking2010.WindowsUIButton("Deleted History", true, windowsUIButtonImageOptions4, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, true, null, true, false, true, null, -1, false),
-            new DevExpress.XtraBars.Docking2010.WindowsUIButton("تحديث", true, windowsUIButtonImageOptions5, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, true, null, true, false, false, null, -1, false),
-            new DevExpress.XtraBars.Docking2010.WindowsUISeparator(),
-            new DevExpress.XtraBars.Docking2010.WindowsUIButton("طباعة", true, windowsUIButtonImageOptions6, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, true, null, true, false, false, null, -1, false),
-            new DevExpress.XtraBars.Docking2010.WindowsUIButton("خروج", true, windowsUIButtonImageOptions7, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, true, null, true, false, true, null, -1, false)});
-            this.windowsUIButtonPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.windowsUIButtonPanel.EnableImageTransparency = true;
-            this.windowsUIButtonPanel.ForeColor = System.Drawing.Color.White;
-            this.windowsUIButtonPanel.Location = new System.Drawing.Point(4, 5);
-            this.windowsUIButtonPanel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.windowsUIButtonPanel.MaximumSize = new System.Drawing.Size(0, 60);
-            this.windowsUIButtonPanel.MinimumSize = new System.Drawing.Size(60, 60);
-            this.windowsUIButtonPanel.Name = "windowsUIButtonPanel";
-            this.windowsUIButtonPanel.Size = new System.Drawing.Size(741, 60);
-            this.windowsUIButtonPanel.TabIndex = 6;
-            this.windowsUIButtonPanel.Text = "windowsUIButtonPanel";
-            this.windowsUIButtonPanel.UseButtonBackgroundImages = false;
-            this.windowsUIButtonPanel.ButtonClick += new DevExpress.XtraBars.Docking2010.ButtonEventHandler(this.windowsUIButtonPanel_ButtonClick);
-            // 
-            // frmCafeItemCard
+            // frmItemDeletedHistory
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(749, 442);
-            this.Controls.Add(this.tableLayoutPanel2);
+            this.ClientSize = new System.Drawing.Size(920, 403);
             this.Controls.Add(this.tableLayoutPanel1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.IconOptions.ShowIcon = false;
             this.LookAndFeel.SkinName = "The Bezier";
-            this.LookAndFeel.UseWindowsXPTheme = true;
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
-            this.Name = "frmCafeItemCard";
+            this.LookAndFeel.UseDefaultLookAndFeel = false;
+            this.Name = "frmItemDeletedHistory";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.RightToLeftLayout = true;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.Load += new System.EventHandler(this.frmItemCard_Load);
-            this.materialContextMenuStrip1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView3)).EndInit();
+            this.Text = " ";
+            this.Load += new System.EventHandler(this.frmInvoiceSearch_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.gcItemCard)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvCafeItemCard)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
+            this.groupControl1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.gcItemCard)).EndInit();
+            this.materialContextMenuStrip1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.gvCafeItemCard)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-        private MaterialSkin.Controls.MaterialContextMenuStrip materialContextMenuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem اضافةصنفجديدToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem تعديلToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem حذفToolStripMenuItem;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView2;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView3;
+
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private DevExpress.XtraEditors.GroupControl groupControl1;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        private MaterialSkin.Controls.MaterialContextMenuStrip materialContextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem الغاءالفاتورةToolStripMenuItem;
         public DevExpress.XtraGrid.GridControl gcItemCard;
         public DevExpress.XtraGrid.Views.Grid.GridView gvCafeItemCard;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn7;
@@ -425,8 +347,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn9;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn11;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn12;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
-        private DevExpress.XtraBars.Docking2010.WindowsUIButtonPanel windowsUIButtonPanel;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn13;
     }
 }

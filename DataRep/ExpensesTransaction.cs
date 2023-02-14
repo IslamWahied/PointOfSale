@@ -27,5 +27,6 @@ namespace DataRep
         public bool isUploaded { get; set; }
         public long Branch_Id { get; set; }
         public bool is_Back_Office_Updated { get; set; }
+        public bool isFireBaseUploaded { get; set; }
     }
 }

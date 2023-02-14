@@ -206,6 +206,8 @@
             this.TbAdd = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.barButtonItem39 = new DevExpress.XtraBars.BarButtonItem();
+            this.rbProductRate = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.barButtonItem50 = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemHypertextLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.RibbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTimeEdit1)).BeginInit();
@@ -220,10 +222,10 @@
             // 
             // ribbonStatusBar1
             // 
-            this.ribbonStatusBar1.Location = new System.Drawing.Point(0, 652);
+            this.ribbonStatusBar1.Location = new System.Drawing.Point(0, 654);
             this.ribbonStatusBar1.Name = "ribbonStatusBar1";
             this.ribbonStatusBar1.Ribbon = this.RibbonControl1;
-            this.ribbonStatusBar1.Size = new System.Drawing.Size(1044, 29);
+            this.ribbonStatusBar1.Size = new System.Drawing.Size(1044, 27);
             // 
             // RibbonControl1
             // 
@@ -334,9 +336,10 @@
             this.barHeaderItem2,
             this.barStaticItem19,
             this.barHeaderItem7,
-            this.barStaticItem20});
+            this.barStaticItem20,
+            this.barButtonItem50});
             this.RibbonControl1.Location = new System.Drawing.Point(0, 0);
-            this.RibbonControl1.MaxItemId = 129;
+            this.RibbonControl1.MaxItemId = 130;
             this.RibbonControl1.Name = "RibbonControl1";
             this.RibbonControl1.OptionsCustomizationForm.FormIcon = ((System.Drawing.Icon)(resources.GetObject("resource.FormIcon")));
             this.RibbonControl1.OptionsPageCategories.AutoCorrectForeColor = DevExpress.Utils.DefaultBoolean.True;
@@ -1366,7 +1369,8 @@
             this.RbProfitAndLossReport,
             this.ribbonPageGroup17,
             this.RbCancelationInvoiceReport,
-            this.RbShifts});
+            this.RbShifts,
+            this.rbProductRate});
             this.RbReportsTab.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("RbReportsTab.ImageOptions.Image")));
             this.RbReportsTab.Name = "RbReportsTab";
             this.RbReportsTab.Text = "التقارير";
@@ -1376,22 +1380,26 @@
             // 
             this.RbSaleReport.ItemLinks.Add(this.barButtonItem28);
             this.RbSaleReport.Name = "RbSaleReport";
+            this.RbSaleReport.Visible = false;
             // 
             // RbPurchessReport
             // 
             this.RbPurchessReport.ItemLinks.Add(this.barButtonItem26);
             this.RbPurchessReport.Name = "RbPurchessReport";
+            this.RbPurchessReport.Visible = false;
             // 
             // RbExpenses
             // 
             this.RbExpenses.ItemLinks.Add(this.barButtonItem36);
             this.RbExpenses.Name = "RbExpenses";
+            this.RbExpenses.Visible = false;
             // 
             // RbProfitAndLossReport
             // 
             this.RbProfitAndLossReport.ItemLinks.Add(this.barButtonItem35);
             this.RbProfitAndLossReport.Name = "RbProfitAndLossReport";
             this.RbProfitAndLossReport.Text = " ";
+            this.RbProfitAndLossReport.Visible = false;
             // 
             // ribbonPageGroup17
             // 
@@ -1404,11 +1412,13 @@
             // 
             this.RbCancelationInvoiceReport.ItemLinks.Add(this.barButtonItem30);
             this.RbCancelationInvoiceReport.Name = "RbCancelationInvoiceReport";
+            this.RbCancelationInvoiceReport.Visible = false;
             // 
             // RbShifts
             // 
             this.RbShifts.ItemLinks.Add(this.barButtonItem37);
             this.RbShifts.Name = "RbShifts";
+            this.RbShifts.Visible = false;
             // 
             // RbStorgeTap
             // 
@@ -1562,7 +1572,7 @@
             this.imageSlider1.LayoutMode = DevExpress.Utils.Drawing.ImageLayoutMode.MiddleCenter;
             this.imageSlider1.Location = new System.Drawing.Point(0, 135);
             this.imageSlider1.Name = "imageSlider1";
-            this.imageSlider1.Size = new System.Drawing.Size(1044, 517);
+            this.imageSlider1.Size = new System.Drawing.Size(1044, 519);
             this.imageSlider1.TabIndex = 2;
             this.imageSlider1.Text = "imageSlider1";
             // 
@@ -1696,6 +1706,21 @@
             this.barButtonItem39.Id = 113;
             this.barButtonItem39.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barButtonItem39.ImageOptions.SvgImage")));
             this.barButtonItem39.Name = "barButtonItem39";
+            // 
+            // rbProductRate
+            // 
+            this.rbProductRate.ItemLinks.Add(this.barButtonItem50);
+            this.rbProductRate.Name = "rbProductRate";
+            this.rbProductRate.Visible = false;
+            // 
+            // barButtonItem50
+            // 
+            this.barButtonItem50.Caption = "Products Rate";
+            this.barButtonItem50.Id = 129;
+            this.barButtonItem50.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem50.ImageOptions.Image")));
+            this.barButtonItem50.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem50.ImageOptions.LargeImage")));
+            this.barButtonItem50.Name = "barButtonItem50";
+            this.barButtonItem50.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem50_ItemClick);
             // 
             // FrmMain
             // 
@@ -1906,6 +1931,8 @@
         private DevExpress.XtraBars.BarStaticItem barStaticItem20;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup21;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup22;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem50;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup rbProductRate;
     }
 }
 

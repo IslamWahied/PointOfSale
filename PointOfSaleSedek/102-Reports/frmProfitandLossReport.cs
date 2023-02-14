@@ -75,6 +75,7 @@ namespace PointOfSaleSedek._102_Reports
             }
 
             double TotalDescount = 0;
+            double TotalProductCost = 0;
             double TotalExpenses = 0;
             double TotalSales = 0;
 
@@ -185,7 +186,25 @@ namespace PointOfSaleSedek._102_Reports
                   TotalSales = 0;
                 Sales.ForEach(x =>
                 {
+
+
                     TotalSales += x.TotalBeforDiscount;
+
+
+                    // Get TotalProductCost
+                    var ItemHisttrans = context.Item_History_transaction.Where(x2 => x2.SaleMasterCode == x.SaleMasterCode && x2.shiftCode == x.Shift_Code).ToList();
+
+                    ItemHisttrans.ForEach(y => {
+
+                        var Item_History = context.Item_History.FirstOrDefault(y2 => y2.Id == y.Item_History_Id);
+
+                        if (Item_History != null) {
+                            TotalProductCost += Item_History.Price_Buy * y.Trans_Out;
+                        }
+                       
+
+                    });
+
                 });
 
 
@@ -218,9 +237,22 @@ namespace PointOfSaleSedek._102_Reports
                     TotalPurchess += x.FinalTotal;
                 });
 
+
+               
+
+
+
+
+
+
+
+
+
+
+
             }
 
-             
+
 
             List<ProfitAndLosse> _profitAndLosseList = new List<ProfitAndLosse>();
 
@@ -230,8 +262,10 @@ namespace PointOfSaleSedek._102_Reports
             Descount = TotalDescount,
             TotalExpenses =TotalExpenses,
             TotalPurchess = TotalPurchess,
+                TotalProductCost = TotalProductCost,
             TotalSales = TotalSales,
-            ProfitOrLosse  = TotalSales - (TotalDescount+ TotalExpenses+ TotalPurchess)
+           // ProfitOrLosse  = TotalSales - (TotalDescount+ TotalExpenses+ TotalPurchess)
+            ProfitOrLosse  = TotalSales - (TotalDescount+ TotalExpenses+ TotalProductCost)
 
             };
 
@@ -249,7 +283,7 @@ namespace PointOfSaleSedek._102_Reports
             rpt.RegisterData(dtToDateTime, "Dates");
             rpt.Show();
             // rpt.PrintSettings.ShowDialog = false;
-          //   rpt.Design();
+         //  rpt.Design();
 
 
 

@@ -50,12 +50,12 @@ namespace PointOfSaleSedek._102_Reports
             // 
             this.materialLabel2.AutoSize = true;
             this.materialLabel2.Depth = 0;
-            this.materialLabel2.Font = new System.Drawing.Font("Roboto", 11F);
+            this.materialLabel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.materialLabel2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.materialLabel2.Location = new System.Drawing.Point(216, 198);
             this.materialLabel2.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel2.Name = "materialLabel2";
-            this.materialLabel2.Size = new System.Drawing.Size(56, 19);
+            this.materialLabel2.Size = new System.Drawing.Size(55, 18);
             this.materialLabel2.TabIndex = 166;
             this.materialLabel2.Text = "الي تاريخ";
             // 
@@ -79,12 +79,12 @@ namespace PointOfSaleSedek._102_Reports
             // 
             this.materialLabel1.AutoSize = true;
             this.materialLabel1.Depth = 0;
-            this.materialLabel1.Font = new System.Drawing.Font("Roboto", 11F);
+            this.materialLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.materialLabel1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.materialLabel1.Location = new System.Drawing.Point(216, 144);
             this.materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel1.Name = "materialLabel1";
-            this.materialLabel1.Size = new System.Drawing.Size(54, 19);
+            this.materialLabel1.Size = new System.Drawing.Size(53, 18);
             this.materialLabel1.TabIndex = 164;
             this.materialLabel1.Text = "من تاريخ";
             // 
@@ -122,12 +122,12 @@ namespace PointOfSaleSedek._102_Reports
             // 
             this.materialLabel3.AutoSize = true;
             this.materialLabel3.Depth = 0;
-            this.materialLabel3.Font = new System.Drawing.Font("Roboto", 11F);
+            this.materialLabel3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.materialLabel3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.materialLabel3.Location = new System.Drawing.Point(172, 80);
             this.materialLabel3.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel3.Name = "materialLabel3";
-            this.materialLabel3.Size = new System.Drawing.Size(100, 19);
+            this.materialLabel3.Size = new System.Drawing.Size(99, 18);
             this.materialLabel3.TabIndex = 171;
             this.materialLabel3.Text = "الموظف(اختياري)";
             // 
@@ -144,7 +144,7 @@ namespace PointOfSaleSedek._102_Reports
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.slkUsers.Properties.NullText = " ";
             this.slkUsers.Properties.PopupView = this.searchLookUpEdit1View;
-            this.slkUsers.Properties.EditValueChanged += new System.EventHandler(this.slkShiftsOpen_Properties_EditValueChanged);
+         //   this.slkUsers.Properties.EditValueChanged += new System.EventHandler(this.slkShiftsOpen_Properties_EditValueChanged);
             this.slkUsers.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.slkUsers.Size = new System.Drawing.Size(254, 25);
             this.slkUsers.TabIndex = 170;

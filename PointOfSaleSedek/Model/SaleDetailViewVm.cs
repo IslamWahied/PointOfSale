@@ -13,6 +13,8 @@ namespace PointOfSaleSedek.Model
         public string ParCode { get; set; }
         public string Name_En { get; set; }
         public string Name { get; set; }
+        public double cash { get; set; }
+        public double visa { get; set; }
         public double Qty { get; set; }
         public double Total { get; set; }
         public System.DateTime EntryDate { get; set; }

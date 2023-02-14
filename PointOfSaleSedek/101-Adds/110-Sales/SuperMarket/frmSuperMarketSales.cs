@@ -1036,9 +1036,9 @@ namespace PointOfSaleSedek._101_Adds
                 rpt.RegisterData(Master, "Header");
                 rpt.RegisterData(_FinalTotalList, "FinalTotal");
                 rpt.RegisterData(saleDetailViewVmList, "Lines");
-                // rpt.PrintSettings.ShowDialog = false;
-                   rpt.Design();
-             //   rpt.Show();
+                rpt.PrintSettings.ShowDialog = false;
+                //   rpt.Design();
+                rpt.Show();
 
             }
 

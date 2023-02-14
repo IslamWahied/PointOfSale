@@ -72,7 +72,7 @@
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(880, 387);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(912, 395);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // groupControl1
@@ -90,7 +90,7 @@
             this.groupControl1.LookAndFeel.SkinName = "The Bezier";
             this.groupControl1.LookAndFeel.UseDefaultLookAndFeel = false;
             this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Size = new System.Drawing.Size(874, 381);
+            this.groupControl1.Size = new System.Drawing.Size(906, 389);
             this.groupControl1.TabIndex = 0;
             this.groupControl1.Text = "بحث عن فاتورة";
             this.groupControl1.CustomButtonClick += new DevExpress.XtraBars.Docking2010.BaseButtonEventHandler(this.groupControl1_CustomButtonClick);
@@ -107,7 +107,7 @@
             this.tableLayoutPanel2.RowCount = 2;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(870, 342);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(902, 350);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // gcCafeSaleMaster
@@ -117,7 +117,7 @@
             this.gcCafeSaleMaster.Location = new System.Drawing.Point(3, 19);
             this.gcCafeSaleMaster.MainView = this.gvCafeSaleMaster;
             this.gcCafeSaleMaster.Name = "gcCafeSaleMaster";
-            this.gcCafeSaleMaster.Size = new System.Drawing.Size(864, 320);
+            this.gcCafeSaleMaster.Size = new System.Drawing.Size(896, 328);
             this.gcCafeSaleMaster.TabIndex = 0;
             this.gcCafeSaleMaster.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvCafeSaleMaster});
@@ -131,12 +131,12 @@
             this.materialContextMenuStrip1.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialContextMenuStrip1.Name = "materialContextMenuStrip1";
             this.materialContextMenuStrip1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.materialContextMenuStrip1.Size = new System.Drawing.Size(181, 48);
+            this.materialContextMenuStrip1.Size = new System.Drawing.Size(136, 26);
             // 
             // الغاءالفاتورةToolStripMenuItem
             // 
             this.الغاءالفاتورةToolStripMenuItem.Name = "الغاءالفاتورةToolStripMenuItem";
-            this.الغاءالفاتورةToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.الغاءالفاتورةToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
             this.الغاءالفاتورةToolStripMenuItem.Text = "الغاء الفاتورة";
             this.الغاءالفاتورةToolStripMenuItem.Click += new System.EventHandler(this.الغاءالفاتورةToolStripMenuItem_Click);
             // 
@@ -174,6 +174,7 @@
             this.gvCafeSaleMaster.OptionsView.ShowFilterPanelMode = DevExpress.XtraGrid.Views.Base.ShowFilterPanelMode.ShowAlways;
             this.gvCafeSaleMaster.OptionsView.ShowFooter = true;
             this.gvCafeSaleMaster.OptionsView.ShowGroupPanel = false;
+            this.gvCafeSaleMaster.RowStyle += new DevExpress.XtraGrid.Views.Grid.RowStyleEventHandler(this.gvCafeSaleMaster_RowStyle);
             // 
             // gridColumn1
             // 
@@ -291,6 +292,7 @@
             this.gridColumn6.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gridColumn6.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.gridColumn6.Caption = "gridColumn6";
+            this.gridColumn6.FieldName = "Operation_Type_Id";
             this.gridColumn6.Name = "gridColumn6";
             // 
             // tableLayoutPanel3
@@ -300,7 +302,7 @@
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 80.72289F));
             this.tableLayoutPanel3.Controls.Add(this.slkUsers, 1, 0);
             this.tableLayoutPanel3.Controls.Add(this.label1, 0, 0);
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(35, 3);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(67, 3);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 1;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -365,7 +367,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(880, 387);
+            this.ClientSize = new System.Drawing.Size(912, 395);
             this.Controls.Add(this.tableLayoutPanel1);
             this.IconOptions.ShowIcon = false;
             this.LookAndFeel.SkinName = "The Bezier";

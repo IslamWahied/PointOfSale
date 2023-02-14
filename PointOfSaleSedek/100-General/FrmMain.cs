@@ -1,52 +1,52 @@
-﻿using PointOfSaleSedek._101_Adds;
-using DevExpress.XtraBars.Ribbon;
-using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using PointOfSaleSedek._105_Reports;
-using PointOfSaleSedek._101_Adds.CasherShift;
-using PointOfSaleSedek._101_Adds._112_Users;
-using PointOfSaleSedek.HelperClass;
-using PointOfSaleSedek._101_Adds._102_Customer;
-using PointOfSaleSedek._101_Adds._113_BarCode;
-using PointOfSaleSedek._101_Adds._103_Authentication;
-using PointOfSaleSedek._102_Reports;
-using PointOfSaleSedek._114_Adds;
-using PointOfSaleSedek._101_Adds._114_AddExpenses;
-using DataRep;
-using System.Timers;
-using Google.Cloud.Firestore;
-using Timer = System.Timers.Timer;
-using System.Net;
+﻿using DataRep;
 using DevExpress.XtraBars;
+using DevExpress.XtraBars.Ribbon;
+using DevExpress.XtraSplashScreen;
+using Google.Cloud.Firestore;
+using PointOfSaleSedek._101_Adds;
+using PointOfSaleSedek._101_Adds._102_Customer;
+using PointOfSaleSedek._101_Adds._103_Authentication;
+using PointOfSaleSedek._101_Adds._111_Warehouse;
+using PointOfSaleSedek._101_Adds._112_Users;
+using PointOfSaleSedek._101_Adds._113_BarCode;
+using PointOfSaleSedek._101_Adds._114_AddExpenses;
+using PointOfSaleSedek._101_Adds.CasherShift;
 //using System.Data.OleDb;
 //using Newtonsoft.Json;
 using PointOfSaleSedek._102_MaterialSkin;
-using System.Windows.Forms;
-using DevExpress.XtraSplashScreen;
-using PointOfSaleSedek._101_Adds._111_Warehouse;
-using System.Data.Entity.Validation;
+using PointOfSaleSedek._102_Reports;
+using PointOfSaleSedek._105_Reports;
+using PointOfSaleSedek._114_Adds;
+using PointOfSaleSedek.HelperClass;
+using System;
+using System.Collections.Generic;
+using System.Data;
 using System.Data.Entity.Core.Objects;
+using System.Data.Entity.Validation;
+using System.Drawing;
+using System.Linq;
+using System.Net;
+using System.Timers;
+using System.Windows.Forms;
+using Timer = System.Timers.Timer;
 
 namespace PointOfSaleSedek
 {
     public partial class FrmMain : MaterialSkin.Controls.MaterialForm
     {
         POSEntity localContext = new POSEntity();
- 
+
         readonly POSEntity db = new POSEntity();
         BackOfficeEntity.db_a8f74e_posEntities _server = new BackOfficeEntity.db_a8f74e_posEntities();
- 
+
 
         readonly Static st = new Static();
-       Timer aTimer = new Timer(60 * 60 * 1000); //one hour in milliseconds
+        Timer aTimer = new Timer(60 * 60 * 1000); //one hour in milliseconds
 
-       FirestoreDb fdb;
+        FirestoreDb fdb;
 
 
-          void OnTimedEvent(object source, ElapsedEventArgs e)
+        void OnTimedEvent(object source, ElapsedEventArgs e)
         {
 
             if (CheckForInternetConnection())
@@ -87,7 +87,7 @@ namespace PointOfSaleSedek
         {
             try
             {
-               
+
                 var request = (HttpWebRequest)WebRequest.Create(url);
                 request.KeepAlive = false;
                 request.Timeout = timeoutMs;
@@ -105,7 +105,7 @@ namespace PointOfSaleSedek
         void updateToFireBase()
         {
             // Date Now
-            
+
 
             DateTime today = DateTime.Now;
 
@@ -162,22 +162,22 @@ namespace PointOfSaleSedek
 
             // Get Shifts  Data
             localContext = new POSEntity();
-            List<Shift_View> masterShiftView = localContext.Shift_View.Where(x => x.isUploaded == false && x.Shift_Flag == false &&x.IsDeleted == 0).ToList();
-          
-           
+            List<Shift_View> masterShiftView = localContext.Shift_View.Where(x => x.isUploaded == false && x.Shift_Flag == false && x.IsDeleted == 0).ToList();
+
+
             masterShiftView.ForEach(shift =>
             {
                 FirestoreDb fdb2 = FirestoreDb.Create("pointofsale-d3e8d");
 
                 DocumentReference Doc2 = fdb.Collection("Shifts").Document("ProjectCode").Collection(ProjectInfos.ProjectCode.ToString()).Document();
-       
+
 
                 Dictionary<string, object> data2 = new Dictionary<string, object>() {
 
                 {"ShiftCode",shift.Shift_Code},
                 {"ShiftStartDate",shift.Shift_Start_Date.ToString("MM-dd-yyyy hh:mm tt")},
                 {"ShiftEndDate",shift.Shift_End_Date?.ToString("MM-dd-yyyy hh:mm tt")},
-                 
+
                 { "ShiftStartAmount",shift.Shift_Start_Amount},
                 { "ShiftEndAmount",shift.Shift_End_Amount},
                 { "ShiftIncreasedisability", shift.Shift_Increase_disability},
@@ -292,7 +292,8 @@ namespace PointOfSaleSedek
 
             FirestoreDb fdb5 = FirestoreDb.Create("pointofsale-d3e8d");
             DocumentReference Doc5 = fdb.Collection("UsersInfo").Document();
-            projectMangerInfos.ForEach(element => {
+            projectMangerInfos.ForEach(element =>
+            {
 
                 Dictionary<string, object> data5 = new Dictionary<string, object>() {
 
@@ -302,7 +303,7 @@ namespace PointOfSaleSedek
                 {"MangerName",element.MangerName},
                 { "ProjectSequence",0},
                 { "ProjectId",0},
-              
+
                 { "IsActive",element.IsActive},
                 { "MangerMobile",element.MangerMobile},
             };
@@ -319,7 +320,7 @@ namespace PointOfSaleSedek
 
 
             });
-              
+
 
             FirestoreDb fdb6 = FirestoreDb.Create("pointofsale-d3e8d");
             DocumentReference Doc6 = fdb.Collection("Projects").Document(ProjectInfos.ProjectCode.ToString());
@@ -328,7 +329,7 @@ namespace PointOfSaleSedek
                 {"ProjectCode",ProjectInfos.ProjectCode},
                 {"ProjectName",ProjectInfos.ProjectName},
                 {"image",ProjectInfos.ImageUrl??""},
-                  
+
                 {"IsActive",ProjectInfos.isActive},
                 {"listUsers",listUsers},
 
@@ -337,21 +338,21 @@ namespace PointOfSaleSedek
 
 
 
-            
-               
-                DocumentReference Doc14 = fdb.Collection("LastUpdateDate").Document("ProjectCode").Collection(ProjectInfos.ProjectCode.ToString()).Document("1");
 
-                Dictionary<string, object> data14 = new Dictionary<string, object>() {
+
+            DocumentReference Doc14 = fdb.Collection("LastUpdateDate").Document("ProjectCode").Collection(ProjectInfos.ProjectCode.ToString()).Document("1");
+
+            Dictionary<string, object> data14 = new Dictionary<string, object>() {
                 { "LastUpdateDate",today.ToString("MM-dd-yyyy hh:mm tt")},
                 };
 
 
 
 
-                Doc14.SetAsync(data14);
+            Doc14.SetAsync(data14);
 
-               
-            
+
+
 
 
 
@@ -417,7 +418,7 @@ namespace PointOfSaleSedek
         public FrmMain()
         {
 
-     
+
             InitializeComponent();
             AppLangu();
 
@@ -435,12 +436,13 @@ namespace PointOfSaleSedek
 
             aTimer.Start();
 
-        
+
 
         }
 
 
-        public void AppLangu() {
+        public void AppLangu()
+        {
             //Int64 User_Code = st.GetUser_Code();
             //User_View item = db.User_View.FirstOrDefault(View => View.Employee_Code == User_Code && View.UserFlag == true && View.IsDeleted == 0 && View.IsDeletedEmployee == 0);
 
@@ -470,7 +472,7 @@ namespace PointOfSaleSedek
             //barStaticItem19.Appearance.ForeColor = Color.Red;
 
 
-            this.RightToLeft = st.isEnglish() ? System.Windows.Forms.RightToLeft.No : System.Windows.Forms.RightToLeft.Yes; 
+            this.RightToLeft = st.isEnglish() ? System.Windows.Forms.RightToLeft.No : System.Windows.Forms.RightToLeft.Yes;
             barHeaderItem232.Caption = st.isEnglish() ? "UserName" : "اسم المستخدم";
             barUserName.Caption = st.isEnglish() ? "UserName" : "اسم المستخدم";
             barHeaderItem3.Caption = st.isEnglish() ? "UserName" : "اسم المستخدم";
@@ -487,7 +489,7 @@ namespace PointOfSaleSedek
             btnUploadData.Caption = st.isEnglish() ? "Update" : "تحديث";
             btnUploadData.Hint = st.isEnglish() ? "Upload Data" : "رفع البيانات";
 
-            
+
             /////////////////////////   Permission Tab ///////////////////////////////////////
             ///
             BrAddauthenticationTab.Text = st.isEnglish() ? "Permissions" : "الصلاحيات";
@@ -501,7 +503,7 @@ namespace PointOfSaleSedek
             ///
             RbCodeTab.Text = st.isEnglish() ? "Coding" : "التكويد";
 
-           
+
             barButtonItem38.Caption = st.isEnglish() ? "Add Warehouse" : "اضافة مخزن";
 
 
@@ -524,7 +526,7 @@ namespace PointOfSaleSedek
             barButtonItem32.Hint = st.isEnglish() ? "Add Expenses Name" : "اضافة اسم مصروف";
 
 
-           
+
             //////////////////////// Casher Tab /////////////////////////////////////////////
 
             RbCasherTab.Text = st.isEnglish() ? "Casher" : "الكاشير";
@@ -561,6 +563,7 @@ namespace PointOfSaleSedek
             RbReportsTab.Text = st.isEnglish() ? "Reports" : "التقارير";
 
 
+            barButtonItem50.Caption = st.isEnglish() ? "Product Rate" : "معدل بيع المنتجات";
             barButtonItem18.Caption = st.isEnglish() ? "Store Report" : "تقرير المخزن";
             barButtonItem28.Caption = st.isEnglish() ? "Sales Report" : "تقرير المبيعات";
             barButtonItem26.Caption = st.isEnglish() ? "Purchasing Report" : "تقرير المشتريات";
@@ -570,7 +573,7 @@ namespace PointOfSaleSedek
             barButtonItem37.Caption = st.isEnglish() ? "Shifts Report" : "تقرير الورديات";
 
             ////////////////////// Warehouses /////////////////////////////////////////////////////
-            
+
             RbStorgeTap.Text = st.isEnglish() ? "Warehouses && Transfer " : "المخازن والتحولات";
             barButtonItem40.Caption = st.isEnglish() ? "Warehouse" : "المخزن";
             barButtonItem41.Caption = st.isEnglish() ? "Transfer" : "التحويلات";
@@ -578,10 +581,10 @@ namespace PointOfSaleSedek
             String Branch_Name = st.GetBranch_Name();
             ribbonPageGroup12.Text = Branch_Name;
             ribbonPageGroup16.Text = Branch_Name;
-            ribbonPageGroup13.Text =  Branch_Name;
-            ribbonPageGroup11.Text =  Branch_Name;
-            ribbonPageGroup17.Text =  Branch_Name;
-            ribbonPageGroup21.Text =  Branch_Name;
+            ribbonPageGroup13.Text = Branch_Name;
+            ribbonPageGroup11.Text = Branch_Name;
+            ribbonPageGroup17.Text = Branch_Name;
+            ribbonPageGroup21.Text = Branch_Name;
             ribbonPageGroup22.Text = Branch_Name;
 
 
@@ -630,7 +633,7 @@ namespace PointOfSaleSedek
             btnRefershShiftsData.Visibility = BarItemVisibility.Never;
             btnUploadData.Visibility = BarItemVisibility.Never;
             RbCasherTab.Visible = false;
-           
+
             BrAddauthenticationTab.Visible = false;
             RbInvoicesTab.Visible = false;
             RbReportsTab.Visible = false;
@@ -646,7 +649,7 @@ namespace PointOfSaleSedek
         }
 
 
-         
+
 
 
         void Authentication()
@@ -654,38 +657,38 @@ namespace PointOfSaleSedek
             HideAllTabs();
             Int64 Breanch_Code = st.GetBranch_Code();
             Int64 User_Code = st.GetUser_Code();
-              
+
             User_View item = db.User_View.FirstOrDefault(View => View.Employee_Code == User_Code && View.UserFlag == true && View.IsDeleted == 0 && View.IsDeletedEmployee == 0);
-            
-
-                barStaticItem12.Caption = item.Employee_Name;
-                barStaticItem12.Appearance.ForeColor = Color.Red;
-
-                barStaticItem13.Caption = item.Employee_Name;
-
-                barStaticItem13.Appearance.ForeColor = Color.Red;
-                barStaticItem14.Caption = item.Employee_Name;
-                barStaticItem14.Appearance.ForeColor = Color.Red;
-                barStaticItem15.Caption = item.Employee_Name;
-                barStaticItem15.Appearance.ForeColor = Color.Red;
-                barStaticItem16.Caption = item.Employee_Name;
-                barStaticItem16.Appearance.ForeColor = Color.Red;
-                barStaticItem17.Caption =  item.Employee_Name;
-                barStaticItem17.Appearance.ForeColor = Color.Red;
-                barStaticItem18.Caption = item.Employee_Name;
-                barStaticItem18.Appearance.ForeColor = Color.Red;
 
 
-                barStaticItem20.Caption = item.Employee_Name;
-                barStaticItem20.Appearance.ForeColor = Color.Red;
+            barStaticItem12.Caption = item.Employee_Name;
+            barStaticItem12.Appearance.ForeColor = Color.Red;
 
-                barStaticItem19.Caption = item.Employee_Name;
-                barStaticItem19.Appearance.ForeColor = Color.Red;
+            barStaticItem13.Caption = item.Employee_Name;
+
+            barStaticItem13.Appearance.ForeColor = Color.Red;
+            barStaticItem14.Caption = item.Employee_Name;
+            barStaticItem14.Appearance.ForeColor = Color.Red;
+            barStaticItem15.Caption = item.Employee_Name;
+            barStaticItem15.Appearance.ForeColor = Color.Red;
+            barStaticItem16.Caption = item.Employee_Name;
+            barStaticItem16.Appearance.ForeColor = Color.Red;
+            barStaticItem17.Caption = item.Employee_Name;
+            barStaticItem17.Appearance.ForeColor = Color.Red;
+            barStaticItem18.Caption = item.Employee_Name;
+            barStaticItem18.Appearance.ForeColor = Color.Red;
+
+
+            barStaticItem20.Caption = item.Employee_Name;
+            barStaticItem20.Appearance.ForeColor = Color.Red;
+
+            barStaticItem19.Caption = item.Employee_Name;
+            barStaticItem19.Appearance.ForeColor = Color.Red;
 
 
 
 
-            
+
             var result = db.Auth_View.Where(View => View.User_Code == User_Code && (View.User_IsDeleted == 0)).ToList();
             for (var i = 0; i < result.Count; i++)
             {
@@ -794,11 +797,17 @@ namespace PointOfSaleSedek
                         rbBackOffice.Visible = true;
                         break;
 
+                    case "rbProductRate":
+                        rbProductRate.Visible = true;
+                        break;
+
+                        
+
                     default:
-                    
+
                         break;
                 }
-              
+
 
 
             }
@@ -823,7 +832,7 @@ namespace PointOfSaleSedek
             }
 
 
-          
+
             if (RbAddEmployee.Visible == false && RbAddWarehouse.Visible == false && RbBarCode.Visible == false && RbCode.Visible == false && RbItems.Visible == false && RbBranches.Visible == false && RbAddExpenses.Visible == false && RbCancelExpenses.Visible == false)
             {
 
@@ -843,7 +852,7 @@ namespace PointOfSaleSedek
                 RbCasherTab.Visible = true;
             }
 
-            if (RbPurches.Visible == false  && RbAddExpensesTran.Visible == false && RbCancelExpenses.Visible == false)
+            if (RbPurches.Visible == false && RbAddExpensesTran.Visible == false && RbCancelExpenses.Visible == false)
             {
                 RbInvoicesTab.Visible = false;
             }
@@ -854,7 +863,7 @@ namespace PointOfSaleSedek
 
 
 
-            
+
 
 
             if (RbUser.Visible == false && RbAuth.Visible == false)
@@ -868,11 +877,17 @@ namespace PointOfSaleSedek
 
 
 
-          
 
 
-            if (RbSaleReport.Visible == false &&
-                RbPurchessReport.Visible == false &&
+
+            if (
+
+                 rbProductRate.Visible == false
+                &&
+                RbSaleReport.Visible == false 
+                &&
+                RbPurchessReport.Visible == false 
+                &&
                 RbCancelationInvoiceReport.Visible == false
                 &&
                 RbProfitAndLossReport.Visible == false
@@ -925,15 +940,17 @@ namespace PointOfSaleSedek
 
 
 
- 
+
         private void barButtonItem8_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
 
-            if (st.Project_Type() == "Cafe") {
+            if (st.Project_Type() == "Cafe")
+            {
                 frmCafeSales frm = new frmCafeSales();
                 frm.ShowDialog();
             }
-            else if (st.Project_Type() == "Perfum") {
+            else if (st.Project_Type() == "Perfum")
+            {
                 frmPerfumSales frm = new frmPerfumSales();
                 frm.ShowDialog();
             }
@@ -942,7 +959,7 @@ namespace PointOfSaleSedek
                 frmSuperMarketSales frm = new frmSuperMarketSales();
                 frm.ShowDialog();
             }
-           
+
         }
 
         private void barButtonItem9_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -953,8 +970,8 @@ namespace PointOfSaleSedek
 
         private void BarAddUser_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-             frmUser frm = new frmUser();
-             frm.ShowDialog();
+            frmUser frm = new frmUser();
+            frm.ShowDialog();
         }
 
         private void barButtonItem12_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -975,7 +992,7 @@ namespace PointOfSaleSedek
                 frmSuperMarketItemCard frm = new frmSuperMarketItemCard();
                 frm.ShowDialog();
             }
- 
+
         }
 
         private void barButtonItem13_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -1048,44 +1065,47 @@ namespace PointOfSaleSedek
         }
 
 
-          void UploadSaleForServer() {
+        void UploadSaleForServer()
+        {
 
-            
+
             _server = new BackOfficeEntity.db_a8f74e_posEntities();
 
             using (POSEntity Contexts5 = new POSEntity())
             {
                 var master = Contexts5.SaleMasters.Where(e => e.is_Back_Office_Updated == false).ToList();
 
-                master.ForEach(xx=> {
+                master.ForEach(xx =>
+                {
 
 
-                    BackOfficeEntity.SaleMaster saleMaster = new BackOfficeEntity.SaleMaster() { 
-                    
-                    FinalTotal = xx.FinalTotal,
-                     is_Back_Office_Updated = xx.is_Back_Office_Updated,
-                     Branch_Id = xx.Branch_Id,
-                     Cash = xx.Cash,
-                     Customer_Code = xx.Customer_Code,
-                     Discount = xx.Discount,
-                     EntryDate = xx.EntryDate,
-                     IsDeleted = xx.IsDeleted,
-                     isUploaded = xx.isUploaded,
-                     LastDateModif = xx.LastDateModif,
-                     Operation_Type_Id = xx.Operation_Type_Id,
-                     Payment_Type = xx.Payment_Type,
-                     QtyTotal = xx.QtyTotal,
-                     SaleMasterCode = xx.SaleMasterCode,
-                     ShiftCode = xx.ShiftCode,
-                     TotalBeforDiscount = xx.TotalBeforDiscount,
-                     UserCode = xx.UserCode,
-                     UserIdTakeOrder = xx.UserIdTakeOrder,
-                     Visa  = xx.Visa
+                    BackOfficeEntity.SaleMaster saleMaster = new BackOfficeEntity.SaleMaster()
+                    {
+
+                        FinalTotal = xx.FinalTotal,
+                        is_Back_Office_Updated = xx.is_Back_Office_Updated,
+                        Branch_Id = xx.Branch_Id,
+                        Cash = xx.Cash,
+                        Customer_Code = xx.Customer_Code,
+                        Discount = xx.Discount,
+                        EntryDate = xx.EntryDate,
+                        IsDeleted = xx.IsDeleted,
+                        isUploaded = xx.isUploaded,
+                        LastDateModif = xx.LastDateModif,
+                        Operation_Type_Id = xx.Operation_Type_Id,
+                        Payment_Type = xx.Payment_Type,
+                        QtyTotal = xx.QtyTotal,
+                        SaleMasterCode = xx.SaleMasterCode,
+                        ShiftCode = xx.ShiftCode,
+                        TotalBeforDiscount = xx.TotalBeforDiscount,
+                        UserCode = xx.UserCode,
+                        UserIdTakeOrder = xx.UserIdTakeOrder,
+                        Visa = xx.Visa
 
 
 
                     };
-                
+
                     _server.SaleMasters.Add(saleMaster);
 
                     _server.SaveChanges();
@@ -1110,30 +1130,31 @@ namespace PointOfSaleSedek
             {
                 var Detail = Contexts5.SaleDetails.Where(e => e.is_Back_Office_Updated == false).ToList();
 
-                Detail.ForEach(xx => {
+                Detail.ForEach(xx =>
+                {
 
 
                     BackOfficeEntity.SaleDetail saleDetail = new BackOfficeEntity.SaleDetail()
                     {
-                         Branch_Id = xx.Branch_Id,
-                         CustomerCode = xx.CustomerCode,
-                         IsDeleted = xx.IsDeleted, 
-                         shiftCode = xx.shiftCode,
-                         is_Back_Office_Updated = xx.is_Back_Office_Updated,
-                         EntryDate = xx.EntryDate,
-                         isOile = xx.isOile,
-                         ItemCode = xx.ItemCode,
-                         Item_DisCount = xx.Item_DisCount,
-                         LastDateModif = xx.LastDateModif,
-                         LineSequence = xx.LineSequence,
-                         Operation_Type_Id = xx.Operation_Type_Id,
-                         Price = xx.Price,
-                         Qty = xx.Qty,
-                         SaleDetailCode = xx.SaleDetailCode,
-                         SaleMasterCode = xx.SaleMasterCode,
-                         Total = xx.Total,
-                         UserId = xx.UserId,
-                         Warhouse_Code = xx.Warhouse_Code
+                        Branch_Id = xx.Branch_Id,
+                        CustomerCode = xx.CustomerCode,
+                        IsDeleted = xx.IsDeleted,
+                        shiftCode = xx.shiftCode,
+                        is_Back_Office_Updated = xx.is_Back_Office_Updated,
+                        EntryDate = xx.EntryDate,
+                        isOile = xx.isOile,
+                        ItemCode = xx.ItemCode,
+                        Item_DisCount = xx.Item_DisCount,
+                        LastDateModif = xx.LastDateModif,
+                        LineSequence = xx.LineSequence,
+                        Operation_Type_Id = xx.Operation_Type_Id,
+                        Price = xx.Price,
+                        Qty = xx.Qty,
+                        SaleDetailCode = xx.SaleDetailCode,
+                        SaleMasterCode = xx.SaleMasterCode,
+                        Total = xx.Total,
+                        UserId = xx.UserId,
+                        Warhouse_Code = xx.Warhouse_Code
 
 
                     };
@@ -1170,18 +1191,19 @@ namespace PointOfSaleSedek
             {
                 var shifts = Contexts5.Shifts.Where(e => e.is_Back_Office_Updated == false).ToList();
 
-                shifts.ForEach(xx => {
+                shifts.ForEach(xx =>
+                {
 
 
                     BackOfficeEntity.Shift shift = new BackOfficeEntity.Shift()
                     {
 
-                       Branch_Id = xx.Branch_Id,
-                       Expenses = xx.Expenses,
-                       IsDeleted = xx.IsDeleted,
-                       isUploaded = xx.isUploaded,
-                       is_Back_Office_Updated = xx.is_Back_Office_Updated,
-                       Last_Modified_Date = xx.Last_Modified_Date,
+                        Branch_Id = xx.Branch_Id,
+                        Expenses = xx.Expenses,
+                        IsDeleted = xx.IsDeleted,
+                        isUploaded = xx.isUploaded,
+                        is_Back_Office_Updated = xx.is_Back_Office_Updated,
+                        Last_Modified_Date = xx.Last_Modified_Date,
                         Last_Modified_User = xx.Last_Modified_User,
                         Shift_Code = xx.Shift_Code,
                         Shift_End_Amount = xx.Shift_End_Amount,
@@ -1191,7 +1213,7 @@ namespace PointOfSaleSedek
                         Shift_Increase_disability = xx.Shift_Increase_disability,
                         Shift_Start_Amount = xx.Shift_Start_Amount,
                         Shift_Start_Date = xx.Shift_Start_Date,
-                        Shift_Start_Notes =  xx.Shift_Start_Notes,
+                        Shift_Start_Notes = xx.Shift_Start_Notes,
                         TotalSale = xx.TotalSale,
                         User_Id = xx.User_Id
 
@@ -1219,32 +1241,34 @@ namespace PointOfSaleSedek
             }
 
         }
-        void UploadExpensesForServer() {
+        void UploadExpensesForServer()
+        {
             _server = new BackOfficeEntity.db_a8f74e_posEntities();
 
             using (POSEntity Contexts5 = new POSEntity())
             {
                 var exp = Contexts5.ExpensesTransactions.Where(e => e.is_Back_Office_Updated == false).ToList();
 
-                exp.ForEach(xx => {
+                exp.ForEach(xx =>
+                {
 
 
                     BackOfficeEntity.ExpensesTransaction expenses = new BackOfficeEntity.ExpensesTransaction()
                     {
 
-                       Branch_Id = xx.Branch_Id,
-                       ExpensesNotes = xx.ExpensesNotes,
-                       is_Back_Office_Updated = xx.is_Back_Office_Updated,
-                       Id = xx.Id,
-                       Date = xx.Date,
-                       Emp_Code = xx.Emp_Code,
-                       ExpensesCode = xx.ExpensesCode,
-                       ExpensesQT = xx.ExpensesQT,
-                       IsDeleted = xx.IsDeleted, 
-                       isUploaded = xx.isUploaded,
-                       Last_Modified_By = xx.Last_Modified_By,
-                       Last_Modified_Date = xx.Last_Modified_Date,
-                       Shift_Code = xx.Shift_Code
+                        Branch_Id = xx.Branch_Id,
+                        ExpensesNotes = xx.ExpensesNotes,
+                        is_Back_Office_Updated = xx.is_Back_Office_Updated,
+                        Id = xx.Id,
+                        Date = xx.Date,
+                        Emp_Code = xx.Emp_Code,
+                        ExpensesCode = xx.ExpensesCode,
+                        ExpensesQT = xx.ExpensesQT,
+                        IsDeleted = xx.IsDeleted,
+                        isUploaded = xx.isUploaded,
+                        Last_Modified_By = xx.Last_Modified_By,
+                        Last_Modified_Date = xx.Last_Modified_Date,
+                        Shift_Code = xx.Shift_Code
 
 
                     };
@@ -1278,17 +1302,19 @@ namespace PointOfSaleSedek
             SplashScreenManager.ShowForm(typeof(WaitForm1));
 
 
-            try {
+            try
+            {
                 UploadSaleForServer();
                 UploadExpensesForServer();
             }
-            catch   { 
-            
+            catch
+            {
+
             }
-          
 
 
-                   SplashScreenManager.CloseForm();
+
+            SplashScreenManager.CloseForm();
 
             //if (CheckForInternetConnection())
             //{
@@ -1346,7 +1372,7 @@ namespace PointOfSaleSedek
                 frmSuperMarketItemCard frm = new frmSuperMarketItemCard();
                 frm.ShowDialog();
             }
-          
+
         }
 
         private void btnBranch_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -1361,7 +1387,7 @@ namespace PointOfSaleSedek
             frm.ShowDialog();
         }
 
-      
+
 
         private void barButtonItem27_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
@@ -1435,7 +1461,8 @@ namespace PointOfSaleSedek
 
         DataTable dt = new DataTable();
 
-        void removeEmpityData() {
+        void removeEmpityData()
+        {
 
             for (int i = dt.Rows.Count - 1; i >= 0; i--)
             {
@@ -1456,7 +1483,8 @@ namespace PointOfSaleSedek
                 localContext = new POSEntity();
                 Int64? MaxCode = localContext.Customer_Info.Max(u => (Int64?)u.Customer_Code + 1);
 
-                if (MaxCode == 0 || MaxCode == null) {
+                if (MaxCode == 0 || MaxCode == null)
+                {
                     MaxCode = 1;
                 }
 
@@ -1468,10 +1496,10 @@ namespace PointOfSaleSedek
                     CustomerFavourit = dt.Rows[i]["البرفن الخاص به"].ToString(),
                     Created_Date = DateTime.Now,
                     Customer_Code = Convert.ToInt64(MaxCode),
-                   
+
                     SexTypeCode = Convert.ToInt32(1),
                     Last_Modified_User = 0,
-                    
+
                 };
 
                 localContext.Customer_Info.Add(_customer);
@@ -1482,15 +1510,15 @@ namespace PointOfSaleSedek
 
             }
 
-      
-         
-             
+
+
+
 
 
         }
 
-      
-     
+
+
 
         private void barButtonItem38_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
@@ -1511,7 +1539,7 @@ namespace PointOfSaleSedek
 
                     if (istotalShiftMaster)
                     {
-                       
+
                         totalShiftMaster = Convert.ToDouble(localContext.SaleMasters.Where(master => master.IsDeleted == 0 && master.ShiftCode == Shift.Shift_Code && master.Operation_Type_Id == 2).Sum(master => master.FinalTotal));
 
                     }
@@ -1564,10 +1592,10 @@ namespace PointOfSaleSedek
         }
 
         private void barButtonItem41_ItemClick(object sender, ItemClickEventArgs e)
-        { 
+        {
             TransferWarhouse frm = new TransferWarhouse();
             frm.ShowDialog();
-            
+
         }
 
         private void barButtonItem40_ItemClick(object sender, ItemClickEventArgs e)
@@ -1580,363 +1608,365 @@ namespace PointOfSaleSedek
         {
             Category_Back_office frm = new Category_Back_office();
             frm.ShowDialog();
-             
+
         }
 
-        void updateCategory(Int64 branchCode, BackOfficeEntity.Back_Office_Transaction_Detail detail) {
+        void updateCategory(Int64 branchCode, BackOfficeEntity.Back_Office_Transaction_Detail detail)
+        {
 
             _server = new BackOfficeEntity.db_a8f74e_posEntities();
             List<BackOfficeEntity.Category_Back_Office> _Category_Back_Office = _server.Category_Back_Office.Where(ff => ff.Branch_Code == branchCode && ff.Back_Office_Master_Code == detail.Back_Office_Master_Code && ff.Back_Office_Detail_Code == detail.Detail_Code && detail.IsDeleted == 0).ToList();
-                _Category_Back_Office.ForEach(xc => {
+            _Category_Back_Office.ForEach(xc =>
+            {
 
-                    // check In Local
+                // check In Local
 
-                    localContext = new POSEntity();
-                    var isFind = localContext.Categories.Any(cat => cat.Branch_Code == branchCode && cat.Branch_Code != 0 && cat.IsDeleted == 0 && cat.CategoryCode == xc.CategoryCode);
+                localContext = new POSEntity();
+                var isFind = localContext.Categories.Any(cat => cat.Branch_Code == branchCode && cat.Branch_Code != 0 && cat.IsDeleted == 0 && cat.CategoryCode == xc.CategoryCode);
 
-                    if (isFind)
+                if (isFind)
+                {
+
+                    if (xc.Event_Code == 3)
                     {
 
-                        if (xc.Event_Code == 3)
+                        // Local
+                        localContext = new POSEntity();
+                        bool CheckRelation = localContext.ItemCardViews.Where(ItemCard => ItemCard.IsDeleted == 0).Any(ItemCard => ItemCard.UnitCode == xc.CategoryCode);
+
+
+
+                        if (CheckRelation)
                         {
 
-                            // Local
-                            localContext = new POSEntity();
-                            bool CheckRelation = localContext.ItemCardViews.Where(ItemCard => ItemCard.IsDeleted == 0).Any(ItemCard => ItemCard.UnitCode == xc.CategoryCode);
-
-                            
-  
-                                if (CheckRelation)
-                                {
-
-
-                                _server = new BackOfficeEntity.db_a8f74e_posEntities();
-                                BackOfficeEntity.Back_Office_Transaction_Detail Detail = _server.Back_Office_Transaction_Detail.FirstOrDefault(x2 => x2.Id == detail.Id);
-                                    Detail.Fail_Take_Update_Reason = st.isEnglish() ? "This Category cannot be deleted because there are products on it" : "لا يمكن حذف هذه المجموعة لوجود منتجات عليها";
-                                    Detail.Is_Brach_Take_Update = true;
-                                    _server.SaveChanges();
-                                    _server.Dispose();
-
-                                _server = new BackOfficeEntity.db_a8f74e_posEntities();
-                                BackOfficeEntity.Category_Back_Office Category_Back = _server.Category_Back_Office.FirstOrDefault(ff => ff.Back_Office_Detail_Code == xc.Back_Office_Detail_Code);
-
-                                    Category_Back.IsDeleted = 0;
-                                    Category_Back.Is_Brach_Take_Update = true;
-
-                                    Category_Back.Event_Code = 0;
-
-
-                                    _server.SaveChanges();
-                                    _server.Dispose();
-
-                                }
-
-                                else
-                                {
-                                    //local
-
-                                    Category _Category;
-                                localContext = new POSEntity();
-                                _Category = localContext.Categories.FirstOrDefault(cat => cat.CategoryCode == xc.CategoryCode && cat.Branch_Code == branchCode && cat.Branch_Code != 0 && cat.IsDeleted == 0);
-                                    _Category.IsDeleted = 1;
-                                      localContext.SaveChanges();
-                                      localContext.Dispose();
-
-
-                                _server = new BackOfficeEntity.db_a8f74e_posEntities();
-                                BackOfficeEntity.Category_Back_Office Category_Back = _server.Category_Back_Office.FirstOrDefault(ff => ff.Back_Office_Detail_Code == xc.Back_Office_Detail_Code);
-                                    Category_Back.Is_Brach_Take_Update = true;
-                                    _server.SaveChanges();
-                                    _server.Dispose();
-
-                                _server = new BackOfficeEntity.db_a8f74e_posEntities();
-                                BackOfficeEntity.Back_Office_Transaction_Detail detail1 = _server.Back_Office_Transaction_Detail.FirstOrDefault(x2 => x2.Detail_Code == detail.Detail_Code);
-                                    detail1.Fail_Take_Update_Reason = st.isEnglish() ? "Success" : "تم التحديث بنجاح";
-                                    detail1.Is_Brach_Take_Update = true;
-                                    _server.SaveChanges();
-                                    _server.Dispose();
-
-                                }
-
-
-
-                            
-
-                        }
-
-                        else if (xc.Event_Code == 2 || xc.Event_Code == 1)
-                        {
-                            
-
-                                Category _Category;
-                            localContext = new POSEntity();
-                            _Category = localContext.Categories.FirstOrDefault(cat => cat.CategoryCode == xc.CategoryCode && cat.Branch_Code == branchCode && cat.Branch_Code != 0 && cat.IsDeleted == 0);
-                                _Category.CategoryName = xc.CategoryName;
-                                 localContext.SaveChanges();
-                            localContext.Dispose();
 
                             _server = new BackOfficeEntity.db_a8f74e_posEntities();
-                            BackOfficeEntity.Category_Back_Office Category_Back = _server.Category_Back_Office.FirstOrDefault(x2 => x2.Back_Office_Detail_Code == detail.Detail_Code);
-                                Category_Back.Is_Brach_Take_Update = true;
-                                _server.SaveChanges();
-                                 _server.Dispose();
-
-
-                            _server = new BackOfficeEntity.db_a8f74e_posEntities();
-                            BackOfficeEntity.Back_Office_Transaction_Detail Detail4 = _server.Back_Office_Transaction_Detail.FirstOrDefault(x2 => x2.Id == detail.Id);
-                                Detail4.Fail_Take_Update_Reason = st.isEnglish() ? "Success" : "تم التحديث بنجاح";
-                                Detail4.Is_Brach_Take_Update = true;
-                                _server.SaveChanges();
-                                 _server.Dispose();
-
-
-
-                        }
-
-
-
-                    }
-
-                    else
-                    {
-                        
-
-                            try
-                            {
-                                Category _Category = new Category()
-                                {
-                                    Branch_Code = branchCode,
-                                    CategoryCode = xc.CategoryCode,
-                                    CategoryName = xc.CategoryName,
-
-                                    IsDeleted = 0,
-
-                                };
-                            localContext = new POSEntity();
-                            localContext.Categories.Add(_Category);
-                            localContext.SaveChanges();
-                            localContext.Dispose();
-
-                            _server = new BackOfficeEntity.db_a8f74e_posEntities();
-                            BackOfficeEntity.Category_Back_Office Category_Back = _server.Category_Back_Office.FirstOrDefault(x2 => x2.Back_Office_Detail_Code == detail.Detail_Code);
-                                Category_Back.Is_Brach_Take_Update = true;
+                            BackOfficeEntity.Back_Office_Transaction_Detail Detail = _server.Back_Office_Transaction_Detail.FirstOrDefault(x2 => x2.Id == detail.Id);
+                            Detail.Fail_Take_Update_Reason = st.isEnglish() ? "This Category cannot be deleted because there are products on it" : "لا يمكن حذف هذه المجموعة لوجود منتجات عليها";
+                            Detail.Is_Brach_Take_Update = true;
                             _server.SaveChanges();
                             _server.Dispose();
 
                             _server = new BackOfficeEntity.db_a8f74e_posEntities();
-                            BackOfficeEntity.Back_Office_Transaction_Detail detail10 = _server.Back_Office_Transaction_Detail.FirstOrDefault(x2 => x2.Id == detail.Id);
-                                detail10.Fail_Take_Update_Reason = st.isEnglish() ? "Success" : "تم التحديث بنجاح";
-                                detail10.Is_Brach_Take_Update = true;
-                                _server.SaveChanges();
-                                _server.Dispose();
+                            BackOfficeEntity.Category_Back_Office Category_Back = _server.Category_Back_Office.FirstOrDefault(ff => ff.Back_Office_Detail_Code == xc.Back_Office_Detail_Code);
+
+                            Category_Back.IsDeleted = 0;
+                            Category_Back.Is_Brach_Take_Update = true;
+
+                            Category_Back.Event_Code = 0;
 
 
-                            }
-                            catch (DbEntityValidationException e)
-                            {
-                                foreach (var eve in e.EntityValidationErrors)
-                                {
+                            _server.SaveChanges();
+                            _server.Dispose();
 
-                                    String dd = "Entity of type \"{0}\" in state \"{1}\" has the following validation errors:" + eve.Entry.Entity.GetType().Name.ToString() + eve.Entry.State.ToString();
+                        }
 
-                                    foreach (var ve in eve.ValidationErrors)
-                                    {
+                        else
+                        {
+                            //local
 
-                                        String ddddd = "Property: \"{0}\", Error: \"{1}\"" + ve.PropertyName.ToString() + ve.ErrorMessage.ToString();
+                            Category _Category;
+                            localContext = new POSEntity();
+                            _Category = localContext.Categories.FirstOrDefault(cat => cat.CategoryCode == xc.CategoryCode && cat.Branch_Code == branchCode && cat.Branch_Code != 0 && cat.IsDeleted == 0);
+                            _Category.IsDeleted = 1;
+                            localContext.SaveChanges();
+                            localContext.Dispose();
+
+
+                            _server = new BackOfficeEntity.db_a8f74e_posEntities();
+                            BackOfficeEntity.Category_Back_Office Category_Back = _server.Category_Back_Office.FirstOrDefault(ff => ff.Back_Office_Detail_Code == xc.Back_Office_Detail_Code);
+                            Category_Back.Is_Brach_Take_Update = true;
+                            _server.SaveChanges();
+                            _server.Dispose();
+
+                            _server = new BackOfficeEntity.db_a8f74e_posEntities();
+                            BackOfficeEntity.Back_Office_Transaction_Detail detail1 = _server.Back_Office_Transaction_Detail.FirstOrDefault(x2 => x2.Detail_Code == detail.Detail_Code);
+                            detail1.Fail_Take_Update_Reason = st.isEnglish() ? "Success" : "تم التحديث بنجاح";
+                            detail1.Is_Brach_Take_Update = true;
+                            _server.SaveChanges();
+                            _server.Dispose();
+
+                        }
 
 
 
 
-                                    }
-                                }
-                                throw;
-                            }
 
-                        
+                    }
+
+                    else if (xc.Event_Code == 2 || xc.Event_Code == 1)
+                    {
+
+
+                        Category _Category;
+                        localContext = new POSEntity();
+                        _Category = localContext.Categories.FirstOrDefault(cat => cat.CategoryCode == xc.CategoryCode && cat.Branch_Code == branchCode && cat.Branch_Code != 0 && cat.IsDeleted == 0);
+                        _Category.CategoryName = xc.CategoryName;
+                        localContext.SaveChanges();
+                        localContext.Dispose();
+
+                        _server = new BackOfficeEntity.db_a8f74e_posEntities();
+                        BackOfficeEntity.Category_Back_Office Category_Back = _server.Category_Back_Office.FirstOrDefault(x2 => x2.Back_Office_Detail_Code == detail.Detail_Code);
+                        Category_Back.Is_Brach_Take_Update = true;
+                        _server.SaveChanges();
+                        _server.Dispose();
+
+
+                        _server = new BackOfficeEntity.db_a8f74e_posEntities();
+                        BackOfficeEntity.Back_Office_Transaction_Detail Detail4 = _server.Back_Office_Transaction_Detail.FirstOrDefault(x2 => x2.Id == detail.Id);
+                        Detail4.Fail_Take_Update_Reason = st.isEnglish() ? "Success" : "تم التحديث بنجاح";
+                        Detail4.Is_Brach_Take_Update = true;
+                        _server.SaveChanges();
+                        _server.Dispose();
+
+
+
                     }
 
 
 
+                }
 
-                });
+                else
+                {
 
-           
 
-             
+                    try
+                    {
+                        Category _Category = new Category()
+                        {
+                            Branch_Code = branchCode,
+                            CategoryCode = xc.CategoryCode,
+                            CategoryName = xc.CategoryName,
+
+                            IsDeleted = 0,
+
+                        };
+                        localContext = new POSEntity();
+                        localContext.Categories.Add(_Category);
+                        localContext.SaveChanges();
+                        localContext.Dispose();
+
+                        _server = new BackOfficeEntity.db_a8f74e_posEntities();
+                        BackOfficeEntity.Category_Back_Office Category_Back = _server.Category_Back_Office.FirstOrDefault(x2 => x2.Back_Office_Detail_Code == detail.Detail_Code);
+                        Category_Back.Is_Brach_Take_Update = true;
+                        _server.SaveChanges();
+                        _server.Dispose();
+
+                        _server = new BackOfficeEntity.db_a8f74e_posEntities();
+                        BackOfficeEntity.Back_Office_Transaction_Detail detail10 = _server.Back_Office_Transaction_Detail.FirstOrDefault(x2 => x2.Id == detail.Id);
+                        detail10.Fail_Take_Update_Reason = st.isEnglish() ? "Success" : "تم التحديث بنجاح";
+                        detail10.Is_Brach_Take_Update = true;
+                        _server.SaveChanges();
+                        _server.Dispose();
+
+
+                    }
+                    catch (DbEntityValidationException e)
+                    {
+                        foreach (var eve in e.EntityValidationErrors)
+                        {
+
+                            String dd = "Entity of type \"{0}\" in state \"{1}\" has the following validation errors:" + eve.Entry.Entity.GetType().Name.ToString() + eve.Entry.State.ToString();
+
+                            foreach (var ve in eve.ValidationErrors)
+                            {
+
+                                String ddddd = "Property: \"{0}\", Error: \"{1}\"" + ve.PropertyName.ToString() + ve.ErrorMessage.ToString();
+
+
+
+
+                            }
+                        }
+                        throw;
+                    }
+
+
+                }
+
+
+
+
+            });
+
+
+
+
         }
 
-        void updateUnit(Int64 branchCode,  BackOfficeEntity.Back_Office_Transaction_Detail detail)
+        void updateUnit(Int64 branchCode, BackOfficeEntity.Back_Office_Transaction_Detail detail)
         {
             _server = new BackOfficeEntity.db_a8f74e_posEntities();
             List<BackOfficeEntity.UnitCard_Back_Office> _UnitCard_Back_Office = _server.UnitCard_Back_Office.Where(ff => ff.Branch_Code == branchCode && ff.Back_Office_Detail_Code == detail.Detail_Code && ff.Back_Office_Master_Code == detail.Back_Office_Master_Code && detail.IsDeleted == 0).ToList();
 
 
-                _UnitCard_Back_Office.ForEach(xc =>
+            _UnitCard_Back_Office.ForEach(xc =>
+            {
+                localContext = new POSEntity();
+                var isFind = localContext.UnitCards.Any(cat => cat.Branch_Code == branchCode && cat.Branch_Code != 0 && cat.IsDeleted == 0 && cat.UnitCode == xc.UnitCode);
+
+                if (isFind)
                 {
-                    localContext = new POSEntity();
-                    var isFind = localContext.UnitCards.Any(cat => cat.Branch_Code == branchCode && cat.Branch_Code != 0 && cat.IsDeleted == 0 && cat.UnitCode == xc.UnitCode);
 
-                    if (isFind)
+                    if (xc.Event_Code == 3)
                     {
+                        localContext = new POSEntity();
+                        bool CheckRelation = localContext.ItemCardViews.Where(ItemCard => ItemCard.IsDeleted == 0).Any(ItemCard => ItemCard.UnitCode == xc.UnitCode);
 
-                        if (xc.Event_Code == 3)
+
+
+                        if (CheckRelation)
                         {
-                            localContext = new POSEntity();
-                            bool CheckRelation = localContext.ItemCardViews.Where(ItemCard => ItemCard.IsDeleted == 0).Any(ItemCard => ItemCard.UnitCode == xc.UnitCode);
-                           
 
 
-                                if (CheckRelation)
-                                {
+                            _server = new BackOfficeEntity.db_a8f74e_posEntities();
+                            BackOfficeEntity.Back_Office_Transaction_Detail Detail = _server.Back_Office_Transaction_Detail.FirstOrDefault(x2 => x2.Detail_Code == detail.Detail_Code);
+                            Detail.Fail_Take_Update_Reason = st.isEnglish() ? "This Unit cannot be deleted because there are products on it" : "لا يمكن حذف هذه الوحدة لوجود منتجات عليها";
+                            Detail.Is_Brach_Take_Update = true;
+                            _server.SaveChanges();
+                            _server.Dispose();
+
+                            _server = new BackOfficeEntity.db_a8f74e_posEntities();
+                            BackOfficeEntity.UnitCard_Back_Office Category_Back = _server.UnitCard_Back_Office.FirstOrDefault(ff => ff.Back_Office_Detail_Code == detail.Detail_Code);
+
+                            Category_Back.IsDeleted = 0;
+                            Category_Back.Is_Brach_Take_Update = true;
+                            Category_Back.Event_Code = 0;
 
 
-                                _server = new BackOfficeEntity.db_a8f74e_posEntities();
-                                BackOfficeEntity.Back_Office_Transaction_Detail Detail = _server.Back_Office_Transaction_Detail.FirstOrDefault(x2 => x2.Detail_Code == detail.Detail_Code);
-                                    Detail.Fail_Take_Update_Reason = st.isEnglish() ? "This Unit cannot be deleted because there are products on it" : "لا يمكن حذف هذه الوحدة لوجود منتجات عليها";
-                                    Detail.Is_Brach_Take_Update = true;
-                                _server.SaveChanges();
-                                _server.Dispose();
+                            _server.SaveChanges();
+                            _server.Dispose();
 
-                                _server = new BackOfficeEntity.db_a8f74e_posEntities();
-                                BackOfficeEntity.UnitCard_Back_Office Category_Back = _server.UnitCard_Back_Office.FirstOrDefault(ff => ff.Back_Office_Detail_Code == detail.Detail_Code);
-
-                                    Category_Back.IsDeleted = 0;
-                                    Category_Back.Is_Brach_Take_Update = true;
-                                    Category_Back.Event_Code = 0;
-
-
-                                _server.SaveChanges();
-                                _server.Dispose();
-                           
-
-                                }
-
-                                else
-                                {
-                                    UnitCard _Category;
-                                localContext = new POSEntity();
-                                _Category = localContext.UnitCards.FirstOrDefault(cat => cat.UnitCode == xc.UnitCode && cat.Branch_Code == branchCode && cat.Branch_Code != 0 && cat.IsDeleted == 0);
-                                _Category.IsDeleted = 1;
-                                localContext.SaveChanges();
-                                localContext.Dispose();
-
-                                _server = new BackOfficeEntity.db_a8f74e_posEntities();
-                                BackOfficeEntity.UnitCard_Back_Office Category_Back = _server.UnitCard_Back_Office.FirstOrDefault(ff => ff.Back_Office_Detail_Code == detail.Detail_Code);
-                                    Category_Back.Is_Brach_Take_Update = true;
-                                _server.SaveChanges();
-                                _server.Dispose();
-
-                                _server = new BackOfficeEntity.db_a8f74e_posEntities();
-                                BackOfficeEntity.Back_Office_Transaction_Detail Detail = _server.Back_Office_Transaction_Detail.FirstOrDefault(x2 => x2.Detail_Code == detail.Detail_Code);
-                                    Detail.Fail_Take_Update_Reason = st.isEnglish() ? "Success" : "تم التحديث بنجاح";
-                                    Detail.Is_Brach_Take_Update = true;
-                                _server.SaveChanges();
-                                _server.Dispose();
-
-                                }
-
-
-
-                             
 
                         }
 
-                        else if (xc.Event_Code == 2 || xc.Event_Code == 1)
+                        else
                         {
-                             
-
-                                UnitCard _Category;
+                            UnitCard _Category;
                             localContext = new POSEntity();
-                            _Category = localContext.UnitCards.FirstOrDefault(cat => cat.UnitCode == xc.UnitCode && cat.Branch_Code == branchCode && cat.Branch_Code != 0 && cat.IsDeleted == 0 );
-
-                                _Category.UnitName = xc.UnitName;
+                            _Category = localContext.UnitCards.FirstOrDefault(cat => cat.UnitCode == xc.UnitCode && cat.Branch_Code == branchCode && cat.Branch_Code != 0 && cat.IsDeleted == 0);
+                            _Category.IsDeleted = 1;
                             localContext.SaveChanges();
                             localContext.Dispose();
 
                             _server = new BackOfficeEntity.db_a8f74e_posEntities();
                             BackOfficeEntity.UnitCard_Back_Office Category_Back = _server.UnitCard_Back_Office.FirstOrDefault(ff => ff.Back_Office_Detail_Code == detail.Detail_Code);
-                                Category_Back.Is_Brach_Take_Update = true;
-                            _server.SaveChanges();
-                            _server.Dispose();
-
-                            _server = new BackOfficeEntity.db_a8f74e_posEntities();
-                            BackOfficeEntity.Back_Office_Transaction_Detail Detail = _server.Back_Office_Transaction_Detail.FirstOrDefault(x2 => x2.Id == detail.Id);
-                                Detail.Fail_Take_Update_Reason = st.isEnglish() ? "Success" : "تم التحديث بنجاح";
-                                Detail.Is_Brach_Take_Update = true;
-                            _server.SaveChanges();
-                            _server.Dispose();
-
-
-                        }
-
-
-
-                    }
-
-                    else
-                    {
-                         
-
-                            try
-                            {
-                                UnitCard _UnitCard = new UnitCard()
-                                {
-                                    Branch_Code = branchCode,
-                                    UnitCode = xc.UnitCode,
-                                    UnitName = xc.UnitName,
-
-                                    IsDeleted = 0,
-
-                                };
-                            localContext = new POSEntity();
-                            localContext.UnitCards.Add(_UnitCard);
-                            localContext.SaveChanges();
-
-                            _server = new BackOfficeEntity.db_a8f74e_posEntities();
-                            BackOfficeEntity.UnitCard_Back_Office Category_Back = _server.UnitCard_Back_Office.FirstOrDefault(ff => ff.Back_Office_Detail_Code == xc.Back_Office_Detail_Code);
-                                Category_Back.Is_Brach_Take_Update = true;
+                            Category_Back.Is_Brach_Take_Update = true;
                             _server.SaveChanges();
                             _server.Dispose();
 
                             _server = new BackOfficeEntity.db_a8f74e_posEntities();
                             BackOfficeEntity.Back_Office_Transaction_Detail Detail = _server.Back_Office_Transaction_Detail.FirstOrDefault(x2 => x2.Detail_Code == detail.Detail_Code);
-                                Detail.Fail_Take_Update_Reason = st.isEnglish() ? "Success" : "تم التحديث بنجاح";
-                                Detail.Is_Brach_Take_Update = true;
-
+                            Detail.Fail_Take_Update_Reason = st.isEnglish() ? "Success" : "تم التحديث بنجاح";
+                            Detail.Is_Brach_Take_Update = true;
                             _server.SaveChanges();
                             _server.Dispose();
 
-
                         }
-                            catch (DbEntityValidationException e)
-                            {
-                                foreach (var eve in e.EntityValidationErrors)
-                                {
-
-                                    String dd = "Entity of type \"{0}\" in state \"{1}\" has the following validation errors:" + eve.Entry.Entity.GetType().Name.ToString() + eve.Entry.State.ToString();
-
-                                    foreach (var ve in eve.ValidationErrors)
-                                    {
-
-                                        String ddddd = "Property: \"{0}\", Error: \"{1}\"" + ve.PropertyName.ToString() + ve.ErrorMessage.ToString();
 
 
 
 
-                                    }
-                                }
-                                throw;
-                            }
 
-                         
+                    }
+
+                    else if (xc.Event_Code == 2 || xc.Event_Code == 1)
+                    {
+
+
+                        UnitCard _Category;
+                        localContext = new POSEntity();
+                        _Category = localContext.UnitCards.FirstOrDefault(cat => cat.UnitCode == xc.UnitCode && cat.Branch_Code == branchCode && cat.Branch_Code != 0 && cat.IsDeleted == 0);
+
+                        _Category.UnitName = xc.UnitName;
+                        localContext.SaveChanges();
+                        localContext.Dispose();
+
+                        _server = new BackOfficeEntity.db_a8f74e_posEntities();
+                        BackOfficeEntity.UnitCard_Back_Office Category_Back = _server.UnitCard_Back_Office.FirstOrDefault(ff => ff.Back_Office_Detail_Code == detail.Detail_Code);
+                        Category_Back.Is_Brach_Take_Update = true;
+                        _server.SaveChanges();
+                        _server.Dispose();
+
+                        _server = new BackOfficeEntity.db_a8f74e_posEntities();
+                        BackOfficeEntity.Back_Office_Transaction_Detail Detail = _server.Back_Office_Transaction_Detail.FirstOrDefault(x2 => x2.Id == detail.Id);
+                        Detail.Fail_Take_Update_Reason = st.isEnglish() ? "Success" : "تم التحديث بنجاح";
+                        Detail.Is_Brach_Take_Update = true;
+                        _server.SaveChanges();
+                        _server.Dispose();
+
+
                     }
 
 
 
+                }
 
-                });
+                else
+                {
 
-             
+
+                    try
+                    {
+                        UnitCard _UnitCard = new UnitCard()
+                        {
+                            Branch_Code = branchCode,
+                            UnitCode = xc.UnitCode,
+                            UnitName = xc.UnitName,
+
+                            IsDeleted = 0,
+
+                        };
+                        localContext = new POSEntity();
+                        localContext.UnitCards.Add(_UnitCard);
+                        localContext.SaveChanges();
+
+                        _server = new BackOfficeEntity.db_a8f74e_posEntities();
+                        BackOfficeEntity.UnitCard_Back_Office Category_Back = _server.UnitCard_Back_Office.FirstOrDefault(ff => ff.Back_Office_Detail_Code == xc.Back_Office_Detail_Code);
+                        Category_Back.Is_Brach_Take_Update = true;
+                        _server.SaveChanges();
+                        _server.Dispose();
+
+                        _server = new BackOfficeEntity.db_a8f74e_posEntities();
+                        BackOfficeEntity.Back_Office_Transaction_Detail Detail = _server.Back_Office_Transaction_Detail.FirstOrDefault(x2 => x2.Detail_Code == detail.Detail_Code);
+                        Detail.Fail_Take_Update_Reason = st.isEnglish() ? "Success" : "تم التحديث بنجاح";
+                        Detail.Is_Brach_Take_Update = true;
+
+                        _server.SaveChanges();
+                        _server.Dispose();
+
+
+                    }
+                    catch (DbEntityValidationException e)
+                    {
+                        foreach (var eve in e.EntityValidationErrors)
+                        {
+
+                            String dd = "Entity of type \"{0}\" in state \"{1}\" has the following validation errors:" + eve.Entry.Entity.GetType().Name.ToString() + eve.Entry.State.ToString();
+
+                            foreach (var ve in eve.ValidationErrors)
+                            {
+
+                                String ddddd = "Property: \"{0}\", Error: \"{1}\"" + ve.PropertyName.ToString() + ve.ErrorMessage.ToString();
+
+
+
+
+                            }
+                        }
+                        throw;
+                    }
+
+
+                }
+
+
+
+
+            });
+
+
         }
 
 
@@ -1948,124 +1978,41 @@ namespace PointOfSaleSedek
             _server = new BackOfficeEntity.db_a8f74e_posEntities();
             List<BackOfficeEntity.ItemCard_Back_Office> _ItemCard_Back_Office = _server.ItemCard_Back_Office.Where(ff => ff.Branch_Code == branchCode &&
                 ff.Is_Brach_Take_Update == false && ff.Back_Office_Detail_Code == detail.Detail_Code && ff.Back_Office_Master_Code == detail.Back_Office_Master_Code && detail.IsDeleted == 0).ToList();
-                _ItemCard_Back_Office.ForEach(xc => {
+            _ItemCard_Back_Office.ForEach(xc =>
+            {
 
-                    localContext = new POSEntity();
-                    var isFind = localContext.ItemCards.Any(cat => cat.Branch_Code == branchCode && cat.Branch_Code != 0 && cat.IsDeleted == 0 && cat.ItemCode == xc.ItemCode);
+                localContext = new POSEntity();
+                var isFind = localContext.ItemCards.Any(cat => cat.Branch_Code == branchCode && cat.Branch_Code != 0 && cat.IsDeleted == 0 && cat.ItemCode == xc.ItemCode);
 
-                    if (isFind)
+                if (isFind)
+                {
+
+                    if (xc.Event_Code == 3)
                     {
+                        localContext = new POSEntity();
+                        bool CheckRelation3 = localContext.SaleDetails.Any(ItemCard => ItemCard.IsDeleted == 0 && ItemCard.ItemCode == xc.ItemCode);
 
-                        if (xc.Event_Code == 3)
+
+
+                        if (CheckRelation3)
                         {
-                            localContext = new POSEntity();
-                            bool CheckRelation3 = localContext.SaleDetails.Any(ItemCard => ItemCard.IsDeleted == 0 && ItemCard.ItemCode == xc.ItemCode);
-
-                          
-
-                                if ( CheckRelation3)
-                                {
-
-
-                                _server = new BackOfficeEntity.db_a8f74e_posEntities();
-                                BackOfficeEntity.Back_Office_Transaction_Detail detail2 = _server.Back_Office_Transaction_Detail.FirstOrDefault(x2 => x2.Detail_Code == detail.Detail_Code);
-                                        detail2.Fail_Take_Update_Reason = st.isEnglish() ? "This item cannot be deleted because there are processes associated with it" : "لا يمكن حذف هذا العنصر لوجود عمليات مرتبطه به";
-                                        detail2.Is_Brach_Take_Update = true;
-                                    _server.SaveChanges();
-                                    _server.Dispose();
-
-
-                                _server = new BackOfficeEntity.db_a8f74e_posEntities();
-                                BackOfficeEntity.ItemCard_Back_Office itemCard_Back2 = _server.ItemCard_Back_Office.FirstOrDefault(ff => ff.Id == xc.Id);
-
-                                        itemCard_Back2.IsDeleted = 0;
-                                        itemCard_Back2.Is_Brach_Take_Update = true;
-                                        itemCard_Back2.Event_Code = 0;
-
-                                _server.SaveChanges();
-                                _server.Dispose();
-
-
-
-
-
-
-
-                            }
-
-                                else
-                                {
-                                    ItemCard _ItemCard;
-                                localContext = new POSEntity();
-                                _ItemCard = localContext.ItemCards.FirstOrDefault(cat => cat.ItemCode == xc.ItemCode && cat.Branch_Code == branchCode && cat.Branch_Code != 0 && cat.IsDeleted == 0);
-                                    _ItemCard.IsDeleted = 1;
-                                localContext.SaveChanges();
-                                localContext.Dispose();
-
-
-
-                                _server = new BackOfficeEntity.db_a8f74e_posEntities();
-                                BackOfficeEntity.Back_Office_Transaction_Detail petail1 = _server.Back_Office_Transaction_Detail.FirstOrDefault(x2 => x2.Detail_Code == detail.Detail_Code);
-                                        petail1.Fail_Take_Update_Reason = st.isEnglish() ? "Success" : "تم التحديث بنجاح";
-                                        petail1.Is_Brach_Take_Update = true;
-                                _server.SaveChanges();
-                                _server.Dispose();
-
-
-                                _server = new BackOfficeEntity.db_a8f74e_posEntities();
-                                BackOfficeEntity.ItemCard_Back_Office _itemCard_Back_Office = _server.ItemCard_Back_Office.FirstOrDefault(ff => ff.Back_Office_Detail_Code == detail.Detail_Code);
-                                        _itemCard_Back_Office.Is_Brach_Take_Update = true;
-                                _server.SaveChanges();
-                                _server.Dispose();
-
-
-
-
-                            }
-
-
-                            
-
-
-
-                        }
-
-                        else if (xc.Event_Code == 2 || xc.Event_Code == 1)
-                        {
-                            
-
-                                ItemCard _ItemCard;
-                            localContext = new POSEntity();
-                            _ItemCard = localContext.ItemCards.FirstOrDefault(cat => cat.ItemCode == xc.ItemCode && cat.Branch_Code == branchCode && cat.Branch_Code != 0 && cat.IsDeleted == 0);
-
-                                _ItemCard.ItemCode = xc.ItemCode;
-                                _ItemCard.Price = xc.Price;
-                                _ItemCard.AddItem = xc.AddItem;
-                                _ItemCard.Name = xc.Name;
-                                _ItemCard.ParCode = xc.ParCode;
-                                _ItemCard.IsDeleted = xc.IsDeleted;
-                                _ItemCard.Item_Risk_limit = xc.Item_Risk_limit;
-                                _ItemCard.UnitCode = xc.UnitCode;
-                                _ItemCard.Branch_Code = branchCode;
-                                _ItemCard.Name_En = xc.Name_En;
-                                _ItemCard.CategoryCode = xc.CategoryCode;
-                                localContext.SaveChanges();
-                                localContext.Dispose();
-
 
 
                             _server = new BackOfficeEntity.db_a8f74e_posEntities();
-                            BackOfficeEntity.Back_Office_Transaction_Detail df =  _server.Back_Office_Transaction_Detail.FirstOrDefault(x2 => x2.Detail_Code == xc.Back_Office_Detail_Code);
-
-                                    df.Fail_Take_Update_Reason = st.isEnglish() ? "Success" : "تم التحديث بنجاح";
-                                    df.Is_Brach_Take_Update = true;
-                                    _server.SaveChanges();
-                                    _server.Dispose();
+                            BackOfficeEntity.Back_Office_Transaction_Detail detail2 = _server.Back_Office_Transaction_Detail.FirstOrDefault(x2 => x2.Detail_Code == detail.Detail_Code);
+                            detail2.Fail_Take_Update_Reason = st.isEnglish() ? "This item cannot be deleted because there are processes associated with it" : "لا يمكن حذف هذا العنصر لوجود عمليات مرتبطه به";
+                            detail2.Is_Brach_Take_Update = true;
+                            _server.SaveChanges();
+                            _server.Dispose();
 
 
                             _server = new BackOfficeEntity.db_a8f74e_posEntities();
-                            BackOfficeEntity.ItemCard_Back_Office back = _server.ItemCard_Back_Office.FirstOrDefault(ff => ff.Back_Office_Detail_Code == detail.Detail_Code);
-                                    back.Is_Brach_Take_Update = true;
+                            BackOfficeEntity.ItemCard_Back_Office itemCard_Back2 = _server.ItemCard_Back_Office.FirstOrDefault(ff => ff.Id == xc.Id);
+
+                            itemCard_Back2.IsDeleted = 0;
+                            itemCard_Back2.Is_Brach_Take_Update = true;
+                            itemCard_Back2.Event_Code = 0;
+
                             _server.SaveChanges();
                             _server.Dispose();
 
@@ -2073,88 +2020,172 @@ namespace PointOfSaleSedek
 
 
 
+
+
                         }
 
-
-
-                    }
-
-                    else
-                    {
-
-                        localContext = new POSEntity();
-                        try
-                            {
-                                ItemCard _ItemCards = new ItemCard()
-                                {
-                                    Branch_Code = branchCode,
-
-
-                                 ItemCode = xc.ItemCode,
-                                    Price = xc.Price,
-                                    AddItem = xc.AddItem,
-                                    Name = xc.Name,
-                                    ParCode = xc.ParCode,
-                                    IsDeleted = xc.IsDeleted,
-                                    Item_Risk_limit = xc.Item_Risk_limit,
-                                    UnitCode = xc.UnitCode,
-                                    
-                                    Name_En = xc.Name_En,
-                                    CategoryCode = xc.CategoryCode,
-
-                                };
-                                localContext.ItemCards.Add(_ItemCards);
+                        else
+                        {
+                            ItemCard _ItemCard;
+                            localContext = new POSEntity();
+                            _ItemCard = localContext.ItemCards.FirstOrDefault(cat => cat.ItemCode == xc.ItemCode && cat.Branch_Code == branchCode && cat.Branch_Code != 0 && cat.IsDeleted == 0);
+                            _ItemCard.IsDeleted = 1;
                             localContext.SaveChanges();
                             localContext.Dispose();
 
 
 
-
                             _server = new BackOfficeEntity.db_a8f74e_posEntities();
-                            BackOfficeEntity.Back_Office_Transaction_Detail dtl = _server.Back_Office_Transaction_Detail.FirstOrDefault(x2 => x2.Detail_Code == detail.Detail_Code);
-                                    dtl.Fail_Take_Update_Reason = st.isEnglish() ? "Success" : "تم التحديث بنجاح";
-                                    dtl.Is_Brach_Take_Update = true;
+                            BackOfficeEntity.Back_Office_Transaction_Detail petail1 = _server.Back_Office_Transaction_Detail.FirstOrDefault(x2 => x2.Detail_Code == detail.Detail_Code);
+                            petail1.Fail_Take_Update_Reason = st.isEnglish() ? "Success" : "تم التحديث بنجاح";
+                            petail1.Is_Brach_Take_Update = true;
                             _server.SaveChanges();
                             _server.Dispose();
 
 
                             _server = new BackOfficeEntity.db_a8f74e_posEntities();
-                            BackOfficeEntity.ItemCard_Back_Office vategory_Back = _server.ItemCard_Back_Office.FirstOrDefault(ff => ff.Back_Office_Detail_Code == xc.Back_Office_Detail_Code);
-                                    vategory_Back.Is_Brach_Take_Update = true;
+                            BackOfficeEntity.ItemCard_Back_Office _itemCard_Back_Office = _server.ItemCard_Back_Office.FirstOrDefault(ff => ff.Back_Office_Detail_Code == detail.Detail_Code);
+                            _itemCard_Back_Office.Is_Brach_Take_Update = true;
                             _server.SaveChanges();
                             _server.Dispose();
+
 
 
 
                         }
-                            catch (DbEntityValidationException e)
-                            {
-                                foreach (var eve in e.EntityValidationErrors)
-                                {
-
-                                    String dd = "Entity of type \"{0}\" in state \"{1}\" has the following validation errors:" + eve.Entry.Entity.GetType().Name.ToString() + eve.Entry.State.ToString();
-
-                                    foreach (var ve in eve.ValidationErrors)
-                                    {
-
-                                        String ddddd = "Property: \"{0}\", Error: \"{1}\"" + ve.PropertyName.ToString() + ve.ErrorMessage.ToString();
 
 
 
 
-                                    }
-                                }
-                                throw;
-                            }
 
 
-                      
                     }
-                     
+
+                    else if (xc.Event_Code == 2 || xc.Event_Code == 1)
+                    {
 
 
-                });
-            
+                        ItemCard _ItemCard;
+                        localContext = new POSEntity();
+                        _ItemCard = localContext.ItemCards.FirstOrDefault(cat => cat.ItemCode == xc.ItemCode && cat.Branch_Code == branchCode && cat.Branch_Code != 0 && cat.IsDeleted == 0);
+
+                        _ItemCard.ItemCode = xc.ItemCode;
+                        _ItemCard.Price = xc.Price;
+                        _ItemCard.AddItem = xc.AddItem;
+                        _ItemCard.Name = xc.Name;
+                        _ItemCard.ParCode = xc.ParCode;
+                        _ItemCard.IsDeleted = xc.IsDeleted;
+                        _ItemCard.Item_Risk_limit = xc.Item_Risk_limit;
+                        _ItemCard.UnitCode = xc.UnitCode;
+                        _ItemCard.Branch_Code = branchCode;
+                        _ItemCard.Name_En = xc.Name_En;
+                        _ItemCard.CategoryCode = xc.CategoryCode;
+                        localContext.SaveChanges();
+                        localContext.Dispose();
+
+
+
+                        _server = new BackOfficeEntity.db_a8f74e_posEntities();
+                        BackOfficeEntity.Back_Office_Transaction_Detail df = _server.Back_Office_Transaction_Detail.FirstOrDefault(x2 => x2.Detail_Code == xc.Back_Office_Detail_Code);
+
+                        df.Fail_Take_Update_Reason = st.isEnglish() ? "Success" : "تم التحديث بنجاح";
+                        df.Is_Brach_Take_Update = true;
+                        _server.SaveChanges();
+                        _server.Dispose();
+
+
+                        _server = new BackOfficeEntity.db_a8f74e_posEntities();
+                        BackOfficeEntity.ItemCard_Back_Office back = _server.ItemCard_Back_Office.FirstOrDefault(ff => ff.Back_Office_Detail_Code == detail.Detail_Code);
+                        back.Is_Brach_Take_Update = true;
+                        _server.SaveChanges();
+                        _server.Dispose();
+
+
+
+
+
+                    }
+
+
+
+                }
+
+                else
+                {
+
+                    localContext = new POSEntity();
+                    try
+                    {
+                        ItemCard _ItemCards = new ItemCard()
+                        {
+                            Branch_Code = branchCode,
+
+
+                            ItemCode = xc.ItemCode,
+                            Price = xc.Price,
+                            AddItem = xc.AddItem,
+                            Name = xc.Name,
+                            ParCode = xc.ParCode,
+                            IsDeleted = xc.IsDeleted,
+                            Item_Risk_limit = xc.Item_Risk_limit,
+                            UnitCode = xc.UnitCode,
+
+                            Name_En = xc.Name_En,
+                            CategoryCode = xc.CategoryCode,
+
+                        };
+                        localContext.ItemCards.Add(_ItemCards);
+                        localContext.SaveChanges();
+                        localContext.Dispose();
+
+
+
+
+                        _server = new BackOfficeEntity.db_a8f74e_posEntities();
+                        BackOfficeEntity.Back_Office_Transaction_Detail dtl = _server.Back_Office_Transaction_Detail.FirstOrDefault(x2 => x2.Detail_Code == detail.Detail_Code);
+                        dtl.Fail_Take_Update_Reason = st.isEnglish() ? "Success" : "تم التحديث بنجاح";
+                        dtl.Is_Brach_Take_Update = true;
+                        _server.SaveChanges();
+                        _server.Dispose();
+
+
+                        _server = new BackOfficeEntity.db_a8f74e_posEntities();
+                        BackOfficeEntity.ItemCard_Back_Office vategory_Back = _server.ItemCard_Back_Office.FirstOrDefault(ff => ff.Back_Office_Detail_Code == xc.Back_Office_Detail_Code);
+                        vategory_Back.Is_Brach_Take_Update = true;
+                        _server.SaveChanges();
+                        _server.Dispose();
+
+
+
+                    }
+                    catch (DbEntityValidationException e)
+                    {
+                        foreach (var eve in e.EntityValidationErrors)
+                        {
+
+                            String dd = "Entity of type \"{0}\" in state \"{1}\" has the following validation errors:" + eve.Entry.Entity.GetType().Name.ToString() + eve.Entry.State.ToString();
+
+                            foreach (var ve in eve.ValidationErrors)
+                            {
+
+                                String ddddd = "Property: \"{0}\", Error: \"{1}\"" + ve.PropertyName.ToString() + ve.ErrorMessage.ToString();
+
+
+
+
+                            }
+                        }
+                        throw;
+                    }
+
+
+
+                }
+
+
+
+            });
+
 
         }
 
@@ -2166,8 +2197,9 @@ namespace PointOfSaleSedek
             {
                 _server = new BackOfficeEntity.db_a8f74e_posEntities();
                 List<BackOfficeEntity.Expenses_Back_Office> _Expenses_Back_Office = _server.Expenses_Back_Office.Where(ff => ff.Branch_Code == branchCode && ff.Is_Brach_Take_Update == false &&
-                ff.Back_Office_Master_Code == detail.Back_Office_Master_Code  &&ff.Back_Office_Detail_Code == detail.Detail_Code && detail.IsDeleted == 0).ToList();
-                _Expenses_Back_Office.ForEach(xc => {
+                ff.Back_Office_Master_Code == detail.Back_Office_Master_Code && ff.Back_Office_Detail_Code == detail.Detail_Code && detail.IsDeleted == 0).ToList();
+                _Expenses_Back_Office.ForEach(xc =>
+                {
                     localContext = new POSEntity();
                     var isFind = localContext.Expenses.Any(cat => cat.Branch_Code == branchCode && cat.Branch_Code != 0 && cat.IsDeleted == 0 && cat.ExpensesCode == xc.ExpensesCode);
 
@@ -2179,26 +2211,26 @@ namespace PointOfSaleSedek
 
                             localContext = new POSEntity();
                             bool CheckRelation = localContext.ExpensesTransactions.Where(ItemCard => ItemCard.IsDeleted == 0).Any(ItemCard => ItemCard.ExpensesCode == xc.ExpensesCode);
-                          
 
 
-                                if (CheckRelation)
-                                {
+
+                            if (CheckRelation)
+                            {
 
 
                                 _server = new BackOfficeEntity.db_a8f74e_posEntities();
                                 BackOfficeEntity.Back_Office_Transaction_Detail Detail = _server.Back_Office_Transaction_Detail.FirstOrDefault(x2 => x2.Id == xc.Id_Back_Office);
-                                    Detail.Fail_Take_Update_Reason = st.isEnglish() ? "This Expenses cannot be deleted because there are products on it" : "لا يمكن حذف هذا المصروف لوجود منتجات عليها";
-                                    Detail.Is_Brach_Take_Update = true;
+                                Detail.Fail_Take_Update_Reason = st.isEnglish() ? "This Expenses cannot be deleted because there are products on it" : "لا يمكن حذف هذا المصروف لوجود منتجات عليها";
+                                Detail.Is_Brach_Take_Update = true;
                                 _server.SaveChanges();
                                 _server.Dispose();
 
                                 _server = new BackOfficeEntity.db_a8f74e_posEntities();
                                 BackOfficeEntity.Expenses_Back_Office Category_Back = _server.Expenses_Back_Office.FirstOrDefault(ff => ff.Back_Office_Detail_Code == detail.Detail_Code);
 
-                                    Category_Back.IsDeleted = 0;
-                                    Category_Back.Is_Brach_Take_Update = true;
-                                    Category_Back.Event_Code = 0;
+                                Category_Back.IsDeleted = 0;
+                                Category_Back.Is_Brach_Take_Update = true;
+                                Category_Back.Event_Code = 0;
 
 
                                 _server.SaveChanges();
@@ -2206,26 +2238,26 @@ namespace PointOfSaleSedek
 
                             }
 
-                                else
-                                {
+                            else
+                            {
                                 localContext = new POSEntity();
                                 Expens _Expens;
-                                    _Expens = localContext.Expenses.FirstOrDefault(cat => cat.ExpensesCode == xc.ExpensesCode && cat.Branch_Code == branchCode && cat.Branch_Code != 0 && cat.IsDeleted == 0);
-                                    _Expens.IsDeleted = 1;
+                                _Expens = localContext.Expenses.FirstOrDefault(cat => cat.ExpensesCode == xc.ExpensesCode && cat.Branch_Code == branchCode && cat.Branch_Code != 0 && cat.IsDeleted == 0);
+                                _Expens.IsDeleted = 1;
                                 localContext.SaveChanges();
                                 localContext.Dispose();
 
                                 _server = new BackOfficeEntity.db_a8f74e_posEntities();
                                 BackOfficeEntity.Back_Office_Transaction_Detail Detail = _server.Back_Office_Transaction_Detail.FirstOrDefault(x2 => x2.Detail_Code == xc.Back_Office_Detail_Code);
-                                    Detail.Fail_Take_Update_Reason = st.isEnglish() ? "Success" : "تم التحديث بنجاح";
-                                    Detail.Is_Brach_Take_Update = true;
-                                    _server.SaveChanges();
-                                    _server.Dispose();
+                                Detail.Fail_Take_Update_Reason = st.isEnglish() ? "Success" : "تم التحديث بنجاح";
+                                Detail.Is_Brach_Take_Update = true;
+                                _server.SaveChanges();
+                                _server.Dispose();
 
 
                                 _server = new BackOfficeEntity.db_a8f74e_posEntities();
                                 BackOfficeEntity.Expenses_Back_Office Category_Back = _server.Expenses_Back_Office.FirstOrDefault(ff => ff.Back_Office_Detail_Code == detail.Detail_Code);
-                                    Category_Back.Is_Brach_Take_Update = true;
+                                Category_Back.Is_Brach_Take_Update = true;
                                 _server.SaveChanges();
                                 _server.Dispose();
 
@@ -2235,7 +2267,7 @@ namespace PointOfSaleSedek
 
 
 
-                             
+
 
                         }
 
@@ -2244,25 +2276,25 @@ namespace PointOfSaleSedek
 
                             localContext = new POSEntity();
                             Expens _Expens;
-                                _Expens = localContext.Expenses.FirstOrDefault(cat => cat.ExpensesCode == xc.ExpensesCode && cat.Branch_Code == branchCode && cat.Branch_Code != 0 && cat.IsDeleted == 0);
+                            _Expens = localContext.Expenses.FirstOrDefault(cat => cat.ExpensesCode == xc.ExpensesCode && cat.Branch_Code == branchCode && cat.Branch_Code != 0 && cat.IsDeleted == 0);
 
-                                _Expens.ExpensesName = xc.ExpensesName;
+                            _Expens.ExpensesName = xc.ExpensesName;
                             localContext.SaveChanges();
                             localContext.Dispose();
 
 
                             _server = new BackOfficeEntity.db_a8f74e_posEntities();
                             BackOfficeEntity.Back_Office_Transaction_Detail Detail = _server.Back_Office_Transaction_Detail.FirstOrDefault(x2 => x2.Detail_Code == detail.Detail_Code);
-                                Detail.Fail_Take_Update_Reason = st.isEnglish() ? "Success" : "تم التحديث بنجاح";
-                                Detail.Is_Brach_Take_Update = true;
-                                _server.SaveChanges();
+                            Detail.Fail_Take_Update_Reason = st.isEnglish() ? "Success" : "تم التحديث بنجاح";
+                            Detail.Is_Brach_Take_Update = true;
+                            _server.SaveChanges();
 
 
                             _server = new BackOfficeEntity.db_a8f74e_posEntities();
                             BackOfficeEntity.Expenses_Back_Office Category_Back = _server.Expenses_Back_Office.FirstOrDefault(ff => ff.Back_Office_Detail_Code == detail.Detail_Code);
-                                Category_Back.Is_Brach_Take_Update = true;
-                                _server.SaveChanges();
-                             
+                            Category_Back.Is_Brach_Take_Update = true;
+                            _server.SaveChanges();
+
 
                         }
 
@@ -2272,19 +2304,19 @@ namespace PointOfSaleSedek
 
                     else
                     {
-                     
 
-                            try
+
+                        try
+                        {
+                            Expens _Expens = new Expens()
                             {
-                                Expens _Expens = new Expens()
-                                {
-                                    Branch_Code = branchCode,
-                                    ExpensesCode = xc.ExpensesCode,
-                                    ExpensesName = xc.ExpensesName,
+                                Branch_Code = branchCode,
+                                ExpensesCode = xc.ExpensesCode,
+                                ExpensesName = xc.ExpensesName,
 
-                                    IsDeleted = 0,
+                                IsDeleted = 0,
 
-                                };
+                            };
                             localContext = new POSEntity();
                             localContext.Expenses.Add(_Expens);
                             localContext.SaveChanges();
@@ -2292,8 +2324,8 @@ namespace PointOfSaleSedek
 
                             _server = new BackOfficeEntity.db_a8f74e_posEntities();
                             BackOfficeEntity.Back_Office_Transaction_Detail Detail = _server.Back_Office_Transaction_Detail.FirstOrDefault(x2 => x2.Detail_Code == detail.Detail_Code);
-                                Detail.Fail_Take_Update_Reason = st.isEnglish() ? "Success" : "تم التحديث بنجاح";
-                                Detail.Is_Brach_Take_Update = true;
+                            Detail.Fail_Take_Update_Reason = st.isEnglish() ? "Success" : "تم التحديث بنجاح";
+                            Detail.Is_Brach_Take_Update = true;
 
                             _server.SaveChanges();
                             _server.Dispose();
@@ -2301,33 +2333,33 @@ namespace PointOfSaleSedek
 
                             _server = new BackOfficeEntity.db_a8f74e_posEntities();
                             BackOfficeEntity.Expenses_Back_Office Category_Back = _server.Expenses_Back_Office.FirstOrDefault(ff => ff.Back_Office_Detail_Code == detail.Detail_Code);
-                                Category_Back.Is_Brach_Take_Update = true;
+                            Category_Back.Is_Brach_Take_Update = true;
                             _server.SaveChanges();
                             _server.Dispose();
 
 
                         }
-                            catch (DbEntityValidationException e)
+                        catch (DbEntityValidationException e)
+                        {
+                            foreach (var eve in e.EntityValidationErrors)
                             {
-                                foreach (var eve in e.EntityValidationErrors)
+
+                                String dd = "Entity of type \"{0}\" in state \"{1}\" has the following validation errors:" + eve.Entry.Entity.GetType().Name.ToString() + eve.Entry.State.ToString();
+
+                                foreach (var ve in eve.ValidationErrors)
                                 {
 
-                                    String dd = "Entity of type \"{0}\" in state \"{1}\" has the following validation errors:" + eve.Entry.Entity.GetType().Name.ToString() + eve.Entry.State.ToString();
-
-                                    foreach (var ve in eve.ValidationErrors)
-                                    {
-
-                                        String ddddd = "Property: \"{0}\", Error: \"{1}\"" + ve.PropertyName.ToString() + ve.ErrorMessage.ToString();
+                                    String ddddd = "Property: \"{0}\", Error: \"{1}\"" + ve.PropertyName.ToString() + ve.ErrorMessage.ToString();
 
 
 
 
-                                    }
                                 }
-                                throw;
                             }
+                            throw;
+                        }
 
-                         
+
                     }
 
 
@@ -2335,365 +2367,82 @@ namespace PointOfSaleSedek
 
                 });
             }
-               
+
         }
 
 
-       void updateUser(Int64 branchCode, BackOfficeEntity.Back_Office_Transaction_Detail detail)
+        void updateUser(Int64 branchCode, BackOfficeEntity.Back_Office_Transaction_Detail detail)
         {
             _server = new BackOfficeEntity.db_a8f74e_posEntities();
-            List<BackOfficeEntity.User_Back_Office> _User_Back_Office = _server.User_Back_Office.Where(ff => ff.Branch_Code == branchCode && ff.Is_Brach_Take_Update == false && ff.Back_Office_Detail_Code == detail.Detail_Code &&ff.Back_Office_Master_Code == detail.Back_Office_Master_Code && detail.IsDeleted == 0).ToList();
-                _User_Back_Office.ForEach(xc => {
-                    localContext = new POSEntity();
-                    var isFind = localContext.Users.Any(cat => cat.Branch_Code == branchCode && cat.Branch_Code != 0 && cat.IsDeleted == 0 && cat.Emp_Code == xc.Emp_Code);
+            List<BackOfficeEntity.User_Back_Office> _User_Back_Office = _server.User_Back_Office.Where(ff => ff.Branch_Code == branchCode && ff.Is_Brach_Take_Update == false && ff.Back_Office_Detail_Code == detail.Detail_Code && ff.Back_Office_Master_Code == detail.Back_Office_Master_Code && detail.IsDeleted == 0).ToList();
+            _User_Back_Office.ForEach(xc =>
+            {
+                localContext = new POSEntity();
+                var isFind = localContext.Users.Any(cat => cat.Branch_Code == branchCode && cat.Branch_Code != 0 && cat.IsDeleted == 0 && cat.Emp_Code == xc.Emp_Code);
 
-                    if (isFind)
+                if (isFind)
+                {
+
+                    if (xc.Event_Code == 3)
                     {
 
-                        if (xc.Event_Code == 3)
+                        localContext = new POSEntity();
+                        bool CheckRelation1 = localContext.ExpensesTransactions.Any(ItemCard => ItemCard.IsDeleted == 0 && ItemCard.Emp_Code == xc.Emp_Code);
+
+                        bool CheckRelation3 = localContext.SaleMasters.Any(ItemCard => ItemCard.IsDeleted == 0 && ItemCard.UserCode == xc.Emp_Code);
+
+
+
+
+
+
+
+                        if (CheckRelation1 || CheckRelation3)
                         {
 
-                            localContext = new POSEntity();
-                            bool CheckRelation1 = localContext.ExpensesTransactions.Any(ItemCard => ItemCard.IsDeleted == 0 && ItemCard.Emp_Code == xc.Emp_Code);
-                             
-                            bool CheckRelation3= localContext.SaleMasters.Any(ItemCard => ItemCard.IsDeleted == 0 && ItemCard.UserCode == xc.Emp_Code);
+
+                            _server = new BackOfficeEntity.db_a8f74e_posEntities();
+                            BackOfficeEntity.Back_Office_Transaction_Detail Detail = _server.Back_Office_Transaction_Detail.FirstOrDefault(x2 => x2.Detail_Code == detail.Detail_Code);
+                            Detail.Fail_Take_Update_Reason = st.isEnglish() ? "This user cannot be deleted because there are processes associated with it" : "لا يمكن حذف هذا المستخدم لوجود عمليات مرتبطه به";
+                            Detail.Is_Brach_Take_Update = true;
+                            _server.SaveChanges();
+                            _server.Dispose();
+
+                            _server = new BackOfficeEntity.db_a8f74e_posEntities();
+                            BackOfficeEntity.Expenses_Back_Office Category_Back = _server.Expenses_Back_Office.FirstOrDefault(ff => ff.Back_Office_Detail_Code == detail.Detail_Code);
+
+                            Category_Back.IsDeleted = 0;
+                            Category_Back.Is_Brach_Take_Update = true;
+                            Category_Back.Event_Code = 0;
 
 
+                            _server.SaveChanges();
+                            _server.Dispose();
 
-
-
-                            
-
-                                if (CheckRelation1 || CheckRelation3)
-                                {
-
-
-                                _server = new BackOfficeEntity.db_a8f74e_posEntities();
-                                BackOfficeEntity.Back_Office_Transaction_Detail Detail = _server.Back_Office_Transaction_Detail.FirstOrDefault(x2 => x2.Detail_Code == detail.Detail_Code);
-                                    Detail.Fail_Take_Update_Reason = st.isEnglish() ? "This user cannot be deleted because there are processes associated with it" : "لا يمكن حذف هذا المستخدم لوجود عمليات مرتبطه به";
-                                    Detail.Is_Brach_Take_Update = true;
-                                _server.SaveChanges();
-                                _server.Dispose();
-
-                                _server = new BackOfficeEntity.db_a8f74e_posEntities();
-                                BackOfficeEntity.Expenses_Back_Office Category_Back = _server.Expenses_Back_Office.FirstOrDefault(ff => ff.Back_Office_Detail_Code == detail.Detail_Code);
-
-                                    Category_Back.IsDeleted = 0;
-                                    Category_Back.Is_Brach_Take_Update = true;
-                                    Category_Back.Event_Code = 0;
-
-
-                                _server.SaveChanges();
-                                _server.Dispose();
-
-                            }
-
-                                else
-                                {
-                                localContext = new POSEntity();
-                                User _User;
-                                    _User = localContext.Users.FirstOrDefault(cat => cat.Emp_Code == xc.Emp_Code && cat.Branch_Code == branchCode && cat.Branch_Code != 0 && cat.IsDeleted == 0);
-                                    _User.IsDeleted = 1;
-                                localContext.SaveChanges();
-                                localContext.Dispose();
-
-                                _server = new BackOfficeEntity.db_a8f74e_posEntities();
-                                BackOfficeEntity.Back_Office_Transaction_Detail Detail = _server.Back_Office_Transaction_Detail.FirstOrDefault(x2 => x2.Detail_Code == detail.Detail_Code);
-                                    Detail.Fail_Take_Update_Reason = st.isEnglish() ? "Success" : "تم التحديث بنجاح";
-                                    Detail.Is_Brach_Take_Update = true;
-                                    _server.SaveChanges();
-                                    _server.Dispose();
-
-
-                                _server = new BackOfficeEntity.db_a8f74e_posEntities();
-                                BackOfficeEntity.User_Back_Office user_Back_Office = _server.User_Back_Office.FirstOrDefault(ff => ff.Back_Office_Detail_Code == detail.Detail_Code);
-                                    user_Back_Office.Is_Brach_Take_Update = true;
-                                _server.SaveChanges();
-                                _server.Dispose();
-
-
-                                // Back Office
-                                _server = new BackOfficeEntity.db_a8f74e_posEntities();
-                                BackOfficeEntity.Employee _BackOfficeEmployee = _server.Employees.FirstOrDefault(x2 => x2.Employee_Code == xc.Emp_Code && x2.IsDeleted == 0);
-
-
-                                // Local Branch
-                                localContext = new POSEntity();
-                                bool isEmployFind = localContext.Employees.Any(Employ => Employ.IsDeleted == 0 && Employ.Employee_Code == xc.Emp_Code && Employ.Branch_ID == branchCode);
-
-
-                                        // is True (Update)
-                                        if (isEmployFind)
-                                        {
-                                    localContext = new POSEntity();
-                                    Employee _LocaleMployee = localContext.Employees.FirstOrDefault(x2 => x2.Employee_Code == xc.Emp_Code && x2.IsDeleted == 0);
-                                            _LocaleMployee.Employee_Code = _BackOfficeEmployee.Employee_Code;
-                                            _LocaleMployee.Employee_Name = _BackOfficeEmployee.Employee_Name;
-                                            _LocaleMployee.IsDeleted = _BackOfficeEmployee.IsDeleted;
-                                            _LocaleMployee.Employee_National_Id = _BackOfficeEmployee.Employee_National_Id;
-                                            _LocaleMployee.Employee_Address = _BackOfficeEmployee.Employee_Address;
-                                            _LocaleMployee.Branch_ID =   branchCode;
-                                            _LocaleMployee.Created_Date = _BackOfficeEmployee.Created_Date;
-                                            _LocaleMployee.Employee_Email = _BackOfficeEmployee.Employee_Email;
-                                            _LocaleMployee.Employee_End_Jop = _BackOfficeEmployee.Employee_End_Jop;
-                                            _LocaleMployee.Employee_Mobile_1 = _BackOfficeEmployee.Employee_Mobile_1;
-                                            _LocaleMployee.Employee_Mobile_2 = _BackOfficeEmployee.Employee_Mobile_2;
-                                            _LocaleMployee.Employee_Notes = _BackOfficeEmployee.Employee_Notes;
-                                            _LocaleMployee.Employee_Start_Jop = _BackOfficeEmployee.Employee_Start_Jop;
-                                            _LocaleMployee.SexTypeCode = _BackOfficeEmployee.SexTypeCode;
-                                            _LocaleMployee.img_Url = _BackOfficeEmployee.img_Url;
-                                            _LocaleMployee.isUploaded = _BackOfficeEmployee.isUploaded;
-                                            _LocaleMployee.Jop_Code = _BackOfficeEmployee.Jop_Code;
-                                            _LocaleMployee.Last_Modified_User = _BackOfficeEmployee.Last_Modified_User;
-                                            _LocaleMployee.Last_Modified_Date = _BackOfficeEmployee.Last_Modified_Date;
-                                            localContext.SaveChanges();
-                                            localContext.Dispose();
-
-
-                                        }
-
-                                // is False (New)
-                                else
-                                {
-
-
-
-
-                                    Employee _Employee = new Employee()
-                                    {
-                                        Branch_ID = branchCode,
-                                        Created_Date = _BackOfficeEmployee.Created_Date,
-
-                                        Employee_Address = _BackOfficeEmployee.Employee_Address,
-                                        Employee_Code = _BackOfficeEmployee.Employee_Code,
-                                        Employee_Email = _BackOfficeEmployee.Employee_Email,
-
-                                        Employee_End_Jop = _BackOfficeEmployee.Employee_End_Jop,
-                                        Employee_Mobile_1 = _BackOfficeEmployee.Employee_Mobile_1,
-                                        Employee_Mobile_2 = _BackOfficeEmployee.Employee_Mobile_2,
-                                        Employee_Name = _BackOfficeEmployee.Employee_Name,
-                                        Employee_National_Id = _BackOfficeEmployee.Employee_National_Id,
-                                        Employee_Notes = _BackOfficeEmployee.Employee_Notes,
-                                        Employee_Start_Jop = _BackOfficeEmployee.Employee_Start_Jop,
-                                        img_Url = _BackOfficeEmployee.img_Url,
-                                        IsDeleted = _BackOfficeEmployee.IsDeleted,
-                                        isUploaded = _BackOfficeEmployee.isUploaded,
-                                        Jop_Code = _BackOfficeEmployee.Jop_Code,
-                                        Last_Modified_Date = _BackOfficeEmployee.Last_Modified_Date,
-                                        Last_Modified_User = _BackOfficeEmployee.Last_Modified_User,
-                                        SexTypeCode = _BackOfficeEmployee.SexTypeCode
-
-
-                                    };
-
-
-                                    localContext = new POSEntity();
-
-                                    localContext.Employees.Add(_Employee);
-                                    localContext.SaveChanges();
-                                    localContext.Dispose();
-
-
-                                }
-
-
-
-
-
-
-
-
-                            }
-
-                               
-                            
-
-
- 
                         }
 
-                        else if (xc.Event_Code == 2 || xc.Event_Code == 1)
+                        else
                         {
-                            
-
-                                User _User;
                             localContext = new POSEntity();
+                            User _User;
                             _User = localContext.Users.FirstOrDefault(cat => cat.Emp_Code == xc.Emp_Code && cat.Branch_Code == branchCode && cat.Branch_Code != 0 && cat.IsDeleted == 0);
-
-                                _User.Password = xc.Password;
-                                _User.UserName = xc.UserName;
-                                _User.Branch_Code = xc.Branch_Code;
-                                _User.Created_Date = xc.Created_Date;
-                                _User.Emp_Code = xc.Emp_Code;
-                                _User.IsDeleted = xc.IsDeleted;
-
-                                _User.Last_Modified_Date = xc.Last_Modified_Date;
-                                _User.Last_Modified_User = xc.Last_Modified_User;
-                                _User.UserFlag = xc.UserFlag;
-
-
-
-                            localContext.SaveChanges();
-                            localContext.Dispose();
-
-
-                            _server = new BackOfficeEntity.db_a8f74e_posEntities();
-
-                            BackOfficeEntity.Back_Office_Transaction_Detail Detail = _server.Back_Office_Transaction_Detail.FirstOrDefault(x2 => x2.Detail_Code == detail.Detail_Code);
-                                Detail.Fail_Take_Update_Reason = st.isEnglish() ? "Success" : "تم التحديث بنجاح";
-                                Detail.Is_Brach_Take_Update = true;
-                            _server.SaveChanges();
-                            _server.Dispose();
-
-
-                            _server = new BackOfficeEntity.db_a8f74e_posEntities();
-                            BackOfficeEntity.User_Back_Office Category_Back = _server.User_Back_Office.FirstOrDefault(ff => ff.Back_Office_Detail_Code == detail.Detail_Code);
-                                Category_Back.Is_Brach_Take_Update = true;
-                                _server.SaveChanges();
-                                _server.Dispose();
-
-
-                            // Back Office
-                            _server = new BackOfficeEntity.db_a8f74e_posEntities();
-                            BackOfficeEntity.Employee _BackOfficeEmployee = _server.Employees.FirstOrDefault(x2 => x2.Employee_Code == xc.Emp_Code && x2.IsDeleted == 0);
-
-
-                            // Local Branch
-                            localContext = new POSEntity();
-                            bool isEmployFind = localContext.Employees.Any(Employ => Employ.IsDeleted == 0 && Employ.Employee_Code == xc.Emp_Code);
-
-                                   
-
-
-                                    // is True (Update)
-                                    if (isEmployFind)
-                                    {
-                                localContext = new POSEntity();
-                                Employee _LocaleMployee = localContext.Employees.FirstOrDefault(x2 => x2.Employee_Code == xc.Emp_Code && x2.IsDeleted == 0 && x2.Branch_ID == branchCode);
-                                        _LocaleMployee.Employee_Code = _BackOfficeEmployee.Employee_Code;
-                                        _LocaleMployee.Employee_Name = _BackOfficeEmployee.Employee_Name;
-                                        _LocaleMployee.IsDeleted = _BackOfficeEmployee.IsDeleted;
-                                        _LocaleMployee.Employee_National_Id = _BackOfficeEmployee.Employee_National_Id;
-                                        _LocaleMployee.Employee_Address = _BackOfficeEmployee.Employee_Address;
-                                        _LocaleMployee.Branch_ID = branchCode;
-                                        _LocaleMployee.Created_Date = _BackOfficeEmployee.Created_Date;
-                                        _LocaleMployee.Employee_Email = _BackOfficeEmployee.Employee_Email;
-                                        _LocaleMployee.Employee_End_Jop = _BackOfficeEmployee.Employee_End_Jop;
-                                        _LocaleMployee.Employee_Mobile_1 = _BackOfficeEmployee.Employee_Mobile_1;
-                                        _LocaleMployee.Employee_Mobile_2 = _BackOfficeEmployee.Employee_Mobile_2;
-                                        _LocaleMployee.Employee_Notes = _BackOfficeEmployee.Employee_Notes;
-                                        _LocaleMployee.Employee_Start_Jop = _BackOfficeEmployee.Employee_Start_Jop;
-                                        _LocaleMployee.SexTypeCode = _BackOfficeEmployee.SexTypeCode;
-                                        _LocaleMployee.img_Url = _BackOfficeEmployee.img_Url;
-                                        _LocaleMployee.isUploaded = _BackOfficeEmployee.isUploaded;
-                                        _LocaleMployee.Jop_Code = _BackOfficeEmployee.Jop_Code;
-                                        _LocaleMployee.Last_Modified_User = _BackOfficeEmployee.Last_Modified_User;
-                                        _LocaleMployee.Last_Modified_Date = _BackOfficeEmployee.Last_Modified_Date;
-                                localContext.SaveChanges();
-                                localContext.Dispose();
-
-
-                                    }
-
-                                    // is False (New)
-                                    else
-                                    {
-
-
-
-
-                                        Employee _Employee = new Employee(){ 
-                                Branch_ID = branchCode,
-                                Created_Date = _BackOfficeEmployee.Created_Date,
-                                
-                                Employee_Address = _BackOfficeEmployee.Employee_Address,
-                                Employee_Code = _BackOfficeEmployee.Employee_Code,
-                                Employee_Email = _BackOfficeEmployee.Employee_Email,
-                                
-                                Employee_End_Jop= _BackOfficeEmployee.Employee_End_Jop,
-                                Employee_Mobile_1 = _BackOfficeEmployee.Employee_Mobile_1,
-                                Employee_Mobile_2 = _BackOfficeEmployee.Employee_Mobile_2,
-                                Employee_Name = _BackOfficeEmployee.Employee_Name,
-                                Employee_National_Id = _BackOfficeEmployee.Employee_National_Id,
-                                Employee_Notes  = _BackOfficeEmployee.Employee_Notes,
-                                Employee_Start_Jop = _BackOfficeEmployee.Employee_Start_Jop,
-                                img_Url = _BackOfficeEmployee.img_Url,
-                                IsDeleted = _BackOfficeEmployee.IsDeleted,
-                                isUploaded = _BackOfficeEmployee.isUploaded,
-                                Jop_Code = _BackOfficeEmployee.Jop_Code,
-                                Last_Modified_Date = _BackOfficeEmployee.Last_Modified_Date,
-                                Last_Modified_User = _BackOfficeEmployee.Last_Modified_User,
-                                
-                                SexTypeCode = _BackOfficeEmployee.SexTypeCode
-                                
-
-                                        };
-
-
-
-                                localContext = new POSEntity();
-                                localContext.Employees.Add(_Employee);
-                                localContext.SaveChanges();
-                                localContext.Dispose();
-
-
-                                    }
-
-
-
-
-                                 
-
-
-                            }
-                          
-
-                      
-
-                  
-
-                    }
-
-                    else
-                    {
-                        
-
-                            try
-                            {
-                                User _User = new User()
-                                {
-                                    Branch_Code = branchCode,
-                                    Created_Date = xc.Created_Date,
-                                   Emp_Code = xc.Emp_Code,
-                                    Last_Modified_Date = xc.Last_Modified_Date,
-                                    Last_Modified_User = xc.Last_Modified_User,
-                                    Password = xc.Password,
-                                    UserName = xc.UserName,
-                                    UserFlag = xc.UserFlag,
-                                    IsDeleted = xc.IsDeleted
-
-                                };
-                            localContext = new POSEntity();
-                            localContext.Users.Add(_User);
+                            _User.IsDeleted = 1;
                             localContext.SaveChanges();
                             localContext.Dispose();
 
                             _server = new BackOfficeEntity.db_a8f74e_posEntities();
                             BackOfficeEntity.Back_Office_Transaction_Detail Detail = _server.Back_Office_Transaction_Detail.FirstOrDefault(x2 => x2.Detail_Code == detail.Detail_Code);
-                                Detail.Fail_Take_Update_Reason = st.isEnglish() ? "Success" : "تم التحديث بنجاح";
-                                Detail.Is_Brach_Take_Update = true;
-
-    
-                                _server.SaveChanges();
-                                _server.Dispose();
-
-
-                            _server = new BackOfficeEntity.db_a8f74e_posEntities();
-                            BackOfficeEntity.User_Back_Office Category_Back = _server.User_Back_Office.FirstOrDefault(ff => ff.Back_Office_Detail_Code == detail.Detail_Code);
-                                Category_Back.Is_Brach_Take_Update = true;
+                            Detail.Fail_Take_Update_Reason = st.isEnglish() ? "Success" : "تم التحديث بنجاح";
+                            Detail.Is_Brach_Take_Update = true;
                             _server.SaveChanges();
                             _server.Dispose();
 
+
+                            _server = new BackOfficeEntity.db_a8f74e_posEntities();
+                            BackOfficeEntity.User_Back_Office user_Back_Office = _server.User_Back_Office.FirstOrDefault(ff => ff.Back_Office_Detail_Code == detail.Detail_Code);
+                            user_Back_Office.Is_Brach_Take_Update = true;
+                            _server.SaveChanges();
+                            _server.Dispose();
 
 
                             // Back Office
@@ -2706,37 +2455,35 @@ namespace PointOfSaleSedek
                             bool isEmployFind = localContext.Employees.Any(Employ => Employ.IsDeleted == 0 && Employ.Employee_Code == xc.Emp_Code && Employ.Branch_ID == branchCode);
 
 
-
-
-                                    // is True (Update)
-                                    if (isEmployFind)
-                                    {
+                            // is True (Update)
+                            if (isEmployFind)
+                            {
                                 localContext = new POSEntity();
-                                Employee _LocaleMployee = localContext.Employees.FirstOrDefault(x2 => x2.Employee_Code == xc.Emp_Code && x2.IsDeleted == 0 && x2.Branch_ID == branchCode);
-                                        _LocaleMployee.Employee_Code = _BackOfficeEmployee.Employee_Code;
-                                        _LocaleMployee.Employee_Name = _BackOfficeEmployee.Employee_Name;
-                                        _LocaleMployee.IsDeleted = _BackOfficeEmployee.IsDeleted;
-                                        _LocaleMployee.Employee_National_Id = _BackOfficeEmployee.Employee_National_Id;
-                                        _LocaleMployee.Employee_Address = _BackOfficeEmployee.Employee_Address;
-                                        _LocaleMployee.Branch_ID = branchCode;
-                                        _LocaleMployee.Created_Date = _BackOfficeEmployee.Created_Date;
-                                        _LocaleMployee.Employee_Email = _BackOfficeEmployee.Employee_Email;
-                                        _LocaleMployee.Employee_End_Jop = _BackOfficeEmployee.Employee_End_Jop;
-                                        _LocaleMployee.Employee_Mobile_1 = _BackOfficeEmployee.Employee_Mobile_1;
-                                        _LocaleMployee.Employee_Mobile_2 = _BackOfficeEmployee.Employee_Mobile_2;
-                                        _LocaleMployee.Employee_Notes = _BackOfficeEmployee.Employee_Notes;
-                                        _LocaleMployee.Employee_Start_Jop = _BackOfficeEmployee.Employee_Start_Jop;
-                                        _LocaleMployee.SexTypeCode = _BackOfficeEmployee.SexTypeCode;
-                                        _LocaleMployee.img_Url = _BackOfficeEmployee.img_Url;
-                                        _LocaleMployee.isUploaded = _BackOfficeEmployee.isUploaded;
-                                        _LocaleMployee.Jop_Code = _BackOfficeEmployee.Jop_Code;
-                                        _LocaleMployee.Last_Modified_User = _BackOfficeEmployee.Last_Modified_User;
-                                        _LocaleMployee.Last_Modified_Date = _BackOfficeEmployee.Last_Modified_Date;
+                                Employee _LocaleMployee = localContext.Employees.FirstOrDefault(x2 => x2.Employee_Code == xc.Emp_Code && x2.IsDeleted == 0);
+                                _LocaleMployee.Employee_Code = _BackOfficeEmployee.Employee_Code;
+                                _LocaleMployee.Employee_Name = _BackOfficeEmployee.Employee_Name;
+                                _LocaleMployee.IsDeleted = _BackOfficeEmployee.IsDeleted;
+                                _LocaleMployee.Employee_National_Id = _BackOfficeEmployee.Employee_National_Id;
+                                _LocaleMployee.Employee_Address = _BackOfficeEmployee.Employee_Address;
+                                _LocaleMployee.Branch_ID = branchCode;
+                                _LocaleMployee.Created_Date = _BackOfficeEmployee.Created_Date;
+                                _LocaleMployee.Employee_Email = _BackOfficeEmployee.Employee_Email;
+                                _LocaleMployee.Employee_End_Jop = _BackOfficeEmployee.Employee_End_Jop;
+                                _LocaleMployee.Employee_Mobile_1 = _BackOfficeEmployee.Employee_Mobile_1;
+                                _LocaleMployee.Employee_Mobile_2 = _BackOfficeEmployee.Employee_Mobile_2;
+                                _LocaleMployee.Employee_Notes = _BackOfficeEmployee.Employee_Notes;
+                                _LocaleMployee.Employee_Start_Jop = _BackOfficeEmployee.Employee_Start_Jop;
+                                _LocaleMployee.SexTypeCode = _BackOfficeEmployee.SexTypeCode;
+                                _LocaleMployee.img_Url = _BackOfficeEmployee.img_Url;
+                                _LocaleMployee.isUploaded = _BackOfficeEmployee.isUploaded;
+                                _LocaleMployee.Jop_Code = _BackOfficeEmployee.Jop_Code;
+                                _LocaleMployee.Last_Modified_User = _BackOfficeEmployee.Last_Modified_User;
+                                _LocaleMployee.Last_Modified_Date = _BackOfficeEmployee.Last_Modified_Date;
                                 localContext.SaveChanges();
                                 localContext.Dispose();
 
 
-                                    }
+                            }
 
                             // is False (New)
                             else
@@ -2767,15 +2514,14 @@ namespace PointOfSaleSedek
                                     Jop_Code = _BackOfficeEmployee.Jop_Code,
                                     Last_Modified_Date = _BackOfficeEmployee.Last_Modified_Date,
                                     Last_Modified_User = _BackOfficeEmployee.Last_Modified_User,
-
                                     SexTypeCode = _BackOfficeEmployee.SexTypeCode
 
 
                                 };
 
 
-
                                 localContext = new POSEntity();
+
                                 localContext.Employees.Add(_Employee);
                                 localContext.SaveChanges();
                                 localContext.Dispose();
@@ -2790,46 +2536,335 @@ namespace PointOfSaleSedek
 
 
 
+                        }
+
+
+
+
+
+
+                    }
+
+                    else if (xc.Event_Code == 2 || xc.Event_Code == 1)
+                    {
+
+
+                        User _User;
+                        localContext = new POSEntity();
+                        _User = localContext.Users.FirstOrDefault(cat => cat.Emp_Code == xc.Emp_Code && cat.Branch_Code == branchCode && cat.Branch_Code != 0 && cat.IsDeleted == 0);
+
+                        _User.Password = xc.Password;
+                        _User.UserName = xc.UserName;
+                        _User.Branch_Code = xc.Branch_Code;
+                        _User.Created_Date = xc.Created_Date;
+                        _User.Emp_Code = xc.Emp_Code;
+                        _User.IsDeleted = xc.IsDeleted;
+
+                        _User.Last_Modified_Date = xc.Last_Modified_Date;
+                        _User.Last_Modified_User = xc.Last_Modified_User;
+                        _User.UserFlag = xc.UserFlag;
+
+
+
+                        localContext.SaveChanges();
+                        localContext.Dispose();
+
+
+                        _server = new BackOfficeEntity.db_a8f74e_posEntities();
+
+                        BackOfficeEntity.Back_Office_Transaction_Detail Detail = _server.Back_Office_Transaction_Detail.FirstOrDefault(x2 => x2.Detail_Code == detail.Detail_Code);
+                        Detail.Fail_Take_Update_Reason = st.isEnglish() ? "Success" : "تم التحديث بنجاح";
+                        Detail.Is_Brach_Take_Update = true;
+                        _server.SaveChanges();
+                        _server.Dispose();
+
+
+                        _server = new BackOfficeEntity.db_a8f74e_posEntities();
+                        BackOfficeEntity.User_Back_Office Category_Back = _server.User_Back_Office.FirstOrDefault(ff => ff.Back_Office_Detail_Code == detail.Detail_Code);
+                        Category_Back.Is_Brach_Take_Update = true;
+                        _server.SaveChanges();
+                        _server.Dispose();
+
+
+                        // Back Office
+                        _server = new BackOfficeEntity.db_a8f74e_posEntities();
+                        BackOfficeEntity.Employee _BackOfficeEmployee = _server.Employees.FirstOrDefault(x2 => x2.Employee_Code == xc.Emp_Code && x2.IsDeleted == 0);
+
+
+                        // Local Branch
+                        localContext = new POSEntity();
+                        bool isEmployFind = localContext.Employees.Any(Employ => Employ.IsDeleted == 0 && Employ.Employee_Code == xc.Emp_Code);
+
+
+
+
+                        // is True (Update)
+                        if (isEmployFind)
+                        {
+                            localContext = new POSEntity();
+                            Employee _LocaleMployee = localContext.Employees.FirstOrDefault(x2 => x2.Employee_Code == xc.Emp_Code && x2.IsDeleted == 0 && x2.Branch_ID == branchCode);
+                            _LocaleMployee.Employee_Code = _BackOfficeEmployee.Employee_Code;
+                            _LocaleMployee.Employee_Name = _BackOfficeEmployee.Employee_Name;
+                            _LocaleMployee.IsDeleted = _BackOfficeEmployee.IsDeleted;
+                            _LocaleMployee.Employee_National_Id = _BackOfficeEmployee.Employee_National_Id;
+                            _LocaleMployee.Employee_Address = _BackOfficeEmployee.Employee_Address;
+                            _LocaleMployee.Branch_ID = branchCode;
+                            _LocaleMployee.Created_Date = _BackOfficeEmployee.Created_Date;
+                            _LocaleMployee.Employee_Email = _BackOfficeEmployee.Employee_Email;
+                            _LocaleMployee.Employee_End_Jop = _BackOfficeEmployee.Employee_End_Jop;
+                            _LocaleMployee.Employee_Mobile_1 = _BackOfficeEmployee.Employee_Mobile_1;
+                            _LocaleMployee.Employee_Mobile_2 = _BackOfficeEmployee.Employee_Mobile_2;
+                            _LocaleMployee.Employee_Notes = _BackOfficeEmployee.Employee_Notes;
+                            _LocaleMployee.Employee_Start_Jop = _BackOfficeEmployee.Employee_Start_Jop;
+                            _LocaleMployee.SexTypeCode = _BackOfficeEmployee.SexTypeCode;
+                            _LocaleMployee.img_Url = _BackOfficeEmployee.img_Url;
+                            _LocaleMployee.isUploaded = _BackOfficeEmployee.isUploaded;
+                            _LocaleMployee.Jop_Code = _BackOfficeEmployee.Jop_Code;
+                            _LocaleMployee.Last_Modified_User = _BackOfficeEmployee.Last_Modified_User;
+                            _LocaleMployee.Last_Modified_Date = _BackOfficeEmployee.Last_Modified_Date;
+                            localContext.SaveChanges();
+                            localContext.Dispose();
 
 
                         }
-                            catch (DbEntityValidationException e)
+
+                        // is False (New)
+                        else
+                        {
+
+
+
+
+                            Employee _Employee = new Employee()
                             {
-                                foreach (var eve in e.EntityValidationErrors)
-                                {
+                                Branch_ID = branchCode,
+                                Created_Date = _BackOfficeEmployee.Created_Date,
 
-                                    String dd = "Entity of type \"{0}\" in state \"{1}\" has the following validation errors:" + eve.Entry.Entity.GetType().Name.ToString() + eve.Entry.State.ToString();
+                                Employee_Address = _BackOfficeEmployee.Employee_Address,
+                                Employee_Code = _BackOfficeEmployee.Employee_Code,
+                                Employee_Email = _BackOfficeEmployee.Employee_Email,
 
-                                    foreach (var ve in eve.ValidationErrors)
-                                    {
+                                Employee_End_Jop = _BackOfficeEmployee.Employee_End_Jop,
+                                Employee_Mobile_1 = _BackOfficeEmployee.Employee_Mobile_1,
+                                Employee_Mobile_2 = _BackOfficeEmployee.Employee_Mobile_2,
+                                Employee_Name = _BackOfficeEmployee.Employee_Name,
+                                Employee_National_Id = _BackOfficeEmployee.Employee_National_Id,
+                                Employee_Notes = _BackOfficeEmployee.Employee_Notes,
+                                Employee_Start_Jop = _BackOfficeEmployee.Employee_Start_Jop,
+                                img_Url = _BackOfficeEmployee.img_Url,
+                                IsDeleted = _BackOfficeEmployee.IsDeleted,
+                                isUploaded = _BackOfficeEmployee.isUploaded,
+                                Jop_Code = _BackOfficeEmployee.Jop_Code,
+                                Last_Modified_Date = _BackOfficeEmployee.Last_Modified_Date,
+                                Last_Modified_User = _BackOfficeEmployee.Last_Modified_User,
 
-                                        String ddddd = "Property: \"{0}\", Error: \"{1}\"" + ve.PropertyName.ToString() + ve.ErrorMessage.ToString();
+                                SexTypeCode = _BackOfficeEmployee.SexTypeCode
+
+
+                            };
+
+
+
+                            localContext = new POSEntity();
+                            localContext.Employees.Add(_Employee);
+                            localContext.SaveChanges();
+                            localContext.Dispose();
+
+
+                        }
 
 
 
 
-                                    }
-                                }
-                                throw;
-                            }
-                          
-                           
-                        
+
+
+
                     }
 
 
 
-                    UpdateUserAutherth(xc.Emp_Code, branchCode);
 
 
-                });
-             
+
+                }
+
+                else
+                {
+
+
+                    try
+                    {
+                        User _User = new User()
+                        {
+                            Branch_Code = branchCode,
+                            Created_Date = xc.Created_Date,
+                            Emp_Code = xc.Emp_Code,
+                            Last_Modified_Date = xc.Last_Modified_Date,
+                            Last_Modified_User = xc.Last_Modified_User,
+                            Password = xc.Password,
+                            UserName = xc.UserName,
+                            UserFlag = xc.UserFlag,
+                            IsDeleted = xc.IsDeleted
+
+                        };
+                        localContext = new POSEntity();
+                        localContext.Users.Add(_User);
+                        localContext.SaveChanges();
+                        localContext.Dispose();
+
+                        _server = new BackOfficeEntity.db_a8f74e_posEntities();
+                        BackOfficeEntity.Back_Office_Transaction_Detail Detail = _server.Back_Office_Transaction_Detail.FirstOrDefault(x2 => x2.Detail_Code == detail.Detail_Code);
+                        Detail.Fail_Take_Update_Reason = st.isEnglish() ? "Success" : "تم التحديث بنجاح";
+                        Detail.Is_Brach_Take_Update = true;
+
+
+                        _server.SaveChanges();
+                        _server.Dispose();
+
+
+                        _server = new BackOfficeEntity.db_a8f74e_posEntities();
+                        BackOfficeEntity.User_Back_Office Category_Back = _server.User_Back_Office.FirstOrDefault(ff => ff.Back_Office_Detail_Code == detail.Detail_Code);
+                        Category_Back.Is_Brach_Take_Update = true;
+                        _server.SaveChanges();
+                        _server.Dispose();
+
+
+
+                        // Back Office
+                        _server = new BackOfficeEntity.db_a8f74e_posEntities();
+                        BackOfficeEntity.Employee _BackOfficeEmployee = _server.Employees.FirstOrDefault(x2 => x2.Employee_Code == xc.Emp_Code && x2.IsDeleted == 0);
+
+
+                        // Local Branch
+                        localContext = new POSEntity();
+                        bool isEmployFind = localContext.Employees.Any(Employ => Employ.IsDeleted == 0 && Employ.Employee_Code == xc.Emp_Code && Employ.Branch_ID == branchCode);
+
+
+
+
+                        // is True (Update)
+                        if (isEmployFind)
+                        {
+                            localContext = new POSEntity();
+                            Employee _LocaleMployee = localContext.Employees.FirstOrDefault(x2 => x2.Employee_Code == xc.Emp_Code && x2.IsDeleted == 0 && x2.Branch_ID == branchCode);
+                            _LocaleMployee.Employee_Code = _BackOfficeEmployee.Employee_Code;
+                            _LocaleMployee.Employee_Name = _BackOfficeEmployee.Employee_Name;
+                            _LocaleMployee.IsDeleted = _BackOfficeEmployee.IsDeleted;
+                            _LocaleMployee.Employee_National_Id = _BackOfficeEmployee.Employee_National_Id;
+                            _LocaleMployee.Employee_Address = _BackOfficeEmployee.Employee_Address;
+                            _LocaleMployee.Branch_ID = branchCode;
+                            _LocaleMployee.Created_Date = _BackOfficeEmployee.Created_Date;
+                            _LocaleMployee.Employee_Email = _BackOfficeEmployee.Employee_Email;
+                            _LocaleMployee.Employee_End_Jop = _BackOfficeEmployee.Employee_End_Jop;
+                            _LocaleMployee.Employee_Mobile_1 = _BackOfficeEmployee.Employee_Mobile_1;
+                            _LocaleMployee.Employee_Mobile_2 = _BackOfficeEmployee.Employee_Mobile_2;
+                            _LocaleMployee.Employee_Notes = _BackOfficeEmployee.Employee_Notes;
+                            _LocaleMployee.Employee_Start_Jop = _BackOfficeEmployee.Employee_Start_Jop;
+                            _LocaleMployee.SexTypeCode = _BackOfficeEmployee.SexTypeCode;
+                            _LocaleMployee.img_Url = _BackOfficeEmployee.img_Url;
+                            _LocaleMployee.isUploaded = _BackOfficeEmployee.isUploaded;
+                            _LocaleMployee.Jop_Code = _BackOfficeEmployee.Jop_Code;
+                            _LocaleMployee.Last_Modified_User = _BackOfficeEmployee.Last_Modified_User;
+                            _LocaleMployee.Last_Modified_Date = _BackOfficeEmployee.Last_Modified_Date;
+                            localContext.SaveChanges();
+                            localContext.Dispose();
+
+
+                        }
+
+                        // is False (New)
+                        else
+                        {
+
+
+
+
+                            Employee _Employee = new Employee()
+                            {
+                                Branch_ID = branchCode,
+                                Created_Date = _BackOfficeEmployee.Created_Date,
+
+                                Employee_Address = _BackOfficeEmployee.Employee_Address,
+                                Employee_Code = _BackOfficeEmployee.Employee_Code,
+                                Employee_Email = _BackOfficeEmployee.Employee_Email,
+
+                                Employee_End_Jop = _BackOfficeEmployee.Employee_End_Jop,
+                                Employee_Mobile_1 = _BackOfficeEmployee.Employee_Mobile_1,
+                                Employee_Mobile_2 = _BackOfficeEmployee.Employee_Mobile_2,
+                                Employee_Name = _BackOfficeEmployee.Employee_Name,
+                                Employee_National_Id = _BackOfficeEmployee.Employee_National_Id,
+                                Employee_Notes = _BackOfficeEmployee.Employee_Notes,
+                                Employee_Start_Jop = _BackOfficeEmployee.Employee_Start_Jop,
+                                img_Url = _BackOfficeEmployee.img_Url,
+                                IsDeleted = _BackOfficeEmployee.IsDeleted,
+                                isUploaded = _BackOfficeEmployee.isUploaded,
+                                Jop_Code = _BackOfficeEmployee.Jop_Code,
+                                Last_Modified_Date = _BackOfficeEmployee.Last_Modified_Date,
+                                Last_Modified_User = _BackOfficeEmployee.Last_Modified_User,
+
+                                SexTypeCode = _BackOfficeEmployee.SexTypeCode
+
+
+                            };
+
+
+
+                            localContext = new POSEntity();
+                            localContext.Employees.Add(_Employee);
+                            localContext.SaveChanges();
+                            localContext.Dispose();
+
+
+                        }
+
+
+
+
+
+
+
+
+
+
+                    }
+                    catch (DbEntityValidationException e)
+                    {
+                        foreach (var eve in e.EntityValidationErrors)
+                        {
+
+                            String dd = "Entity of type \"{0}\" in state \"{1}\" has the following validation errors:" + eve.Entry.Entity.GetType().Name.ToString() + eve.Entry.State.ToString();
+
+                            foreach (var ve in eve.ValidationErrors)
+                            {
+
+                                String ddddd = "Property: \"{0}\", Error: \"{1}\"" + ve.PropertyName.ToString() + ve.ErrorMessage.ToString();
+
+
+
+
+                            }
+                        }
+                        throw;
+                    }
+
+
+
+                }
+
+
+
+                UpdateUserAutherth(xc.Emp_Code, branchCode);
+
+
+            });
+
         }
 
-        void UpdateUserAutherth(Int64 emp_Code , Int64 branch_Code  ) {
+        void UpdateUserAutherth(Int64 emp_Code, Int64 branch_Code)
+        {
 
             ObjectParameter Message = new ObjectParameter("Message", typeof(string));
-    
+
             List<User_Auth> _New_List_User_Auth = new List<User_Auth>();
 
 
@@ -2837,52 +2872,53 @@ namespace PointOfSaleSedek
             localContext = new POSEntity();
             _server = new BackOfficeEntity.db_a8f74e_posEntities();
             List<BackOfficeEntity.User_Auth> list_User_Auth = _server.User_Auth.Where(ff => ff.IsDeleted == 0 && ff.User_Code == emp_Code && ff.InActive).ToList();
-                localContext.Delete_Trancation_By_User_Code(emp_Code, branch_Code, Message);
+            localContext.Delete_Trancation_By_User_Code(emp_Code, branch_Code, Message);
 
-                foreach (var row in list_User_Auth)
-                {
+            foreach (var row in list_User_Auth)
+            {
                 localContext = new POSEntity();
 
                 Int64? NewCode = localContext.User_Auth.Max(u => (int?)u.Auth_Code);
-                    if (string.IsNullOrEmpty(NewCode.ToString()))
-                    {
-                        NewCode = 0;
-                    }
-
-                    User_Auth _User_Auth_Mod = new User_Auth()
-                    {
-
-                        Tab_Info_Code = row.Tab_Info_Code,
-                        User_Code = row.User_Code,
-                        IsDeleted = 0,
-                        Branch_Code = branch_Code,
-                        Last_Modified_Date = DateTime.Now,
-                        Created_Date = DateTime.Now,
-                        is_Back_Office_Updated = row.is_Back_Office_Updated,
-                        Last_Modified_User = row.Last_Modified_User,
-                        InActive = true,
-                        Auth_Code = Convert.ToInt64(NewCode + 1)
-
-                    };
-                    _New_List_User_Auth.Add(_User_Auth_Mod);
-
-
+                if (string.IsNullOrEmpty(NewCode.ToString()))
+                {
+                    NewCode = 0;
                 }
+
+                User_Auth _User_Auth_Mod = new User_Auth()
+                {
+
+                    Tab_Info_Code = row.Tab_Info_Code,
+                    User_Code = row.User_Code,
+                    IsDeleted = 0,
+                    Branch_Code = branch_Code,
+                    Last_Modified_Date = DateTime.Now,
+                    Created_Date = DateTime.Now,
+                    is_Back_Office_Updated = row.is_Back_Office_Updated,
+                    Last_Modified_User = row.Last_Modified_User,
+                    InActive = true,
+                    Auth_Code = Convert.ToInt64(NewCode + 1)
+
+                };
+                _New_List_User_Auth.Add(_User_Auth_Mod);
+
+
+            }
             localContext = new POSEntity();
 
             localContext.User_Auth.AddRange(_New_List_User_Auth);
-                localContext.SaveChanges();
-                localContext.Dispose();
-                _server.Dispose();
-                Authentication();
+            localContext.SaveChanges();
+            localContext.Dispose();
+            _server.Dispose();
+            Authentication();
 
-            
+
         }
 
-   
 
 
-        bool checkItemQty(Int64 itemCode, Int64 Warehouse_Code, double requerdQty) {
+
+        bool checkItemQty(Int64 itemCode, Int64 Warehouse_Code, double requerdQty)
+        {
 
             bool isVaild = false;
 
@@ -2891,34 +2927,34 @@ namespace PointOfSaleSedek
             {
 
 
-               
-                    //الكميه المطلوبه جديد
-                    double qty = Convert.ToDouble(requerdQty);
-                    double item_Qt = 0;
-                    try
-                    {
-                        // الكمية المتاحة الان في المخزن
-                        item_Qt = ContVald.Item_History.Where(w => w.Item_Id == itemCode && w.Warhouse_Code == Warehouse_Code && w.IsFinshed == false).Sum(x => x.Current_Qty_Now);
-                    }
-                    catch
-                    {
-                        item_Qt = 0;
-                    }
+
+                //الكميه المطلوبه جديد
+                double qty = Convert.ToDouble(requerdQty);
+                double item_Qt = 0;
+                try
+                {
+                    // الكمية المتاحة الان في المخزن
+                    item_Qt = ContVald.Item_History.Where(w => w.Item_Id == itemCode && w.Warhouse_Code == Warehouse_Code && w.IsFinshed == false).Sum(x => x.Current_Qty_Now);
+                }
+                catch
+                {
+                    item_Qt = 0;
+                }
 
 
-                    if (item_Qt >= qty)
-                    {
-
-                      
-                            isVaild = true;
+                if (item_Qt >= qty)
+                {
 
 
-                     
+                    isVaild = true;
 
 
 
-                    }
-                 
+
+
+
+                }
+
 
 
 
@@ -2931,7 +2967,7 @@ namespace PointOfSaleSedek
             Int64 shiftCode, Int64 Warhouse_Transfer_Code, Int64 To_Warhouse_Code)
         {
 
-             
+
             using (POSEntity _context2 = new POSEntity())
             {
 
@@ -2948,35 +2984,36 @@ namespace PointOfSaleSedek
 
                 //  server
                 _server = new BackOfficeEntity.db_a8f74e_posEntities();
-                BackOfficeEntity.Item_History_Back_Office item_History_Back_Office = new BackOfficeEntity.Item_History_Back_Office() {
-                        Is_Branch_Take_Update = false,
-                        Main_Item_History_Code = item_History.Id,
-                        Price_Buy = item_History.Price_Buy,
-                        Qty = Qty,
-                       CreatedDate = item_History.CreatedDate,
-                       From_Branch_Id = from_WareHouse,
-                       From_Warhouse_Code = from_WareHouse,
+                BackOfficeEntity.Item_History_Back_Office item_History_Back_Office = new BackOfficeEntity.Item_History_Back_Office()
+                {
+                    Is_Branch_Take_Update = false,
+                    Main_Item_History_Code = item_History.Id,
+                    Price_Buy = item_History.Price_Buy,
+                    Qty = Qty,
+                    CreatedDate = item_History.CreatedDate,
+                    From_Branch_Id = from_WareHouse,
+                    From_Warhouse_Code = from_WareHouse,
                     PO_Code = PoCode,
-                       IsDeleted = 0,
-                       Item_Id = item_History.Item_Id,
-                       Main_Master_Code = item_History.Sale_Master_Code,
-                       To_Branch_Code = To_Warhouse_Code,
-                       To_Warhouse_Code = To_Warhouse_Code,
-                       Warhouse_Transfer_Code = Warhouse_Transfer_Code,
-                      
+                    IsDeleted = 0,
+                    Item_Id = item_History.Item_Id,
+                    Main_Master_Code = item_History.Sale_Master_Code,
+                    To_Branch_Code = To_Warhouse_Code,
+                    To_Warhouse_Code = To_Warhouse_Code,
+                    Warhouse_Transfer_Code = Warhouse_Transfer_Code,
 
 
-                    };
+
+                };
                 _server.Item_History_Back_Office.Add(item_History_Back_Office);
                 _server.SaveChanges();
                 _server.Dispose();
 
 
 
-                 
 
 
-               
+
+
 
                 Item_History_transaction _Item_History_transaction = new Item_History_transaction()
                 {
@@ -3003,13 +3040,13 @@ namespace PointOfSaleSedek
 
             }
 
-         
+
         }
 
-        public void Update_Item_Qty_And_Finshed(Int64 PoCode,Int64 from_WareHouse, Int64 Sale_Master_Code, double Qty, DateTime OrderDate, Int64 History_Id, Int64 Item_Id, Int64 shiftCode,
+        public void Update_Item_Qty_And_Finshed(Int64 PoCode, Int64 from_WareHouse, Int64 Sale_Master_Code, double Qty, DateTime OrderDate, Int64 History_Id, Int64 Item_Id, Int64 shiftCode,
             Int64 Warhouse_Transfer_Code, Int64 To_Warhouse_Code)
         {
-            
+
             using (POSEntity _context2 = new POSEntity())
             {
 
@@ -3034,7 +3071,7 @@ namespace PointOfSaleSedek
                     CreatedDate = item_History.CreatedDate,
                     From_Branch_Id = from_WareHouse,
                     From_Warhouse_Code = from_WareHouse,
-                   PO_Code = PoCode,
+                    PO_Code = PoCode,
                     IsDeleted = 0,
                     Item_Id = item_History.Item_Id,
                     Main_Master_Code = item_History.Sale_Master_Code,
@@ -3047,7 +3084,7 @@ namespace PointOfSaleSedek
                 };
                 _server.Item_History_Back_Office.Add(item_History_Back_Office);
                 _server.SaveChanges();
-         
+
 
 
 
@@ -3090,7 +3127,8 @@ namespace PointOfSaleSedek
 
 
 
-        void update_Item_card_Balunce(Int64 item_Code, Int64 branchCode, Int64 Ware_House_Code,ItemCard _itemCard) {
+        void update_Item_card_Balunce(Int64 item_Code, Int64 branchCode, Int64 Ware_House_Code, ItemCard _itemCard)
+        {
 
 
             _server = new BackOfficeEntity.db_a8f74e_posEntities();
@@ -3104,7 +3142,7 @@ namespace PointOfSaleSedek
                 {
                     localContext = new POSEntity();
                     item.Balance = localContext.Item_History.Where(x => !x.IsFinshed && x.Warhouse_Code == Ware_House_Code && x.Item_Id == item_Code).ToList().Sum(xx => xx.Current_Qty_Now);
-                  
+
 
                 }
                 catch
@@ -3127,11 +3165,11 @@ namespace PointOfSaleSedek
             else
             {
                 localContext = new POSEntity();
-              
+
                 double balance = 0;
                 try
                 {
-                   
+
                     balance = localContext.Item_History.Where(x => !x.IsFinshed && x.Warhouse_Code == Ware_House_Code && x.Item_Id == item_Code).ToList().Sum(xx => xx.Current_Qty_Now);
 
                 }
@@ -3162,14 +3200,15 @@ namespace PointOfSaleSedek
 
 
         }
-        void Update_From_Back_Office(bool isFromTimer) {
-           Int64 Ware_House_Code = st.Get_Warehouse_Code();
-          //Int64 Ware_House_Code =0;
-             Int64 branchCode = st.GetBranch_Code();
-           // Int64 branchCode = 0;
+        void Update_From_Back_Office(bool isFromTimer)
+        {
+            Int64 Ware_House_Code = st.Get_Warehouse_Code();
+            //Int64 Ware_House_Code =0;
+            Int64 branchCode = st.GetBranch_Code();
+            // Int64 branchCode = 0;
             Int64 UserCode = st.GetUser_Code();
             Int64 ShiftCode = 0;
-           
+
             try
             {
                 localContext = new POSEntity();
@@ -3179,7 +3218,7 @@ namespace PointOfSaleSedek
             {
                 ShiftCode = 0;
             }
-          
+
             localContext.Dispose();
             if (!isFromTimer)
             {
@@ -3192,13 +3231,14 @@ namespace PointOfSaleSedek
                 {
                     //updateToFireBase();
                     // Update Base Data
-                       using (BackOfficeEntity.db_a8f74e_posEntities _server = new BackOfficeEntity.db_a8f74e_posEntities()){
+                    using (BackOfficeEntity.db_a8f74e_posEntities _server = new BackOfficeEntity.db_a8f74e_posEntities())
+                    {
                         List<BackOfficeEntity.Back_Office_Transaction_Master> MasterUpdate = _server.Back_Office_Transaction_Master.Where(x => x.To_Branch_Code == branchCode &&
                            x.IsDeleted == 0 && !x.Brach_Take_Update).ToList();
                         MasterUpdate.ForEach(Master =>
                         {
-                            
-                            List<BackOfficeEntity.Back_Office_Transaction_Detail> DetailUpdate = _server.Back_Office_Transaction_Detail.Where(x2 => x2.Back_Office_Master_Code == Master.Master_Code  &&
+
+                            List<BackOfficeEntity.Back_Office_Transaction_Detail> DetailUpdate = _server.Back_Office_Transaction_Detail.Where(x2 => x2.Back_Office_Master_Code == Master.Master_Code &&
                             x2.Brach_Code == branchCode && !x2.Is_Brach_Take_Update).ToList();
 
 
@@ -3238,24 +3278,24 @@ namespace PointOfSaleSedek
 
                             });
 
-                          
-                            BackOfficeEntity.Back_Office_Transaction_Master Detail = _server.Back_Office_Transaction_Master.FirstOrDefault(x2 => x2.Id == Master.Id);
-                                Detail.Brach_Take_Update = true;
-                                _server.SaveChanges();
-                              
 
-                                  
+                            BackOfficeEntity.Back_Office_Transaction_Master Detail = _server.Back_Office_Transaction_Master.FirstOrDefault(x2 => x2.Id == Master.Id);
+                            Detail.Brach_Take_Update = true;
+                            _server.SaveChanges();
+
+
+
 
                         });
                     }
 
-                      
+
 
 
                     // Get WareHouse_Tras
                     _server = new BackOfficeEntity.db_a8f74e_posEntities();
                     var list_WareHouse_Tras = _server.Warehouse_Transaction.Where(x => (x.To_Warehouse_Code == Ware_House_Code ||
-                    x.From_Warehouse_Code == Ware_House_Code) && x.is_Back_Office_Updated == false ).ToList();
+                    x.From_Warehouse_Code == Ware_House_Code) && x.is_Back_Office_Updated == false).ToList();
 
 
 
@@ -3264,14 +3304,16 @@ namespace PointOfSaleSedek
 
 
 
-                    list_WareHouse_Tras.ForEach(trn => {
+                    list_WareHouse_Tras.ForEach(trn =>
+                    {
 
 
 
                         // Get PO By WareHouse_Tras Id
                         var list_PO = _server.POes.Where(x => x.Warehouse_Transaction_Code == trn.Id && x.IsDeleted == 0).ToList();
 
-                        list_PO.ForEach(po_Model => {
+                        list_PO.ForEach(po_Model =>
+                        {
 
                             // if Event 2  && To_WareHouseCode = CurntWarhous  ==== >  Aprroved
                             // 1 - get item history Back Office  from server by WareHouse_Tras Id.
@@ -3320,9 +3362,9 @@ namespace PointOfSaleSedek
 
                                     // 3 - update item Back Office history from server set (Branch Take update == true)
                                     _server = new BackOfficeEntity.db_a8f74e_posEntities();
-                                    var item_Back_Offce_histoy = _server.Item_History_Back_Office.FirstOrDefault(bb => bb.Id_Back_Office == xv.Id_Back_Office && bb.PO_Code == po_Model.id );
+                                    var item_Back_Offce_histoy = _server.Item_History_Back_Office.FirstOrDefault(bb => bb.Id_Back_Office == xv.Id_Back_Office && bb.PO_Code == po_Model.id);
                                     item_Back_Offce_histoy.Is_Branch_Take_Update = true;
-                                     
+
                                     _server.SaveChanges();
 
 
@@ -3330,7 +3372,7 @@ namespace PointOfSaleSedek
                                     _server = new BackOfficeEntity.db_a8f74e_posEntities();
                                     var po_state = _server.POes.FirstOrDefault(bb => bb.id == po_Model.id);
                                     po_state.PO_Request_State = 3;
-                                    
+
                                     _server.SaveChanges();
 
 
@@ -3386,7 +3428,8 @@ namespace PointOfSaleSedek
 
 
 
-                            else if (po_Model.PO_Request_State == 1 && po_Model.From_WareHouse_Code == Ware_House_Code) {
+                            else if (po_Model.PO_Request_State == 1 && po_Model.From_WareHouse_Code == Ware_House_Code)
+                            {
 
                                 // 1 - get item history Back Office  from server by WareHouse_Tras Id.
                                 _server = new BackOfficeEntity.db_a8f74e_posEntities();
@@ -3395,8 +3438,8 @@ namespace PointOfSaleSedek
                                     xx.Warhouse_Transfer_Code == po_Model.Warehouse_Transaction_Code && xx.To_Warhouse_Code == Ware_House_Code).ToList();
 
 
-                                  // 2 -  Check if qty is vaild
-                                  bool vaild = checkItemQty(po_Model.Item_Code, Ware_House_Code, po_Model.PO_Item_Qty);
+                                // 2 -  Check if qty is vaild
+                                bool vaild = checkItemQty(po_Model.Item_Code, Ware_House_Code, po_Model.PO_Item_Qty);
 
                                 //if (true)=========>
                                 if (vaild)
@@ -3407,41 +3450,41 @@ namespace PointOfSaleSedek
                                     Item_Qty_List = localContext.Item_History.Where(w => w.Item_Id == po_Model.Item_Code && w.IsFinshed == false && w.Warhouse_Code == Ware_House_Code).ToList();
 
 
-                                        Item_Qty_List.ForEach(x =>
-                                        {
+                                    Item_Qty_List.ForEach(x =>
+                                    {
 
-                                            double qty = po_Model.PO_Item_Qty;
-                                            if (qty > 0)
-                                            {
+                                        double qty = po_Model.PO_Item_Qty;
+                                        if (qty > 0)
+                                        {
                                                 // لو الكمية المطلوبه اكبر من الكمية الموجوده في الصف 
                                                 if (qty >= x.Current_Qty_Now)
+                                            {
+
+                                                Update_Item_Qty_And_Finshed(po_Model.id, Ware_House_Code, 0, x.Current_Qty_Now, x.CreatedDate, x.Id, x.Item_Id, ShiftCode, trn.Id, po_Model.To_WareHouseCode);
+                                                qty = qty - x.Current_Qty_Now;
+
+                                                if (qty < 0)
                                                 {
-
-                                                    Update_Item_Qty_And_Finshed(po_Model.id, Ware_House_Code, 0, x.Current_Qty_Now, x.CreatedDate, x.Id, x.Item_Id, ShiftCode, trn.Id, po_Model.To_WareHouseCode);
-                                                    qty = qty - x.Current_Qty_Now;
-
-                                                    if (qty < 0)
-                                                    {
-                                                        qty = 0;
-                                                    }
-                                                }
-
-                                                else if (qty < x.Current_Qty_Now)
-                                                {
-
-
-                                                    Update_Item_Qty_Oly(po_Model.id, Ware_House_Code, 0, qty, x.CreatedDate, x.Id, x.Item_Id, ShiftCode, trn.Id, po_Model.To_WareHouseCode);
                                                     qty = 0;
-
                                                 }
+                                            }
+
+                                            else if (qty < x.Current_Qty_Now)
+                                            {
 
 
+                                                Update_Item_Qty_Oly(po_Model.id, Ware_House_Code, 0, qty, x.CreatedDate, x.Id, x.Item_Id, ShiftCode, trn.Id, po_Model.To_WareHouseCode);
+                                                qty = 0;
 
                                             }
 
 
-                                        });
-                                    
+
+                                        }
+
+
+                                    });
+
 
 
 
@@ -3460,14 +3503,14 @@ namespace PointOfSaleSedek
                                 {
 
                                     //1- update item Back Office history from server set (Branch Take update == true)
-                                    List_item_History_Back_Offices.ForEach(xv=>
+                                    List_item_History_Back_Offices.ForEach(xv =>
                                     {
                                         _server = new BackOfficeEntity.db_a8f74e_posEntities();
                                         var item_Back_Offce_histoy = _server.Item_History_Back_Office.FirstOrDefault(bb => bb.Id_Back_Office == xv.Id_Back_Office);
                                         item_Back_Offce_histoy.Is_Branch_Take_Update = true;
                                         _server.SaveChanges();
                                     });
-                                  
+
 
                                     // 2 - update po requst state to 4 (reject)
                                     _server = new BackOfficeEntity.db_a8f74e_posEntities();
@@ -3508,40 +3551,43 @@ namespace PointOfSaleSedek
 
 
 
-                        
-                         
 
-                          
+
+
+
 
                         });
 
-                     
+
 
                         localContext = new POSEntity();
                         bool chechk = localContext.Warehouse_Transaction.Any(xx => xx.Code == trn.Code);
 
-                        if (!chechk) {
-                            Warehouse_Transaction warehouse_Transaction = new Warehouse_Transaction(){ 
-                            Code = trn.Code,
-                            Branch_Code = trn.Branch_Code,
-                            Created_By = trn.Created_By,
-                            Created_Date = trn.Created_Date,
-                            From_Warehouse_Code = trn.From_Warehouse_Code,
-                            IsDeleted = trn.IsDeleted,
-                            is_Back_Office_Updated =  true,
-                            To_Warehouse_Code = trn.To_Warehouse_Code
+                        if (!chechk)
+                        {
+                            Warehouse_Transaction warehouse_Transaction = new Warehouse_Transaction()
+                            {
+                                Code = trn.Code,
+                                Branch_Code = trn.Branch_Code,
+                                Created_By = trn.Created_By,
+                                Created_Date = trn.Created_Date,
+                                From_Warehouse_Code = trn.From_Warehouse_Code,
+                                IsDeleted = trn.IsDeleted,
+                                is_Back_Office_Updated = true,
+                                To_Warehouse_Code = trn.To_Warehouse_Code
                             };
                             localContext = new POSEntity();
                             localContext.Warehouse_Transaction.Add(warehouse_Transaction);
                             localContext.SaveChanges();
-                             
+
                         }
 
                         _server = new BackOfficeEntity.db_a8f74e_posEntities();
 
                         bool anybo = _server.POes.Any(xxx => xxx.From_WareHouse_Code == trn.Code && (xxx.PO_Request_State > 2));
 
-                        if (anybo) {
+                        if (anybo)
+                        {
                             BackOfficeEntity.Warehouse_Transaction warehouse_Transaction1 = _server.Warehouse_Transaction.FirstOrDefault(S => S.Code == trn.Code);
                             warehouse_Transaction1.is_Back_Office_Updated = true;
                             _server.SaveChanges();
@@ -3565,7 +3611,8 @@ namespace PointOfSaleSedek
                     var list_WareHouse_Tras2 = _server.Warehouse_Transaction.Where(x => (x.To_Warehouse_Code == Ware_House_Code ||
                     x.From_Warehouse_Code == Ware_House_Code) && x.is_Back_Office_Updated == false).ToList();
 
-                    list_WareHouse_Tras2.ForEach(vv=> {
+                    list_WareHouse_Tras2.ForEach(vv =>
+                    {
 
                         bool anybo = _server.POes.Any(xxx => xxx.From_WareHouse_Code == vv.Code && (xxx.PO_Request_State > 2));
 
@@ -3580,7 +3627,7 @@ namespace PointOfSaleSedek
 
                         else
                         {
-              
+
                             _server = new BackOfficeEntity.db_a8f74e_posEntities();
                             var list_WareHouse_Tras3 = _server.Warehouse_Transaction.FirstOrDefault(dd => dd.Id == vv.Id);
                             list_WareHouse_Tras3.is_Back_Office_Updated = false;
@@ -3593,14 +3640,16 @@ namespace PointOfSaleSedek
 
 
                     _server = new BackOfficeEntity.db_a8f74e_posEntities();
-                    var list_WareHouse_Tras4 = _server.Warehouse_Transaction.Where(x => (x.To_Warehouse_Code == Ware_House_Code ||   x.From_Warehouse_Code == Ware_House_Code) && x.is_Back_Office_Updated == false).ToList();
+                    var list_WareHouse_Tras4 = _server.Warehouse_Transaction.Where(x => (x.To_Warehouse_Code == Ware_House_Code || x.From_Warehouse_Code == Ware_House_Code) && x.is_Back_Office_Updated == false).ToList();
 
 
-                    list_WareHouse_Tras4.ForEach(g => {
+                    list_WareHouse_Tras4.ForEach(g =>
+                    {
 
 
                         bool anybo = _server.POes.Any(xxx => xxx.PO_Request_State <= 2);
-                        if (anybo) {
+                        if (anybo)
+                        {
 
                             _server = new BackOfficeEntity.db_a8f74e_posEntities();
                             var list_WareHouse_Tras5 = _server.Warehouse_Transaction.FirstOrDefault(xxv => xxv.Id == g.Id);
@@ -3620,53 +3669,56 @@ namespace PointOfSaleSedek
 
                     localContext = new POSEntity();
                     List<ItemCard> listItemCard = localContext.ItemCards.Where(x => x.IsDeleted == 0 && x.Branch_Code == branchCode).ToList();
-                    listItemCard.ForEach(xx=> {
+                    listItemCard.ForEach(xx =>
+                    {
 
-                        update_Item_card_Balunce(xx.ItemCode,branchCode,Ware_House_Code, xx);
+                        update_Item_card_Balunce(xx.ItemCode, branchCode, Ware_House_Code, xx);
 
 
 
 
                     });
 
-                      
-                    
-                    if (!isFromTimer) {
+
+
+                    if (!isFromTimer)
+                    {
                         SplashScreenManager.CloseForm();
                         MaterialMessageBox.Show(st.isEnglish() ? "The data has been updated successfully" : "تم تحديث البيانات بنجاح", MessageBoxButtons.OK);
                     }
-                   
+
                 }
                 catch
                 {
-                   
+
                     if (!isFromTimer)
                     {
                         SplashScreenManager.CloseForm();
                         MaterialMessageBox.Show(st.isEnglish() ? "There is no internet connection" : "لا يوجد اتصال بالانترنت", MessageBoxButtons.OK);
                     }
-                   
 
-                  
+
+
                 }
-               
 
-                 
+
+
 
             }
-            else {
+            else
+            {
 
-              
+
                 if (!isFromTimer)
                 {
                     SplashScreenManager.CloseForm();
                     MaterialMessageBox.Show(st.isEnglish() ? "There is no internet connection" : "لا يوجد اتصال بالانترنت", MessageBoxButtons.OK);
                 }
 
-                
-              
+
+
             }
-       
+
         }
 
         private void barButtonItem43_ItemClick(object sender, ItemClickEventArgs e)
@@ -3675,10 +3727,11 @@ namespace PointOfSaleSedek
             {
                 Update_From_Back_Office(false);
             }
-            catch { 
-            
+            catch
+            {
+
             }
-         
+
 
 
         }
@@ -3688,12 +3741,12 @@ namespace PointOfSaleSedek
 
             Unit_Back_office frm = new Unit_Back_office();
             frm.ShowDialog();
-           
+
         }
 
         private void barButtonItem45_ItemClick(object sender, ItemClickEventArgs e)
         {
-             
+
             Expenses_Back_office frm = new Expenses_Back_office();
             frm.ShowDialog();
         }
@@ -3709,7 +3762,7 @@ namespace PointOfSaleSedek
         {
             Item_Back_office frm = new Item_Back_office();
             frm.ShowDialog();
-            
+
         }
 
         private void barButtonItem48_ItemClick(object sender, ItemClickEventArgs e)
@@ -3722,7 +3775,13 @@ namespace PointOfSaleSedek
         {
             frm_PO_DashBord frm = new frm_PO_DashBord();
             frm.ShowDialog();
-            
+
+        }
+
+        private void barButtonItem50_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            frmProductsRate frm = new frmProductsRate();
+            frm.ShowDialog();
         }
     }
 }

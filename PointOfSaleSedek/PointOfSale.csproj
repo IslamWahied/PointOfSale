@@ -288,6 +288,12 @@
     <Compile Include="101-Adds\102-Customer\frmEditeCustomer.Designer.cs">
       <DependentUpon>frmEditeCustomer.cs</DependentUpon>
     </Compile>
+    <Compile Include="101-Adds\107-Item\Cafe\frmItemDeletedHistory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="101-Adds\107-Item\Cafe\frmItemDeletedHistory.Designer.cs">
+      <DependentUpon>frmItemDeletedHistory.cs</DependentUpon>
+    </Compile>
     <Compile Include="101-Adds\112-Users\Authentication\frmAdmin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -384,16 +390,16 @@
     <Compile Include="101-Adds\107-Item\SuperMarket\frmSuperMarketItemCard.Designer.cs">
       <DependentUpon>frmSuperMarketItemCard.cs</DependentUpon>
     </Compile>
-    <Compile Include="101-Adds\108-CasherShift\frmShiftEnd.cs">
+    <Compile Include="101-Adds\105-Shifts\frmShiftEnd.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="101-Adds\108-CasherShift\frmShiftEnd.Designer.cs">
+    <Compile Include="101-Adds\105-Shifts\frmShiftEnd.Designer.cs">
       <DependentUpon>frmShiftEnd.cs</DependentUpon>
     </Compile>
-    <Compile Include="101-Adds\108-CasherShift\frmShiftStart.cs">
+    <Compile Include="101-Adds\105-Shifts\frmShiftStart.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="101-Adds\108-CasherShift\frmShiftStart.Designer.cs">
+    <Compile Include="101-Adds\105-Shifts\frmShiftStart.Designer.cs">
       <DependentUpon>frmShiftStart.cs</DependentUpon>
     </Compile>
     <Compile Include="101-Adds\109-Purchasescs\frmAddPurchsItems.cs">
@@ -631,6 +637,12 @@
     <Compile Include="102-Reports\frmSaleReports.Designer.cs">
       <DependentUpon>frmSaleReports.cs</DependentUpon>
     </Compile>
+    <Compile Include="102-Reports\frmProductsRate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="102-Reports\frmProductsRate.Designer.cs">
+      <DependentUpon>frmProductsRate.cs</DependentUpon>
+    </Compile>
     <Compile Include="102-Reports\frmShiftsReport.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -702,6 +714,7 @@
     <Compile Include="HelperClass\Static.cs" />
     <Compile Include="Model\EndShiftReport.cs" />
     <Compile Include="Model\FinalTotal.cs" />
+    <Compile Include="Model\ProductRate.cs" />
     <Compile Include="Model\ProfitAndLosse.cs" />
     <Compile Include="Model\SaleDetailPrfumViewVm.cs" />
     <Compile Include="Model\SaleDetailViewVm.cs" />
@@ -731,6 +744,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="101-Adds\102-Customer\frmEditeCustomer.resx">
       <DependentUpon>frmEditeCustomer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="101-Adds\107-Item\Cafe\frmItemDeletedHistory.resx">
+      <DependentUpon>frmItemDeletedHistory.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="101-Adds\112-Users\Authentication\frmAdmin.resx">
       <DependentUpon>frmAdmin.cs</DependentUpon>
@@ -780,10 +796,10 @@
     <EmbeddedResource Include="101-Adds\107-Item\SuperMarket\frmSuperMarketItemCard.resx">
       <DependentUpon>frmSuperMarketItemCard.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="101-Adds\108-CasherShift\frmShiftEnd.resx">
+    <EmbeddedResource Include="101-Adds\105-Shifts\frmShiftEnd.resx">
       <DependentUpon>frmShiftEnd.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="101-Adds\108-CasherShift\frmShiftStart.resx">
+    <EmbeddedResource Include="101-Adds\105-Shifts\frmShiftStart.resx">
       <DependentUpon>frmShiftStart.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="101-Adds\109-Purchasescs\frmAddPurchsItems.resx">
@@ -908,6 +924,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="102-Reports\frmSaleReports.resx">
       <DependentUpon>frmSaleReports.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="102-Reports\frmProductsRate.resx">
+      <DependentUpon>frmProductsRate.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="102-Reports\frmShiftsReport.resx">
       <DependentUpon>frmShiftsReport.cs</DependentUpon>

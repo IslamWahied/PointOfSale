@@ -247,7 +247,7 @@ namespace PointOfSaleSedek._101_Adds
 
             try
             {
-                if (!string.IsNullOrWhiteSpace(slkItem.Text) && !string.IsNullOrWhiteSpace(slkWarhouse.Text))
+                if (true)
                 {
                     Int64 ItemCode = Convert.ToInt64(slkItem.EditValue);
                     ItemCardView item1 = context.ItemCardViews.FirstOrDefault(x => x.ItemCode == ItemCode && x.Branch_Code == branchCode );
@@ -300,9 +300,9 @@ namespace PointOfSaleSedek._101_Adds
                                         Qty = Convert.ToDouble(txtFinalUnitsNumber.Text),
                                         Total = Convert.ToDouble(txtFinalUnitsNumber.Text) * Convert.ToDouble(txtPriceBuy.Text),
                                         Branches_Code = st.GetBranch_Code(),
-                                      Warhouse_Code = Convert.ToInt64(slkWarhouse.EditValue),
+                                      Warhouse_Code = 1,
                                         Name_En = item1.Name_En,
-                                        Warehouse_Name = slkWarhouse.Text,
+                                        Warehouse_Name = "eeee",
                                         CategoryCode = item1.CategoryCode,
                                         ItemCode = item1.ItemCode,
                                         Operation_Type_Id = 2,

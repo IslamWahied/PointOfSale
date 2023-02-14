@@ -137,7 +137,7 @@ namespace PointOfSaleSedek._101_Adds
                 BackOfficeEntity.db_a8f74e_posEntities _server = new BackOfficeEntity.db_a8f74e_posEntities();
                 var ItemTransactions = _server.PO_View.ToList();
 
-
+                
                 gcItemCard.DataSource = ItemTransactions;
                 gcItemCard.RefreshDataSource();
                 SplashScreenManager.CloseForm();

@@ -53,9 +53,13 @@ namespace PointOfSaleSedek._101_Adds.CasherShift
             this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
             this.txtAmountStart = new DevExpress.XtraEditors.TextEdit();
             this.labelControl9 = new DevExpress.XtraEditors.LabelControl();
-            this.txtTotalSale = new DevExpress.XtraEditors.TextEdit();
             this.labelControl10 = new DevExpress.XtraEditors.LabelControl();
             this.txtExpenses = new DevExpress.XtraEditors.TextEdit();
+            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.totalVisa = new System.Windows.Forms.Label();
+            this.totalCash = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.slkShiftsOpen.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).BeginInit();
@@ -68,8 +72,8 @@ namespace PointOfSaleSedek._101_Adds.CasherShift
             ((System.ComponentModel.ISupportInitialize)(this.txtNoteEnd.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAmountEnd.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAmountStart.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtTotalSale.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtExpenses.Properties)).BeginInit();
+            this.tableLayoutPanel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -95,9 +99,9 @@ namespace PointOfSaleSedek._101_Adds.CasherShift
             this.tableLayoutPanel1.Controls.Add(this.labelControl7, 0, 3);
             this.tableLayoutPanel1.Controls.Add(this.txtAmountStart, 1, 3);
             this.tableLayoutPanel1.Controls.Add(this.labelControl9, 0, 4);
-            this.tableLayoutPanel1.Controls.Add(this.txtTotalSale, 1, 4);
             this.tableLayoutPanel1.Controls.Add(this.labelControl10, 0, 5);
             this.tableLayoutPanel1.Controls.Add(this.txtExpenses, 1, 5);
+            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel3, 1, 4);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
@@ -107,12 +111,12 @@ namespace PointOfSaleSedek._101_Adds.CasherShift
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 34F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 46F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 37F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 37F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 37F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 62F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 44F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 34F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 59F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(411, 435);
             this.tableLayoutPanel1.TabIndex = 1;
@@ -181,17 +185,19 @@ namespace PointOfSaleSedek._101_Adds.CasherShift
             this.labelControl3.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.labelControl3.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.labelControl3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelControl3.Location = new System.Drawing.Point(251, 262);
+            this.labelControl3.Location = new System.Drawing.Point(251, 272);
             this.labelControl3.Name = "labelControl3";
-            this.labelControl3.Size = new System.Drawing.Size(157, 31);
+            this.labelControl3.Size = new System.Drawing.Size(157, 27);
             this.labelControl3.TabIndex = 2;
             this.labelControl3.Text = "العجز او الزيادة";
             // 
             // txtShiftIncrseOrDibilty
             // 
             this.txtShiftIncrseOrDibilty.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtShiftIncrseOrDibilty.Location = new System.Drawing.Point(3, 262);
+            this.txtShiftIncrseOrDibilty.Location = new System.Drawing.Point(3, 272);
             this.txtShiftIncrseOrDibilty.Name = "txtShiftIncrseOrDibilty";
+            this.txtShiftIncrseOrDibilty.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtShiftIncrseOrDibilty.Properties.Appearance.Options.UseFont = true;
             this.txtShiftIncrseOrDibilty.Properties.Appearance.Options.UseTextOptions = true;
             this.txtShiftIncrseOrDibilty.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.txtShiftIncrseOrDibilty.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
@@ -201,14 +207,14 @@ namespace PointOfSaleSedek._101_Adds.CasherShift
             this.txtShiftIncrseOrDibilty.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
             this.txtShiftIncrseOrDibilty.Properties.NullText = "0";
             this.txtShiftIncrseOrDibilty.Properties.ReadOnly = true;
-            this.txtShiftIncrseOrDibilty.Size = new System.Drawing.Size(242, 31);
+            this.txtShiftIncrseOrDibilty.Size = new System.Drawing.Size(242, 27);
             this.txtShiftIncrseOrDibilty.TabIndex = 152;
             // 
             // tableLayoutPanel2
             // 
             this.tableLayoutPanel2.ColumnCount = 2;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 133F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 125F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel2.Controls.Add(this.btnSave, 0, 1);
             this.tableLayoutPanel2.Controls.Add(this.btnCancel, 1, 1);
@@ -229,11 +235,11 @@ namespace PointOfSaleSedek._101_Adds.CasherShift
             this.btnSave.Appearance.Options.UseBackColor = true;
             this.btnSave.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnSave.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSave.ImageOptions.Image")));
-            this.btnSave.Location = new System.Drawing.Point(136, 10);
+            this.btnSave.Location = new System.Drawing.Point(128, 10);
             this.btnSave.LookAndFeel.SkinName = "The Bezier";
             this.btnSave.LookAndFeel.UseDefaultLookAndFeel = false;
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(103, 40);
+            this.btnSave.Size = new System.Drawing.Size(111, 40);
             this.btnSave.TabIndex = 0;
             this.btnSave.Text = "حفظ";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
@@ -247,7 +253,7 @@ namespace PointOfSaleSedek._101_Adds.CasherShift
             this.btnCancel.Location = new System.Drawing.Point(3, 10);
             this.btnCancel.LookAndFeel.UseDefaultLookAndFeel = false;
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(127, 40);
+            this.btnCancel.Size = new System.Drawing.Size(119, 40);
             this.btnCancel.TabIndex = 2;
             this.btnCancel.Text = "الغاء";
             // 
@@ -297,23 +303,23 @@ namespace PointOfSaleSedek._101_Adds.CasherShift
             this.labelControl4.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.labelControl4.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.labelControl4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelControl4.Location = new System.Drawing.Point(251, 299);
+            this.labelControl4.Location = new System.Drawing.Point(251, 305);
             this.labelControl4.Name = "labelControl4";
-            this.labelControl4.Size = new System.Drawing.Size(157, 30);
+            this.labelControl4.Size = new System.Drawing.Size(157, 28);
             this.labelControl4.TabIndex = 154;
             this.labelControl4.Text = "ملاحظات بداية الوردية";
             // 
             // txtNoteStart
             // 
             this.txtNoteStart.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtNoteStart.Location = new System.Drawing.Point(3, 299);
+            this.txtNoteStart.Location = new System.Drawing.Point(3, 305);
             this.txtNoteStart.Name = "txtNoteStart";
             this.txtNoteStart.Properties.Appearance.Options.UseTextOptions = true;
             this.txtNoteStart.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.txtNoteStart.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.txtNoteStart.Properties.AutoHeight = false;
             this.txtNoteStart.Properties.ReadOnly = true;
-            this.txtNoteStart.Size = new System.Drawing.Size(242, 30);
+            this.txtNoteStart.Size = new System.Drawing.Size(242, 28);
             this.txtNoteStart.TabIndex = 155;
             // 
             // labelControl5
@@ -356,22 +362,22 @@ namespace PointOfSaleSedek._101_Adds.CasherShift
             this.labelControl6.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.labelControl6.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.labelControl6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelControl6.Location = new System.Drawing.Point(251, 335);
+            this.labelControl6.Location = new System.Drawing.Point(251, 339);
             this.labelControl6.Name = "labelControl6";
-            this.labelControl6.Size = new System.Drawing.Size(157, 38);
+            this.labelControl6.Size = new System.Drawing.Size(157, 34);
             this.labelControl6.TabIndex = 159;
             this.labelControl6.Text = "ملاحظات نهاية الوردية";
             // 
             // txtNoteEnd
             // 
             this.txtNoteEnd.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtNoteEnd.Location = new System.Drawing.Point(3, 335);
+            this.txtNoteEnd.Location = new System.Drawing.Point(3, 339);
             this.txtNoteEnd.Name = "txtNoteEnd";
             this.txtNoteEnd.Properties.Appearance.Options.UseTextOptions = true;
             this.txtNoteEnd.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.txtNoteEnd.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.txtNoteEnd.Properties.AutoHeight = false;
-            this.txtNoteEnd.Size = new System.Drawing.Size(242, 38);
+            this.txtNoteEnd.Size = new System.Drawing.Size(242, 34);
             this.txtNoteEnd.TabIndex = 160;
             // 
             // labelControl8
@@ -382,16 +388,16 @@ namespace PointOfSaleSedek._101_Adds.CasherShift
             this.labelControl8.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.labelControl8.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.labelControl8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelControl8.Location = new System.Drawing.Point(251, 225);
+            this.labelControl8.Location = new System.Drawing.Point(251, 236);
             this.labelControl8.Name = "labelControl8";
-            this.labelControl8.Size = new System.Drawing.Size(157, 31);
+            this.labelControl8.Size = new System.Drawing.Size(157, 30);
             this.labelControl8.TabIndex = 163;
             this.labelControl8.Text = "رصيد نهاية الوردية";
             // 
             // txtAmountEnd
             // 
             this.txtAmountEnd.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtAmountEnd.Location = new System.Drawing.Point(3, 225);
+            this.txtAmountEnd.Location = new System.Drawing.Point(3, 236);
             this.txtAmountEnd.Name = "txtAmountEnd";
             this.txtAmountEnd.Properties.Appearance.Options.UseTextOptions = true;
             this.txtAmountEnd.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -401,7 +407,7 @@ namespace PointOfSaleSedek._101_Adds.CasherShift
             this.txtAmountEnd.Properties.Mask.EditMask = "\\d{0,50}";
             this.txtAmountEnd.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
             this.txtAmountEnd.Properties.NullText = "0";
-            this.txtAmountEnd.Size = new System.Drawing.Size(242, 31);
+            this.txtAmountEnd.Size = new System.Drawing.Size(242, 30);
             this.txtAmountEnd.TabIndex = 164;
             this.txtAmountEnd.EditValueChanged += new System.EventHandler(this.txtAmountEnd_EditValueChanged);
             // 
@@ -446,26 +452,9 @@ namespace PointOfSaleSedek._101_Adds.CasherShift
             this.labelControl9.Dock = System.Windows.Forms.DockStyle.Fill;
             this.labelControl9.Location = new System.Drawing.Point(251, 142);
             this.labelControl9.Name = "labelControl9";
-            this.labelControl9.Size = new System.Drawing.Size(157, 40);
+            this.labelControl9.Size = new System.Drawing.Size(157, 56);
             this.labelControl9.TabIndex = 165;
             this.labelControl9.Text = "اجمالي مبيعات الوردية";
-            // 
-            // txtTotalSale
-            // 
-            this.txtTotalSale.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtTotalSale.Location = new System.Drawing.Point(3, 142);
-            this.txtTotalSale.Name = "txtTotalSale";
-            this.txtTotalSale.Properties.Appearance.Options.UseTextOptions = true;
-            this.txtTotalSale.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.txtTotalSale.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.txtTotalSale.Properties.AutoHeight = false;
-            this.txtTotalSale.Properties.Mask.BeepOnError = true;
-            this.txtTotalSale.Properties.Mask.EditMask = "\\d{0,50}";
-            this.txtTotalSale.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
-            this.txtTotalSale.Properties.NullText = "0";
-            this.txtTotalSale.Properties.ReadOnly = true;
-            this.txtTotalSale.Size = new System.Drawing.Size(242, 40);
-            this.txtTotalSale.TabIndex = 166;
             // 
             // labelControl10
             // 
@@ -475,16 +464,16 @@ namespace PointOfSaleSedek._101_Adds.CasherShift
             this.labelControl10.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.labelControl10.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.labelControl10.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelControl10.Location = new System.Drawing.Point(251, 188);
+            this.labelControl10.Location = new System.Drawing.Point(251, 204);
             this.labelControl10.Name = "labelControl10";
-            this.labelControl10.Size = new System.Drawing.Size(157, 31);
+            this.labelControl10.Size = new System.Drawing.Size(157, 26);
             this.labelControl10.TabIndex = 167;
             this.labelControl10.Text = "اجمالي مصروفات الوردية";
             // 
             // txtExpenses
             // 
             this.txtExpenses.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtExpenses.Location = new System.Drawing.Point(3, 188);
+            this.txtExpenses.Location = new System.Drawing.Point(3, 204);
             this.txtExpenses.Name = "txtExpenses";
             this.txtExpenses.Properties.Appearance.Options.UseTextOptions = true;
             this.txtExpenses.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -495,8 +484,75 @@ namespace PointOfSaleSedek._101_Adds.CasherShift
             this.txtExpenses.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
             this.txtExpenses.Properties.NullText = "0";
             this.txtExpenses.Properties.ReadOnly = true;
-            this.txtExpenses.Size = new System.Drawing.Size(242, 31);
+            this.txtExpenses.Size = new System.Drawing.Size(242, 26);
             this.txtExpenses.TabIndex = 168;
+            // 
+            // tableLayoutPanel3
+            // 
+            this.tableLayoutPanel3.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.InsetDouble;
+            this.tableLayoutPanel3.ColumnCount = 2;
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.Controls.Add(this.label2, 0, 0);
+            this.tableLayoutPanel3.Controls.Add(this.totalVisa, 1, 1);
+            this.tableLayoutPanel3.Controls.Add(this.totalCash, 0, 1);
+            this.tableLayoutPanel3.Controls.Add(this.label1, 1, 0);
+            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 142);
+            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
+            this.tableLayoutPanel3.RowCount = 2;
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 39.62264F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 60.37736F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(242, 56);
+            this.tableLayoutPanel3.TabIndex = 169;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label2.Location = new System.Drawing.Point(126, 3);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(110, 18);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Cash";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // totalVisa
+            // 
+            this.totalVisa.AutoSize = true;
+            this.totalVisa.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.totalVisa.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.totalVisa.ForeColor = System.Drawing.Color.Green;
+            this.totalVisa.Location = new System.Drawing.Point(6, 24);
+            this.totalVisa.Name = "totalVisa";
+            this.totalVisa.Size = new System.Drawing.Size(111, 29);
+            this.totalVisa.TabIndex = 2;
+            this.totalVisa.Text = "0";
+            this.totalVisa.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // totalCash
+            // 
+            this.totalCash.AutoSize = true;
+            this.totalCash.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.totalCash.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.totalCash.ForeColor = System.Drawing.Color.Green;
+            this.totalCash.Location = new System.Drawing.Point(126, 24);
+            this.totalCash.Name = "totalCash";
+            this.totalCash.Size = new System.Drawing.Size(110, 29);
+            this.totalCash.TabIndex = 3;
+            this.totalCash.Text = "0";
+            this.totalCash.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label1.Location = new System.Drawing.Point(6, 3);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(111, 18);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Visa";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // frmShiftEnd
             // 
@@ -527,8 +583,9 @@ namespace PointOfSaleSedek._101_Adds.CasherShift
             ((System.ComponentModel.ISupportInitialize)(this.txtNoteEnd.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAmountEnd.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAmountStart.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtTotalSale.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtExpenses.Properties)).EndInit();
+            this.tableLayoutPanel3.ResumeLayout(false);
+            this.tableLayoutPanel3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -557,9 +614,13 @@ namespace PointOfSaleSedek._101_Adds.CasherShift
         private DevExpress.XtraEditors.LabelControl labelControl8;
         private DevExpress.XtraEditors.TextEdit txtAmountEnd;
         private DevExpress.XtraEditors.LabelControl labelControl9;
-        private DevExpress.XtraEditors.TextEdit txtTotalSale;
         private DevExpress.XtraEditors.LabelControl labelControl10;
         private DevExpress.XtraEditors.TextEdit txtExpenses;
         private DevExpress.XtraEditors.SimpleButton btnCancel;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label totalVisa;
+        private System.Windows.Forms.Label totalCash;
     }
 }

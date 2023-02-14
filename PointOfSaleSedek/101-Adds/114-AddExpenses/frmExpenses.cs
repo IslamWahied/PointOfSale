@@ -56,6 +56,7 @@ namespace PointOfSaleSedek._114_Adds
 
         void AddExpenses()
         {
+            var branchCode = st.GetBranch_Code();
             if (string.IsNullOrWhiteSpace(txtExpenses.Text))
             {
 
@@ -88,7 +89,7 @@ namespace PointOfSaleSedek._114_Adds
                 {
                     ExpensesCode = Convert.ToInt64(NewCode),
                     ExpensesName = txtExpenses.Text,
-                    Branch_Code = 0,
+                    Branch_Code = branchCode,
                     
                    
                 };

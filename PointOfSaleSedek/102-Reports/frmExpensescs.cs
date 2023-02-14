@@ -59,7 +59,7 @@ namespace PointOfSaleSedek._102_Reports
 
         public void FillSlkEmployees()
         {
-            var result = context.Employee_View.Where(user => user.IsDeleted == 0 && user.Employee_Code !=0).ToList();
+            var result = context.Employee_View.Where(user => user.IsDeleted == 0 ).ToList();
             slkUsers.Properties.DataSource = result;
             slkUsers.Properties.ValueMember = "Employee_Code";
             slkUsers.Properties.DisplayMember = "Employee_Name";
@@ -128,10 +128,7 @@ namespace PointOfSaleSedek._102_Reports
 
             }
 
-        private void slkShiftsOpen_Properties_EditValueChanged(object sender, EventArgs e)
-        {
-
-        }
+       
 
         
     }

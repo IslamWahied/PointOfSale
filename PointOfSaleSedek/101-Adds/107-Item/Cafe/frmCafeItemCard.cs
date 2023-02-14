@@ -41,12 +41,15 @@ namespace PointOfSaleSedek._101_Adds
             gridColumn4.Caption = st.isEnglish() ? "Selling Price" : "سعر البيع";
             gridColumn12.Caption = st.isEnglish() ? "Danger Limit" : "حد الخطر";
             gvCafeItemCard.GroupPanelText = st.isEnglish() ? "Drag the field here to collect" : "اسحب الحقل هنا للتجميع";
+           
             windowsUIButtonPanel.Buttons[0].Properties.Caption = st.isEnglish() ? "New" : "جديد";
             windowsUIButtonPanel.Buttons[1].Properties.Caption = st.isEnglish() ? "Edite" : "تعديل";
             windowsUIButtonPanel.Buttons[2].Properties.Caption = st.isEnglish() ? "Delete" : "حذف";
-            windowsUIButtonPanel.Buttons[3].Properties.Caption = st.isEnglish() ? "Refresh" : "تحديث";
-            windowsUIButtonPanel.Buttons[5].Properties.Caption = st.isEnglish() ? "Print" : "طباعة";
-            windowsUIButtonPanel.Buttons[6].Properties.Caption = st.isEnglish() ? "Exit" : "خروج";
+            windowsUIButtonPanel.Buttons[3].Properties.Caption = st.isEnglish() ? "Deleted History" : "منتجات تم حذفها";
+            windowsUIButtonPanel.Buttons[4].Properties.Caption = st.isEnglish() ? "Refresh" : "تحديث";
+            windowsUIButtonPanel.Buttons[6].Properties.Caption = st.isEnglish() ? "Print" : "طباعة";
+            windowsUIButtonPanel.Buttons[7].Properties.Caption = st.isEnglish() ? "Exit" : "خروج";
+ 
             materialContextMenuStrip1.Items[0].Text = st.isEnglish() ? "New" : "جديد";
             materialContextMenuStrip1.Items[1].Text = st.isEnglish() ? "Edite" : "تعديل";
             materialContextMenuStrip1.Items[2].Text = st.isEnglish() ? "Delete" : "حذف";
@@ -83,41 +86,69 @@ namespace PointOfSaleSedek._101_Adds
 
         }
 
-        private void حذفToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            var brachCode = st.GetBranch_Code();
-            if (MaterialMessageBox.Show(st.isEnglish() ? "Are you sure to delete this Item?" : "تاكيد الحذف", MessageBoxButtons.YesNo) == DialogResult.OK)
+
+        void deleteItemAction() {
+            if (gvCafeItemCard.RowCount <= 0)
             {
 
-                ItemCardView xx = gvCafeItemCard.GetFocusedRow() as ItemCardView;
 
-
-                    ItemCard _ItemCard = new ItemCard();
-                _ItemCard = context.ItemCards.SingleOrDefault(item => item.ItemCode == xx.ItemCode);
-                _ItemCard.IsDeleted = 1;
-                    
-                    context.SaveChanges();
-                using (POSEntity Contexts = new POSEntity())
+                return;
+            }
+            
+                var brachCode = st.GetBranch_Code();
+                if (MaterialMessageBox.Show(st.isEnglish() ? "Are you sure to delete this Item?" : "تاكيد الحذف", MessageBoxButtons.YesNo) == DialogResult.OK)
                 {
 
-                    var result = (from a in Contexts.ItemCardViews where a.IsDeleted == 0 && a.Branch_Code == brachCode select a).ToList();
-                    gcItemCard.DataSource = result;
-                    gcItemCard.RefreshDataSource();
-                    MaterialMessageBox.Show(st.isEnglish() ? "Deleted Successfully" : "تم الحذف", MessageBoxButtons.OK);
-                    CheckGridDataCount();
-                }
+                    ItemCardView xx = gvCafeItemCard.GetFocusedRow() as ItemCardView;
+                    bool checkIfItemUsed = context.SaleDetails.Any(x => x.IsDeleted == 0 && x.ItemCode == xx.ItemCode);
 
-            }
+
+                    if (checkIfItemUsed)
+                    {
+                        MaterialMessageBox.Show(st.isEnglish() ? "The item cannot be deleted because there are invoices associated with it" : "لا يمكن حذف العنصر بسبب وجود فواتير مربوطه به", MessageBoxButtons.OK);
+                    }
+                    else
+                    {
+                        ItemCard _ItemCard = new ItemCard();
+                        _ItemCard = context.ItemCards.SingleOrDefault(item => item.ItemCode == xx.ItemCode);
+                        _ItemCard.IsDeleted = 1;
+
+                        context.SaveChanges();
+                        using (POSEntity Contexts = new POSEntity())
+                        {
+
+                            var result = (from a in Contexts.ItemCardViews where a.IsDeleted == 0 && a.Branch_Code == brachCode select a).ToList();
+                            gcItemCard.DataSource = result;
+                            gcItemCard.RefreshDataSource();
+                            MaterialMessageBox.Show(st.isEnglish() ? "Deleted Successfully" : "تم الحذف", MessageBoxButtons.OK);
+                            CheckGridDataCount();
+                        }
+                    }
+
+
+                }
+            
+        }
+
+        private void حذفToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            deleteItemAction();
+        }
+
+
+      public  void fillgrid()
+        {
+            var brachCode = st.GetBranch_Code();
+            var result = (from a in context.ItemCardViews where a.IsDeleted == 0 && a.Branch_Code == brachCode select a).ToList();
+            gcItemCard.DataSource = result;
+            CheckGridDataCount();
 
         }
 
         private void frmItemCard_Load(object sender, EventArgs e)
         {
-            var brachCode = st.GetBranch_Code();
-            var result = (from a in context.ItemCardViews where a.IsDeleted==0 && a.Branch_Code == brachCode select a).ToList();
-            gcItemCard.DataSource = result;
-            CheckGridDataCount();
-
+            fillgrid();
 
 
 
@@ -167,39 +198,7 @@ namespace PointOfSaleSedek._101_Adds
 
             if (e.Button.Properties.Caption == "حذف" || e.Button.Properties.Caption == "Delete")
             {
-                if (gvCafeItemCard.RowCount <= 0)
-                {
-
-
-                    return;
-                }
-                if (MaterialMessageBox.Show(st.isEnglish() ? "Are you sure to delete this Item?" : "تاكيد الحذف", MessageBoxButtons.YesNo) == DialogResult.OK)
-                {
-
-                    ItemCardView xx = gvCafeItemCard.GetFocusedRow() as ItemCardView;
-
-
-                    using (POSEntity Contexts = new POSEntity())
-                    {
-                        ItemCard _ItemCard = new ItemCard();
-                        _ItemCard = Contexts.ItemCards.SingleOrDefault(item => item.ItemCode == xx.ItemCode);
-                        Contexts.ItemCards.Remove(_ItemCard);
-                        Contexts.SaveChanges();
-                        var result = (from a in Contexts.ItemCards where a.IsDeleted==0  && a.Branch_Code == brachCode select a).ToList();
-                        gcItemCard.DataSource = result;
-                        gcItemCard.RefreshDataSource();
-                        MaterialMessageBox.Show(st.isEnglish() ? "Deleted Successfully" : "تم الحذف", MessageBoxButtons.OK);
-                        if (gvCafeItemCard.RowCount <= 0)
-                        {
-
-                            gcItemCard.Enabled = false;
-                            //groupControl1.CustomHeaderButtons[0].Properties.Enabled = true;
-                            //groupControl1.CustomHeaderButtons[1].Properties.Enabled = false;
-                            //groupControl1.CustomHeaderButtons[2].Properties.Enabled = false;
-                        }
-                    }
-
-                }
+                deleteItemAction();
             }
         }
 
@@ -243,6 +242,12 @@ namespace PointOfSaleSedek._101_Adds
 
                 frm.ShowDialog();
 
+            }
+
+            if (btn.Caption == "منتجات تم حذفها" || btn.Caption == "Deleted History")
+            {
+                frmItemDeletedHistory frm = new frmItemDeletedHistory();
+                frm.ShowDialog();
             }
             else if (btn.Caption == "خروج" || btn.Caption == "Exit")
             {
