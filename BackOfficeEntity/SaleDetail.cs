@@ -34,5 +34,6 @@ namespace BackOfficeEntity
         public long Warhouse_Code { get; set; }
         public double Item_DisCount { get; set; }
         public bool is_Back_Office_Updated { get; set; }
+        public bool isFireBaseUploaded { get; set; }
     }
 }

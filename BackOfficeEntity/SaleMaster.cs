@@ -34,5 +34,6 @@ namespace BackOfficeEntity
         public double Cash { get; set; }
         public double Visa { get; set; }
         public bool is_Back_Office_Updated { get; set; }
+        public bool isFireBaseUploaded { get; set; }
     }
 }
