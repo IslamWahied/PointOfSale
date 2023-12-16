@@ -12,7 +12,7 @@ namespace BackOfficeEntity
     using System;
     using System.Collections.Generic;
     
-    public partial class State
+    public partial class States
     {
         public int id { get; set; }
         public int State_Code { get; set; }

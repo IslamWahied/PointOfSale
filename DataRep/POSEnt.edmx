@@ -5,6 +5,21 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="PointOfSaleModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AppActivation">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ActivaionState" Type="bit" Nullable="false" />
+          <Property Name="AdminUserName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="AdminPassowrd" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsDeleted" Type="int" Nullable="false" />
+          <Property Name="AppVersion" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="BranchId" Type="bigint" Nullable="false" />
+          <Property Name="CPU_Code" Type="nvarchar" MaxLength="50" />
+          <Property Name="Activation_Date" Type="datetime" />
+          <Property Name="Login_Offline_Count" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="Back_Office_Transaction_Detail">
           <Key>
             <PropertyRef Name="Id" />
@@ -149,6 +164,7 @@
           <Property Name="Last_Modified_User" Type="bigint" Nullable="false" />
           <Property Name="SexTypeCode" Type="int" Nullable="false" />
           <Property Name="isUploaded" Type="bit" Nullable="false" />
+          <Property Name="isFireBaseUploaded" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Employee_Back_Office">
           <Key>
@@ -485,6 +501,13 @@ warning 6002: The table/view 'PointOfSale.dbo.Payment_Type_Back_Office' does not
           <Property Name="Warehouse_Transaction_Code" Type="bigint" Nullable="false" />
           <Property Name="Reason" Type="nvarchar(max)" />
         </EntityType>
+        <EntityType Name="PrintCopyNumber">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PrintCopyNumber" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="Project_Tables">
           <Key>
             <PropertyRef Name="Id" />
@@ -750,8 +773,9 @@ warning 6002: The table/view 'PointOfSale.dbo.ProjectInfo_Back_Office' does not 
           <Property Name="isUploaded" Type="bit" Nullable="false" />
           <Property Name="Branch_Id" Type="bigint" Nullable="false" />
           <Property Name="is_Back_Office_Updated" Type="bit" Nullable="false" />
-          <Property Name="Visa" Type="float" Nullable="false" />
-          <Property Name="Cash" Type="float" Nullable="false" />
+          <Property Name="Visa" Type="float" />
+          <Property Name="Cash" Type="float" />
+          <Property Name="isFireBaseUploaded" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Shift_Back_Office">
           <Key>
@@ -1320,8 +1344,7 @@ warning 6002: The table/view 'PointOfSale.dbo.Shift_View' does not have a primar
             <PropertyRef Name="Expenses" />
             <PropertyRef Name="TotalSale" />
             <PropertyRef Name="isUploaded" />
-            <PropertyRef Name="Visa" />
-            <PropertyRef Name="Cash" />
+            <PropertyRef Name="isFireBaseUploaded" />
           </Key>
           <Property Name="Shift_Code" Type="bigint" Nullable="false" />
           <Property Name="Shift_Start_Date" Type="datetime" Nullable="false" />
@@ -1341,8 +1364,9 @@ warning 6002: The table/view 'PointOfSale.dbo.Shift_View' does not have a primar
           <Property Name="Expenses" Type="float" Nullable="false" />
           <Property Name="TotalSale" Type="float" Nullable="false" />
           <Property Name="isUploaded" Type="bit" Nullable="false" />
-          <Property Name="Visa" Type="float" Nullable="false" />
-          <Property Name="Cash" Type="float" Nullable="false" />
+          <Property Name="Visa" Type="float" />
+          <Property Name="Cash" Type="float" />
+          <Property Name="isFireBaseUploaded" Type="bit" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'PointOfSale.dbo.User_View' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -1398,6 +1422,7 @@ warning 6002: The table/view 'PointOfSale.dbo.warhouse_view' does not have a pri
         </Function>
         <Function Name="TruncateTables" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="PointOfSaleModelStoreContainer">
+          <EntitySet Name="AppActivation" EntityType="Self.AppActivation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Back_Office_Transaction_Detail" EntityType="Self.Back_Office_Transaction_Detail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Back_Office_Transaction_Master" EntityType="Self.Back_Office_Transaction_Master" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Branch_Back_Office" EntityType="Self.Branch_Back_Office" Schema="dbo" store:Type="Tables" />
@@ -1426,6 +1451,7 @@ warning 6002: The table/view 'PointOfSale.dbo.warhouse_view' does not have a pri
           <EntitySet Name="Operation_Type" EntityType="Self.Operation_Type" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Payment_Type" EntityType="Self.Payment_Type" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PO" EntityType="Self.PO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PrintCopyNumber" EntityType="Self.PrintCopyNumber" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Project_Tables" EntityType="Self.Project_Tables" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Project_Tables_Back_Office" EntityType="Self.Project_Tables_Back_Office" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProjectMangerInfo" EntityType="Self.ProjectMangerInfo" Schema="dbo" store:Type="Tables" />
@@ -1703,7 +1729,8 @@ warning 6002: The table/view 'PointOfSale.dbo.warhouse_view' does not have a pri
     [Shift_View].[TotalSale] AS [TotalSale], 
     [Shift_View].[isUploaded] AS [isUploaded], 
     [Shift_View].[Visa] AS [Visa], 
-    [Shift_View].[Cash] AS [Cash]
+    [Shift_View].[Cash] AS [Cash], 
+    [Shift_View].[isFireBaseUploaded] AS [isFireBaseUploaded]
     FROM [dbo].[Shift_View] AS [Shift_View]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="User_View" EntityType="Self.User_View" store:Type="Views" store:Schema="dbo">
@@ -1745,6 +1772,7 @@ warning 6002: The table/view 'PointOfSale.dbo.warhouse_view' does not have a pri
             <Parameter Name="Message" Mode="InOut" Type="String" />
           </FunctionImport>
           <FunctionImport Name="TruncateTables" />
+          <EntitySet Name="AppActivations" EntityType="PointOfSaleModel.AppActivation" />
           <EntitySet Name="Back_Office_Transaction_Detail" EntityType="PointOfSaleModel.Back_Office_Transaction_Detail" />
           <EntitySet Name="Back_Office_Transaction_Master" EntityType="PointOfSaleModel.Back_Office_Transaction_Master" />
           <EntitySet Name="Branch_Back_Office" EntityType="PointOfSaleModel.Branch_Back_Office" />
@@ -1773,6 +1801,7 @@ warning 6002: The table/view 'PointOfSale.dbo.warhouse_view' does not have a pri
           <EntitySet Name="Operation_Type" EntityType="PointOfSaleModel.Operation_Type" />
           <EntitySet Name="Payment_Type" EntityType="PointOfSaleModel.Payment_Type" />
           <EntitySet Name="POes" EntityType="PointOfSaleModel.PO" />
+          <EntitySet Name="PrintCopyNumbers" EntityType="PointOfSaleModel.PrintCopyNumber" />
           <EntitySet Name="Project_Tables" EntityType="PointOfSaleModel.Project_Tables" />
           <EntitySet Name="Project_Tables_Back_Office" EntityType="PointOfSaleModel.Project_Tables_Back_Office" />
           <EntitySet Name="ProjectMangerInfoes" EntityType="PointOfSaleModel.ProjectMangerInfo" />
@@ -1819,6 +1848,21 @@ warning 6002: The table/view 'PointOfSale.dbo.warhouse_view' does not have a pri
           <EntitySet Name="User_View" EntityType="PointOfSaleModel.User_View" />
           <EntitySet Name="warhouse_view" EntityType="PointOfSaleModel.warhouse_view" />
           </EntityContainer>
+        <EntityType Name="AppActivation">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ActivaionState" Type="Boolean" Nullable="false" />
+          <Property Name="AdminUserName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AdminPassowrd" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsDeleted" Type="Int32" Nullable="false" />
+          <Property Name="AppVersion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BranchId" Type="Int64" Nullable="false" />
+          <Property Name="CPU_Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Activation_Date" Type="DateTime" Precision="3" />
+          <Property Name="Login_Offline_Count" Type="Int32" Nullable="false" />
+        </EntityType>
         <EntityType Name="Back_Office_Transaction_Detail">
           <Key>
             <PropertyRef Name="Id" />
@@ -1963,6 +2007,7 @@ warning 6002: The table/view 'PointOfSale.dbo.warhouse_view' does not have a pri
           <Property Name="Last_Modified_User" Type="Int64" Nullable="false" />
           <Property Name="SexTypeCode" Type="Int32" Nullable="false" />
           <Property Name="isUploaded" Type="Boolean" Nullable="false" />
+          <Property Name="isFireBaseUploaded" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="Employee_Back_Office">
           <Key>
@@ -2269,6 +2314,13 @@ warning 6002: The table/view 'PointOfSale.dbo.warhouse_view' does not have a pri
           <Property Name="Warehouse_Transaction_Code" Type="Int64" Nullable="false" />
           <Property Name="Reason" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="PrintCopyNumber">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PrintCopyNumber1" Type="Int32" Nullable="false" />
+        </EntityType>
         <EntityType Name="Project_Tables">
           <Key>
             <PropertyRef Name="Id" />
@@ -2500,8 +2552,9 @@ warning 6002: The table/view 'PointOfSale.dbo.warhouse_view' does not have a pri
           <Property Name="isUploaded" Type="Boolean" Nullable="false" />
           <Property Name="Branch_Id" Type="Int64" Nullable="false" />
           <Property Name="is_Back_Office_Updated" Type="Boolean" Nullable="false" />
-          <Property Name="Visa" Type="Double" Nullable="false" />
-          <Property Name="Cash" Type="Double" Nullable="false" />
+          <Property Name="Visa" Type="Double" />
+          <Property Name="Cash" Type="Double" />
+          <Property Name="isFireBaseUploaded" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="Shift_Back_Office">
           <Key>
@@ -3106,8 +3159,7 @@ warning 6002: The table/view 'PointOfSale.dbo.warhouse_view' does not have a pri
             <PropertyRef Name="Expenses" />
             <PropertyRef Name="TotalSale" />
             <PropertyRef Name="isUploaded" />
-            <PropertyRef Name="Visa" />
-            <PropertyRef Name="Cash" />
+            <PropertyRef Name="isFireBaseUploaded" />
           </Key>
           <Property Name="Shift_Code" Type="Int64" Nullable="false" />
           <Property Name="Shift_Start_Date" Type="DateTime" Nullable="false" Precision="3" />
@@ -3127,8 +3179,9 @@ warning 6002: The table/view 'PointOfSale.dbo.warhouse_view' does not have a pri
           <Property Name="Expenses" Type="Double" Nullable="false" />
           <Property Name="TotalSale" Type="Double" Nullable="false" />
           <Property Name="isUploaded" Type="Boolean" Nullable="false" />
-          <Property Name="Visa" Type="Double" Nullable="false" />
-          <Property Name="Cash" Type="Double" Nullable="false" />
+          <Property Name="Visa" Type="Double" />
+          <Property Name="Cash" Type="Double" />
+          <Property Name="isFireBaseUploaded" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="User_View">
           <Key>
@@ -3181,6 +3234,22 @@ warning 6002: The table/view 'PointOfSale.dbo.warhouse_view' does not have a pri
         <EntityContainerMapping StorageEntityContainer="PointOfSaleModelStoreContainer" CdmEntityContainer="POSEntity">
           <FunctionImportMapping FunctionImportName="Delete_Trancation_By_User_Code" FunctionName="PointOfSaleModel.Store.Delete_Trancation_By_User_Code" />
           <FunctionImportMapping FunctionImportName="TruncateTables" FunctionName="PointOfSaleModel.Store.TruncateTables" />
+          <EntitySetMapping Name="AppActivations">
+            <EntityTypeMapping TypeName="PointOfSaleModel.AppActivation">
+              <MappingFragment StoreEntitySet="AppActivation">
+                <ScalarProperty Name="Login_Offline_Count" ColumnName="Login_Offline_Count" />
+                <ScalarProperty Name="Activation_Date" ColumnName="Activation_Date" />
+                <ScalarProperty Name="CPU_Code" ColumnName="CPU_Code" />
+                <ScalarProperty Name="BranchId" ColumnName="BranchId" />
+                <ScalarProperty Name="AppVersion" ColumnName="AppVersion" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="AdminPassowrd" ColumnName="AdminPassowrd" />
+                <ScalarProperty Name="AdminUserName" ColumnName="AdminUserName" />
+                <ScalarProperty Name="ActivaionState" ColumnName="ActivaionState" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Back_Office_Transaction_Detail">
             <EntityTypeMapping TypeName="PointOfSaleModel.Back_Office_Transaction_Detail">
               <MappingFragment StoreEntitySet="Back_Office_Transaction_Detail">
@@ -3312,6 +3381,7 @@ warning 6002: The table/view 'PointOfSale.dbo.warhouse_view' does not have a pri
           <EntitySetMapping Name="Employees">
             <EntityTypeMapping TypeName="PointOfSaleModel.Employee">
               <MappingFragment StoreEntitySet="Employee">
+                <ScalarProperty Name="isFireBaseUploaded" ColumnName="isFireBaseUploaded" />
                 <ScalarProperty Name="isUploaded" ColumnName="isUploaded" />
                 <ScalarProperty Name="SexTypeCode" ColumnName="SexTypeCode" />
                 <ScalarProperty Name="Last_Modified_User" ColumnName="Last_Modified_User" />
@@ -3659,6 +3729,14 @@ warning 6002: The table/view 'PointOfSale.dbo.warhouse_view' does not have a pri
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="PrintCopyNumbers">
+            <EntityTypeMapping TypeName="PointOfSaleModel.PrintCopyNumber">
+              <MappingFragment StoreEntitySet="PrintCopyNumber">
+                <ScalarProperty Name="PrintCopyNumber1" ColumnName="PrintCopyNumber" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Project_Tables">
             <EntityTypeMapping TypeName="PointOfSaleModel.Project_Tables">
               <MappingFragment StoreEntitySet="Project_Tables">
@@ -3882,6 +3960,7 @@ warning 6002: The table/view 'PointOfSale.dbo.warhouse_view' does not have a pri
           <EntitySetMapping Name="Shifts">
             <EntityTypeMapping TypeName="PointOfSaleModel.Shift">
               <MappingFragment StoreEntitySet="Shift">
+                <ScalarProperty Name="isFireBaseUploaded" ColumnName="isFireBaseUploaded" />
                 <ScalarProperty Name="Cash" ColumnName="Cash" />
                 <ScalarProperty Name="Visa" ColumnName="Visa" />
                 <ScalarProperty Name="is_Back_Office_Updated" ColumnName="is_Back_Office_Updated" />
@@ -4422,6 +4501,7 @@ warning 6002: The table/view 'PointOfSale.dbo.warhouse_view' does not have a pri
           <EntitySetMapping Name="Shift_View">
             <EntityTypeMapping TypeName="PointOfSaleModel.Shift_View">
               <MappingFragment StoreEntitySet="Shift_View">
+                <ScalarProperty Name="isFireBaseUploaded" ColumnName="isFireBaseUploaded" />
                 <ScalarProperty Name="Cash" ColumnName="Cash" />
                 <ScalarProperty Name="Visa" ColumnName="Visa" />
                 <ScalarProperty Name="isUploaded" ColumnName="isUploaded" />

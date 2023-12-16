@@ -276,7 +276,7 @@ namespace PointOfSaleSedek._101_Adds._111_Warehouse
 
 
 
-                            bool checkEmployeeOnServer = Contexts2.Employees.Any(xx => xx.Employee_Code == x.Emp_Code && xx.IsDeleted == 0);
+                            bool checkEmployeeOnServer = Contexts2.Employee.Any(xx => xx.Employee_Code == x.Emp_Code && xx.IsDeleted == 0);
                             if (!checkEmployeeOnServer)
                             {
 
@@ -306,7 +306,7 @@ namespace PointOfSaleSedek._101_Adds._111_Warehouse
                                     Last_Modified_Date = employee.Last_Modified_Date
 
                                 };
-                                Contexts2.Employees.Add(emp);
+                                Contexts2.Employee.Add(emp);
                                 Contexts2.SaveChanges();
                                  
                             }

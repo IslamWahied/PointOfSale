@@ -32,21 +32,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Accessibility" />
-    <Reference Include="Microsoft.QualityTools.Testing.Fakes, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Core.4.0.0.0.Fakes">
-      <HintPath>FakesAssemblies\System.Core.4.0.0.0.Fakes.dll</HintPath>
-    </Reference>
     <Reference Include="System.Data" />
-    <Reference Include="System.Data.Entity.Repository.2.0.0.1.Fakes">
-      <HintPath>FakesAssemblies\System.Data.Entity.Repository.2.0.0.1.Fakes.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Data.SqlClient.4.6.1.5.Fakes">
-      <HintPath>FakesAssemblies\System.Data.SqlClient.4.6.1.5.Fakes.dll</HintPath>
-    </Reference>
     <Reference Include="System.Security" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -81,7 +69,7 @@
     <Compile Include="Back_Office_Transaction_Master.cs">
       <DependentUpon>BackOffice.tt</DependentUpon>
     </Compile>
-    <Compile Include="Branch.cs">
+    <Compile Include="Branches.cs">
       <DependentUpon>BackOffice.tt</DependentUpon>
     </Compile>
     <Compile Include="Branch_Back_Office.cs">
@@ -117,7 +105,7 @@
     <Compile Include="Event_Type_Back_Office.cs">
       <DependentUpon>BackOffice.tt</DependentUpon>
     </Compile>
-    <Compile Include="Expens.cs">
+    <Compile Include="Expenses.cs">
       <DependentUpon>BackOffice.tt</DependentUpon>
     </Compile>
     <Compile Include="ExpensesTransaction.cs">
@@ -156,7 +144,7 @@
     <Compile Include="Item_History_transaction_Back_Office.cs">
       <DependentUpon>BackOffice.tt</DependentUpon>
     </Compile>
-    <Compile Include="Jop.cs">
+    <Compile Include="Jops.cs">
       <DependentUpon>BackOffice.tt</DependentUpon>
     </Compile>
     <Compile Include="Jops_Back_Office.cs">
@@ -199,9 +187,6 @@
       <DependentUpon>BackOffice.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Sale.cs">
-      <DependentUpon>BackOffice.tt</DependentUpon>
-    </Compile>
     <Compile Include="SaleDetail.cs">
       <DependentUpon>BackOffice.tt</DependentUpon>
     </Compile>
@@ -218,6 +203,9 @@
       <DependentUpon>BackOffice.tt</DependentUpon>
     </Compile>
     <Compile Include="SaleMaster_Back_Office.cs">
+      <DependentUpon>BackOffice.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Sales.cs">
       <DependentUpon>BackOffice.tt</DependentUpon>
     </Compile>
     <Compile Include="Sales_Back_Office.cs">
@@ -238,7 +226,7 @@
     <Compile Include="Shift_View.cs">
       <DependentUpon>BackOffice.tt</DependentUpon>
     </Compile>
-    <Compile Include="State.cs">
+    <Compile Include="States.cs">
       <DependentUpon>BackOffice.tt</DependentUpon>
     </Compile>
     <Compile Include="Tab_Info.cs">
@@ -256,7 +244,7 @@
     <Compile Include="User.cs">
       <DependentUpon>BackOffice.tt</DependentUpon>
     </Compile>
-    <Compile Include="UserEvent.cs">
+    <Compile Include="UserEvents.cs">
       <DependentUpon>BackOffice.tt</DependentUpon>
     </Compile>
     <Compile Include="UserEvents_Back_Office.cs">

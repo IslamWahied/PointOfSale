@@ -33,7 +33,8 @@ namespace DataRep
         public bool isUploaded { get; set; }
         public long Branch_Id { get; set; }
         public bool is_Back_Office_Updated { get; set; }
-        public double Visa { get; set; }
-        public double Cash { get; set; }
+        public Nullable<double> Visa { get; set; }
+        public Nullable<double> Cash { get; set; }
+        public bool isFireBaseUploaded { get; set; }
     }
 }

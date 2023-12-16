@@ -83,7 +83,7 @@ namespace PointOfSaleSedek._101_Adds._111_Warehouse
         public void FillslkToWarhouse()
         {
             DataTable dt = new DataTable();
-            var result = _server.Warehouses.Where(user => user.isDelete == 0).ToList();
+            var result = _server.Warehouse.Where(user => user.isDelete == 0).ToList();
             slkToWarhouse.Properties.DataSource = result;
             slkToWarhouse.Properties.ValueMember = "Warehouse_Code";
             slkToWarhouse.Properties.DisplayMember = "Warehouse_Name";
@@ -573,7 +573,7 @@ namespace PointOfSaleSedek._101_Adds._111_Warehouse
                                     PO_Request_State = FromWarhouseCode == 0 ? 2 : 1
                                 };
 
-                                _server.POes.Add(pO);
+                                _server.PO.Add(pO);
                                 _server.SaveChanges();
                                 _server.Dispose();
 
@@ -582,7 +582,7 @@ namespace PointOfSaleSedek._101_Adds._111_Warehouse
                                 var cvcv = Convert.ToDouble(x.Item_Risk_limit);
 
                                 db_a8f74e_posEntities _server2 = new db_a8f74e_posEntities();
-                                Int64 Po_code = _server2.POes.Where(xx => xx.To_WareHouseCode == ToWarhouseCode && xx.Item_Code == x.ItemCode &&
+                                Int64 Po_code = _server2.PO.Where(xx => xx.To_WareHouseCode == ToWarhouseCode && xx.Item_Code == x.ItemCode &&
                                 xx.Warehouse_Transaction_Code == Max_Warehouse_Transaction_Code && xx.PO_Item_Qty == cvcv && xx.Creted_By_User == Creted_By_User && xx.PO_Request_State == PO_Request_State).Max(f => f.id);
 
 
@@ -737,7 +737,7 @@ namespace PointOfSaleSedek._101_Adds._111_Warehouse
                         if (branchCode != 0)
                         {
 
-                            GetItems = _server.ItemCardViews.FirstOrDefault(x => x.IsDeleted == 0 && x.ItemCode == focusRow.ItemCode && x.Branch_Code == branchCode);
+                            GetItems = _server.ItemCardView.FirstOrDefault(x => x.IsDeleted == 0 && x.ItemCode == focusRow.ItemCode && x.Branch_Code == branchCode);
                             _ItemSelectedCardView.Add(GetItems);
                         }
                         else {

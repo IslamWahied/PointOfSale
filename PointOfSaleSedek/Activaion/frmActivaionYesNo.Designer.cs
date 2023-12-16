@@ -1,0 +1,97 @@
+﻿namespace PointOfSaleSedek._Activaion
+{
+    partial class frmActivaionYesNo
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.btnClose = new DevExpress.XtraEditors.SimpleButton();
+            this.btnOk = new DevExpress.XtraEditors.SimpleButton();
+            this.lblMessage = new MaterialSkin.Controls.MaterialLabel();
+            this.SuspendLayout();
+            // 
+            // btnClose
+            // 
+            this.btnClose.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnClose.Appearance.Options.UseBackColor = true;
+            this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnClose.Location = new System.Drawing.Point(80, 165);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(97, 36);
+            this.btnClose.TabIndex = 191;
+            this.btnClose.Text = "اغلاق";
+            // 
+            // btnOk
+            // 
+            this.btnOk.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnOk.Appearance.Options.UseBackColor = true;
+            this.btnOk.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.btnOk.Location = new System.Drawing.Point(183, 165);
+            this.btnOk.Name = "btnOk";
+            this.btnOk.Size = new System.Drawing.Size(97, 36);
+            this.btnOk.TabIndex = 190;
+            this.btnOk.Text = "تاكيد";
+            // 
+            // lblMessage
+            // 
+            this.lblMessage.Depth = 0;
+            this.lblMessage.Font = new System.Drawing.Font("Roboto", 11F);
+            this.lblMessage.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lblMessage.Location = new System.Drawing.Point(4, 68);
+            this.lblMessage.MouseState = MaterialSkin.MouseState.HOVER;
+            this.lblMessage.Name = "lblMessage";
+            this.lblMessage.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.lblMessage.Size = new System.Drawing.Size(354, 91);
+            this.lblMessage.TabIndex = 189;
+            this.lblMessage.Text = " ";
+            // 
+            // frmYesNo
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(362, 209);
+            this.ControlBox = false;
+            this.Controls.Add(this.btnClose);
+            this.Controls.Add(this.btnOk);
+            this.Controls.Add(this.lblMessage);
+            this.MaximumSize = new System.Drawing.Size(362, 209);
+            this.MinimumSize = new System.Drawing.Size(362, 209);
+            this.Name = "frmYesNo";
+            this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "رساله تاكيد ";
+            this.Load += new System.EventHandler(this.frmYesNo_Load);
+            this.ResumeLayout(false);
+
+        }
+
+        #endregion
+
+        private DevExpress.XtraEditors.SimpleButton btnClose;
+        private DevExpress.XtraEditors.SimpleButton btnOk;
+        private MaterialSkin.Controls.MaterialLabel lblMessage;
+    }
+}

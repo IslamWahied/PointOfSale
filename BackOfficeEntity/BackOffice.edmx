@@ -1210,11 +1210,8 @@ warning 6002: The table/view 'db_a8f74e_pos.dbo.SaleDetailView' does not have a 
             <PropertyRef Name="EntryDate" />
             <PropertyRef Name="Price" />
             <PropertyRef Name="IsDeleted" />
-            <PropertyRef Name="UnitName" />
             <PropertyRef Name="SaleMasterCode" />
             <PropertyRef Name="Operation_Type_Id" />
-            <PropertyRef Name="PriceBuy" />
-            <PropertyRef Name="Item_Count_InStoreg" />
             <PropertyRef Name="UserName" />
             <PropertyRef Name="Emp_Code" />
             <PropertyRef Name="Id" />
@@ -1226,24 +1223,18 @@ warning 6002: The table/view 'db_a8f74e_pos.dbo.SaleDetailView' does not have a 
             <PropertyRef Name="Warehouse_Name" />
             <PropertyRef Name="Item_DisCount" />
             <PropertyRef Name="Branches_Code" />
+            <PropertyRef Name="Branch_Id" />
+            <PropertyRef Name="SaleDetailCode" />
+            <PropertyRef Name="UserId" />
           </Key>
           <Property Name="ItemCode" Type="bigint" Nullable="false" />
-          <Property Name="CategoryCode" Type="bigint" />
-          <Property Name="ParCode" Type="nvarchar" MaxLength="50" />
-          <Property Name="Name" Type="nvarchar" MaxLength="50" />
           <Property Name="Qty" Type="float" Nullable="false" />
           <Property Name="Total" Type="float" Nullable="false" />
           <Property Name="EntryDate" Type="datetime" Nullable="false" />
           <Property Name="Price" Type="float" Nullable="false" />
           <Property Name="IsDeleted" Type="int" Nullable="false" />
-          <Property Name="UnitName" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="UnitCode" Type="bigint" />
           <Property Name="SaleMasterCode" Type="bigint" Nullable="false" />
           <Property Name="Operation_Type_Id" Type="bigint" Nullable="false" />
-          <Property Name="PriceBuy" Type="float" Nullable="false" />
-          <Property Name="CategoryName" Type="nvarchar" MaxLength="50" />
-          <Property Name="AddItem" Type="bit" />
-          <Property Name="Item_Count_InStoreg" Type="float" Nullable="false" />
           <Property Name="UserName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Emp_Code" Type="bigint" Nullable="false" />
           <Property Name="Id" Type="bigint" Nullable="false" />
@@ -1251,11 +1242,13 @@ warning 6002: The table/view 'db_a8f74e_pos.dbo.SaleDetailView' does not have a 
           <Property Name="shiftCode" Type="bigint" Nullable="false" />
           <Property Name="LineSequence" Type="bigint" Nullable="false" />
           <Property Name="isOile" Type="bit" Nullable="false" />
-          <Property Name="Name_En" Type="nvarchar" MaxLength="50" />
           <Property Name="Warhouse_Code" Type="bigint" Nullable="false" />
           <Property Name="Warehouse_Name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Item_DisCount" Type="float" Nullable="false" />
           <Property Name="Branches_Code" Type="bigint" Nullable="false" />
+          <Property Name="Branch_Id" Type="bigint" Nullable="false" />
+          <Property Name="SaleDetailCode" Type="bigint" Nullable="false" />
+          <Property Name="UserId" Type="bigint" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'db_a8f74e_pos.dbo.SaleMasterView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -1272,7 +1265,6 @@ warning 6002: The table/view 'db_a8f74e_pos.dbo.SaleMasterView' does not have a 
             <PropertyRef Name="IsDeleted" />
             <PropertyRef Name="UserName" />
             <PropertyRef Name="Emp_Code" />
-            <PropertyRef Name="Shift_Code" />
             <PropertyRef Name="Payment_Type" />
             <PropertyRef Name="UserIdTakeOrder" />
             <PropertyRef Name="Customer_Code" />
@@ -1281,6 +1273,7 @@ warning 6002: The table/view 'db_a8f74e_pos.dbo.SaleMasterView' does not have a 
             <PropertyRef Name="Branches_Name" />
             <PropertyRef Name="Cash" />
             <PropertyRef Name="Visa" />
+            <PropertyRef Name="ShiftCode" />
           </Key>
           <Property Name="UserCode" Type="bigint" Nullable="false" />
           <Property Name="Operation_Type_Id" Type="bigint" Nullable="false" />
@@ -1294,7 +1287,6 @@ warning 6002: The table/view 'db_a8f74e_pos.dbo.SaleMasterView' does not have a 
           <Property Name="IsDeleted" Type="int" Nullable="false" />
           <Property Name="UserName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Emp_Code" Type="bigint" Nullable="false" />
-          <Property Name="Shift_Code" Type="bigint" Nullable="false" />
           <Property Name="PaymentType" Type="nvarchar" MaxLength="50" />
           <Property Name="Payment_Type" Type="bigint" Nullable="false" />
           <Property Name="UserIdTakeOrder" Type="bigint" Nullable="false" />
@@ -1304,6 +1296,7 @@ warning 6002: The table/view 'db_a8f74e_pos.dbo.SaleMasterView' does not have a 
           <Property Name="Branches_Name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Cash" Type="float" Nullable="false" />
           <Property Name="Visa" Type="float" Nullable="false" />
+          <Property Name="ShiftCode" Type="bigint" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'db_a8f74e_pos.dbo.Shift_View' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -1626,22 +1619,13 @@ FROM [dbo].[PO_View] AS [PO_View]</DefiningQuery>
           <EntitySet Name="SaleDetailView" EntityType="Self.SaleDetailView" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
 [SaleDetailView].[ItemCode] AS [ItemCode], 
-[SaleDetailView].[CategoryCode] AS [CategoryCode], 
-[SaleDetailView].[ParCode] AS [ParCode], 
-[SaleDetailView].[Name] AS [Name], 
 [SaleDetailView].[Qty] AS [Qty], 
 [SaleDetailView].[Total] AS [Total], 
 [SaleDetailView].[EntryDate] AS [EntryDate], 
 [SaleDetailView].[Price] AS [Price], 
 [SaleDetailView].[IsDeleted] AS [IsDeleted], 
-[SaleDetailView].[UnitName] AS [UnitName], 
-[SaleDetailView].[UnitCode] AS [UnitCode], 
 [SaleDetailView].[SaleMasterCode] AS [SaleMasterCode], 
 [SaleDetailView].[Operation_Type_Id] AS [Operation_Type_Id], 
-[SaleDetailView].[PriceBuy] AS [PriceBuy], 
-[SaleDetailView].[CategoryName] AS [CategoryName], 
-[SaleDetailView].[AddItem] AS [AddItem], 
-[SaleDetailView].[Item_Count_InStoreg] AS [Item_Count_InStoreg], 
 [SaleDetailView].[UserName] AS [UserName], 
 [SaleDetailView].[Emp_Code] AS [Emp_Code], 
 [SaleDetailView].[Id] AS [Id], 
@@ -1649,11 +1633,13 @@ FROM [dbo].[PO_View] AS [PO_View]</DefiningQuery>
 [SaleDetailView].[shiftCode] AS [shiftCode], 
 [SaleDetailView].[LineSequence] AS [LineSequence], 
 [SaleDetailView].[isOile] AS [isOile], 
-[SaleDetailView].[Name_En] AS [Name_En], 
 [SaleDetailView].[Warhouse_Code] AS [Warhouse_Code], 
 [SaleDetailView].[Warehouse_Name] AS [Warehouse_Name], 
 [SaleDetailView].[Item_DisCount] AS [Item_DisCount], 
-[SaleDetailView].[Branches_Code] AS [Branches_Code]
+[SaleDetailView].[Branches_Code] AS [Branches_Code], 
+[SaleDetailView].[Branch_Id] AS [Branch_Id], 
+[SaleDetailView].[SaleDetailCode] AS [SaleDetailCode], 
+[SaleDetailView].[UserId] AS [UserId]
 FROM [dbo].[SaleDetailView] AS [SaleDetailView]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="SaleMasterView" EntityType="Self.SaleMasterView" store:Type="Views" store:Schema="dbo">
@@ -1670,7 +1656,6 @@ FROM [dbo].[SaleDetailView] AS [SaleDetailView]</DefiningQuery>
 [SaleMasterView].[IsDeleted] AS [IsDeleted], 
 [SaleMasterView].[UserName] AS [UserName], 
 [SaleMasterView].[Emp_Code] AS [Emp_Code], 
-[SaleMasterView].[Shift_Code] AS [Shift_Code], 
 [SaleMasterView].[PaymentType] AS [PaymentType], 
 [SaleMasterView].[Payment_Type] AS [Payment_Type], 
 [SaleMasterView].[UserIdTakeOrder] AS [UserIdTakeOrder], 
@@ -1679,7 +1664,8 @@ FROM [dbo].[SaleDetailView] AS [SaleDetailView]</DefiningQuery>
 [SaleMasterView].[Branches_Code] AS [Branches_Code], 
 [SaleMasterView].[Branches_Name] AS [Branches_Name], 
 [SaleMasterView].[Cash] AS [Cash], 
-[SaleMasterView].[Visa] AS [Visa]
+[SaleMasterView].[Visa] AS [Visa], 
+[SaleMasterView].[ShiftCode] AS [ShiftCode]
 FROM [dbo].[SaleMasterView] AS [SaleMasterView]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="Shift_View" EntityType="Self.Shift_View" store:Type="Views" store:Schema="dbo">
@@ -1748,73 +1734,73 @@ FROM [dbo].[warhouse_view] AS [warhouse_view]</DefiningQuery>
           <EntitySet Name="Back_Office_Transaction_Detail" EntityType="db_a8f74e_posModel.Back_Office_Transaction_Detail" />
           <EntitySet Name="Back_Office_Transaction_Master" EntityType="db_a8f74e_posModel.Back_Office_Transaction_Master" />
           <EntitySet Name="Branch_Back_Office" EntityType="db_a8f74e_posModel.Branch_Back_Office" />
-          <EntitySet Name="Branches" EntityType="db_a8f74e_posModel.Branch" />
-          <EntitySet Name="Categories" EntityType="db_a8f74e_posModel.Category" />
+          <EntitySet Name="Branches" EntityType="db_a8f74e_posModel.Branches" />
+          <EntitySet Name="Category" EntityType="db_a8f74e_posModel.Category" />
           <EntitySet Name="Category_Back_Office" EntityType="db_a8f74e_posModel.Category_Back_Office" />
           <EntitySet Name="Customer_Info" EntityType="db_a8f74e_posModel.Customer_Info" />
           <EntitySet Name="Customer_Info_Back_Office" EntityType="db_a8f74e_posModel.Customer_Info_Back_Office" />
-          <EntitySet Name="Employees" EntityType="db_a8f74e_posModel.Employee" />
+          <EntitySet Name="Employee" EntityType="db_a8f74e_posModel.Employee" />
           <EntitySet Name="Employee_Back_Office" EntityType="db_a8f74e_posModel.Employee_Back_Office" />
           <EntitySet Name="Event_Type" EntityType="db_a8f74e_posModel.Event_Type" />
           <EntitySet Name="Event_Type_Back_Office" EntityType="db_a8f74e_posModel.Event_Type_Back_Office" />
-          <EntitySet Name="Expenses" EntityType="db_a8f74e_posModel.Expens" />
+          <EntitySet Name="Expenses" EntityType="db_a8f74e_posModel.Expenses" />
           <EntitySet Name="Expenses_Back_Office" EntityType="db_a8f74e_posModel.Expenses_Back_Office" />
-          <EntitySet Name="ExpensesTransactions" EntityType="db_a8f74e_posModel.ExpensesTransaction" />
+          <EntitySet Name="ExpensesTransaction" EntityType="db_a8f74e_posModel.ExpensesTransaction" />
           <EntitySet Name="ExpensesTransaction_Back_Office" EntityType="db_a8f74e_posModel.ExpensesTransaction_Back_Office" />
           <EntitySet Name="Item_Balance" EntityType="db_a8f74e_posModel.Item_Balance" />
           <EntitySet Name="Item_History" EntityType="db_a8f74e_posModel.Item_History" />
           <EntitySet Name="Item_History_Back_Office" EntityType="db_a8f74e_posModel.Item_History_Back_Office" />
           <EntitySet Name="Item_History_transaction" EntityType="db_a8f74e_posModel.Item_History_transaction" />
           <EntitySet Name="Item_History_transaction_Back_Office" EntityType="db_a8f74e_posModel.Item_History_transaction_Back_Office" />
-          <EntitySet Name="ItemCards" EntityType="db_a8f74e_posModel.ItemCard" />
+          <EntitySet Name="ItemCard" EntityType="db_a8f74e_posModel.ItemCard" />
           <EntitySet Name="ItemCard_Back_Office" EntityType="db_a8f74e_posModel.ItemCard_Back_Office" />
-          <EntitySet Name="Jops" EntityType="db_a8f74e_posModel.Jop" />
+          <EntitySet Name="Jops" EntityType="db_a8f74e_posModel.Jops" />
           <EntitySet Name="Jops_Back_Office" EntityType="db_a8f74e_posModel.Jops_Back_Office" />
           <EntitySet Name="Operation_Type" EntityType="db_a8f74e_posModel.Operation_Type" />
           <EntitySet Name="Payment_Type" EntityType="db_a8f74e_posModel.Payment_Type" />
-          <EntitySet Name="POes" EntityType="db_a8f74e_posModel.PO" />
+          <EntitySet Name="PO" EntityType="db_a8f74e_posModel.PO" />
           <EntitySet Name="Project_Tables" EntityType="db_a8f74e_posModel.Project_Tables" />
           <EntitySet Name="Project_Tables_Back_Office" EntityType="db_a8f74e_posModel.Project_Tables_Back_Office" />
-          <EntitySet Name="ProjectMangerInfoes" EntityType="db_a8f74e_posModel.ProjectMangerInfo" />
+          <EntitySet Name="ProjectMangerInfo" EntityType="db_a8f74e_posModel.ProjectMangerInfo" />
           <EntitySet Name="ProjectMangerInfo_Back_Office" EntityType="db_a8f74e_posModel.ProjectMangerInfo_Back_Office" />
-          <EntitySet Name="SaleDetails" EntityType="db_a8f74e_posModel.SaleDetail" />
+          <EntitySet Name="SaleDetail" EntityType="db_a8f74e_posModel.SaleDetail" />
           <EntitySet Name="SaleDetail_Back_Office" EntityType="db_a8f74e_posModel.SaleDetail_Back_Office" />
-          <EntitySet Name="SaleMasters" EntityType="db_a8f74e_posModel.SaleMaster" />
+          <EntitySet Name="SaleMaster" EntityType="db_a8f74e_posModel.SaleMaster" />
           <EntitySet Name="SaleMaster_Back_Office" EntityType="db_a8f74e_posModel.SaleMaster_Back_Office" />
-          <EntitySet Name="Sales" EntityType="db_a8f74e_posModel.Sale" />
+          <EntitySet Name="Sales" EntityType="db_a8f74e_posModel.Sales" />
           <EntitySet Name="Sales_Back_Office" EntityType="db_a8f74e_posModel.Sales_Back_Office" />
-          <EntitySet Name="SexTypes" EntityType="db_a8f74e_posModel.SexType" />
+          <EntitySet Name="SexType" EntityType="db_a8f74e_posModel.SexType" />
           <EntitySet Name="SexType_Back_Office" EntityType="db_a8f74e_posModel.SexType_Back_Office" />
-          <EntitySet Name="Shifts" EntityType="db_a8f74e_posModel.Shift" />
+          <EntitySet Name="Shift" EntityType="db_a8f74e_posModel.Shift" />
           <EntitySet Name="Shift_Back_Office" EntityType="db_a8f74e_posModel.Shift_Back_Office" />
-          <EntitySet Name="States" EntityType="db_a8f74e_posModel.State" />
+          <EntitySet Name="States" EntityType="db_a8f74e_posModel.States" />
           <EntitySet Name="Tab_Info" EntityType="db_a8f74e_posModel.Tab_Info" />
           <EntitySet Name="Tab_Info_Back_Office" EntityType="db_a8f74e_posModel.Tab_Info_Back_Office" />
-          <EntitySet Name="UnitCards" EntityType="db_a8f74e_posModel.UnitCard" />
+          <EntitySet Name="UnitCard" EntityType="db_a8f74e_posModel.UnitCard" />
           <EntitySet Name="UnitCard_Back_Office" EntityType="db_a8f74e_posModel.UnitCard_Back_Office" />
-          <EntitySet Name="Users" EntityType="db_a8f74e_posModel.User" />
+          <EntitySet Name="User" EntityType="db_a8f74e_posModel.User" />
           <EntitySet Name="User_Auth" EntityType="db_a8f74e_posModel.User_Auth" />
           <EntitySet Name="User_Auth_Back_Office" EntityType="db_a8f74e_posModel.User_Auth_Back_Office" />
           <EntitySet Name="User_Back_Office" EntityType="db_a8f74e_posModel.User_Back_Office" />
-          <EntitySet Name="UserEvents" EntityType="db_a8f74e_posModel.UserEvent" />
+          <EntitySet Name="UserEvents" EntityType="db_a8f74e_posModel.UserEvents" />
           <EntitySet Name="UserEvents_Back_Office" EntityType="db_a8f74e_posModel.UserEvents_Back_Office" />
-          <EntitySet Name="Warehouses" EntityType="db_a8f74e_posModel.Warehouse" />
+          <EntitySet Name="Warehouse" EntityType="db_a8f74e_posModel.Warehouse" />
           <EntitySet Name="Warehouse_Back_Office" EntityType="db_a8f74e_posModel.Warehouse_Back_Office" />
           <EntitySet Name="Warehouse_Transaction" EntityType="db_a8f74e_posModel.Warehouse_Transaction" />
           <EntitySet Name="Warehouse_Transaction_Back_Office" EntityType="db_a8f74e_posModel.Warehouse_Transaction_Back_Office" />
           <EntitySet Name="Operation_Type_Back_Office" EntityType="db_a8f74e_posModel.Operation_Type_Back_Office" />
           <EntitySet Name="Payment_Type_Back_Office" EntityType="db_a8f74e_posModel.Payment_Type_Back_Office" />
-          <EntitySet Name="ProjectInfoes" EntityType="db_a8f74e_posModel.ProjectInfo" />
+          <EntitySet Name="ProjectInfo" EntityType="db_a8f74e_posModel.ProjectInfo" />
           <EntitySet Name="ProjectInfo_Back_Office" EntityType="db_a8f74e_posModel.ProjectInfo_Back_Office" />
           <EntitySet Name="Auth_View" EntityType="db_a8f74e_posModel.Auth_View" />
           <EntitySet Name="BackOfficeTranDetail_View" EntityType="db_a8f74e_posModel.BackOfficeTranDetail_View" />
           <EntitySet Name="Customer_View" EntityType="db_a8f74e_posModel.Customer_View" />
           <EntitySet Name="Employee_View" EntityType="db_a8f74e_posModel.Employee_View" />
-          <EntitySet Name="ExpensesViews" EntityType="db_a8f74e_posModel.ExpensesView" />
-          <EntitySet Name="ItemCardViews" EntityType="db_a8f74e_posModel.ItemCardView" />
+          <EntitySet Name="ExpensesView" EntityType="db_a8f74e_posModel.ExpensesView" />
+          <EntitySet Name="ItemCardView" EntityType="db_a8f74e_posModel.ItemCardView" />
           <EntitySet Name="PO_View" EntityType="db_a8f74e_posModel.PO_View" />
-          <EntitySet Name="SaleDetailViews" EntityType="db_a8f74e_posModel.SaleDetailView" />
-          <EntitySet Name="SaleMasterViews" EntityType="db_a8f74e_posModel.SaleMasterView" />
+          <EntitySet Name="SaleDetailView" EntityType="db_a8f74e_posModel.SaleDetailView" />
+          <EntitySet Name="SaleMasterView" EntityType="db_a8f74e_posModel.SaleMasterView" />
           <EntitySet Name="Shift_View" EntityType="db_a8f74e_posModel.Shift_View" />
           <EntitySet Name="User_View" EntityType="db_a8f74e_posModel.User_View" />
           <EntitySet Name="warhouse_view" EntityType="db_a8f74e_posModel.warhouse_view" />
@@ -1859,7 +1845,7 @@ FROM [dbo].[warhouse_view] AS [warhouse_view]</DefiningQuery>
           <Property Name="Back_Office_Master_Code" Type="Int64" Nullable="false" />
           <Property Name="Back_Office_Detail_Code" Type="Int64" Nullable="false" />
         </EntityType>
-        <EntityType Name="Branch">
+        <EntityType Name="Branches">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -2009,7 +1995,7 @@ FROM [dbo].[warhouse_view] AS [warhouse_view]</DefiningQuery>
           <Property Name="Back_Office_Master_Code" Type="Int64" Nullable="false" />
           <Property Name="Back_Office_Detail_Code" Type="Int64" Nullable="false" />
         </EntityType>
-        <EntityType Name="Expens">
+        <EntityType Name="Expenses">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -2213,7 +2199,7 @@ FROM [dbo].[warhouse_view] AS [warhouse_view]</DefiningQuery>
           <Property Name="Back_Office_Master_Code" Type="Int64" Nullable="false" />
           <Property Name="Back_Office_Detail_Code" Type="Int64" Nullable="false" />
         </EntityType>
-        <EntityType Name="Jop">
+        <EntityType Name="Jops">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -2421,7 +2407,7 @@ FROM [dbo].[warhouse_view] AS [warhouse_view]</DefiningQuery>
           <Property Name="Back_Office_Master_Code" Type="Int64" Nullable="false" />
           <Property Name="Back_Office_Detail_Code" Type="Int64" Nullable="false" />
         </EntityType>
-        <EntityType Name="Sale">
+        <EntityType Name="Sales">
           <Key>
             <PropertyRef Name="Sales_Code" />
           </Key>
@@ -2529,7 +2515,7 @@ FROM [dbo].[warhouse_view] AS [warhouse_view]</DefiningQuery>
           <Property Name="Back_Office_Master_Code" Type="Int64" Nullable="false" />
           <Property Name="Back_Office_Detail_Code" Type="Int64" Nullable="false" />
         </EntityType>
-        <EntityType Name="State">
+        <EntityType Name="States">
           <Key>
             <PropertyRef Name="id" />
           </Key>
@@ -2664,7 +2650,7 @@ FROM [dbo].[warhouse_view] AS [warhouse_view]</DefiningQuery>
           <Property Name="Back_Office_Master_Code" Type="Int64" Nullable="false" />
           <Property Name="Back_Office_Detail_Code" Type="Int64" Nullable="false" />
         </EntityType>
-        <EntityType Name="UserEvent">
+        <EntityType Name="UserEvents">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -3000,11 +2986,8 @@ FROM [dbo].[warhouse_view] AS [warhouse_view]</DefiningQuery>
             <PropertyRef Name="EntryDate" />
             <PropertyRef Name="Price" />
             <PropertyRef Name="IsDeleted" />
-            <PropertyRef Name="UnitName" />
             <PropertyRef Name="SaleMasterCode" />
             <PropertyRef Name="Operation_Type_Id" />
-            <PropertyRef Name="PriceBuy" />
-            <PropertyRef Name="Item_Count_InStoreg" />
             <PropertyRef Name="UserName" />
             <PropertyRef Name="Emp_Code" />
             <PropertyRef Name="Id" />
@@ -3016,24 +2999,18 @@ FROM [dbo].[warhouse_view] AS [warhouse_view]</DefiningQuery>
             <PropertyRef Name="Warehouse_Name" />
             <PropertyRef Name="Item_DisCount" />
             <PropertyRef Name="Branches_Code" />
+            <PropertyRef Name="Branch_Id" />
+            <PropertyRef Name="SaleDetailCode" />
+            <PropertyRef Name="UserId" />
           </Key>
           <Property Name="ItemCode" Type="Int64" Nullable="false" />
-          <Property Name="CategoryCode" Type="Int64" />
-          <Property Name="ParCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Qty" Type="Double" Nullable="false" />
           <Property Name="Total" Type="Double" Nullable="false" />
           <Property Name="EntryDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Price" Type="Double" Nullable="false" />
           <Property Name="IsDeleted" Type="Int32" Nullable="false" />
-          <Property Name="UnitName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="UnitCode" Type="Int64" />
           <Property Name="SaleMasterCode" Type="Int64" Nullable="false" />
           <Property Name="Operation_Type_Id" Type="Int64" Nullable="false" />
-          <Property Name="PriceBuy" Type="Double" Nullable="false" />
-          <Property Name="CategoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="AddItem" Type="Boolean" />
-          <Property Name="Item_Count_InStoreg" Type="Double" Nullable="false" />
           <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Emp_Code" Type="Int64" Nullable="false" />
           <Property Name="Id" Type="Int64" Nullable="false" />
@@ -3041,11 +3018,13 @@ FROM [dbo].[warhouse_view] AS [warhouse_view]</DefiningQuery>
           <Property Name="shiftCode" Type="Int64" Nullable="false" />
           <Property Name="LineSequence" Type="Int64" Nullable="false" />
           <Property Name="isOile" Type="Boolean" Nullable="false" />
-          <Property Name="Name_En" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Warhouse_Code" Type="Int64" Nullable="false" />
           <Property Name="Warehouse_Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Item_DisCount" Type="Double" Nullable="false" />
           <Property Name="Branches_Code" Type="Int64" Nullable="false" />
+          <Property Name="Branch_Id" Type="Int64" Nullable="false" />
+          <Property Name="SaleDetailCode" Type="Int64" Nullable="false" />
+          <Property Name="UserId" Type="Int64" Nullable="false" />
         </EntityType>
         <EntityType Name="SaleMasterView">
           <Key>
@@ -3060,7 +3039,6 @@ FROM [dbo].[warhouse_view] AS [warhouse_view]</DefiningQuery>
             <PropertyRef Name="IsDeleted" />
             <PropertyRef Name="UserName" />
             <PropertyRef Name="Emp_Code" />
-            <PropertyRef Name="Shift_Code" />
             <PropertyRef Name="Payment_Type" />
             <PropertyRef Name="UserIdTakeOrder" />
             <PropertyRef Name="Customer_Code" />
@@ -3069,6 +3047,7 @@ FROM [dbo].[warhouse_view] AS [warhouse_view]</DefiningQuery>
             <PropertyRef Name="Branches_Name" />
             <PropertyRef Name="Cash" />
             <PropertyRef Name="Visa" />
+            <PropertyRef Name="ShiftCode" />
           </Key>
           <Property Name="UserCode" Type="Int64" Nullable="false" />
           <Property Name="Operation_Type_Id" Type="Int64" Nullable="false" />
@@ -3082,7 +3061,6 @@ FROM [dbo].[warhouse_view] AS [warhouse_view]</DefiningQuery>
           <Property Name="IsDeleted" Type="Int32" Nullable="false" />
           <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Emp_Code" Type="Int64" Nullable="false" />
-          <Property Name="Shift_Code" Type="Int64" Nullable="false" />
           <Property Name="PaymentType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Payment_Type" Type="Int64" Nullable="false" />
           <Property Name="UserIdTakeOrder" Type="Int64" Nullable="false" />
@@ -3092,6 +3070,7 @@ FROM [dbo].[warhouse_view] AS [warhouse_view]</DefiningQuery>
           <Property Name="Branches_Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Cash" Type="Double" Nullable="false" />
           <Property Name="Visa" Type="Double" Nullable="false" />
+          <Property Name="ShiftCode" Type="Int64" Nullable="false" />
         </EntityType>
         <EntityType Name="Shift_View">
           <Key>
@@ -3225,7 +3204,7 @@ FROM [dbo].[warhouse_view] AS [warhouse_view]</DefiningQuery>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Branches">
-            <EntityTypeMapping TypeName="db_a8f74e_posModel.Branch">
+            <EntityTypeMapping TypeName="db_a8f74e_posModel.Branches">
               <MappingFragment StoreEntitySet="Branches">
                 <ScalarProperty Name="Is_Back_Office" ColumnName="Is_Back_Office" />
                 <ScalarProperty Name="Warhouse_Code" ColumnName="Warhouse_Code" />
@@ -3236,7 +3215,7 @@ FROM [dbo].[warhouse_view] AS [warhouse_view]</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Categories">
+          <EntitySetMapping Name="Category">
             <EntityTypeMapping TypeName="db_a8f74e_posModel.Category">
               <MappingFragment StoreEntitySet="Category">
                 <ScalarProperty Name="Branch_Code" ColumnName="Branch_Code" />
@@ -3309,7 +3288,7 @@ FROM [dbo].[warhouse_view] AS [warhouse_view]</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Employees">
+          <EntitySetMapping Name="Employee">
             <EntityTypeMapping TypeName="db_a8f74e_posModel.Employee">
               <MappingFragment StoreEntitySet="Employee">
                 <ScalarProperty Name="isUploaded" ColumnName="isUploaded" />
@@ -3384,7 +3363,7 @@ FROM [dbo].[warhouse_view] AS [warhouse_view]</DefiningQuery>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Expenses">
-            <EntityTypeMapping TypeName="db_a8f74e_posModel.Expens">
+            <EntityTypeMapping TypeName="db_a8f74e_posModel.Expenses">
               <MappingFragment StoreEntitySet="Expenses">
                 <ScalarProperty Name="Branch_Code" ColumnName="Branch_Code" />
                 <ScalarProperty Name="ExpensesCode" ColumnName="ExpensesCode" />
@@ -3410,7 +3389,7 @@ FROM [dbo].[warhouse_view] AS [warhouse_view]</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="ExpensesTransactions">
+          <EntitySetMapping Name="ExpensesTransaction">
             <EntityTypeMapping TypeName="db_a8f74e_posModel.ExpensesTransaction">
               <MappingFragment StoreEntitySet="ExpensesTransaction">
                 <ScalarProperty Name="isFireBaseUploaded" ColumnName="isFireBaseUploaded" />
@@ -3549,7 +3528,7 @@ FROM [dbo].[warhouse_view] AS [warhouse_view]</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="ItemCards">
+          <EntitySetMapping Name="ItemCard">
             <EntityTypeMapping TypeName="db_a8f74e_posModel.ItemCard">
               <MappingFragment StoreEntitySet="ItemCard">
                 <ScalarProperty Name="Last_Update_Date" ColumnName="Last_Update_Date" />
@@ -3599,7 +3578,7 @@ FROM [dbo].[warhouse_view] AS [warhouse_view]</DefiningQuery>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Jops">
-            <EntityTypeMapping TypeName="db_a8f74e_posModel.Jop">
+            <EntityTypeMapping TypeName="db_a8f74e_posModel.Jops">
               <MappingFragment StoreEntitySet="Jops">
                 <ScalarProperty Name="is_Back_Office_Updated" ColumnName="is_Back_Office_Updated" />
                 <ScalarProperty Name="Branch_Code" ColumnName="Branch_Code" />
@@ -3642,7 +3621,7 @@ FROM [dbo].[warhouse_view] AS [warhouse_view]</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="POes">
+          <EntitySetMapping Name="PO">
             <EntityTypeMapping TypeName="db_a8f74e_posModel.PO">
               <MappingFragment StoreEntitySet="PO">
                 <ScalarProperty Name="Reason" ColumnName="Reason" />
@@ -3681,7 +3660,7 @@ FROM [dbo].[warhouse_view] AS [warhouse_view]</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="ProjectMangerInfoes">
+          <EntitySetMapping Name="ProjectMangerInfo">
             <EntityTypeMapping TypeName="db_a8f74e_posModel.ProjectMangerInfo">
               <MappingFragment StoreEntitySet="ProjectMangerInfo">
                 <ScalarProperty Name="isUploaded" ColumnName="isUploaded" />
@@ -3709,7 +3688,7 @@ FROM [dbo].[warhouse_view] AS [warhouse_view]</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="SaleDetails">
+          <EntitySetMapping Name="SaleDetail">
             <EntityTypeMapping TypeName="db_a8f74e_posModel.SaleDetail">
               <MappingFragment StoreEntitySet="SaleDetail">
                 <ScalarProperty Name="isFireBaseUploaded" ColumnName="isFireBaseUploaded" />
@@ -3764,7 +3743,7 @@ FROM [dbo].[warhouse_view] AS [warhouse_view]</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="SaleMasters">
+          <EntitySetMapping Name="SaleMaster">
             <EntityTypeMapping TypeName="db_a8f74e_posModel.SaleMaster">
               <MappingFragment StoreEntitySet="SaleMaster">
                 <ScalarProperty Name="isFireBaseUploaded" ColumnName="isFireBaseUploaded" />
@@ -3820,7 +3799,7 @@ FROM [dbo].[warhouse_view] AS [warhouse_view]</DefiningQuery>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Sales">
-            <EntityTypeMapping TypeName="db_a8f74e_posModel.Sale">
+            <EntityTypeMapping TypeName="db_a8f74e_posModel.Sales">
               <MappingFragment StoreEntitySet="Sales">
                 <ScalarProperty Name="is_Back_Office_Updated" ColumnName="is_Back_Office_Updated" />
                 <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
@@ -3857,7 +3836,7 @@ FROM [dbo].[warhouse_view] AS [warhouse_view]</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="SexTypes">
+          <EntitySetMapping Name="SexType">
             <EntityTypeMapping TypeName="db_a8f74e_posModel.SexType">
               <MappingFragment StoreEntitySet="SexType">
                 <ScalarProperty Name="SexTypeName_En" ColumnName="SexTypeName_En" />
@@ -3879,7 +3858,7 @@ FROM [dbo].[warhouse_view] AS [warhouse_view]</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Shifts">
+          <EntitySetMapping Name="Shift">
             <EntityTypeMapping TypeName="db_a8f74e_posModel.Shift">
               <MappingFragment StoreEntitySet="Shift">
                 <ScalarProperty Name="Cash" ColumnName="Cash" />
@@ -3934,7 +3913,7 @@ FROM [dbo].[warhouse_view] AS [warhouse_view]</DefiningQuery>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="States">
-            <EntityTypeMapping TypeName="db_a8f74e_posModel.State">
+            <EntityTypeMapping TypeName="db_a8f74e_posModel.States">
               <MappingFragment StoreEntitySet="States">
                 <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
                 <ScalarProperty Name="State_Name" ColumnName="State_Name" />
@@ -3977,7 +3956,7 @@ FROM [dbo].[warhouse_view] AS [warhouse_view]</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="UnitCards">
+          <EntitySetMapping Name="UnitCard">
             <EntityTypeMapping TypeName="db_a8f74e_posModel.UnitCard">
               <MappingFragment StoreEntitySet="UnitCard">
                 <ScalarProperty Name="Branch_Code" ColumnName="Branch_Code" />
@@ -4004,7 +3983,7 @@ FROM [dbo].[warhouse_view] AS [warhouse_view]</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Users">
+          <EntitySetMapping Name="User">
             <EntityTypeMapping TypeName="db_a8f74e_posModel.User">
               <MappingFragment StoreEntitySet="User">
                 <ScalarProperty Name="Branch_Code" ColumnName="Branch_Code" />
@@ -4078,7 +4057,7 @@ FROM [dbo].[warhouse_view] AS [warhouse_view]</DefiningQuery>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="UserEvents">
-            <EntityTypeMapping TypeName="db_a8f74e_posModel.UserEvent">
+            <EntityTypeMapping TypeName="db_a8f74e_posModel.UserEvents">
               <MappingFragment StoreEntitySet="UserEvents">
                 <ScalarProperty Name="Operation_Type_Id" ColumnName="Operation_Type_Id" />
                 <ScalarProperty Name="UserCode" ColumnName="UserCode" />
@@ -4109,7 +4088,7 @@ FROM [dbo].[warhouse_view] AS [warhouse_view]</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Warehouses">
+          <EntitySetMapping Name="Warehouse">
             <EntityTypeMapping TypeName="db_a8f74e_posModel.Warehouse">
               <MappingFragment StoreEntitySet="Warehouse">
                 <ScalarProperty Name="Branch_Code" ColumnName="Branch_Code" />
@@ -4188,7 +4167,7 @@ FROM [dbo].[warhouse_view] AS [warhouse_view]</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="ProjectInfoes">
+          <EntitySetMapping Name="ProjectInfo">
             <EntityTypeMapping TypeName="db_a8f74e_posModel.ProjectInfo">
               <MappingFragment StoreEntitySet="ProjectInfo">
                 <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
@@ -4288,7 +4267,7 @@ FROM [dbo].[warhouse_view] AS [warhouse_view]</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="ExpensesViews">
+          <EntitySetMapping Name="ExpensesView">
             <EntityTypeMapping TypeName="db_a8f74e_posModel.ExpensesView">
               <MappingFragment StoreEntitySet="ExpensesView">
                 <ScalarProperty Name="Branches_Name" ColumnName="Branches_Name" />
@@ -4312,7 +4291,7 @@ FROM [dbo].[warhouse_view] AS [warhouse_view]</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="ItemCardViews">
+          <EntitySetMapping Name="ItemCardView">
             <EntityTypeMapping TypeName="db_a8f74e_posModel.ItemCardView">
               <MappingFragment StoreEntitySet="ItemCardView">
                 <ScalarProperty Name="Last_Update_Date" ColumnName="Last_Update_Date" />
@@ -4356,14 +4335,16 @@ FROM [dbo].[warhouse_view] AS [warhouse_view]</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="SaleDetailViews">
+          <EntitySetMapping Name="SaleDetailView">
             <EntityTypeMapping TypeName="db_a8f74e_posModel.SaleDetailView">
               <MappingFragment StoreEntitySet="SaleDetailView">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="SaleDetailCode" ColumnName="SaleDetailCode" />
+                <ScalarProperty Name="Branch_Id" ColumnName="Branch_Id" />
                 <ScalarProperty Name="Branches_Code" ColumnName="Branches_Code" />
                 <ScalarProperty Name="Item_DisCount" ColumnName="Item_DisCount" />
                 <ScalarProperty Name="Warehouse_Name" ColumnName="Warehouse_Name" />
                 <ScalarProperty Name="Warhouse_Code" ColumnName="Warhouse_Code" />
-                <ScalarProperty Name="Name_En" ColumnName="Name_En" />
                 <ScalarProperty Name="isOile" ColumnName="isOile" />
                 <ScalarProperty Name="LineSequence" ColumnName="LineSequence" />
                 <ScalarProperty Name="shiftCode" ColumnName="shiftCode" />
@@ -4371,29 +4352,21 @@ FROM [dbo].[warhouse_view] AS [warhouse_view]</DefiningQuery>
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Emp_Code" ColumnName="Emp_Code" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
-                <ScalarProperty Name="Item_Count_InStoreg" ColumnName="Item_Count_InStoreg" />
-                <ScalarProperty Name="AddItem" ColumnName="AddItem" />
-                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
-                <ScalarProperty Name="PriceBuy" ColumnName="PriceBuy" />
                 <ScalarProperty Name="Operation_Type_Id" ColumnName="Operation_Type_Id" />
                 <ScalarProperty Name="SaleMasterCode" ColumnName="SaleMasterCode" />
-                <ScalarProperty Name="UnitCode" ColumnName="UnitCode" />
-                <ScalarProperty Name="UnitName" ColumnName="UnitName" />
                 <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
                 <ScalarProperty Name="Price" ColumnName="Price" />
                 <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
                 <ScalarProperty Name="Total" ColumnName="Total" />
                 <ScalarProperty Name="Qty" ColumnName="Qty" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="ParCode" ColumnName="ParCode" />
-                <ScalarProperty Name="CategoryCode" ColumnName="CategoryCode" />
                 <ScalarProperty Name="ItemCode" ColumnName="ItemCode" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="SaleMasterViews">
+          <EntitySetMapping Name="SaleMasterView">
             <EntityTypeMapping TypeName="db_a8f74e_posModel.SaleMasterView">
               <MappingFragment StoreEntitySet="SaleMasterView">
+                <ScalarProperty Name="ShiftCode" ColumnName="ShiftCode" />
                 <ScalarProperty Name="Visa" ColumnName="Visa" />
                 <ScalarProperty Name="Cash" ColumnName="Cash" />
                 <ScalarProperty Name="Branches_Name" ColumnName="Branches_Name" />
@@ -4403,7 +4376,6 @@ FROM [dbo].[warhouse_view] AS [warhouse_view]</DefiningQuery>
                 <ScalarProperty Name="UserIdTakeOrder" ColumnName="UserIdTakeOrder" />
                 <ScalarProperty Name="Payment_Type" ColumnName="Payment_Type" />
                 <ScalarProperty Name="PaymentType" ColumnName="PaymentType" />
-                <ScalarProperty Name="Shift_Code" ColumnName="Shift_Code" />
                 <ScalarProperty Name="Emp_Code" ColumnName="Emp_Code" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
@@ -4490,8 +4462,8 @@ FROM [dbo].[warhouse_view] AS [warhouse_view]</DefiningQuery>
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="true" />
-        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="False" />
         <DesignerProperty Name="UseLegacyProvider" Value="true" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>

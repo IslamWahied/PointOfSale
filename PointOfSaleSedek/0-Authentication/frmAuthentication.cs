@@ -20,7 +20,7 @@ using DataRep;
 using PointOfSaleSedek.HelperClass;
 using System.Data.Entity.Validation;
 
-namespace PointOfSaleSedek._101_Adds
+namespace PointOfSaleSedek._0_Authentication
 {
     public partial class FrmAuthentication : DevExpress.XtraEditors.XtraForm
     {
@@ -99,6 +99,7 @@ namespace PointOfSaleSedek._101_Adds
                     if (TestUpdate)
                     {
                         ObjectParameter Message = new ObjectParameter("Message", typeof(string));
+                      
                         Contexts.Delete_Trancation_By_User_Code(_USer_Code, branchCode, Message);
                         List<Tab_Info> GridData = GridControl1.DataSource as List<Tab_Info>;
                         List<User_Auth> List_User_Auth = new List<User_Auth>();

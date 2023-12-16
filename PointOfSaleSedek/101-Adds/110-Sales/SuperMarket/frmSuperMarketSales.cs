@@ -15,6 +15,7 @@ using FastReport;
 using PointOfSaleSedek._101_Adds._102_Customer;
 using PointOfSaleSedek.Model;
 using DataRep;
+using PointOfSaleSedek._0_Authentication;
 
 namespace PointOfSaleSedek._101_Adds
 {

@@ -12,16 +12,13 @@ namespace BackOfficeEntity
     using System;
     using System.Collections.Generic;
     
-    public partial class UserEvent
+    public partial class Jops
     {
         public long Id { get; set; }
-        public long EventCode { get; set; }
-        public Nullable<System.DateTime> EventDate { get; set; }
-        public string EventName { get; set; }
-        public Nullable<long> SaleMasterCode { get; set; }
-        public Nullable<System.DateTime> SaleDate { get; set; }
-        public Nullable<double> FinalTotal { get; set; }
-        public long UserCode { get; set; }
-        public int Operation_Type_Id { get; set; }
+        public long JopCode { get; set; }
+        public string JobName { get; set; }
+        public int IsDeleted { get; set; }
+        public long Branch_Code { get; set; }
+        public bool is_Back_Office_Updated { get; set; }
     }
 }

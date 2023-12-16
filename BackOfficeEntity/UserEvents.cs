@@ -12,12 +12,16 @@ namespace BackOfficeEntity
     using System;
     using System.Collections.Generic;
     
-    public partial class Expens
+    public partial class UserEvents
     {
-        public int Id { get; set; }
-        public string ExpensesName { get; set; }
-        public int IsDeleted { get; set; }
-        public long ExpensesCode { get; set; }
-        public long Branch_Code { get; set; }
+        public long Id { get; set; }
+        public long EventCode { get; set; }
+        public Nullable<System.DateTime> EventDate { get; set; }
+        public string EventName { get; set; }
+        public Nullable<long> SaleMasterCode { get; set; }
+        public Nullable<System.DateTime> SaleDate { get; set; }
+        public Nullable<double> FinalTotal { get; set; }
+        public long UserCode { get; set; }
+        public int Operation_Type_Id { get; set; }
     }
 }

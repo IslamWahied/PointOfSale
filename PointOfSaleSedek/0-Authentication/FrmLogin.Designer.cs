@@ -1,4 +1,5 @@
-﻿namespace PointOfSaleSedek._101_Adds._103_Authentication
+﻿
+namespace PointOfSaleSedek._0_Authentication
 {
     partial class FrmLogin
     {
@@ -39,6 +40,9 @@
             this.radioBtnEnglish = new MaterialSkin.Controls.MaterialRadioButton();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
             this.jGradientPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -95,6 +99,7 @@
             this.txtPassword.Size = new System.Drawing.Size(239, 23);
             this.txtPassword.TabIndex = 1;
             this.txtPassword.TabStop = false;
+            this.txtPassword.Text = "Admin@2020";
             this.txtPassword.UseSystemPasswordChar = true;
             this.txtPassword.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPassword_KeyDown);
             // 
@@ -114,6 +119,7 @@
             this.txtUserName.Size = new System.Drawing.Size(239, 23);
             this.txtUserName.TabIndex = 0;
             this.txtUserName.TabStop = false;
+            this.txtUserName.Text = "Admin";
             this.txtUserName.UseSystemPasswordChar = false;
             this.txtUserName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtUserName_KeyDown);
             // 
@@ -166,6 +172,7 @@
             this.radioBtnEnglish.Text = "English";
             this.radioBtnEnglish.UseVisualStyleBackColor = true;
             this.radioBtnEnglish.CheckedChanged += new System.EventHandler(this.radioBtnEnglish_CheckedChanged);
+            this.radioBtnEnglish.KeyUp += new System.Windows.Forms.KeyEventHandler(this.radioBtnEnglish_KeyUp);
             // 
             // labelControl2
             // 
@@ -186,13 +193,47 @@
             this.labelControl1.TabIndex = 24;
             this.labelControl1.Text = "اسم المستخدم";
             // 
+            // labelControl4
+            // 
+            this.labelControl4.Appearance.ForeColor = System.Drawing.Color.Red;
+            this.labelControl4.Appearance.Options.UseForeColor = true;
+            this.labelControl4.Location = new System.Drawing.Point(125, 332);
+            this.labelControl4.Name = "labelControl4";
+            this.labelControl4.Size = new System.Drawing.Size(35, 13);
+            this.labelControl4.TabIndex = 25;
+            this.labelControl4.Text = "Version";
+            // 
+            // labelControl5
+            // 
+            this.labelControl5.Location = new System.Drawing.Point(126, 348);
+            this.labelControl5.Name = "labelControl5";
+            this.labelControl5.Size = new System.Drawing.Size(32, 13);
+            this.labelControl5.TabIndex = 26;
+            this.labelControl5.Text = "10.0.1";
+            // 
+            // labelControl6
+            // 
+            this.labelControl6.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.labelControl6.Appearance.ForeColor = System.Drawing.Color.White;
+            this.labelControl6.Appearance.Options.UseBackColor = true;
+            this.labelControl6.Appearance.Options.UseForeColor = true;
+            this.labelControl6.Location = new System.Drawing.Point(0, 343);
+            this.labelControl6.Name = "labelControl6";
+            this.labelControl6.Padding = new System.Windows.Forms.Padding(5);
+            this.labelControl6.Size = new System.Drawing.Size(40, 23);
+            this.labelControl6.TabIndex = 27;
+            this.labelControl6.Text = "Active";
+            // 
             // FrmLogin
             // 
             this.AcceptButton = this.btnLogin;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(296, 323);
+            this.ClientSize = new System.Drawing.Size(296, 366);
+            this.Controls.Add(this.labelControl6);
+            this.Controls.Add(this.labelControl5);
+            this.Controls.Add(this.labelControl4);
             this.Controls.Add(this.labelControl1);
             this.Controls.Add(this.radioBtnEnglish);
             this.Controls.Add(this.radioBtnArbc);
@@ -230,5 +271,8 @@
         private MaterialSkin.Controls.MaterialRadioButton radioBtnEnglish;
         private DevExpress.XtraEditors.LabelControl labelControl2;
         private DevExpress.XtraEditors.LabelControl labelControl1;
+        private DevExpress.XtraEditors.LabelControl labelControl4;
+        private DevExpress.XtraEditors.LabelControl labelControl5;
+        private DevExpress.XtraEditors.LabelControl labelControl6;
     }
 }

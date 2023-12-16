@@ -91,7 +91,7 @@ namespace PointOfSaleSedek._102_Reports
                 {
                     // Get Total Sale
                     var dateTo = Convert.ToDateTime(Convert.ToDateTime(dtTo.EditValue).AddDays(1));
-                    var Sales = _server.SaleMasterViews.Where(x => x.IsDeleted == 0 && x.Operation_Type_Id == 2 && x.EntryDate >= dtFrom.DateTime && x.EntryDate <= dateTo).ToList<BackOfficeEntity.SaleMasterView>();
+                    var Sales = _server.SaleMasterView.Where(x => x.IsDeleted == 0 && x.Operation_Type_Id == 2 && x.EntryDate >= dtFrom.DateTime && x.EntryDate <= dateTo).ToList<BackOfficeEntity.SaleMasterView>();
                     TotalSales = 0;
                     Sales.ForEach(x =>
                     {
@@ -103,7 +103,7 @@ namespace PointOfSaleSedek._102_Reports
 
 
                     // Get Total Expenses
-                    var Expenses = _server.ExpensesViews.Where(x => x.IsDeleted == 0 && x.Date >= dtFrom.DateTime && x.Date <= dateTo).ToList();
+                    var Expenses = _server.ExpensesView.Where(x => x.IsDeleted == 0 && x.Date >= dtFrom.DateTime && x.Date <= dateTo).ToList();
                     TotalExpenses = 0;
                     Expenses.ForEach(x =>
                     {
@@ -112,7 +112,7 @@ namespace PointOfSaleSedek._102_Reports
 
 
                     // Get TOtal Discount
-                    var Descount = _server.SaleMasterViews.Where(x => x.IsDeleted == 0 && x.Operation_Type_Id == 2 && x.Discount > 0 && x.EntryDate >= dtFrom.DateTime && x.EntryDate <= dateTo).ToList<BackOfficeEntity.SaleMasterView>();
+                    var Descount = _server.SaleMasterView.Where(x => x.IsDeleted == 0 && x.Operation_Type_Id == 2 && x.Discount > 0 && x.EntryDate >= dtFrom.DateTime && x.EntryDate <= dateTo).ToList<BackOfficeEntity.SaleMasterView>();
                     TotalDescount = 0;
                     Descount.ForEach(x =>
                     {
@@ -121,7 +121,7 @@ namespace PointOfSaleSedek._102_Reports
 
 
                     // Get Purchess Count
-                    var Purchess = _server.SaleMasterViews.Where(x => x.IsDeleted == 0 && x.Operation_Type_Id == 1 && x.EntryDate >= dtFrom.DateTime && x.EntryDate <= dateTo).ToList<BackOfficeEntity.SaleMasterView>();
+                    var Purchess = _server.SaleMasterView.Where(x => x.IsDeleted == 0 && x.Operation_Type_Id == 1 && x.EntryDate >= dtFrom.DateTime && x.EntryDate <= dateTo).ToList<BackOfficeEntity.SaleMasterView>();
                     TotalPurchess = 0;
                     Purchess.ForEach(x =>
                     {
@@ -136,7 +136,7 @@ namespace PointOfSaleSedek._102_Reports
 
                     // Get Total Sale
                     var dateTo = Convert.ToDateTime(Convert.ToDateTime(dtTo.EditValue).AddDays(1));
-                    var Sales = _server.SaleMasterViews.Where(x => x.IsDeleted == 0 && x.Operation_Type_Id == 2  && x.EntryDate >= dtFrom.DateTime && x.EntryDate <= dateTo && x.Branches_Code == selectedBranch).ToList<BackOfficeEntity.SaleMasterView>();
+                    var Sales = _server.SaleMasterView.Where(x => x.IsDeleted == 0 && x.Operation_Type_Id == 2  && x.EntryDate >= dtFrom.DateTime && x.EntryDate <= dateTo && x.Branches_Code == selectedBranch).ToList<BackOfficeEntity.SaleMasterView>();
                     TotalSales = 0;
                     Sales.ForEach(x =>
                     {
@@ -148,7 +148,7 @@ namespace PointOfSaleSedek._102_Reports
 
 
                     // Get Total Expenses
-                    var Expenses = _server.ExpensesViews.Where(x => x.IsDeleted == 0 && x.Date >= dtFrom.DateTime && x.Date <= dateTo && x.Branches_Code == selectedBranch).ToList();
+                    var Expenses = _server.ExpensesView.Where(x => x.IsDeleted == 0 && x.Date >= dtFrom.DateTime && x.Date <= dateTo && x.Branches_Code == selectedBranch).ToList();
                     TotalExpenses = 0;
                     Expenses.ForEach(x =>
                     {
@@ -157,7 +157,7 @@ namespace PointOfSaleSedek._102_Reports
 
 
                     // Get TOtal Discount
-                    var Descount = _server.SaleMasterViews.Where(x => x.IsDeleted == 0 && x.Operation_Type_Id == 2 && x.Discount > 0 && x.EntryDate >= dtFrom.DateTime && x.EntryDate <= dateTo && x.Branches_Code == selectedBranch).ToList<BackOfficeEntity.SaleMasterView>();
+                    var Descount = _server.SaleMasterView.Where(x => x.IsDeleted == 0 && x.Operation_Type_Id == 2 && x.Discount > 0 && x.EntryDate >= dtFrom.DateTime && x.EntryDate <= dateTo && x.Branches_Code == selectedBranch).ToList<BackOfficeEntity.SaleMasterView>();
                     TotalDescount = 0;
                     Descount.ForEach(x =>
                     {
@@ -166,7 +166,7 @@ namespace PointOfSaleSedek._102_Reports
 
 
                     // Get Purchess Count
-                    var Purchess = _server.SaleMasterViews.Where(x => x.IsDeleted == 0 && x.Operation_Type_Id == 1 && x.EntryDate >= dtFrom.DateTime && x.EntryDate <= dateTo && x.Branches_Code == selectedBranch).ToList<BackOfficeEntity.SaleMasterView>();
+                    var Purchess = _server.SaleMasterView.Where(x => x.IsDeleted == 0 && x.Operation_Type_Id == 1 && x.EntryDate >= dtFrom.DateTime && x.EntryDate <= dateTo && x.Branches_Code == selectedBranch).ToList<BackOfficeEntity.SaleMasterView>();
                     TotalPurchess = 0;
                     Purchess.ForEach(x =>
                     {

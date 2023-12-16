@@ -11,8 +11,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using PointOfSaleSedek.HelperClass;
 using DataRep;
+using PointOfSaleSedek._101_Adds;
 
-namespace PointOfSaleSedek._101_Adds
+namespace PointOfSaleSedek._0_Authentication
 {
     public partial class frmAdmin : DevExpress.XtraEditors.XtraForm
     {

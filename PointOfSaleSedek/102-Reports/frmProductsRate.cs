@@ -98,18 +98,18 @@ namespace PointOfSaleSedek._101_Adds._114_AddExpenses
                 {
                   
 
-                    listServerDetails = _server.SaleDetails.Where(a => a.IsDeleted == 0 && a.Operation_Type_Id == 2 && a.EntryDate >= dtFrom.DateTime && a.EntryDate <= dateTo).ToList();
+                    listServerDetails = _server.SaleDetail.Where(a => a.IsDeleted == 0 && a.Operation_Type_Id == 2 && a.EntryDate >= dtFrom.DateTime && a.EntryDate <= dateTo).ToList();
                 }
                 // Search By From only
                 else if (String.IsNullOrWhiteSpace(dtTo.Text))
                 {
-                    listServerDetails = _server.SaleDetails.Where(a => a.IsDeleted == 0 && a.Operation_Type_Id == 2 && a.EntryDate >= dtFrom.DateTime ).ToList();
+                    listServerDetails = _server.SaleDetail.Where(a => a.IsDeleted == 0 && a.Operation_Type_Id == 2 && a.EntryDate >= dtFrom.DateTime ).ToList();
                 }
                 // // Search By To only
                 else if (String.IsNullOrWhiteSpace(dtFrom.Text))
                 {
                   
-                    listServerDetails = _server.SaleDetails.Where(a => a.IsDeleted == 0 && a.Operation_Type_Id == 2 &&  a.EntryDate <= dateTo).ToList();
+                    listServerDetails = _server.SaleDetail.Where(a => a.IsDeleted == 0 && a.Operation_Type_Id == 2 &&  a.EntryDate <= dateTo).ToList();
 
                 }
 
@@ -117,7 +117,7 @@ namespace PointOfSaleSedek._101_Adds._114_AddExpenses
                 // Search By All
                 else
                 {
-                    listServerDetails = _server.SaleDetails.Where(a => a.IsDeleted == 0).ToList();
+                    listServerDetails = _server.SaleDetail.Where(a => a.IsDeleted == 0).ToList();
                 }
 
               

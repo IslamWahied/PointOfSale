@@ -132,6 +132,8 @@
             this.barStaticItem19 = new DevExpress.XtraBars.BarStaticItem();
             this.barHeaderItem7 = new DevExpress.XtraBars.BarHeaderItem();
             this.barStaticItem20 = new DevExpress.XtraBars.BarStaticItem();
+            this.barButtonItem50 = new DevExpress.XtraBars.BarButtonItem();
+            this.rint = new DevExpress.XtraBars.BarButtonItem();
             this.RbCodeTab = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.RbAddWarehouse = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.RbBranches = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -163,6 +165,7 @@
             this.ribbonPageGroup17 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.RbCancelationInvoiceReport = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.RbShifts = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.rbProductRate = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.RbStorgeTap = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.RbStore = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.RbConversionStores = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -176,6 +179,8 @@
             this.ribbonPageGroup18 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup19 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup22 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.ribbonPage2 = new DevExpress.XtraBars.Ribbon.RibbonPage();
+            this.ribbonPageGroup23 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.repositoryItemTimeEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemTimeEdit();
             this.repositoryItemHypertextLabel2 = new DevExpress.XtraEditors.Repository.RepositoryItemHypertextLabel();
             this.repositoryItemTextEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
@@ -206,8 +211,6 @@
             this.TbAdd = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.barButtonItem39 = new DevExpress.XtraBars.BarButtonItem();
-            this.rbProductRate = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.barButtonItem50 = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemHypertextLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.RibbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTimeEdit1)).BeginInit();
@@ -222,10 +225,10 @@
             // 
             // ribbonStatusBar1
             // 
-            this.ribbonStatusBar1.Location = new System.Drawing.Point(0, 654);
+            this.ribbonStatusBar1.Location = new System.Drawing.Point(0, 652);
             this.ribbonStatusBar1.Name = "ribbonStatusBar1";
             this.ribbonStatusBar1.Ribbon = this.RibbonControl1;
-            this.ribbonStatusBar1.Size = new System.Drawing.Size(1044, 27);
+            this.ribbonStatusBar1.Size = new System.Drawing.Size(1044, 29);
             // 
             // RibbonControl1
             // 
@@ -337,16 +340,17 @@
             this.barStaticItem19,
             this.barHeaderItem7,
             this.barStaticItem20,
-            this.barButtonItem50});
+            this.barButtonItem50,
+            this.rint});
             this.RibbonControl1.Location = new System.Drawing.Point(0, 0);
-            this.RibbonControl1.MaxItemId = 130;
+            this.RibbonControl1.MaxItemId = 131;
             this.RibbonControl1.Name = "RibbonControl1";
             this.RibbonControl1.OptionsCustomizationForm.FormIcon = ((System.Drawing.Icon)(resources.GetObject("resource.FormIcon")));
             this.RibbonControl1.OptionsPageCategories.AutoCorrectForeColor = DevExpress.Utils.DefaultBoolean.True;
             this.RibbonControl1.PageHeaderItemLinks.Add(this.btnRefershShiftsData);
-            this.RibbonControl1.PageHeaderItemLinks.Add(this.btnUploadData);
             this.RibbonControl1.PageHeaderItemLinks.Add(this.barButtonItem43);
             this.RibbonControl1.PageHeaderItemLinks.Add(this.barButtonItem23);
+            this.RibbonControl1.PageHeaderItemLinks.Add(this.btnUploadData);
             this.RibbonControl1.PageHeaderItemLinks.Add(this.barButtonItem22);
             this.RibbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.RbCodeTab,
@@ -355,7 +359,8 @@
             this.RbInvoicesTab,
             this.RbReportsTab,
             this.RbStorgeTap,
-            this.rbBackOffice});
+            this.rbBackOffice,
+            this.ribbonPage2});
             this.RibbonControl1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemTimeEdit1,
             this.repositoryItemHypertextLabel2,
@@ -366,7 +371,7 @@
             this.RibbonControl1.ShowExpandCollapseButton = DevExpress.Utils.DefaultBoolean.False;
             this.RibbonControl1.ShowToolbarCustomizeItem = false;
             this.RibbonControl1.Size = new System.Drawing.Size(1044, 135);
-            this.RibbonControl1.StatusBar = this.ribbonStatusBar1;
+//            this.RibbonControl1.StatusBar = this.ribbonStatusBar1;
             this.RibbonControl1.Toolbar.ShowCustomizeItem = false;
             this.RibbonControl1.ToolbarLocation = DevExpress.XtraBars.Ribbon.RibbonQuickAccessToolbarLocation.Hidden;
             // 
@@ -643,7 +648,6 @@
             this.barButtonItem14.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem14.ImageOptions.Image")));
             this.barButtonItem14.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem14.ImageOptions.LargeImage")));
             this.barButtonItem14.Name = "barButtonItem14";
-            this.barButtonItem14.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem14_ItemClick);
             // 
             // barButtonItem15
             // 
@@ -1184,6 +1188,24 @@
             this.barStaticItem20.Id = 128;
             this.barStaticItem20.Name = "barStaticItem20";
             // 
+            // barButtonItem50
+            // 
+            this.barButtonItem50.Caption = "Products Rate";
+            this.barButtonItem50.Id = 129;
+            this.barButtonItem50.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem50.ImageOptions.Image")));
+            this.barButtonItem50.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem50.ImageOptions.LargeImage")));
+            this.barButtonItem50.Name = "barButtonItem50";
+            this.barButtonItem50.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem50_ItemClick);
+            // 
+            // rint
+            // 
+            this.rint.Caption = "Printer Copies number";
+            this.rint.Id = 130;
+            this.rint.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("rint.ImageOptions.Image")));
+            this.rint.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("rint.ImageOptions.LargeImage")));
+            this.rint.Name = "rint";
+            this.rint.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.rint_ItemClick);
+            // 
             // RbCodeTab
             // 
             this.RbCodeTab.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -1420,6 +1442,12 @@
             this.RbShifts.Name = "RbShifts";
             this.RbShifts.Visible = false;
             // 
+            // rbProductRate
+            // 
+            this.rbProductRate.ItemLinks.Add(this.barButtonItem50);
+            this.rbProductRate.Name = "rbProductRate";
+            this.rbProductRate.Visible = false;
+            // 
             // RbStorgeTap
             // 
             this.RbStorgeTap.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -1510,6 +1538,19 @@
             this.ribbonPageGroup22.ItemLinks.Add(this.barStaticItem20);
             this.ribbonPageGroup22.Name = "ribbonPageGroup22";
             // 
+            // ribbonPage2
+            // 
+            this.ribbonPage2.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
+            this.ribbonPageGroup23});
+            this.ribbonPage2.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("ribbonPage2.ImageOptions.Image")));
+            this.ribbonPage2.Name = "ribbonPage2";
+            this.ribbonPage2.Text = "Setting";
+            // 
+            // ribbonPageGroup23
+            // 
+            this.ribbonPageGroup23.ItemLinks.Add(this.rint);
+            this.ribbonPageGroup23.Name = "ribbonPageGroup23";
+            // 
             // repositoryItemTimeEdit1
             // 
             this.repositoryItemTimeEdit1.AutoHeight = false;
@@ -1572,7 +1613,7 @@
             this.imageSlider1.LayoutMode = DevExpress.Utils.Drawing.ImageLayoutMode.MiddleCenter;
             this.imageSlider1.Location = new System.Drawing.Point(0, 135);
             this.imageSlider1.Name = "imageSlider1";
-            this.imageSlider1.Size = new System.Drawing.Size(1044, 519);
+            this.imageSlider1.Size = new System.Drawing.Size(1044, 517);
             this.imageSlider1.TabIndex = 2;
             this.imageSlider1.Text = "imageSlider1";
             // 
@@ -1706,21 +1747,6 @@
             this.barButtonItem39.Id = 113;
             this.barButtonItem39.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barButtonItem39.ImageOptions.SvgImage")));
             this.barButtonItem39.Name = "barButtonItem39";
-            // 
-            // rbProductRate
-            // 
-            this.rbProductRate.ItemLinks.Add(this.barButtonItem50);
-            this.rbProductRate.Name = "rbProductRate";
-            this.rbProductRate.Visible = false;
-            // 
-            // barButtonItem50
-            // 
-            this.barButtonItem50.Caption = "Products Rate";
-            this.barButtonItem50.Id = 129;
-            this.barButtonItem50.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem50.ImageOptions.Image")));
-            this.barButtonItem50.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem50.ImageOptions.LargeImage")));
-            this.barButtonItem50.Name = "barButtonItem50";
-            this.barButtonItem50.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem50_ItemClick);
             // 
             // FrmMain
             // 
@@ -1933,6 +1959,9 @@
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup22;
         private DevExpress.XtraBars.BarButtonItem barButtonItem50;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup rbProductRate;
+        private DevExpress.XtraBars.BarButtonItem rint;
+        private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage2;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup23;
     }
 }
 

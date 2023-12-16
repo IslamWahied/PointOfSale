@@ -12,13 +12,19 @@ namespace BackOfficeEntity
     using System;
     using System.Collections.Generic;
     
-    public partial class Branch
+    public partial class Sales
     {
         public long Id { get; set; }
-        public long Branches_Code { get; set; }
-        public string Branches_Name { get; set; }
+        public long Sales_Code { get; set; }
+        public string Sales_Name { get; set; }
+        public string Sales_Phone { get; set; }
+        public string Sales_Address { get; set; }
+        public string Sales_NationalID { get; set; }
+        public string Sales_Email { get; set; }
+        public System.DateTime Created_Date { get; set; }
+        public System.DateTime Last_Modified_Date { get; set; }
+        public long Last_Modified_User { get; set; }
         public int IsDeleted { get; set; }
-        public long Warhouse_Code { get; set; }
-        public bool Is_Back_Office { get; set; }
+        public bool is_Back_Office_Updated { get; set; }
     }
 }

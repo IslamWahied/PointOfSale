@@ -1,5 +1,5 @@
 ﻿
-namespace PointOfSaleSedek._101_Adds
+namespace PointOfSaleSedek._0_Authentication
 {
     partial class frmAdmin
     {

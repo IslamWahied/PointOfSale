@@ -26,7 +26,6 @@ namespace BackOfficeEntity
         public int IsDeleted { get; set; }
         public string UserName { get; set; }
         public long Emp_Code { get; set; }
-        public long Shift_Code { get; set; }
         public string PaymentType { get; set; }
         public long Payment_Type { get; set; }
         public long UserIdTakeOrder { get; set; }
@@ -36,5 +35,6 @@ namespace BackOfficeEntity
         public string Branches_Name { get; set; }
         public double Cash { get; set; }
         public double Visa { get; set; }
+        public long ShiftCode { get; set; }
     }
 }

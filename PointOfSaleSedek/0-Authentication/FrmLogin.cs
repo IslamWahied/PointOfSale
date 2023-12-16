@@ -17,8 +17,10 @@ using PointOfSaleSedek.HelperClass;
 using DataRep;
 using Google.Cloud.Firestore;
 using System.Data.Entity.Validation;
+using PointOfSaleSedek._Activaion;
 
-namespace PointOfSaleSedek._101_Adds._103_Authentication
+
+namespace PointOfSaleSedek._0_Authentication
 {
 
     public partial class FrmLogin : Form 
@@ -29,6 +31,9 @@ namespace PointOfSaleSedek._101_Adds._103_Authentication
         FirestoreDb db;
         public FrmLogin()
         {
+
+            
+
             InitializeComponent();
             radioBtnArbc.Checked = false;
             radioBtnEnglish.Checked = true;
@@ -44,12 +49,28 @@ namespace PointOfSaleSedek._101_Adds._103_Authentication
             this.txtUserName.RightToLeft = System.Windows.Forms.RightToLeft.No;
 
             this.txtPassword.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            string path = AppDomain.CurrentDomain.BaseDirectory + @"foodapp.json";
-            Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", path);
-            db = FirestoreDb.Create("pointofsale-d3e8d");
-          //  login();
 
 
+            AppActivation appActivation = Context.AppActivations.FirstOrDefault();
+            labelControl5.Text = appActivation.AppVersion;
+            if (appActivation.ActivaionState && appActivation.Activation_Date.Value > DateTime.Now)
+            {
+                
+                labelControl6.Text = "Active";
+                labelControl6.BackColor = Color.Green;
+            }
+
+            else {
+                labelControl6.Text = "Inactive";
+                labelControl6.BackColor = Color.Red;
+            }
+
+           
+    
+            
+        
+
+            
         }
 
         
@@ -62,29 +83,113 @@ namespace PointOfSaleSedek._101_Adds._103_Authentication
                 return;
             }
         }
+        public static DateTime? GetDateTime()
+        {
+            DateTime dateTime = DateTime.MinValue;
+            SplashScreenManager.ShowForm(typeof(WaitForm1));
+            try
+            {
+                System.Net.HttpWebRequest request = (System.Net.HttpWebRequest)System.Net.WebRequest.Create("http://www.microsoft.com");
+                request.Method = "GET";
+                request.Accept = "text/html, application/xhtml+xml, */*";
+                request.UserAgent = "Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.1; Trident/6.0)";
+                request.ContentType = "application/x-www-form-urlencoded";
+                request.CachePolicy = new System.Net.Cache.RequestCachePolicy(System.Net.Cache.RequestCacheLevel.NoCacheNoStore);
+                System.Net.HttpWebResponse response = (System.Net.HttpWebResponse)request.GetResponse();
+                if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                {
+                    string todaysDates = response.Headers["date"];
 
+                    dateTime = DateTime.ParseExact(todaysDates, "ddd, dd MMM yyyy HH:mm:ss 'GMT'",
+                        System.Globalization.CultureInfo.InvariantCulture.DateTimeFormat, System.Globalization.DateTimeStyles.AssumeUniversal);
+                }
+                SplashScreenManager.CloseForm();
+            }
+            catch (Exception)
+            {
+                SplashScreenManager.CloseForm();
+                return null;
+            }        
+            return dateTime;
+        }
 
         void login() {
 
             bool CheckUser;
             try
             {
+                var interNetDate = GetDateTime();
+                DateTime? dateTimeNow;
+
+                if (interNetDate == null) {
+                    dateTimeNow = DateTime.Now;
+
+                } else
+                {
+
+                    dateTimeNow = interNetDate;
+                }
 
 
+                using (POSEntity Context1 = new POSEntity())
+                {
+                    AppActivation appActivationT = Context1.AppActivations.FirstOrDefault();
+                    if (interNetDate == null && appActivationT.Login_Offline_Count <= 29)
+                    {
 
+                        appActivationT.Login_Offline_Count = appActivationT.Login_Offline_Count + 1;
+                        Context1.SaveChanges();
+                    }
+                    else if (interNetDate != null)
+                    {
 
-                //int ordersNumber = Context.SaleMasterViews.ToList().Count;
+                        appActivationT.Login_Offline_Count = 0;
+                        Context1.SaveChanges();
+                    }
+                }
 
+                AppActivation appActivation;
+                using (POSEntity Context  = new POSEntity())
+                {
+                      appActivation = Context.AppActivations.FirstOrDefault();
+                }
+        
+                var mbs = new ManagementObjectSearcher("Select ProcessorID From Win32_processor");
+                var mbsList = mbs.Get();
 
+                foreach (ManagementObject mo in mbsList)
+                {
+                    CPU_Code = mo["ProcessorID"].ToString();
+                }
 
+                if (appActivation.CPU_Code != CPU_Code)
+                {
+                    MaterialMessageBox.Show(radioBtnEnglish.Checked ? "The point has not been activated before, please refer to technical support" : "لم يتم تفعيل النقطه من قبل برجاء الرجوع الي الدعم الفني", MessageBoxButtons.OK);
+                    return;
+                }
 
-                //if (ordersNumber >= 200)
-                //{
-                //    MaterialMessageBox.Show("تم انتهاء الفتره المسموحه للنسخة النجريبية", MessageBoxButtons.OK);
-                //    return;
-                //}
+                if (appActivation.Login_Offline_Count >= 30) {
+                    MaterialMessageBox.Show(radioBtnEnglish.Checked ? "Please connect to the internet" : "يرجي الاتصال بالانترنت", MessageBoxButtons.OK);
+                    return;
+                }
 
-                CheckUser = Context.User_View.Any(Users => Users.UserName == txtUserName.Text && Users.UserFlag == true && Users.Password == txtPassword.Text && Users.IsDeleted == 0 && Users.IsDeletedEmployee == 0);
+                if (!appActivation.ActivaionState || appActivation.Activation_Date.Value < dateTimeNow)
+                {
+
+                    using (POSEntity Context3 = new POSEntity())
+                    {
+
+                        AppActivation appActivationL = Context3.AppActivations.FirstOrDefault();
+                        appActivationL.ActivaionState = false;
+                        Context3.SaveChanges();
+                        labelControl6.Text = "Inactive";
+                        labelControl6.BackColor = Color.Red;
+                       
+                    }
+
+                    MaterialMessageBox.Show(radioBtnEnglish.Checked ? "The period allowed for the copy has expired, please refer to technical support" : "تم انتهاء الفتره المسموحه للنسخة برجاء الرجوع الي الدعم الفني", MessageBoxButtons.OK);
+                    return;
+                }
 
                 
                 String branchName = "BackOffice";
@@ -95,56 +200,38 @@ namespace PointOfSaleSedek._101_Adds._103_Authentication
                 if (!isBackOffice)
                 {
                     var branch = Context.Branches.Where(x => x.IsDeleted == 0 ).FirstOrDefault();
-
                     branchCode = branch.Branches_Code;
                     branchName = branch.Branches_Name;
                     wareHouseCode = branch.Warhouse_Code;
-
                 }
-                
 
-            
+
+                CheckUser = Context.User_View.Any(Users => Users.Branches_Code == branchCode && Users.UserName == txtUserName.Text && Users.UserFlag == true && Users.Password == txtPassword.Text && Users.IsDeleted == 0 && Users.IsDeletedEmployee == 0);
                 if (CheckUser)
                 {
                     this.Hide();
 
-                   
-
                     User_View _User;
                     _User = Context.User_View.SingleOrDefault(user => user.Password == txtPassword.Text && user.UserName == txtUserName.Text && user.IsDeleted == 0 && user.Branches_Code == branchCode);
-
                     st.SetUser_Code(Convert.ToInt64(_User.Employee_Code));
                     st.SetBranch_Code(branchCode);
                     st.SetBranch_Name(branchName);
                     st.Set_Warehouse_Code(wareHouseCode);
                     st.SetUserName(_User.UserName);
                     st.ChangeLangu(this.radioBtnEnglish.Checked);
-                    //Int64 Project_Code = Convert.ToInt64(SlkProjectCity.EditValue);
-                    // st.Set_Project_Code(Project_Code);
-
-
-                    //SplashScreenManager.ShowForm(typeof(SplashScreen1));
-                    //Timer d = new Timer();
-                    //d.Start();
-
-                    //wait(3000);
-                    //st.SplashScreen1.Hide();
+                    var _printCopyNumber = Context.PrintCopyNumbers.SingleOrDefault();
+                    st.SetPrintCopyNumber(_printCopyNumber.PrintCopyNumber1);
                     FrmMain frm = new FrmMain();
                     frm.ShowDialog();
-
-
-
-
 
                 }
                 else
                 {
                     MaterialMessageBox.Show(radioBtnEnglish.Checked ? "You don't have an account!" : "!ليس لديك حساب", MessageBoxButtons.OK);
                     return;
-
-
                 }
             }
+
             catch (DbEntityValidationException es)
             {
                 foreach (var eve in es.EntityValidationErrors)
@@ -170,13 +257,7 @@ namespace PointOfSaleSedek._101_Adds._103_Authentication
 
         private void btnLogin_Click_1(object sender, EventArgs e)
         {
-
-
             login();
-
-
-
-
         }
        
         private void txtUserName_KeyDown(object sender, KeyEventArgs e)
@@ -212,11 +293,7 @@ namespace PointOfSaleSedek._101_Adds._103_Authentication
             Application.Exit();
         }
 
-        private void slkShiftsOpen_Properties_EditValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
+     
         private void radioBtnArbc_CheckedChanged(object sender, EventArgs e)
         {
             if (radioBtnArbc.Checked) {
@@ -260,6 +337,13 @@ namespace PointOfSaleSedek._101_Adds._103_Authentication
             }
         }
 
-       
+        private void radioBtnEnglish_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Shift && e.KeyCode == Keys.A)
+            {
+                frmActivationLogin frm = new frmActivationLogin();
+                frm.ShowDialog();
+            }
+        }
     }
 }

@@ -15,22 +15,13 @@ namespace BackOfficeEntity
     public partial class SaleDetailView
     {
         public long ItemCode { get; set; }
-        public Nullable<long> CategoryCode { get; set; }
-        public string ParCode { get; set; }
-        public string Name { get; set; }
         public double Qty { get; set; }
         public double Total { get; set; }
         public System.DateTime EntryDate { get; set; }
         public double Price { get; set; }
         public int IsDeleted { get; set; }
-        public string UnitName { get; set; }
-        public Nullable<long> UnitCode { get; set; }
         public long SaleMasterCode { get; set; }
         public long Operation_Type_Id { get; set; }
-        public double PriceBuy { get; set; }
-        public string CategoryName { get; set; }
-        public Nullable<bool> AddItem { get; set; }
-        public double Item_Count_InStoreg { get; set; }
         public string UserName { get; set; }
         public long Emp_Code { get; set; }
         public long Id { get; set; }
@@ -38,10 +29,12 @@ namespace BackOfficeEntity
         public long shiftCode { get; set; }
         public long LineSequence { get; set; }
         public bool isOile { get; set; }
-        public string Name_En { get; set; }
         public long Warhouse_Code { get; set; }
         public string Warehouse_Name { get; set; }
         public double Item_DisCount { get; set; }
         public long Branches_Code { get; set; }
+        public long Branch_Id { get; set; }
+        public long SaleDetailCode { get; set; }
+        public long UserId { get; set; }
     }
 }

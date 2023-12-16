@@ -10,6 +10,7 @@ using PointOfSaleSedek._101_Adds._102_Customer;
 using PointOfSaleSedek._101_Adds._110_Sales;
 using DataRep;
 using PointOfSaleSedek.Model;
+using PointOfSaleSedek._0_Authentication;
 
 namespace PointOfSaleSedek._101_Adds
 {

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PointOfSaleSedek.Model
 {
-   public class ProfitAndLosse
+    public class ProfitAndLosse
     {
         public double TotalSales { get; set; }
         public double TotalExpenses { get; set; }

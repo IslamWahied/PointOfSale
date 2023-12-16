@@ -27,6 +27,7 @@ namespace DataRep
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<AppActivation> AppActivations { get; set; }
         public virtual DbSet<Back_Office_Transaction_Detail> Back_Office_Transaction_Detail { get; set; }
         public virtual DbSet<Back_Office_Transaction_Master> Back_Office_Transaction_Master { get; set; }
         public virtual DbSet<Branch_Back_Office> Branch_Back_Office { get; set; }
@@ -55,6 +56,7 @@ namespace DataRep
         public virtual DbSet<Operation_Type> Operation_Type { get; set; }
         public virtual DbSet<Payment_Type> Payment_Type { get; set; }
         public virtual DbSet<PO> POes { get; set; }
+        public virtual DbSet<PrintCopyNumber> PrintCopyNumbers { get; set; }
         public virtual DbSet<Project_Tables> Project_Tables { get; set; }
         public virtual DbSet<Project_Tables_Back_Office> Project_Tables_Back_Office { get; set; }
         public virtual DbSet<ProjectMangerInfo> ProjectMangerInfoes { get; set; }

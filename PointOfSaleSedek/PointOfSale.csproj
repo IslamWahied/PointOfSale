@@ -90,12 +90,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\Program Files (x86)\FastReports\FastReport.Net Trial\FastReport.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="FastReport.Install">
-      <HintPath>..\..\..\..\..\..\Program Files (x86)\FastReports\FastReport.Net Trial\FastReport.Install.dll</HintPath>
-    </Reference>
     <Reference Include="FlatButton, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>D:\Programs\Programming\Tools\JControls\FlatButton.dll</HintPath>
+      <HintPath>..\..\..\..\Desktop\New folder\Programing\JControls\FlatButton.dll</HintPath>
     </Reference>
     <Reference Include="Google.Api.CommonProtos, Version=2.6.0.0, Culture=neutral, PublicKeyToken=3ec5ea7f18953e47, processorArchitecture=MSIL">
       <HintPath>..\packages\Google.Api.CommonProtos.2.6.0\lib\net461\Google.Api.CommonProtos.dll</HintPath>
@@ -153,35 +150,35 @@
     </Reference>
     <Reference Include="JDragControl, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>D:\Programs\Programming\Tools\JControls\JDragControl.dll</HintPath>
+      <HintPath>..\..\..\..\Desktop\New folder\Programing\JControls\JDragControl.dll</HintPath>
     </Reference>
     <Reference Include="JGradient Panel, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>D:\Programs\Programming\Tools\JControls\JGradient Panel.dll</HintPath>
+      <HintPath>..\..\..\..\Desktop\New folder\Programing\JControls\JGradient Panel.dll</HintPath>
     </Reference>
     <Reference Include="JImageButton, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>D:\Programs\Programming\Tools\JControls\JImageButton.dll</HintPath>
+      <HintPath>..\..\..\..\Desktop\New folder\Programing\JControls\JImageButton.dll</HintPath>
     </Reference>
     <Reference Include="JMaterialTextbox, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>D:\Programs\Programming\Tools\JControls\JMaterialTextbox.dll</HintPath>
+      <HintPath>..\..\..\..\Desktop\New folder\Programing\JControls\JMaterialTextbox.dll</HintPath>
     </Reference>
     <Reference Include="JMetroTextBox, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>D:\Programs\Programming\Tools\JControls\JMetroTextBox.dll</HintPath>
+      <HintPath>..\..\..\..\Desktop\New folder\Programing\JControls\JMetroTextBox.dll</HintPath>
     </Reference>
     <Reference Include="JTextBox, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>D:\Programs\Programming\Tools\JControls\JTextBox.dll</HintPath>
+      <HintPath>..\..\..\..\Desktop\New folder\Programing\JControls\JTextBox.dll</HintPath>
     </Reference>
     <Reference Include="JTextBox2, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>D:\Programs\Programming\Tools\JControls\JTextBox2.dll</HintPath>
+      <HintPath>..\..\..\..\Desktop\New folder\Programing\JControls\JTextBox2.dll</HintPath>
     </Reference>
     <Reference Include="JThinButton, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>D:\Programs\Programming\Tools\JControls\JThinButton.dll</HintPath>
+      <HintPath>..\..\..\..\Desktop\New folder\Programing\JControls\JThinButton.dll</HintPath>
     </Reference>
     <Reference Include="MaterialSkin, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MaterialSkin.0.2.1\lib\MaterialSkin.dll</HintPath>
@@ -195,11 +192,12 @@
     <Reference Include="Microsoft.Extensions.Logging.Abstractions, Version=3.0.3.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Extensions.Logging.Abstractions.3.0.3\lib\netstandard2.0\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.SqlServer.GridControl, Version=14.100.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="System" />
+    <Reference Include="System">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.dll</HintPath>
+    </Reference>
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
     </Reference>
@@ -215,6 +213,8 @@
     <Reference Include="System.Linq.Async, Version=6.0.0.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Linq.Async.6.0.1\lib\netstandard2.0\System.Linq.Async.dll</HintPath>
     </Reference>
+    <Reference Include="System.Management" />
+    <Reference Include="System.Management.Instrumentation" />
     <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
     </Reference>
@@ -246,6 +246,24 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="0-Authentication\frmAdmin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="0-Authentication\frmAdmin.Designer.cs">
+      <DependentUpon>frmAdmin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="0-Authentication\frmAuthentication.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="0-Authentication\frmAuthentication.Designer.cs">
+      <DependentUpon>frmAuthentication.cs</DependentUpon>
+    </Compile>
+    <Compile Include="0-Authentication\FrmLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="0-Authentication\FrmLogin.Designer.cs">
+      <DependentUpon>FrmLogin.cs</DependentUpon>
+    </Compile>
     <Compile Include="100-General\FrmMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -293,24 +311,6 @@
     </Compile>
     <Compile Include="101-Adds\107-Item\Cafe\frmItemDeletedHistory.Designer.cs">
       <DependentUpon>frmItemDeletedHistory.cs</DependentUpon>
-    </Compile>
-    <Compile Include="101-Adds\112-Users\Authentication\frmAdmin.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="101-Adds\112-Users\Authentication\frmAdmin.Designer.cs">
-      <DependentUpon>frmAdmin.cs</DependentUpon>
-    </Compile>
-    <Compile Include="101-Adds\112-Users\Authentication\FrmAuthentication.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="101-Adds\112-Users\Authentication\FrmAuthentication.Designer.cs">
-      <DependentUpon>FrmAuthentication.cs</DependentUpon>
-    </Compile>
-    <Compile Include="101-Adds\112-Users\Authentication\FrmLogin.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="101-Adds\112-Users\Authentication\FrmLogin.Designer.cs">
-      <DependentUpon>FrmLogin.cs</DependentUpon>
     </Compile>
     <Compile Include="101-Adds\104-Branches\frmAddBranches.cs">
       <SubType>Form</SubType>
@@ -649,6 +649,24 @@
     <Compile Include="102-Reports\frmShiftsReport.Designer.cs">
       <DependentUpon>frmShiftsReport.cs</DependentUpon>
     </Compile>
+    <Compile Include="102-Reports\ProductsRate\frmCategoryRateDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="102-Reports\ProductsRate\frmCategoryRateDetail.Designer.cs">
+      <DependentUpon>frmCategoryRateDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="102-Reports\ProductsRate\frmItemRateDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="102-Reports\ProductsRate\frmItemRateDetail.Designer.cs">
+      <DependentUpon>frmItemRateDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="102-Reports\ProductsRate\frmProductsRate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="102-Reports\ProductsRate\frmProductsRate.Designer.cs">
+      <DependentUpon>frmProductsRate.cs</DependentUpon>
+    </Compile>
     <Compile Include="104-BackOffice\Category\Category_Back_office.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -685,6 +703,37 @@
     <Compile Include="104-BackOffice\Users\User_Back_office.Designer.cs">
       <DependentUpon>User_Back_office.cs</DependentUpon>
     </Compile>
+    <Compile Include="105-Settings\frmPrinterCopiesNumber.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="105-Settings\frmPrinterCopiesNumber.Designer.cs">
+      <DependentUpon>frmPrinterCopiesNumber.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Activaion\frmactivaionyesno.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Activaion\frmActivaionYesNo.designer.cs">
+      <DependentUpon>frmactivaionyesno.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Activaion\frmActivate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Activaion\frmActivate.Designer.cs">
+      <DependentUpon>frmActivate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Activaion\frmactivationlogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Activaion\frmActivationLogin.Designer.cs">
+      <DependentUpon>frmactivationlogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Activaion\frmactivationyes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Activaion\frmactivationyes.designer.cs">
+      <DependentUpon>frmactivationyes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Activaion\IBase.cs" />
     <Compile Include="HelperClass\103-MaterialSkin\FrmYes.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -724,6 +773,15 @@
     <Content Include="Resources\Logo.png" />
     <None Include="Resources\Logo &amp; Text.psd" />
     <None Include="Resources\Logo2.png" />
+    <EmbeddedResource Include="0-Authentication\frmAdmin.resx">
+      <DependentUpon>frmAdmin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="0-Authentication\frmAuthentication.resx">
+      <DependentUpon>frmAuthentication.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="0-Authentication\FrmLogin.resx">
+      <DependentUpon>FrmLogin.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="100-General\FrmMain.resx">
       <DependentUpon>FrmMain.cs</DependentUpon>
     </EmbeddedResource>
@@ -747,15 +805,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="101-Adds\107-Item\Cafe\frmItemDeletedHistory.resx">
       <DependentUpon>frmItemDeletedHistory.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="101-Adds\112-Users\Authentication\frmAdmin.resx">
-      <DependentUpon>frmAdmin.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="101-Adds\112-Users\Authentication\FrmAuthentication.resx">
-      <DependentUpon>FrmAuthentication.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="101-Adds\112-Users\Authentication\FrmLogin.resx">
-      <DependentUpon>FrmLogin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="101-Adds\104-Branches\frmAddBranches.resx">
       <DependentUpon>frmAddBranches.cs</DependentUpon>
@@ -931,6 +980,15 @@
     <EmbeddedResource Include="102-Reports\frmShiftsReport.resx">
       <DependentUpon>frmShiftsReport.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="102-Reports\ProductsRate\frmCategoryRateDetail.resx">
+      <DependentUpon>frmCategoryRateDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="102-Reports\ProductsRate\frmItemRateDetail.resx">
+      <DependentUpon>frmItemRateDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="102-Reports\ProductsRate\frmProductsRate.resx">
+      <DependentUpon>frmProductsRate.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="104-BackOffice\Category\Category_Back_office.resx">
       <DependentUpon>Category_Back_office.cs</DependentUpon>
     </EmbeddedResource>
@@ -948,6 +1006,19 @@
     </EmbeddedResource>
     <EmbeddedResource Include="104-BackOffice\Users\User_Back_office.resx">
       <DependentUpon>User_Back_office.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="105-Settings\frmPrinterCopiesNumber.resx">
+      <DependentUpon>frmPrinterCopiesNumber.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Activaion\frmActivaionYesNo.resx">
+      <DependentUpon>frmactivaionyesno.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Activaion\frmActivate.resx" />
+    <EmbeddedResource Include="Activaion\frmActivationLogin.resx">
+      <DependentUpon>frmactivationlogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Activaion\frmActivationYes.resx">
+      <DependentUpon>frmactivationyes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HelperClass\103-MaterialSkin\FrmYes.resx">
       <DependentUpon>FrmYes.cs</DependentUpon>

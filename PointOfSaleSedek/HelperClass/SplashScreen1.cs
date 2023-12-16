@@ -1,6 +1,8 @@
 ﻿using DataRep;
 using DevExpress.XtraSplashScreen;
-using PointOfSaleSedek._101_Adds._103_Authentication;
+using PointOfSaleSedek._0_Authentication;
+
+//using PointOfSaleSedek._101_Adds._103_Authentication;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

@@ -1,8 +1,8 @@
-﻿ 
+﻿
 
 namespace PointOfSaleSedek.Model
 {
-   public class EndShiftReport
+    public class EndShiftReport
     {
 
 

@@ -34,5 +34,6 @@ namespace DataRep
         public long Last_Modified_User { get; set; }
         public int SexTypeCode { get; set; }
         public bool isUploaded { get; set; }
+        public bool isFireBaseUploaded { get; set; }
     }
 }

@@ -3,9 +3,10 @@ using DevExpress.XtraBars;
 using DevExpress.XtraBars.Ribbon;
 using DevExpress.XtraSplashScreen;
 using Google.Cloud.Firestore;
+using PointOfSaleSedek._0_Authentication;
 using PointOfSaleSedek._101_Adds;
 using PointOfSaleSedek._101_Adds._102_Customer;
-using PointOfSaleSedek._101_Adds._103_Authentication;
+ 
 using PointOfSaleSedek._101_Adds._111_Warehouse;
 using PointOfSaleSedek._101_Adds._112_Users;
 using PointOfSaleSedek._101_Adds._113_BarCode;
@@ -43,7 +44,7 @@ namespace PointOfSaleSedek
         readonly Static st = new Static();
         Timer aTimer = new Timer(60 * 60 * 1000); //one hour in milliseconds
 
-        FirestoreDb fdb;
+       
 
 
         void OnTimedEvent(object source, ElapsedEventArgs e)
@@ -53,10 +54,18 @@ namespace PointOfSaleSedek
             {
                 try
                 {
-                    //updateToFireBase();
                     try
                     {
-                        Update_From_Back_Office(true);
+                        UploadSaleForServer();
+                        UploadExpensesForServer();
+                    }
+                    catch
+                    {
+
+                    }
+                    try
+                    {
+                        updateToFireBase();
                     }
                     catch
                     {
@@ -102,81 +111,123 @@ namespace PointOfSaleSedek
 
 
 
+
         void updateToFireBase()
         {
             // Date Now
-
-
             DateTime today = DateTime.Now;
 
-
+            // localHost Context
             localContext = new POSEntity();
-            ProjectInfo ProjectInfos = localContext.ProjectInfoes.FirstOrDefault();
+
+            // GetBranchCode
+            Int64 Breanch_Code = st.GetBranch_Code();
+
+
+            // Create FirestoreDb Param
+            FirestoreDb fdb = FirestoreDb.Create("owneraccount-32f05");
 
 
 
-            // Get Sale Master Data
-            localContext = new POSEntity();
-            List<SaleMasterView> masterView = localContext.SaleMasterViews.Where(x => x.isUploaded == false && x.IsDeleted == 0).ToList();
+            if (Breanch_Code != 0) {
+                // Upload Project Info ---> 1
+                ProjectInfo ProjectInfos = localContext.ProjectInfoes.FirstOrDefault();
+                DocumentReference Doc6 = fdb.Collection("Projects").Document(ProjectInfos.ProjectCode.ToString());
+                List<Dictionary<string, object>> listUsers = new List<Dictionary<string, object>>();
+                Dictionary<string, object> data6 = new Dictionary<string, object>() {
 
-            masterView.ForEach(master =>
-            {
+                {"ProjectCode",ProjectInfos.ProjectCode},
+                {"ProjectName",ProjectInfos.ProjectName},
+                {"image",ProjectInfos.ImageUrl??""},
+                {"IsActive",ProjectInfos.isActive},
+                {"listUsers",listUsers},
 
-                FirestoreDb fdb1 = FirestoreDb.Create("pointofsale-d3e8d");
+            };
+                Doc6.SetAsync(data6);
 
-                DocumentReference Doc1 = fdb.Collection("SaleMaster").Document("ProjectCode").Collection(ProjectInfos.ProjectCode.ToString()).Document();
 
-                Dictionary<string, object> data1 = new Dictionary<string, object>() {
 
-                {"SaleMasterCode",master.SaleMasterCode},
-                {"TotalBeforDiscount",master.TotalBeforDiscount},
-                { "Discount",master.Discount},
-                { "QtyTotal",master.QtyTotal},
-                { "EntryDate",master.EntryDate.ToString("MM-dd-yyyy hh:mm tt")},
-                { "FinalTotal", master.FinalTotal},
-                { "UserName",master.UserName},
-                { "Emp_Code",master.Emp_Code},
-                { "Shift_Code", master.Shift_Code},
-                { "PaymentType",master.PaymentType},
-                { "OperationTypeId",master.Operation_Type_Id},
+                // Upload Project ManagerInfo ---> 2 
+                List<ProjectMangerInfo> projectMangerInfos = localContext.ProjectMangerInfoes.Where(element => element.isUploaded == false).ToList();
+                DocumentReference Doc5 = fdb.Collection("UsersInfo").Document();
+                projectMangerInfos.ForEach(element =>
+                {
 
+                    Dictionary<string, object> data5 = new Dictionary<string, object>() {
+                {"MangerCode",element.MangerCode},
+                {"MangerName",element.MangerName},
+                { "ProjectId",0},
+                { "IsActive",element.IsActive},
+                { "MangerMobile",element.MangerMobile},
+            };
+
+                    listUsers.Add(data5);
+
+                    Doc5.SetAsync(data5);
+
+                    ProjectMangerInfo _ProjectMangerInfo;
+                    localContext = new POSEntity();
+                    _ProjectMangerInfo = localContext.ProjectMangerInfoes.SingleOrDefault(emp => emp.MangerCode == element.MangerCode && emp.isUploaded == false);
+                    _ProjectMangerInfo.isUploaded = true;
+                    localContext.SaveChanges();
+
+                });
+
+
+
+
+
+                //Upload  Employees  Data By Branch Id ---> 3    
+                List<Employee> masterEmployee = localContext.Employees.Where(x => x.isFireBaseUploaded == false && x.IsDeleted == 0 && x.Branch_ID == Breanch_Code).ToList();
+                masterEmployee.ForEach(Employe =>
+                {
+
+
+                    DocumentReference Doc4 = fdb.Collection("Employee").Document("ProjectCode").Collection(ProjectInfos.ProjectCode.ToString()).Document("BranchId").Collection(Breanch_Code.ToString()).Document();
+
+                    Dictionary<string, object> data4 = new Dictionary<string, object>() {
+
+
+                {"BranchID",Employe.Branch_ID},
+                {"EmployeeCode",Employe.Employee_Code},
+                {"EmployeeName",Employe.Employee_Name},
+                {"EmployeeMobile1",Employe.Employee_Mobile_1},
+                {"EmployeeMobile2",Employe.Employee_Mobile_2},
+                {"SexTypeCode",Employe.SexTypeCode},
                 { "LastUpdateDate",today.ToString("MM-dd-yyyy hh:mm tt")},
-
                 };
-                Doc1.SetAsync(data1);
-
-                SaleMaster _saleMaster;
-                _saleMaster = localContext.SaleMasters.SingleOrDefault(Salmaster => Salmaster.ShiftCode == master.Shift_Code && Salmaster.SaleMasterCode == master.SaleMasterCode && Salmaster.isUploaded == false);
-                _saleMaster.isUploaded = true;
-                localContext.SaveChanges();
-
-            });
 
 
 
 
+                    Doc4.SetAsync(data4);
+
+                    Employee _Employee;
+                    localContext = new POSEntity();
+                    _Employee = localContext.Employees.SingleOrDefault(emp => emp.Employee_Code == Employe.Employee_Code && emp.isFireBaseUploaded == false);
+                    _Employee.isFireBaseUploaded = true;
+                    localContext.SaveChanges();
+                });
 
 
 
+                // Upload Shifts Data  By Branch Id----> 4
+                List<Shift_View> Shifts = localContext.Shift_View.Where(x => x.isFireBaseUploaded == false && x.Shift_Flag == false && x.IsDeleted == 0).ToList();
+                Shifts.ForEach(shift =>
+                {
 
 
-            // Get Shifts  Data
-            localContext = new POSEntity();
-            List<Shift_View> masterShiftView = localContext.Shift_View.Where(x => x.isUploaded == false && x.Shift_Flag == false && x.IsDeleted == 0).ToList();
+                    DocumentReference Doc2 = fdb.Collection("Shifts").Document("ProjectCode").Collection(ProjectInfos.ProjectCode.ToString()).Document("BranchId").Collection(Breanch_Code.ToString()).Document();
 
 
-            masterShiftView.ForEach(shift =>
-            {
-                FirestoreDb fdb2 = FirestoreDb.Create("pointofsale-d3e8d");
-
-                DocumentReference Doc2 = fdb.Collection("Shifts").Document("ProjectCode").Collection(ProjectInfos.ProjectCode.ToString()).Document();
-
-
-                Dictionary<string, object> data2 = new Dictionary<string, object>() {
+                    Dictionary<string, object> data2 = new Dictionary<string, object>() {
 
                 {"ShiftCode",shift.Shift_Code},
                 {"ShiftStartDate",shift.Shift_Start_Date.ToString("MM-dd-yyyy hh:mm tt")},
                 {"ShiftEndDate",shift.Shift_End_Date?.ToString("MM-dd-yyyy hh:mm tt")},
+
+                { "Cash",shift.Cash},
+                { "Visa",shift.Visa},
 
                 { "ShiftStartAmount",shift.Shift_Start_Amount},
                 { "ShiftEndAmount",shift.Shift_End_Amount},
@@ -194,26 +245,25 @@ namespace PointOfSaleSedek
 
 
 
-                Doc2.SetAsync(data2);
-                Shift _ShiftMaster;
-                localContext = new POSEntity();
-                _ShiftMaster = localContext.Shifts.SingleOrDefault(shft => shft.Shift_Code == shift.Shift_Code && shft.isUploaded == false);
-                _ShiftMaster.isUploaded = true;
-                localContext.SaveChanges();
-            });
+                    Doc2.SetAsync(data2);
+                    Shift _ShiftMaster;
+               
+                    _ShiftMaster = localContext.Shifts.SingleOrDefault(shft => shft.Shift_Code == shift.Shift_Code && shft.isFireBaseUploaded == false);
+                    _ShiftMaster.isFireBaseUploaded = true;
+                    localContext.SaveChanges();
+                });
 
 
-            // Get Expenses  Data
-            localContext = new POSEntity();
-            List<ExpensesView> masterExpensesViews = localContext.ExpensesViews.Where(x => x.isUploaded == false && x.IsDeleted == 0).ToList();
 
 
-            masterExpensesViews.ForEach(expenses =>
-            {
-                FirestoreDb fdb3 = FirestoreDb.Create("pointofsale-d3e8d");
-                DocumentReference Doc3 = fdb.Collection("Expenses").Document("ProjectCode").Collection(ProjectInfos.ProjectCode.ToString()).Document();
+                // Upload Expenses  Data  By Branch Id --->5
+                List<ExpensesView> masterExpensesViews = localContext.ExpensesViews.Where(x => x.isUploaded == false && x.IsDeleted == 0 && x.Branches_Code == Breanch_Code).ToList();
+                masterExpensesViews.ForEach(expenses =>
+                {
 
-                Dictionary<string, object> data3 = new Dictionary<string, object>() {
+                    DocumentReference Doc3 = fdb.Collection("Expenses").Document("ProjectCode").Collection(ProjectInfos.ProjectCode.ToString()).Document("BranchId").Collection(Breanch_Code.ToString()).Document();
+
+                    Dictionary<string, object> data3 = new Dictionary<string, object>() {
 
 
                 {"ExpensesName",expenses.ExpensesName},
@@ -225,6 +275,9 @@ namespace PointOfSaleSedek
                 { "Shift_Code", expenses.Shift_Code},
                 { "Employee_Name",expenses.Employee_Name},
                 { "Emp_Code",expenses.Emp_Code},
+                { "Branches_Code",expenses.Branches_Code},
+                { "Branches_Name",expenses.Branches_Name},
+
                 { "LastUpdateDate",today.ToString("MM-dd-yyyy hh:mm tt")},
 
 
@@ -233,127 +286,76 @@ namespace PointOfSaleSedek
 
 
 
-                Doc3.SetAsync(data3);
+                    Doc3.SetAsync(data3);
 
-                ExpensesTransaction _ExpensesTransactionMaster;
-                localContext = new POSEntity();
-                _ExpensesTransactionMaster = localContext.ExpensesTransactions.Where(Expe => Expe.Shift_Code == expenses.Shift_Code && Expe.isUploaded == false && Expe.Id == expenses.Id).First();
-                _ExpensesTransactionMaster.isUploaded = true;
-                localContext.SaveChanges();
-            });
-
-
+                    ExpensesTransaction _ExpensesTransactionMaster;
+                    localContext = new POSEntity();
+                    _ExpensesTransactionMaster = localContext.ExpensesTransactions.Where(Expe => Expe.Shift_Code == expenses.Shift_Code && Expe.isFireBaseUploaded == false && Expe.Id == expenses.Id).First();
+                    _ExpensesTransactionMaster.isUploaded = true;
+                    localContext.SaveChanges();
+                });
 
 
-            // Get Employees  Data
-            localContext = new POSEntity();
-            List<Employee> masterEmployee = localContext.Employees.Where(x => x.isUploaded == false && x.IsDeleted == 0).ToList();
 
 
-            masterEmployee.ForEach(Employe =>
-            {
-                FirestoreDb fdb3 = FirestoreDb.Create("pointofsale-d3e8d");
-                DocumentReference Doc4 = fdb.Collection("Employee").Document("ProjectCode").Collection(ProjectInfos.ProjectCode.ToString()).Document();
 
-                Dictionary<string, object> data4 = new Dictionary<string, object>() {
+                //// Get Sale Master Data --->6
+                //List<SaleMasterView> masterView = localContext.SaleMasterViews.Where(x => x.isUploaded == false && x.IsDeleted == 0).ToList();
+                //masterView.ForEach(master =>
+                //{
 
 
-                {"BranchID",Employe.Branch_ID},
-                {"EmployeeCode",Employe.Employee_Code},
-                {"EmployeeName",Employe.Employee_Name},
-                {"EmployeeMobile1",Employe.Employee_Mobile_1},
-                {"EmployeeMobile2",Employe.Employee_Mobile_2},
-                {"SexTypeCode",Employe.SexTypeCode},
-                { "LastUpdateDate",today.ToString("MM-dd-yyyy hh:mm tt")},
+
+                //    DocumentReference Doc1 = fdb.Collection("SaleMaster").Document("ProjectCode").Collection(ProjectInfos.ProjectCode.ToString()).Document();
+
+                //    Dictionary<string, object> data1 = new Dictionary<string, object>() {
+
+                //    {"SaleMasterCode",master.SaleMasterCode},
+                //    {"TotalBeforDiscount",master.TotalBeforDiscount},
+                //    { "Discount",master.Discount},
+                //    { "QtyTotal",master.QtyTotal},
+                //    { "Branches_Code",master.Branches_Code},
+                //    { "Cash",master.Cash},
+                //    { "Visa",master.Visa},
+
+
+                //    { "UserCode",master.UserCode},
+                //    { "Branches_Name",master.Branches_Name},
+                //    { "IsDeleted",master.IsDeleted},
+                //    { "UserIdTakeOrder",master.UserIdTakeOrder},
+
+                //    { "EntryDate",master.EntryDate.ToString("MM-dd-yyyy hh:mm tt")},
+                //    { "FinalTotal", master.FinalTotal},
+                //    { "UserName",master.UserName},
+                //    { "Emp_Code",master.Emp_Code},
+                //    { "Shift_Code", master.Shift_Code},
+                //    { "PaymentType",master.PaymentType},
+                //    { "OperationTypeId",master.Operation_Type_Id},
+
+                //    { "LastUpdateDate",today.ToString("MM-dd-yyyy hh:mm tt")},
+
+                //    };
+                //    Doc1.SetAsync(data1);
+
+                //    SaleMaster _saleMaster;
+                //    _saleMaster = localContext.SaleMasters.SingleOrDefault(Salmaster => Salmaster.ShiftCode == master.Shift_Code && Salmaster.SaleMasterCode == master.SaleMasterCode && Salmaster.isFireBaseUploaded == false);
+                //    _saleMaster.isFireBaseUploaded = true;
+                //    localContext.SaveChanges();
+
+                //});
+
+
+                // Upload Last Update Date          
+                DocumentReference Doc14 = fdb.Collection("LastUpdateDate").Document("ProjectCode").Collection(ProjectInfos.ProjectCode.ToString()).Document("BranchId").Collection(Breanch_Code.ToString()).Document();
+                Dictionary<string, object> data14 = new Dictionary<string, object>() {
+                { "LastUpdateDate",today.ToString("MM-dd-yyyy hh:mm tt")
+                },
                 };
+                Doc14.SetAsync(data14);
+            }
 
 
-
-
-                Doc4.SetAsync(data4);
-
-                Employee _Employee;
-                localContext = new POSEntity();
-                _Employee = localContext.Employees.SingleOrDefault(emp => emp.Employee_Code == Employe.Employee_Code && emp.isUploaded == false);
-                _Employee.isUploaded = true;
-                localContext.SaveChanges();
-            });
-
-
-
-
-            // Upload Project Info
-            localContext = new POSEntity();
-            List<ProjectMangerInfo> projectMangerInfos = localContext.ProjectMangerInfoes.Where(element => element.isUploaded == false).ToList();
-
-            List<Dictionary<string, object>> listUsers = new List<Dictionary<string, object>>();
-            // Upload Ussers
-
-
-            FirestoreDb fdb5 = FirestoreDb.Create("pointofsale-d3e8d");
-            DocumentReference Doc5 = fdb.Collection("UsersInfo").Document();
-            projectMangerInfos.ForEach(element =>
-            {
-
-                Dictionary<string, object> data5 = new Dictionary<string, object>() {
-
-
-
-                {"MangerCode",element.MangerCode},
-                {"MangerName",element.MangerName},
-                { "ProjectSequence",0},
-                { "ProjectId",0},
-
-                { "IsActive",element.IsActive},
-                { "MangerMobile",element.MangerMobile},
-            };
-
-                listUsers.Add(data5);
-
-                Doc5.SetAsync(data5);
-
-                ProjectMangerInfo _ProjectMangerInfo;
-                localContext = new POSEntity();
-                _ProjectMangerInfo = localContext.ProjectMangerInfoes.SingleOrDefault(emp => emp.MangerCode == element.MangerCode && emp.isUploaded == false);
-                _ProjectMangerInfo.isUploaded = true;
-                localContext.SaveChanges();
-
-
-            });
-
-
-            FirestoreDb fdb6 = FirestoreDb.Create("pointofsale-d3e8d");
-            DocumentReference Doc6 = fdb.Collection("Projects").Document(ProjectInfos.ProjectCode.ToString());
-            Dictionary<string, object> data6 = new Dictionary<string, object>() {
-
-                {"ProjectCode",ProjectInfos.ProjectCode},
-                {"ProjectName",ProjectInfos.ProjectName},
-                {"image",ProjectInfos.ImageUrl??""},
-
-                {"IsActive",ProjectInfos.isActive},
-                {"listUsers",listUsers},
-
-            };
-            Doc6.SetAsync(data6);
-
-
-
-
-
-            DocumentReference Doc14 = fdb.Collection("LastUpdateDate").Document("ProjectCode").Collection(ProjectInfos.ProjectCode.ToString()).Document("1");
-
-            Dictionary<string, object> data14 = new Dictionary<string, object>() {
-                { "LastUpdateDate",today.ToString("MM-dd-yyyy hh:mm tt")},
-                };
-
-
-
-
-            Doc14.SetAsync(data14);
-
-
-
-
+       
 
 
         }
@@ -420,26 +422,23 @@ namespace PointOfSaleSedek
 
 
             InitializeComponent();
+
             AppLangu();
 
-
-            // For FireBase
-
-            //string path = AppDomain.CurrentDomain.BaseDirectory + @"foodapp.json";
-            //Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", path);
-            //fdb = FirestoreDb.Create("pointofsale-d3e8d");
 
             RibbonControl s = new RibbonControl();
             s.BackColor = Color.Red;
 
             aTimer.Elapsed += new ElapsedEventHandler(OnTimedEvent);
-
             aTimer.Start();
 
 
 
         }
-
+        private void FrmMain_Load(object sender, EventArgs e)
+        {
+            Authentication();
+        }
 
         public void AppLangu()
         {
@@ -471,6 +470,8 @@ namespace PointOfSaleSedek
             //barStaticItem19.Caption = item.Employee_Name;
             //barStaticItem19.Appearance.ForeColor = Color.Red;
 
+           
+
 
             this.RightToLeft = st.isEnglish() ? System.Windows.Forms.RightToLeft.No : System.Windows.Forms.RightToLeft.Yes;
             barHeaderItem232.Caption = st.isEnglish() ? "UserName" : "اسم المستخدم";
@@ -486,7 +487,7 @@ namespace PointOfSaleSedek
             barButtonItem22.Caption = st.isEnglish() ? "Close" : "اغلاق";
             barButtonItem22.Hint = st.isEnglish() ? "Close" : "اغلاق";
 
-            btnUploadData.Caption = st.isEnglish() ? "Update" : "تحديث";
+            btnUploadData.Caption = st.isEnglish() ? "Upload Data" : "رفع البيانات";
             btnUploadData.Hint = st.isEnglish() ? "Upload Data" : "رفع البيانات";
 
 
@@ -499,31 +500,7 @@ namespace PointOfSaleSedek
             barButtonItem27.Hint = st.isEnglish() ? "Add Users" : "اضافة مستخدمين";
 
 
-            //////////////////////// Coding Tab /////////////////////////////////////////////
-            ///
-            RbCodeTab.Text = st.isEnglish() ? "Coding" : "التكويد";
-
-
-            barButtonItem38.Caption = st.isEnglish() ? "Add Warehouse" : "اضافة مخزن";
-
-
-            btnBranch.Caption = st.isEnglish() ? "Branchs" : "الفروع";
-            btnBranch.Hint = st.isEnglish() ? "Add Branch" : "اضافة فرع";
-
-            btnEmployee.Caption = st.isEnglish() ? "Employees" : "الموظفين";
-            btnEmployee.Hint = st.isEnglish() ? "Add Employee" : "اضافة موظف";
-
-            btnCode.Caption = st.isEnglish() ? "Categories" : "المجموعات";
-            btnCode.Hint = st.isEnglish() ? "Add Category" : "اضافة مجموعة";
-
-            btnItems.Caption = st.isEnglish() ? "Items" : "العناصر";
-            btnItems.Hint = st.isEnglish() ? "Add Item" : "اضافة عنصر";
-
-            barButtonItem29.Caption = st.isEnglish() ? "BarCode" : "باركود";
-            barButtonItem29.Hint = st.isEnglish() ? "Print BarCode" : "طباعة باركود";
-
-            barButtonItem32.Caption = st.isEnglish() ? "Expenses" : "مصروف";
-            barButtonItem32.Hint = st.isEnglish() ? "Add Expenses Name" : "اضافة اسم مصروف";
+           
 
 
 
@@ -588,24 +565,35 @@ namespace PointOfSaleSedek
             ribbonPageGroup22.Text = Branch_Name;
 
 
+            //////////////////////// Coding Tab /////////////////////////////////////////////
+            ///
+            RbCodeTab.Text = st.isEnglish() ? "Coding" : "التكويد";
+
+
+            barButtonItem38.Caption = st.isEnglish() ? "Add Warehouse" : "اضافة مخزن";
+
+
+            btnBranch.Caption = st.isEnglish() ? "Branchs" : "الفروع";
+            btnBranch.Hint = st.isEnglish() ? "Add Branch" : "اضافة فرع";
+
+            btnEmployee.Caption = st.isEnglish() ? "Employees" : "الموظفين";
+            btnEmployee.Hint = st.isEnglish() ? "Add Employee" : "اضافة موظف";
+
+            btnCode.Caption = st.isEnglish() ? "Categories" : "المجموعات";
+            btnCode.Hint = st.isEnglish() ? "Add Category" : "اضافة مجموعة";
+
+            btnItems.Caption = st.isEnglish() ? "Items" : "العناصر";
+            btnItems.Hint = st.isEnglish() ? "Add Item" : "اضافة عنصر";
+
+            barButtonItem29.Caption = st.isEnglish() ? "BarCode" : "باركود";
+            barButtonItem29.Hint = st.isEnglish() ? "Print BarCode" : "طباعة باركود";
+
+            barButtonItem32.Caption = st.isEnglish() ? "Expenses" : "مصروف";
+            barButtonItem32.Hint = st.isEnglish() ? "Add Expenses Name" : "اضافة اسم مصروف";
 
 
 
         }
-
-
-
-
-
-        private void BtRefersh_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            Authentication();
-
-
-
-        }
-
-
         void HideAllTabs()
         {
             RbAddEmployee.Visible = false;
@@ -628,6 +616,7 @@ namespace PointOfSaleSedek
             RbCancelExpenses.Visible = false;
             RbAddWarehouse.Visible = false;
             rbBackOffice.Visible = false;
+            rbProductRate.Visible = false;
 
             RbShifts.Visible = false;
             btnRefershShiftsData.Visibility = BarItemVisibility.Never;
@@ -647,11 +636,6 @@ namespace PointOfSaleSedek
             RbExpenses.Visible = false;
 
         }
-
-
-
-
-
         void Authentication()
         {
             HideAllTabs();
@@ -731,7 +715,6 @@ namespace PointOfSaleSedek
                         RbAddEmployee.Visible = true;
                         break;
 
-
                     case "RbPurchessReport":
                         RbPurchessReport.Visible = true;
                         break;
@@ -801,7 +784,7 @@ namespace PointOfSaleSedek
                         rbProductRate.Visible = true;
                         break;
 
-                        
+
 
                     default:
 
@@ -811,16 +794,7 @@ namespace PointOfSaleSedek
 
 
             }
-            if (RbAddEmployee.Visible == false && RbAddWarehouse.Visible == false && RbBarCode.Visible == false && RbCode.Visible == false && RbItems.Visible == false && RbBranches.Visible == false && RbAddExpenses.Visible == false && RbCancelExpenses.Visible == false)
-            {
-
-                RbCodeTab.Visible = false;
-            }
-            else
-            {
-                RbCodeTab.Visible = true;
-
-            }
+          
 
             if (RbUser.Visible == false && RbAuth.Visible == false)
             {
@@ -884,9 +858,9 @@ namespace PointOfSaleSedek
 
                  rbProductRate.Visible == false
                 &&
-                RbSaleReport.Visible == false 
+                RbSaleReport.Visible == false
                 &&
-                RbPurchessReport.Visible == false 
+                RbPurchessReport.Visible == false
                 &&
                 RbCancelationInvoiceReport.Visible == false
                 &&
@@ -917,26 +891,45 @@ namespace PointOfSaleSedek
                 RbStorgeTap.Visible = true;
             }
 
-
-
-            if (Breanch_Code != 0)
+            if (RbAddEmployee.Visible == false && RbAddWarehouse.Visible == false && RbBarCode.Visible == false && RbCode.Visible == false && RbItems.Visible == false && RbBranches.Visible == false && RbAddExpenses.Visible == false && RbCancelExpenses.Visible == false)
             {
-                rbBackOffice.Visible = false;
+
+                RbCodeTab.Visible = false;
             }
             else
             {
+                RbCodeTab.Visible = true;
 
-                rbBackOffice.Visible = true;
             }
+
+            //if (Breanch_Code != 0)
+            //{
+            //    rbBackOffice.Visible = false;
+            //}
+            //else
+            //{
+
+            //    rbBackOffice.Visible = true;
+            //}
 
 
 
 
         }
-        private void FrmMain_Load(object sender, EventArgs e)
+
+
+
+
+
+        private void BtRefersh_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             Authentication();
         }
+
+
+
+
+      
 
 
 
@@ -1014,12 +1007,7 @@ namespace PointOfSaleSedek
             frm.ShowDialog();
         }
 
-        private void barButtonItem14_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            //frmSaleReports frm = new frmSaleReports();
-            //frm.ShowDialog();
-        }
-
+    
         private void barButtonItem16_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             frmShiftStart frm = new frmShiftStart();
@@ -1068,13 +1056,11 @@ namespace PointOfSaleSedek
         void UploadSaleForServer()
         {
 
-
             _server = new BackOfficeEntity.db_a8f74e_posEntities();
 
             using (POSEntity Contexts5 = new POSEntity())
             {
                 var master = Contexts5.SaleMasters.Where(e => e.is_Back_Office_Updated == false).ToList();
-
                 master.ForEach(xx =>
                 {
 
@@ -1106,7 +1092,7 @@ namespace PointOfSaleSedek
 
                     };
 
-                    _server.SaleMasters.Add(saleMaster);
+                    _server.SaleMaster.Add(saleMaster);
 
                     _server.SaveChanges();
 
@@ -1118,18 +1104,11 @@ namespace PointOfSaleSedek
 
 
                 });
-
-
-
-
-
-
             }
 
             using (POSEntity Contexts5 = new POSEntity())
             {
                 var Detail = Contexts5.SaleDetails.Where(e => e.is_Back_Office_Updated == false).ToList();
-
                 Detail.ForEach(xx =>
                 {
 
@@ -1159,7 +1138,7 @@ namespace PointOfSaleSedek
 
                     };
 
-                    _server.SaleDetails.Add(saleDetail);
+                    _server.SaleDetail.Add(saleDetail);
 
                     _server.SaveChanges();
 
@@ -1171,14 +1150,7 @@ namespace PointOfSaleSedek
 
 
                 });
-
-
-
-
             }
-
-
-
 
 
         }
@@ -1220,7 +1192,7 @@ namespace PointOfSaleSedek
 
                     };
 
-                    _server.Shifts.Add(shift);
+                    _server.Shift.Add(shift);
 
                     _server.SaveChanges();
 
@@ -1273,7 +1245,7 @@ namespace PointOfSaleSedek
 
                     };
 
-                    _server.ExpensesTransactions.Add(expenses);
+                    _server.ExpensesTransaction.Add(expenses);
 
                     _server.SaveChanges();
 
@@ -1299,48 +1271,58 @@ namespace PointOfSaleSedek
         {
 
             //Authentication();
-            SplashScreenManager.ShowForm(typeof(WaitForm1));
+            //SplashScreenManager.ShowForm(typeof(WaitForm1));
 
 
-            try
+            
+
+
+            //SplashScreenManager.CloseForm();
+
+            if (CheckForInternetConnection())
             {
-                UploadSaleForServer();
-                UploadExpensesForServer();
+
+                try
+                {
+                    SplashScreenManager.ShowForm(typeof(WaitForm1));
+                    try
+                    {
+                        UploadSaleForServer();
+                        UploadExpensesForServer();
+                    }
+                    catch
+                    {
+
+                    }
+                    try
+                    {
+                        updateToFireBase();
+                    }
+                    catch (Exception xx)
+                    {
+                        
+                        MaterialMessageBox.Show(xx.Message, MessageBoxButtons.OK);
+                
+                    }
+                    SplashScreenManager.CloseForm();
+                    MaterialMessageBox.Show("تم رفع البيانات بنجاح", MessageBoxButtons.OK);
+
+
+                }
+                catch (Exception xx)
+                {
+
+                    SplashScreenManager.CloseForm();
+                    MaterialMessageBox.Show(xx.Message, MessageBoxButtons.OK);
+                    return;
+                }
             }
-            catch
+            else
             {
-
+                SplashScreenManager.CloseForm();
+                MaterialMessageBox.Show("لا يوجد اتصال بالانترنت", MessageBoxButtons.OK);
+                return;
             }
-
-
-
-            SplashScreenManager.CloseForm();
-
-            //if (CheckForInternetConnection())
-            //{
-
-            //    try
-            //    {
-            //        SplashScreenManager.ShowForm(typeof(WaitForm1));
-            //        updateToFireBase();
-            //        SplashScreenManager.CloseForm();
-            //        MaterialMessageBox.Show("تم رفع البيانات بنجاح", MessageBoxButtons.OK);
-
-
-            //    }
-            //    catch (Exception xx)
-            //    {
-
-            //        SplashScreenManager.CloseForm();
-            //        MaterialMessageBox.Show(xx.Message, MessageBoxButtons.OK);
-            //        return;
-            //    }
-            //}
-            //else {
-            //    SplashScreenManager.CloseForm();
-            //    MaterialMessageBox.Show("لا يوجد اتصال بالانترنت", MessageBoxButtons.OK);
-            //    return;
-            //}
         }
 
         private void BrAddCustomer_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -2447,7 +2429,7 @@ namespace PointOfSaleSedek
 
                             // Back Office
                             _server = new BackOfficeEntity.db_a8f74e_posEntities();
-                            BackOfficeEntity.Employee _BackOfficeEmployee = _server.Employees.FirstOrDefault(x2 => x2.Employee_Code == xc.Emp_Code && x2.IsDeleted == 0);
+                            BackOfficeEntity.Employee _BackOfficeEmployee = _server.Employee.FirstOrDefault(x2 => x2.Employee_Code == xc.Emp_Code && x2.IsDeleted == 0);
 
 
                             // Local Branch
@@ -2588,7 +2570,7 @@ namespace PointOfSaleSedek
 
                         // Back Office
                         _server = new BackOfficeEntity.db_a8f74e_posEntities();
-                        BackOfficeEntity.Employee _BackOfficeEmployee = _server.Employees.FirstOrDefault(x2 => x2.Employee_Code == xc.Emp_Code && x2.IsDeleted == 0);
+                        BackOfficeEntity.Employee _BackOfficeEmployee = _server.Employee.FirstOrDefault(x2 => x2.Employee_Code == xc.Emp_Code && x2.IsDeleted == 0);
 
 
                         // Local Branch
@@ -2732,7 +2714,7 @@ namespace PointOfSaleSedek
 
                         // Back Office
                         _server = new BackOfficeEntity.db_a8f74e_posEntities();
-                        BackOfficeEntity.Employee _BackOfficeEmployee = _server.Employees.FirstOrDefault(x2 => x2.Employee_Code == xc.Emp_Code && x2.IsDeleted == 0);
+                        BackOfficeEntity.Employee _BackOfficeEmployee = _server.Employee.FirstOrDefault(x2 => x2.Employee_Code == xc.Emp_Code && x2.IsDeleted == 0);
 
 
                         // Local Branch
@@ -3310,7 +3292,7 @@ namespace PointOfSaleSedek
 
 
                         // Get PO By WareHouse_Tras Id
-                        var list_PO = _server.POes.Where(x => x.Warehouse_Transaction_Code == trn.Id && x.IsDeleted == 0).ToList();
+                        var list_PO = _server.PO.Where(x => x.Warehouse_Transaction_Code == trn.Id && x.IsDeleted == 0).ToList();
 
                         list_PO.ForEach(po_Model =>
                         {
@@ -3370,7 +3352,7 @@ namespace PointOfSaleSedek
 
                                     // 4 - update po requst state to 3
                                     _server = new BackOfficeEntity.db_a8f74e_posEntities();
-                                    var po_state = _server.POes.FirstOrDefault(bb => bb.id == po_Model.id);
+                                    var po_state = _server.PO.FirstOrDefault(bb => bb.id == po_Model.id);
                                     po_state.PO_Request_State = 3;
 
                                     _server.SaveChanges();
@@ -3379,7 +3361,7 @@ namespace PointOfSaleSedek
                                     // 5 - insert po in local
                                     localContext = new POSEntity();
                                     _server = new BackOfficeEntity.db_a8f74e_posEntities();
-                                    var po2 = _server.POes.FirstOrDefault(bb => bb.id == po_Model.id);
+                                    var po2 = _server.PO.FirstOrDefault(bb => bb.id == po_Model.id);
 
                                     DataRep.PO locpo = new DataRep.PO()
                                     {
@@ -3493,7 +3475,7 @@ namespace PointOfSaleSedek
 
                                     // 2 - update po requst state to 2
                                     _server = new BackOfficeEntity.db_a8f74e_posEntities();
-                                    var po_state = _server.POes.FirstOrDefault(bb => bb.id == po_Model.id);
+                                    var po_state = _server.PO.FirstOrDefault(bb => bb.id == po_Model.id);
                                     po_state.PO_Request_State = 2;
                                     _server.SaveChanges();
 
@@ -3514,7 +3496,7 @@ namespace PointOfSaleSedek
 
                                     // 2 - update po requst state to 4 (reject)
                                     _server = new BackOfficeEntity.db_a8f74e_posEntities();
-                                    var spo = _server.POes.FirstOrDefault(xx => xx.id == po_Model.id);
+                                    var spo = _server.PO.FirstOrDefault(xx => xx.id == po_Model.id);
                                     spo.PO_Request_State = 4;
                                     spo.Reason = "There is not enough quantity";
                                     _server.SaveChanges();
@@ -3524,7 +3506,7 @@ namespace PointOfSaleSedek
                                     // 5 - insert po in local
                                     localContext = new POSEntity();
                                     _server = new BackOfficeEntity.db_a8f74e_posEntities();
-                                    var po2 = _server.POes.FirstOrDefault(bb => bb.id == po_Model.id);
+                                    var po2 = _server.PO.FirstOrDefault(bb => bb.id == po_Model.id);
                                     DataRep.PO locpo = new DataRep.PO()
                                     {
                                         From_WareHouse_Code = po2.From_WareHouse_Code,
@@ -3584,7 +3566,7 @@ namespace PointOfSaleSedek
 
                         _server = new BackOfficeEntity.db_a8f74e_posEntities();
 
-                        bool anybo = _server.POes.Any(xxx => xxx.From_WareHouse_Code == trn.Code && (xxx.PO_Request_State > 2));
+                        bool anybo = _server.PO.Any(xxx => xxx.From_WareHouse_Code == trn.Code && (xxx.PO_Request_State > 2));
 
                         if (anybo)
                         {
@@ -3614,7 +3596,7 @@ namespace PointOfSaleSedek
                     list_WareHouse_Tras2.ForEach(vv =>
                     {
 
-                        bool anybo = _server.POes.Any(xxx => xxx.From_WareHouse_Code == vv.Code && (xxx.PO_Request_State > 2));
+                        bool anybo = _server.PO.Any(xxx => xxx.From_WareHouse_Code == vv.Code && (xxx.PO_Request_State > 2));
 
                         if (anybo)
                         {
@@ -3647,7 +3629,7 @@ namespace PointOfSaleSedek
                     {
 
 
-                        bool anybo = _server.POes.Any(xxx => xxx.PO_Request_State <= 2);
+                        bool anybo = _server.PO.Any(xxx => xxx.PO_Request_State <= 2);
                         if (anybo)
                         {
 
@@ -3782,6 +3764,13 @@ namespace PointOfSaleSedek
         {
             frmProductsRate frm = new frmProductsRate();
             frm.ShowDialog();
+        }
+
+        private void rint_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            frmPrinterCopiesNumber frm = new frmPrinterCopiesNumber();
+            frm.ShowDialog();
+            
         }
     }
 }

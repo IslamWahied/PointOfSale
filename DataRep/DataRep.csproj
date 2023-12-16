@@ -50,6 +50,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AppActivation.cs">
+      <DependentUpon>POSEnt.tt</DependentUpon>
+    </Compile>
     <Compile Include="Auth_View.cs">
       <DependentUpon>POSEnt.tt</DependentUpon>
     </Compile>
@@ -174,6 +177,9 @@
       <DependentUpon>POSEnt.edmx</DependentUpon>
     </Compile>
     <Compile Include="PO_View.cs">
+      <DependentUpon>POSEnt.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PrintCopyNumber.cs">
       <DependentUpon>POSEnt.tt</DependentUpon>
     </Compile>
     <Compile Include="ProjectInfo.cs">

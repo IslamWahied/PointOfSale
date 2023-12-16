@@ -32,7 +32,8 @@ namespace DataRep
         public double Expenses { get; set; }
         public double TotalSale { get; set; }
         public bool isUploaded { get; set; }
-        public double Visa { get; set; }
-        public double Cash { get; set; }
+        public Nullable<double> Visa { get; set; }
+        public Nullable<double> Cash { get; set; }
+        public bool isFireBaseUploaded { get; set; }
     }
 }

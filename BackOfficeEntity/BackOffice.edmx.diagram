@@ -4,11 +4,11 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="79cbf052d24141ac84fc159c2fea9bbf" Name="Diagram1">
+      <Diagram DiagramId="79cbf052d24141ac84fc159c2fea9bbf" Name="Diagram1" ZoomLevel="67">
         <EntityTypeShape EntityType="db_a8f74e_posModel.Back_Office_Transaction_Detail" Width="1.5" PointX="0.75" PointY="0.75" />
         <EntityTypeShape EntityType="db_a8f74e_posModel.Back_Office_Transaction_Master" Width="1.5" PointX="2.75" PointY="0.75" />
         <EntityTypeShape EntityType="db_a8f74e_posModel.Branch_Back_Office" Width="1.5" PointX="4.75" PointY="0.75" />
-        <EntityTypeShape EntityType="db_a8f74e_posModel.Branch" Width="1.5" PointX="0.75" PointY="4.75" />
+        <EntityTypeShape EntityType="db_a8f74e_posModel.Branches" Width="1.5" PointX="0.75" PointY="4.75" />
         <EntityTypeShape EntityType="db_a8f74e_posModel.Category" Width="1.5" PointX="2.75" PointY="4.75" />
         <EntityTypeShape EntityType="db_a8f74e_posModel.Category_Back_Office" Width="1.5" PointX="4.75" PointY="4.75" />
         <EntityTypeShape EntityType="db_a8f74e_posModel.Customer_Info" Width="1.5" PointX="6.75" PointY="0.75" />
@@ -17,7 +17,7 @@
         <EntityTypeShape EntityType="db_a8f74e_posModel.Employee_Back_Office" Width="1.5" PointX="8.75" PointY="0.75" />
         <EntityTypeShape EntityType="db_a8f74e_posModel.Event_Type" Width="1.5" PointX="2.75" PointY="8.75" />
         <EntityTypeShape EntityType="db_a8f74e_posModel.Event_Type_Back_Office" Width="1.5" PointX="8.75" PointY="6.75" />
-        <EntityTypeShape EntityType="db_a8f74e_posModel.Expens" Width="1.5" PointX="8.75" PointY="9.75" />
+        <EntityTypeShape EntityType="db_a8f74e_posModel.Expenses" Width="1.5" PointX="8.75" PointY="9.75" />
         <EntityTypeShape EntityType="db_a8f74e_posModel.Expenses_Back_Office" Width="1.5" PointX="10.75" PointY="0.75" />
         <EntityTypeShape EntityType="db_a8f74e_posModel.ExpensesTransaction" Width="1.5" PointX="10.75" PointY="4.75" />
         <EntityTypeShape EntityType="db_a8f74e_posModel.ExpensesTransaction_Back_Office" Width="1.5" PointX="10.75" PointY="9.75" />
@@ -28,7 +28,7 @@
         <EntityTypeShape EntityType="db_a8f74e_posModel.Item_History_transaction_Back_Office" Width="1.5" PointX="6.75" PointY="12.75" />
         <EntityTypeShape EntityType="db_a8f74e_posModel.ItemCard" Width="1.5" PointX="12.75" PointY="10.75" />
         <EntityTypeShape EntityType="db_a8f74e_posModel.ItemCard_Back_Office" Width="1.5" PointX="14.75" PointY="0.75" />
-        <EntityTypeShape EntityType="db_a8f74e_posModel.Jop" Width="1.5" PointX="14.75" PointY="6.75" />
+        <EntityTypeShape EntityType="db_a8f74e_posModel.Jops" Width="1.5" PointX="14.75" PointY="6.75" />
         <EntityTypeShape EntityType="db_a8f74e_posModel.Jops_Back_Office" Width="1.5" PointX="8.75" PointY="14.75" />
         <EntityTypeShape EntityType="db_a8f74e_posModel.Operation_Type" Width="1.5" PointX="14.75" PointY="9.75" />
         <EntityTypeShape EntityType="db_a8f74e_posModel.Payment_Type" Width="1.5" PointX="14.75" PointY="12.75" />
@@ -41,13 +41,13 @@
         <EntityTypeShape EntityType="db_a8f74e_posModel.SaleDetail_Back_Office" Width="1.5" PointX="16.75" PointY="4.75" />
         <EntityTypeShape EntityType="db_a8f74e_posModel.SaleMaster" Width="1.5" PointX="16.75" PointY="10.75" />
         <EntityTypeShape EntityType="db_a8f74e_posModel.SaleMaster_Back_Office" Width="1.5" PointX="16.75" PointY="16.75" />
-        <EntityTypeShape EntityType="db_a8f74e_posModel.Sale" Width="1.5" PointX="4.75" PointY="17.75" />
+        <EntityTypeShape EntityType="db_a8f74e_posModel.Sales" Width="1.5" PointX="4.75" PointY="17.75" />
         <EntityTypeShape EntityType="db_a8f74e_posModel.Sales_Back_Office" Width="1.5" PointX="18.75" PointY="0.75" />
         <EntityTypeShape EntityType="db_a8f74e_posModel.SexType" Width="1.5" PointX="18.75" PointY="5.75" />
         <EntityTypeShape EntityType="db_a8f74e_posModel.SexType_Back_Office" Width="1.5" PointX="6.75" PointY="18.75" />
         <EntityTypeShape EntityType="db_a8f74e_posModel.Shift" Width="1.5" PointX="18.75" PointY="8.75" />
         <EntityTypeShape EntityType="db_a8f74e_posModel.Shift_Back_Office" Width="1.5" PointX="8.75" PointY="18.75" />
-        <EntityTypeShape EntityType="db_a8f74e_posModel.State" Width="1.5" PointX="10.75" PointY="18.75" />
+        <EntityTypeShape EntityType="db_a8f74e_posModel.States" Width="1.5" PointX="10.75" PointY="18.75" />
         <EntityTypeShape EntityType="db_a8f74e_posModel.Tab_Info" Width="1.5" PointX="18.75" PointY="14.75" />
         <EntityTypeShape EntityType="db_a8f74e_posModel.Tab_Info_Back_Office" Width="1.5" PointX="18.75" PointY="18.75" />
         <EntityTypeShape EntityType="db_a8f74e_posModel.UnitCard" Width="1.5" PointX="12.75" PointY="19.75" />
@@ -56,7 +56,7 @@
         <EntityTypeShape EntityType="db_a8f74e_posModel.User_Auth" Width="1.5" PointX="20.75" PointY="8.75" />
         <EntityTypeShape EntityType="db_a8f74e_posModel.User_Auth_Back_Office" Width="1.5" PointX="20.75" PointY="12.75" />
         <EntityTypeShape EntityType="db_a8f74e_posModel.User_Back_Office" Width="1.5" PointX="20.75" PointY="17.75" />
-        <EntityTypeShape EntityType="db_a8f74e_posModel.UserEvent" Width="1.5" PointX="22.75" PointY="0.75" />
+        <EntityTypeShape EntityType="db_a8f74e_posModel.UserEvents" Width="1.5" PointX="22.75" PointY="0.75" />
         <EntityTypeShape EntityType="db_a8f74e_posModel.UserEvents_Back_Office" Width="1.5" PointX="0.75" PointY="22.75" />
         <EntityTypeShape EntityType="db_a8f74e_posModel.Warehouse" Width="1.5" PointX="2.75" PointY="22.75" />
         <EntityTypeShape EntityType="db_a8f74e_posModel.Warehouse_Back_Office" Width="1.5" PointX="22.75" PointY="4.75" />
@@ -75,9 +75,9 @@
         <EntityTypeShape EntityType="db_a8f74e_posModel.PO_View" Width="1.5" PointX="24.75" PointY="0.75" />
         <EntityTypeShape EntityType="db_a8f74e_posModel.SaleDetailView" Width="1.5" PointX="24.75" PointY="5.75" />
         <EntityTypeShape EntityType="db_a8f74e_posModel.SaleMasterView" Width="1.5" PointX="6.75" PointY="24.75" />
-        <EntityTypeShape EntityType="db_a8f74e_posModel.Shift_View" Width="1.5" PointX="24.75" PointY="13.75" />
-        <EntityTypeShape EntityType="db_a8f74e_posModel.User_View" Width="1.5" PointX="24.75" PointY="19.75" />
-        <EntityTypeShape EntityType="db_a8f74e_posModel.warhouse_view" Width="1.5" PointX="24.75" PointY="23.75" />
+        <EntityTypeShape EntityType="db_a8f74e_posModel.Shift_View" Width="1.5" PointX="24.75" PointY="11.75" />
+        <EntityTypeShape EntityType="db_a8f74e_posModel.User_View" Width="1.5" PointX="24.75" PointY="17.75" />
+        <EntityTypeShape EntityType="db_a8f74e_posModel.warhouse_view" Width="1.5" PointX="24.75" PointY="21.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

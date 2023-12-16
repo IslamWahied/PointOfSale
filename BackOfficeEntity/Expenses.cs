@@ -12,13 +12,12 @@ namespace BackOfficeEntity
     using System;
     using System.Collections.Generic;
     
-    public partial class Jop
+    public partial class Expenses
     {
-        public long Id { get; set; }
-        public long JopCode { get; set; }
-        public string JobName { get; set; }
+        public int Id { get; set; }
+        public string ExpensesName { get; set; }
         public int IsDeleted { get; set; }
+        public long ExpensesCode { get; set; }
         public long Branch_Code { get; set; }
-        public bool is_Back_Office_Updated { get; set; }
     }
 }

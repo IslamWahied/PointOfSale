@@ -3,23 +3,24 @@ using System.Windows.Forms;
 
 namespace PointOfSaleSedek.HelperClass
 {
-   public class Static
+    public class Static
     {
 
-       public static String ProjectType = "Cafe";
-  // public static String ProjectType = "Perfum";
-      //  public static String ProjectType = "SuperMarket";
+        public static String ProjectType = "Cafe";
+        // public static String ProjectType = "Perfum";
+        //  public static String ProjectType = "SuperMarket";
 
         public static Int64 _User_Code;
         public static Int64 _Branch_Code;
         public static String _Branch_Name;
         public static Int64 _Warehouse_Code;
+        public static int _printCopyNumber;
         public static String _User_Name;
         public static Int64 _Project_Code;
         public static bool _isEnglish;
         public static string _CPU;
 
-     
+
 
         public void wait(int milliseconds)
         {
@@ -82,6 +83,22 @@ namespace PointOfSaleSedek.HelperClass
         public void SetUser_Code(Int64 User_Code)
         {
             _User_Code = User_Code;
+
+
+        }
+
+
+
+        public Int64 GetPrintCopyNumber()
+        {
+            return _printCopyNumber;
+
+
+        }
+
+        public void SetPrintCopyNumber(int printCopyNumber)
+        {
+            _printCopyNumber = printCopyNumber;
 
 
         }
