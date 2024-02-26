@@ -232,6 +232,10 @@ namespace PointOfSaleSedek._102_Reports.ProductsRate
                             Category = x.CategoryName ?? "",
                             ProductCode = x.ItemCode,
                             Totla = itemTotal,
+                            BranchName = slkWarhouse.Text??"",
+                             
+                          
+                            
                             ProductName = x.Name,
                             ProductEnName = x.Name_En,
                             ProductUnite = x.UnitName,
@@ -383,6 +387,43 @@ namespace PointOfSaleSedek._102_Reports.ProductsRate
             frm.label5.Text = selectedRow.CategoryQtyItemSealsSale.ToString();
             frm.ShowDialog();
 
+        }
+
+        private void itemDetailToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmItemRateDetail frm = new frmItemRateDetail();
+
+            var selectedRow = gvItemCard.GetFocusedRow() as ProductRate;
+            Int64 selectedBranch = 0;
+            DateTime dateTo = new DateTime();
+
+            if (!String.IsNullOrWhiteSpace(dtTo.Text))
+            {
+                dateTo = Convert.ToDateTime(Convert.ToDateTime(dtTo.EditValue).AddDays(1));
+
+            }
+
+            if (!String.IsNullOrWhiteSpace(slkWarhouse.Text))
+            {
+                selectedBranch = Convert.ToInt64(slkWarhouse.EditValue);
+
+            }
+
+
+
+            frm.gridControl1.DataSource = listServerDetails.Where(x => x.ItemCode == selectedRow.ProductCode && x.IsDeleted == 0 && x.Operation_Type_Id == 2 && x.EntryDate >= dtFrom.DateTime && x.EntryDate <= dateTo && x.Branch_Id == selectedBranch).ToList();
+            frm.ShowDialog();
+
+        }
+
+        private void categoryDetailToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            frmCategoryRateDetail frm = new frmCategoryRateDetail();
+            var selectedRow = gvItemCard.GetFocusedRow() as ProductRate;
+            frm.lblCategoryName.Text = selectedRow.Category;
+            frm.label4.Text = selectedRow.CategoryPresdentSale.ToString();
+            frm.label5.Text = selectedRow.CategoryQtyItemSealsSale.ToString();
+            frm.ShowDialog();
         }
     }
 }

@@ -16,7 +16,8 @@
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <TargetFrameworkProfile />
-    <PublishUrl>publish\</PublishUrl>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>C:\Users\islam\OneDrive\Desktop\New folder\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -26,10 +27,11 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>0</ApplicationRevision>
+    <AutorunEnabled>true</AutorunEnabled>
+    <ApplicationRevision>1</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -53,6 +55,18 @@
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>Logo-only.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>ADB6CDDE759CDC2DDB8204165C7193885833C5CE</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>PointOfSale_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Accessibility" />
@@ -92,7 +106,7 @@
     </Reference>
     <Reference Include="FlatButton, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Desktop\New folder\Programing\JControls\FlatButton.dll</HintPath>
+      <HintPath>D:\Developer\JControls\FlatButton.dll</HintPath>
     </Reference>
     <Reference Include="Google.Api.CommonProtos, Version=2.6.0.0, Culture=neutral, PublicKeyToken=3ec5ea7f18953e47, processorArchitecture=MSIL">
       <HintPath>..\packages\Google.Api.CommonProtos.2.6.0\lib\net461\Google.Api.CommonProtos.dll</HintPath>
@@ -150,35 +164,35 @@
     </Reference>
     <Reference Include="JDragControl, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Desktop\New folder\Programing\JControls\JDragControl.dll</HintPath>
+      <HintPath>D:\Developer\JControls\JDragControl.dll</HintPath>
     </Reference>
     <Reference Include="JGradient Panel, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Desktop\New folder\Programing\JControls\JGradient Panel.dll</HintPath>
+      <HintPath>D:\Developer\JControls\JGradient Panel.dll</HintPath>
     </Reference>
     <Reference Include="JImageButton, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Desktop\New folder\Programing\JControls\JImageButton.dll</HintPath>
+      <HintPath>D:\Developer\JControls\JImageButton.dll</HintPath>
     </Reference>
     <Reference Include="JMaterialTextbox, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Desktop\New folder\Programing\JControls\JMaterialTextbox.dll</HintPath>
+      <HintPath>D:\Developer\JControls\JMaterialTextbox.dll</HintPath>
     </Reference>
     <Reference Include="JMetroTextBox, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Desktop\New folder\Programing\JControls\JMetroTextBox.dll</HintPath>
+      <HintPath>D:\Developer\JControls\JMetroTextBox.dll</HintPath>
     </Reference>
     <Reference Include="JTextBox, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Desktop\New folder\Programing\JControls\JTextBox.dll</HintPath>
+      <HintPath>D:\Developer\JControls\JTextBox.dll</HintPath>
     </Reference>
     <Reference Include="JTextBox2, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Desktop\New folder\Programing\JControls\JTextBox2.dll</HintPath>
+      <HintPath>D:\Developer\JControls\JTextBox2.dll</HintPath>
     </Reference>
     <Reference Include="JThinButton, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Desktop\New folder\Programing\JControls\JThinButton.dll</HintPath>
+      <HintPath>D:\Developer\JControls\JThinButton.dll</HintPath>
     </Reference>
     <Reference Include="MaterialSkin, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MaterialSkin.0.2.1\lib\MaterialSkin.dll</HintPath>
@@ -637,12 +651,6 @@
     <Compile Include="102-Reports\frmSaleReports.Designer.cs">
       <DependentUpon>frmSaleReports.cs</DependentUpon>
     </Compile>
-    <Compile Include="102-Reports\frmProductsRate.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="102-Reports\frmProductsRate.Designer.cs">
-      <DependentUpon>frmProductsRate.cs</DependentUpon>
-    </Compile>
     <Compile Include="102-Reports\frmShiftsReport.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -771,6 +779,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Content Include="Resources\Logo.jpg" />
     <Content Include="Resources\Logo.png" />
+    <None Include="PointOfSale_TemporaryKey.pfx" />
     <None Include="Resources\Logo &amp; Text.psd" />
     <None Include="Resources\Logo2.png" />
     <EmbeddedResource Include="0-Authentication\frmAdmin.resx">
@@ -973,9 +982,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="102-Reports\frmSaleReports.resx">
       <DependentUpon>frmSaleReports.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="102-Reports\frmProductsRate.resx">
-      <DependentUpon>frmProductsRate.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="102-Reports\frmShiftsReport.resx">
       <DependentUpon>frmShiftsReport.cs</DependentUpon>

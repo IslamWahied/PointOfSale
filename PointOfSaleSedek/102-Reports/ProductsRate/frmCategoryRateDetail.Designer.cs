@@ -52,7 +52,7 @@
             this.tableLayoutPanel1.Controls.Add(this.label3, 0, 2);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 3;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 41.81818F));
@@ -69,10 +69,9 @@
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.LightGray;
             this.label1.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(6, 2);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(5, 2);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(122, 41);
+            this.label1.Size = new System.Drawing.Size(124, 41);
             this.label1.TabIndex = 0;
             this.label1.Text = "Category Name";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -83,10 +82,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblCategoryName.AutoSize = true;
-            this.lblCategoryName.Location = new System.Drawing.Point(138, 2);
-            this.lblCategoryName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblCategoryName.Location = new System.Drawing.Point(137, 2);
             this.lblCategoryName.Name = "lblCategoryName";
-            this.lblCategoryName.Size = new System.Drawing.Size(208, 41);
+            this.lblCategoryName.Size = new System.Drawing.Size(210, 41);
             this.lblCategoryName.TabIndex = 2;
             this.lblCategoryName.Text = "lblCategoryName";
             this.lblCategoryName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -99,10 +97,9 @@
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.LightGray;
             this.label2.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(6, 45);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Location = new System.Drawing.Point(5, 45);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(122, 57);
+            this.label2.Size = new System.Drawing.Size(124, 57);
             this.label2.TabIndex = 4;
             this.label2.Text = "Percentage";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -113,10 +110,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(138, 45);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Location = new System.Drawing.Point(137, 45);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(208, 57);
+            this.label4.Size = new System.Drawing.Size(210, 57);
             this.label4.TabIndex = 5;
             this.label4.Text = "0";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -127,10 +123,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(138, 104);
-            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label5.Location = new System.Drawing.Point(137, 104);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(208, 54);
+            this.label5.Size = new System.Drawing.Size(210, 54);
             this.label5.TabIndex = 7;
             this.label5.Text = "0";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -143,10 +138,9 @@
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.LightGray;
             this.label3.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(6, 104);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Location = new System.Drawing.Point(5, 104);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(122, 54);
+            this.label3.Size = new System.Drawing.Size(124, 54);
             this.label3.TabIndex = 6;
             this.label3.Text = "Total Amount";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -158,7 +152,7 @@
             this.ClientSize = new System.Drawing.Size(352, 160);
             this.Controls.Add(this.tableLayoutPanel1);
             this.IconOptions.ShowIcon = false;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "frmCategoryRateDetail";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

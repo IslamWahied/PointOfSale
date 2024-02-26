@@ -99,7 +99,6 @@ namespace PointOfSaleSedek._0_Authentication
             this.txtPassword.Size = new System.Drawing.Size(239, 23);
             this.txtPassword.TabIndex = 1;
             this.txtPassword.TabStop = false;
-            this.txtPassword.Text = "Admin@2020";
             this.txtPassword.UseSystemPasswordChar = true;
             this.txtPassword.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPassword_KeyDown);
             // 
@@ -119,8 +118,8 @@ namespace PointOfSaleSedek._0_Authentication
             this.txtUserName.Size = new System.Drawing.Size(239, 23);
             this.txtUserName.TabIndex = 0;
             this.txtUserName.TabStop = false;
-            this.txtUserName.Text = "Admin";
             this.txtUserName.UseSystemPasswordChar = false;
+            this.txtUserName.Click += new System.EventHandler(this.txtUserName_Click);
             this.txtUserName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtUserName_KeyDown);
             // 
             // simpleButton2

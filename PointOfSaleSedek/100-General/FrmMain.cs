@@ -16,6 +16,7 @@ using PointOfSaleSedek._101_Adds.CasherShift;
 //using Newtonsoft.Json;
 using PointOfSaleSedek._102_MaterialSkin;
 using PointOfSaleSedek._102_Reports;
+using PointOfSaleSedek._102_Reports.ProductsRate;
 using PointOfSaleSedek._105_Reports;
 using PointOfSaleSedek._114_Adds;
 using PointOfSaleSedek.HelperClass;
@@ -81,8 +82,8 @@ namespace PointOfSaleSedek
 
                 try
                 {
-                    UploadSaleForServer();
-                    UploadExpensesForServer();
+                    //UploadSaleForServer();
+                    //UploadExpensesForServer();
                 }
                 catch
                 {

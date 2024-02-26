@@ -28,7 +28,7 @@ namespace PointOfSaleSedek._0_Authentication
      readonly POSEntity Context = new POSEntity();
         public string CPU_Code { get; set; }
       readonly Static st = new Static();
-        FirestoreDb db;
+        //FirestoreDb db;
         public FrmLogin()
         {
 
@@ -344,6 +344,11 @@ namespace PointOfSaleSedek._0_Authentication
                 frmActivationLogin frm = new frmActivationLogin();
                 frm.ShowDialog();
             }
+        }
+
+        private void txtUserName_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
